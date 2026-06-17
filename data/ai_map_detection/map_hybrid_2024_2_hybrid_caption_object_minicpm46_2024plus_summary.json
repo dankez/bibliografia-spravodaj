@@ -1,0 +1,72 @@
+{
+  "created_at": "2026-06-17T11:03:40+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": "minicpm-v4.6",
+  "year": 2024,
+  "issue": "2",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2024/08/Spravodaj_2_2024_NET_optimized.pdf",
+  "pdf_path": "data/pdf_cache/4e8929d6fe_Spravodaj_2_2024_NET_optimized.pdf",
+  "pdf_pages": 68,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 2,
+  "candidate_pages": [
+    14,
+    56
+  ],
+  "candidate_page_count": 2,
+  "confirmed_pages": [
+    14
+  ],
+  "confirmed_page_count": 1,
+  "confirmed_records": [
+    {
+      "created_at": "2026-06-17T11:03:04+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2024,
+      "issue": "2",
+      "page": 14,
+      "printed_page_guess": 12,
+      "prefilter": {
+        "text_score": 4.0,
+        "visual_score": 0.74,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa speleologickej oblasti západne od obce Debraď. Interval vrstevníc 1 m.",
+          "visual:white=0.40",
+          "visual:dark=0.03",
+          "visual:color=0.06",
+          "visual:edges=0.074"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2024_2_hybrid_caption_object_minicpm46_2024plus/4e8929d6fe_Spravodaj_2_2024_NET_optimized_p14.png",
+      "articles": [
+        {
+          "id": 3627,
+          "title": "Výsledky speleologického prieskumu východnej časti Jasovskej planiny, Objavy debraďských jaskýň",
+          "pages": "4",
+          "page_start": null,
+          "pdf_page_start": 4,
+          "pdf_page_end": 4,
+          "matched_printed_page": 12
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    }
+  ]
+}

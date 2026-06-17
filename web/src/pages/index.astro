@@ -1,0 +1,809 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import articlesData from '../data/articles.json';
+
+const TEST_START_YEAR = 2024;
+const latestArticlesData = articlesData.filter((article) => article.year >= TEST_START_YEAR);
+const uiArticlesData = latestArticlesData.length ? latestArticlesData : articlesData;
+const articleHasMapPlan = (article) =>
+  article.has_map_plan === true ||
+  article.detected_features?.map_plan?.present === true;
+
+const totalArticles = uiArticlesData.length;
+const startYear = Math.min(...uiArticlesData.map((article) => article.year));
+const endYear = Math.max(...uiArticlesData.map((article) => article.year));
+const articlesWithMaps = uiArticlesData.filter(articleHasMapPlan).length;
+const totalUniqueAuthors = new Set(
+  uiArticlesData.flatMap((article) => article.authors || []).filter((author) => !['Anonymus', 'Redakcia'].includes(author))
+).size;
+
+const bibliographyExports = [
+  { href: '/exports/spravodaj_sss_danko.html', label: 'HTML' },
+  { href: '/exports/spravodaj_sss_danko.md', label: 'MD', download: true },
+  { href: '/exports/spravodaj_sss_danko.pdf', label: 'PDF', download: true, primary: true },
+];
+---
+
+<Layout title="Spravodaj SSS — Slovenská speleologická bibliografia">
+  <script src="https://d3js.org/d3.v7.min.js" is:inline></script>
+
+  <div class="bibliography-app flex min-h-screen flex-col text-belly-black">
+    <header class="bibliography-header border-b border-belly-darkgray shadow-sm">
+      <div class="h-2 bg-belly-firebrick"></div>
+      <div class="mx-auto flex max-w-[1500px] flex-col gap-4 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Digitálna bibliografia</p>
+          <h1 class="bibliography-title font-display text-2xl font-extrabold text-belly-firebrick">Slovenská speleologická spoločnosť</h1>
+          <p class="text-sm text-belly-dimgray-warm">Testovací výber najnovších čísel od roku {startYear}, mapy a plány sú zoradené prvé</p>
+        </div>
+        <div class="flex flex-col gap-3 lg:items-end">
+          <div class="flex flex-wrap items-center gap-2 lg:justify-end">
+            <ThemeSwitcher />
+            <div class="bibliography-export-links" aria-label="Danko exporty bibliografie">
+              {bibliographyExports.map((exportLink) => (
+                <a
+                  href={exportLink.href}
+                  class:list={[
+                    'bibliography-link-button',
+                    exportLink.primary && 'bibliography-link-button-primary',
+                  ]}
+                  download={exportLink.download ? true : undefined}
+                >
+                  Export {exportLink.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <dl class="grid grid-cols-2 gap-3 text-xs font-mono sm:grid-cols-4">
+            <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Článkov 2024+</dt><dd id="stat-total" class="font-bold text-belly-firebrick">{totalArticles}</dd></div>
+            <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Roky</dt><dd class="font-bold text-belly-firebrick">{startYear}-{endYear}</dd></div>
+            <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Mapy/plány</dt><dd id="stat-maps" class="font-bold text-belly-peru">{articlesWithMaps}</dd></div>
+            <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Autori</dt><dd class="font-bold text-belly-firebrick">{totalUniqueAuthors}</dd></div>
+          </dl>
+        </div>
+      </div>
+    </header>
+
+    <main class="bibliography-main mx-auto grid min-h-0 w-full flex-1 max-w-none grid-cols-1 overflow-hidden border-x border-belly-darkgray lg:grid-cols-[minmax(460px,42%)_minmax(0,58%)] 2xl:grid-cols-[minmax(640px,40%)_minmax(0,60%)]">
+      <section class="bibliography-pane flex min-h-0 flex-col border-r border-belly-darkgray">
+        <div class="bibliography-filterbar space-y-3 border-b border-belly-darkgray p-4">
+          <div>
+            <label class="sr-only" for="search-input">Hľadať</label>
+            <input id="search-input" class="bibliography-search w-full border border-belly-gray px-3 py-2 text-sm shadow-inner outline-none focus:border-belly-firebrick focus:ring-1 focus:ring-belly-firebrick" placeholder="Hľadať autora, jaskyňu, tému, rok..." />
+          </div>
+
+          <div class="grid grid-cols-2 gap-2">
+            <div class="bibliography-control col-span-2 border border-belly-darkgray p-2">
+              <div class="mb-1 flex justify-between text-[11px] font-mono text-belly-dimgray">
+                <span>Roky: <strong id="year-range-label" class="text-belly-firebrick">{startYear} - {endYear}</strong></span>
+                <button id="reset-years-btn" class="font-bold hover:text-belly-firebrick">Reset</button>
+              </div>
+              <div class="flex gap-2">
+                <input id="year-min" type="range" min={startYear} max={endYear} value={startYear} class="w-full accent-belly-firebrick" />
+                <input id="year-max" type="range" min={startYear} max={endYear} value={endYear} class="w-full accent-belly-firebrick" />
+              </div>
+            </div>
+
+            <div class="bibliography-control flex items-center gap-1 border border-belly-gray p-1" aria-label="Filter čísla">
+              {[1, 2, 3, 4].map((issue) => (
+                <button type="button" class="issue-filter-btn flex-1 px-2 py-1.5 text-xs font-bold text-belly-dimgray-blue hover:bg-belly-darkgray" data-issue={String(issue)}>č. {issue}</button>
+              ))}
+            </div>
+
+            <label class="bibliography-control flex items-center justify-center gap-2 border border-belly-gray px-2 py-1.5 text-xs text-belly-dimgray-blue">
+              <input id="filter-maps-only" type="checkbox" class="accent-belly-firebrick" />
+              Iba mapy/plány
+            </label>
+
+            <label class="bibliography-control flex items-center justify-center gap-2 border border-belly-gray px-2 py-1.5 text-xs text-belly-dimgray-blue">
+              <input id="filter-fulltext" type="checkbox" class="accent-belly-firebrick" />
+              Hľadať vo fulltexte
+            </label>
+          </div>
+
+          <div id="filter-status" class="hidden border border-belly-lightslategray bg-belly-darkgray px-2 py-1 text-xs font-mono text-belly-firebrick">
+            <span id="filter-status-text">Filtre aktívne</span>
+            <button id="clear-all-filters" class="float-right font-bold underline">Zrušiť</button>
+          </div>
+        </div>
+
+        <div id="article-list" class="bibliography-results min-h-0 flex-1 overflow-y-auto">
+          <div class="p-8 text-center text-xs font-mono text-belly-dimgray">Načítavam bibliografiu...</div>
+        </div>
+
+        <div class="bibliography-pager flex items-center justify-between border-t border-belly-darkgray p-3 text-xs font-mono">
+          <button id="prev-page-btn" class="bibliography-button-secondary border border-belly-gray px-3 py-1 disabled:opacity-30">Späť</button>
+          <span id="page-indicator" class="text-belly-dimgray">Strana 1</span>
+          <button id="next-page-btn" class="bibliography-button-secondary border border-belly-gray px-3 py-1 disabled:opacity-30">Ďalej</button>
+        </div>
+      </section>
+
+      <section class="bibliography-pane hidden min-h-0 flex-col lg:flex">
+        <nav class="bibliography-tabs z-20 flex gap-1 border-b border-belly-darkgray p-2 shadow-sm">
+          <button id="tab-detail-btn" class="bg-belly-firebrick px-3 py-1.5 text-xs font-bold text-belly-gainsboro">Detail článku</button>
+          <button id="tab-analytics-btn" class="px-3 py-1.5 text-xs font-bold text-belly-dimgray-blue hover:bg-belly-darkgray">Štatistika</button>
+        </nav>
+
+        <div class="relative min-h-0 flex-1">
+          <div id="detail-panel" class="bibliography-detail-panel absolute inset-0 grid grid-cols-[56%_44%]">
+            <article class="bibliography-detail-main min-h-0 overflow-y-auto p-5">
+              <div id="no-selection" class="flex h-full items-center justify-center text-center text-sm text-belly-dimgray">
+                Vyberte článok zo zoznamu.
+              </div>
+
+              <div id="selected-detail" class="bibliography-selected-detail hidden space-y-5">
+                <div class="border-b border-belly-darkgray pb-3">
+                  <a id="detail-page-link" href="#" class="bibliography-link-button bibliography-link-button-primary mb-3">
+                    Permanentná stránka článku <span aria-hidden="true">&rarr;</span>
+                  </a>
+                  <h2 id="detail-title" class="bibliography-detail-title mt-2 font-display text-xl font-extrabold leading-tight text-belly-black"></h2>
+                  <p id="detail-authors" class="bibliography-detail-authors mt-2 border-l-4 border-belly-peru pl-3 text-sm font-semibold text-belly-firebrick"></p>
+                </div>
+
+                <dl class="bibliography-meta-grid grid grid-cols-4 gap-2 border border-belly-darkgray p-3 text-xs font-mono">
+                  <div><dt class="text-belly-lightslategray">Ročník</dt><dd id="detail-volume" class="font-bold"></dd></div>
+                  <div><dt class="text-belly-lightslategray">Číslo</dt><dd id="detail-issue" class="font-bold"></dd></div>
+                  <div><dt class="text-belly-lightslategray">Rok</dt><dd id="detail-year" class="font-bold"></dd></div>
+                  <div><dt class="text-belly-lightslategray">Strany</dt><dd id="detail-pages" class="font-bold"></dd></div>
+                </dl>
+
+                <section>
+                  <h3 class="mb-2 text-xs font-bold uppercase tracking-wider text-belly-firebrick">Anotácia</h3>
+                  <p id="detail-abstract" class="bibliography-abstract border border-belly-darkgray p-3 text-sm leading-relaxed text-belly-dimgray-blue"></p>
+                </section>
+
+                <section>
+                  <h3 class="mb-2 text-xs font-bold uppercase tracking-wider text-belly-firebrick">Taxonómie a prepojenia</h3>
+                  <div id="detail-tags" class="flex flex-wrap gap-2"></div>
+                </section>
+
+                <section class="space-y-3 border-t border-belly-darkgray pt-4">
+                  <h3 class="bibliography-section-title text-xs font-bold uppercase tracking-wider text-belly-firebrick">Citácie</h3>
+                  <div class="space-y-2 text-xs">
+                    <div class="bibliography-citation-box border border-belly-darkgray p-3">
+                      <div class="mb-1 flex justify-between gap-3 font-mono text-[10px] uppercase text-belly-lightslategray"><span>ISO 690</span><button class="copy-citation bibliography-action-link text-belly-firebrick" data-target="cite-iso">Kopírovať</button></div>
+                      <p id="cite-iso" class="select-all leading-relaxed"></p>
+                    </div>
+                    <div class="bibliography-citation-box border border-belly-darkgray p-3">
+                      <div class="mb-1 flex justify-between gap-3 font-mono text-[10px] uppercase text-belly-lightslategray"><span>APA</span><button class="copy-citation bibliography-action-link text-belly-firebrick" data-target="cite-apa">Kopírovať</button></div>
+                      <p id="cite-apa" class="select-all leading-relaxed"></p>
+                    </div>
+                    <div class="bibliography-citation-box border border-belly-darkgray p-3">
+                      <div class="mb-1 flex justify-between gap-3 font-mono text-[10px] uppercase text-belly-lightslategray"><span>MLA</span><button class="copy-citation bibliography-action-link text-belly-firebrick" data-target="cite-mla">Kopírovať</button></div>
+                      <p id="cite-mla" class="select-all leading-relaxed"></p>
+                    </div>
+                  </div>
+                </section>
+
+                <section class="space-y-3 border-t border-belly-darkgray pt-4">
+                  <div class="flex items-center justify-between">
+                    <h3 class="text-xs font-bold uppercase tracking-wider text-belly-firebrick">Komunitné errata</h3>
+                    <button id="export-errata-btn" class="bibliography-action-link text-belly-firebrick">Export JSON</button>
+                  </div>
+                  <div id="errata-list" class="max-h-40 space-y-2 overflow-y-auto text-xs"></div>
+                  <form id="errata-form" class="bibliography-soft-box space-y-2 border border-belly-darkgray p-3">
+                    <textarea id="errata-text" rows="2" class="w-full resize-y rounded border border-belly-darkgray bg-belly-gainsboro p-2 text-xs outline-none focus:border-belly-firebrick" placeholder="Doplňte opravu, chýbajúci údaj alebo spresnenie..." required></textarea>
+                    <button class="bg-belly-firebrick px-3 py-1 text-xs font-bold text-belly-gainsboro" type="submit">Pridať erratum</button>
+                  </form>
+                </section>
+              </div>
+            </article>
+
+            <aside class="min-h-0 border-l border-belly-darkgray p-5">
+              <div class="bibliography-document-box border border-belly-darkgray p-5 shadow-sm">
+                <p class="text-xs font-bold uppercase tracking-wider text-belly-firebrick">Originálny dokument</p>
+                <h3 id="pdf-label" class="mt-2 font-display text-lg font-bold text-belly-firebrick">PDF dokument</h3>
+                <p id="pdf-helper" class="mt-3 text-sm leading-relaxed text-belly-dimgray-warm">
+                  PDF sa v archíve automaticky nenačítava. Otvorí sa až po kliknutí v novej karte prehliadača.
+                </p>
+                <a id="pdf-open-link" href="#" target="_blank" rel="noreferrer" class="bibliography-button-primary pointer-events-none mt-5 inline-flex w-full items-center justify-center px-4 py-3 text-sm font-bold opacity-40">
+                  Otvoriť PDF v novej karte
+                </a>
+                <figure id="pdf-cover-box" class="bibliography-cover-box mt-5 hidden">
+                  <a id="pdf-cover-link" href="#" target="_blank" rel="noreferrer" class="bibliography-cover-link" aria-label="Otvoriť PDF dokument">
+                    <img id="pdf-cover-image" alt="" loading="lazy" decoding="async" />
+                  </a>
+                  <figcaption id="pdf-cover-caption" class="mt-2 text-center text-[11px] font-mono uppercase text-belly-lightslategray">
+                    Obálka čísla
+                  </figcaption>
+                </figure>
+                <div id="pdf-missing" class="mt-4 hidden border border-belly-peru bg-belly-gainsboro p-3 text-sm text-belly-black-brown">PDF dokument nie je dostupný.</div>
+                <div class="mt-5 border-t border-belly-darkgray pt-4 text-xs leading-relaxed text-belly-dimgray">
+                  Odkaz smeruje priamo na fyzickú stranu článku, ak je v databáze dostupný offset PDF strany.
+                </div>
+              </div>
+            </aside>
+          </div>
+
+          <div id="analytics-panel" class="pointer-events-none absolute inset-0 overflow-y-auto p-6 opacity-0">
+            <div class="mx-auto max-w-5xl space-y-6">
+              <div class="bibliography-soft-box border border-belly-darkgray p-5 shadow-sm">
+                <h2 class="font-display text-lg font-bold text-belly-black">Štatistika archívu</h2>
+                <p class="mt-1 text-sm text-belly-dimgray">Grafy sa prepočítavajú podľa aktuálnych filtrov.</p>
+              </div>
+              <div class="grid grid-cols-1 gap-6 xl:grid-cols-2">
+                <div class="bibliography-soft-box border border-belly-darkgray p-5 shadow-sm">
+                  <h3 class="mb-3 text-xs font-bold uppercase tracking-wider text-belly-firebrick">Publikačná aktivita</h3>
+                  <div id="timeline-chart" class="h-[300px] border border-belly-darkgray bg-belly-gainsboro"></div>
+                </div>
+                <div class="bibliography-soft-box border border-belly-darkgray p-5 shadow-sm">
+                  <h3 class="mb-3 text-xs font-bold uppercase tracking-wider text-belly-firebrick">Najaktívnejší autori</h3>
+                  <div id="authors-chart" class="h-[300px] border border-belly-darkgray bg-belly-gainsboro"></div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <script>
+    import MiniSearch from 'minisearch';
+    import articlesRaw from '../data/articles.json';
+
+    const TEST_START_YEAR = 2024;
+    const latestArticles = articlesRaw.filter((article) => article.year >= TEST_START_YEAR);
+    const sourceArticles = latestArticles.length ? latestArticles : articlesRaw;
+    const articles = sourceArticles.map((article) => ({ ...article, year_str: String(article.year) }));
+    const articlesById = new Map(articles.map((article) => [article.id, article]));
+    const articleYears = articles.map((article) => article.year);
+    const START_YEAR = Math.min(...articleYears);
+    const END_YEAR = Math.max(...articleYears);
+    const miniSearch = new MiniSearch({
+      fields: ['title', 'authors', 'abstract', 'year_str', 'volume', 'issue', 'tags', 'caves', 'groups'],
+      storeFields: ['id'],
+      searchOptions: {
+        boost: { title: 4, caves: 3, authors: 2, tags: 2, groups: 2, abstract: 1 },
+        prefix: true,
+        fuzzy: 0.1
+      }
+    });
+    miniSearch.addAll(articles);
+
+    const state = {
+      search: '',
+      yearMin: START_YEAR,
+      yearMax: END_YEAR,
+      issue: '',
+      mapsOnly: false,
+      fulltext: false,
+      page: 1,
+      pageSize: 12,
+      selectedId: null,
+      activeTab: 'detail',
+      errata: {}
+    };
+
+    const byId = (id) => document.getElementById(id);
+    const listEl = byId('article-list');
+    const searchInput = byId('search-input');
+    const yearMinInput = byId('year-min');
+    const yearMaxInput = byId('year-max');
+    const yearLabel = byId('year-range-label');
+    const issueButtons = Array.from(document.querySelectorAll('.issue-filter-btn'));
+    const filterMapsOnly = byId('filter-maps-only');
+    const filterFulltext = byId('filter-fulltext');
+    const filterStatus = byId('filter-status');
+    const filterStatusText = byId('filter-status-text');
+    const pageIndicator = byId('page-indicator');
+    const prevPageBtn = byId('prev-page-btn');
+    const nextPageBtn = byId('next-page-btn');
+    let filtered = articles;
+    let fulltextMiniSearch = null;
+    let fulltextLoadPromise = null;
+    let fulltextLoadState = 'idle';
+    let fulltextStats = null;
+
+    function hasMap(article) {
+      if (article.has_map_plan === true) return true;
+      const detected = article.detected_features?.map_plan;
+      if (detected?.present === true) return true;
+      return false;
+    }
+
+    function firstArticlePage(article) {
+      const match = String(article.pages || '').match(/^(\d+)/);
+      return match ? Number(match[1]) : 1;
+    }
+
+    function pdfPageOffset(article) {
+      return Number(article.year) >= 2024 ? 2 : 0;
+    }
+
+    function pdfPage(article) {
+      const printedPage = Number(article.pdf_page_start || firstArticlePage(article) || 1);
+      return printedPage + pdfPageOffset(article);
+    }
+
+    function articlePdfUrl(article) {
+      return article.pdf_url ? `${article.pdf_url}#page=${pdfPage(article)}` : '';
+    }
+
+    function pdfBaseUrl(article) {
+      return String(article.pdf_url || '').split('#')[0].split('?')[0];
+    }
+
+    function pdfCoverCandidates(article) {
+      const baseUrl = pdfBaseUrl(article);
+      if (!baseUrl || !/\.pdf$/i.test(baseUrl)) return [];
+      const withoutExtension = baseUrl.replace(/\.pdf$/i, '');
+      return [
+        `${withoutExtension}-thumb.png`,
+        `${withoutExtension}-thumb.jpg`,
+        `${withoutExtension}.png`,
+        `${withoutExtension}.jpg`
+      ];
+    }
+
+    function issueMatches(articleIssue, selectedIssue) {
+      if (!selectedIssue) return true;
+      const issue = String(articleIssue || '');
+      return new RegExp(`(^|[^0-9])${selectedIssue}([^0-9]|$)`).test(issue);
+    }
+
+    function publicDataUrl(fileName) {
+      const pathname = window.location.pathname.endsWith('/') ? window.location.pathname : `${window.location.pathname}/`;
+      return `${pathname}data/${fileName}`;
+    }
+
+    function loadFulltextIndex() {
+      if (fulltextMiniSearch) return Promise.resolve(fulltextMiniSearch);
+      if (fulltextLoadPromise) return fulltextLoadPromise;
+
+      fulltextLoadState = 'loading';
+      fulltextLoadPromise = fetch(publicDataUrl('fulltext_index.json'))
+        .then((response) => {
+          if (!response.ok) throw new Error(`Fulltext index HTTP ${response.status}`);
+          return response.json();
+        })
+        .then((records) => {
+          const index = new MiniSearch({
+            fields: ['t'],
+            storeFields: ['a'],
+            searchOptions: {
+              prefix: true,
+              fuzzy: 0.1
+            }
+          });
+          index.addAll(records);
+          fulltextMiniSearch = index;
+          fulltextLoadState = 'ready';
+          fulltextStats = {
+            chunks: records.length,
+            articles: new Set(records.map((record) => record.a)).size
+          };
+          applyFilters();
+          return index;
+        })
+        .catch((error) => {
+          console.error('Fulltext index sa nepodarilo načítať.', error);
+          fulltextLoadState = 'error';
+          fulltextLoadPromise = null;
+          applyFilters();
+          return null;
+        });
+
+      applyFilters();
+      return fulltextLoadPromise;
+    }
+
+    function fulltextStatusLabel(query) {
+      if (!state.fulltext) return '';
+      if (!query) return 'fulltext pripravený po zadaní hľadania';
+      if (fulltextLoadState === 'loading') return 'fulltext sa načítava';
+      if (fulltextLoadState === 'error') return 'fulltext index nie je dostupný';
+      if (fulltextLoadState === 'ready' && fulltextStats) {
+        return `fulltext: ${fulltextStats.articles} článkov`;
+      }
+      return 'fulltext zapnutý';
+    }
+
+    function renderIssueButtons() {
+      issueButtons.forEach((button) => {
+        const active = button.dataset.issue === state.issue;
+        button.className = active
+          ? 'issue-filter-btn flex-1 bg-belly-firebrick px-2 py-1.5 text-xs font-bold text-belly-gainsboro'
+          : 'issue-filter-btn flex-1 px-2 py-1.5 text-xs font-bold text-belly-dimgray-blue hover:bg-belly-darkgray';
+      });
+    }
+
+    function setTab(tab) {
+      state.activeTab = tab;
+      const panels = {
+        detail: byId('detail-panel'),
+        analytics: byId('analytics-panel')
+      };
+      const buttons = {
+        detail: byId('tab-detail-btn'),
+        analytics: byId('tab-analytics-btn')
+      };
+      Object.entries(panels).forEach(([key, panel]) => {
+        panel.classList.toggle('opacity-0', key !== tab);
+        panel.classList.toggle('pointer-events-none', key !== tab);
+      });
+      Object.entries(buttons).forEach(([key, button]) => {
+        button.className = key === tab
+          ? 'bg-belly-firebrick px-3 py-1.5 text-xs font-bold text-belly-gainsboro'
+          : 'px-3 py-1.5 text-xs font-bold text-belly-dimgray-blue hover:bg-belly-darkgray';
+      });
+      if (tab === 'analytics') renderCharts();
+    }
+
+    function applyFilters() {
+      const query = state.search.trim();
+      const base = query
+        ? miniSearch.search(query).map((hit) => articlesById.get(Number(hit.id))).filter(Boolean)
+        : articles.slice();
+
+      if (query && state.fulltext) {
+        if (fulltextMiniSearch) {
+          const seen = new Set(base.map((article) => article.id));
+          fulltextMiniSearch.search(query).forEach((hit) => {
+            const article = articlesById.get(hit.a);
+            if (article && !seen.has(article.id)) {
+              base.push(article);
+              seen.add(article.id);
+            }
+          });
+        } else if (fulltextLoadState !== 'loading') {
+          loadFulltextIndex();
+        }
+      }
+
+      filtered = base.filter((article) => {
+        if (article.year < state.yearMin || article.year > state.yearMax) return false;
+        if (!issueMatches(article.issue, state.issue)) return false;
+        if (state.mapsOnly && !hasMap(article)) return false;
+        return true;
+      }).sort((a, b) => {
+        const mapDelta = Number(hasMap(b)) - Number(hasMap(a));
+        return mapDelta || b.year - a.year || b.id - a.id;
+      });
+
+      state.page = Math.min(state.page, Math.max(1, Math.ceil(filtered.length / state.pageSize)));
+      const active = query || state.yearMin > START_YEAR || state.yearMax < END_YEAR || state.issue || state.mapsOnly || state.fulltext;
+      filterStatus.classList.toggle('hidden', !active);
+      filterStatusText.textContent = [`${filtered.length} výsledkov`, fulltextStatusLabel(query)].filter(Boolean).join(' · ');
+      byId('stat-total').textContent = String(filtered.length);
+      byId('stat-maps').textContent = String(filtered.filter(hasMap).length);
+      renderIssueButtons();
+      renderList();
+      if (state.activeTab === 'analytics') renderCharts();
+    }
+
+    function renderList() {
+      const totalPages = Math.max(1, Math.ceil(filtered.length / state.pageSize));
+      state.page = Math.min(state.page, totalPages);
+      const start = (state.page - 1) * state.pageSize;
+      const pageItems = filtered.slice(start, start + state.pageSize);
+      listEl.innerHTML = '';
+
+      if (pageItems.length === 0) {
+        listEl.innerHTML = '<div class="p-8 text-center text-sm text-belly-lightslategray">Nenašli sa žiadne články.</div>';
+      }
+
+      pageItems.forEach((article) => {
+        const row = document.createElement('button');
+        row.type = 'button';
+        row.className = `article-result-card ${state.selectedId === article.id ? 'is-selected' : ''}`;
+        row.innerHTML = `
+          <div class="article-result-meta">
+            <span>${article.year}</span>
+            <span class="separator">/</span>
+            <span>č. ${article.issue}</span>
+            <span class="separator">/</span>
+            <span>s. ${article.pages}</span>
+            ${hasMap(article) ? '<span class="article-result-badge ml-auto">mapa/plán</span>' : ''}
+          </div>
+          <h3 class="article-result-title">${article.title}</h3>
+          <p class="article-result-author">${(article.authors || []).join(', ')}</p>
+          <p class="article-result-abstract line-clamp-2">${article.abstract || ''}</p>
+        `;
+        row.addEventListener('click', () => selectArticle(article.id));
+        listEl.appendChild(row);
+      });
+
+      pageIndicator.textContent = `Strana ${state.page} z ${totalPages} (${filtered.length})`;
+      prevPageBtn.disabled = state.page <= 1;
+      nextPageBtn.disabled = state.page >= totalPages;
+    }
+
+    function tagBadge(text, href) {
+      const element = document.createElement(href ? 'a' : 'span');
+      element.className = 'bibliography-tag rounded-full border border-belly-darkgray px-2.5 py-1 text-[11px] font-mono text-belly-dimgray';
+      element.textContent = text;
+      if (href) {
+        element.href = href;
+        element.target = '_blank';
+        element.rel = 'noreferrer';
+      }
+      return element;
+    }
+
+    function selectArticle(id) {
+      const article = articles.find((item) => item.id === id);
+      if (!article) return;
+      state.selectedId = id;
+      byId('no-selection').classList.add('hidden');
+      byId('selected-detail').classList.remove('hidden');
+
+      byId('detail-page-link').href = `/clanky/${article.id}/`;
+      byId('detail-title').textContent = article.title;
+      byId('detail-authors').textContent = (article.authors || []).join(', ');
+      byId('detail-volume').textContent = article.volume || '-';
+      byId('detail-issue').textContent = article.issue || '-';
+      byId('detail-year').textContent = String(article.year || '-');
+      byId('detail-pages').textContent = article.pages || '-';
+      byId('detail-abstract').textContent = article.abstract || 'Anotácia zatiaľ nie je k dispozícii.';
+
+      const tagsEl = byId('detail-tags');
+      tagsEl.innerHTML = '';
+      (article.wikidata || []).forEach((item) => tagsEl.appendChild(tagBadge(item.name, item.url)));
+      (article.caves || []).forEach((item) => tagsEl.appendChild(tagBadge(item)));
+      (article.groups || []).forEach((item) => tagsEl.appendChild(tagBadge(item)));
+      (article.tags || []).forEach((item) => tagsEl.appendChild(tagBadge(item)));
+      if (!tagsEl.children.length) tagsEl.appendChild(tagBadge('Speleológia'));
+
+      generateCitations(article);
+      renderErrata(article.id);
+
+      const pdfUrl = articlePdfUrl(article);
+      const pdfMissing = byId('pdf-missing');
+      const pdfOpenLink = byId('pdf-open-link');
+      const pdfCoverBox = byId('pdf-cover-box');
+      const pdfCoverImage = byId('pdf-cover-image');
+      const pdfCoverLink = byId('pdf-cover-link');
+      const pdfCoverCaption = byId('pdf-cover-caption');
+      if (pdfUrl) {
+        pdfOpenLink.href = pdfUrl;
+        pdfOpenLink.classList.remove('pointer-events-none', 'opacity-40');
+        byId('pdf-label').textContent = `PDF: ${article.year}, č. ${article.issue}, s. ${article.pages}`;
+        pdfMissing.classList.add('hidden');
+
+        const coverCandidates = pdfCoverCandidates(article);
+        if (coverCandidates.length) {
+          pdfCoverBox.classList.remove('hidden');
+          pdfCoverLink.href = article.pdf_url || pdfUrl;
+          pdfCoverCaption.textContent = `Obálka čísla ${article.year}, č. ${article.issue}`;
+          pdfCoverImage.dataset.coverCandidates = coverCandidates.join('|');
+          pdfCoverImage.dataset.coverIndex = '0';
+          pdfCoverImage.alt = `Obálka Spravodaja SSS ${article.year}, číslo ${article.issue}`;
+          pdfCoverImage.src = coverCandidates[0];
+        } else {
+          pdfCoverBox.classList.add('hidden');
+          pdfCoverImage.removeAttribute('src');
+          pdfCoverImage.dataset.coverCandidates = '';
+        }
+      } else {
+        pdfOpenLink.href = '#';
+        pdfOpenLink.classList.add('pointer-events-none', 'opacity-40');
+        byId('pdf-label').textContent = 'PDF dokument';
+        pdfMissing.classList.remove('hidden');
+        pdfCoverBox.classList.add('hidden');
+        pdfCoverImage.removeAttribute('src');
+        pdfCoverImage.dataset.coverCandidates = '';
+      }
+
+      renderList();
+      setTab('detail');
+    }
+
+    function formatAuthorsIso(authors) {
+      return authors.map((author) => {
+        if (!author.includes(',')) return author.toUpperCase();
+        const [surname, initials] = author.split(',');
+        return `${surname.trim().toUpperCase()}, ${initials.trim()}`;
+      }).join(' - ');
+    }
+
+    function formatAuthorsPlain(authors) {
+      return authors.join(', ');
+    }
+
+    function generateCitations(article) {
+      const journal = 'Spravodaj Slovenskej speleologickej spoločnosti';
+      const authors = article.authors || ['Anonymus'];
+      byId('cite-iso').textContent = `${formatAuthorsIso(authors)}. ${article.title}. In: ${journal}. ${article.year}, roč. ${article.volume || 'I.'}, č. ${article.issue}, s. ${article.pages}.`;
+      byId('cite-apa').textContent = `${formatAuthorsPlain(authors)} (${article.year}). ${article.title}. ${journal}, ${article.volume || 'I.'}(${article.issue}), ${article.pages}.`;
+      byId('cite-mla').textContent = `${formatAuthorsPlain(authors)}. "${article.title}." ${journal}, vol. ${article.volume || 'I.'}, no. ${article.issue}, ${article.year}, pp. ${article.pages}.`;
+    }
+
+    function loadErrata() {
+      try {
+        state.errata = JSON.parse(localStorage.getItem('speleo_errata') || '{}');
+      } catch {
+        state.errata = {};
+      }
+    }
+
+    function saveErrata() {
+      localStorage.setItem('speleo_errata', JSON.stringify(state.errata));
+    }
+
+    function renderErrata(articleId) {
+      const list = state.errata[articleId] || [];
+      const listEl = byId('errata-list');
+      listEl.innerHTML = '';
+      if (!list.length) {
+        listEl.innerHTML = '<p class="text-belly-lightslategray">K tomuto článku zatiaľ nie sú lokálne uložené errata.</p>';
+        return;
+      }
+      list.forEach((item) => {
+        const row = document.createElement('div');
+        row.className = 'bibliography-soft-box rounded border border-belly-darkgray p-2';
+        row.innerHTML = `<div class="mb-1 font-mono text-[10px] text-belly-lightslategray">${item.date}</div><p class="whitespace-pre-line text-belly-dimgray-blue">${item.text}</p>`;
+        listEl.appendChild(row);
+      });
+    }
+
+    function exportErrata() {
+      const blob = new Blob([JSON.stringify(state.errata, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'komunitne_errata_spravodaj_sss.json';
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    function renderCharts() {
+      const d3 = (window).d3;
+      if (!d3) return;
+      renderTimeline(d3);
+      renderAuthors(d3);
+    }
+
+    function renderTimeline(d3) {
+      const container = byId('timeline-chart');
+      container.innerHTML = '';
+      const width = container.clientWidth || 500;
+      const height = container.clientHeight || 300;
+      const margin = { top: 18, right: 16, bottom: 34, left: 34 };
+      const years = new Map();
+      for (let year = START_YEAR; year <= END_YEAR; year++) years.set(year, 0);
+      filtered.forEach((article) => years.set(article.year, (years.get(article.year) || 0) + 1));
+      const data = Array.from(years.entries()).map(([year, count]) => ({ year, count }));
+      const svg = d3.select(container).append('svg').attr('width', '100%').attr('height', '100%').attr('viewBox', `0 0 ${width} ${height}`);
+      const x = d3.scaleBand().domain(data.map((item) => item.year)).range([margin.left, width - margin.right]).padding(0.15);
+      const y = d3.scaleLinear().domain([0, d3.max(data, (item) => item.count) || 1]).nice().range([height - margin.bottom, margin.top]);
+      svg.append('g').attr('transform', `translate(0,${height - margin.bottom})`).call(d3.axisBottom(x).tickValues(x.domain().filter((_, i) => i % 5 === 0))).selectAll('text').attr('font-size', 10);
+      svg.append('g').attr('transform', `translate(${margin.left},0)`).call(d3.axisLeft(y).ticks(5)).selectAll('text').attr('font-size', 10);
+      svg.selectAll('rect').data(data).enter().append('rect').attr('x', (item) => x(item.year)).attr('y', (item) => y(item.count)).attr('width', x.bandwidth()).attr('height', (item) => y(0) - y(item.count)).attr('fill', 'var(--color-belly-firebrick)').attr('rx', 1);
+    }
+
+    function renderAuthors(d3) {
+      const container = byId('authors-chart');
+      container.innerHTML = '';
+      const width = container.clientWidth || 500;
+      const height = container.clientHeight || 300;
+      const margin = { top: 12, right: 18, bottom: 26, left: 118 };
+      const counts = new Map();
+      filtered.forEach((article) => (article.authors || []).forEach((author) => {
+        if (!['Anonymus', 'Redakcia'].includes(author)) counts.set(author, (counts.get(author) || 0) + 1);
+      }));
+      const data = Array.from(counts.entries()).map(([author, count]) => ({ author, count })).sort((a, b) => b.count - a.count).slice(0, 12);
+      const svg = d3.select(container).append('svg').attr('width', '100%').attr('height', '100%').attr('viewBox', `0 0 ${width} ${height}`);
+      const y = d3.scaleBand().domain(data.map((item) => item.author)).range([margin.top, height - margin.bottom]).padding(0.2);
+      const x = d3.scaleLinear().domain([0, d3.max(data, (item) => item.count) || 1]).nice().range([margin.left, width - margin.right]);
+      svg.append('g').attr('transform', `translate(${margin.left},0)`).call(d3.axisLeft(y)).selectAll('text').attr('font-size', 10);
+      svg.append('g').attr('transform', `translate(0,${height - margin.bottom})`).call(d3.axisBottom(x).ticks(5)).selectAll('text').attr('font-size', 10);
+      svg.selectAll('rect').data(data).enter().append('rect').attr('x', margin.left).attr('y', (item) => y(item.author)).attr('width', (item) => x(item.count) - margin.left).attr('height', y.bandwidth()).attr('fill', 'var(--color-belly-firebrick)').attr('rx', 2);
+    }
+
+    function setup() {
+      loadErrata();
+      applyFilters();
+      if (filtered.length) selectArticle(filtered[0].id);
+
+      searchInput.addEventListener('input', (event) => {
+        state.search = event.target.value;
+        state.page = 1;
+        applyFilters();
+      });
+      yearMinInput.addEventListener('input', (event) => {
+        state.yearMin = Math.min(Number(event.target.value), state.yearMax);
+        yearMinInput.value = String(state.yearMin);
+        yearLabel.textContent = `${state.yearMin} - ${state.yearMax}`;
+        state.page = 1;
+        applyFilters();
+      });
+      yearMaxInput.addEventListener('input', (event) => {
+        state.yearMax = Math.max(Number(event.target.value), state.yearMin);
+        yearMaxInput.value = String(state.yearMax);
+        yearLabel.textContent = `${state.yearMin} - ${state.yearMax}`;
+        state.page = 1;
+        applyFilters();
+      });
+      byId('reset-years-btn').addEventListener('click', () => {
+        state.yearMin = START_YEAR;
+        state.yearMax = END_YEAR;
+        yearMinInput.value = String(START_YEAR);
+        yearMaxInput.value = String(END_YEAR);
+        yearLabel.textContent = `${START_YEAR} - ${END_YEAR}`;
+        state.page = 1;
+        applyFilters();
+      });
+      issueButtons.forEach((button) => {
+        button.addEventListener('click', () => {
+          state.issue = state.issue === button.dataset.issue ? '' : button.dataset.issue;
+          state.page = 1;
+          applyFilters();
+        });
+      });
+      filterMapsOnly.addEventListener('change', (event) => {
+        state.mapsOnly = event.target.checked;
+        state.page = 1;
+        applyFilters();
+      });
+      filterFulltext.addEventListener('change', (event) => {
+        state.fulltext = event.target.checked;
+        state.page = 1;
+        applyFilters();
+      });
+      byId('clear-all-filters').addEventListener('click', () => {
+        state.search = '';
+        state.yearMin = START_YEAR;
+        state.yearMax = END_YEAR;
+        state.issue = '';
+        state.mapsOnly = false;
+        state.fulltext = false;
+        state.page = 1;
+        searchInput.value = '';
+        yearMinInput.value = String(START_YEAR);
+        yearMaxInput.value = String(END_YEAR);
+        filterMapsOnly.checked = false;
+        filterFulltext.checked = false;
+        yearLabel.textContent = `${START_YEAR} - ${END_YEAR}`;
+        applyFilters();
+      });
+      prevPageBtn.addEventListener('click', () => {
+        state.page = Math.max(1, state.page - 1);
+        renderList();
+      });
+      nextPageBtn.addEventListener('click', () => {
+        state.page += 1;
+        renderList();
+      });
+      byId('tab-detail-btn').addEventListener('click', () => setTab('detail'));
+      byId('tab-analytics-btn').addEventListener('click', () => setTab('analytics'));
+      byId('pdf-cover-image').addEventListener('error', (event) => {
+        const image = event.currentTarget;
+        const candidates = (image.dataset.coverCandidates || '').split('|').filter(Boolean);
+        const nextIndex = Number(image.dataset.coverIndex || '0') + 1;
+        if (nextIndex < candidates.length) {
+          image.dataset.coverIndex = String(nextIndex);
+          image.src = candidates[nextIndex];
+        } else {
+          byId('pdf-cover-box').classList.add('hidden');
+        }
+      });
+      document.querySelectorAll('.copy-citation').forEach((button) => {
+        button.addEventListener('click', () => {
+          const target = byId(button.dataset.target);
+          if (target?.textContent) navigator.clipboard.writeText(target.textContent);
+        });
+      });
+      byId('errata-form').addEventListener('submit', (event) => {
+        event.preventDefault();
+        if (!state.selectedId) return;
+        const textarea = byId('errata-text');
+        const text = textarea.value.trim();
+        if (!text) return;
+        const key = String(state.selectedId);
+        state.errata[key] = state.errata[key] || [];
+        state.errata[key].push({ text, date: new Date().toISOString() });
+        textarea.value = '';
+        saveErrata();
+        renderErrata(key);
+      });
+      byId('export-errata-btn').addEventListener('click', exportErrata);
+      setTab('detail');
+    }
+
+    window.addEventListener('DOMContentLoaded', setup);
+  </script>
+</Layout>

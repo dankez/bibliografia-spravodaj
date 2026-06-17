@@ -1,0 +1,46 @@
+{
+  "year": 2026,
+  "issue": "1",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2026/06/Spravodaj_1_2026_vnutro_NET_web.pdf",
+  "pdf_cache": "data/pdf_cache/9442cb9c37_Spravodaj_1_2026_vnutro_NET_web.pdf",
+  "page_reference": "physical_pdf_pages",
+  "positive_map_plan_pages": [
+    17,
+    59,
+    64,
+    91
+  ],
+  "likely_article_assignments": [
+    {
+      "physical_page": 17,
+      "printed_page": 15,
+      "article_id": 3751,
+      "article_title": "Speleo Bratislava",
+      "assignment_note": "Map is above the following Speleo Brezno heading; visual context belongs to the preceding Speleo Bratislava section."
+    },
+    {
+      "physical_page": 59,
+      "printed_page": 57,
+      "article_id": 3774,
+      "article_title": "Speleoklub Nicolaus",
+      "assignment_note": "Map is before the following Speleoklub Nitra/Orava sections and belongs to the preceding Nicolaus section."
+    },
+    {
+      "physical_page": 64,
+      "printed_page": 62,
+      "article_id": 3777,
+      "article_title": "Jaskyniari Plavecké Podhradie",
+      "assignment_note": "Map is in the Plavecká jaskyňa/Ámon text before the Prešov section starts."
+    },
+    {
+      "physical_page": 91,
+      "printed_page": 89,
+      "article_id": 3792,
+      "article_title": "Speleoklub Trnava",
+      "assignment_note": "Map is in the Bana/Plavecký kras text before the Speleo Turiec section starts."
+    }
+  ],
+  "negative_rule": "All other physical pages in this PDF are not map/plan pages; they are photographs, logos, text, tables, or other non-map content.",
+  "source": "manual_review_by_user",
+  "notes": "Ground truth for testing AI/script map detection. Do not infer additional map pages from photos, logos, cave interiors, or generic cave imagery."
+}

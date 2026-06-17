@@ -1,0 +1,73 @@
+{
+  "created_at": "2026-06-17T11:09:28+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": "minicpm-v4.6",
+  "year": 2025,
+  "issue": "2",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2025/10/Spravodaj_2_2025_net.pdf",
+  "pdf_path": "data/pdf_cache/68fcd241f4_Spravodaj_2_2025_net.pdf",
+  "pdf_pages": 68,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 2,
+  "candidate_pages": [
+    16,
+    44
+  ],
+  "candidate_page_count": 2,
+  "confirmed_pages": [
+    44
+  ],
+  "confirmed_page_count": 1,
+  "confirmed_records": [
+    {
+      "created_at": "2026-06-17T11:09:28+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "2",
+      "page": 44,
+      "printed_page_guess": 42,
+      "prefilter": {
+        "text_score": 4.7,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: zameral/kreslil/dokumentovali",
+          "caption-object: Mapa Konráda – Kesslera z atlasu Domice od sk. Vörös",
+          "visual:white=0.74",
+          "visual:dark=0.04",
+          "visual:color=0.06",
+          "visual:edges=0.152"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_2_hybrid_caption_object_minicpm46_2024plus/68fcd241f4_Spravodaj_2_2025_net_p44.png",
+      "articles": [
+        {
+          "id": 2606,
+          "title": "Kto bol Štefan (István) Hegedűs?",
+          "pages": "41",
+          "page_start": null,
+          "pdf_page_start": 41,
+          "pdf_page_end": 41,
+          "matched_printed_page": 42
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    }
+  ]
+}

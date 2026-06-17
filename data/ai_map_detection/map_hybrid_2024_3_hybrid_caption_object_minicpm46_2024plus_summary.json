@@ -1,0 +1,123 @@
+{
+  "created_at": "2026-06-17T11:04:48+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": "minicpm-v4.6",
+  "year": 2024,
+  "issue": "3",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2025/02/Spravodaj-3_2024.pdf",
+  "pdf_path": "data/pdf_cache/d1ade21f6f_Spravodaj-3_2024.pdf",
+  "pdf_pages": 76,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 2,
+  "candidate_pages": [
+    17,
+    44
+  ],
+  "candidate_page_count": 2,
+  "confirmed_pages": [
+    17,
+    44
+  ],
+  "confirmed_page_count": 2,
+  "confirmed_records": [
+    {
+      "created_at": "2026-06-17T11:04:16+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2024,
+      "issue": "3",
+      "page": 17,
+      "printed_page_guess": 15,
+      "prefilter": {
+        "text_score": 6.1,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/rez/profil",
+          "text: zameral/kreslil/dokumentovali",
+          "caption-object: Pôdorys a priemet jaskyne Izolátor s napojením na časť Hegedüsovej chodby v Čertovej diere. Na základe mapovania",
+          "visual:white=0.84",
+          "visual:dark=0.02",
+          "visual:color=0.03",
+          "visual:edges=0.095"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2024_3_hybrid_caption_object_minicpm46_2024plus/d1ade21f6f_Spravodaj-3_2024_p17.png",
+      "articles": [
+        {
+          "id": 3640,
+          "title": "Cez ponor do Čertovej diery",
+          "pages": "7-15",
+          "page_start": null,
+          "pdf_page_start": 7,
+          "pdf_page_end": 15,
+          "matched_printed_page": 15
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:04:48+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2024,
+      "issue": "3",
+      "page": 44,
+      "printed_page_guess": 42,
+      "prefilter": {
+        "text_score": 1.4,
+        "visual_score": 0.96,
+        "reasons": [
+          "text: pôdorys/rez/profil",
+          "caption-object: profil v predpolí veľkých priestorov rozšíriť,",
+          "visual:white=0.69",
+          "visual:dark=0.04",
+          "visual:color=0.08",
+          "visual:edges=0.141"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2024_3_hybrid_caption_object_minicpm46_2024plus/d1ade21f6f_Spravodaj-3_2024_p44.png",
+      "articles": [
+        {
+          "id": 3643,
+          "title": "Ako naučiť jaskyňu správne dýchať",
+          "pages": "42-46",
+          "page_start": null,
+          "pdf_page_start": 42,
+          "pdf_page_end": 46,
+          "matched_printed_page": 42
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    }
+  ]
+}

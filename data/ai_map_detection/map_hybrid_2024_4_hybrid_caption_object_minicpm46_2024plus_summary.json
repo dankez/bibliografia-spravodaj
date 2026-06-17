@@ -1,0 +1,223 @@
+{
+  "created_at": "2026-06-17T11:07:20+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": "minicpm-v4.6",
+  "year": 2024,
+  "issue": "4",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2025/05/Spravodaj_4_2024_NET-1.pdf",
+  "pdf_path": "data/pdf_cache/57d19c71bb_Spravodaj_4_2024_NET-1.pdf",
+  "pdf_pages": 72,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 4,
+  "candidate_pages": [
+    9,
+    10,
+    14,
+    17
+  ],
+  "candidate_page_count": 4,
+  "confirmed_pages": [
+    9,
+    10,
+    14,
+    17
+  ],
+  "confirmed_page_count": 4,
+  "confirmed_records": [
+    {
+      "created_at": "2026-06-17T11:05:40+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2024,
+      "issue": "4",
+      "page": 9,
+      "printed_page_guess": 7,
+      "prefilter": {
+        "text_score": 5.4,
+        "visual_score": 0.82,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/rez/profil",
+          "caption-object: Mapa jaskyne Šoldovo, pôdorys",
+          "visual:white=0.93",
+          "visual:dark=0.01",
+          "visual:color=0.00",
+          "visual:edges=0.052"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_caption_object_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p9.png",
+      "articles": [
+        {
+          "id": 3656,
+          "title": "Oneskorený príbeh objavu jaskyne Šoldovo vo Važeckom krase",
+          "pages": "3-8",
+          "page_start": null,
+          "pdf_page_start": 3,
+          "pdf_page_end": 8,
+          "matched_printed_page": 7
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:06:13+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2024,
+      "issue": "4",
+      "page": 10,
+      "printed_page_guess": 8,
+      "prefilter": {
+        "text_score": 4.0,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa Šoldovo, rez",
+          "visual:white=0.91",
+          "visual:dark=0.02",
+          "visual:color=0.00",
+          "visual:edges=0.069"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_caption_object_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p10.png",
+      "articles": [
+        {
+          "id": 3656,
+          "title": "Oneskorený príbeh objavu jaskyne Šoldovo vo Važeckom krase",
+          "pages": "3-8",
+          "page_start": null,
+          "pdf_page_start": 3,
+          "pdf_page_end": 8,
+          "matched_printed_page": 8
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:06:46+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2024,
+      "issue": "4",
+      "page": 14,
+      "printed_page_guess": 12,
+      "prefilter": {
+        "text_score": 5.4,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/rez/profil",
+          "caption-object: Profil ponornej jasky‑",
+          "visual:white=0.87",
+          "visual:dark=0.02",
+          "visual:color=0.00",
+          "visual:edges=0.096"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_caption_object_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p14.png",
+      "articles": [
+        {
+          "id": 3657,
+          "title": "Do tretice ešte raz o Bystriansko-valaštianskom krase",
+          "pages": "9-16",
+          "page_start": null,
+          "pdf_page_start": 9,
+          "pdf_page_end": 16,
+          "matched_printed_page": 12
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:07:20+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2024,
+      "issue": "4",
+      "page": 17,
+      "printed_page_guess": 15,
+      "prefilter": {
+        "text_score": 4.0,
+        "visual_score": 0.74,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Rez lokalitou U Diery v Suchej doline aj s vykonaným vrtom.",
+          "visual:white=0.51",
+          "visual:dark=0.19",
+          "visual:color=0.11",
+          "visual:edges=0.063"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_caption_object_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p17.png",
+      "articles": [
+        {
+          "id": 3657,
+          "title": "Do tretice ešte raz o Bystriansko-valaštianskom krase",
+          "pages": "9-16",
+          "page_start": null,
+          "pdf_page_start": 9,
+          "pdf_page_end": 16,
+          "matched_printed_page": 15
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    }
+  ]
+}

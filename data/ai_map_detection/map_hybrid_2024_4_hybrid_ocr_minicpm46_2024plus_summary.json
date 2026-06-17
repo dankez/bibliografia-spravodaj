@@ -1,0 +1,1024 @@
+{
+  "created_at": "2026-06-17T12:07:26+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": null,
+  "year": 2024,
+  "issue": "4",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2025/05/Spravodaj_4_2024_NET-1.pdf",
+  "pdf_path": "data/pdf_cache/57d19c71bb_Spravodaj_4_2024_NET-1.pdf",
+  "pdf_pages": 72,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "ocr_objects_enabled": true,
+  "ocr_languages_requested": "slk+ces",
+  "ocr_languages_used": "slk",
+  "processed_page_count": 66,
+  "candidate_pages": [
+    9,
+    10,
+    13,
+    14,
+    15,
+    17,
+    19,
+    29,
+    30,
+    33
+  ],
+  "candidate_page_count": 10,
+  "ocr_object_candidate_pages": [
+    19,
+    29,
+    30,
+    33
+  ],
+  "ocr_object_candidate_page_count": 4,
+  "confirmed_pages": [
+    9,
+    10,
+    13,
+    14,
+    15,
+    17,
+    19,
+    29,
+    30,
+    33
+  ],
+  "confirmed_page_count": 10,
+  "confirmed_records": [
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3656,
+          "matched_printed_page": 7,
+          "page_start": null,
+          "pages": "3-8",
+          "pdf_page_end": 8,
+          "pdf_page_start": 3,
+          "title": "Oneskorený príbeh objavu jaskyne Šoldovo vo Važeckom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 137.9526,
+            "xMin": 34.0158,
+            "yMax": 604.5256,
+            "yMin": 595.2056
+          },
+          "line_text": "Mapa jaskyne Šoldovo, pôdorys",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.089",
+            "caption-object:bbox=0.96x1.00",
+            "caption-object:rows=0.97",
+            "caption-object:cols=0.90",
+            "caption-object:edges=0.074"
+          ],
+          "object_score": 1.0,
+          "text": "Mapa jaskyne Šoldovo, pôdorys"
+        }
+      ],
+      "created_at": "2026-06-17T11:34:26+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p9.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 9,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "caption-object: Mapa jaskyne Šoldovo, pôdorys",
+          "visual:white=0.93",
+          "visual:dark=0.01",
+          "visual:color=0.00",
+          "visual:edges=0.052"
+        ],
+        "text_score": 5.4,
+        "visual_score": 0.82
+      },
+      "printed_page_guess": 7,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3656,
+          "matched_printed_page": 8,
+          "page_start": null,
+          "pages": "3-8",
+          "pdf_page_end": 8,
+          "pdf_page_start": 3,
+          "title": "Oneskorený príbeh objavu jaskyne Šoldovo vo Važeckom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 85.5412,
+            "xMin": 23.6772,
+            "yMax": 412.6942,
+            "yMin": 403.3742
+          },
+          "line_text": "Mapa Šoldovo, rez",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.082",
+            "caption-object:bbox=0.99x0.97",
+            "caption-object:rows=0.86",
+            "caption-object:cols=0.95",
+            "caption-object:edges=0.064"
+          ],
+          "object_score": 1.0,
+          "text": "Mapa Šoldovo, rez"
+        }
+      ],
+      "created_at": "2026-06-17T11:34:55+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p10.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 10,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa Šoldovo, rez",
+          "visual:white=0.91",
+          "visual:dark=0.02",
+          "visual:color=0.00",
+          "visual:edges=0.069"
+        ],
+        "text_score": 4.0,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 8,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3657,
+          "matched_printed_page": 11,
+          "page_start": null,
+          "pages": "9-16",
+          "pdf_page_end": 16,
+          "pdf_page_start": 9,
+          "title": "Do tretice ešte raz o Bystriansko-valaštianskom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 416.6919,
+            "xMin": 346.9607,
+            "yMax": 490.87,
+            "yMin": 481.55
+          },
+          "line_text": "Plán Hlbokej jasky-",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.150",
+            "caption-object:bbox=0.98x1.00",
+            "caption-object:rows=0.76",
+            "caption-object:cols=0.98",
+            "caption-object:edges=0.138"
+          ],
+          "object_score": 1.0,
+          "text": "Plán Hlbokej jasky-"
+        }
+      ],
+      "created_at": "2026-06-17T11:35:43+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p13.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 13,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "caption-object: Plán Hlbokej jasky-",
+          "visual:white=0.84",
+          "visual:dark=0.04",
+          "visual:color=0.00",
+          "visual:edges=0.132"
+        ],
+        "text_score": 5.4,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 11,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3657,
+          "matched_printed_page": 12,
+          "page_start": null,
+          "pages": "9-16",
+          "pdf_page_end": 16,
+          "pdf_page_start": 9,
+          "title": "Do tretice ešte raz o Bystriansko-valaštianskom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 307.2604,
+            "xMin": 22.6772,
+            "yMax": 568.2225,
+            "yMin": 558.9025
+          },
+          "line_text": "Plán a rez dolinou Potôčky v nadväznosti na prepadové územie a vyvieračku Tajch",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.147",
+            "caption-object:bbox=0.96x1.00",
+            "caption-object:rows=0.99",
+            "caption-object:cols=0.93",
+            "caption-object:edges=0.112"
+          ],
+          "object_score": 1.0,
+          "text": "Plán a rez dolinou Potôčky v nadväznosti na prepadové územie a vyvieračku Tajch"
+        },
+        {
+          "bbox": {
+            "xMax": 307.278,
+            "xMin": 141.706,
+            "yMax": 587.5345,
+            "yMin": 577.8705
+          },
+          "line_text": "jaskyňou a D Konskou jaskyňou. Plán vyznačuje aj prameň pod školou F, vyvie-",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.152",
+            "caption-object:bbox=0.96x1.00",
+            "caption-object:rows=0.99",
+            "caption-object:cols=0.93",
+            "caption-object:edges=0.117"
+          ],
+          "object_score": 1.0,
+          "text": "Plán vyznačuje aj prameň pod školou F, vyvie-"
+        },
+        {
+          "bbox": {
+            "xMax": 405.359,
+            "xMin": 320.315,
+            "yMax": 144.5291,
+            "yMin": 132.1491
+          },
+          "line_text": "Profil ponornej jasky‑",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.109",
+            "caption-object:bbox=0.92x0.87",
+            "caption-object:rows=0.84",
+            "caption-object:cols=0.56",
+            "caption-object:edges=0.102"
+          ],
+          "object_score": 1.0,
+          "text": "Profil ponornej jasky‑"
+        }
+      ],
+      "created_at": "2026-06-17T11:36:37+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p14.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 14,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "caption-object: Plán a rez dolinou Potôčky v nadväznosti na prepadové územie a vyvieračku Tajch",
+          "caption-object: Plán vyznačuje aj prameň pod školou F, vyvie-",
+          "caption-object: Profil ponornej jasky‑",
+          "visual:white=0.87",
+          "visual:dark=0.02",
+          "visual:color=0.00",
+          "visual:edges=0.096"
+        ],
+        "text_score": 5.4,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 12,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3657,
+          "matched_printed_page": 13,
+          "page_start": null,
+          "pages": "9-16",
+          "pdf_page_end": 16,
+          "pdf_page_start": 9,
+          "title": "Do tretice ešte raz o Bystriansko-valaštianskom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 417.7322,
+            "xMin": 35.0158,
+            "yMax": 597.2167,
+            "yMin": 587.8967
+          },
+          "line_text": "Plán lokality U Diery v Suchej doline. Sonda S-2 bez nezameraných nových objavov. Ponorný tok z P-1 je možné",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.097",
+            "caption-object:bbox=0.96x1.00",
+            "caption-object:rows=0.86",
+            "caption-object:cols=0.96",
+            "caption-object:edges=0.086"
+          ],
+          "object_score": 1.0,
+          "text": "Plán lokality U Diery v Suchej doline. Sonda S-2 bez nezameraných nových objavov. Ponorný tok z P-1 je možné"
+        }
+      ],
+      "created_at": "2026-06-17T11:37:12+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p15.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 15,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "caption-object: Plán lokality U Diery v Suchej doline. Sonda S-2 bez nezameraných nových objavov. Ponorný tok z P-1 je možné",
+          "visual:white=0.87",
+          "visual:dark=0.02",
+          "visual:color=0.00",
+          "visual:edges=0.082"
+        ],
+        "text_score": 5.4,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 13,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3657,
+          "matched_printed_page": 15,
+          "page_start": null,
+          "pages": "9-16",
+          "pdf_page_end": 16,
+          "pdf_page_start": 9,
+          "title": "Do tretice ešte raz o Bystriansko-valaštianskom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 239.2494,
+            "xMin": 34.0158,
+            "yMax": 314.0311,
+            "yMin": 304.7111
+          },
+          "line_text": "Rez lokalitou U Diery v Suchej doline aj s vykonaným vrtom.",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.374",
+            "caption-object:bbox=0.96x0.95",
+            "caption-object:rows=0.95",
+            "caption-object:cols=0.88",
+            "caption-object:edges=0.060"
+          ],
+          "object_score": 1.0,
+          "text": "Rez lokalitou U Diery v Suchej doline aj s vykonaným vrtom."
+        }
+      ],
+      "created_at": "2026-06-17T11:37:50+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p17.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 17,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Rez lokalitou U Diery v Suchej doline aj s vykonaným vrtom.",
+          "visual:white=0.51",
+          "visual:dark=0.19",
+          "visual:color=0.11",
+          "visual:edges=0.063"
+        ],
+        "text_score": 4.0,
+        "visual_score": 0.74
+      },
+      "printed_page_guess": 15,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3658,
+          "matched_printed_page": 17,
+          "page_start": null,
+          "pages": "17-19",
+          "pdf_page_end": 19,
+          "pdf_page_start": 17,
+          "title": "Kankulove chodby v Domici"
+        }
+      ],
+      "caption_matches": [],
+      "created_at": "2026-06-17T11:38:24+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p19.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [
+        {
+          "bbox": {
+            "xMax": 419.449,
+            "xMin": 144.981,
+            "yMax": 491.736,
+            "yMin": 74.203
+          },
+          "bbox_image": {
+            "xMax": 758,
+            "xMin": 262,
+            "yMax": 888,
+            "yMin": 134
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/57d19c71bb_Spravodaj_4_2024_NET-1_p19_obj2.png",
+          "features": {
+            "color": 0.13646002435064936,
+            "dark": 0.04686992694805195,
+            "edges": 0.10574759666573266,
+            "light": 0.8769049310064935,
+            "midtone": 0.07622514204545454,
+            "very_light": 0.7510298295454545
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 4.0,
+          "ocr_text": "Kankulove chodby v Domici Pôdorys a rezy Sieň SA netopierov ŽIŤ o 5m EN | u 1m A ONA orientácia mriežky: SYTSK má 1 SO V) Mapovali: S 23.11.2019, 27.11.2019, dz 2 Ý Hochmuth, Mioš,J. Kovalik VYÍAÝSŤ ga a A m 4 c] ali aky | SA reci 182 ráj SE A A Fi [ž: ZA [žž: — Ä „kt | [1 sl K A Vetva 1940 SUB 1: NEON ú Ni © hre ASA par byl Kankulova vetva E ÚD oslico A 1 A + A ŠANCE Prak NYNA A I S Ň r ra an KA",
+          "reasons": [
+            "object-visual:light=0.88",
+            "object-visual:dark=0.05",
+            "object-visual:midtone=0.08",
+            "object-visual:color=0.14",
+            "object-visual:edges=0.106",
+            "ocr: map terms mapovali, podorys",
+            "ocr: zameral/kreslil/mapoval",
+            "ocr: technický typ"
+          ],
+          "score": 1.0,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        }
+      ],
+      "page": 19,
+      "prefilter": {
+        "candidate_sources": [
+          "ocr_object_without_caption"
+        ],
+        "reasons": [
+          "text: legenda/meračský kontext",
+          "ocr-object: object-visual:light=0.88; object-visual:dark=0.05; object-visual:midtone=0.08; object-visual:color=0.14; object-visual:edges=0.106; ocr: map terms mapovali, podorys; ocr: zameral/k",
+          "visual:white=0.81",
+          "visual:dark=0.03",
+          "visual:color=0.06",
+          "visual:edges=0.122"
+        ],
+        "text_score": 0.7,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 17,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3659,
+          "matched_printed_page": 27,
+          "page_start": null,
+          "pages": "20-29",
+          "pdf_page_end": 29,
+          "pdf_page_start": 20,
+          "title": "Speleologický prieskum oblasti Biograd a pohoria Sniježnica (Republika Srbská, Bosna a Hercegovina)"
+        }
+      ],
+      "caption_matches": [],
+      "created_at": "2026-06-17T11:39:13+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p29.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [
+        {
+          "bbox": {
+            "xMax": 419.449,
+            "xMin": 30.988,
+            "yMax": 380.984,
+            "yMin": 28.242
+          },
+          "bbox_image": {
+            "xMax": 758,
+            "xMin": 56,
+            "yMax": 688,
+            "yMin": 51
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/57d19c71bb_Spravodaj_4_2024_NET-1_p29_obj1.png",
+          "features": {
+            "color": 0.0,
+            "dark": 0.02437859120323171,
+            "edges": 0.040848531498241136,
+            "light": 0.9590000298600417,
+            "midtone": 0.01662137893672657,
+            "very_light": 0.9570697914489372
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 3.6,
+          "ocr_text": "Bezdanka Sniježnica, Republika Srpska, BiH —— Dížka: 151m N Prevýšenie: 66 m N Objavili: SK Drienka:, Martin Gaško, Vlado Papáč, Jozef Psotka, Slovak Speleological Society Kreslili: Peter Imrich, Vlado . Papáč 2024 > Legenda Ň o o M polygónový ťah, možné pokračovanie, , N i Aa A „— x x. U",
+          "reasons": [
+            "object-visual:light=0.96",
+            "object-visual:dark=0.02",
+            "object-visual:midtone=0.02",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.041",
+            "ocr: map terms kreslili, legenda, prevysenie",
+            "ocr: zameral/kreslil/mapoval"
+          ],
+          "score": 0.95,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        },
+        {
+          "bbox": {
+            "xMax": 396.761,
+            "xMin": 251.227,
+            "yMax": 161.143,
+            "yMin": 44.301
+          },
+          "bbox_image": {
+            "xMax": 717,
+            "xMin": 454,
+            "yMax": 291,
+            "yMin": 80
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/57d19c71bb_Spravodaj_4_2024_NET-1_p29_obj3.png",
+          "features": {
+            "color": 0.0,
+            "dark": 0.06288980468318255,
+            "edges": 0.11095732628654471,
+            "light": 0.8860783477807778,
+            "midtone": 0.05103184753603966,
+            "very_light": 0.8810888478360412
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 2.8,
+          "ocr_text": "Sniježnica, Republika Srpska, BiH Dížka: 151m Prevýšenie: 66 m Objavili: SK Drienka:, Martin Gaško, Vlado Papáč, Jozef Psotka, Slovak Speleological Society Kreslili: Peter Imrich, Vlado Papáč 2024",
+          "reasons": [
+            "object-visual:light=0.89",
+            "object-visual:dark=0.06",
+            "object-visual:midtone=0.05",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.111",
+            "ocr: map terms kreslili, prevysenie",
+            "ocr: zameral/kreslil/mapoval"
+          ],
+          "score": 0.85,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        }
+      ],
+      "page": 29,
+      "prefilter": {
+        "candidate_sources": [
+          "ocr_object_without_caption"
+        ],
+        "reasons": [
+          "guard: foto popis bez mapového captionu",
+          "ocr-object: object-visual:light=0.96; object-visual:dark=0.02; object-visual:midtone=0.02; object-visual:color=0.00; object-visual:edges=0.041; ocr: map terms kreslili, legenda, prevysenie; oc",
+          "ocr-object: object-visual:light=0.89; object-visual:dark=0.06; object-visual:midtone=0.05; object-visual:color=0.00; object-visual:edges=0.111; ocr: map terms kreslili, prevysenie; ocr: zamera",
+          "visual:white=0.79",
+          "visual:dark=0.07",
+          "visual:color=0.07",
+          "visual:edges=0.085"
+        ],
+        "text_score": 0.0,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 27,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3659,
+          "matched_printed_page": 28,
+          "page_start": null,
+          "pages": "20-29",
+          "pdf_page_end": 29,
+          "pdf_page_start": 20,
+          "title": "Speleologický prieskum oblasti Biograd a pohoria Sniježnica (Republika Srbská, Bosna a Hercegovina)"
+        }
+      ],
+      "caption_matches": [],
+      "created_at": "2026-06-17T11:39:50+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p30.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [
+        {
+          "bbox": {
+            "xMax": 407.828,
+            "xMin": 19.368,
+            "yMax": 448.543,
+            "yMin": 28.242
+          },
+          "bbox_image": {
+            "xMax": 737,
+            "xMin": 35,
+            "yMax": 810,
+            "yMin": 51
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/57d19c71bb_Spravodaj_4_2024_NET-1_p30_obj1.png",
+          "features": {
+            "color": 0.0,
+            "dark": 0.03724683259951478,
+            "edges": 0.06253080934654824,
+            "light": 0.9364471201365802,
+            "midtone": 0.026306047263905112,
+            "very_light": 0.9329014286997933
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 3.6,
+          "ocr_text": "Ň maly u x - Bezdanka |. RA Ná AC) AA — m 2 a IT) Sniježnica, Republika Srpska, BiH lb Dížka: 151 m NE A 4) Prevýšenie: 66 m x , s) Objavili: SK Drienka:, Martin RA [ Gaško, Vlado Papáč, Jozef PT Psotka, Slovak Speleological 15% 3 UŽI Societ 2 AM kreslil. Pe Ň PON A) reslili: Peter Imrich, Vlado Í 7 Zv ANN 5 POSTOVNE Papáč 2024 ) SN . 12 x NI Legenda J | SSS j NESSN Cl, Panic A AE, rý ch já a Sah [Z] stená [za] vodná plochá, g. A já ŠIŤ o pr FA [. O rot re tai SA [7] roeené za saky Se VÁ priepasť. sintrové jazierko. MÔ",
+          "reasons": [
+            "object-visual:light=0.94",
+            "object-visual:dark=0.04",
+            "object-visual:midtone=0.03",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.063",
+            "ocr: map terms kreslil, legenda, prevysenie",
+            "ocr: zameral/kreslil/mapoval"
+          ],
+          "score": 0.95,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        },
+        {
+          "bbox": {
+            "xMax": 179.843,
+            "xMin": 32.095,
+            "yMax": 268.572,
+            "yMin": 150.068
+          },
+          "bbox_image": {
+            "xMax": 325,
+            "xMin": 58,
+            "yMax": 485,
+            "yMin": 271
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/57d19c71bb_Spravodaj_4_2024_NET-1_p30_obj7.png",
+          "features": {
+            "color": 0.0,
+            "dark": 0.06378860039944692,
+            "edges": 0.11018499229817802,
+            "light": 0.8857428176371178,
+            "midtone": 0.05046858196343525,
+            "very_light": 0.8810109079735751
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 2.8,
+          "ocr_text": "Sniježnica, Republika Srpska, BiH Dížka: 151m Prevýšenie: 66 m Objavili: SK Drienka:, Martin Gaško, Vlado Papáč, Jozef Psotka, Slovak Speleological Society Kreslili: Peter Imrich, Vlado Papáč 2024",
+          "reasons": [
+            "object-visual:light=0.89",
+            "object-visual:dark=0.06",
+            "object-visual:midtone=0.05",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.110",
+            "ocr: map terms kreslili, prevysenie",
+            "ocr: zameral/kreslil/mapoval"
+          ],
+          "score": 0.85,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        }
+      ],
+      "page": 30,
+      "prefilter": {
+        "candidate_sources": [
+          "ocr_object_without_caption"
+        ],
+        "reasons": [
+          "text: rozmery lokality",
+          "ocr-object: object-visual:light=0.94; object-visual:dark=0.04; object-visual:midtone=0.03; object-visual:color=0.00; object-visual:edges=0.063; ocr: map terms kreslil, legenda, prevysenie; ocr",
+          "ocr-object: object-visual:light=0.89; object-visual:dark=0.06; object-visual:midtone=0.05; object-visual:color=0.00; object-visual:edges=0.110; ocr: map terms kreslili, prevysenie; ocr: zamera",
+          "visual:white=0.90",
+          "visual:dark=0.03",
+          "visual:color=0.00",
+          "visual:edges=0.082"
+        ],
+        "text_score": 0.5,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 28,
+      "year": 2024
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar indicating length in pödrys and m",
+          "technical line drawing of cave passages labeled 'SNEZNA PRIEPAST'",
+          "diagram showing cave route with labels like 'firn'"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3660,
+          "matched_printed_page": 31,
+          "page_start": null,
+          "pages": "30-35",
+          "pdf_page_end": 35,
+          "pdf_page_start": 30,
+          "title": "Macedónsko 2024"
+        }
+      ],
+      "caption_matches": [],
+      "created_at": "2026-06-17T11:40:40+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/57d19c71bb_Spravodaj_4_2024_NET-1_p33.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [
+        {
+          "bbox": {
+            "xMax": 419.449,
+            "xMin": 30.988,
+            "yMax": 606.363,
+            "yMin": 228.701
+          },
+          "bbox_image": {
+            "xMax": 758,
+            "xMin": 56,
+            "yMax": 1095,
+            "yMin": 413
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/57d19c71bb_Spravodaj_4_2024_NET-1_p33_obj1.png",
+          "features": {
+            "color": 0.0,
+            "dark": 0.04224565212186031,
+            "edges": 0.09085096464009212,
+            "light": 0.9009845080652241,
+            "midtone": 0.056769839812915536,
+            "very_light": 0.8875278351996552
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 4.0,
+          "ocr_text": ".— — —— DUVA (YBA) |“ S f. AN ————— (A, firm Ť 0 5 1m 12 Me pôdorys a s O si ar M prváta SNEŽNÁ PRIEPASŤ s je PRAZU s ÝLAÁDÍ“ A Ť s T €, , Jakupica, Macedónsko u Í s stav v roku 2023 FAN SN 2) [o A NYM Zamerali: P. Holúbek, M. Kudla, — <A A P. Pokrievka st., P. Pokrievka ml., Š. Labuda, RU] AA 47 S. Votoupal, M. Vrbičan, Z. Jurík, M. Kudla ANY | S AAA [) — objavii a vykopali členovia A AN AN » Slovenskej speleologickej spoločnosti: NL h M NBA NÁ V2U, SK Cassovia, SK Malá Fatra, OS Červené vrchy, SK Nicolaus JÁ NY SK Drienka, SK Šariš, SC Chočské vrchy, Speleo Turiec, W A NÁŠ OS Ružomberok, OS Liptovský Mikuláš ( M AŇA% S studňa VANÝ, S. Fadenest STÁ s kal # na dno.",
+          "reasons": [
+            "object-visual:light=0.90",
+            "object-visual:dark=0.04",
+            "object-visual:midtone=0.06",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.091",
+            "ocr: map terms podorys, zamerali",
+            "ocr: zameral/kreslil/mapoval",
+            "ocr: technický typ"
+          ],
+          "score": 1.0,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        },
+        {
+          "bbox": {
+            "xMax": 399.528,
+            "xMin": 315.417,
+            "yMax": 376.001,
+            "yMin": 261.927
+          },
+          "bbox_image": {
+            "xMax": 722,
+            "xMin": 570,
+            "yMax": 679,
+            "yMin": 473
+          },
+          "candidate": false,
+          "crop_path": "data/ai_map_detection/rendered/2024_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/57d19c71bb_Spravodaj_4_2024_NET-1_p33_obj4.png",
+          "features": {
+            "color": 0.0,
+            "dark": 0.024774774774774775,
+            "edges": 0.0881791357971351,
+            "light": 0.9115722865722866,
+            "midtone": 0.06365293865293865,
+            "very_light": 0.8965572715572716
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 0.0,
+          "ocr_text": "jr „S (ú firm AREA [7 fa",
+          "reasons": [
+            "object-visual:light=0.91",
+            "object-visual:dark=0.02",
+            "object-visual:midtone=0.06",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.088"
+          ],
+          "score": 0.5,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        }
+      ],
+      "page": 33,
+      "prefilter": {
+        "candidate_sources": [
+          "ocr_object_without_caption"
+        ],
+        "reasons": [
+          "ocr-object: object-visual:light=0.90; object-visual:dark=0.04; object-visual:midtone=0.06; object-visual:color=0.00; object-visual:edges=0.091; ocr: map terms podorys, zamerali; ocr: zameral/k",
+          "visual:white=0.85",
+          "visual:dark=0.03",
+          "visual:color=0.00",
+          "visual:edges=0.111"
+        ],
+        "text_score": 0.0,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 31,
+      "year": 2024
+    }
+  ]
+}

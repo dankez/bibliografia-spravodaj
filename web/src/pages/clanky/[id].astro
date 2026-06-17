@@ -1,0 +1,303 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
+import articles from '../../data/articles.json';
+
+export async function getStaticPaths() {
+  return articles.map(art => ({
+    params: { id: String(art.id) },
+    props: { art }
+  }));
+}
+
+const { art } = Astro.props;
+const authorsStr = art.authors.join(', ');
+const assetBase = import.meta.env.BASE_URL;
+
+// Parse pages
+let firstPage = "";
+let lastPage = "";
+if (art.pages) {
+  const parts = art.pages.split('-');
+  firstPage = parts[0];
+  lastPage = parts[1] || parts[0];
+}
+const pdfPrintedPageStart = Number(art.pdf_page_start || firstPage || 1);
+const pdfPageOffset = Number(art.year) >= 2024 ? 2 : 0;
+const pdfPageStart = pdfPrintedPageStart + pdfPageOffset;
+
+// Citation formatting
+const formattedAuthorsIso = art.authors.map(a => {
+  if (a.includes(',')) {
+    const p = a.split(',');
+    return `${p[0].trim().toUpperCase()}, ${p[1].trim()}`;
+  }
+  return a.toUpperCase();
+}).join(' - ');
+
+const formattedAuthorsApa = art.authors.map(a => {
+  if (a.includes(',')) {
+    const p = a.split(',');
+    return `${p[0].trim()}, ${p[1].trim()}`;
+  }
+  return a;
+}).join(', ');
+
+const formattedAuthorsMla = art.authors.map(a => {
+  if (a.includes(',')) {
+    const p = a.split(',');
+    return `${p[0].trim()}, ${p[1].trim()}`;
+  }
+  return a;
+}).join(', ');
+
+const journal = "Spravodaj Slovenskej speleologickej spoločnosti";
+const isoCitation = `${formattedAuthorsIso}. ${art.title}. In: ${journal}. ${art.year}, roč. ${art.volume || 'I.'}, č. ${art.issue}, s. ${art.pages}.`;
+const apaCitation = `${formattedAuthorsApa} (${art.year}). ${art.title}. ${journal}, ${art.volume || 'I.'}(${art.issue}), ${art.pages}.`;
+const mlaCitation = `${formattedAuthorsMla}. "${art.title}." ${journal}, vol. ${art.volume || 'I.'}, no. ${art.issue}, ${art.year}, pp. ${art.pages}.`;
+
+// BibTeX and RIS content for inline export
+const bibtexContent = `@article{sss_${art.id},\n  author = {${art.authors.join(' and ')}},\n  title = {${art.title}},\n  journal = {${journal}},\n  year = {${art.year}},\n  volume = {${art.volume || 'I'}},\n  number = {${art.issue}},\n  pages = {${art.pages}},\n  url = {${art.pdf_url || ''}}\n}`;
+
+const risContent = `TY  - JOUR\nT1  - ${art.title}\n` + 
+  art.authors.map(auth => `AU  - ${auth}\n`).join('') + 
+  `JO  - ${journal}\nPY  - ${art.year}\nVL  - ${art.volume || 'I'}\nIS  - ${art.issue}\nSP  - ${firstPage}\nEP  - ${lastPage}\nUR  - ${art.pdf_url || ''}\nER  - `;
+---
+
+<Layout title={`${art.title} — Spravodaj SSS`}>
+  <!-- Google Scholar / Highwire Press Meta Tags -->
+  <meta slot="head" name="citation_title" content={art.title} />
+  {art.authors.map(auth => (
+    <meta slot="head" name="citation_author" content={auth} />
+  ))}
+  <meta slot="head" name="citation_publication_date" content={String(art.year)} />
+  <meta slot="head" name="citation_journal_title" content="Spravodaj Slovenskej speleologickej spoločnosti" />
+  {art.volume && <meta slot="head" name="citation_volume" content={art.volume} />}
+  {art.issue && <meta slot="head" name="citation_issue" content={art.issue} />}
+  {firstPage && <meta slot="head" name="citation_firstpage" content={firstPage} />}
+  {lastPage && <meta slot="head" name="citation_lastpage" content={lastPage} />}
+  {art.pdf_url && <meta slot="head" name="citation_pdf_url" content={art.pdf_url} />}
+
+  <!-- Dublin Core Meta Tags for Academic SEO -->
+  <meta slot="head" name="DC.title" content={art.title} />
+  {art.authors.map(auth => (
+    <meta slot="head" name="DC.creator" content={auth} />
+  ))}
+  <meta slot="head" name="DC.issued" content={String(art.year)} />
+  <meta slot="head" name="DC.relation.ispartof" content="Spravodaj Slovenskej speleologickej spoločnosti" />
+  {art.volume && <meta slot="head" name="DC.citation.volume" content={art.volume} />}
+  {art.issue && <meta slot="head" name="DC.citation.issue" content={art.issue} />}
+  {firstPage && <meta slot="head" name="DC.citation.spage" content={firstPage} />}
+  {lastPage && <meta slot="head" name="DC.citation.epage" content={lastPage} />}
+  {art.pdf_url && <meta slot="head" name="DC.identifier.URI" content={art.pdf_url} />}
+
+  <!-- JSON-LD ScholarlyArticle -->
+  <script slot="head" type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "ScholarlyArticle",
+    "headline": art.title,
+    "author": art.authors.map(auth => ({
+      "@type": "Person",
+      "name": auth
+    })),
+    "datePublished": String(art.year),
+    "isPartOf": {
+      "@type": "PublicationIssue",
+      "issueNumber": art.issue,
+      "isPartOf": {
+        "@type": "PublicationVolume",
+        "volumeNumber": art.volume,
+        "isPartOf": {
+          "@type": "Periodical",
+          "name": "Spravodaj Slovenskej speleologickej spoločnosti"
+        }
+      }
+    },
+    "pageStart": firstPage,
+    "pageEnd": lastPage,
+    "url": art.pdf_url
+  })} />
+
+  <!-- Premium Editorial Style Layout -->
+  <div class="article-detail-page min-h-screen text-belly-black-brown antialiased flex flex-col font-sans">
+    
+    <!-- TOP BAR (SSS Green styled header) -->
+    <header class="article-detail-header bg-belly-firebrick text-belly-gainsboro py-4 px-6 shadow-md border-b-4 border-belly-peru shrink-0">
+      <div class="max-w-4xl mx-auto flex items-center justify-between">
+        <div class="flex items-center space-x-3">
+          <div class="p-1.5 bg-belly-peru rounded text-belly-black shadow">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2.5">
+              <path stroke-linecap="round" stroke-linejoin="round" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
+            </svg>
+          </div>
+          <div>
+            <span class="text-sm font-bold font-display uppercase tracking-widest text-belly-peru">Spravodaj SSS</span>
+            <span class="text-xs block text-belly-gainsboro font-mono">DIGITÁLNA BIBLIOGRAFICKÁ KNIŽNICA</span>
+          </div>
+        </div>
+        <div class="flex items-center gap-2">
+          <ThemeSwitcher />
+          <a href="/" class="bibliography-link-button">
+            HLAVNÝ ARCHÍV &rarr;
+          </a>
+        </div>
+      </div>
+    </header>
+
+    <!-- MAIN BODY -->
+    <main class="flex-1 max-w-3xl w-full mx-auto px-6 py-10 space-y-6">
+      
+      <!-- Back Link -->
+      <a href="/" class="bibliography-link-button">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-4 w-4 mr-1" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 19l-7-7m0 0l7-7m-7 7h18" />
+        </svg>
+        SPÄŤ DO VYHĽADÁVANIA
+      </a>
+
+      <!-- Article Details Card -->
+      <article class="article-detail-card rounded-xl border border-belly-darkgray shadow-sm overflow-hidden">
+        <!-- Accent stripe -->
+        <div class="h-1.5 bg-belly-firebrick"></div>
+        
+        <div class="p-8 space-y-6">
+          
+          <!-- Metadata Tag -->
+          <div class="article-detail-kicker flex justify-between items-center text-xxs font-mono text-belly-lightslategray uppercase tracking-wider border-b border-belly-darkgray pb-3">
+            <span>Číslo článku #{art.id}</span>
+            <span>Spravodajca SSS — {art.year}</span>
+          </div>
+
+          <!-- Title -->
+          <h1 class="article-detail-title text-2xl sm:text-3xl font-extrabold font-display text-belly-black leading-snug">
+            {art.title}
+          </h1>
+
+          <!-- Authors -->
+          <div class="article-detail-authors text-base sm:text-lg text-belly-firebrick font-semibold border-l-4 border-belly-peru pl-3.5 py-0.5">
+            {authorsStr}
+          </div>
+
+          <!-- Metadata details grid -->
+          <div class="article-meta-grid grid grid-cols-2 sm:grid-cols-4 gap-4 p-4 rounded-lg border border-belly-darkgray text-xs font-mono text-belly-dimgray">
+            <div>
+              <span class="block text-[10px] text-belly-lightslategray uppercase">Ročník</span>
+              <strong class="text-belly-black-brown">{art.volume || 'I.'}</strong>
+            </div>
+            <div>
+              <span class="block text-[10px] text-belly-lightslategray uppercase">Číslo</span>
+              <strong class="text-belly-black-brown">č. {art.issue}</strong>
+            </div>
+            <div>
+              <span class="block text-[10px] text-belly-lightslategray uppercase">Rok</span>
+              <strong class="text-belly-black-brown">{art.year}</strong>
+            </div>
+            <div>
+              <span class="block text-[10px] text-belly-lightslategray uppercase">Strany</span>
+              <strong class="text-belly-black-brown">s. {art.pages}</strong>
+            </div>
+          </div>
+
+          <!-- Abstract -->
+          <div class="space-y-2">
+            <h4 class="article-section-title text-xs font-bold font-mono text-belly-firebrick uppercase tracking-wider">Anotácia / Bibliografický abstrakt</h4>
+            <div class="article-abstract-box p-4 rounded-lg border border-belly-darkgray text-sm text-belly-dimgray-blue leading-relaxed font-sans italic">
+              {art.abstract || "Pre tento článok nie je k dispozícii žiadna anotácia. Môžete si ju prečítať priamo v PDF súbore časopisu."}
+            </div>
+          </div>
+
+          <!-- PDF Access -->
+          <div class="space-y-3 pt-4 border-t border-belly-darkgray">
+            <h4 class="article-section-title text-xs font-bold font-mono text-belly-firebrick uppercase tracking-wider">Originálny dokument časopisu</h4>
+            {art.pdf_url ? (
+              <div class="flex flex-col sm:flex-row space-y-2 sm:space-y-0 sm:space-x-3">
+                <a 
+                  href={`${art.pdf_url}#page=${pdfPageStart}`} 
+                  target="_blank" 
+                  class="bibliography-button-primary flex-1 inline-flex items-center justify-center px-4 py-2.5 font-bold rounded-lg shadow text-sm"
+                >
+                  Otvoriť PDF na strane {firstPage}
+                </a>
+                <a 
+                  href={art.pdf_url} 
+                  download 
+                  class="bibliography-button-secondary inline-flex items-center justify-center px-4 py-2.5 border border-belly-lightslategray text-belly-dimgray-blue font-medium rounded-lg text-sm"
+                >
+                  Stiahnuť celé číslo
+                </a>
+              </div>
+            ) : (
+              <div class="article-abstract-box p-3 border border-belly-peru text-belly-black-brown rounded text-xs leading-relaxed">
+                Upozornenie: Toto číslo časopisu (rok {art.year}, číslo {art.issue}) momentálne nie je zverejnené na serveri sss.sk.
+              </div>
+            )}
+          </div>
+          
+        </div>
+      </article>
+
+      <!-- Interactive Citation Panel -->
+      <div class="citation-panel rounded-xl border border-belly-darkgray shadow-sm overflow-hidden p-6 space-y-4">
+        <h3 class="article-section-title text-sm font-bold font-mono text-belly-firebrick uppercase tracking-wider border-b border-belly-darkgray pb-2">
+          Generovanie citácií a export
+        </h3>
+        <p class="text-xs text-belly-dimgray font-sans leading-relaxed">
+          Kopírujte citáciu jedným kliknutím podľa slovenských alebo medzinárodných štandardov, prípadne exportujte metadáta pre Mendeley, Zotero a iné citačné manažéry.
+        </p>
+
+        <div class="space-y-3">
+          <!-- ISO 690 Slovak -->
+          <div class="citation-box p-3 rounded border border-belly-darkgray space-y-1 relative group">
+            <div class="flex justify-between items-center text-[10px] font-mono text-belly-lightslategray uppercase">
+              <span>STN ISO 690 (Slovenská norma)</span>
+              <button class="copy-citation-btn bibliography-action-link text-belly-firebrick" data-type="iso">Kopírovať</button>
+            </div>
+            <p id="cite-iso" class="text-xs text-belly-dimgray-blue leading-relaxed font-sans pr-6 select-all">{isoCitation}</p>
+          </div>
+
+          <!-- APA Format -->
+          <div class="citation-box p-3 rounded border border-belly-darkgray space-y-1 relative group">
+            <div class="flex justify-between items-center text-[10px] font-mono text-belly-lightslategray uppercase">
+              <span>APA Style</span>
+              <button class="copy-citation-btn bibliography-action-link text-belly-firebrick" data-type="apa">Kopírovať</button>
+            </div>
+            <p id="cite-apa" class="text-xs text-belly-dimgray-blue leading-relaxed font-sans pr-6 select-all">{apaCitation}</p>
+          </div>
+
+          <!-- MLA Format -->
+          <div class="citation-box p-3 rounded border border-belly-darkgray space-y-1 relative group">
+            <div class="flex justify-between items-center text-[10px] font-mono text-belly-lightslategray uppercase">
+              <span>MLA Style</span>
+              <button class="copy-citation-btn bibliography-action-link text-belly-firebrick" data-type="mla">Kopírovať</button>
+            </div>
+            <p id="cite-mla" class="text-xs text-belly-dimgray-blue leading-relaxed font-sans pr-6 select-all">{mlaCitation}</p>
+          </div>
+
+          <!-- Export Buttons -->
+          <div class="flex flex-col sm:flex-row gap-2 pt-2">
+            <button class="export-citation-btn bibliography-button-secondary flex-1 py-2 border border-belly-darkgray rounded-lg text-xs font-mono font-bold hover:text-belly-firebrick text-belly-dimgray-blue cursor-pointer text-center" data-format="bibtex">
+              Export BibTeX (.bib)
+            </button>
+            <button class="export-citation-btn bibliography-button-secondary flex-1 py-2 border border-belly-darkgray rounded-lg text-xs font-mono font-bold hover:text-belly-firebrick text-belly-dimgray-blue cursor-pointer text-center" data-format="ris">
+              Export RIS (.ris)
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Hidden data containers for script -->
+      <div id="citation-raw-data" class="hidden" data-bibtex={bibtexContent} data-ris={risContent}></div>
+
+      <script src={`${assetBase}article-citation.js`} defer></script>
+
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="bg-belly-black text-belly-lightslategray py-6 px-6 text-center text-xs border-t border-belly-dimgray-blue shrink-0">
+      <div class="max-w-4xl mx-auto">
+        <p>&copy; {new Date().getFullYear()} Slovenská speleologická spoločnosť. Archív digitálnej bibliografie.</p>
+        <p class="mt-1.5 text-belly-dimgray text-[10px]">Stavebný základ: Zotero Reference Manager + Astro static deployment. AI obohatenie cez OpenAI Structured Outputs.</p>
+      </div>
+    </footer>
+  </div>
+</Layout>

@@ -1,0 +1,1004 @@
+{
+  "created_at": "2026-06-17T12:07:30+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": null,
+  "year": 2025,
+  "issue": "4",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2026/03/Spravodaj_4_2025.pdf",
+  "pdf_path": "data/pdf_cache/e01113188c_Spravodaj_4_2025.pdf",
+  "pdf_pages": 84,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "ocr_objects_enabled": true,
+  "ocr_languages_requested": "slk+ces",
+  "ocr_languages_used": "slk",
+  "processed_page_count": 78,
+  "candidate_pages": [
+    8,
+    16,
+    34,
+    35,
+    36,
+    48,
+    49,
+    50,
+    57,
+    59,
+    66
+  ],
+  "candidate_page_count": 11,
+  "ocr_object_candidate_pages": [
+    8,
+    57,
+    59,
+    66
+  ],
+  "ocr_object_candidate_page_count": 4,
+  "confirmed_pages": [
+    8,
+    16,
+    34,
+    35,
+    36,
+    48,
+    49,
+    57,
+    59,
+    66
+  ],
+  "confirmed_page_count": 10,
+  "confirmed_records": [
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3726,
+          "matched_printed_page": 6,
+          "page_start": null,
+          "pages": "5-14",
+          "pdf_page_end": 14,
+          "pdf_page_start": 5,
+          "title": "Jaskyňa verných – staršie objavy a súčasný stav"
+        }
+      ],
+      "caption_matches": [],
+      "created_at": "2026-06-17T11:57:15+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p8.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [
+        {
+          "bbox": {
+            "xMax": 305.456,
+            "xMin": 19.368,
+            "yMax": 609.691,
+            "yMin": 28.242
+          },
+          "bbox_image": {
+            "xMax": 552,
+            "xMin": 35,
+            "yMax": 1101,
+            "yMin": 51
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/e01113188c_Spravodaj_4_2025_p8_obj1.png",
+          "features": {
+            "color": 0.03335398413877341,
+            "dark": 0.031043088609555455,
+            "edges": 0.0913614119462173,
+            "light": 0.9009183741714745,
+            "midtone": 0.06803853721897012,
+            "very_light": 0.8867009986307108
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 4.2,
+          "ocr_text": "Sv Sy. ZASE Ď) Jaskyňa verných ČAS an: pôdorys s S NYÁ a js] A Dlžka: — 884m koroiá sat, SŠ AP Pila: 62m + i last AI M SSR — Legenda: 69 stmesty — EŇŤ TL. prisanuvá FLASA Trrobová a čváša A ove [m ss 7 Á SY PA CZ] eo aká Ň s atary krovu ES EE] dať ES] rormá úroveň Čo RÝ | „ÁKŠBŤTŤ a alej i rot S s Ml. pokad NBSŠL A V alli % | vé — 1l A 2, S Voz af (4 ŠI Nm SR A -. S tla a vá, A vý vy a. ža ( V OVLI uto sx MÁ a aro PA AE Ň ŠA [ SR v | a Ň SN (S R Z SÍ A SEL tura ? zb N ZEDSI2| A komata EU N PX S sá a X dá )) kdosaúca M i AJ“ E“ 14 a X pí ja fi ms | A 5—3577—357—:7x stáže NL Merali: J. Ančák, P. Čarný, J Drahošová, M. Hačo, fi P. Magdolen, D. Moravanský, Ľ. Šlíva, Ta B.Staľičný, J. Šutka, J. Tencer, J. Thuróczy, izd O. Trávnik okt.- dec. 2002, máj - okt. 2003. aňi > Kresli: P. Magdolen veto ",
+          "reasons": [
+            "object-visual:light=0.90",
+            "object-visual:dark=0.03",
+            "object-visual:midtone=0.07",
+            "object-visual:color=0.03",
+            "object-visual:edges=0.091",
+            "ocr: map terms dlzka, legenda, merali, podorys",
+            "ocr: technický typ"
+          ],
+          "score": 1.0,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        }
+      ],
+      "page": 8,
+      "prefilter": {
+        "candidate_sources": [
+          "ocr_object_without_caption"
+        ],
+        "reasons": [
+          "text: zameral/kreslil/dokumentovali",
+          "text: legenda/meračský kontext",
+          "ocr-object: object-visual:light=0.90; object-visual:dark=0.03; object-visual:midtone=0.07; object-visual:color=0.03; object-visual:edges=0.091; ocr: map terms dlzka, legenda, merali, podorys; ",
+          "visual:white=0.86",
+          "visual:dark=0.02",
+          "visual:color=0.02",
+          "visual:edges=0.101"
+        ],
+        "text_score": 1.4,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 6,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3726,
+          "matched_printed_page": 14,
+          "page_start": null,
+          "pages": "5-14",
+          "pdf_page_end": 14,
+          "pdf_page_start": 5,
+          "title": "Jaskyňa verných – staršie objavy a súčasný stav"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 118.22475,
+            "xMin": 88.29387,
+            "yMax": 358.73217,
+            "yMin": 347.88753
+          },
+          "line_text": "Pôdorys",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.183",
+            "caption-object:bbox=1.00x0.96",
+            "caption-object:rows=0.78",
+            "caption-object:cols=0.94",
+            "caption-object:edges=0.168"
+          ],
+          "object_score": 1.0,
+          "text": "Pôdorys"
+        }
+      ],
+      "created_at": "2026-06-17T11:57:47+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p16.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 16,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "text: zameral/kreslil/dokumentovali",
+          "text: rozmery lokality",
+          "caption-object: Pôdorys",
+          "visual:white=0.86",
+          "visual:dark=0.03",
+          "visual:color=0.01",
+          "visual:edges=0.108"
+        ],
+        "text_score": 6.6,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 14,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3729,
+          "matched_printed_page": 32,
+          "page_start": null,
+          "pages": "29-39",
+          "pdf_page_end": 39,
+          "pdf_page_start": 29,
+          "title": "Ako ďalej v Ďumbierskom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 405.329097,
+            "xMin": 121.89,
+            "yMax": 238.64,
+            "yMin": 229.328
+          },
+          "line_text": "Plán JHV (1358 m n. m.) a pohľad v pozdĺžnom reze ukazuje na typický zával",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.163",
+            "caption-object:bbox=0.96x0.94",
+            "caption-object:rows=0.93",
+            "caption-object:cols=0.91",
+            "caption-object:edges=0.103"
+          ],
+          "object_score": 1.0,
+          "text": "Plán JHV (1358 m n. m.) a pohľad v pozdĺžnom reze ukazuje na typický zával"
+        }
+      ],
+      "created_at": "2026-06-17T11:58:24+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p34.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 34,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "caption-object: Plán JHV (1358 m n. m.) a pohľad v pozdĺžnom reze ukazuje na typický zával",
+          "visual:white=0.81",
+          "visual:dark=0.02",
+          "visual:color=0.07",
+          "visual:edges=0.067"
+        ],
+        "text_score": 5.4,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 32,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3729,
+          "matched_printed_page": 33,
+          "page_start": null,
+          "pages": "29-39",
+          "pdf_page_end": 39,
+          "pdf_page_start": 29,
+          "title": "Ako ďalej v Ďumbierskom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 260.774121,
+            "xMin": 34.0156,
+            "yMax": 326.777,
+            "yMin": 317.625
+          },
+          "line_text": "Plán Lokality Lavínište (Dolný salaš) s vývermi estavely A, B,",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.251",
+            "caption-object:bbox=0.96x0.95",
+            "caption-object:rows=0.93",
+            "caption-object:cols=0.96",
+            "caption-object:edges=0.141"
+          ],
+          "object_score": 1.0,
+          "text": "Plán Lokality Lavínište (Dolný salaš) s vývermi estavely A, B,"
+        }
+      ],
+      "created_at": "2026-06-17T11:58:56+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p35.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 35,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "caption-object: Plán Lokality Lavínište (Dolný salaš) s vývermi estavely A, B,",
+          "visual:white=0.77",
+          "visual:dark=0.04",
+          "visual:color=0.03",
+          "visual:edges=0.137"
+        ],
+        "text_score": 5.4,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 33,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3729,
+          "matched_printed_page": 34,
+          "page_start": null,
+          "pages": "29-39",
+          "pdf_page_end": 39,
+          "pdf_page_start": 29,
+          "title": "Ako ďalej v Ďumbierskom krase"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 148.306076,
+            "xMin": 27.4293,
+            "yMax": 280.876,
+            "yMin": 271.564
+          },
+          "line_text": "Plán lokality Lavínište alebo Dolný",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.494",
+            "caption-object:bbox=0.99x0.95",
+            "caption-object:rows=0.94",
+            "caption-object:cols=0.96",
+            "caption-object:edges=0.094"
+          ],
+          "object_score": 1.0,
+          "text": "Plán lokality Lavínište alebo Dolný"
+        },
+        {
+          "bbox": {
+            "xMax": 405.344219,
+            "xMin": 164.409,
+            "yMax": 412.908,
+            "yMin": 403.596
+          },
+          "line_text": "Rez starou sondou 1 s pyramídou (r. 2012) a druhou sondou 2 s oceľovou",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.420",
+            "caption-object:bbox=0.96x0.97",
+            "caption-object:rows=0.96",
+            "caption-object:cols=0.93",
+            "caption-object:edges=0.102"
+          ],
+          "object_score": 1.0,
+          "text": "Rez starou sondou 1 s pyramídou (r. 2012) a druhou sondou 2 s oceľovou"
+        }
+      ],
+      "created_at": "2026-06-17T11:59:26+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p36.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 36,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Plán lokality Lavínište alebo Dolný",
+          "caption-object: Rez starou sondou 1 s pyramídou (r. 2012) a druhou sondou 2 s oceľovou",
+          "visual:white=0.70",
+          "visual:dark=0.05",
+          "visual:color=0.07",
+          "visual:edges=0.083"
+        ],
+        "text_score": 4.0,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 34,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3731,
+          "matched_printed_page": 46,
+          "page_start": null,
+          "pages": "44-49",
+          "pdf_page_end": 49,
+          "pdf_page_start": 44,
+          "title": "Z najstaršej histórie priepasti Malá Žomboj"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 405.403415,
+            "xMin": 278.312116,
+            "yMax": 257.3563,
+            "yMin": 244.9763
+          },
+          "line_text": "nal pod nesprávnym názvom Veľká Žomboja) ským štátom . Mapa je zaujímavá aj zo spele-",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.172",
+            "caption-object:bbox=0.94x0.94",
+            "caption-object:rows=0.81",
+            "caption-object:cols=0.90",
+            "caption-object:edges=0.160"
+          ],
+          "object_score": 1.0,
+          "text": "Mapa je zaujímavá aj zo spele-"
+        }
+      ],
+      "created_at": "2026-06-17T11:59:57+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p48.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 48,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa je zaujímavá aj zo spele-",
+          "visual:white=0.66",
+          "visual:dark=0.05",
+          "visual:color=0.01",
+          "visual:edges=0.160"
+        ],
+        "text_score": 4.0,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 46,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3731,
+          "matched_printed_page": 47,
+          "page_start": null,
+          "pages": "44-49",
+          "pdf_page_end": 49,
+          "pdf_page_start": 44,
+          "title": "Z najstaršej histórie priepasti Malá Žomboj"
+        }
+      ],
+      "caption_matches": [
+        {
+          "bbox": {
+            "xMax": 416.695332,
+            "xMin": 213.133532,
+            "yMax": 596.2878,
+            "yMin": 587.0798
+          },
+          "line_text": "priepasť padá kolmo dole studňo- Obr. 3. Mapa Malej Žomboje od Ferenca Hidvégiho z roku 1944.",
+          "object_above": true,
+          "object_reasons": [
+            "caption-object:ink=0.145",
+            "caption-object:bbox=0.99x1.00",
+            "caption-object:rows=0.98",
+            "caption-object:cols=0.94",
+            "caption-object:edges=0.101"
+          ],
+          "object_score": 1.0,
+          "text": "Mapa Malej Žomboje od Ferenca Hidvégiho z roku 1944."
+        }
+      ],
+      "created_at": "2026-06-17T12:00:52+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p49.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [],
+      "page": 49,
+      "prefilter": {
+        "candidate_sources": [
+          "caption_object"
+        ],
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa Malej Žomboje od Ferenca Hidvégiho z roku 1944.",
+          "visual:white=0.83",
+          "visual:dark=0.04",
+          "visual:color=0.00",
+          "visual:edges=0.122"
+        ],
+        "text_score": 4.0,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 47,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3732,
+          "matched_printed_page": 55,
+          "page_start": null,
+          "pages": "50-59",
+          "pdf_page_end": 59,
+          "pdf_page_start": 50,
+          "title": "Nové poznatky zo speleologického prieskumu krasu východnej Hercegoviny (Bosna a Hercegovina, Republika Srbská)"
+        }
+      ],
+      "caption_matches": [],
+      "created_at": "2026-06-17T12:02:07+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p57.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [
+        {
+          "bbox": {
+            "xMax": 418.896,
+            "xMin": 30.988,
+            "yMax": 605.261,
+            "yMin": 124.596
+          },
+          "bbox_image": {
+            "xMax": 757,
+            "xMin": 56,
+            "yMax": 1093,
+            "yMin": 225
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/e01113188c_Spravodaj_4_2025_p57_obj1.png",
+          "features": {
+            "color": 0.008844670793969342,
+            "dark": 0.024924742990211857,
+            "edges": 0.05348295835736658,
+            "light": 0.9429813766510788,
+            "midtone": 0.032093880358709304,
+            "very_light": 0.9388398745400961
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 3.6,
+          "ocr_text": "Mlinica 0 Lukavacko polje, Republika Srpska, BiH. NÁ TTTE—E—©E©—7»g©e 7 255, Dížka: 149m SA NA Prevýšenie: 45m „Y Objavili: P.Fancik, M. Gašto, Š. Kyšea, V. Papáč, J. Paotka 1 | Mapovali V. Papáč a Š. Kyšela ká | vú Kreslil: Vlado Papáč. M Spekolch Drinka, Slovenská spolo spolčnos, 2025 A ex“ m NY Ď m le — pa — — 1Ň. Ň A) Vas A o NÁ > M 3 SN ČEŇAN s? i Mlinica fr ŠA A“ vy Dížka: 149m ŠA) Prevýšenie: 48m Objavili: P. Fencik, M. Gaško, Š. Kyšela, V. Papáč, J. Psotka Mapovali: V. Papáč a Š. Kyšela Kresli Vlado Papáč Speloklb Drinka, Slovenská speleologická spoločnosť, 2025",
+          "reasons": [
+            "object-visual:light=0.94",
+            "object-visual:dark=0.02",
+            "object-visual:midtone=0.03",
+            "object-visual:color=0.01",
+            "object-visual:edges=0.053",
+            "ocr: map terms kreslil, mapovali, prevysenie",
+            "ocr: zameral/kreslil/mapoval"
+          ],
+          "score": 0.95,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        },
+        {
+          "bbox": {
+            "xMax": 371.86,
+            "xMin": 81.898,
+            "yMax": 527.734,
+            "yMin": 392.063
+          },
+          "bbox_image": {
+            "xMax": 672,
+            "xMin": 148,
+            "yMax": 953,
+            "yMin": 708
+          },
+          "candidate": false,
+          "crop_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/e01113188c_Spravodaj_4_2025_p57_obj4.png",
+          "features": {
+            "color": 0.027969348659003832,
+            "dark": 0.021037320845749965,
+            "edges": 0.06469795780756371,
+            "light": 0.9148502909039308,
+            "midtone": 0.06411238825031929,
+            "very_light": 0.909096069249326
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 0.0,
+          "ocr_text": "o — a RO A“ NA o, NSA # M",
+          "reasons": [
+            "object-visual:light=0.91",
+            "object-visual:dark=0.02",
+            "object-visual:midtone=0.06",
+            "object-visual:color=0.03",
+            "object-visual:edges=0.065"
+          ],
+          "score": 0.5,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        }
+      ],
+      "page": 57,
+      "prefilter": {
+        "candidate_sources": [
+          "ocr_object_without_caption"
+        ],
+        "reasons": [
+          "text: zameral/kreslil/dokumentovali",
+          "text: rozmery lokality",
+          "ocr-object: object-visual:light=0.94; object-visual:dark=0.02; object-visual:midtone=0.03; object-visual:color=0.01; object-visual:edges=0.053; ocr: map terms kreslil, mapovali, prevysenie; oc",
+          "visual:white=0.90",
+          "visual:dark=0.01",
+          "visual:color=0.01",
+          "visual:edges=0.071"
+        ],
+        "text_score": 1.2,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 55,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3732,
+          "matched_printed_page": 57,
+          "page_start": null,
+          "pages": "50-59",
+          "pdf_page_end": 59,
+          "pdf_page_start": 50,
+          "title": "Nové poznatky zo speleologického prieskumu krasu východnej Hercegoviny (Bosna a Hercegovina, Republika Srbská)"
+        }
+      ],
+      "caption_matches": [],
+      "created_at": "2026-06-17T12:02:41+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p59.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [
+        {
+          "bbox": {
+            "xMax": 418.896,
+            "xMin": 30.988,
+            "yMax": 606.368,
+            "yMin": 28.242
+          },
+          "bbox_image": {
+            "xMax": 757,
+            "xMin": 56,
+            "yMax": 1095,
+            "yMin": 51
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/e01113188c_Spravodaj_4_2025_p59_obj1.png",
+          "features": {
+            "color": 0.0032262308886608247,
+            "dark": 0.027113760164206205,
+            "edges": 0.055013834126174804,
+            "light": 0.9444554090681824,
+            "midtone": 0.028430830767611378,
+            "very_light": 0.9402305202494671
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 3.6,
+          "ocr_text": "X Osredak U xa [na Spiješnica, Repubíka Sroso, Bi s) [7 Deka 82m \"Aa . 01 1000077777777777 Prisvýžšnke: 3m — 7077000 sasi k Objadl P. Fencik, M. Gaško, S. Kyšela, V. Papč, J. Proti Na Mapovali: V. Papáč a , Kyšea 2 Kresli: Vlado Papáč 940, nn W < Spo Dio, Strom odchov 205 920, NL | z l s a Osredak |. Sniježníca, Republika Srpska, BiH .— Dížka: 82m TAJ s) Prevýšenie: 33m [>soá ši ž áč la 97%) Objavili: P. Fencik, M. Gaško, Š. Kyšela, V. Papáč, J. Psotka la z) Mapovali: V. Papáč a Š. Kyšela B <A. Kreslil:: Vlado Papáč 11 pa Tá Speleoklub Drienka, Slovenská speleologická spoločnosť, 2025 ) Sž U ZA Lezenáa 20 (A leo ŠA: DJ oo r PE] ty ZA CA polygónový ťah. [7] vst orína Pal nezameaná sára obry kameňa money predpokladaná stena [8] sorenné bay NOSA —. EE] me ŠJ EZ] sos vonu Oro x stena terná int",
+          "reasons": [
+            "object-visual:light=0.94",
+            "object-visual:dark=0.03",
+            "object-visual:midtone=0.03",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.055",
+            "ocr: map terms kreslil, mapovali, prevysenie",
+            "ocr: zameral/kreslil/mapoval"
+          ],
+          "score": 0.95,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        },
+        {
+          "bbox": {
+            "xMax": 407.828,
+            "xMin": 45.376,
+            "yMax": 246.977,
+            "yMin": 39.317
+          },
+          "bbox_image": {
+            "xMax": 737,
+            "xMin": 82,
+            "yMax": 446,
+            "yMin": 71
+          },
+          "candidate": false,
+          "crop_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/e01113188c_Spravodaj_4_2025_p59_obj2.png",
+          "features": {
+            "color": 0.0016313400238602536,
+            "dark": 0.018989102801102296,
+            "edges": 0.04648700162834243,
+            "light": 0.955869965429313,
+            "midtone": 0.025140931769584655,
+            "very_light": 0.9524776929497906
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 2.0,
+          "ocr_text": "fa Úsredak k [ná 1. Sniježnica, Republika Srpska, BiH AA] [eN písa: 82m #4 z OST NON ZNN ohni „v Objavili: P. Fencik, M. Gaško, Š. Kyšela, V. Papáč, J. Psotka V. Mapovali: V. Papáč a S. Kyšla — Kresli: Vlado Pagáč o RR Tr o penou Drienka, Slovenská speleologická spoločnos, 2025 S SA - A",
+          "reasons": [
+            "object-visual:light=0.96",
+            "object-visual:dark=0.02",
+            "object-visual:midtone=0.03",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.046",
+            "ocr: map terms mapovali",
+            "ocr: zameral/kreslil/mapoval"
+          ],
+          "score": 0.75,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        }
+      ],
+      "page": 59,
+      "prefilter": {
+        "candidate_sources": [
+          "ocr_object_without_caption"
+        ],
+        "reasons": [
+          "text: zameral/kreslil/dokumentovali",
+          "text: legenda/meračský kontext",
+          "text: rozmery lokality",
+          "ocr-object: object-visual:light=0.94; object-visual:dark=0.03; object-visual:midtone=0.03; object-visual:color=0.00; object-visual:edges=0.055; ocr: map terms kreslil, mapovali, prevysenie; oc",
+          "visual:white=0.93",
+          "visual:dark=0.01",
+          "visual:color=0.00",
+          "visual:edges=0.053"
+        ],
+        "text_score": 1.9,
+        "visual_score": 0.82
+      },
+      "printed_page_guess": 57,
+      "year": 2025
+    },
+    {
+      "ai": {
+        "confidence": "high",
+        "contains_photo": false,
+        "contains_table": false,
+        "kind": "cave_plan",
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "parse_error": null,
+        "raw": null,
+        "reject_reason": "",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ]
+      },
+      "articles": [
+        {
+          "id": 3734,
+          "matched_printed_page": 64,
+          "page_start": null,
+          "pages": "62-66",
+          "pdf_page_end": 66,
+          "pdf_page_start": 62,
+          "title": "Letný jaskyniarsky krúžok 2025 / Mladí jaskyniari v Komorníckej doline"
+        }
+      ],
+      "caption_matches": [],
+      "created_at": "2026-06-17T12:03:38+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p66.png",
+      "issue": "4",
+      "model": "minicpm-v4.6",
+      "ocr_object_matches": [
+        {
+          "bbox": {
+            "xMax": 408.382,
+            "xMin": 19.921,
+            "yMax": 279.095,
+            "yMin": 25.473
+          },
+          "bbox_image": {
+            "xMax": 738,
+            "xMin": 36,
+            "yMax": 504,
+            "yMin": 46
+          },
+          "candidate": true,
+          "crop_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/e01113188c_Spravodaj_4_2025_p66_obj1.png",
+          "features": {
+            "color": 0.0,
+            "dark": 0.028272392839932773,
+            "edges": 0.06637014803715463,
+            "light": 0.8987841284392887,
+            "midtone": 0.07294347872077854,
+            "very_light": 0.8746253658192589
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 4.0,
+          "ocr_text": "7 4. / RÚRAVMLADUCHE 2.0 | .. MN S lumky — fŠ S i ŠR U V, Ax A / 4. s . M Oka x JASKYŇA V MLADUCHE IO Te stav k 5. 10. 2025 od Zamerali: P. Holúbek, M. Kudla, J. Dzuriak VV A “ a ť SY. stropné koryto A O čá ,,. Pôvodné dno PN PEN — VO ML? 0T O ŇU, vý PE s k TEE st— FA + Výkop NAN TTO, paleotologické nálezy “-Ž rez na rovinu západ - východ",
+          "reasons": [
+            "object-visual:light=0.90",
+            "object-visual:dark=0.03",
+            "object-visual:midtone=0.07",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.066",
+            "ocr: map terms rez, zamerali",
+            "ocr: zameral/kreslil/mapoval",
+            "ocr: technický typ"
+          ],
+          "score": 1.0,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        },
+        {
+          "bbox": {
+            "xMax": 388.461,
+            "xMin": 151.621,
+            "yMax": 255.837,
+            "yMin": 184.956
+          },
+          "bbox_image": {
+            "xMax": 702,
+            "xMin": 274,
+            "yMax": 462,
+            "yMin": 334
+          },
+          "candidate": false,
+          "crop_path": "data/ai_map_detection/rendered/2025_4_hybrid_ocr_minicpm46_2024plus/ocr_objects/e01113188c_Spravodaj_4_2025_p66_obj6.png",
+          "features": {
+            "color": 0.0,
+            "dark": 0.028997747747747746,
+            "edges": 0.10253165000625497,
+            "light": 0.832911036036036,
+            "midtone": 0.13809121621621623,
+            "very_light": 0.789430055055055
+          },
+          "ocr_languages": "slk",
+          "ocr_score": 0.0,
+          "ocr_text": "„stropne koryto še o, PÔVOdNÉ dno U niaa— PM NT 1e sr tb a i ES ŇU, Vý Sans TREK S Že výkop o tn, Nadi paleotologické nálezy > z na rovinu západ - východ",
+          "reasons": [
+            "object-visual:light=0.83",
+            "object-visual:dark=0.03",
+            "object-visual:midtone=0.14",
+            "object-visual:color=0.00",
+            "object-visual:edges=0.103"
+          ],
+          "score": 0.5,
+          "source": "ocr_object_without_caption",
+          "visual_score": 1.0
+        }
+      ],
+      "page": 66,
+      "prefilter": {
+        "candidate_sources": [
+          "ocr_object_without_caption"
+        ],
+        "reasons": [
+          "guard: foto popis bez mapového captionu",
+          "ocr-object: object-visual:light=0.90; object-visual:dark=0.03; object-visual:midtone=0.07; object-visual:color=0.00; object-visual:edges=0.066; ocr: map terms rez, zamerali; ocr: zameral/kresl",
+          "visual:white=0.80",
+          "visual:dark=0.03",
+          "visual:color=0.01",
+          "visual:edges=0.105"
+        ],
+        "text_score": 0.0,
+        "visual_score": 0.96
+      },
+      "printed_page_guess": 64,
+      "year": 2025
+    }
+  ]
+}

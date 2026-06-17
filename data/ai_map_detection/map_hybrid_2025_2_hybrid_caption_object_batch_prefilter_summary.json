@@ -1,0 +1,21 @@
+{
+  "created_at": "2026-06-17T10:58:33+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": null,
+  "year": 2025,
+  "issue": "2",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2025/10/Spravodaj_2_2025_net.pdf",
+  "pdf_path": "data/pdf_cache/68fcd241f4_Spravodaj_2_2025_net.pdf",
+  "pdf_pages": 68,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 62,
+  "candidate_pages": [
+    16,
+    44
+  ],
+  "candidate_page_count": 2,
+  "confirmed_pages": [],
+  "confirmed_page_count": 0,
+  "confirmed_records": []
+}

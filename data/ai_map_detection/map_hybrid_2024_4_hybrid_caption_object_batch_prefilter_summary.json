@@ -1,0 +1,23 @@
+{
+  "created_at": "2026-06-17T10:56:49+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": null,
+  "year": 2024,
+  "issue": "4",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2025/05/Spravodaj_4_2024_NET-1.pdf",
+  "pdf_path": "data/pdf_cache/57d19c71bb_Spravodaj_4_2024_NET-1.pdf",
+  "pdf_pages": 72,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 66,
+  "candidate_pages": [
+    9,
+    10,
+    14,
+    17
+  ],
+  "candidate_page_count": 4,
+  "confirmed_pages": [],
+  "confirmed_page_count": 0,
+  "confirmed_records": []
+}

@@ -1,0 +1,8 @@
+{
+  "source": "data/research_chunks.jsonl",
+  "index": "web/public/data/fulltext_index.json",
+  "chunks": 10594,
+  "articles": 3645,
+  "text_chars": 28180374,
+  "bytes": 31560605
+}

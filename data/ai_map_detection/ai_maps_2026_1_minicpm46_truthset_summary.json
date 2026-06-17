@@ -1,0 +1,71 @@
+{
+  "created_at": "2026-06-17T09:51:27+00:00",
+  "detection_mode": "ai_vision_only_no_text_heuristics",
+  "model": "minicpm-v4.6",
+  "year": 2026,
+  "issue": "1",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2026/06/Spravodaj_1_2026_vnutro_NET_web.pdf",
+  "pdf_path": "data/pdf_cache/9442cb9c37_Spravodaj_1_2026_vnutro_NET_web.pdf",
+  "pdf_pages": 108,
+  "processed_pages": 6,
+  "map_pages": [
+    {
+      "page": 17,
+      "kind": "cave_plan",
+      "confidence": "high",
+      "articles": []
+    },
+    {
+      "page": 59,
+      "kind": "cave_plan",
+      "confidence": "high",
+      "articles": [
+        {
+          "id": 3776,
+          "title": "Oblastná skupina Orava",
+          "pages": "59",
+          "pdf_page_start": 59,
+          "pdf_page_end": 59
+        }
+      ]
+    },
+    {
+      "page": 64,
+      "kind": "cave_plan",
+      "confidence": "high",
+      "articles": []
+    },
+    {
+      "page": 91,
+      "kind": "cave_plan",
+      "confidence": "high",
+      "articles": [
+        {
+          "id": 3793,
+          "title": "Jaskyniarsky klub Speleo Turiec",
+          "pages": "91",
+          "pdf_page_start": 91,
+          "pdf_page_end": 91
+        }
+      ]
+    }
+  ],
+  "map_page_count": 4,
+  "map_article_count": 2,
+  "map_articles": [
+    {
+      "id": 3776,
+      "title": "Oblastná skupina Orava",
+      "pages": "59",
+      "pdf_page_start": 59,
+      "pdf_page_end": 59
+    },
+    {
+      "id": 3793,
+      "title": "Jaskyniarsky klub Speleo Turiec",
+      "pages": "91",
+      "pdf_page_start": 91,
+      "pdf_page_end": 91
+    }
+  ]
+}

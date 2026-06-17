@@ -1,0 +1,27 @@
+{
+  "generated_at": "2026-06-17T08:45:22+00:00",
+  "articles": 3802,
+  "feature_counts": {
+    "map_plan": 0,
+    "photo": 1979,
+    "table": 498,
+    "bibliography": 912,
+    "measurement_data": 1245,
+    "coordinates": 147,
+    "cross_section": 293
+  },
+  "map_plan_candidates": 0,
+  "ollama_calls": 0,
+  "thresholds": {
+    "map_plan": 0.85,
+    "photo": 0.55,
+    "table": 0.55,
+    "bibliography": 0.55,
+    "measurement_data": 0.5,
+    "coordinates": 0.5,
+    "cross_section": 0.55
+  },
+  "candidate_threshold": 0.38,
+  "map_plan_cleared_at": "2026-06-17T09:09:39+00:00",
+  "map_plan_clear_note": "Generated map/plan detection removed before AI-only PDF test."
+}

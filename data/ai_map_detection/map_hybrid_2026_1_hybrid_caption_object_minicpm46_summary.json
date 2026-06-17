@@ -1,0 +1,229 @@
+{
+  "created_at": "2026-06-17T10:47:35+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": "minicpm-v4.6",
+  "year": 2026,
+  "issue": "1",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2026/06/Spravodaj_1_2026_vnutro_NET_web.pdf",
+  "pdf_path": "data/pdf_cache/9442cb9c37_Spravodaj_1_2026_vnutro_NET_web.pdf",
+  "pdf_pages": 108,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 102,
+  "candidate_pages": [
+    17,
+    59,
+    64,
+    91
+  ],
+  "candidate_page_count": 4,
+  "confirmed_pages": [
+    17,
+    59,
+    64,
+    91
+  ],
+  "confirmed_page_count": 4,
+  "confirmed_records": [
+    {
+      "created_at": "2026-06-17T10:45:46+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2026,
+      "issue": "1",
+      "page": 17,
+      "printed_page_guess": 15,
+      "prefilter": {
+        "text_score": 5.3,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: mierka/scale",
+          "text: rozmery lokality",
+          "caption-object: Mapa Slnečnej j.",
+          "visual:white=0.85",
+          "visual:dark=0.04",
+          "visual:color=0.02",
+          "visual:edges=0.097"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2026_1_hybrid_caption_object_minicpm46/9442cb9c37_Spravodaj_1_2026_vnutro_NET_web_p17.png",
+      "articles": [
+        {
+          "id": 3752,
+          "title": "Speleo Brezno",
+          "pages": "15",
+          "page_start": null,
+          "pdf_page_start": 15,
+          "pdf_page_end": 15,
+          "matched_printed_page": 15
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T10:46:21+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2026,
+      "issue": "1",
+      "page": 59,
+      "printed_page_guess": 57,
+      "prefilter": {
+        "text_score": 5.5,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: mierka/scale",
+          "text: zameral/kreslil/dokumentovali",
+          "caption-object: Mapa lokality Dolno Begovo",
+          "visual:white=0.83",
+          "visual:dark=0.04",
+          "visual:color=0.00",
+          "visual:edges=0.121"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2026_1_hybrid_caption_object_minicpm46/9442cb9c37_Spravodaj_1_2026_vnutro_NET_web_p59.png",
+      "articles": [
+        {
+          "id": 3774,
+          "title": "Speleoklub Nicolaus",
+          "pages": "55",
+          "page_start": null,
+          "pdf_page_start": 55,
+          "pdf_page_end": 55,
+          "matched_printed_page": 57
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T10:46:54+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2026,
+      "issue": "1",
+      "page": 64,
+      "printed_page_guess": 62,
+      "prefilter": {
+        "text_score": 6.9,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/rez/profil",
+          "text: mierka/scale",
+          "text: zameral/kreslil/dokumentovali",
+          "caption-object: Mapka (prierez) ukazuje aktuálnu situáciu v závrtoch Ámon",
+          "visual:white=0.66",
+          "visual:dark=0.03",
+          "visual:color=0.06",
+          "visual:edges=0.113"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2026_1_hybrid_caption_object_minicpm46/9442cb9c37_Spravodaj_1_2026_vnutro_NET_web_p64.png",
+      "articles": [
+        {
+          "id": 3777,
+          "title": "Jaskyniari Plavecké Podhradie",
+          "pages": "60",
+          "page_start": null,
+          "pdf_page_start": 60,
+          "pdf_page_end": 60,
+          "matched_printed_page": 62
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T10:47:35+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2026,
+      "issue": "1",
+      "page": 91,
+      "printed_page_guess": 89,
+      "prefilter": {
+        "text_score": 4.8,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: mierka/scale",
+          "caption-object: Mapa priepasti Bana",
+          "visual:white=0.80",
+          "visual:dark=0.02",
+          "visual:color=0.07",
+          "visual:edges=0.066"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2026_1_hybrid_caption_object_minicpm46/9442cb9c37_Spravodaj_1_2026_vnutro_NET_web_p91.png",
+      "articles": [
+        {
+          "id": 3792,
+          "title": "Speleoklub Trnava",
+          "pages": "88",
+          "page_start": null,
+          "pdf_page_start": 88,
+          "pdf_page_end": 88,
+          "matched_printed_page": 89
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    }
+  ]
+}

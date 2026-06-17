@@ -1,0 +1,226 @@
+{
+  "created_at": "2026-06-17T11:12:06+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": "minicpm-v4.6",
+  "year": 2025,
+  "issue": "3",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2026/01/Spravodaj_3_2025_web.pdf",
+  "pdf_path": "data/pdf_cache/caec1cb4a1_Spravodaj_3_2025_web.pdf",
+  "pdf_pages": 68,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 4,
+  "candidate_pages": [
+    12,
+    25,
+    26,
+    48
+  ],
+  "candidate_page_count": 4,
+  "confirmed_pages": [
+    12,
+    25,
+    26,
+    48
+  ],
+  "confirmed_page_count": 4,
+  "confirmed_records": [
+    {
+      "created_at": "2026-06-17T11:10:19+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "3",
+      "page": 12,
+      "printed_page_guess": 10,
+      "prefilter": {
+        "text_score": 4.9,
+        "visual_score": 0.74,
+        "reasons": [
+          "text: mapa/mapka",
+          "text: pôdorys/plán/rez/profil",
+          "text: zameral/kreslil/dokumentovali",
+          "text: legenda/meračský kontext",
+          "text: rozmery lokality",
+          "caption-object: Mapa – pôdorys Jaskyne v ponore Hrona.",
+          "visual:white=0.44",
+          "visual:dark=0.03",
+          "visual:color=0.00",
+          "visual:edges=0.085"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_3_hybrid_caption_object_minicpm46_2024plus/caec1cb4a1_Spravodaj_3_2025_web_p12.png",
+      "articles": [
+        {
+          "id": 2580,
+          "title": "Jaskyňa v ponore Hrona",
+          "pages": "9",
+          "page_start": null,
+          "pdf_page_start": 9,
+          "pdf_page_end": 9,
+          "matched_printed_page": 10
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:10:56+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "3",
+      "page": 25,
+      "printed_page_guess": 23,
+      "prefilter": {
+        "text_score": 4.0,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa jaskyne z roku 1974.",
+          "visual:white=0.89",
+          "visual:dark=0.02",
+          "visual:color=0.00",
+          "visual:edges=0.078"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_3_hybrid_caption_object_minicpm46_2024plus/caec1cb4a1_Spravodaj_3_2025_web_p25.png",
+      "articles": [
+        {
+          "id": 2583,
+          "title": "Nové poznatky zo Zvislej jaskyne na Žibrici",
+          "pages": "23",
+          "page_start": null,
+          "pdf_page_start": 23,
+          "pdf_page_end": 23,
+          "matched_printed_page": 23
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:11:35+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "3",
+      "page": 26,
+      "printed_page_guess": 24,
+      "prefilter": {
+        "text_score": 4.0,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa jaskyne z roku 2024.",
+          "visual:white=0.64",
+          "visual:dark=0.09",
+          "visual:color=0.16",
+          "visual:edges=0.068"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_3_hybrid_caption_object_minicpm46_2024plus/caec1cb4a1_Spravodaj_3_2025_web_p26.png",
+      "articles": [
+        {
+          "id": 2583,
+          "title": "Nové poznatky zo Zvislej jaskyne na Žibrici",
+          "pages": "23",
+          "page_start": null,
+          "pdf_page_start": 23,
+          "pdf_page_end": 23,
+          "matched_printed_page": 24
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:12:06+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "3",
+      "page": 48,
+      "printed_page_guess": 46,
+      "prefilter": {
+        "text_score": 5.4,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "caption-object: Pôdorys jaskyne Prekonoška pećina vo východnom Srbsku, Cvijić, 1891.",
+          "visual:white=0.78",
+          "visual:dark=0.07",
+          "visual:color=0.00",
+          "visual:edges=0.158"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_3_hybrid_caption_object_minicpm46_2024plus/caec1cb4a1_Spravodaj_3_2025_web_p48.png",
+      "articles": [
+        {
+          "id": 2588,
+          "title": "Významné postavy svetovej speleológie: Jovan Cvijić",
+          "pages": "45",
+          "page_start": null,
+          "pdf_page_start": 45,
+          "pdf_page_end": 45,
+          "matched_printed_page": 46
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    }
+  ]
+}

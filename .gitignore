@@ -1,0 +1,32 @@
+# Local secrets
+token
+token.*
+*.token
+*.tokens
+.token
+.tokens
+.env
+.env.*
+!.env.example
+github-token*
+GITHUB_TOKEN*
+
+# Local caches and generated runtime noise
+.pytest_cache/
+__pycache__/
+*.py[cod]
+node_modules/
+.astro/
+dist/
+
+# Large rebuildable data/cache artifacts
+data/pdf_cache/
+data/pdf_text/
+data/research_media/
+data/research_knowledge.sqlite
+data/*_before_*.jsonl
+data/ai_map_detection/rendered/
+data/ai_map_detection/manual_ground_truth_pages/
+web/node_modules/
+web/.astro/
+web/dist/

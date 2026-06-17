@@ -1,0 +1,226 @@
+{
+  "created_at": "2026-06-17T11:14:54+00:00",
+  "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+  "model": "minicpm-v4.6",
+  "year": 2025,
+  "issue": "4",
+  "pdf_url": "https://sss.sk/wp-content/uploads/2026/03/Spravodaj_4_2025.pdf",
+  "pdf_path": "data/pdf_cache/e01113188c_Spravodaj_4_2025.pdf",
+  "pdf_pages": 84,
+  "ignored_first_pages": 2,
+  "ignored_last_pages": 4,
+  "processed_page_count": 5,
+  "candidate_pages": [
+    16,
+    36,
+    48,
+    49,
+    50
+  ],
+  "candidate_page_count": 5,
+  "confirmed_pages": [
+    16,
+    36,
+    48,
+    49
+  ],
+  "confirmed_page_count": 4,
+  "confirmed_records": [
+    {
+      "created_at": "2026-06-17T11:12:40+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "4",
+      "page": 16,
+      "printed_page_guess": 14,
+      "prefilter": {
+        "text_score": 6.6,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "text: pôdorys/plán/rez/profil",
+          "text: zameral/kreslil/dokumentovali",
+          "text: rozmery lokality",
+          "caption-object: Pôdorys",
+          "visual:white=0.86",
+          "visual:dark=0.03",
+          "visual:color=0.01",
+          "visual:edges=0.108"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_caption_object_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p16.png",
+      "articles": [
+        {
+          "id": 3726,
+          "title": "Jaskyňa verných – staršie objavy a súčasný stav",
+          "pages": "5-14",
+          "page_start": null,
+          "pdf_page_start": 5,
+          "pdf_page_end": 14,
+          "matched_printed_page": 14
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:13:09+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "4",
+      "page": 36,
+      "printed_page_guess": 34,
+      "prefilter": {
+        "text_score": 4.0,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Plán lokality Lavínište alebo Dolný",
+          "caption-object: Rez starou sondou 1 s pyramídou (r. 2012) a druhou sondou 2 s oceľovou",
+          "visual:white=0.70",
+          "visual:dark=0.05",
+          "visual:color=0.07",
+          "visual:edges=0.083"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_caption_object_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p36.png",
+      "articles": [
+        {
+          "id": 3729,
+          "title": "Ako ďalej v Ďumbierskom krase",
+          "pages": "29-39",
+          "page_start": null,
+          "pdf_page_start": 29,
+          "pdf_page_end": 39,
+          "matched_printed_page": 34
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:13:40+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "4",
+      "page": 48,
+      "printed_page_guess": 46,
+      "prefilter": {
+        "text_score": 4.0,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa je zaujímavá aj zo spele-",
+          "visual:white=0.66",
+          "visual:dark=0.05",
+          "visual:color=0.01",
+          "visual:edges=0.160"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_caption_object_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p48.png",
+      "articles": [
+        {
+          "id": 3731,
+          "title": "Z najstaršej histórie priepasti Malá Žomboj",
+          "pages": "44-49",
+          "page_start": null,
+          "pdf_page_start": 44,
+          "pdf_page_end": 49,
+          "matched_printed_page": 46
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    },
+    {
+      "created_at": "2026-06-17T11:14:15+00:00",
+      "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+      "model": "minicpm-v4.6",
+      "year": 2025,
+      "issue": "4",
+      "page": 49,
+      "printed_page_guess": 47,
+      "prefilter": {
+        "text_score": 4.0,
+        "visual_score": 0.96,
+        "reasons": [
+          "caption: mapový popis pod objektom",
+          "caption-object: Mapa Malej Žomboje od Ferenca Hidvégiho z roku 1944.",
+          "visual:white=0.83",
+          "visual:dark=0.04",
+          "visual:color=0.00",
+          "visual:edges=0.122"
+        ]
+      },
+      "image_path": "data/ai_map_detection/rendered/2025_4_hybrid_caption_object_minicpm46_2024plus/e01113188c_Spravodaj_4_2025_p49.png",
+      "articles": [
+        {
+          "id": 3731,
+          "title": "Z najstaršej histórie priepasti Malá Žomboj",
+          "pages": "44-49",
+          "page_start": null,
+          "pdf_page_start": 44,
+          "pdf_page_end": 49,
+          "matched_printed_page": 47
+        }
+      ],
+      "ai": {
+        "map_plan": true,
+        "page_type": "technical_map_page",
+        "kind": "cave_plan",
+        "confidence": "high",
+        "visual_evidence": [
+          "visible scale bar",
+          "technical line drawing of cave passages"
+        ],
+        "reject_reason": "",
+        "contains_photo": false,
+        "contains_table": false,
+        "parse_error": null,
+        "raw": null
+      }
+    }
+  ]
+}
