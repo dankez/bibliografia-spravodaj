@@ -36,6 +36,13 @@ DEFAULT_BASENAME_PREFIX = "bibliografia_spravodaj_sss_danko"
 PDF_LINK_PAGE_OFFSET = 2
 AUTHOR_SIGNATURE = "Autor: DankeZ"
 AUTHOR_URL = "https://github.com/dankez"
+PDF_METADATA_TITLE = "Bibliografia Spravodaja SSS"
+PDF_METADATA_AUTHOR = "DankeZ"
+PDF_METADATA_SUBJECT = "Digitálna bibliografia Spravodaja Slovenskej speleologickej spoločnosti"
+PDF_METADATA_KEYWORDS = (
+    "Slovenská speleologická spoločnosť, Spravodaj SSS, bibliografia, "
+    "jaskyne, speleológia, mapy, plány"
+)
 EXPORT_BRAND_ALT = "Digitálna bibliografia SSS"
 EXPORT_LOGO_ALT = "Logo Digitálnej bibliografie SSS"
 EXPORT_BRAND_MARKDOWN = f"![{EXPORT_BRAND_ALT}](../brand/bibliografia-banner.png)"
@@ -632,6 +639,8 @@ def build_pdf_from_html(html_path: Path, pdf_path: Path, pdf_engine: str = "wkht
         "14mm",
         "--margin-right",
         "14mm",
+        "--title",
+        PDF_METADATA_TITLE,
         "--footer-center",
         "[page]",
         "--footer-font-size",
@@ -642,6 +651,25 @@ def build_pdf_from_html(html_path: Path, pdf_path: Path, pdf_engine: str = "wkht
     result = subprocess.run(command, capture_output=True, text=True, check=False)
     if result.returncode != 0:
         raise RuntimeError(result.stderr.strip() or "wkhtmltopdf failed")
+    write_pdf_metadata(pdf_path)
+
+
+def write_pdf_metadata(pdf_path: Path) -> None:
+    exiftool_path = shutil.which("exiftool")
+    if not exiftool_path:
+        raise RuntimeError("PDF metadata tool not found on PATH: exiftool")
+    command = [
+        exiftool_path,
+        "-overwrite_original",
+        f"-Title={PDF_METADATA_TITLE}",
+        f"-Author={PDF_METADATA_AUTHOR}",
+        f"-Subject={PDF_METADATA_SUBJECT}",
+        f"-Keywords={PDF_METADATA_KEYWORDS}",
+        str(pdf_path),
+    ]
+    result = subprocess.run(command, capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        raise RuntimeError(result.stderr.strip() or "exiftool failed to write PDF metadata")
 
 
 def parse_pdf_section_pages_from_text(pdf_text: str) -> dict[str, int]:

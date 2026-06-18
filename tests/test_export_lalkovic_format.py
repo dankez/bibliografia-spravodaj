@@ -339,6 +339,38 @@ def test_build_pdf_from_html_invokes_wkhtmltopdf(monkeypatch, tmp_path):
     assert "--encoding" in calls[0]
     assert str(html_path) in calls[0]
     assert str(pdf_path) in calls[0]
+    assert calls[1][0] == "/usr/bin/exiftool"
+    assert "-overwrite_original" in calls[1]
+
+
+def test_build_pdf_from_html_writes_pdf_document_metadata(monkeypatch, tmp_path):
+    html_path = tmp_path / "export.html"
+    pdf_path = tmp_path / "export.pdf"
+    html_path.write_text("<!doctype html><title>Export</title>", encoding="utf-8")
+    calls = []
+
+    monkeypatch.setattr(exporter.shutil, "which", lambda binary: f"/usr/bin/{binary}")
+
+    def fake_run(command, capture_output, text, check):
+        calls.append(command)
+        pdf_path.write_bytes(b"%PDF-1.4\n")
+
+        class Result:
+            returncode = 0
+            stderr = ""
+
+        return Result()
+
+    monkeypatch.setattr(exporter.subprocess, "run", fake_run)
+
+    exporter.build_pdf_from_html(html_path, pdf_path, "wkhtmltopdf")
+
+    metadata_command = calls[1]
+    assert "-Title=Bibliografia Spravodaja SSS" in metadata_command
+    assert "-Author=DankeZ" in metadata_command
+    assert "-Subject=Digitálna bibliografia Spravodaja Slovenskej speleologickej spoločnosti" in metadata_command
+    assert any(argument.startswith("-Keywords=") and "speleológia" in argument for argument in metadata_command)
+    assert str(pdf_path) == metadata_command[-1]
 
 
 def test_default_basename_uses_danko_without_duplicate_pdf_suffix():
