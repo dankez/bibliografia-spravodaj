@@ -88,6 +88,25 @@ def test_render_html_document_preserves_headings_and_pdf_links():
     assert ">https://sss.sk/Spravodaj-2007-1.pdf#page=94</a>" not in html
 
 
+def test_render_bibliography_adds_markdown_brand_and_author_signature():
+    markdown = exporter.render_bibliography([], markdown=True)
+
+    assert markdown.startswith("![Digitálna bibliografia SSS](../brand/bibliografia-banner.png)")
+    assert "![Logo Digitálnej bibliografie SSS](../brand/bibliografia-logo.png)" in markdown
+    assert markdown.rstrip().endswith("_Autor: [DankeZ](https://github.com/dankez)_")
+
+
+def test_render_html_document_adds_brand_banner_and_author_signature():
+    html = exporter.render_html_document("# Bibliografia Spravodaja SSS", "Test")
+
+    assert 'class="export-brand-banner"' in html
+    assert 'class="export-author-logo"' in html
+    assert "Digitálna bibliografia SSS" in html
+    assert "Autor:" in html
+    assert ">DankeZ</a>" in html
+    assert 'href="https://github.com/dankez"' in html
+
+
 def test_render_html_document_styles_article_title_and_metadata():
     markdown = (
         '<span id="clanok-816"></span>**816. Na terchovskej akcii**\n'

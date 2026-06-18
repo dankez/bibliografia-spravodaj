@@ -28,6 +28,36 @@ def test_mobile_navigation_and_search_controls_exist():
     assert '.mobile-search-overlay.is-open' in css_source
 
 
+def test_theme_switcher_uses_day_night_labels():
+    switcher_source = (ROOT / "web" / "src" / "components" / "ThemeSwitcher.astro").read_text(encoding="utf-8")
+
+    assert "theme-switcher-icon" in switcher_source
+    assert "sr-only" in switcher_source
+    assert "Deň" in switcher_source
+    assert "Noc" in switcher_source
+    assert "Default" not in switcher_source
+    assert "Dark" not in switcher_source
+
+
+def test_brand_assets_are_used_for_home_banner_and_favicon():
+    public_dir = ROOT / "web" / "public"
+    home_source = (ROOT / "web" / "src" / "pages" / "index.astro").read_text(encoding="utf-8")
+    layout_source = (ROOT / "web" / "src" / "layouts" / "Layout.astro").read_text(encoding="utf-8")
+    css_source = (ROOT / "web" / "src" / "styles" / "global.css").read_text(encoding="utf-8")
+
+    assert (public_dir / "brand" / "bibliografia-banner.png").exists()
+    assert (public_dir / "brand" / "bibliografia-logo.png").exists()
+    assert "/brand/bibliografia-banner.png" in home_source
+    assert "/brand/bibliografia-logo.png" in home_source
+    assert "/brand/bibliografia-logo.png" in layout_source
+    assert "Autor:" in layout_source
+    assert "DankeZ" in layout_source
+    assert "https://github.com/dankez" in layout_source
+    assert ".bibliography-brand-banner" in css_source
+    assert ".bibliography-brand-logo" in css_source
+    assert ".site-author-signature" in css_source
+
+
 def test_error_report_form_and_backend_template_exist_without_secret_literals():
     form_page = ROOT / "web" / "src" / "pages" / "nahlasit-chybu.astro"
     article_detail = ROOT / "web" / "src" / "pages" / "clanky" / "[id].astro"

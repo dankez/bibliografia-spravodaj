@@ -15,6 +15,7 @@ The Markdown export keeps the same shape but adds online PDF links.
 """
 
 import argparse
+import base64
 import datetime as dt
 import html
 import json
@@ -33,6 +34,14 @@ ONLINE_PDF_LABEL = "↗ PDF"
 MAPS_AND_PLANS_TITLE = "Súpis plánov jaskýň"
 DEFAULT_BASENAME_PREFIX = "bibliografia_spravodaj_sss_danko"
 PDF_LINK_PAGE_OFFSET = 2
+AUTHOR_SIGNATURE = "Autor: DankeZ"
+AUTHOR_URL = "https://github.com/dankez"
+EXPORT_BRAND_ALT = "Digitálna bibliografia SSS"
+EXPORT_LOGO_ALT = "Logo Digitálnej bibliografie SSS"
+EXPORT_BRAND_MARKDOWN = f"![{EXPORT_BRAND_ALT}](../brand/bibliografia-banner.png)"
+EXPORT_LOGO_MARKDOWN = f"![{EXPORT_LOGO_ALT}](../brand/bibliografia-logo.png)"
+EXPORT_BRAND_PATH = BASE_DIR / "web" / "public" / "brand" / "bibliografia-banner.png"
+EXPORT_LOGO_PATH = BASE_DIR / "web" / "public" / "brand" / "bibliografia-logo.png"
 CONTENT_SECTIONS = [
     ("Zoznam článkov", "zoznam-clankov"),
     ("Menný register", "menny-register"),
@@ -43,6 +52,13 @@ CONTENT_SECTIONS = [
 ]
 HEADING_IDS = {title: anchor for title, anchor in CONTENT_SECTIONS}
 HEADING_IDS["Obsah"] = "obsah"
+
+
+def image_data_uri(path: Path, fallback: str) -> str:
+    if not path.exists():
+        return fallback
+    encoded = base64.b64encode(path.read_bytes()).decode("ascii")
+    return f"data:image/png;base64,{encoded}"
 
 
 def page_start(pages: str) -> str:
@@ -378,8 +394,15 @@ def render_bibliography(
     title = "# Bibliografia Spravodaja SSS" if markdown else "Bibliografia Spravodaja SSS"
     name_locality_subject = {"Menný register", "Lokalitný register", "Vecný register"}
     cave_register = {"Názvový register jaskýň"}
-    return (
-        title
+    brand = f"{EXPORT_BRAND_MARKDOWN}\n\n" if markdown else ""
+    signature = (
+        f"\n\n{EXPORT_LOGO_MARKDOWN}\n\n_Autor: [DankeZ]({AUTHOR_URL})_\n"
+        if markdown
+        else f"\n\n{AUTHOR_SIGNATURE}\n"
+    )
+    content = (
+        brand
+        + title
         + "\n\n"
         + render_contents(markdown=markdown, section_pages=section_pages)
         + "\n"
@@ -391,11 +414,14 @@ def render_bibliography(
         + "\n"
         + render_registers(articles, markdown=markdown, titles=cave_register)
     )
+    return content.rstrip() + signature
 
 
 def render_markdown_line(line: str) -> str:
     text = line.rstrip()
     if not text:
+        return ""
+    if text in {EXPORT_BRAND_MARKDOWN, EXPORT_LOGO_MARKDOWN, f"_{AUTHOR_SIGNATURE}_"}:
         return ""
     if text.startswith("# "):
         title = text[2:].strip()
@@ -445,6 +471,8 @@ def render_html_document(markdown_text: str, title: str) -> str:
     body = "\n".join(
         rendered for line in markdown_text.splitlines() if (rendered := render_markdown_line(line))
     )
+    brand_src = image_data_uri(EXPORT_BRAND_PATH, "../brand/bibliografia-banner.png")
+    logo_src = image_data_uri(EXPORT_LOGO_PATH, "../brand/bibliografia-logo.png")
     return f"""<!doctype html>
 <html lang="sk">
 <head>
@@ -545,10 +573,42 @@ def render_html_document(markdown_text: str, title: str) -> str:
       margin: 1mm 0 4mm 5mm;
     }}
     a {{ color: rgb(206, 61, 59); text-decoration: none; }}
+    .export-brand {{
+      border-bottom: 1px solid rgb(206, 61, 59);
+      margin: 0 0 10mm;
+      padding-bottom: 5mm;
+      page-break-after: avoid;
+    }}
+    .export-brand-banner {{
+      display: block;
+      width: 100%;
+      max-height: 34mm;
+      object-fit: contain;
+      object-position: left center;
+    }}
+    .export-author-signature {{
+      border-top: 1px solid rgb(160, 163, 165);
+      color: rgb(78, 72, 71);
+      display: flex;
+      align-items: center;
+      gap: 4mm;
+      margin-top: 12mm;
+      padding-top: 4mm;
+      font-family: "DejaVu Sans", Arial, sans-serif;
+      font-size: 8pt;
+      page-break-inside: avoid;
+    }}
+    .export-author-logo {{
+      width: 18mm;
+      height: auto;
+      object-fit: contain;
+    }}
   </style>
 </head>
 <body>
+<header class="export-brand"><img class="export-brand-banner" src="{brand_src}" alt="{html.escape(EXPORT_BRAND_ALT, quote=True)}"></header>
 {body}
+<footer class="export-author-signature"><img class="export-author-logo" src="{logo_src}" alt="" aria-hidden="true"><span>Autor: <a href="{AUTHOR_URL}" rel="author">DankeZ</a></span></footer>
 </body>
 </html>
 """

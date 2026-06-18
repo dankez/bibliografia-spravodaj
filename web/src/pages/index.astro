@@ -30,13 +30,28 @@ const bibliographyExports = [
   <div class="bibliography-app flex min-h-screen flex-col text-belly-black">
     <header class="bibliography-header border-b border-belly-darkgray shadow-sm">
       <div class="h-2 bg-belly-firebrick"></div>
-      <div class="mx-auto flex max-w-[1500px] flex-col gap-4 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
+      <div class="bibliography-header-inner mx-auto flex max-w-none flex-col gap-4 px-3 py-3 lg:flex-row lg:items-center lg:justify-between lg:px-3">
         <div class="bibliography-header-top flex items-start justify-between gap-3">
-          <div>
-            <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Digitálna bibliografia</p>
-            <h1 class="bibliography-title font-display text-2xl font-extrabold text-belly-firebrick">Slovenská speleologická spoločnosť</h1>
-            <p class="text-sm text-belly-dimgray-warm">Kompletný archív ročníkov {startYear}-{endYear}, mapy a plány sú zoradené prvé</p>
-          </div>
+          <a href="/" class="bibliography-brand" aria-label="Digitálna bibliografia Slovenská speleologická spoločnosť">
+            <img
+              src="/brand/bibliografia-banner.png"
+              alt="Digitálna bibliografia Slovenská speleologická spoločnosť"
+              class="bibliography-brand-banner"
+              width="1761"
+              height="482"
+              fetchpriority="high"
+            />
+            <img
+              src="/brand/bibliografia-logo.png"
+              alt=""
+              class="bibliography-brand-logo"
+              width="773"
+              height="479"
+              aria-hidden="true"
+            />
+            <h1 class="sr-only">Digitálna bibliografia Slovenskej speleologickej spoločnosti</h1>
+            <p class="sr-only">Kompletný archív ročníkov {startYear}-{endYear}, mapy a plány sú zoradené prvé</p>
+          </a>
           <div class="bibliography-mobile-actions" aria-label="Mobilné nástroje">
             <button id="mobile-search-toggle" class="bibliography-icon-button" type="button" aria-label="Hľadať v bibliografii" aria-controls="mobile-search-overlay">
               <span aria-hidden="true">⌕</span>
@@ -47,7 +62,7 @@ const bibliographyExports = [
           </div>
         </div>
         <div class="flex flex-col gap-3 lg:items-end">
-          <div class="bibliography-desktop-actions flex flex-wrap items-center gap-2 lg:justify-end">
+          <div class="bibliography-desktop-actions flex items-center gap-2 lg:justify-end">
             <div class="mobile-theme-hidden">
               <ThemeSwitcher />
             </div>

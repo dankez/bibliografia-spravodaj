@@ -148,29 +148,42 @@ p {
 .theme-switcher {
   display: inline-flex;
   align-items: center;
-  gap: 2px;
-  padding: 2px;
-  border: 1px solid rgb(var(--sss-darkgray));
-  background: rgb(var(--sss-gainsboro));
-  box-shadow: var(--sss-panel-shadow);
+  gap: 0.18rem;
+  min-height: 40px;
+  border: 1px solid rgb(var(--sss-firebrick) / 0.22);
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-card));
+  padding: 0.22rem;
+  box-shadow: 0 5px 16px rgb(var(--sss-shadow-rgb) / 0.12);
 }
 
 .theme-switcher button {
-  min-height: 36px;
-  padding: 0 12px;
+  display: inline-flex;
+  width: 32px;
+  min-height: 32px;
+  align-items: center;
+  justify-content: center;
+  border-radius: var(--sss-radius-full);
   color: rgb(var(--sss-dimgray-blue));
+  padding: 0;
   font-family: "Inter", system-ui, sans-serif;
-  font-size: 11px;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 800;
   line-height: 1;
+  letter-spacing: 0;
   text-transform: uppercase;
-  transition-property: background-color, color, transform;
+  transition-property: background-color, color, transform, box-shadow;
   transition-duration: 140ms;
   transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
 }
 
+.theme-switcher-icon {
+  font-size: 0.9rem;
+  line-height: 1;
+}
+
 .theme-switcher button:hover {
-  background: rgb(var(--sss-darkgray));
+  background: rgb(var(--sss-surface-muted));
   color: rgb(var(--sss-black));
 }
 
@@ -181,6 +194,7 @@ p {
 .theme-switcher button[data-active="true"] {
   background: rgb(var(--sss-firebrick));
   color: rgb(var(--sss-on-accent));
+  box-shadow: 0 2px 8px rgb(var(--sss-firebrick) / 0.2);
 }
 
 .bibliography-app .bg-belly-firebrick.text-belly-gainsboro {
@@ -487,8 +501,43 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 
 .bibliography-export-links {
   display: flex;
-  flex-wrap: wrap;
+  flex-wrap: nowrap;
   gap: 0.45rem;
+}
+
+.bibliography-desktop-actions {
+  flex-wrap: nowrap;
+  white-space: nowrap;
+}
+
+.bibliography-header-top {
+  min-width: 0;
+  flex: 1 1 auto;
+}
+
+.bibliography-brand {
+  display: block;
+  min-width: 0;
+  color: inherit;
+  text-decoration: none;
+}
+
+.bibliography-brand-banner {
+  display: block;
+  width: min(34vw, 560px);
+  max-width: 100%;
+  height: auto;
+  max-height: 74px;
+  object-fit: contain;
+  object-position: left center;
+}
+
+.bibliography-brand-logo {
+  display: none;
+  width: 116px;
+  height: auto;
+  object-fit: contain;
+  object-position: left center;
 }
 
 .bibliography-mobile-actions,
@@ -664,6 +713,32 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   border-radius: inherit;
   object-fit: contain;
   outline: 1px solid rgb(var(--sss-shadow-rgb) / 0.08);
+}
+
+.site-author-signature {
+  border-top: 1px solid rgb(var(--sss-darkgray) / 0.72);
+  background: rgb(var(--sss-surface));
+  color: rgb(var(--sss-dimgray));
+  padding: 0.65rem 1rem 0.75rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.68rem;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.site-author-signature a {
+  color: inherit;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.site-author-signature a:hover {
+  color: rgb(var(--sss-firebrick));
+}
+
+.site-author-signature a:focus-visible {
+  outline: 2px solid rgb(var(--sss-firebrick));
+  outline-offset: 3px;
 }
 
 .portal-page {
@@ -888,6 +963,22 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 
   .bibliography-header-top {
     align-items: flex-start;
+    width: 100%;
+    gap: 0.75rem;
+  }
+
+  .bibliography-brand {
+    flex: 1 1 auto;
+  }
+
+  .bibliography-brand-banner {
+    display: none;
+  }
+
+  .bibliography-brand-logo {
+    display: block;
+    width: clamp(92px, 26vw, 124px);
+    max-height: 72px;
   }
 
   .bibliography-mobile-actions {
