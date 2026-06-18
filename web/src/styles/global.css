@@ -624,6 +624,201 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   outline: 1px solid rgb(var(--sss-shadow-rgb) / 0.08);
 }
 
+.portal-page {
+  background: rgb(var(--sss-surface));
+}
+
+.portal-header,
+.portal-toolbar,
+.portal-stat,
+.cave-card,
+.cave-timeline-card,
+.report-form {
+  background: rgb(var(--sss-card));
+  box-shadow: var(--sss-card-shadow);
+}
+
+.portal-toolbar,
+.portal-stat,
+.cave-card,
+.cave-timeline-card,
+.report-form {
+  border-radius: var(--sss-radius-lg);
+}
+
+.portal-stat {
+  min-height: 92px;
+  border: 1px solid rgb(var(--sss-darkgray));
+  padding: 1rem;
+}
+
+.portal-stat span {
+  display: block;
+  color: rgb(var(--sss-lightslategray));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.portal-stat strong {
+  display: block;
+  margin-top: 0.45rem;
+  color: rgb(var(--sss-firebrick));
+  font-family: var(--sss-font-display);
+  font-size: 1.65rem;
+  font-weight: 750;
+  line-height: 1;
+}
+
+.cave-card {
+  display: block;
+  color: rgb(var(--sss-black));
+  text-decoration: none;
+  transition-property: border-color, box-shadow, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.cave-card:hover {
+  border-color: rgb(var(--sss-firebrick) / 0.55);
+  box-shadow: var(--sss-card-shadow-hover);
+  transform: translateY(-1px);
+}
+
+.cave-card:active {
+  transform: scale(0.98);
+}
+
+.cave-card:focus-visible {
+  outline: 2px solid rgb(var(--sss-firebrick));
+  outline-offset: 3px;
+}
+
+.cave-timeline {
+  position: relative;
+  margin: 0;
+  padding: 0 0 0 7.5rem;
+  list-style: none;
+}
+
+.cave-timeline::before {
+  content: "";
+  position: absolute;
+  inset-block: 0.4rem;
+  left: 5.85rem;
+  width: 2px;
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-darkgray));
+}
+
+.cave-timeline-item {
+  position: relative;
+  margin-bottom: 1rem;
+}
+
+.cave-timeline-year {
+  position: absolute;
+  top: 1rem;
+  left: -7.5rem;
+  width: 4.8rem;
+  border: 1px solid rgb(var(--sss-firebrick) / 0.45);
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-card));
+  color: rgb(var(--sss-firebrick));
+  box-shadow: var(--sss-card-shadow);
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 850;
+  line-height: 2.15rem;
+  text-align: center;
+}
+
+.cave-timeline-year::after {
+  content: "";
+  position: absolute;
+  top: 50%;
+  right: -1.66rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border: 2px solid rgb(var(--sss-firebrick));
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-card));
+  transform: translateY(-50%);
+}
+
+.cave-timeline-card {
+  position: relative;
+}
+
+.report-form {
+  display: grid;
+  gap: 1rem;
+}
+
+.report-field {
+  display: grid;
+  gap: 0.4rem;
+  min-width: 0;
+}
+
+.report-field span {
+  color: rgb(var(--sss-firebrick));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.report-field input,
+.report-field select,
+.report-field textarea {
+  width: 100%;
+  border: 1px solid rgb(var(--sss-darkgray));
+  border-radius: var(--sss-radius-md);
+  background: rgb(var(--sss-card));
+  color: rgb(var(--sss-black));
+  padding: 0.7rem 0.75rem;
+  outline: none;
+}
+
+.report-field textarea {
+  min-height: 170px;
+  resize: vertical;
+  line-height: 1.55;
+}
+
+.report-field input:focus,
+.report-field select:focus,
+.report-field textarea:focus {
+  border-color: rgb(var(--sss-firebrick));
+  box-shadow: 0 0 0 1px rgb(var(--sss-firebrick));
+}
+
+.report-honeypot {
+  position: absolute;
+  left: -10000px;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+}
+
+.report-antispam {
+  min-height: 72px;
+}
+
+.report-antispam-placeholder {
+  border: 1px dashed rgb(var(--sss-darkgray));
+  border-radius: var(--sss-radius-md);
+  background: rgb(var(--sss-surface-muted));
+  color: rgb(var(--sss-dimgray));
+  padding: 1rem;
+  font-size: 0.82rem;
+}
+
 @media (max-width: 1023px) {
   body {
     min-width: 0;
@@ -661,7 +856,7 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   .bibliography-export-links {
     width: 100%;
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
+    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .bibliography-export-links .bibliography-link-button {
@@ -902,5 +1097,51 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 
   footer {
     padding-inline: 1rem;
+  }
+}
+
+@media (max-width: 767px) {
+  .portal-stat-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .portal-stat {
+    min-height: 82px;
+    padding: 0.85rem;
+  }
+
+  .portal-stat strong {
+    font-size: 1.35rem;
+  }
+
+  .cave-timeline {
+    padding-left: 0;
+  }
+
+  .cave-timeline::before {
+    left: 0.8rem;
+  }
+
+  .cave-timeline-item {
+    padding-left: 2.1rem;
+  }
+
+  .cave-timeline-year {
+    position: relative;
+    top: auto;
+    left: auto;
+    width: fit-content;
+    min-width: 4.4rem;
+    margin-bottom: 0.5rem;
+    line-height: 2rem;
+  }
+
+  .cave-timeline-year::after {
+    left: -1.65rem;
+    right: auto;
+  }
+
+  .cave-timeline-card {
+    padding: 0.95rem;
   }
 }

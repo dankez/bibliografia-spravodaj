@@ -31,6 +31,7 @@ if (art.pages) {
 }
 const pdfPrintedPageStart = Number(art.pdf_page_start || firstPage || 1);
 const pdfPageStart = pdfPrintedPageStart + PDF_PAGE_LINK_OFFSET;
+const errorReportUrl = `/nahlasit-chybu/?article=${encodeURIComponent(String(art.id))}&title=${encodeURIComponent(art.title)}&url=${encodeURIComponent(`/clanky/${art.id}/`)}`;
 
 // Citation formatting
 const formattedAuthorsIso = formatAuthorsDisplay(art.authors.map(a => {
@@ -237,6 +238,12 @@ const risContent = `TY  - JOUR\nT1  - ${art.title}\n` +
                 Upozornenie: Toto číslo časopisu (rok {art.year}, číslo {art.issue}) momentálne nie je zverejnené na serveri sss.sk.
               </div>
             )}
+            <a
+              href={errorReportUrl}
+              class="bibliography-link-button w-full"
+            >
+              Našiel som chybu
+            </a>
           </div>
           
         </div>

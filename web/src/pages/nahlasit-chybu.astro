@@ -1,0 +1,142 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+const endpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-report';
+---
+
+<Layout title="Našiel som chybu — Spravodaj SSS">
+  {turnstileSiteKey && <script slot="head" src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+
+  <div class="portal-page min-h-screen text-belly-black">
+    <header class="portal-header border-b border-belly-darkgray">
+      <div class="h-2 bg-belly-firebrick"></div>
+      <div class="mx-auto flex max-w-3xl flex-col gap-4 px-5 py-5 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Komunitné errata</p>
+          <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">Našiel som chybu</h1>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <ThemeSwitcher />
+          <a href="/" class="bibliography-link-button">Hlavný archív</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-3xl px-5 py-6">
+      <section class="portal-toolbar mb-5 border border-belly-darkgray p-4">
+        <h2 class="font-display text-xl font-bold text-belly-black-brown">Nahlásenie opravy</h2>
+        <p class="mt-2 text-sm leading-relaxed text-belly-dimgray">
+          Formulár vytvorí návrh opravy pre správcu bibliografie. Stačí popísať, čo je zle a čo má byť správne.
+        </p>
+      </section>
+
+      <form id="error-report-form" class="report-form border border-belly-darkgray p-4" data-endpoint={endpoint}>
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="report-field">
+            <span>Číslo článku</span>
+            <input id="article-id" name="articleId" type="text" inputmode="numeric" autocomplete="off" />
+          </label>
+          <label class="report-field">
+            <span>Typ chyby</span>
+            <select name="type" required>
+              <option value="author">Autor</option>
+              <option value="title">Názov</option>
+              <option value="pages">Strany</option>
+              <option value="pdf">PDF odkaz</option>
+              <option value="map_plan">Mapa/plán</option>
+              <option value="abstract">Anotácia</option>
+              <option value="other">Iné</option>
+            </select>
+          </label>
+        </div>
+
+        <label class="report-field">
+          <span>Názov článku</span>
+          <input id="article-title" name="articleTitle" type="text" autocomplete="off" />
+        </label>
+
+        <label class="report-field">
+          <span>Odkaz na stránku článku</span>
+          <input id="article-url" name="articleUrl" type="url" autocomplete="off" />
+        </label>
+
+        <label class="report-field">
+          <span>Čo treba opraviť</span>
+          <textarea name="message" rows="7" required minlength="10" maxlength="4000" placeholder="Napríklad: autor nie je Anonymus, pod článkom je podpis..."></textarea>
+        </label>
+
+        <label class="report-field">
+          <span>Kontakt pre doplnenie (nepovinné)</span>
+          <input name="email" type="email" autocomplete="email" placeholder="email@example.sk" />
+        </label>
+
+        <label class="report-field report-honeypot" aria-hidden="true">
+          <span>Web</span>
+          <input name="website" type="text" tabindex="-1" autocomplete="off" />
+        </label>
+
+        <input id="turnstile-token" name="turnstileToken" type="hidden" />
+        <div class="report-antispam">
+          {turnstileSiteKey ? (
+            <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-callback="onTurnstileSuccess"></div>
+          ) : (
+            <div class="cf-turnstile report-antispam-placeholder">
+              Antispam overenie bude aktívne po nastavení `PUBLIC_TURNSTILE_SITE_KEY`.
+            </div>
+          )}
+        </div>
+
+        <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <button class="bibliography-button-primary px-5 py-2.5 font-bold" type="submit">Odoslať opravu</button>
+          <p id="error-report-status" class="text-sm text-belly-dimgray" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script>
+    const form = document.getElementById('error-report-form');
+    const status = document.getElementById('error-report-status');
+    const params = new URLSearchParams(window.location.search);
+
+    document.getElementById('article-id').value = params.get('article') || '';
+    document.getElementById('article-title').value = params.get('title') || '';
+    document.getElementById('article-url').value = params.get('url')
+      ? new URL(params.get('url'), window.location.origin).toString()
+      : document.referrer || '';
+
+    window.onTurnstileSuccess = (token) => {
+      document.getElementById('turnstile-token').value = token;
+    };
+
+    function setStatus(message, isError = false) {
+      status.textContent = message;
+      status.classList.toggle('text-belly-firebrick', isError);
+      status.classList.toggle('text-belly-dimgray', !isError);
+    }
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const data = Object.fromEntries(new FormData(form).entries());
+      setStatus('Odosielam...');
+
+      try {
+        const response = await fetch(form.dataset.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(data),
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.ok) {
+          throw new Error(payload.error || 'Hlásenie sa nepodarilo odoslať.');
+        }
+        form.reset();
+        setStatus(payload.issueUrl ? `Odoslané: ${payload.issueUrl}` : 'Odoslané. Ďakujeme za opravu.');
+      } catch (error) {
+        setStatus(error.message || 'Hlásenie sa nepodarilo odoslať.', true);
+      }
+    });
+  </script>
+</Layout>

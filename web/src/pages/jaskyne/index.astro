@@ -1,0 +1,129 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
+import caves from '../../data/caves.json';
+
+const totalCaves = caves.length;
+const totalArticles = caves.reduce((sum, cave) => sum + cave.article_count, 0);
+const totalMapPlans = caves.reduce((sum, cave) => sum + cave.map_plan_count, 0);
+const years = caves.flatMap((cave) => [cave.first_year, cave.last_year]).filter(Boolean);
+const firstYear = Math.min(...years);
+const lastYear = Math.max(...years);
+---
+
+<Layout title="Register jaskýň — Spravodaj SSS">
+  <div class="portal-page min-h-screen text-belly-black">
+    <header class="portal-header border-b border-belly-darkgray">
+      <div class="h-2 bg-belly-firebrick"></div>
+      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Výskumný portál</p>
+          <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">Register jaskýň</h1>
+          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray-warm">
+            Jaskyne a lokality extrahované z bibliografie Spravodaja SSS. Každý detail obsahuje časovú os článkov a odkazy na pôvodné PDF.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <ThemeSwitcher />
+          <a href="/" class="bibliography-link-button">Hlavný archív</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-5 py-6">
+      <section class="portal-stat-grid mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div class="portal-stat">
+          <span>Jaskyne</span>
+          <strong>{totalCaves}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Články</span>
+          <strong>{totalArticles}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Mapy/plány</span>
+          <strong>{totalMapPlans}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Roky</span>
+          <strong>{firstYear}-{lastYear}</strong>
+        </div>
+      </section>
+
+      <section class="portal-toolbar mb-4 flex flex-col gap-3 border border-belly-darkgray p-3 sm:flex-row sm:items-center sm:justify-between">
+        <div>
+          <h2 class="font-display text-xl font-bold text-belly-black-brown">Abecedno-výkonový prehľad</h2>
+          <p class="text-xs text-belly-dimgray">Zoradené podľa počtu článkov, s rýchlym filtrovaním podľa názvu jaskyne.</p>
+        </div>
+        <label class="min-w-0 sm:w-80">
+          <span class="sr-only">Filtrovať jaskyne</span>
+          <input
+            id="cave-search"
+            class="bibliography-search w-full border border-belly-gray px-3 py-2 text-sm outline-none focus:border-belly-firebrick focus:ring-1 focus:ring-belly-firebrick"
+            type="search"
+            placeholder="Hľadať jaskyňu..."
+            autocomplete="off"
+          />
+        </label>
+      </section>
+
+      <p id="cave-count" class="mb-3 text-xs font-mono uppercase text-belly-lightslategray">{totalCaves} záznamov</p>
+
+      <section id="cave-list" class="cave-list grid gap-3 md:grid-cols-2 xl:grid-cols-3">
+        {caves.map((cave) => (
+          <a
+            class="cave-card border border-belly-darkgray p-4"
+            href={`/jaskyne/${cave.slug}/`}
+            data-cave-card
+            data-search={`${cave.name} ${cave.first_year} ${cave.last_year}`.toLocaleLowerCase('sk')}
+          >
+            <div class="flex items-start justify-between gap-3">
+              <h3 class="font-display text-lg font-bold leading-tight text-belly-black-brown">{cave.name}</h3>
+              {cave.map_plan_count > 0 && <span class="article-result-badge shrink-0">mapy {cave.map_plan_count}</span>}
+            </div>
+            <dl class="mt-4 grid grid-cols-3 gap-2 text-xs font-mono">
+              <div>
+                <dt class="text-belly-lightslategray">Články</dt>
+                <dd class="font-bold text-belly-firebrick">{cave.article_count}</dd>
+              </div>
+              <div>
+                <dt class="text-belly-lightslategray">Roky</dt>
+                <dd class="font-bold text-belly-firebrick">{cave.first_year}-{cave.last_year}</dd>
+              </div>
+              <div>
+                <dt class="text-belly-lightslategray">Autori</dt>
+                <dd class="font-bold text-belly-firebrick">{cave.authors_count}</dd>
+              </div>
+            </dl>
+          </a>
+        ))}
+      </section>
+    </main>
+  </div>
+
+  <script>
+    const search = document.getElementById('cave-search');
+    const count = document.getElementById('cave-count');
+    const cards = Array.from(document.querySelectorAll('[data-cave-card]'));
+
+    function normalizeText(value) {
+      return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLocaleLowerCase('sk');
+    }
+
+    function applyCaveFilter() {
+      const query = normalizeText(search.value.trim());
+      let visible = 0;
+      cards.forEach((card) => {
+        const match = !query || normalizeText(card.dataset.search).includes(query);
+        card.classList.toggle('hidden', !match);
+        if (match) visible += 1;
+      });
+      count.textContent = `${visible} záznamov`;
+    }
+
+    search?.addEventListener('input', applyCaveFilter);
+  </script>
+</Layout>

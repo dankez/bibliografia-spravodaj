@@ -46,6 +46,9 @@ Webová aplikácia je statický Astro portál s lokálnym vyhľadávaním v preh
 - taxonomické tagy, jaskyne, skupiny a ďalšie entity,
 - obálku čísla, ak existuje odvodený obrázok pri PDF na webe SSS,
 - odkazy na Danko exporty vo formáte HTML, Markdown a PDF,
+- verejný SQLite export pre vlastné SQL analýzy,
+- register jaskýň s detailom jaskyne a vertikálnou časovou osou článkov,
+- tlačidlo "Našiel som chybu" pri článkoch a jednoduchý formulár na komunitné errata,
 - svetlú academic tému a tmavý režim ladený do sivej, sivohnedej speleo palety.
 
 Mapa ako samostatná webová funkcia bola vo verzii 1 odstránená. Mapy a plány sa detegujú ako vlastnosť článkov, ale web nezobrazuje mapový podklad.
@@ -195,6 +198,56 @@ Výstupy:
 - Markdown pre textové a Git použitie,
 - HTML pre prehliadač,
 - PDF pre tlač a zdieľanie.
+
+## SQLite export
+
+Verejný SQLite export je určený pre výskumníkov a správcov, ktorí chcú robiť vlastné SQL dotazy nad článkami, autormi, jaskyňami, tagmi, skupinami a mapami/plánmi.
+
+Generovanie pracovnej databázy:
+
+```bash
+python3 scripts/export_public_sqlite.py
+```
+
+Publikovateľná kópia pre web:
+
+```bash
+install -m 0644 data/exports/spravodaj_sss.sqlite web/public/exports/spravodaj_sss.sqlite
+```
+
+Pracovný súbor `data/exports/*.sqlite` je ignorovaný ako rebuildovateľný artefakt. Verejný súbor `web/public/exports/spravodaj_sss.sqlite` je malý public export a môže byť súčasťou deploya. Aktuálna schéma obsahuje tabuľky `articles`, `authors`, `article_authors`, `caves`, `article_caves`, `tags`, `article_tags`, `groups`, `article_groups`, `map_plans` a `export_metadata`.
+
+## Register jaskýň
+
+Register jaskýň sa generuje z kurátorovaného poľa `caves`, nie z voľných lokalít alebo znalostných entít. Tým sa znižuje riziko, že sa do registra dostanú obce, pohoria alebo administratívne oblasti.
+
+Generovanie:
+
+```bash
+python3 scripts/build_cave_index.py
+```
+
+Výstupom je `web/src/data/caves.json`. Web z neho generuje:
+
+- `/jaskyne/` ako register všetkých jaskýň,
+- `/jaskyne/<slug>/` ako detail jaskyne,
+- vertikálnu časovú os článkov zoradenú od najstaršieho po najnovší,
+- odkazy na detail článku a PDF stranu so spoločným offsetom `+2`.
+
+## Komunitné errata
+
+Každý článok má odkaz "Našiel som chybu". Formulár je dostupný aj samostatne na `/nahlasit-chybu/`. Statický web používa Cloudflare Pages Function v `web/functions/api/error-report.js`, ktorá po antispam kontrole vytvorí GitHub issue.
+
+Runtime premenné pre hosting:
+
+- `PUBLIC_TURNSTILE_SITE_KEY` pre frontend Turnstile widget,
+- `TURNSTILE_SECRET_KEY` pre serverové overenie Turnstile,
+- `GITHUB_TOKEN` s právom vytvárať issues v repozitári,
+- `GITHUB_REPOSITORY` vo formáte `owner/repo`,
+- voliteľne `GITHUB_ISSUE_LABELS` ako čiarkou oddelené existujúce labely,
+- voliteľne `ERROR_REPORT_ALLOW_INSECURE=true` len pre lokálny test bez Turnstile.
+
+Do repozitára sa neukladajú žiadne tokeny ani `.env` súbory. Ak Turnstile alebo GitHub premenné nie sú nastavené, backend vráti konfiguračnú chybu namiesto tichého prijatia hlásenia.
 
 ## Webová aplikácia
 

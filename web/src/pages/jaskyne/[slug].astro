@@ -1,0 +1,107 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
+import caves from '../../data/caves.json';
+
+export async function getStaticPaths() {
+  return caves.map((cave) => ({
+    params: { slug: cave.slug },
+    props: { cave },
+  }));
+}
+
+const { cave } = Astro.props;
+const timeline = [...cave.articles].sort((a, b) => Number(a.year || 0) - Number(b.year || 0) || Number(a.id) - Number(b.id));
+
+const formatAuthorsDisplay = (authors) => {
+  if (!authors?.length) return 'Anonymus';
+  if (authors.length === 1) return authors[0];
+  if (authors.length === 2) return `${authors[0]} a ${authors[1]}`;
+  return `${authors.slice(0, -1).join(', ')} a ${authors[authors.length - 1]}`;
+};
+---
+
+<Layout title={`${cave.name} — časová os článkov`}>
+  <div class="portal-page min-h-screen text-belly-black">
+    <header class="portal-header border-b border-belly-darkgray">
+      <div class="h-2 bg-belly-firebrick"></div>
+      <div class="mx-auto flex max-w-5xl flex-col gap-4 px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Časová os jaskyne</p>
+          <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">{cave.name}</h1>
+          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray-warm">
+            Chronologický prehľad článkov v Spravodaji SSS, kde je táto jaskyňa uvedená v kurátorovanom zozname lokalít.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <ThemeSwitcher />
+          <a href="/jaskyne/" class="bibliography-link-button">Register jaskýň</a>
+          <a href="/" class="bibliography-link-button">Hlavný archív</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-5xl px-5 py-6">
+      <section class="portal-stat-grid mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+        <div class="portal-stat">
+          <span>Články</span>
+          <strong>{cave.article_count}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Mapy/plány</span>
+          <strong>{cave.map_plan_count}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Prvý rok</span>
+          <strong>{cave.first_year}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Posledný rok</span>
+          <strong>{cave.last_year}</strong>
+        </div>
+      </section>
+
+      <section class="portal-toolbar mb-6 border border-belly-darkgray p-4">
+        <h2 class="font-display text-xl font-bold text-belly-black-brown">Vertikálna časová os</h2>
+        <p class="mt-1 text-sm text-belly-dimgray">
+          Položky sú zoradené od najstarších po najnovšie. Odkaz PDF smeruje na fyzickú stranu PDF súboru s globálnym offsetom +2.
+        </p>
+      </section>
+
+      <ol class="cave-timeline">
+        {timeline.map((article) => (
+          <li class="cave-timeline-item">
+            <div class="cave-timeline-year" aria-label={`Rok ${article.year}`}>{article.year}</div>
+            <article class="cave-timeline-card border border-belly-darkgray p-4">
+              <div class="article-result-meta">
+                <span>č. {article.issue}</span>
+                <span class="separator">/</span>
+                <span>s. {article.pages}</span>
+                {article.has_map_plan && <span class="article-result-badge ml-auto">mapa/plán</span>}
+              </div>
+              <h3 class="mt-2 font-display text-xl font-bold leading-tight text-belly-black-brown">
+                <a class="hover:text-belly-firebrick" href={article.detail_url}>{article.title}</a>
+              </h3>
+              <p class="mt-2 text-sm font-semibold text-belly-dimgray-earth">{formatAuthorsDisplay(article.authors)}</p>
+              {article.abstract && <p class="mt-3 text-sm leading-relaxed text-belly-dimgray-blue">{article.abstract}</p>}
+              <div class="mt-4 flex flex-wrap gap-2">
+                <a href={article.detail_url} class="bibliography-link-button">Detail článku</a>
+                {article.pdf_link && (
+                  <a href={article.pdf_link} target="_blank" rel="noreferrer" class="bibliography-link-button bibliography-link-button-primary">
+                    PDF strana
+                  </a>
+                )}
+                <a
+                  href={`/nahlasit-chybu/?article=${encodeURIComponent(String(article.id))}&title=${encodeURIComponent(article.title)}&url=${encodeURIComponent(article.detail_url)}`}
+                  class="bibliography-link-button"
+                >
+                  Našiel som chybu
+                </a>
+              </div>
+            </article>
+          </li>
+        ))}
+      </ol>
+    </main>
+  </div>
+</Layout>

@@ -39,6 +39,7 @@ data/ai_map_detection/*_latest*.jsonl
 data/ai_map_detection/model_benchmark_*
 data/author_signature_repairs/
 data/pdf_page_maps/
+data/exports/*.sqlite
 web/node_modules/
 web/.astro/
 web/dist/
