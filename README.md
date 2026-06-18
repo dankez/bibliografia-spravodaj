@@ -125,6 +125,8 @@ Základný postup:
 
 AI sa používa iba tam, kde má pridanú hodnotu: štruktúrované dopĺňanie problematických metadát, voliteľné obohatenie znalostí a potvrdenie mapových/plánových objektov po lokálnom prefiltri.
 
+Pri rescrape PDF zo stránky SSS treba počítať aj s prechodnými názvami časopisu a súborov v rokoch 1987-1992: `Spravodaj`, `Spravodajca`, `Jaskyniar` a krátke súbory `sp921.pdf`, `sp922.pdf`. Scraper ich má pokrývať ako čísla `1987_1-2`, `1988_1-2`, `1989_1`, `1989_2`, `1990_1`, `1991_1`, `1992_1` a `1992_2`.
+
 ## Research databáza
 
 Research databáza je offline pracovná databáza pre budúce AI články a sumarizácie. Obsahuje:

@@ -115,6 +115,11 @@ def parse_issue_from_filename(url: str) -> tuple[int, str] | None:
     filename = pdf_filename(url)
     stem = Path(filename).stem
     lowered = stem.lower()
+
+    short_spravodajca = re.fullmatch(r"sp(9[2-9])([1-4])", lowered)
+    if short_spravodajca:
+        return int(f"19{short_spravodajca.group(1)}"), normalize_issue(short_spravodajca.group(2))
+
     year_matches = [int(value) for value in re.findall(r"(?:19|20)\d{2}", stem)]
     if not year_matches:
         return None
@@ -134,6 +139,8 @@ def parse_issue_from_filename(url: str) -> tuple[int, str] | None:
         match = re.search(pattern, stem)
         if match:
             return year, normalize_issue(match.group(1))
+    if "jaskyniar" in lowered:
+        return year, "1"
     return None
 
 
