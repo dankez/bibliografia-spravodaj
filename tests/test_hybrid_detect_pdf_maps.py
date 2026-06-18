@@ -40,3 +40,19 @@ def test_reusable_records_by_page_filters_invalid_records(tmp_path):
 
     assert sorted(by_page) == [18]
     assert invalid == [{"page": 19, "reason": "empty_image_file"}]
+
+
+def test_resolve_pdf_path_from_url_downloads_to_cache(monkeypatch, tmp_path):
+    monkeypatch.setattr(hybrid, "PDF_CACHE_DIR", tmp_path)
+
+    def fake_download_pdf(url, target, force=False):
+        target.write_bytes(b"%PDF")
+        return True
+
+    monkeypatch.setattr(hybrid, "download_pdf", fake_download_pdf)
+
+    path, url = hybrid.resolve_pdf_path_from_url("https://sss.sk/wp-content/uploads/2017/10/b17.pdf")
+
+    assert path == tmp_path / "efd8af406b_b17.pdf"
+    assert path.read_bytes() == b"%PDF"
+    assert url == "https://sss.sk/wp-content/uploads/2017/10/b17.pdf"

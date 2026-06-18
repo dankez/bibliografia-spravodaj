@@ -9,6 +9,8 @@ import os
 import json
 import re
 
+from build_cave_index import article_mentions_cave
+
 # Major Slovak Caves coordinates and metadata
 MAJOR_CAVES = [
     {"name": "Demänovské jaskyne", "keyword": r"demänovsk", "wikidata": "https://www.wikidata.org/wiki/Q1186358", "coords": [49.002, 19.584], "desc": "Najdlhší jaskynný systém na Slovensku."},
@@ -82,7 +84,7 @@ def enrich_article(art):
     matched_caves = []
     matched_wikidata = []
     for cave in MAJOR_CAVES:
-        if re.search(cave["keyword"], combined_text):
+        if article_mentions_cave({"title": title, "abstract": abstract}, cave["name"]):
             matched_caves.append(cave["name"])
             matched_wikidata.append({
                 "name": cave["name"],

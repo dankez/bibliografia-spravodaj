@@ -29,6 +29,35 @@ def test_parse_link_info_detects_kongres_year_from_filename():
     assert info["key"] == "2013_kongres"
 
 
+def test_parse_link_info_detects_special_issue_links_without_standard_issue_number():
+    cases = [
+        (
+            "Spravodaj-bibliografia",
+            "https://sss.sk/wp-content/uploads/2020/02/Spravodaj-bibliografia.pdf",
+            2011,
+            "bibliografia",
+        ),
+        (
+            "Bulletin of the Slovak Speleological Society",
+            "https://sss.sk/wp-content/uploads/2017/10/b17.pdf",
+            2017,
+            "bulletin",
+        ),
+        (
+            "Spravodaj 2022 kongres",
+            "https://sss.sk/wp-content/uploads/2022/08/Spravodaj_2022_kongres_web.pdf",
+            2022,
+            "kongres",
+        ),
+    ]
+
+    for link_text, url, year, issue in cases:
+        info = scraper.parse_link_info(link_text, url)
+        assert info["year"] == year
+        assert info["issue"] == issue
+        assert info["key"] == f"{year}_{issue}"
+
+
 def test_parse_link_info_uses_url_map_key_for_short_numeric_pdf_name():
     info = scraper.parse_link_info(
         "Spravodaj",
@@ -128,4 +157,20 @@ def test_missing_issue_infos_from_url_map_includes_legacy_1987_1992_pdf_keys():
         "1991_1",
         "1992_1",
         "1992_2",
+    ]
+
+
+def test_missing_issue_infos_from_url_map_includes_special_issue_keys_without_standard_number():
+    url_map = {
+        "2011_bibliografia": "https://sss.sk/wp-content/uploads/2020/02/Spravodaj-bibliografia.pdf",
+        "2017_bulletin": "https://sss.sk/wp-content/uploads/2017/10/b17.pdf",
+        "2022_kongres": "https://sss.sk/wp-content/uploads/2022/08/Spravodaj_2022_kongres_web.pdf",
+    }
+
+    missing = scraper.missing_issue_infos_from_url_map(url_map, existing_articles=[])
+
+    assert [item["key"] for item in missing] == [
+        "2011_bibliografia",
+        "2017_bulletin",
+        "2022_kongres",
     ]

@@ -18,12 +18,16 @@ DEFAULT_OUTPUT_PATH = BASE_DIR / "web" / "src" / "data" / "caves.json"
 PDF_LINK_PAGE_OFFSET = 2
 
 
-def slugify(value: Any) -> str:
+def normalize_text(value: Any) -> str:
     text = unicodedata.normalize("NFKD", str(value or ""))
     text = "".join(char for char in text if not unicodedata.combining(char))
     text = text.casefold()
-    text = re.sub(r"[^a-z0-9]+", "-", text)
-    return text.strip("-") or "jaskyna"
+    text = re.sub(r"[^a-z0-9]+", " ", text)
+    return re.sub(r"\s+", " ", text).strip()
+
+
+def slugify(value: Any) -> str:
+    return normalize_text(value).replace(" ", "-") or "jaskyna"
 
 
 def unique_strings(values: list[Any]) -> list[str]:
@@ -65,6 +69,41 @@ def has_map_plan(article: dict[str, Any]) -> bool:
     )
 
 
+def cave_token_pattern(token: str) -> str:
+    if token.startswith("jaskyn"):
+        return r"jaskyn(?:a|e|i|u|ou|am|ami|ach|iach)?"
+    if token.isdigit():
+        return re.escape(token)
+    if len(token) <= 3:
+        return re.escape(token)
+    if len(token) <= 5:
+        return f"{re.escape(token)}[a-z0-9]*"
+    return f"{re.escape(token[:-1])}[a-z0-9]*"
+
+
+def cave_phrase_pattern(cave_name: str) -> re.Pattern[str] | None:
+    tokens = normalize_text(cave_name).split()
+    if not tokens:
+        return None
+    parts = [cave_token_pattern(token) for token in tokens]
+    return re.compile(rf"\b{' '.join(parts).replace(' ', r' +')}\b")
+
+
+def article_text_for_cave_match(article: dict[str, Any]) -> str:
+    values = [
+        article.get("title") or "",
+        article.get("abstract") or "",
+    ]
+    return normalize_text(" ".join(values))
+
+
+def article_mentions_cave(article: dict[str, Any], cave_name: str) -> bool:
+    pattern = cave_phrase_pattern(cave_name)
+    if pattern is None:
+        return False
+    return bool(pattern.search(article_text_for_cave_match(article)))
+
+
 def article_summary(article: dict[str, Any]) -> dict[str, Any]:
     return {
         "id": int(article["id"]),
@@ -88,6 +127,8 @@ def build_cave_index(articles: list[dict[str, Any]]) -> list[dict[str, Any]]:
 
     for article in articles:
         for cave_name in unique_strings(article.get("caves") or []):
+            if not article_mentions_cave(article, cave_name):
+                continue
             key = slugify(cave_name)
             if key not in grouped:
                 slug_counts[key] += 1

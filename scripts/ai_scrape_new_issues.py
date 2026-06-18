@@ -30,6 +30,18 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 DB_PATH = BASE_DIR / "data" / "articles_with_urls.json"
 FRONTEND_DB_PATH = BASE_DIR / "web" / "src" / "data" / "articles.json"
 URL_MAP_PATH = BASE_DIR / "data" / "urls_map.json"
+SPECIAL_ISSUE_LINKS = [
+    {
+        "issue": "bibliografia",
+        "year": 2011,
+        "needles": ("spravodaj-bibliografia", "bibliografia spravodaja"),
+    },
+    {
+        "issue": "bulletin",
+        "year": 2017,
+        "needles": ("b17.pdf", "bulletin of the slovak speleological society"),
+    },
+]
 
 
 ARTICLE_SCHEMA = {
@@ -144,6 +156,14 @@ def parse_issue_from_filename(url: str) -> tuple[int, str] | None:
     return None
 
 
+def parse_special_issue_link(link_text: str, url: str) -> tuple[int, str] | None:
+    lowered = f"{link_text} {url}".lower()
+    for special in SPECIAL_ISSUE_LINKS:
+        if any(needle in lowered for needle in special["needles"]):
+            return int(special["year"]), str(special["issue"])
+    return None
+
+
 def issue_from_text_or_filename(link_text: str, url: str, lowered: str) -> str:
     clean = re.sub(
         r"\b(19\d\d|20\d\d|Spravodajca|Spravodaj|Jaskyniar|Bulletin|Slovak|Speleological|Society)\b",
@@ -178,13 +198,21 @@ def parse_link_info(link_text: str, url: str, issue_key: str | None = None) -> d
     """Normalize link text and URL to extract year and issue."""
     text = link_text.strip()
     lowered = f"{text} {url}".lower()
-    if "bibliografia" in lowered or "b17" in lowered:
-        return None
 
     if issue_key:
         keyed = parse_issue_key(issue_key, url)
         if keyed:
             return keyed
+
+    special_info = parse_special_issue_link(text, url)
+    if special_info:
+        year, issue = special_info
+        return {
+            "year": year,
+            "issue": issue,
+            "pdf_url": url,
+            "key": f"{year}_{issue}",
+        }
 
     filename_info = parse_issue_from_filename(url)
     if filename_info:

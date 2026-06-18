@@ -33,6 +33,7 @@ from ai_detect_pdf_maps import (
     write_json,
     write_jsonl,
 )
+from extract_pdf_fulltext import PDF_CACHE_DIR, download_pdf, safe_name
 
 
 DEFAULT_MODEL = "minicpm-v4.6"
@@ -148,6 +149,17 @@ def resolve_output_path(value: Any) -> Path:
     if not path.is_absolute():
         path = BASE_DIR / path
     return path
+
+
+def resolve_pdf_path_from_url(pdf_url: str, force: bool = False) -> tuple[Path, str]:
+    pdf_url = str(pdf_url or "").strip()
+    if not pdf_url:
+        raise RuntimeError("No PDF URL supplied for issue without article records.")
+    PDF_CACHE_DIR.mkdir(parents=True, exist_ok=True)
+    pdf_path = PDF_CACHE_DIR / safe_name(pdf_url)
+    if not download_pdf(pdf_url, pdf_path, force=force):
+        raise RuntimeError(f"Could not download PDF for issue: {pdf_url}")
+    return pdf_path, pdf_url
 
 
 def reusable_page_record_problem(record: dict[str, Any]) -> str | None:
@@ -963,6 +975,7 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--reuse-prefilter", action="store_true")
     parser.add_argument("--no-ai", action="store_true")
     parser.add_argument("--force", action="store_true")
+    parser.add_argument("--pdf-url", default="", help="PDF URL fallback for issue-level scans without article records.")
     parser.add_argument("--output-suffix", default="hybrid")
     return parser.parse_args()
 
@@ -992,10 +1005,18 @@ def main() -> int:
 
         articles: list[dict[str, Any]] = []
         if not args.reuse_prefilter or not pdf_path_value or not pdf_url or not pdf_pages:
-            articles = load_issue_articles(args.year, args.issue)
+            try:
+                articles = load_issue_articles(args.year, args.issue)
+            except RuntimeError:
+                if not args.pdf_url:
+                    raise
+                articles = []
             fulltext_records = load_issue_fulltext(args.year, args.issue)
             if not pdf_path_value or not pdf_url:
-                pdf_path, pdf_url = resolve_pdf_path(fulltext_records, articles)
+                try:
+                    pdf_path, pdf_url = resolve_pdf_path(fulltext_records, articles)
+                except RuntimeError:
+                    pdf_path, pdf_url = resolve_pdf_path_from_url(args.pdf_url, force=args.force)
                 pdf_path_value = relative(pdf_path)
             if not pdf_pages:
                 pdf_pages = pdf_page_count(pdf_path)

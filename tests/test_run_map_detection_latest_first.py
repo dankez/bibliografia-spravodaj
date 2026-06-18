@@ -123,6 +123,43 @@ def test_load_issues_can_filter_single_issue(tmp_path):
     assert [(item["year"], item["issue"]) for item in issues] == [(2017, "1")]
 
 
+def test_load_issues_includes_special_url_map_entries_without_articles(tmp_path):
+    articles_path = tmp_path / "articles.json"
+    articles_path.write_text(
+        json.dumps(
+            [
+                {"year": 2017, "issue": "1", "pdf_url": "https://example.test/1.pdf"},
+            ]
+        ),
+        encoding="utf-8",
+    )
+    url_map_path = tmp_path / "urls_map.json"
+    url_map_path.write_text(
+        json.dumps(
+            {
+                "2017_1": "https://example.test/1.pdf",
+                "2017_bulletin": "https://sss.sk/wp-content/uploads/2017/10/b17.pdf",
+            }
+        ),
+        encoding="utf-8",
+    )
+
+    class Args:
+        articles = articles_path
+        url_map = url_map_path
+        year_from = 2017
+        year_to = 2017
+        issue = None
+        max_issues = None
+
+    issues = runner.load_issues(Args())
+
+    assert [(item["year"], item["issue"], item["article_count"]) for item in issues] == [
+        (2017, "1", 1),
+        (2017, "bulletin", 0),
+    ]
+
+
 def test_prefilter_cache_problem_detects_empty_cached_image(tmp_path):
     image = tmp_path / "page.png"
     image.write_bytes(b"")

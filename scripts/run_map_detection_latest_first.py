@@ -7,6 +7,7 @@ import argparse
 import datetime as dt
 import json
 import os
+import re
 import shutil
 import subprocess
 import sys
@@ -17,6 +18,7 @@ from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 ARTICLES_PATH = BASE_DIR / "data" / "articles_with_urls.json"
+URL_MAP_PATH = BASE_DIR / "data" / "urls_map.json"
 OUTPUT_DIR = BASE_DIR / "data" / "ai_map_detection"
 STATE_PATH = OUTPUT_DIR / "map_detection_latest_first_state.json"
 DETECTOR = BASE_DIR / "scripts" / "hybrid_detect_pdf_maps.py"
@@ -151,6 +153,35 @@ def issue_sort_value(issue: str) -> tuple[int, str]:
         return (-1, issue)
 
 
+def normalize_issue(issue: str) -> str:
+    return str(issue or "").strip().lower().replace(" ", "").replace("_", "-")
+
+
+def parse_url_map_issue(issue_key: str, url: str) -> dict[str, Any] | None:
+    match = re.fullmatch(r"(19\d\d|20\d\d)_(.+)", str(issue_key or "").strip())
+    if not match:
+        return None
+    issue = normalize_issue(match.group(2))
+    if not issue:
+        return None
+    return {
+        "year": int(match.group(1)),
+        "issue": issue,
+        "pdf_url": str(url),
+        "article_count": 0,
+    }
+
+
+def include_issue(args: argparse.Namespace, year: int, issue: str) -> bool:
+    if args.year_from is not None and year < args.year_from:
+        return False
+    if args.year_to is not None and year > args.year_to:
+        return False
+    if args.issue is not None and issue != str(args.issue).strip():
+        return False
+    return True
+
+
 def issue_slug(year: int, issue: str, suffix: str) -> str:
     clean_suffix = suffix.strip("_")
     return f"{year}_{issue}_{clean_suffix}" if clean_suffix else f"{year}_{issue}"
@@ -181,11 +212,7 @@ def load_issues(args: argparse.Namespace) -> list[dict[str, Any]]:
             year_int = int(year)
         except (TypeError, ValueError):
             continue
-        if args.year_from is not None and year_int < args.year_from:
-            continue
-        if args.year_to is not None and year_int > args.year_to:
-            continue
-        if args.issue is not None and issue != str(args.issue).strip():
+        if not include_issue(args, year_int, issue):
             continue
         key = (year_int, issue)
         record = by_issue.setdefault(
@@ -198,6 +225,22 @@ def load_issues(args: argparse.Namespace) -> list[dict[str, Any]]:
             },
         )
         record["article_count"] += 1
+
+    url_map_path = getattr(args, "url_map", URL_MAP_PATH)
+    if url_map_path and Path(url_map_path).exists():
+        url_map = read_json(Path(url_map_path))
+        if isinstance(url_map, dict):
+            for issue_key_text, url in url_map.items():
+                issue_info = parse_url_map_issue(str(issue_key_text), str(url))
+                if not issue_info:
+                    continue
+                key = (issue_info["year"], issue_info["issue"])
+                if key in by_issue:
+                    continue
+                if not include_issue(args, issue_info["year"], issue_info["issue"]):
+                    continue
+                by_issue[key] = issue_info
+
     issues = sorted(
         by_issue.values(),
         key=lambda item: (int(item["year"]), issue_sort_value(str(item["issue"]))),
@@ -262,6 +305,8 @@ def run_issue(issue: dict[str, Any], args: argparse.Namespace) -> int:
         str(args.ignore_last_pages),
         "--printed-page-offset",
         str(args.printed_page_offset),
+        "--pdf-url",
+        str(issue["pdf_url"]),
         "--progress",
     ]
     if args.no_ai:
@@ -314,6 +359,7 @@ def run_issue(issue: dict[str, Any], args: argparse.Namespace) -> int:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--articles", type=Path, default=ARTICLES_PATH)
+    parser.add_argument("--url-map", type=Path, default=URL_MAP_PATH)
     parser.add_argument("--state", type=Path, default=STATE_PATH)
     parser.add_argument("--year-from", type=int)
     parser.add_argument("--year-to", type=int)
