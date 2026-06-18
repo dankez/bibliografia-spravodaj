@@ -13,6 +13,21 @@ def test_cave_routes_and_navigation_exist():
     assert "Register jaskýň" in home_source
 
 
+def test_mobile_navigation_and_search_controls_exist():
+    home_source = (ROOT / "web" / "src" / "pages" / "index.astro").read_text(encoding="utf-8")
+    css_source = (ROOT / "web" / "src" / "styles" / "global.css").read_text(encoding="utf-8")
+
+    assert 'id="mobile-menu-toggle"' in home_source
+    assert 'id="mobile-search-toggle"' in home_source
+    assert 'id="mobile-search-overlay"' in home_source
+    assert 'id="mobile-search-input"' in home_source
+    assert 'data-mobile-menu-link="jaskyne"' in home_source
+    assert 'data-mobile-menu-link="exports"' in home_source
+    assert '.bibliography-mobile-actions' in css_source
+    assert '.mobile-theme-hidden' in css_source
+    assert '.mobile-search-overlay.is-open' in css_source
+
+
 def test_error_report_form_and_backend_template_exist_without_secret_literals():
     form_page = ROOT / "web" / "src" / "pages" / "nahlasit-chybu.astro"
     article_detail = ROOT / "web" / "src" / "pages" / "clanky" / "[id].astro"

@@ -25,8 +25,13 @@ const assetBase = import.meta.env.BASE_URL;
 		<script is:inline>
 			(() => {
 				try {
+					const mobile = window.matchMedia('(max-width: 1023px)');
 					const stored = localStorage.getItem('sss-theme');
-					document.documentElement.dataset.theme = stored === 'dark' ? 'dark' : 'default';
+					const applyTheme = () => {
+						document.documentElement.dataset.theme = mobile.matches || stored !== 'dark' ? 'default' : 'dark';
+					};
+					applyTheme();
+					mobile.addEventListener?.('change', applyTheme);
 				} catch {
 					document.documentElement.dataset.theme = 'default';
 				}

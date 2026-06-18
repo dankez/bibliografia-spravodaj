@@ -31,18 +31,49 @@ const bibliographyExports = [
     <header class="bibliography-header border-b border-belly-darkgray shadow-sm">
       <div class="h-2 bg-belly-firebrick"></div>
       <div class="mx-auto flex max-w-[1500px] flex-col gap-4 px-5 py-4 lg:flex-row lg:items-center lg:justify-between">
-        <div>
-          <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Digitálna bibliografia</p>
-          <h1 class="bibliography-title font-display text-2xl font-extrabold text-belly-firebrick">Slovenská speleologická spoločnosť</h1>
-          <p class="text-sm text-belly-dimgray-warm">Kompletný archív ročníkov {startYear}-{endYear}, mapy a plány sú zoradené prvé</p>
+        <div class="bibliography-header-top flex items-start justify-between gap-3">
+          <div>
+            <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Digitálna bibliografia</p>
+            <h1 class="bibliography-title font-display text-2xl font-extrabold text-belly-firebrick">Slovenská speleologická spoločnosť</h1>
+            <p class="text-sm text-belly-dimgray-warm">Kompletný archív ročníkov {startYear}-{endYear}, mapy a plány sú zoradené prvé</p>
+          </div>
+          <div class="bibliography-mobile-actions" aria-label="Mobilné nástroje">
+            <button id="mobile-search-toggle" class="bibliography-icon-button" type="button" aria-label="Hľadať v bibliografii" aria-controls="mobile-search-overlay">
+              <span aria-hidden="true">⌕</span>
+            </button>
+            <button id="mobile-menu-toggle" class="bibliography-icon-button" type="button" aria-label="Otvoriť menu" aria-controls="mobile-menu-panel" aria-expanded="false">
+              <span aria-hidden="true">☰</span>
+            </button>
+          </div>
         </div>
         <div class="flex flex-col gap-3 lg:items-end">
-          <div class="flex flex-wrap items-center gap-2 lg:justify-end">
-            <ThemeSwitcher />
+          <div class="bibliography-desktop-actions flex flex-wrap items-center gap-2 lg:justify-end">
+            <div class="mobile-theme-hidden">
+              <ThemeSwitcher />
+            </div>
             <a href="/jaskyne/" class="bibliography-link-button bibliography-link-button-primary">
               Register jaskýň
             </a>
             <div class="bibliography-export-links" aria-label="Danko exporty bibliografie">
+              {bibliographyExports.map((exportLink) => (
+                <a
+                  href={exportLink.href}
+                  class:list={[
+                    'bibliography-link-button',
+                    exportLink.primary && 'bibliography-link-button-primary',
+                  ]}
+                  download={exportLink.download ? true : undefined}
+                >
+                  Export {exportLink.label}
+                </a>
+              ))}
+            </div>
+          </div>
+          <div id="mobile-menu-panel" class="bibliography-mobile-menu" hidden>
+            <a href="/jaskyne/" class="bibliography-link-button bibliography-link-button-primary" data-mobile-menu-link="jaskyne">
+              Register jaskýň
+            </a>
+            <div class="bibliography-mobile-menu-section" data-mobile-menu-link="exports" aria-label="Exporty bibliografie">
               {bibliographyExports.map((exportLink) => (
                 <a
                   href={exportLink.href}
@@ -65,12 +96,24 @@ const bibliographyExports = [
           </dl>
         </div>
       </div>
+      <div id="mobile-search-overlay" class="mobile-search-overlay" aria-hidden="true" hidden>
+        <div class="mobile-search-panel" role="dialog" aria-modal="true" aria-labelledby="mobile-search-title">
+          <div class="mobile-search-header">
+            <h2 id="mobile-search-title" class="sr-only">Hľadať v bibliografii</h2>
+            <label class="sr-only" for="mobile-search-input">Hľadať</label>
+            <input id="mobile-search-input" class="bibliography-search mobile-search-input" type="search" placeholder="Hľadať autora, jaskyňu, tému, rok..." autocomplete="off" />
+            <button id="mobile-search-close" class="bibliography-icon-button" type="button" aria-label="Zatvoriť hľadanie">
+              <span aria-hidden="true">×</span>
+            </button>
+          </div>
+        </div>
+      </div>
     </header>
 
     <main class="bibliography-main mx-auto grid min-h-0 w-full flex-1 max-w-none grid-cols-1 overflow-hidden border-x border-belly-darkgray lg:grid-cols-[minmax(460px,42%)_minmax(0,58%)] 2xl:grid-cols-[minmax(640px,40%)_minmax(0,60%)]">
       <section class="bibliography-pane flex min-h-0 flex-col border-r border-belly-darkgray">
         <div class="bibliography-filterbar space-y-3 border-b border-belly-darkgray p-4">
-          <div>
+          <div class="desktop-search-field">
             <label class="sr-only" for="search-input">Hľadať</label>
             <input id="search-input" class="bibliography-search w-full border border-belly-gray px-3 py-2 text-sm shadow-inner outline-none focus:border-belly-firebrick focus:ring-1 focus:ring-belly-firebrick" placeholder="Hľadať autora, jaskyňu, tému, rok..." />
           </div>
@@ -282,6 +325,12 @@ const bibliographyExports = [
     const byId = (id) => document.getElementById(id);
     const listEl = byId('article-list');
     const searchInput = byId('search-input');
+    const mobileSearchInput = byId('mobile-search-input');
+    const mobileSearchOverlay = byId('mobile-search-overlay');
+    const mobileSearchToggle = byId('mobile-search-toggle');
+    const mobileSearchClose = byId('mobile-search-close');
+    const mobileMenuToggle = byId('mobile-menu-toggle');
+    const mobileMenuPanel = byId('mobile-menu-panel');
     const yearMinInput = byId('year-min');
     const yearMaxInput = byId('year-max');
     const yearLabel = byId('year-range-label');
@@ -438,6 +487,54 @@ const bibliographyExports = [
     function scrollDetailIntoView() {
       if (!isMobileViewport() || !setupComplete) return;
       byId('detail-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
+    function syncSearchFields(value) {
+      searchInput.value = value;
+      mobileSearchInput.value = value;
+    }
+
+    function setSearchValue(value) {
+      state.search = value;
+      state.page = 1;
+      syncSearchFields(value);
+      applyFilters();
+    }
+
+    function closeMobileMenu() {
+      mobileMenuPanel.classList.remove('is-open');
+      mobileMenuPanel.hidden = true;
+      mobileMenuToggle.setAttribute('aria-expanded', 'false');
+    }
+
+    function toggleMobileMenu() {
+      const willOpen = mobileMenuPanel.hidden;
+      if (willOpen) {
+        mobileMenuPanel.hidden = false;
+        mobileMenuPanel.classList.add('is-open');
+        mobileMenuToggle.setAttribute('aria-expanded', 'true');
+        return;
+      }
+      closeMobileMenu();
+    }
+
+    function openMobileSearch() {
+      closeMobileMenu();
+      mobileSearchOverlay.hidden = false;
+      mobileSearchOverlay.classList.add('is-open');
+      mobileSearchOverlay.setAttribute('aria-hidden', 'false');
+      mobileSearchInput.value = state.search;
+      window.requestAnimationFrame(() => {
+        mobileSearchInput.focus();
+        mobileSearchInput.select();
+      });
+    }
+
+    function closeMobileSearch() {
+      mobileSearchOverlay.classList.remove('is-open');
+      mobileSearchOverlay.setAttribute('aria-hidden', 'true');
+      mobileSearchOverlay.hidden = true;
+      mobileSearchToggle.focus();
     }
 
     function applyFilters() {
@@ -718,9 +815,19 @@ const bibliographyExports = [
       if (filtered.length) selectArticle(filtered[0].id);
 
       searchInput.addEventListener('input', (event) => {
-        state.search = event.target.value;
-        state.page = 1;
-        applyFilters();
+        setSearchValue(event.target.value);
+      });
+      mobileSearchInput.addEventListener('input', (event) => setSearchValue(event.target.value));
+      mobileSearchToggle.addEventListener('click', openMobileSearch);
+      mobileSearchClose.addEventListener('click', closeMobileSearch);
+      mobileMenuToggle.addEventListener('click', toggleMobileMenu);
+      mobileMenuPanel.querySelectorAll('a').forEach((link) => {
+        link.addEventListener('click', closeMobileMenu);
+      });
+      document.addEventListener('keydown', (event) => {
+        if (event.key !== 'Escape') return;
+        if (!mobileSearchOverlay.hidden) closeMobileSearch();
+        if (!mobileMenuPanel.hidden) closeMobileMenu();
       });
       yearMinInput.addEventListener('input', (event) => {
         state.yearMin = Math.min(Number(event.target.value), state.yearMax);
@@ -770,7 +877,7 @@ const bibliographyExports = [
         state.mapsOnly = false;
         state.fulltext = false;
         state.page = 1;
-        searchInput.value = '';
+        syncSearchFields('');
         yearMinInput.value = String(START_YEAR);
         yearMaxInput.value = String(END_YEAR);
         filterMapsOnly.checked = false;
