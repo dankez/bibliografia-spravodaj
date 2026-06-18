@@ -32,8 +32,7 @@ EXPORT_DIR = BASE_DIR / "data" / "exports"
 ONLINE_PDF_LABEL = "↗ PDF"
 MAPS_AND_PLANS_TITLE = "Súpis plánov jaskýň"
 DEFAULT_BASENAME_PREFIX = "bibliografia_spravodaj_sss_danko"
-PDF_COVER_PAGE_OFFSET_YEAR_FROM = 2024
-PDF_COVER_PAGE_OFFSET = 2
+PDF_LINK_PAGE_OFFSET = 2
 CONTENT_SECTIONS = [
     ("Zoznam článkov", "zoznam-clankov"),
     ("Menný register", "menny-register"),
@@ -60,9 +59,7 @@ def pdf_link_page(article: dict) -> str:
         page = int(pdf_page_start(article))
     except (TypeError, ValueError):
         return ""
-    if int(article.get("year") or 0) >= PDF_COVER_PAGE_OFFSET_YEAR_FROM:
-        page += PDF_COVER_PAGE_OFFSET
-    return str(page)
+    return str(page + PDF_LINK_PAGE_OFFSET)
 
 
 def default_basename(stamp: str) -> str:
@@ -314,7 +311,16 @@ def has_map_or_plan(article: dict) -> bool:
         return True
     text = " ".join(article.get("extras") or []) + " " + article.get("title", "")
     lowered = text.lower()
-    return "pl. j." in lowered or "map" in lowered or "plán" in lowered or "plan" in lowered
+    return any(
+        re.search(pattern, lowered)
+        for pattern in (
+            r"\bpl\.\s*j\.",
+            r"\b\d+\s*(?:máp|mapa|mapy)\b",
+            r"\bmap(?:a|y|u|ou|e|ách|ami)?\b",
+            r"\bplán(?:u|om|e|y|ov|mi|och)?\s+jask",
+            r"\bjaskynn\w*\s+plán",
+        )
+    )
 
 
 def render_articles(articles: list[dict], markdown: bool = False) -> str:

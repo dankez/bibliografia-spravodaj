@@ -11,6 +11,7 @@ from __future__ import annotations
 import argparse
 import datetime as dt
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -117,6 +118,101 @@ def load_jsonl(path: Path) -> list[dict[str, Any]]:
             except json.JSONDecodeError as exc:
                 raise RuntimeError(f"Invalid JSONL in {path}:{line_number}: {exc}") from exc
     return records
+
+
+def read_json_if_exists(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    try:
+        with path.open("r", encoding="utf-8") as handle:
+            data = json.load(handle)
+    except (OSError, json.JSONDecodeError):
+        return {}
+    return data if isinstance(data, dict) else {}
+
+
+def max_prefilter_page(records: list[dict[str, Any]]) -> int:
+    pages: list[int] = []
+    for record in records:
+        try:
+            pages.append(int(record["page"]))
+        except (KeyError, TypeError, ValueError):
+            continue
+    if not pages:
+        raise RuntimeError("Cannot infer PDF page count from empty prefilter page list.")
+    return max(pages)
+
+
+def resolve_output_path(value: Any) -> Path:
+    path = Path(str(value))
+    if not path.is_absolute():
+        path = BASE_DIR / path
+    return path
+
+
+def reusable_page_record_problem(record: dict[str, Any]) -> str | None:
+    try:
+        int(record["page"])
+    except (KeyError, TypeError, ValueError):
+        return "missing_or_invalid_page"
+    image_path = str(record.get("image_path") or "").strip()
+    if not image_path:
+        return "missing_image_path"
+    path = resolve_output_path(image_path)
+    if not path.exists():
+        return "missing_image_file"
+    if path.stat().st_size == 0:
+        return "empty_image_file"
+    return None
+
+
+def reusable_records_by_page(records: list[dict[str, Any]]) -> tuple[dict[int, dict[str, Any]], list[dict[str, Any]]]:
+    by_page: dict[int, dict[str, Any]] = {}
+    invalid: list[dict[str, Any]] = []
+    for record in records:
+        problem = reusable_page_record_problem(record)
+        try:
+            page = int(record.get("page"))
+        except (TypeError, ValueError):
+            page = None
+        if problem:
+            invalid.append({"page": page, "reason": problem})
+            continue
+        by_page[int(record["page"])] = record
+    return by_page, invalid
+
+
+def write_issue_status(
+    path: Path,
+    args: argparse.Namespace,
+    slug: str,
+    status: str,
+    phase: str,
+    page: int | None = None,
+    extra: dict[str, Any] | None = None,
+) -> None:
+    payload: dict[str, Any] = {
+        "updated_at": utc_now(),
+        "pid": os.getpid(),
+        "status": status,
+        "phase": phase,
+        "slug": slug,
+        "year": args.year,
+        "issue": args.issue,
+        "output_suffix": args.output_suffix,
+        "dpi": args.dpi,
+        "no_ai": args.no_ai,
+        "ocr_objects_enabled": not args.disable_ocr_objects,
+    }
+    if getattr(args, "current_pdf_path", None):
+        payload["pdf_path"] = args.current_pdf_path
+    if getattr(args, "current_pdf_url", None):
+        payload["pdf_url"] = args.current_pdf_url
+    if page is not None:
+        payload["page"] = page
+    if extra:
+        payload.update(extra)
+    write_json(path, payload)
 
 
 def pdftotext_bbox_page(pdf_path: Path, page: int) -> dict[str, Any]:
@@ -874,109 +970,237 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     args.issue = str(args.issue).strip()
-    articles = load_issue_articles(args.year, args.issue)
-    fulltext_records = load_issue_fulltext(args.year, args.issue)
-    pdf_path, pdf_url = resolve_pdf_path(fulltext_records, articles)
-    pdf_pages = pdf_page_count(pdf_path)
-    args.resolved_ocr_languages = "" if args.disable_ocr_objects else resolve_ocr_languages(args.ocr_languages)
-
     suffix = f"_{args.output_suffix.strip('_')}" if args.output_suffix else ""
     slug = f"{args.year}_{args.issue}{suffix}"
     render_dir = OUTPUT_DIR / "rendered" / slug
     prefilter_path = OUTPUT_DIR / f"map_prefilter_{slug}.jsonl"
     confirmed_path = OUTPUT_DIR / f"map_confirmed_{slug}.jsonl"
     summary_path = OUTPUT_DIR / f"map_hybrid_{slug}_summary.json"
+    status_path = OUTPUT_DIR / f"map_issue_status_{slug}.json"
 
-    pages = selected_pages(pdf_pages, args)
-    if args.reuse_prefilter:
-        existing_prefilter_records = load_jsonl(prefilter_path)
-        if not existing_prefilter_records:
+    try:
+        write_issue_status(status_path, args, slug, "running", "initializing")
+        existing_prefilter_records = load_jsonl(prefilter_path) if args.reuse_prefilter else []
+        if args.reuse_prefilter and not existing_prefilter_records:
             raise RuntimeError(f"Cannot reuse missing or empty prefilter: {relative(prefilter_path)}")
-        page_set = set(pages) if args.pages else None
-        prefilter_records = [
-            record for record in existing_prefilter_records
-            if page_set is None or int(record["page"]) in page_set
-        ]
-    else:
-        prefilter_records = [] if args.force else load_jsonl(prefilter_path)
-        prefilter_by_page = {int(record["page"]): record for record in prefilter_records}
-        for page in pages:
-            if page in prefilter_by_page and not args.force:
+
+        summary_cache = read_json_if_exists(summary_path) if args.reuse_prefilter else {}
+        pdf_path_value = str(summary_cache.get("pdf_path") or "").strip()
+        pdf_path = resolve_output_path(pdf_path_value) if pdf_path_value else Path()
+        pdf_url = str(summary_cache.get("pdf_url") or "").strip()
+        pdf_pages = int(summary_cache.get("pdf_pages") or 0) if summary_cache else 0
+
+        articles: list[dict[str, Any]] = []
+        if not args.reuse_prefilter or not pdf_path_value or not pdf_url or not pdf_pages:
+            articles = load_issue_articles(args.year, args.issue)
+            fulltext_records = load_issue_fulltext(args.year, args.issue)
+            if not pdf_path_value or not pdf_url:
+                pdf_path, pdf_url = resolve_pdf_path(fulltext_records, articles)
+                pdf_path_value = relative(pdf_path)
+            if not pdf_pages:
+                pdf_pages = pdf_page_count(pdf_path)
+
+        if args.reuse_prefilter and not pdf_pages:
+            pdf_pages = max_prefilter_page(existing_prefilter_records)
+        if not pdf_path_value:
+            pdf_path_value = relative(pdf_path)
+
+        args.current_pdf_path = pdf_path_value
+        args.current_pdf_url = pdf_url
+        args.resolved_ocr_languages = "" if args.disable_ocr_objects else resolve_ocr_languages(args.ocr_languages)
+
+        pages = selected_pages(pdf_pages, args)
+        write_issue_status(
+            status_path,
+            args,
+            slug,
+            "running",
+            "prefilter_start",
+            extra={
+                "pdf_path": relative(pdf_path),
+                "pdf_pages": pdf_pages,
+                "selected_page_count": len(pages),
+                "page_start": pages[0] if pages else None,
+                "page_end": pages[-1] if pages else None,
+            },
+        )
+        if args.reuse_prefilter:
+            page_set = set(pages) if args.pages else None
+            selected_records = [
+                record for record in existing_prefilter_records
+                if page_set is None or int(record["page"]) in page_set
+            ]
+            prefilter_by_page, invalid_prefilter = reusable_records_by_page(selected_records)
+            if invalid_prefilter:
+                write_issue_status(
+                    status_path,
+                    args,
+                    slug,
+                    "failed",
+                    "invalid_reused_prefilter",
+                    extra={"invalid_prefilter": invalid_prefilter[:20]},
+                )
+                raise RuntimeError(f"Cannot reuse invalid prefilter records: {invalid_prefilter[:5]}")
+            prefilter_records = list(prefilter_by_page.values())
+        else:
+            existing_prefilter_records = [] if args.force else load_jsonl(prefilter_path)
+            prefilter_by_page, invalid_prefilter = reusable_records_by_page(existing_prefilter_records)
+            if invalid_prefilter and args.progress:
+                for item in invalid_prefilter:
+                    print(
+                        f"prefilter page={item.get('page') or '-'} invalidate cached reason={item['reason']}",
+                        flush=True,
+                    )
+            if invalid_prefilter:
+                write_issue_status(
+                    status_path,
+                    args,
+                    slug,
+                    "running",
+                    "invalid_cached_prefilter",
+                    extra={"invalid_prefilter": invalid_prefilter[:20]},
+                )
+            for index, page in enumerate(pages, start=1):
+                if page in prefilter_by_page and not args.force:
+                    if args.progress:
+                        print(f"prefilter page={page} skip cached", flush=True)
+                    continue
+                write_issue_status(
+                    status_path,
+                    args,
+                    slug,
+                    "running",
+                    "prefilter_page",
+                    page=page,
+                    extra={"page_index": index, "selected_page_count": len(pages)},
+                )
+                record = build_prefilter_record(
+                    pdf_path,
+                    page,
+                    render_dir,
+                    articles,
+                    args.dpi,
+                    args.printed_page_offset,
+                    not args.disable_ocr_objects,
+                    args.resolved_ocr_languages,
+                    args.ocr_timeout,
+                )
+                prefilter_by_page[page] = record
+                prefilter_records = list(prefilter_by_page.values())
+                write_jsonl(prefilter_path, prefilter_records)
                 if args.progress:
-                    print(f"prefilter page={page} skip cached", flush=True)
-                continue
-            record = build_prefilter_record(
-                pdf_path,
-                page,
-                render_dir,
-                articles,
-                args.dpi,
-                args.printed_page_offset,
-                not args.disable_ocr_objects,
-                args.resolved_ocr_languages,
-                args.ocr_timeout,
-            )
-            prefilter_by_page[page] = record
+                    sources = ",".join(record.get("candidate_sources") or [])
+                    ocr_hits = sum(1 for item in record.get("ocr_object_matches") or [] if item.get("candidate"))
+                    print(
+                        f"prefilter page={page} candidate={record['candidate']} "
+                        f"sources={sources or '-'} ocr_hits={ocr_hits}",
+                        flush=True,
+                    )
+                write_issue_status(
+                    status_path,
+                    args,
+                    slug,
+                    "running",
+                    "prefilter_page_done",
+                    page=page,
+                    extra={
+                        "page_index": index,
+                        "selected_page_count": len(pages),
+                        "candidate": bool(record["candidate"]),
+                        "candidate_sources": record.get("candidate_sources") or [],
+                    },
+                )
             prefilter_records = list(prefilter_by_page.values())
             write_jsonl(prefilter_path, prefilter_records)
-            if args.progress:
-                sources = ",".join(record.get("candidate_sources") or [])
-                ocr_hits = sum(1 for item in record.get("ocr_object_matches") or [] if item.get("candidate"))
+        candidates = [record for record in prefilter_records if record["candidate"]]
+        print("candidate_pages=" + ",".join(str(record["page"]) for record in candidates))
+
+        existing_confirmed_records = [] if args.force else load_jsonl(confirmed_path)
+        confirmed_by_page, invalid_confirmed = reusable_records_by_page(existing_confirmed_records)
+        if invalid_confirmed and args.progress:
+            for item in invalid_confirmed:
                 print(
-                    f"prefilter page={page} candidate={record['candidate']} "
-                    f"sources={sources or '-'} ocr_hits={ocr_hits}",
+                    f"confirmed page={item.get('page') or '-'} invalidate cached reason={item['reason']}",
                     flush=True,
                 )
-        write_jsonl(prefilter_path, prefilter_records)
-    candidates = [record for record in prefilter_records if record["candidate"]]
-    print("candidate_pages=" + ",".join(str(record["page"]) for record in candidates))
-
-    confirmed_records: list[dict[str, Any]] = [] if args.force else load_jsonl(confirmed_path)
-    confirmed_by_page = {int(record["page"]): record for record in confirmed_records}
-    if not args.no_ai:
-        for record in candidates:
-            page = int(record["page"])
-            if page in confirmed_by_page and not args.force:
-                print(f"skip page={page} confirmed", flush=True)
-                continue
-            image_path = BASE_DIR / record["image_path"]
-            ai = classify_image(image_path, args.model, args.timeout, args.ollama_url)
-            confirmed = {
-                "created_at": utc_now(),
-                "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
-                "model": args.model,
-                "year": args.year,
-                "issue": args.issue,
-                "page": record["page"],
-                "printed_page_guess": record["printed_page_guess"],
-                "prefilter": {
-                    "text_score": record["text_score"],
-                    "visual_score": record["visual_score"],
-                    "reasons": record["reasons"],
-                    "candidate_sources": record.get("candidate_sources") or [],
-                },
-                "image_path": record["image_path"],
-                "articles": record["articles"],
-                "caption_matches": record.get("caption_matches") or [],
-                "ocr_object_matches": record.get("ocr_object_matches") or [],
-                "ai": ai,
-            }
-            confirmed_by_page[page] = confirmed
-            confirmed_records = list(confirmed_by_page.values())
-            write_jsonl(confirmed_path, confirmed_records)
-            print(
-                f"page={record['page']} ai_map={ai['map_plan']} confidence={ai['confidence']} "
-                f"kind={ai['kind']} articles={','.join(str(a['id']) for a in record['articles']) or '-'}",
-                flush=True,
-            )
-    else:
+        if not args.no_ai:
+            for index, record in enumerate(candidates, start=1):
+                page = int(record["page"])
+                if page in confirmed_by_page and not args.force:
+                    print(f"skip page={page} confirmed", flush=True)
+                    continue
+                write_issue_status(
+                    status_path,
+                    args,
+                    slug,
+                    "running",
+                    "confirm_page",
+                    page=page,
+                    extra={"candidate_index": index, "candidate_count": len(candidates)},
+                )
+                image_path = BASE_DIR / record["image_path"]
+                ai = classify_image(image_path, args.model, args.timeout, args.ollama_url)
+                confirmed = {
+                    "created_at": utc_now(),
+                    "detection_mode": "hybrid_prefilter_plus_vision_confirmation",
+                    "model": args.model,
+                    "year": args.year,
+                    "issue": args.issue,
+                    "page": record["page"],
+                    "printed_page_guess": record["printed_page_guess"],
+                    "prefilter": {
+                        "text_score": record["text_score"],
+                        "visual_score": record["visual_score"],
+                        "reasons": record["reasons"],
+                        "candidate_sources": record.get("candidate_sources") or [],
+                    },
+                    "image_path": record["image_path"],
+                    "articles": record["articles"],
+                    "caption_matches": record.get("caption_matches") or [],
+                    "ocr_object_matches": record.get("ocr_object_matches") or [],
+                    "ai": ai,
+                }
+                confirmed_by_page[page] = confirmed
+                confirmed_records = list(confirmed_by_page.values())
+                write_jsonl(confirmed_path, confirmed_records)
+                print(
+                    f"page={record['page']} ai_map={ai['map_plan']} confidence={ai['confidence']} "
+                    f"kind={ai['kind']} articles={','.join(str(a['id']) for a in record['articles']) or '-'}",
+                    flush=True,
+                )
+        confirmed_records = list(confirmed_by_page.values())
         write_jsonl(confirmed_path, confirmed_records)
 
-    write_json(summary_path, build_summary(args, pdf_path, pdf_url, pdf_pages, prefilter_records, confirmed_records))
-    print(f"prefilter={relative(prefilter_path)}")
-    print(f"confirmed={relative(confirmed_path)}")
-    print(f"summary={relative(summary_path)}")
-    return 0
+        write_json(summary_path, build_summary(args, pdf_path, pdf_url, pdf_pages, prefilter_records, confirmed_records))
+        write_issue_status(
+            status_path,
+            args,
+            slug,
+            "completed",
+            "done",
+            extra={
+                "prefilter": relative(prefilter_path),
+                "confirmed": relative(confirmed_path),
+                "summary": relative(summary_path),
+                "processed_page_count": len(prefilter_records),
+                "candidate_page_count": len(candidates),
+                "confirmed_page_count": len([record for record in confirmed_records if record.get("ai", {}).get("map_plan") is True]),
+            },
+        )
+        print(f"prefilter={relative(prefilter_path)}")
+        print(f"confirmed={relative(confirmed_path)}")
+        print(f"summary={relative(summary_path)}")
+        return 0
+    except Exception as exc:
+        write_issue_status(
+            status_path,
+            args,
+            slug,
+            "failed",
+            "exception",
+            extra={"error": f"{type(exc).__name__}: {exc}"},
+        )
+        raise
 
 
 if __name__ == "__main__":

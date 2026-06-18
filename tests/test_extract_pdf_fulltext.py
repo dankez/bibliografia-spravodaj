@@ -57,6 +57,15 @@ def test_empty_text_probe_ranges_skip_mapped_printed_page():
     assert ranges == []
 
 
+def test_infer_printed_page_number_handles_mixed_spravodaj_footer():
+    text = """
+    Text článku
+    Organizačné správy SSS                               98                             Spravodaj SSS 1/2026
+    """
+
+    assert fulltext.infer_printed_page_number(text) == 98
+
+
 def test_article_text_score_prefers_author_and_abstract_matches():
     article = {
         "title": "Úvodník",

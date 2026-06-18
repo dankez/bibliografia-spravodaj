@@ -11,8 +11,15 @@ export async function getStaticPaths() {
 }
 
 const { art } = Astro.props;
-const authorsStr = art.authors.join(', ');
+const formatAuthorsDisplay = (authors) => {
+  if (!authors.length) return 'Anonymus';
+  if (authors.length === 1) return authors[0];
+  if (authors.length === 2) return `${authors[0]} a ${authors[1]}`;
+  return `${authors.slice(0, -1).join(', ')} a ${authors[authors.length - 1]}`;
+};
+const authorsStr = formatAuthorsDisplay(art.authors);
 const assetBase = import.meta.env.BASE_URL;
+const PDF_PAGE_LINK_OFFSET = 2;
 
 // Parse pages
 let firstPage = "";
@@ -23,17 +30,16 @@ if (art.pages) {
   lastPage = parts[1] || parts[0];
 }
 const pdfPrintedPageStart = Number(art.pdf_page_start || firstPage || 1);
-const pdfPageOffset = Number(art.year) >= 2024 ? 2 : 0;
-const pdfPageStart = pdfPrintedPageStart + pdfPageOffset;
+const pdfPageStart = pdfPrintedPageStart + PDF_PAGE_LINK_OFFSET;
 
 // Citation formatting
-const formattedAuthorsIso = art.authors.map(a => {
+const formattedAuthorsIso = formatAuthorsDisplay(art.authors.map(a => {
   if (a.includes(',')) {
     const p = a.split(',');
     return `${p[0].trim().toUpperCase()}, ${p[1].trim()}`;
   }
   return a.toUpperCase();
-}).join(' - ');
+}));
 
 const formattedAuthorsApa = art.authors.map(a => {
   if (a.includes(',')) {
@@ -41,7 +47,7 @@ const formattedAuthorsApa = art.authors.map(a => {
     return `${p[0].trim()}, ${p[1].trim()}`;
   }
   return a;
-}).join(', ');
+});
 
 const formattedAuthorsMla = art.authors.map(a => {
   if (a.includes(',')) {
@@ -49,12 +55,12 @@ const formattedAuthorsMla = art.authors.map(a => {
     return `${p[0].trim()}, ${p[1].trim()}`;
   }
   return a;
-}).join(', ');
+});
 
 const journal = "Spravodaj Slovenskej speleologickej spoločnosti";
 const isoCitation = `${formattedAuthorsIso}. ${art.title}. In: ${journal}. ${art.year}, roč. ${art.volume || 'I.'}, č. ${art.issue}, s. ${art.pages}.`;
-const apaCitation = `${formattedAuthorsApa} (${art.year}). ${art.title}. ${journal}, ${art.volume || 'I.'}(${art.issue}), ${art.pages}.`;
-const mlaCitation = `${formattedAuthorsMla}. "${art.title}." ${journal}, vol. ${art.volume || 'I.'}, no. ${art.issue}, ${art.year}, pp. ${art.pages}.`;
+const apaCitation = `${formatAuthorsDisplay(formattedAuthorsApa)} (${art.year}). ${art.title}. ${journal}, ${art.volume || 'I.'}(${art.issue}), ${art.pages}.`;
+const mlaCitation = `${formatAuthorsDisplay(formattedAuthorsMla)}. "${art.title}." ${journal}, vol. ${art.volume || 'I.'}, no. ${art.issue}, ${art.year}, pp. ${art.pages}.`;
 
 // BibTeX and RIS content for inline export
 const bibtexContent = `@article{sss_${art.id},\n  author = {${art.authors.join(' and ')}},\n  title = {${art.title}},\n  journal = {${journal}},\n  year = {${art.year}},\n  volume = {${art.volume || 'I'}},\n  number = {${art.issue}},\n  pages = {${art.pages}},\n  url = {${art.pdf_url || ''}}\n}`;

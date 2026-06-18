@@ -15,6 +15,7 @@ GITHUB_TOKEN*
 .pytest_cache/
 __pycache__/
 *.py[cod]
+codex-session
 node_modules/
 .astro/
 dist/
@@ -27,6 +28,17 @@ data/research_knowledge.sqlite
 data/*_before_*.jsonl
 data/ai_map_detection/rendered/
 data/ai_map_detection/manual_ground_truth_pages/
+data/ai_map_detection/*.pid
+data/ai_map_detection/*.out
+data/ai_map_detection/runner_*.log
+data/ai_map_detection/map_detection_*_events.jsonl
+data/ai_map_detection/map_detection_*_state.json
+data/ai_map_detection/map_issue_status_*.json
+data/ai_map_detection/*_latest*.json
+data/ai_map_detection/*_latest*.jsonl
+data/ai_map_detection/model_benchmark_*
+data/author_signature_repairs/
+data/pdf_page_maps/
 web/node_modules/
 web/.astro/
 web/dist/

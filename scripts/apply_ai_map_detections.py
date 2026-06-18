@@ -68,7 +68,32 @@ def source_label(record: dict[str, Any]) -> str:
     return "unknown"
 
 
-def load_hits(pattern: str, year_from: int) -> dict[int, dict[str, Any]]:
+def record_in_scope(record: dict[str, Any], year_from: int, year: int | None, issue: str | None) -> bool:
+    record_year = int(record.get("year") or 0)
+    if year is not None and record_year != year:
+        return False
+    if year is None and record_year < year_from:
+        return False
+    if issue is not None and str(record.get("issue")) != str(issue):
+        return False
+    return True
+
+
+def article_in_scope(article: dict[str, Any], year_from: int, year: int | None, issue: str | None) -> bool:
+    try:
+        article_year = int(article.get("year") or 0)
+    except (TypeError, ValueError):
+        return False
+    if year is not None and article_year != year:
+        return False
+    if year is None and article_year < year_from:
+        return False
+    if issue is not None and str(article.get("issue")) != str(issue):
+        return False
+    return True
+
+
+def load_hits(pattern: str, year_from: int, year_filter: int | None, issue_filter: str | None) -> dict[int, dict[str, Any]]:
     hits: dict[int, dict[str, Any]] = {}
     for filename in sorted(glob.glob(str(BASE_DIR / pattern))):
         path = Path(filename)
@@ -76,7 +101,7 @@ def load_hits(pattern: str, year_from: int) -> dict[int, dict[str, Any]]:
             if record.get("ai", {}).get("map_plan") is not True:
                 continue
             year = int(record.get("year") or 0)
-            if year < year_from:
+            if not record_in_scope(record, year_from, year_filter, issue_filter):
                 continue
             page = int(record["page"])
             source = source_label(record)
@@ -110,7 +135,15 @@ def load_hits(pattern: str, year_from: int) -> dict[int, dict[str, Any]]:
     return hits
 
 
-def apply_to_articles(path: Path, hits: dict[int, dict[str, Any]], year_from: int, dry_run: bool) -> dict[str, int]:
+def apply_to_articles(
+    path: Path,
+    hits: dict[int, dict[str, Any]],
+    year_from: int,
+    year_filter: int | None,
+    issue_filter: str | None,
+    model_label: str,
+    dry_run: bool,
+) -> dict[str, int]:
     articles = read_json(path)
     cleared = 0
     applied = 0
@@ -119,11 +152,10 @@ def apply_to_articles(path: Path, hits: dict[int, dict[str, Any]], year_from: in
         if not isinstance(article, dict):
             continue
         try:
-            year = int(article.get("year") or 0)
             article_id = int(article.get("id") or 0)
         except (TypeError, ValueError):
             continue
-        if year >= year_from:
+        if article_in_scope(article, year_from, year_filter, issue_filter):
             clear_map_fields(article)
             cleared += 1
         hit = hits.get(article_id)
@@ -139,7 +171,7 @@ def apply_to_articles(path: Path, hits: dict[int, dict[str, Any]], year_from: in
             "pages": pages,
             "evidence": evidence,
             "sources": sources,
-            "model": "minicpm-v4.6",
+            "model": model_label,
             "updated_at": now,
         }
         article["has_map_plan"] = True
@@ -158,21 +190,39 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--pattern", default=DEFAULT_PATTERN)
     parser.add_argument("--year-from", type=int, default=2024)
+    parser.add_argument("--year", type=int, help="Restrict records and clearing to one year.")
+    parser.add_argument("--issue", help="Restrict records and clearing to one issue.")
+    parser.add_argument("--model-label", default="minicpm-v4.6")
+    parser.add_argument(
+        "--summary-path",
+        default="data/ai_map_detection/applied_hybrid_ocr_minicpm46_2024plus_summary.json",
+    )
     parser.add_argument("--dry-run", action="store_true")
     return parser.parse_args()
 
 
 def main() -> int:
     args = parse_args()
-    hits = load_hits(args.pattern, args.year_from)
+    hits = load_hits(args.pattern, args.year_from, args.year, args.issue)
     article_counts = {
-        str(path.relative_to(BASE_DIR)): apply_to_articles(path, hits, args.year_from, args.dry_run)
+        str(path.relative_to(BASE_DIR)): apply_to_articles(
+            path,
+            hits,
+            args.year_from,
+            args.year,
+            args.issue,
+            args.model_label,
+            args.dry_run,
+        )
         for path in ARTICLE_PATHS
     }
     summary = {
         "created_at": utc_now(),
         "pattern": args.pattern,
         "year_from": args.year_from,
+        "year": args.year,
+        "issue": args.issue,
+        "model_label": args.model_label,
         "article_hit_count": len(hits),
         "article_counts": article_counts,
         "hits": {
@@ -184,7 +234,7 @@ def main() -> int:
             for article_id, hit in sorted(hits.items())
         },
     }
-    summary_path = BASE_DIR / "data" / "ai_map_detection" / "applied_hybrid_ocr_minicpm46_2024plus_summary.json"
+    summary_path = BASE_DIR / args.summary_path
     if not args.dry_run:
         write_json(summary_path, summary)
     print(json.dumps(summary | {"summary_path": str(summary_path.relative_to(BASE_DIR))}, ensure_ascii=False, indent=2))

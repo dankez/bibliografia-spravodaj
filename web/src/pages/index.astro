@@ -3,9 +3,7 @@ import Layout from '../layouts/Layout.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import articlesData from '../data/articles.json';
 
-const TEST_START_YEAR = 2024;
-const latestArticlesData = articlesData.filter((article) => article.year >= TEST_START_YEAR);
-const uiArticlesData = latestArticlesData.length ? latestArticlesData : articlesData;
+const uiArticlesData = articlesData;
 const articleHasMapPlan = (article) =>
   article.has_map_plan === true ||
   article.detected_features?.map_plan?.present === true;
@@ -35,7 +33,7 @@ const bibliographyExports = [
         <div>
           <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Digitálna bibliografia</p>
           <h1 class="bibliography-title font-display text-2xl font-extrabold text-belly-firebrick">Slovenská speleologická spoločnosť</h1>
-          <p class="text-sm text-belly-dimgray-warm">Testovací výber najnovších čísel od roku {startYear}, mapy a plány sú zoradené prvé</p>
+          <p class="text-sm text-belly-dimgray-warm">Kompletný archív ročníkov {startYear}-{endYear}, mapy a plány sú zoradené prvé</p>
         </div>
         <div class="flex flex-col gap-3 lg:items-end">
           <div class="flex flex-wrap items-center gap-2 lg:justify-end">
@@ -56,7 +54,7 @@ const bibliographyExports = [
             </div>
           </div>
           <dl class="grid grid-cols-2 gap-3 text-xs font-mono sm:grid-cols-4">
-            <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Článkov 2024+</dt><dd id="stat-total" class="font-bold text-belly-firebrick">{totalArticles}</dd></div>
+            <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Článkov</dt><dd id="stat-total" class="font-bold text-belly-firebrick">{totalArticles}</dd></div>
             <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Roky</dt><dd class="font-bold text-belly-firebrick">{startYear}-{endYear}</dd></div>
             <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Mapy/plány</dt><dd id="stat-maps" class="font-bold text-belly-peru">{articlesWithMaps}</dd></div>
             <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Autori</dt><dd class="font-bold text-belly-firebrick">{totalUniqueAuthors}</dd></div>
@@ -119,7 +117,7 @@ const bibliographyExports = [
         </div>
       </section>
 
-      <section class="bibliography-pane hidden min-h-0 flex-col lg:flex">
+      <section id="detail-section" class="bibliography-pane bibliography-detail-section flex min-h-0 flex-col">
         <nav class="bibliography-tabs z-20 flex gap-1 border-b border-belly-darkgray p-2 shadow-sm">
           <button id="tab-detail-btn" class="bg-belly-firebrick px-3 py-1.5 text-xs font-bold text-belly-gainsboro">Detail článku</button>
           <button id="tab-analytics-btn" class="px-3 py-1.5 text-xs font-bold text-belly-dimgray-blue hover:bg-belly-darkgray">Štatistika</button>
@@ -243,10 +241,8 @@ const bibliographyExports = [
     import MiniSearch from 'minisearch';
     import articlesRaw from '../data/articles.json';
 
-    const TEST_START_YEAR = 2024;
-    const latestArticles = articlesRaw.filter((article) => article.year >= TEST_START_YEAR);
-    const sourceArticles = latestArticles.length ? latestArticles : articlesRaw;
-    const articles = sourceArticles.map((article) => ({ ...article, year_str: String(article.year) }));
+    const PDF_PAGE_LINK_OFFSET = 2;
+    const articles = articlesRaw.map((article) => ({ ...article, year_str: String(article.year) }));
     const articlesById = new Map(articles.map((article) => [article.id, article]));
     const articleYears = articles.map((article) => article.year);
     const START_YEAR = Math.min(...articleYears);
@@ -295,6 +291,7 @@ const bibliographyExports = [
     let fulltextLoadPromise = null;
     let fulltextLoadState = 'idle';
     let fulltextStats = null;
+    let setupComplete = false;
 
     function hasMap(article) {
       if (article.has_map_plan === true) return true;
@@ -308,13 +305,9 @@ const bibliographyExports = [
       return match ? Number(match[1]) : 1;
     }
 
-    function pdfPageOffset(article) {
-      return Number(article.year) >= 2024 ? 2 : 0;
-    }
-
     function pdfPage(article) {
       const printedPage = Number(article.pdf_page_start || firstArticlePage(article) || 1);
-      return printedPage + pdfPageOffset(article);
+      return printedPage + PDF_PAGE_LINK_OFFSET;
     }
 
     function articlePdfUrl(article) {
@@ -431,6 +424,15 @@ const bibliographyExports = [
       if (tab === 'analytics') renderCharts();
     }
 
+    function isMobileViewport() {
+      return window.matchMedia('(max-width: 1023px)').matches;
+    }
+
+    function scrollDetailIntoView() {
+      if (!isMobileViewport() || !setupComplete) return;
+      byId('detail-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }
+
     function applyFilters() {
       const query = state.search.trim();
       const base = query
@@ -498,7 +500,7 @@ const bibliographyExports = [
             ${hasMap(article) ? '<span class="article-result-badge ml-auto">mapa/plán</span>' : ''}
           </div>
           <h3 class="article-result-title">${article.title}</h3>
-          <p class="article-result-author">${(article.authors || []).join(', ')}</p>
+          <p class="article-result-author">${formatAuthorsDisplay(article.authors || [])}</p>
           <p class="article-result-abstract line-clamp-2">${article.abstract || ''}</p>
         `;
         row.addEventListener('click', () => selectArticle(article.id));
@@ -531,7 +533,7 @@ const bibliographyExports = [
 
       byId('detail-page-link').href = `/clanky/${article.id}/`;
       byId('detail-title').textContent = article.title;
-      byId('detail-authors').textContent = (article.authors || []).join(', ');
+      byId('detail-authors').textContent = formatAuthorsDisplay(article.authors || []);
       byId('detail-volume').textContent = article.volume || '-';
       byId('detail-issue').textContent = article.issue || '-';
       byId('detail-year').textContent = String(article.year || '-');
@@ -588,18 +590,26 @@ const bibliographyExports = [
 
       renderList();
       setTab('detail');
+      scrollDetailIntoView();
     }
 
     function formatAuthorsIso(authors) {
-      return authors.map((author) => {
+      return formatAuthorsDisplay(authors.map((author) => {
         if (!author.includes(',')) return author.toUpperCase();
         const [surname, initials] = author.split(',');
         return `${surname.trim().toUpperCase()}, ${initials.trim()}`;
-      }).join(' - ');
+      }));
+    }
+
+    function formatAuthorsDisplay(authors) {
+      if (!authors.length) return 'Anonymus';
+      if (authors.length === 1) return authors[0];
+      if (authors.length === 2) return `${authors[0]} a ${authors[1]}`;
+      return `${authors.slice(0, -1).join(', ')} a ${authors[authors.length - 1]}`;
     }
 
     function formatAuthorsPlain(authors) {
-      return authors.join(', ');
+      return formatAuthorsDisplay(authors);
     }
 
     function generateCitations(article) {
@@ -802,6 +812,7 @@ const bibliographyExports = [
       });
       byId('export-errata-btn').addEventListener('click', exportErrata);
       setTab('detail');
+      setupComplete = true;
     }
 
     window.addEventListener('DOMContentLoaded', setup);

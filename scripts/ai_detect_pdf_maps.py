@@ -12,6 +12,7 @@ import argparse
 import base64
 import datetime as dt
 import json
+import os
 import re
 import shutil
 import subprocess
@@ -73,9 +74,14 @@ def read_json(path: Path) -> Any:
 
 def write_json(path: Path, value: Any) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as handle:
+    tmp_path = path.with_name(f".{path.name}.tmp-{os.getpid()}")
+    with tmp_path.open("w", encoding="utf-8") as handle:
         json.dump(value, handle, ensure_ascii=False, indent=2)
         handle.write("\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+    tmp_path.replace(path)
+    fsync_parent(path)
 
 
 def iter_jsonl(path: Path):
@@ -93,9 +99,26 @@ def iter_jsonl(path: Path):
 
 def write_jsonl(path: Path, records: list[dict[str, Any]]) -> None:
     path.parent.mkdir(parents=True, exist_ok=True)
-    with path.open("w", encoding="utf-8") as handle:
+    tmp_path = path.with_name(f".{path.name}.tmp-{os.getpid()}")
+    with tmp_path.open("w", encoding="utf-8") as handle:
         for record in sorted(records, key=lambda item: int(item["page"])):
             handle.write(json.dumps(record, ensure_ascii=False, sort_keys=True) + "\n")
+        handle.flush()
+        os.fsync(handle.fileno())
+    tmp_path.replace(path)
+    fsync_parent(path)
+
+
+def fsync_parent(path: Path) -> None:
+    """Best-effort directory fsync so crash recovery sees renamed files."""
+    try:
+        fd = os.open(path.parent, os.O_RDONLY)
+    except OSError:
+        return
+    try:
+        os.fsync(fd)
+    finally:
+        os.close(fd)
 
 
 def issue_key(issue: Any) -> str:
@@ -159,9 +182,15 @@ def render_pdf_page(pdf_path: Path, page: int, render_dir: Path, dpi: int) -> Pa
         raise RuntimeError("pdftoppm is not available.")
     render_dir.mkdir(parents=True, exist_ok=True)
     prefix = render_dir / f"{pdf_path.stem}_p{page}"
-    output = prefix.with_suffix(".png")
-    if output.exists() and output.stat().st_size > 0:
-        return output
+    output = Path(f"{prefix}.png")
+    if output.exists():
+        if output.stat().st_size > 0:
+            return output
+        output.unlink()
+    tmp_prefix = render_dir / f".{prefix.name}.tmp-{os.getpid()}"
+    tmp_output = Path(f"{tmp_prefix}.png")
+    if tmp_output.exists():
+        tmp_output.unlink()
     result = subprocess.run(
         [
             "pdftoppm",
@@ -174,14 +203,18 @@ def render_pdf_page(pdf_path: Path, page: int, render_dir: Path, dpi: int) -> Pa
             "-r",
             str(dpi),
             str(pdf_path),
-            str(prefix),
+            str(tmp_prefix),
         ],
         capture_output=True,
         text=True,
         check=False,
     )
-    if result.returncode != 0 or not output.exists():
+    if result.returncode != 0 or not tmp_output.exists() or tmp_output.stat().st_size == 0:
+        if tmp_output.exists():
+            tmp_output.unlink()
         raise RuntimeError(result.stderr.strip() or f"pdftoppm failed for page {page}")
+    tmp_output.replace(output)
+    fsync_parent(output)
     return output
 
 

@@ -189,6 +189,13 @@ def infer_printed_page_number(text: str) -> int | None:
     footer_candidates = list(reversed(lines[-14:]))
     header_candidates = lines[:8]
     for line in footer_candidates + header_candidates:
+        mixed_footer = re.search(
+            r"\bSSS\s+(\d{1,4})\s+Spravodaj\b",
+            line,
+            flags=re.IGNORECASE,
+        )
+        if mixed_footer:
+            return int(mixed_footer.group(1))
         match = re.match(r"^-+\s*(\d{1,4})\s*-+$", line)
         if not match:
             match = re.match(r"^(\d{1,4})$", line)

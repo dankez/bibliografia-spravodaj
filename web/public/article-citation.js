@@ -1,6 +1,7 @@
 document.querySelectorAll('.copy-citation-btn').forEach((button) => {
   button.addEventListener('click', (event) => {
-    const type = event.currentTarget.dataset.type;
+    const clickedButton = event.currentTarget;
+    const type = clickedButton.dataset.type;
     let text = '';
     if (type === 'iso') text = document.getElementById('cite-iso')?.textContent || '';
     else if (type === 'apa') text = document.getElementById('cite-apa')?.textContent || '';
@@ -9,14 +10,14 @@ document.querySelectorAll('.copy-citation-btn').forEach((button) => {
     if (!text) return;
 
     navigator.clipboard.writeText(text).then(() => {
-      const originalText = event.currentTarget.textContent;
-      event.currentTarget.textContent = 'Kopírované!';
-      event.currentTarget.classList.remove('text-belly-firebrick');
-      event.currentTarget.classList.add('text-belly-peru');
+      const originalText = clickedButton.textContent;
+      clickedButton.textContent = 'Kopírované!';
+      clickedButton.classList.remove('text-belly-firebrick');
+      clickedButton.classList.add('text-belly-peru');
       setTimeout(() => {
-        event.currentTarget.textContent = originalText;
-        event.currentTarget.classList.remove('text-belly-peru');
-        event.currentTarget.classList.add('text-belly-firebrick');
+        clickedButton.textContent = originalText;
+        clickedButton.classList.remove('text-belly-peru');
+        clickedButton.classList.add('text-belly-firebrick');
       }, 2000);
     });
   });

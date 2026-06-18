@@ -23,7 +23,7 @@ def test_article_line_hides_pdf_url_behind_short_markdown_label():
     assert line.startswith('<span id="clanok-816"></span>**816. Na terchovskej akcii**')
     assert "**AUTOR:** Piovarči, E." in line
     assert "**STRANY:** s. 45 – 50 [↗ PDF](" in line
-    assert "Spravodaj_SSS_1987_1-2.pdf#page=47)" in line
+    assert "Spravodaj_SSS_1987_1-2.pdf#page=49)" in line
     assert "**POZNÁMKY:** 4 obr." in line
     assert "Online:" not in line
 
@@ -64,7 +64,7 @@ def test_maps_and_plans_hides_pdf_url_behind_short_markdown_label():
 
     assert "[↗ PDF](" in markdown
     assert "Online: [https://" not in markdown
-    assert "Spravodaj_SSS_1987_1-2.pdf#page=12)" in markdown
+    assert "Spravodaj_SSS_1987_1-2.pdf#page=14)" in markdown
 
 
 def test_render_html_document_preserves_headings_and_pdf_links():

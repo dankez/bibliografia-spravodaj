@@ -38,6 +38,7 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 ARTICLES_PATH = BASE_DIR / "data" / "articles_with_urls.json"
 FULLTEXT_PATH = BASE_DIR / "data" / "article_fulltext.jsonl"
 AI_KNOWLEDGE_PATH = BASE_DIR / "data" / "article_ai_knowledge.jsonl"
+PDF_LINK_PAGE_OFFSET = 2
 DB_PATH = BASE_DIR / "data" / "research_knowledge.sqlite"
 CHUNKS_JSONL_PATH = BASE_DIR / "data" / "research_chunks.jsonl"
 TIMELINES_PATH = BASE_DIR / "data" / "research_timelines.json"
@@ -140,9 +141,14 @@ def pdf_link_page(article: dict) -> str:
         page_number = int(page)
     except (TypeError, ValueError):
         return ""
-    if int(article.get("year") or 0) >= 2024:
-        page_number += 2
-    return str(page_number)
+    return str(page_number + PDF_LINK_PAGE_OFFSET)
+
+
+def pdf_anchor_page(page: Any) -> str:
+    try:
+        return str(int(page) + PDF_LINK_PAGE_OFFSET)
+    except (TypeError, ValueError):
+        return str(page or "")
 
 
 def pdf_url_for_article(article: dict) -> str:
@@ -1155,12 +1161,7 @@ def build_timelines(conn: sqlite3.Connection, path: Path, min_articles: int) -> 
     grouped: dict[str, dict[str, Any]] = {}
     for row in rows:
         entity_type, name, wikidata_url, article_id, year, issue, pages, title, authors, summary, pdf_url, pdf_page = row
-        pdf_link_page_value = pdf_page
-        if pdf_page:
-            try:
-                pdf_link_page_value = int(pdf_page) + 2 if int(year or 0) >= 2024 else int(pdf_page)
-            except (TypeError, ValueError):
-                pdf_link_page_value = pdf_page
+        pdf_link_page_value = pdf_anchor_page(pdf_page)
         key = f"{entity_type}:{normalize_key(name)}"
         entry = grouped.setdefault(
             key,
@@ -1334,7 +1335,7 @@ def build_database(args: argparse.Namespace) -> dict:
                     "year": row["year"],
                     "issue": row["issue"],
                     "pages": row["pages"],
-                    "pdf_url": f"{row['pdf_url']}#page={page_for_chunk(row, chunk, max(1, len(clean_text)), physical=True)}"
+                    "pdf_url": f"{row['pdf_url']}#page={pdf_anchor_page(page_for_chunk(row, chunk, max(1, len(clean_text)), physical=True))}"
                     if row.get("pdf_url")
                     else "",
                     "citation": row["citation_iso690"],
@@ -1482,7 +1483,7 @@ def query_database(db_path: Path, query: str, limit: int) -> list[dict]:
         if article_row_data and article_row_data["pdf_url"]:
             pdf_url = article_row_data["pdf_url"]
             if row["pdf_page"]:
-                pdf_url = f"{pdf_url}#page={row['pdf_page']}"
+                pdf_url = f"{pdf_url}#page={pdf_anchor_page(row['pdf_page'])}"
         results.append(
             {
                 "chunk_id": row["chunk_id"],

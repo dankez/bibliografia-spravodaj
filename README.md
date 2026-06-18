@@ -26,7 +26,7 @@ Aktuálny dataset obsahuje:
 - 10594 research chunkov,
 - 1339 rozpoznaných entít,
 - 449 chronologických research timeline výstupov,
-- 33 prísne potvrdených článkov s mapou alebo plánom v rokoch 2024+.
+- 164 prísne potvrdených článkov s mapou alebo plánom naprieč archívom.
 
 Research manifest uvádza približne 25,8 milióna znakov a 3,95 milióna slov v spracovanom fulltexte. SQLite research databáza sa generuje lokálne a nie je commitovaná, pretože má viac ako 100 MB.
 
@@ -100,13 +100,12 @@ PDF čísla často obsahujú obálku, ktorá nie je súčasťou tlačeného čí
 Vo verzii 1 platí:
 
 - bibliografické pole `pages` zostáva tlačené číslovanie časopisu,
-- staršie záznamy majú často `pdf_page_start` už uložené ako fyzickú PDF stranu,
-- nové záznamy od roku 2024 majú `pdf_page_start` ako tlačenú stranu,
-- web, exportér a research citation helper preto pri článkových odkazoch od roku 2024 pridávajú offset `+2`,
-- napríklad tlačená strana 88 v čísle 2026/1 sa linkuje ako PDF fyzická strana 90,
+- `pdf_page_start` a začiatok z poľa `pages` sa pri článkových odkazoch berú ako tlačená strana,
+- web, exportér a research citation helper pridávajú ku každému článkovému PDF odkazu globálny offset `+2`,
+- napríklad tlačená strana 57 sa linkuje ako PDF fyzická strana 59,
 - `map_plan_pages` sa berú ako fyzické PDF strany z detekcie a neposúvajú sa druhýkrát.
 
-Toto pravidlo je zásadné. Ak sa budú dopĺňať ďalšie ročníky, treba najprv overiť, či ich `pdf_page_start` drží tlačenú alebo fyzickú stranu.
+Toto pravidlo je zásadné pre všetky ročníky, nielen pre nové čísla. Podrobnejší runbook pre kontrolu a údržbu je v [pravidlách PDF odkazov](docs/PDF_PAGE_LINKS.md).
 
 ## Fulltextová pipeline
 
@@ -307,14 +306,14 @@ Verzia 1.0 znamená prvý ucelený stav projektu:
 - exporty sú v Danko formáte,
 - fulltextová research vrstva existuje,
 - mapy/plány sa detegujú prísnou lokálnou pipeline,
-- nové PDF odkazy od roku 2024 používajú správny fyzický offset strán,
+- všetky článkové PDF odkazy používajú správny fyzický offset strán,
 - projekt je pripravený na ďalšie rozširovanie o AI sumarizačné články.
 
 ## Ďalší rozvoj
 
 Najbližšie vhodné smerovanie:
 
-- rozšíriť mapovú detekciu mimo ročníkov 2024+ po manuálnej kontrole offsetov,
+- priebežne manuálne auditovať potvrdené mapy a plány v starších ročníkoch,
 - doplniť viac AI znalostných obohatení fulltextu cez lacnejší lokálny alebo dávkový režim,
 - vytvoriť samostatnú funkciu na generovanie tematických článkov z research databázy,
 - doplniť redakčný workflow pre komunitné errata,
