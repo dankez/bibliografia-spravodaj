@@ -94,6 +94,7 @@ CAVE_GENERIC_PREFIXES = {
     "sprava",
     "spristupnene",
     "technicke",
+    "the",
     "udaje",
     "vplyv",
     "vsetkym",
@@ -148,6 +149,7 @@ CAVE_GENERIC_WORDS = {
     "rok",
     "roky",
     "sa",
+    "sifon",
     "skolenie",
     "skryva",
     "slovenska",
@@ -323,6 +325,25 @@ def normalize_text(value: Any) -> str:
     return re.sub(r"\s+", " ", text).strip()
 
 
+CAVE_HEADWORD_KEYS = {normalize_text(word) for word in CAVE_HEADWORDS}
+REGISTERED_MATCH_SKIP_TOKENS = CAVE_HEADWORD_KEYS | {
+    "a",
+    "alebo",
+    "cave",
+    "do",
+    "na",
+    "nad",
+    "pod",
+    "pre",
+    "pri",
+    "the",
+    "v",
+    "vo",
+    "z",
+    "zo",
+}
+
+
 def slugify(value: Any) -> str:
     return normalize_text(value).replace(" ", "-") or "jaskyna"
 
@@ -346,7 +367,7 @@ def clean_inferred_cave_name(value: Any) -> str:
     text = re.sub(r"\s+(?:v|vo|na|pri|pod|nad|z|zo|do|pre|a|alebo)$", "", text, flags=re.IGNORECASE)
     words = text.split()
     for index, word in enumerate(words):
-        if index > 0 and normalize_text(word) in {"v", "vo", "pri"}:
+        if index > 0 and normalize_text(word) in {"a", "alebo", "do", "na", "nad", "pod", "pre", "pri", "v", "vo", "z", "zo"}:
             text = " ".join(words[:index])
             break
     return text.strip()
@@ -386,6 +407,12 @@ def is_contextual_cave_candidate(value: Any) -> bool:
 
 
 def normalize_cave_candidate_name(cave_name: str, article: dict[str, Any]) -> str:
+    text = re.sub(r"\s+", " ", str(cave_name or "")).strip()
+    candidate_key = normalize_text(text)
+    if candidate_key.startswith("jaskyn") and candidate_key.endswith(" cave"):
+        text = re.sub(r"\s+cave\s*$", "", text, flags=re.IGNORECASE).strip()
+        cave_name = text
+        candidate_key = normalize_text(text)
     candidate_key = normalize_text(cave_name)
     context_key = normalize_text(f"{cave_name} {article_context_text(article)}")
 
@@ -462,9 +489,9 @@ def infer_caves_from_text(text: str) -> list[str]:
 
     inferred: list[str] = []
     type_before = re.compile(
-        rf"\b(?P<head>(?i:{CAVE_HEADWORD_PATTERN}))\s+"
+        rf"(?=\b(?P<head>(?i:{CAVE_HEADWORD_PATTERN}))\s+"
         rf"(?P<name>[A-ZÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0-9][{CAVE_NAME_CHAR_PATTERN}]+"
-        rf"(?:\s+(?:[a-záäčďéíĺľňóôŕšťúýž]+|[A-ZÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0-9][{CAVE_NAME_CHAR_PATTERN}]+)){{0,5}})",
+        rf"(?:\s+(?:[a-záäčďéíĺľňóôŕšťúýž]+|[A-ZÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0-9][{CAVE_NAME_CHAR_PATTERN}]+)){{0,5}}))",
     )
     name_before = re.compile(
         rf"\b(?P<name>[A-ZÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0-9][{CAVE_NAME_CHAR_PATTERN}]+"
@@ -488,6 +515,10 @@ def infer_caves_from_text(text: str) -> list[str]:
             inferred.append(candidate)
 
     for match in name_before.finditer(text):
+        left_name = match.group("name")
+        left_tokens = normalize_text(left_name).split()
+        if any(token in {"v", "vo", "z", "zo", "do", "na", "pri", "pod", "nad"} for token in left_tokens):
+            continue
         candidate = clean_inferred_cave_name(f"{match.group('name')} {match.group('head')}")
         if is_probable_cave_name(candidate):
             inferred.append(candidate)
@@ -505,7 +536,10 @@ def infer_special_caves_from_article(article: dict[str, Any]) -> list[str]:
     return unique_strings(candidates)
 
 
-def article_cave_candidates(article: dict[str, Any]) -> list[str]:
+def article_cave_candidates(
+    article: dict[str, Any],
+    registered_matchers: dict[str, list[dict[str, Any]]] | None = None,
+) -> list[str]:
     knowledge = article.get("knowledge") or {}
     explicit = (
         list(article.get("caves") or [])
@@ -513,6 +547,10 @@ def article_cave_candidates(article: dict[str, Any]) -> list[str]:
         + list(knowledge.get("locations") or [])
     )
     explicit = [name for name in unique_strings(explicit) if is_probable_cave_name(name)]
+    registered = infer_registered_caves_from_article(article, registered_matchers or {})
+    if registered and not article.get("caves_verified"):
+        special = infer_special_caves_from_article(article)
+        return unique_strings([*registered, *special])
     if explicit:
         return explicit
     inferred = infer_caves_from_text(". ".join([article.get("title") or "", article.get("abstract") or ""]))
@@ -914,6 +952,123 @@ def article_text_for_cave_match(article: dict[str, Any]) -> str:
     return normalize_text(" ".join(values))
 
 
+def registered_match_prefix(token: str) -> str:
+    return token[:5] if len(token) > 5 else token
+
+
+def registered_name_prefixes(value: Any) -> list[str]:
+    prefixes: list[str] = []
+    for token in normalize_text(value).split():
+        if len(token) < 4 or token in REGISTERED_MATCH_SKIP_TOKENS or token in CAVE_GENERIC_WORDS:
+            continue
+        prefix = registered_match_prefix(token)
+        if prefix not in prefixes:
+            prefixes.append(prefix)
+    return prefixes
+
+
+def article_registered_match_prefixes(article_text: str) -> list[str]:
+    prefixes: list[str] = []
+    for token in article_text.split():
+        if len(token) < 4:
+            continue
+        prefix = registered_match_prefix(token)
+        if prefix not in prefixes:
+            prefixes.append(prefix)
+    return prefixes
+
+
+def cave_tokens_regex(tokens: list[str]) -> str:
+    return r" +".join(cave_token_pattern(token) for token in tokens)
+
+
+def registered_name_patterns(value: Any) -> list[re.Pattern[str]]:
+    normalized = normalize_text(value)
+    tokens = normalized.split()
+    if not tokens or not any(token in CAVE_HEADWORD_KEYS for token in tokens):
+        return []
+    patterns: list[re.Pattern[str]] = []
+    full_pattern = cave_phrase_pattern(value)
+    if full_pattern:
+        patterns.append(full_pattern)
+    if len(tokens) > 1 and tokens[0] in CAVE_HEADWORD_KEYS:
+        suffix_tokens = tokens[1:]
+        if registered_name_prefixes(" ".join(suffix_tokens)):
+            patterns.append(re.compile(rf"\b{cave_tokens_regex(suffix_tokens)} +cave\b"))
+    if len(tokens) > 1 and tokens[-1] in CAVE_HEADWORD_KEYS:
+        prefix_tokens = tokens[:-1]
+        if registered_name_prefixes(" ".join(prefix_tokens)):
+            patterns.append(re.compile(rf"\bcave +{cave_tokens_regex(prefix_tokens)}\b"))
+    return patterns
+
+
+def build_smopaj_text_matchers(
+    data: dict[str, Any] | None,
+    smopaj_lookup: dict[str, list[dict[str, Any]]],
+) -> dict[str, list[dict[str, Any]]]:
+    entries = data.get("entries", []) if isinstance(data, dict) else []
+    matchers_by_prefix: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    seen: set[tuple[str, str]] = set()
+    if not isinstance(entries, list):
+        return matchers_by_prefix
+
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        official_name = str(entry.get("official_name") or "").strip()
+        names = unique_strings([official_name, *list(entry.get("names") or []), *list(entry.get("aliases") or [])])
+        for name in names:
+            if not is_probable_cave_name(name):
+                continue
+            smopaj_entry = resolve_smopaj_entry(name, smopaj_lookup)
+            if not smopaj_entry:
+                continue
+            canonical_name = str(smopaj_entry.get("official_name") or name).strip() or name
+            patterns = registered_name_patterns(name)
+            prefixes = registered_name_prefixes(name)
+            if not patterns or not prefixes:
+                continue
+            matcher_key = (canonical_name, name)
+            if matcher_key in seen:
+                continue
+            seen.add(matcher_key)
+            matcher = {
+                "name": canonical_name,
+                "source_name": name,
+                "patterns": patterns,
+            }
+            for prefix in prefixes:
+                matchers_by_prefix[prefix].append(matcher)
+    return matchers_by_prefix
+
+
+def infer_registered_caves_from_article(
+    article: dict[str, Any],
+    matchers_by_prefix: dict[str, list[dict[str, Any]]],
+) -> list[str]:
+    if not matchers_by_prefix:
+        return []
+    text = article_text_for_cave_match(article)
+    if not text:
+        return []
+    candidates: list[dict[str, Any]] = []
+    seen_keys: set[tuple[str, str]] = set()
+    for prefix in article_registered_match_prefixes(text):
+        for matcher in matchers_by_prefix.get(prefix, []):
+            key = (str(matcher.get("name") or ""), str(matcher.get("source_name") or ""))
+            if key in seen_keys:
+                continue
+            seen_keys.add(key)
+            candidates.append(matcher)
+
+    matched: list[str] = []
+    for matcher in candidates:
+        patterns = matcher.get("patterns") or []
+        if any(pattern.search(text) for pattern in patterns):
+            matched.append(str(matcher.get("name") or ""))
+    return unique_strings(matched)
+
+
 def article_mentions_cave(article: dict[str, Any], cave_name: str) -> bool:
     if article.get("caves_verified"):
         return True
@@ -988,11 +1143,12 @@ def build_cave_index(
     alias_lookup = build_alias_lookup(aliases or [])
     area_region_lookup, cave_region_lookup = build_geomorphology_lookup(geomorphology or {})
     smopaj_lookup = build_smopaj_lookup(smopaj_register or {})
+    smopaj_text_matchers = build_smopaj_text_matchers(smopaj_register or {}, smopaj_lookup)
     smopaj_override_lookup = build_smopaj_override_lookup(smopaj_overrides or {}, smopaj_register or {})
     candidate_rows: list[dict[str, Any]] = []
 
     for article in articles:
-        for cave_name in article_cave_candidates(article):
+        for cave_name in article_cave_candidates(article, smopaj_text_matchers):
             normalized_name = normalize_cave_candidate_name(cave_name, article)
             canonical_name = canonical_cave_name(normalized_name, alias_lookup)
             candidate_area = infer_cave_area(article, canonical_name)

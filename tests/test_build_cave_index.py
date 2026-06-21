@@ -723,6 +723,77 @@ def test_build_cave_index_adds_official_smopaj_cave_number_and_region_for_unique
     assert dobsinska["region"]["local_area"] == "Slovenský raj"
 
 
+def test_build_cave_index_infers_inflected_official_smopaj_cave_mentions():
+    articles = [
+        {
+            "id": 1195,
+            "title": "Nové objavy v Jaskyni zlomísk",
+            "year": 1996,
+            "issue": "1",
+            "pages": "27-28",
+            "authors": ["Holúbek, P."],
+            "abstract": "Prieskum Východnej siene jaskyne.",
+            "caves": [],
+        },
+        {
+            "id": 1273,
+            "title": "Sifón Tichá tôňa v Jaskyni zlomísk",
+            "year": 1997,
+            "issue": "1",
+            "pages": "40-41",
+            "authors": ["Hutňan, D."],
+            "abstract": "O prieskume sifónu v Jaskyni zlomísk.",
+            "caves": [],
+        },
+        {
+            "id": 1292,
+            "title": "The Jaskyňa Zlomísk Cave",
+            "year": 1997,
+            "issue": "2",
+            "pages": "14-15",
+            "authors": ["Holúbek, P."],
+            "abstract": "English note about Zlomiská Cave.",
+            "caves": [],
+        },
+        {
+            "id": 2451,
+            "title": "Čo nové v Jaskyni zlomísk? Za posledných 10 rokov takmer nič!",
+            "year": 2008,
+            "issue": "4",
+            "pages": "13-17",
+            "authors": ["Holúbek, P."],
+            "abstract": "Južný koniec, Ujgurská šikmina, Demänovský sifón a Sintrový sifón.",
+            "caves": [],
+        },
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "1709",
+                "registry_number": "29",
+                "official_name": "Jaskyňa zlomísk",
+                "names": ["Jaskyňa zlomísk", "Jožova jaskyňa"],
+                "aliases": ["Jožova jaskyňa"],
+                "geomorph_celok": "Nízke Tatry",
+                "geomorph_podcelok": "Ďumbierske Tatry",
+                "geomorph_cast": "Demänovské vrchy",
+            }
+        ]
+    }
+
+    caves = build_cave_index.build_cave_index(articles, smopaj_register=smopaj_register)
+
+    zlomisk = next(item for item in caves if item["name"] == "Jaskyňa zlomísk")
+    assert zlomisk["smopaj_cave_number"] == "1709"
+    assert zlomisk["region"]["geomorph_unit"] == "Nízke Tatry"
+    assert [item["id"] for item in zlomisk["articles"]] == [1195, 1273, 1292, 2451]
+
+    names = {item["name"] for item in caves}
+    assert "Sifón Tichá tôňa" not in names
+    assert "Demänovský sifón" not in names
+    assert "Jaskyňa Zlomísk Cave" not in names
+
+
 def test_build_cave_index_does_not_auto_assign_official_number_for_ambiguous_smopaj_name():
     articles = [
         {
