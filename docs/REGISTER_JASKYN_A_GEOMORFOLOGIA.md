@@ -192,10 +192,22 @@ kde model alebo kontext nevedel bezpečne vybrať jednu jaskyňu.
 Odporúčaný postup pre ďalšie dávky:
 
 ```bash
-python3 scripts/ai_match_smopaj_caves.py --backend heuristic --limit 100 --output /tmp/sss-heuristic-queue.json
-python3 scripts/ai_match_smopaj_caves.py --backend codex --codex-model gpt-5.5 --max-candidates 5 --resume --output data/smopaj_cave_ai_matches.json --slug <slug>
+python3 scripts/ai_match_smopaj_caves.py --backend heuristic --limit 100 --dry-run
+python3 scripts/ai_match_smopaj_caves.py --backend codex --codex-model gpt-5.5 --fulltext-context --resume --min-confidence 0.86 --output data/smopaj_cave_ai_matches.json --slug <slug>
 python3 scripts/build_cave_index.py
+python3 scripts/export_smopaj_public_register.py
 ```
+
+Heuristický výstup slúži iba na predvýber. Do produkčného súboru sa zapisujú
+iba vysoko isté Codex/GPT zhody alebo ručne potvrdené override. Generické
+titulkové fragmenty typu `Nová jaskyňa`, `12 km jaskyne`,
+`Analýza nálezov zo ...` a podobné nenázvy sa filtrujú už pri generovaní
+`web/src/data/caves.json`, aby sa nedostali do registra ako samostatné lokality.
+
+Najproduktívnejší workflow je zoradiť nezaradené karty podľa kandidátneho skóre
+voči SMOPaJ zoznamu a cez Codex overovať iba silné názvové/pádové varianty.
+Chronologické spracovanie celej fronty rýchlo narazí na zahraničné, skupinové
+alebo všeobecné položky, ktoré treba skôr odkladať ako párovať.
 
 Ak schema režim Codex CLI padá na app-server alebo sandbox inicializácii, dá sa
 použiť úzky recovery helper pre konkrétne slugs:

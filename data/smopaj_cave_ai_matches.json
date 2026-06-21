@@ -1,11 +1,11 @@
 {
   "schema_version": "smopaj-cave-ai-matches/v1",
-  "generated_at": "2026-06-21T15:13:13.460488+00:00",
+  "generated_at": "2026-06-21T17:32:39.240477+00:00",
   "backend": "codex",
   "model": "gpt-5.5",
   "ollama_model": "gemma4:e2b-it-qat",
   "codex_model": "gpt-5.5",
-  "min_confidence": 0.82,
+  "min_confidence": 0.86,
   "sources": [
     {
       "title": "AI-assisted SMOPaJ cave register matching",
@@ -238,6 +238,302 @@
       "confidence": "ai-assisted-high",
       "match_source": "ai-generated-override",
       "note": "codex/gpt-5.5: Názov karty Jaskynný systém Mesačný tieň je rozšírený opis k oficiálnemu názvu Mesačný tieň; kontext článku rieši jaskynný systém Mesačný tieň. Vybraný kandidát: Mesačný tieň (Tatry / Východné Tatry / Vysoké Tatry)."
+    },
+    {
+      "cave_slug": "jaskyna-stefanova",
+      "cave_name": "Jaskyňa Štefanová",
+      "cave_number": "2016",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Kontext opakovane určuje lokalitu ako jaskyňu Štefanová v Demänovskej doline/Nízkych Tatrách a článok 2283 ju explicitne pomenúva „jaskyňa Štefanová 1“. To zodpovedá kandidátovi SMOPaJ Štefanová 1; ostatné Štefanová 2–6/39 sú len podobne pomenované samostatné objekty bez priameho dôkazu. Vybraný kandidát: Štefanová 1 (Nízke Tatry / Ďumbierske Tatry / Demänovské vrchy)."
+    },
+    {
+      "cave_slug": "ochtinska-aragonitova-jeskyne",
+      "cave_name": "Ochtinská aragonitová jeskyně",
+      "cave_number": "2569",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty je český pádový/jazykový variant oficiálneho názvu „Ochtinská aragonitová jaskyňa“. Kontext článkov opakovane uvádza Ochtinskú/Ochtinské aragonitovú jaskyňu, skratku OAJ, objav v roku 1954 pri štôlni Kapusta a lokalitu Horný Hrádok, čo zodpovedá kandidátovi v oblasti Revúcka vrchovina / Hrádok. Ostatní kandidáti sú len všeobecné alebo iné aragonitové jaskyne. Vybraný kandidát: Ochtinská aragonitová jaskyňa (Revúcka vrchovina / Hrádok / )."
+    },
+    {
+      "cave_slug": "jaskyna-derava-skala",
+      "cave_name": "Jaskyňa Deravá skala",
+      "cave_number": "1252",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta uvádza Jaskyňa Deravá skala a článok explicitne opisuje jaskyňu v Malých Karpatoch, ľudovo nazývanú Dzeravá skala, zároveň identifikovanú ako Pálfyho/Pálffyho jaskyňa. Kandidát 1252 má rovnaký oficiálny názov aj aliasy Deravá skala, Dzeravá skala, Pálffyho jaskyňa a geomorfologicky patrí do Malých Karpát; ostatné rovnomenné alebo podobné kandidáty nemajú tento lokálny a aliasový kontext. Vybraný kandidát: Deravá skala (Malé Karpaty / Pezinské Karpaty / Biele hory)."
+    },
+    {
+      "cave_slug": "jaskyna-kamenne-mlieko",
+      "cave_name": "Jaskyňa Kamenné mlieko",
+      "cave_number": "5844",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty aj článku je presne Jaskyňa Kamenné mlieko/Kamenné mlieko a článok výslovne lokalizuje jaskyňu do Belianskych Tatier, v závere doliny Medzisteny. Kandidát 5844 má rovnaký názov a geomorfológiu Tatry / Východné Tatry / Belianske Tatry, kým ostatné rovnomenné kandidáty sú v Západných, Nízkych Tatrách alebo iných pohoriach. Vybraný kandidát: Kamenné mlieko (Tatry / Východné Tatry / Belianske Tatry)."
+    },
+    {
+      "cave_slug": "jaskyna-studna",
+      "cave_name": "Jaskyňa Studňa",
+      "cave_number": "455",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Text explicitne identifikuje lokalitu ako Jaskyňa Studňa v Bojniciach a v článku uvádza ekvivalenciu „jaskyni Studňa (Bojnickej hradnej jaskyni)“ pod Bojnickým zámkom. Kandidát 455 má oficiálny názov Bojnická hradná jaskyňa a názov/alias Studňa, takže ide o tú istú jaskyňu. Vybraný kandidát: Bojnická hradná jaskyňa (Hornonitrianska kotlina / Prievidzská kotlina / )."
+    },
+    {
+      "cave_slug": "jaskyna-nad-kamenolomom",
+      "cave_name": "Jaskyňa nad kameňolomom",
+      "cave_number": "1192",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty aj článku presne zodpovedá oficiálnemu názvu kandidáta 1192; pádový tvar „Jaskyne nad kameňolomom“ je len genitív. Kontext článku výslovne uvádza Čachtický kras a Malé Karpaty, čo sedí s geomorfológiou kandidáta Malé Karpaty / Čachtické Karpaty / Nedze. Text tiež používa anglický názov „Nad kameňolomom Cave“ a opisuje tú istú lokalitu. Vybraný kandidát: Jaskyňa nad kameňolomom (Malé Karpaty / Čachtické Karpaty / Nedze)."
+    },
+    {
+      "cave_slug": "liscie-diery",
+      "cave_name": "Líščie diery",
+      "cave_number": "759",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta aj názov článku uvádzajú Líščie diery a článok lokalitu výslovne kladie do Važeckého krasu pri Sikorovom vršku, čo z kandidátov zodpovedá geomorfologicky Kozím chrbtom / Važeckému chrbátu. Kandidát 759 má presný oficiálny názov Líščie diery; singulár Líščia diera v texte beriem ako pádovo/číslo variantné pomenovanie tej istej lokality v článku. Vybraný kandidát: Líščie diery (Kozie chrbty / Važecký chrbát / )."
+    },
+    {
+      "cave_slug": "pokladova-jaskyna",
+      "cave_name": "Pokladová jaskyňa",
+      "cave_number": "1027",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta aj článok uvádzajú názov Pokladová jaskyňa; anotácia ju lokalizuje do Porubského krasu v Lúčanskej Malej Fatre pri objave OS SSS Žilina v roku 1987. Kandidát 1027 má rovnaký oficiálny názov a geomorfológiu Malá Fatra / Lúčanská Fatra / Kýčery, čo zodpovedá lokálnemu kontextu. Kandidát 7115 je rovnomenná jaskyňa v Zvolenskej kotline bez kontextovej zhody. Vybraný kandidát: Pokladová jaskyňa (Malá Fatra / Lúčanská Fatra / Kýčery)."
+    },
+    {
+      "cave_slug": "prievanova-diera",
+      "cave_name": "Prievanová diera",
+      "cave_number": "3378",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty aj článku je presne Prievanová diera; článok ju lokalizuje na Plešivskú planinu v Slovenskom krase, čo sa zhoduje s kandidátom SMOPaJ 3378. Ostatní kandidáti majú iba podobné, ale odlišné názvy. Vybraný kandidát: Prievanová diera (Slovenský kras / Plešivská planina / )."
+    },
+    {
+      "cave_slug": "prievanova-jaskyna",
+      "cave_name": "Prievanová jaskyňa",
+      "cave_number": "5968",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty aj článku je presne „Prievanová jaskyňa“ a článok ju explicitne lokalizuje vo Vysokých Tatrách. Kandidát 5968 má rovnaký oficiálny názov a geomorfológiu Tatry / Východné Tatry / Vysoké Tatry; ostatné rovnomenné kandidáty sú v iných oblastiach alebo majú odlišný názov. Vybraný kandidát: Prievanová jaskyňa (Tatry / Východné Tatry / Vysoké Tatry)."
+    },
+    {
+      "cave_slug": "prosieckej-jaskyne",
+      "cave_name": "Prosieckej jaskyne",
+      "cave_number": "540",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty „Prosieckej jaskyne“ je pádový variant oficiálneho názvu „Prosiecka jaskyňa“. Kontext článku výslovne uvádza Prosiecku jaskyňu v Chočských vrchoch, čo sa zhoduje s geomorfologickým zaradením kandidáta Chočské vrchy / Prosečné. Nie sú známky zahraničnej lokality ani viacerých odlišných jaskýň. Vybraný kandidát: Prosiecka jaskyňa (Chočské vrchy / Prosečné / )."
+    },
+    {
+      "cave_slug": "sucha-jaskyna",
+      "cave_name": "Suchá jaskyňa",
+      "cave_number": "6647",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Článok jednoznačne hovorí o Suchej jaskyni č. 1 v Belianskej doline vo Veľkej Fatre, pracovisko OS Blatnica. Z kandidátov tomu názvom a číslovaním zodpovedá iba oficiálna „Suchá jaskyňa 1“ / „Veľká Suchá jaskyňa S-1“ vo Veľkej Fatre; ostatné rovnomenné Suché jaskyne sú v iných pohoriach alebo bez lokálneho dôkazu. Vybraný kandidát: Suchá jaskyňa 1 (Veľká Fatra / Lysec / )."
+    },
+    {
+      "cave_slug": "trojramennej-priepasti",
+      "cave_name": "Trojramennej priepasti",
+      "cave_number": "3152",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty je pádový tvar názvu Trojramenná priepasť a článok explicitne uvádza Trojramennú priepasť v Slovenskom krase. Kandidát 3152 má presný oficiálny názov a lokalitu Slovenský kras / Jasovská planina; ostatní kandidáti sú jaskyne v Trojramennom žľabe alebo iná Trojramenná jaskyňa mimo tohto kontextu. Vybraný kandidát: Trojramenná priepasť (Slovenský kras / Jasovská planina / )."
+    },
+    {
+      "cave_slug": "veterna-jaskyna",
+      "cave_name": "Veterná jaskyňa",
+      "cave_number": "5905.4",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov je presná zhoda a článok jednoznačne lokalizuje Veternú jaskyňu v masíve Úplazu vo Vysokých Tatrách, v západnom svahu Úplazu pri Čiernohorskej nižnej. Kandidát 5905.4 je Veterná jaskyňa v geomorfologickom celku Tatry / Východné Tatry / Vysoké Tatry; ostatné rovnomenné alebo podobné kandidáty sú v iných oblastiach. Vybraný kandidát: Veterná jaskyňa (Tatry / Východné Tatry / Vysoké Tatry)."
+    },
+    {
+      "cave_slug": "velkonocna-priepast",
+      "cave_name": "Veľkonočná priepasť",
+      "cave_number": "3420",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta aj článok uvádzajú presný názov Veľkonočná priepasť; článok ju jednoznačne lokalizuje ako PP-190 na Plešiveckej/Plešivskej planine. Kandidát 3420 má rovnaký oficiálny názov, alias PP190 a geomorfológiu Slovenský kras / Plešivská planina. Ostatní rovnomenní kandidáti sú na iných planinách alebo ide o jaskyňu, nie túto priepasť. Vybraný kandidát: Veľkonočná priepasť (Slovenský kras / Plešivská planina / )."
+    },
+    {
+      "cave_slug": "vyverova-jaskyna",
+      "cave_name": "Výverová jaskyňa",
+      "cave_number": "3214",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty je presne Výverová jaskyňa a článok ju jednoznačne lokalizuje na Koniarsku planinu pri Gemerskej Hôrke; kandidát 3214 je v Slovenskom krase/Koniarskej planine a má aj alias Päťročnica uvedený v názve článku. Vybraný kandidát: Výverová jaskyňa (Slovenský kras / Koniarska planina / )."
+    },
+    {
+      "cave_slug": "zbojnicka-jaskyna",
+      "cave_name": "Zbojnícka jaskyňa",
+      "cave_number": "896",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Článok jednoznačne lokalizuje Zbojnícku jaskyňu do Kurčínskej Magury v Ľubovnianskej vrchovine, v masíve Kurčínskej Magury pri obci Orlov. Kandidát 896 má rovnaký oficiálny názov a geomorfologiu Ľubovnianska vrchovina, zatiaľ čo ostatné rovnomenné kandidáty sú v iných pohoriach alebo majú odlišné názvy. Vybraný kandidát: Zbojnícka jaskyňa (Ľubovnianska vrchovina /  / )."
+    },
+    {
+      "cave_slug": "zlomiska-cave",
+      "cave_name": "Zlomiská Cave",
+      "cave_number": "1709",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta uvádza Zlomiská Cave a článok opakovane identifikuje lokalitu ako Zlomiská Cave, slovensky priamo Jaskyňa zlomísk, v Nízkych Tatrách/Jánskej doline. To presne zodpovedá kandidátovi 1709 s oficiálnym názvom Jaskyňa zlomísk; druhý kandidát je odlišná jaskyňa pri Zlomiskách. Vybraný kandidát: Jaskyňa zlomísk (Nízke Tatry / Ďumbierske Tatry / Demänovské vrchy)."
+    },
+    {
+      "cave_slug": "jaskyna-pec",
+      "cave_name": "jaskyňa Pec",
+      "cave_number": "1410",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Článok výslovne uvádza jaskyňu Pec v Plaveckom krase, Malé Karpaty, pri Plaveckom Podhradí a v Plaveckom hradnom vrchu. Z kandidátov s názvom Pec tomu zodpovedá položka 1410 v Plaveckom predhorí; ostatné lokality Pec sú v iných častiach Malých Karpát alebo mimo uvedeného kontextu. Vybraný kandidát: Pec (Malé Karpaty / Pezinské Karpaty / Plavecké predhorie)."
+    },
+    {
+      "cave_slug": "jaskyna-skality-potok",
+      "cave_name": "jaskyňa Skalitý potok",
+      "cave_number": "3144",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta uvádza jaskyňu Skalitý potok, no text článku aj anglický abstrakt opakovane používajú názov Skalistý potok Cave a lokalizujú ju do Slovenského krasu, konkrétne na Jasovskú planinu. Kandidát 3144 má oficiálny názov Skalistý potok a geomorfológiu Slovenský kras / Jasovská planina, takže ide o tú istú jaskyňu; rozdiel Skalitý/Skalistý je zjavný názvový alebo prepisový variant v karte. Vybraný kandidát: Skalistý potok (Slovenský kras / Jasovská planina / )."
+    },
+    {
+      "cave_slug": "sarkania-diera",
+      "cave_name": "Šarkania diera",
+      "cave_number": "5719",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty aj článok uvádzajú jaskyňu Šarkania diera; text ju explicitne lokalizuje v Súľovských skalách, skupina Roháča, a spomína aj alias Jánošíkova jaskyňa/Šarkania dzura. Kandidát 5719 má rovnaký oficiálny názov, alias Jánošíkova jaskyňa a geomorfológiu Súľovské vrchy / Súľovské skaly. Vybraný kandidát: Šarkania diera (Súľovské vrchy / Súľovské skaly / )."
+    },
+    {
+      "cave_slug": "brzotinska-jaskyna",
+      "cave_name": "Brzotínska jaskyňa",
+      "cave_number": "3333",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Text opisuje objav nového podzemného systému pri vyvieračke Gyepü medzi Brzotínom a Slavcom na východnom úpätí Plešivskej planiny; to zodpovedá kandidátovi Nová brzotínska jaskyňa s aliasmi Brzotínska vodná / Nová Gyepü, nie starej známej prietokovej jaskynke. Vybraný kandidát: Nová brzotínska jaskyňa (Slovenský kras / Plešivská planina / )."
+    },
+    {
+      "cave_slug": "jaskyna-velky-portal",
+      "cave_name": "Jaskyňa Veľký portál",
+      "cave_number": "2072",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty presne zodpovedá kandidátovi Veľký portál. Kontext článku výslovne lokalizuje jaskyňu Veľký portál v dolinke Vyvieranie v Demänovskej doline, v severných svahoch masívu Vyvieranie, čo sedí na kandidáta 2072 v Nízkych Tatrách / Demänovských vrchoch. Ostatní kandidáti sú iné oblasti alebo len čiastočné názvové zhody. Vybraný kandidát: Veľký portál (Nízke Tatry / Ďumbierske Tatry / Demänovské vrchy)."
+    },
+    {
+      "cave_slug": "jaskyna-ciernej-hory",
+      "cave_name": "Jaskyňa Čiernej hory",
+      "cave_number": "848",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty je pádový/lokalizačný variant oficiálneho názvu „Jaskyňa v Čiernej hore“. Kontext článku lokalizuje jaskyne Čiernej hory pri Tichom Potoku v Levočských vrchoch, čo zodpovedá geomorfologii kandidáta 848; ostatní kandidáti sú v iných pohoriach alebo majú iba vzdialenú názvovú podobnosť. Vybraný kandidát: Jaskyňa v Čiernej hore (Levočské vrchy / Levočská vysočina / )."
+    },
+    {
+      "cave_slug": "jazernu-jaskynu",
+      "cave_name": "Jazernú jaskyňu",
+      "cave_number": "4109",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty je pádový tvar k „Jazerná jaskyňa“ a článok explicitne uvádza „Tisovský kras – Jazerná jaskyňa“. Kandidát 4109 má rovnaký oficiálny názov a leží v Spišsko-gemerskom krase / Muránskej planine, čo zodpovedá lokálnemu kontextu Tisovského krasu. Ostatné rovnomenné kandidáty nemajú podporu v kontexte. Vybraný kandidát: Jazerná jaskyňa (Spišsko-gemerský kras / Muránska planina / )."
+    },
+    {
+      "cave_slug": "jastericia-priepast",
+      "cave_name": "Jašteričia priepasť",
+      "cave_number": "3580",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Text článku výslovne lokalizuje Jašteričiu priepasť na Silickej planine, asi 500 m severne od Jašteričieho jazera, a uvádza, že lokalita je známejšia ako Ponor na zemiačnisku alebo Krumpliš. Kandidát 3580 má oficiálny názov Krumpliš, synonymum Jašteričia priepasť a geomorfológiu Slovenský kras / Silická planina, čo jednoznačne zodpovedá kontextu. Vybraný kandidát: Krumpliš (Slovenský kras / Silická planina / )."
+    },
+    {
+      "cave_slug": "meandrova-jaskyna",
+      "cave_name": "Meandrová jaskyňa",
+      "cave_number": "1804",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Článok jednoznačne uvádza názov „Meandrová jaskyňa v Smrekovici“ a lokalizuje ju v svahu Smrekovice pri Stanišovskej doline, Liptovský Ján. To zodpovedá kandidátovi 1804 s oficiálnym názvom „Meandrová jaskyňa v Smrekovici“; ostatné kandidáty sú len rovnomenné jaskyne bez tohto lokálneho kontextu. Vybraný kandidát: Meandrová jaskyňa v Smrekovici (Nízke Tatry / Ďumbierske Tatry / Demänovské vrchy)."
+    },
+    {
+      "cave_slug": "pavucia-jaskyna",
+      "cave_name": "Pavúčia jaskyňa",
+      "cave_number": "1509.7",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov sa presne zhoduje a kontext článku výslovne lokalizuje Pavúčiu jaskyňu v Demänovskej doline ako súčasť Demänovského jaskynného systému/Demänovskej jaskyne mieru. To zodpovedá kandidátovi 1509.7 v Nízkych Tatrách, Demänovských vrchoch; ostatné rovnomenné kandidáty sú z iných oblastí bez lokálneho kontextu. Vybraný kandidát: Pavúčia jaskyňa (Nízke Tatry / Ďumbierske Tatry / Demänovské vrchy)."
+    },
+    {
+      "cave_slug": "sneznej-diery",
+      "cave_name": "Snežnej diery",
+      "cave_number": "3004",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta aj článok jednoznačne riešia Snežnú dieru na Borčianskej planine v Slovenskom krase/Hornom vrchu; text uvádza aj variant Hölyuk a výslovne odlišuje túto jaskyňu od Ľadovej jaskyne pod Havraňou skalou, s ktorou sa názvy v literatúre zamieňali. Vybraný kandidát: Snežná diera (Slovenský kras / Horný vrch / )."
+    },
+    {
+      "cave_slug": "suchej-jaskyni",
+      "cave_name": "Suchej jaskyni",
+      "cave_number": "6647",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta je pádový tvar k názvu Suchá jaskyňa; článok opakovane a konkrétne uvádza Suchá jaskyňa č. 1 / Suchá č. 1 v Belianskej doline vo Veľkej Fatre. Z kandidátov tomu názvovo aj číslovaním jednoznačne zodpovedá Suchá jaskyňa 1, alias Veľká Suchá jaskyňa S-1. Ostatné kandidáty sú rovnomenné iné lokality alebo bez lokálneho dôkazu. Vybraný kandidát: Suchá jaskyňa 1 (Veľká Fatra / Lysec / )."
+    },
+    {
+      "cave_slug": "svidovska-jaskyna",
+      "cave_name": "Svidovská jaskyňa",
+      "cave_number": "2002",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Kontext článku jednoznačne uvádza názov „Svidovská jaskyňa č. 2“ v Nízkych Tatrách pri Malužinej a prieskum vo Svidovskej doline. To zodpovedá kandidátovi „Svidovská jaskyňa 2“ v Nízkych Tatrách; kandidát č. 1 má rovnaký základ názvu, ale číslovanie v článku smeruje na jaskyňu 2. Vybraný kandidát: Svidovská jaskyňa 2 (Nízke Tatry / Ďumbierske Tatry / Demänovské vrchy)."
+    },
+    {
+      "cave_slug": "tichej-jaskyni",
+      "cave_name": "Tichej jaskyni",
+      "cave_number": "6070",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov karty je pádový tvar názvu Tichá jaskyňa a anotácia článku výslovne uvádza, že Tichá jaskyňa je označovaná aj ako G6 alebo Piu. Kandidát 6070 má oficiálny názov Tichá jaskyňa a aliasy Piu, Goričková 6 G-6, čo jednoznačne spája kartu s týmto záznamom. Vybraný kandidát: Tichá jaskyňa (Tatry / Západné Tatry / Červené vrchy)."
+    },
+    {
+      "cave_slug": "travertinova-jaskyna",
+      "cave_name": "Travertínová jaskyňa",
+      "cave_number": "400",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta má generický názov, ale článok jednoznačne lokalizuje jaskyňu ako „Travertínová jaskyňa vo Vajskovej“, medzi Vajskovou a Dolnou Lehotou v okrese Brezno, pri Vajskovskom potoku. Z kandidátov tomu zodpovedá iba SMOPaJ 400 s oficiálnym názvom „Travertínová jaskyňa vo Vajskovej“ v geomorfologii Horehronské podolie / Lopejská kotlina; ostatné rovnomenné kandidáty sú v odlišných oblastiach Slovenského krasu alebo Liptova. Vybraný kandidát: Travertínová jaskyňa vo Vajskovej (Horehronské podolie / Lopejská kotlina / )."
+    },
+    {
+      "cave_slug": "zlepencova-jaskyna",
+      "cave_name": "Zlepencová jaskyňa",
+      "cave_number": "6135",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Názov sa presne zhoduje a kontext článku výslovne lokalizuje Zlepencovú jaskyňu do Zubereckej brázdy pri úpätí Západných Tatier, čo zodpovedá kandidátovi 6135 v oblasti Tatry / Západné Tatry / Roháče. Ostatní rovnomenní kandidáti sú v iných geomorfologických oblastiach bez kontextovej zhody. Vybraný kandidát: Zlepencová jaskyňa (Tatry / Západné Tatry / Roháče)."
+    },
+    {
+      "cave_slug": "zapolnej-priepasti",
+      "cave_name": "Zápoľnej priepasti",
+      "cave_number": "786",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta v genitíve „Zápoľnej priepasti“ odkazuje na Zápoľnú priepasť. Kontext článku opakovane uvádza Zápoľnú priepasť v Kozích chrbtoch, v údolí Čierneho Váhu, pri Kráľovej Lehote, s odkazom na Važecký kras a údaje dr. Droppu. Jediný kandidát SMOPaJ má oficiálny názov „Zápoľná“ a geomorfológiu Kozie chrbty / Važecký chrbát, čo zodpovedá názvu aj lokálnemu kontextu. Vybraný kandidát: Zápoľná (Kozie chrbty / Važecký chrbát / )."
+    },
+    {
+      "cave_slug": "zidova-jaskyna",
+      "cave_name": "Židova jaskyňa",
+      "cave_number": "868",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta aj článok uvádzajú Židovu jaskyňu s presným lokálnym kontextom nad Tichým potokom/Tichým Potokom, Štelbach, Moše Singer. Kandidát 868 má rovnaký oficiálny názov a alias Mošova jaskyňa, ktorý priamo súvisí s Moše Singerom z článku; Levočské vrchy zodpovedajú oblasti Tichého Potoka. Kandidát 4998 má rovnaký názov, ale Starohorské vrchy nezodpovedajú lokálnemu kontextu. Vybraný kandidát: Židova jaskyňa (Levočské vrchy / Levočská vysočina / )."
+    },
+    {
+      "cave_slug": "zidovej-jaskyni",
+      "cave_name": "Židovej jaskyni",
+      "cave_number": "868",
+      "confidence": "ai-assisted-high",
+      "match_source": "ai-generated-override",
+      "note": "codex/gpt-5.5: Karta aj článok používajú pádový tvar názvu Židovej jaskyni a text explicitne uvádza Židova jaskyňa nad Tichým Potokom. Kontext s Moše Singerom zodpovedá kandidátovi 868, ktorý má aj alias Mošova jaskyňa; Tichý Potok lokálne sedí na Levočské vrchy. Kandidát 4998 má rovnaký názov, ale je v Starohorských vrchoch bez lokálneho dôkazu. Vybraný kandidát: Židova jaskyňa (Levočské vrchy / Levočská vysočina / )."
     }
   ],
   "deferred": [
@@ -426,14 +722,547 @@
         "1953",
         "1883"
       ]
+    },
+    {
+      "cave_slug": "jaskyna-velika-klisura",
+      "cave_name": "Jaskyňa Velika klisura",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "slovacka-jama",
+      "cave_name": "Slovačka jama",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskyna-slovenskeho-krasu",
+      "cave_name": "Jaskyňa Slovenského krasu",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "vajsablovej-priepasti",
+      "cave_name": "Vajsáblovej priepasti",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "botovskej-jaskyne",
+      "cave_name": "Botovskej jaskyne",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskyna-demanovskej-doliny",
+      "cave_name": "Jaskyňa Demänovskej doliny",
+      "reason": "Názov a články označujú kolektívnu lokalitu „Jaskyne Demänovskej doliny“/ramsarský komplex viacerých jaskýň, nie jednu konkrétnu jaskyňu. Kontext výslovne uvádza viac samostatných jaskýň (Demänovská ľadová, Suchá, Pustá, Okno, Beníková, Barania, Vyvieranie, Demänovská jaskyňa slobody atď.). Žiadny z kandidátov nie je touto oficiálnou jednotlivo identifikovanou lokalitou, preto nie je bezpečné priradiť číslo.",
+      "candidate_numbers": [
+        "1701",
+        "1674",
+        "1482",
+        "6374",
+        "1890"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-dezidera-horvata",
+      "cave_name": "Jaskyňa Dezidera Horváta",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "lukina-jama",
+      "cave_name": "Lukina jama",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "sloupsko-sosuvske-jaskyne",
+      "cave_name": "Sloupsko-šošůvské jaskyne",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "chynovska-jaskyna",
+      "cave_name": "Chýnovská jaskyňa",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "dobsinsko-stratensky-jaskynny-system",
+      "cave_name": "Dobšinsko-stratenský jaskynný systém",
+      "reason": "Karta označuje jaskynný systém v Slovenskom raji na planine Duča; kontext opakovane uvádza Stratenskú jaskyňu prepojenú s Psími dierami a Dučou, teda systém, nie iba samostatnú Stratenskú jaskyňu. Z kandidátov tomu zodpovedá oficiálny systémový záznam SMOPaJ „Systém Stratenskej jaskyne“ č. 4839; individuálna „Stratenská jaskyňa“ 4839.1 je užšia jednotka.",
+      "candidate_numbers": [
+        "4839",
+        "4839.1",
+        "1343",
+        "5905",
+        "1509"
+      ]
+    },
+    {
+      "cave_slug": "expedicia-slovacka-jama",
+      "cave_name": "Expedícia Slovačka jama",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskinia-niedzwiedzia-w-kletnie",
+      "cave_name": "Jaskinia Niedźwiedzia w Kletnie",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskyna-borinskeho-krasu",
+      "cave_name": "Jaskyňa Borinského krasu",
+      "reason": "Názov karty je generická fráza pre jaskyňu alebo jaskyne Borinského krasu, nie konkrétny oficiálny názov. Kontext článkov hovorí o viacerých objektoch v Borinskom krase (Viktória, Troch vchodov, Sovia, Hadia a ďalšie), takže nemožno bezpečne priradiť jednu jaskyňu. Kandidát 1381 má síce lokálny alias s Borinskou vyvieračkou, ale karta ani texty ho neidentifikujú; kandidát 3815 je z inej oblasti.",
+      "candidate_numbers": [
+        "3815",
+        "1381"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-cueva-ojos-de-cristal",
+      "cave_name": "Jaskyňa Cueva Ojos de Cristal",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskyna-driencanskeho-krasu",
+      "cave_name": "Jaskyňa Drienčanského krasu",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskyna-kamenny-dazd",
+      "cave_name": "Jaskyňa Kamenný dážď",
+      "reason": "Názov karty a článkov je jednoznačne „jaskyňa Kamenný dážď“, s kontextom objavov v Sokole a zmienkou o Nízkych Tatrách, no žiadny kandidát SMOPaJ nemá tento názov ani lokálne podporný kontext. Kandidáti sú iba čiastočné lexikálne zhody na „Kamenný/Kamenná“ (napr. Kamenné dúpä, Kamenný stan, Jaskyňa v Kamennom jarku) s nulovým kontextovým skóre, preto by priradenie bolo vymyslené.",
+      "candidate_numbers": [
+        "4627",
+        "5905.2",
+        "2614",
+        "562",
+        "3113"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-kominy-na-planine-pelc",
+      "cave_name": "Jaskyňa Komíny na Planine Pelc",
+      "reason": "Karta aj článok jednoznačne lokalizujú jaskyňu Komíny na planine Pelc do SZ svahu planiny Pelc v Stratenskej hornatine, Slovenský raj, pri jaskyni Vlčie diery. Z kandidátov je v tej istej oblasti a s priamym názvovým variantom 'Jaskyňa na planine Pelc' iba 4487. Oficiálny názov je síce odlišný ('Diera v streche') a názov Komíny nie je medzi uvedenými aliasmi, preto nejde o úplne isté priradenie, ale lokálny a názvový dôkaz je najsilnejší a ostatní kandidáti sú mimo Pelca alebo mimo Slovenského raja.",
+      "candidate_numbers": [
+        "4487",
+        "3824",
+        "3203",
+        "2171",
+        "2172"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-koniarskej-planiny",
+      "cave_name": "Jaskyňa Koniarskej planiny",
+      "reason": "Názov karty je generická formulácia pre jaskyňu/jaskyne Koniarskej planiny, nie doložený oficiálny názov jednej lokality. Kontext článkov hovorí o viacerých svahových jaskyniach Koniarskej planiny a osobitne o Gemerskoteplickej jaskyni; nedáva lokálny dôkaz, že karta označuje konkrétne Koniar 8, Koniar 9 alebo Koniar 10. Kandidáti majú iba zhodu v oblasti, nie v názve ani v jednoznačnom článkovom kontexte.",
+      "candidate_numbers": [
+        "3193",
+        "3194",
+        "3195",
+        "4587",
+        "4487"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-krystalove-oci",
+      "cave_name": "Jaskyňa Kryštálové oči",
+      "reason": "Kontext článkov jednoznačne uvádza jaskyňu Kryštálové oči ako Cueva Ojos de Cristal na Roraime vo Venezuele, objavenú pri expedícii Roraima 2003 v kvarcitoch Guayanskej vysočiny. Ide o zahraničnú lokalitu, nie o slovenskú jaskyňu v registri SMOPaJ; kandidáti sú len názvovo podobné slovenské jaskyne bez lokálneho dôkazu.",
+      "candidate_numbers": [
+        "4136",
+        "3296",
+        "995",
+        "2560",
+        "2561"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-malych-karpat",
+      "cave_name": "Jaskyňa Malých Karpát",
+      "reason": "Názov karty je generická fráza „jaskyňa Malých Karpát“, nie doložený vlastný názov jednej jaskyne. Kontext článkov odkazuje na rôzne lokality v Malých Karpatoch, najmä Hubekovu jaskyňu a Vajsáblovu priepasť, takže nejde o jednoznačnú identifikáciu. Kandidáti SMOPaJ sú len vzdialené názvové zhody na slovo „Malý“ a nachádzajú sa v iných krasových oblastiach bez lokálneho dôkazu.",
+      "candidate_numbers": [
+        "3625",
+        "4173",
+        "4174",
+        "275",
+        "4686"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-plesiveckej-planiny",
+      "cave_name": "Jaskyňa Plešiveckej planiny",
+      "reason": "Názov karty je generická fráza označujúca jaskyňu na Plešiveckej planine, nie jednoznačný názov konkrétnej jaskyne. Kontext uvádza rôzne lokality na Plešiveckej planine, najmä Novú Muflóniu priepasť a Leontínu/Ľudmilu v Gombaseckom kameňolome. Kandidáti Plešivecká jaskyňa I/II sú navyše v registri uvedení pri Silickej planine a články neposkytujú dôkaz, že ide o niektorú z nich.",
+      "candidate_numbers": [
+        "3662",
+        "3663",
+        "4587",
+        "4487"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-pod-klakom",
+      "cave_name": "Jaskyňa Pod Kľakom",
+      "reason": "Karta aj články jednoznačne hovoria o Jaskyni pod Kľakom na Muránskej planine, nad Hrdzavou dolinou, objavenej OS SSS Muráň v roku 1993. Žiadny kandidát nemá názov Kľak ani muránskoplaninský kontext; ponúknuté záznamy sú najmä zo Slovenského krasu a ide len o nepresné názvové podobnosti.",
+      "candidate_numbers": [
+        "3814",
+        "3054",
+        "3817",
+        "3266",
+        "3819"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-polska",
+      "cave_name": "Jaskyňa Poľska",
+      "reason": "zahraničná alebo mimo-slovenská lokalita bez SMOPaJ záznamu",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskyna-shpanik",
+      "cave_name": "Jaskyňa Shpanik",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskyna-venezuely",
+      "cave_name": "Jaskyňa Venezuely",
+      "reason": "zahraničná alebo mimo-slovenská lokalita bez SMOPaJ záznamu",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "jaskyna-velke-prepadle",
+      "cave_name": "Jaskyňa Veľké Prepadlé",
+      "reason": "Karta používa neurčitý názov Jaskyňa Veľké Prepadlé, ale kontext rozlišuje viac samostatných jaskýň v tej istej lokalite: článok 5657 je explicitne o Veľké Prepadlé P-2, kým článok 2258 textovo hovorí o Veľké Prepadlé J-1. Kandidáti obsahujú osobitné čísla pre J-1 a P-2 aj skupinový záznam, preto bez jednoznačného lokálneho dôkazu nemožno bezpečne priradiť jednu konkrétnu jaskyňu.",
+      "candidate_numbers": [
+        "1396.1",
+        "1396.2",
+        "1396.3",
+        "3417",
+        "3421"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-certova-pec",
+      "cave_name": "Jaskyňa Čertova pec",
+      "reason": "Karta združuje názov „Jaskyňa Čertova pec“, ale kontext článkov ukazuje najmenej na dve rôzne lokality: Čertova pec pri Radošine na úpätí Považského Inovca a Čertova pec na Čiernom Váhu v oblasti Nízkych Tatier. V kandidátoch sú samostatné oficiálne záznamy s rovnakým názvom pre tieto oblasti, preto bez lokálneho spresnenia nemožno bezpečne vybrať jedno cave_number.",
+      "candidate_numbers": [
+        "2859",
+        "2862",
+        "3483.2",
+        "3224",
+        "3789"
+      ]
+    },
+    {
+      "cave_slug": "jazvecia-jaskyna",
+      "cave_name": "Jazvečia jaskyňa",
+      "reason": "Názov Jazvečia jaskyňa sa v kontexte vzťahuje na najmenej dve rôzne lokality: článok 1710 je Jazvečia/Plazivá jaskyňa na Dubnej skale pri Vrútkach v Malej Fatre, čo zodpovedá kandidátovi 1085, ale článok 3334 rieši Jazvečiu jaskyňu pri Dobšinsko-stratenskom jaskynnom systéme v Slovenskom raji, čo ukazuje na inú jaskyňu. Pri zmiešanom kontexte viacerých rovnomenných jaskýň nemožno bezpečne priradiť jednu kartu k jednému číslu.",
+      "candidate_numbers": [
+        "61",
+        "87",
+        "172",
+        "202",
+        "855"
+      ]
+    },
+    {
+      "cave_slug": "jelenej-priepasti",
+      "cave_name": "Jelenej priepasti",
+      "reason": "Karta a články jednoznačne hovoria o Jelenej/Jelenia priepasti na Ohništi v Nízkych Tatrách. V kandidátoch však nie je rovnomenná ani aliasovo doložená Jelenia priepasť; najbližšie kandidáty 1719 a 1720 sú Jelení previsy, nie priepasť, a uvedené aliasy nepreukazujú totožnosť s lokalitou z článkov. Ostatní kandidáti sú mimo kontextu alebo len vzdialené názvové zhody.",
+      "candidate_numbers": [
+        "5843",
+        "1719",
+        "1720",
+        "5172",
+        "3377"
+      ]
+    },
+    {
+      "cave_slug": "katerinska-jeskyne",
+      "cave_name": "Kateřinská jeskyně",
+      "reason": "Kateřinská jeskyně je česká lokalita (kontext uvádza český názov, Punkevní jeskyně a autorov/inštitúciu z Brna), nie jaskyňa zo slovenského registra SMOPaJ. Kandidáti Komária jaskyňa ani Lonová jaskyňa nemajú názvovú ani lokálnu zhodu.",
+      "candidate_numbers": [
+        "2744",
+        "2754"
+      ]
+    },
+    {
+      "cave_slug": "medzibalvanove-jaskyne",
+      "cave_name": "Medzibalvanové jaskyne",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "postojnskih-jam",
+      "cave_name": "Postojnskih jam",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "potapanie",
+      "cave_name": "Potápanie",
+      "reason": "zahraničná alebo mimo-slovenská lokalita bez SMOPaJ záznamu",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "priepast-gouffre-berger",
+      "cave_name": "Priepasť Gouffre Berger",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "priepast-pierre-saint-martin",
+      "cave_name": "Priepasť Pierre Saint Martin",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "priepast-provatina",
+      "cave_name": "Priepasť Provatina",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "priepast-voronja",
+      "cave_name": "Priepasť Voronja",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "priepastova-jaskyna",
+      "cave_name": "Priepasťová jaskyňa",
+      "reason": "Karta združuje aspoň dve rôzne lokality s rovnakým názvom: článok 1197 opisuje Priepasťovú jaskyňu v doline Šuštiačka/Jánskej doline v Nízkych Tatrách, zatiaľ čo článok 4708 výslovne uvádza Priepasťovú jaskyňu v Humenci v Čiernej hore, čo zodpovedá kandidátovi 308 (Humenecká jaskyňa). Pri takto zmiešanom kontexte nemožno bezpečne priradiť jednu oficiálnu jaskyňu.",
+      "candidate_numbers": [
+        "3630",
+        "308",
+        "1913",
+        "2193",
+        "6587"
+      ]
+    },
+    {
+      "cave_slug": "sutaz-o-umelecke-stvarnenie-jaskyne",
+      "cave_name": "Súťaž o umelecké stvárnenie jaskyne",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "tragicka-nehoda",
+      "cave_name": "Tragická nehoda",
+      "reason": "zahraničná alebo mimo-slovenská lokalita bez SMOPaJ záznamu",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "vajsablova-priepast",
+      "cave_name": "Vajsáblova Priepasť",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "zbrasovske-aragonitove-jaskyne",
+      "cave_name": "Zbrašovské aragonitové jaskyne",
+      "reason": "Názov aj kontext článkov jednoznačne hovoria o Zbrašovských aragonitových jaskyniach/jaskyniach, teda českej lokalite Zbrašovské aragonitové jeskyně pri 100. výročí objavenia. Kandidáti SMOPaJ sú slovenské aragonitové jaskyne s inými názvami a bez lokálneho kontextu k Zbrašovu, preto ich nemožno priradiť.",
+      "candidate_numbers": [
+        "2569",
+        "2548",
+        "7136"
+      ]
+    },
+    {
+      "cave_slug": "ladova-jaskyna",
+      "cave_name": "Ľadová jaskyňa",
+      "reason": "Názov je generický a kontext ukazuje minimálne na odlišné lokality: článok 5323 opisuje Ľadovú jaskyňu v katastri obce Litmanová v bradlovom pásme Ľubovnianskej vrchoviny, zatiaľ čo článok 1449 uvádza Ľadovú jaskyňu v Dreveníku. Žiadny z kandidátov nie je lokálne doložený pre Litmanovú/Ľubovniansku vrchovinu ani Dreveník, preto nemožno bezpečne priradiť kandidátne číslo.",
+      "candidate_numbers": [
+        "3005",
+        "6043",
+        "4140",
+        "4306",
+        "2940"
+      ]
+    },
+    {
+      "cave_slug": "sarkanova-diera",
+      "cave_name": "Šarkanova diera",
+      "reason": "Karta aj články jednoznačne hovoria o jaskyni Šarkanova diera na Spiši, v katastri obce Poráč / Volovské vrchy. Žiadny kandidát SMOPaJ nemá názov ani alias Šarkanova diera a všetky ponúknuté kandidáty sú iné jaskyne najmä v Slovenskom krase, bez lokálneho dôkazu zhody.",
+      "candidate_numbers": [
+        "3388",
+        "3391",
+        "3081",
+        "3145",
+        "2855"
+      ]
+    },
+    {
+      "cave_slug": "skocjanske-jame",
+      "cave_name": "Škocjanske jame",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "spanopolskej-jaskyni",
+      "cave_name": "Špaňopoľskej jaskyni",
+      "reason": "Kontext článkov jednoznačne hovorí o Špaňopoľskej jaskyni v Drienčanskom krase, ale jediný kandidát SMOPaJ je oficiálne Špaňopoľská depresia, resp. Sonda pri Špaňopoľskej jaskyni. To označuje inú alebo priľahlú lokalitu, nie priamo tú istú jaskyňu.",
+      "candidate_numbers": [
+        "2647"
+      ]
+    },
+    {
+      "cave_slug": "abisso-michele-gortani",
+      "cave_name": "Abisso Michele Gortani",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "al-hoota",
+      "cave_name": "Al Hoota",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "ali-sadr",
+      "cave_name": "Ali Sadr",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "arpadovska-minca-z-tomasovej-jaskyne",
+      "cave_name": "Arpádovská minca z Tomášovej jaskyne",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "babuna",
+      "cave_name": "Babuna",
+      "reason": "zahraničná alebo mimo-slovenská lokalita bez SMOPaJ záznamu",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "bach-aj-beatles",
+      "cave_name": "Bach aj Beatles",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "balme",
+      "cave_name": "Balme",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "baredine",
+      "cave_name": "Baredine",
+      "reason": "zahraničná alebo mimo-slovenská lokalita bez SMOPaJ záznamu",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "belanska-jaskyna",
+      "cave_name": "Belanská jaskyňa",
+      "reason": "Karta aj text jednoznačne opisujú známu Belanskú/Beliansku jaskyňu pri Spišskej Belej v Belanských Tatrách, s objavom 5. 8. 1881 a sprístupnením v roku 1882. Ponúknutí kandidáti sú Jaskyňa na Belanskom a Jaskyňa na Vyšnom Belanskom v Podtatranskej kotline/Liptovskej kotline, bez lokálneho alebo historického kontextu z článku, takže nejde o tú istú jaskyňu.",
+      "candidate_numbers": [
+        "2331",
+        "2332"
+      ]
+    },
+    {
+      "cave_slug": "bielej-jaskyne",
+      "cave_name": "Bielej jaskyne",
+      "reason": "Názov „Bielej jaskyne“ je iba pádový variant názvu „Biela jaskyňa“, ktorý má v kandidátoch viac rovnako presných zhodných jaskýň v rôznych geomorfologických celkoch. Kontext článku neuvádza jednoznačnú lokalitu ani registerový detail viažuci kartu na konkrétnu Biela jaskyňu; samotná téma znovuobjavenia nestačí na výber jedného čísla.",
+      "candidate_numbers": [
+        "1481",
+        "3901",
+        "4425",
+        "6141",
+        "6276"
+      ]
+    },
+    {
+      "cave_slug": "blatnica-objavili",
+      "cave_name": "Blatnica objavili",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "bochardenskej-jaskyni",
+      "cave_name": "Bochardenskej jaskyni",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "bolivijske-jaskyne",
+      "cave_name": "Bolívijské jaskyne",
+      "reason": "bez dostatočne podobného kandidáta v SMOPaJ registri",
+      "candidate_numbers": []
+    },
+    {
+      "cave_slug": "tunelova-jaskyna",
+      "cave_name": "Tunelová jaskyňa",
+      "reason": "Karta aj článok uvádzajú názov Tunelová jaskyňa a článok ju jednoznačne lokalizuje medzi Liptovskou Osadou a Korytnicou na pravej strane Korytnickej doliny v Nízkych Tatrách, na planine Drozdová. Z kandidátov s týmto názvom geograficky zodpovedá len kandidát 2202 v Nízkych Tatrách / Salatínoch; ostatné rovnomenné jaskyne sú v iných pohoriach alebo krasových oblastiach.",
+      "candidate_numbers": [
+        "3212",
+        "4337",
+        "4526",
+        "4863",
+        "1048"
+      ]
+    },
+    {
+      "cave_slug": "kanalova-jaskyna",
+      "cave_name": "Kanálová jaskyňa",
+      "reason": "Názov aj článok jednoznačne uvádzajú Kanálovú jaskyňu v Jánskej doline, teda lokalitu v Nízkych Tatrách / Ďumbierskych Tatrách / Demänovských vrchoch. V kandidátoch sú však dve samostatné presné zhody s názvom Kanálová jaskyňa v tej istej geomorfologickej oblasti (1739 a 1740) a poskytnutý kontext neobsahuje rozlišujúci údaj, ktorý by bezpečne určil jednu z nich.",
+      "candidate_numbers": [
+        "1739",
+        "1740",
+        "2480",
+        "4632",
+        "4963"
+      ]
+    },
+    {
+      "cave_slug": "nova-priepast",
+      "cave_name": "Nová priepasť",
+      "reason": "Článok používa názov „Nová priepasť“ opisne v titulku, ale v texte je novoobjavená priepasť pomenovaná „Krieslo“ na planine Krieslo vo Važeckom krase/Kozích chrbtoch pri Važci. Kandidáti s názvom „Nová priepasť“ sú v Slovenskom krase, Hornádskej kotline alebo iných oblastiach a nemajú lokálnu väzbu na Važecký kras ani názov Krieslo.",
+      "candidate_numbers": [
+        "3336",
+        "3646",
+        "311.2",
+        "1233",
+        "434"
+      ]
+    },
+    {
+      "cave_slug": "priehradna-jaskyna",
+      "cave_name": "Priehradná jaskyňa",
+      "reason": "Karta aj článok uvádzajú iba názov „Priehradná jaskyňa pri Šútove“ v Turčianskej kotline/Šútovskom podhorí, čo potvrdzuje lokalitu, ale kandidáti sú tri samostatné jaskyne Priehradná jaskyňa I, II a III v tej istej oblasti. Kontext neobsahuje oficiálny číselný variant I/II/III ani iný jednoznačný lokálny dôkaz, ktorý by odlíšil konkrétny záznam.",
+      "candidate_numbers": [
+        "6268",
+        "6269",
+        "6270"
+      ]
+    },
+    {
+      "cave_slug": "temnej-jaskyne",
+      "cave_name": "Temnej jaskyne",
+      "reason": "Kontext článku jednoznačne uvádza Temnú jaskyňu v Gaderskej doline. Žiadny kandidát SMOPaJ nemá lokálnu väzbu na Gaderskú dolinu; ponúkané Temné jaskyne sú v Hornádskej kotline alebo Nízkych Tatrách a ďalšie kandidáty sú Súľovské vrchy. Názvová zhoda bez miestneho dôkazu nestačí.",
+      "candidate_numbers": [
+        "448",
+        "2027",
+        "5721",
+        "5708"
+      ]
     }
   ],
   "stats": {
-    "selected": 6,
-    "matched": 29,
-    "deferred": 16,
+    "selected": 20,
+    "matched": 65,
+    "deferred": 81,
     "errors": 0,
-    "resumed_matches": 26,
-    "resumed_deferred": 14
+    "resumed_matches": 49,
+    "resumed_deferred": 77
   }
 }

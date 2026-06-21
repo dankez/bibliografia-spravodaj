@@ -59,6 +59,7 @@ GENERIC_CAVE_CARD_TOKENS = {
     "nove",
     "novy",
     "jaskyn",
+    "jaskyna",
     "jaskyne",
     "poloha",
     "lokalizacia",
@@ -66,6 +67,40 @@ GENERIC_CAVE_CARD_TOKENS = {
     "prieskum",
     "mapovanie",
     "starostlivost",
+    "prakticka",
+    "pseudokrasove",
+    "pobrezne",
+    "ladove",
+    "priepastovita",
+}
+GENERIC_CAVE_CARD_PHRASES = {
+    "1987",
+    "2016",
+    "charakter jaskyne",
+    "charakteristika jaskyne",
+    "dlhodoby pobyt",
+    "ladove jaskyne",
+    "lokalizacia jaskyne",
+    "najvacsia jaskyna",
+    "nova jaskyna",
+    "nova pseudokrasova jaskyna",
+    "nova velka jaskyna",
+    "novy objav",
+    "objav jaskyne",
+    "objav novej jaskyne",
+    "objav priepasti",
+    "objavy",
+    "pobrezne jaskyne",
+    "poloha jaskyne",
+    "prakticka starostlivost o jaskyne",
+    "priepastovita jaskyna",
+    "pseudokrasove jaskyne",
+    "starostlivost o jaskyne",
+    "strucne o jaskyni",
+    "strucne o priepasti",
+    "strucne o prieskume jaskyne",
+    "vyuzitie jaskyne",
+    "znovuotvorenie jaskyne",
 }
 FOREIGN_CONTEXT_TOKENS = {
     "kosovo",
@@ -290,6 +325,8 @@ def cave_is_probably_foreign_or_generic(cave: dict[str, Any]) -> str:
     context = normalize(cave_summary_context(cave))
     name_key = normalize(cave.get("name") or "")
     tokens = set(name_tokens(cave.get("name") or ""))
+    if name_key in GENERIC_CAVE_CARD_PHRASES:
+        return "generická alebo skupinová karta bez jednoznačného názvu jednej jaskyne"
     if tokens and tokens <= GENERIC_CAVE_CARD_TOKENS:
         return "generická karta bez jednoznačného názvu jaskyne"
     if any(token in context or token in name_key for token in FOREIGN_CONTEXT_TOKENS) and not any(
@@ -345,6 +382,13 @@ def heuristic_decision(cave: dict[str, Any], candidates: list[dict[str, Any]]) -
             "confidence": 0.0,
             "reason": reject_reason or "bez dostatočne podobného kandidáta v SMOPaJ registri",
         }
+    if reject_reason.startswith("generická"):
+        return {
+            "decision": "defer",
+            "cave_number": "",
+            "confidence": 0.0,
+            "reason": reject_reason,
+        }
     if reject_reason and candidates[0]["score"] < 0.88:
         return {
             "decision": "defer",
@@ -375,7 +419,7 @@ def heuristic_decision(cave: dict[str, Any], candidates: list[dict[str, Any]]) -
         "decision": "defer",
         "cave_number": "",
         "confidence": 0.0,
-        "reason": "kandidáti sú príliš podobní alebo chýba lokálny kontext",
+        "reason": "nejednoznačná zhoda: viac kandidátov je príliš podobných alebo chýba lokálny kontext",
     }
 
 

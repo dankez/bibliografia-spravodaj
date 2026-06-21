@@ -46,12 +46,33 @@ CAVE_HEADWORDS = (
 CAVE_HEADWORD_PATTERN = "|".join(re.escape(word) for word in CAVE_HEADWORDS)
 CAVE_NAME_CHAR_PATTERN = r"A-Za-zÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽáäčďéíĺľňóôŕšťúýž0-9'’\-/"
 CAVE_GENERIC_PREFIXES = {
+    "ake",
+    "analyza",
     "ako",
+    "autor",
+    "bezvyznamne",
+    "boli",
+    "charakter",
+    "charakteristika",
+    "chybne",
     "clenovia",
     "dalsia",
     "dalsi",
     "dalsie",
+    "decembrovej",
+    "desatoro",
+    "dobrodruzstvo",
+    "dodatok",
+    "dojmy",
+    "dokopy",
+    "domeranie",
+    "doplnenie",
+    "druhy",
+    "dvadsat",
     "dve",
+    "elektraren",
+    "exkurzia",
+    "expedicia",
     "historia",
     "k",
     "kratko",
@@ -150,6 +171,33 @@ CAVE_GENERIC_WORDS = {
     "zname",
     "zostup",
     "kosti",
+}
+CAVE_GENERIC_EXACT_NAMES = {
+    "1987",
+    "2016",
+    "charakter jaskyne",
+    "charakteristika jaskyne",
+    "dlhodoby pobyt",
+    "ladove jaskyne",
+    "lokalizacia jaskyne",
+    "najvacsia jaskyna",
+    "nova jaskyna",
+    "nova pseudokrasova jaskyna",
+    "nova velka jaskyna",
+    "novy objav",
+    "objav jaskyne",
+    "objav novej jaskyne",
+    "objav priepasti",
+    "objavy",
+    "poloha jaskyne",
+    "prakticka starostlivost o jaskyne",
+    "priepastovita jaskyna",
+    "starostlivost o jaskyne",
+    "strucne o jaskyni",
+    "strucne o priepasti",
+    "strucne o prieskume jaskyne",
+    "vyuzitie jaskyne",
+    "znovuotvorenie jaskyne",
 }
 CAVE_AREA_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
     (
@@ -383,7 +431,13 @@ def is_probable_cave_name(value: str) -> bool:
     normalized = normalize_text(text)
     if not normalized:
         return False
+    if normalized in CAVE_GENERIC_EXACT_NAMES:
+        return False
     tokens = normalized.split()
+    if len(tokens) == 1 and tokens[0].isdigit():
+        return False
+    if tokens and tokens[0].isdigit():
+        return False
     if len(tokens) > 7:
         return False
     if tokens[0] in CAVE_GENERIC_PREFIXES:

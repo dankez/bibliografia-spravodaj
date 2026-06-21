@@ -64,6 +64,73 @@ def test_heuristic_decision_rejects_foreign_cave_not_in_smopaj():
     assert "zahrani" in decision["reason"].casefold()
 
 
+def test_heuristic_decision_rejects_generic_plural_cave_cards():
+    cave = {
+        "name": "Pseudokrasové jaskyne",
+        "slug": "pseudokrasove-jaskyne",
+        "article_count": 2,
+        "articles": [
+            {
+                "id": 1,
+                "title": "Pseudokrasové jaskyne pohoria Burda",
+                "abstract": "Prehľad viacerých pseudokrasových jaskýň a puklinových priestorov.",
+            }
+        ],
+    }
+    candidates = [
+        {
+            "cave_number": "848",
+            "official_name": "Pseudokrasová jaskyňa",
+            "names": ["Pseudokrasová jaskyňa"],
+            "geomorph_celok": "Biele Karpaty",
+            "name_score": 0.97,
+            "context_score": 0.0,
+            "score": 0.97,
+        }
+    ]
+
+    decision = matcher.heuristic_decision(cave, candidates)
+
+    assert decision["decision"] == "defer"
+    assert "generick" in decision["reason"].casefold() or "skupin" in decision["reason"].casefold()
+
+
+def test_heuristic_decision_rejects_ambiguous_same_name_without_area_evidence():
+    cave = {
+        "name": "Diablova diera",
+        "slug": "diablova-diera",
+        "article_count": 4,
+        "articles": [{"id": 1, "title": "Diablova diera", "abstract": "Správa o jaskynnom systéme Diablova diera."}],
+    }
+    candidates = [
+        {
+            "cave_number": "81",
+            "official_name": "Diablova diera",
+            "names": ["Diablova diera"],
+            "geomorph_celok": "Branisko",
+            "geomorph_podcelok": "Smrekovica",
+            "name_score": 1.0,
+            "context_score": 0.0,
+            "score": 1.0,
+        },
+        {
+            "cave_number": "82",
+            "official_name": "Diablova diera",
+            "names": ["Diablova diera"],
+            "geomorph_celok": "Branisko",
+            "geomorph_podcelok": "Smrekovica",
+            "name_score": 1.0,
+            "context_score": 0.0,
+            "score": 1.0,
+        },
+    ]
+
+    decision = matcher.heuristic_decision(cave, candidates)
+
+    assert decision["decision"] == "defer"
+    assert "viac" in decision["reason"].casefold() or "nejednoznac" in matcher.normalize(decision["reason"])
+
+
 def test_process_caves_defers_when_selected_ai_backend_fails(tmp_path, monkeypatch):
     caves_path = tmp_path / "caves.json"
     register_path = tmp_path / "register.json"

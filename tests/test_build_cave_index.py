@@ -152,6 +152,135 @@ def test_build_cave_index_infers_cave_names_from_spravodaj_title_and_abstract():
     assert all(item["name"] != "slovenských jaskýň" for item in caves)
 
 
+def test_build_cave_index_filters_generic_cave_card_phrases():
+    articles = [
+        {
+            "id": 1,
+            "title": "Nová jaskyňa",
+            "year": 1990,
+            "issue": "1",
+            "pages": "1",
+            "authors": ["Novák, J."],
+            "abstract": "Krátka správa o novej jaskyni bez uvedenia vlastného názvu.",
+            "caves": ["Nová jaskyňa"],
+        },
+        {
+            "id": 2,
+            "title": "Praktická starostlivosť o jaskyne",
+            "year": 1991,
+            "issue": "1",
+            "pages": "2",
+            "authors": ["Novák, J."],
+            "abstract": "Metodické poznámky k starostlivosti o jaskyne.",
+            "caves": ["Praktická starostlivosť o jaskyne"],
+        },
+        {
+            "id": 3,
+            "title": "Výskum jaskyne Domica",
+            "year": 1992,
+            "issue": "1",
+            "pages": "3",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o jaskyni Domica.",
+            "caves": ["Domica"],
+            "caves_verified": True,
+        },
+    ]
+
+    caves = build_cave_index.build_cave_index(articles)
+    names = {item["name"] for item in caves}
+
+    assert "Domica" in names
+    assert "Nová jaskyňa" not in names
+    assert "Praktická starostlivosť o jaskyne" not in names
+
+
+def test_build_cave_index_filters_numeric_context_fragments():
+    articles = [
+        {
+            "id": 1,
+            "title": "12 km jaskyne",
+            "year": 1990,
+            "issue": "1",
+            "pages": "1",
+            "authors": ["Novák, J."],
+            "abstract": "Správa uvádza dĺžku systému, nie názov jaskyne.",
+            "caves": ["12 km jaskyne"],
+        },
+        {
+            "id": 2,
+            "title": "30 rokov prieskumu",
+            "year": 1991,
+            "issue": "1",
+            "pages": "2",
+            "authors": ["Novák, J."],
+            "abstract": "Výročný text k dlhodobému prieskumu jaskyne.",
+            "caves": ["30 rokov prieskumu"],
+        },
+        {
+            "id": 3,
+            "title": "Výskum jaskyne Domica",
+            "year": 1992,
+            "issue": "1",
+            "pages": "3",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o jaskyni Domica.",
+            "caves": ["Domica"],
+            "caves_verified": True,
+        },
+    ]
+
+    caves = build_cave_index.build_cave_index(articles)
+    names = {item["name"] for item in caves}
+
+    assert "Domica" in names
+    assert "12 km jaskyne" not in names
+    assert "30 rokov prieskumu" not in names
+
+
+def test_build_cave_index_filters_title_fragments_that_are_not_cave_names():
+    articles = [
+        {
+            "id": 1,
+            "title": "Analýza nálezov zo Žihľavovej jaskyne",
+            "year": 1990,
+            "issue": "1",
+            "pages": "1",
+            "authors": ["Novák, J."],
+            "abstract": "Archeologické nálezy zo Žihľavovej jaskyne.",
+            "caves": ["Analýza nálezov zo Žihľavovej jaskyne"],
+        },
+        {
+            "id": 2,
+            "title": "Dojmy z návštevy jaskyne",
+            "year": 1991,
+            "issue": "1",
+            "pages": "2",
+            "authors": ["Novák, J."],
+            "abstract": "Cestopisný text bez názvu konkrétnej jaskyne.",
+            "caves": ["Dojmy z návštevy jaskyne"],
+        },
+        {
+            "id": 3,
+            "title": "Dračia jaskyňa",
+            "year": 1992,
+            "issue": "1",
+            "pages": "3",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o Dračej jaskyni.",
+            "caves": ["Dračia jaskyňa"],
+            "caves_verified": True,
+        },
+    ]
+
+    caves = build_cave_index.build_cave_index(articles)
+    names = {item["name"] for item in caves}
+
+    assert "Dračia jaskyňa" in names
+    assert "Analýza nálezov zo Žihľavovej jaskyne" not in names
+    assert "Dojmy z návštevy jaskyne" not in names
+
+
 def test_build_cave_index_uses_article_pdf_page_offset_when_present():
     articles = [
         {
