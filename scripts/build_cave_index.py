@@ -16,6 +16,8 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_ARTICLES_PATH = BASE_DIR / "web" / "src" / "data" / "articles.json"
 DEFAULT_OUTPUT_PATH = BASE_DIR / "web" / "src" / "data" / "caves.json"
 DEFAULT_ALIASES_PATH = BASE_DIR / "data" / "cave_aliases.json"
+DEFAULT_GEOMORPHOLOGY_PATH = BASE_DIR / "data" / "geomorphology_regions.json"
+DEFAULT_SMOPAJ_REGISTER_PATH = BASE_DIR / "data" / "smopaj_cave_register_2017.json"
 PDF_LINK_PAGE_OFFSET = 2
 DEFAULT_JOURNAL_ID = "spravodaj_sss"
 DEFAULT_JOURNAL_TITLE = "Spravodaj Slovenskej speleologickej spoločnosti"
@@ -473,6 +475,24 @@ def load_cave_aliases(path: Path) -> list[dict[str, Any]]:
     return aliases
 
 
+def load_geomorphology(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"Invalid geomorphology file: {path}")
+    return data
+
+
+def load_smopaj_cave_register(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"Invalid SMOPaJ cave register file: {path}")
+    return data
+
+
 def build_alias_lookup(entries: list[dict[str, Any]]) -> dict[str, str]:
     lookup: dict[str, str] = {}
     for entry in entries:
@@ -484,6 +504,124 @@ def build_alias_lookup(entries: list[dict[str, Any]]) -> dict[str, str]:
             lookup[slugify(name)] = canonical
             lookup[normalize_text(name)] = canonical
     return lookup
+
+
+def cave_match_keys(value: Any) -> list[str]:
+    normalized = normalize_text(value)
+    if not normalized:
+        return []
+    keys = [normalized]
+    tokens = normalized.split()
+    if len(tokens) > 1 and tokens[0] in {normalize_text(word) for word in CAVE_HEADWORDS}:
+        keys.append(" ".join(tokens[1:]))
+    return unique_strings(keys)
+
+
+def build_smopaj_lookup(data: dict[str, Any] | None) -> dict[str, list[dict[str, Any]]]:
+    buckets: dict[str, list[dict[str, Any]]] = defaultdict(list)
+    entries = data.get("entries", []) if isinstance(data, dict) else []
+    if not isinstance(entries, list):
+        return buckets
+    for entry in entries:
+        if not isinstance(entry, dict) or not str(entry.get("cave_number") or "").strip():
+            continue
+        names = unique_strings([entry.get("official_name", ""), *list(entry.get("names") or []), *list(entry.get("aliases") or [])])
+        for name in names:
+            for key in cave_match_keys(name):
+                buckets[key].append(entry)
+    return buckets
+
+
+def resolve_smopaj_entry(cave_name: str, lookup: dict[str, list[dict[str, Any]]]) -> dict[str, Any] | None:
+    matches: dict[str, dict[str, Any]] = {}
+    for key in cave_match_keys(cave_name):
+        for entry in lookup.get(key, []):
+            cave_number = str(entry.get("cave_number") or "").strip()
+            if cave_number:
+                matches[cave_number] = entry
+    if len(matches) != 1:
+        return None
+    return next(iter(matches.values()))
+
+
+def region_from_smopaj_entry(entry: dict[str, Any] | None) -> dict[str, str]:
+    if not entry:
+        return {}
+    celok = str(entry.get("geomorph_celok") or "").strip()
+    podcelok = str(entry.get("geomorph_podcelok") or "").strip()
+    cast = str(entry.get("geomorph_cast") or "").strip()
+    local_area = cast or podcelok or celok
+    region = {
+        "local_area": local_area,
+        "geomorph_unit": celok,
+        "geomorph_area": celok,
+        "geomorph_subunit": podcelok,
+        "geomorph_part": cast,
+        "confidence": "official-smopaj-2017",
+        "source": "smopaj-cave-register-2017",
+    }
+    return {key: value for key, value in region.items() if value}
+
+
+def unique_smopaj_entry(entries: list[dict[str, Any]]) -> dict[str, Any] | None:
+    by_number: dict[str, dict[str, Any]] = {}
+    for entry in entries:
+        cave_number = str(entry.get("cave_number") or "").strip()
+        if cave_number:
+            by_number[cave_number] = entry
+    if len(by_number) != 1:
+        return None
+    return next(iter(by_number.values()))
+
+
+def clean_region_entry(entry: Any) -> dict[str, str]:
+    if not isinstance(entry, dict):
+        return {}
+    allowed_keys = (
+        "local_area",
+        "geomorph_unit",
+        "geomorph_parent",
+        "geomorph_subunit",
+        "geomorph_part",
+        "geomorph_area",
+        "geomorph_subprovince",
+        "confidence",
+        "source",
+    )
+    return {key: str(entry.get(key) or "").strip() for key in allowed_keys if str(entry.get(key) or "").strip()}
+
+
+def build_geomorphology_lookup(data: dict[str, Any] | None) -> tuple[dict[str, dict[str, str]], dict[str, dict[str, str]]]:
+    area_lookup: dict[str, dict[str, str]] = {}
+    cave_lookup: dict[str, dict[str, str]] = {}
+    if not data:
+        return area_lookup, cave_lookup
+
+    for area_name, entry in (data.get("areas") or {}).items():
+        region = clean_region_entry(entry)
+        if region:
+            area_lookup[normalize_text(area_name)] = region
+
+    for cave_name, entry in (data.get("caves") or {}).items():
+        region = clean_region_entry(entry)
+        if region:
+            cave_lookup[slugify(cave_name)] = region
+            cave_lookup[normalize_text(cave_name)] = region
+    return area_lookup, cave_lookup
+
+
+def resolve_geomorphology(
+    cave_name: str,
+    cave_area: str,
+    area_lookup: dict[str, dict[str, str]],
+    cave_lookup: dict[str, dict[str, str]],
+) -> dict[str, str]:
+    if cave_area:
+        region = area_lookup.get(normalize_text(cave_area))
+        if region:
+            return dict(region)
+    region = cave_lookup.get(slugify(cave_name)) or cave_lookup.get(normalize_text(cave_name))
+    return dict(region) if region else {}
 
 
 def canonical_cave_name(cave_name: str, alias_lookup: dict[str, str]) -> str:
@@ -619,14 +757,24 @@ def deduplicate_timeline_articles(articles: list[dict[str, Any]]) -> list[dict[s
     return list(best_by_key.values())
 
 
-def build_cave_index(articles: list[dict[str, Any]], aliases: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
+def build_cave_index(
+    articles: list[dict[str, Any]],
+    aliases: list[dict[str, Any]] | None = None,
+    geomorphology: dict[str, Any] | None = None,
+    smopaj_register: dict[str, Any] | None = None,
+) -> list[dict[str, Any]]:
     alias_lookup = build_alias_lookup(aliases or [])
+    area_region_lookup, cave_region_lookup = build_geomorphology_lookup(geomorphology or {})
+    smopaj_lookup = build_smopaj_lookup(smopaj_register or {})
     candidate_rows: list[dict[str, Any]] = []
 
     for article in articles:
         for cave_name in article_cave_candidates(article):
             normalized_name = normalize_cave_candidate_name(cave_name, article)
             canonical_name = canonical_cave_name(normalized_name, alias_lookup)
+            smopaj_entry = resolve_smopaj_entry(canonical_name, smopaj_lookup)
+            if smopaj_entry:
+                canonical_name = str(smopaj_entry.get("official_name") or canonical_name).strip() or canonical_name
             if not any(
                 article_mentions_cave(article, name)
                 for name in unique_strings([cave_name, normalized_name, canonical_name])
@@ -638,6 +786,7 @@ def build_cave_index(articles: list[dict[str, Any]], aliases: list[dict[str, Any
                     "source_name": cave_name,
                     "normalized_name": normalized_name,
                     "canonical_name": canonical_name,
+                    "smopaj_entry": smopaj_entry,
                     "area": infer_cave_area(article, canonical_name),
                 }
             )
@@ -673,7 +822,10 @@ def build_cave_index(articles: list[dict[str, Any]], aliases: list[dict[str, Any
                 "aliases": set(),
                 "articles": [],
                 "area_counts": defaultdict(int),
+                "smopaj_entries": [],
             }
+        if row["smopaj_entry"]:
+            grouped[key]["smopaj_entries"].append(row["smopaj_entry"])
         if area:
             grouped[key]["area_counts"][area] += 1
         if normalize_text(source_name) != normalize_text(canonical_name) and not is_contextual_cave_candidate(source_name):
@@ -699,20 +851,32 @@ def build_cave_index(articles: list[dict[str, Any]], aliases: list[dict[str, Any
         cave_area = ""
         if area_counts:
             cave_area = sorted(area_counts.items(), key=lambda item: (-item[1], item[0]))[0][0]
-        caves.append(
-            {
-                "name": cave["name"],
-                "slug": cave["slug"],
-                "area": cave_area,
-                "aliases": unique_strings(sorted(cave["aliases"])),
-                "article_count": len(article_rows),
-                "map_plan_count": sum(1 for item in article_rows if item.get("has_map_plan")),
-                "first_year": min(years) if years else None,
-                "last_year": max(years) if years else None,
-                "authors_count": len(authors),
-                "articles": article_rows,
-            }
-        )
+        cave_item = {
+            "name": cave["name"],
+            "slug": cave["slug"],
+            "area": cave_area,
+            "aliases": unique_strings(sorted(cave["aliases"])),
+            "article_count": len(article_rows),
+            "map_plan_count": sum(1 for item in article_rows if item.get("has_map_plan")),
+            "first_year": min(years) if years else None,
+            "last_year": max(years) if years else None,
+            "authors_count": len(authors),
+            "articles": article_rows,
+        }
+        smopaj_entry = unique_smopaj_entry(list(cave.get("smopaj_entries") or []))
+        if smopaj_entry:
+            cave_item["smopaj_cave_number"] = str(smopaj_entry.get("cave_number") or "").strip()
+            if smopaj_entry.get("registry_number"):
+                cave_item["smopaj_registry_number"] = str(smopaj_entry.get("registry_number") or "").strip()
+            official_name = str(smopaj_entry.get("official_name") or "").strip()
+            if official_name and normalize_text(official_name) != normalize_text(cave_item["name"]):
+                cave_item["smopaj_official_name"] = official_name
+        region = resolve_geomorphology(cave["name"], cave_area, area_region_lookup, cave_region_lookup)
+        if not region and smopaj_entry:
+            region = region_from_smopaj_entry(smopaj_entry)
+        if region:
+            cave_item["region"] = region
+        caves.append(cave_item)
 
     return sorted(
         caves,
@@ -724,6 +888,8 @@ def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--articles", type=Path, default=DEFAULT_ARTICLES_PATH)
     parser.add_argument("--aliases", type=Path, default=DEFAULT_ALIASES_PATH)
+    parser.add_argument("--geomorphology", type=Path, default=DEFAULT_GEOMORPHOLOGY_PATH)
+    parser.add_argument("--smopaj-register", type=Path, default=DEFAULT_SMOPAJ_REGISTER_PATH)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
     return parser.parse_args()
 
@@ -732,10 +898,24 @@ def main() -> int:
     args = parse_args()
     articles = json.loads(args.articles.read_text(encoding="utf-8"))
     aliases = load_cave_aliases(args.aliases)
-    caves = build_cave_index(articles, aliases)
+    geomorphology = load_geomorphology(args.geomorphology)
+    smopaj_register = load_smopaj_cave_register(args.smopaj_register)
+    caves = build_cave_index(articles, aliases, geomorphology, smopaj_register)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(caves, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"output": str(args.output), "caves": len(caves), "alias_groups": len(aliases)}, ensure_ascii=False, indent=2))
+    print(
+        json.dumps(
+            {
+                "output": str(args.output),
+                "caves": len(caves),
+                "alias_groups": len(aliases),
+                "geomorphology_regions": sum(1 for cave in caves if cave.get("region")),
+                "smopaj_matches": sum(1 for cave in caves if cave.get("smopaj_cave_number")),
+            },
+            ensure_ascii=False,
+            indent=2,
+        )
+    )
     return 0
 
 

@@ -1,0 +1,160 @@
+{
+  "schema_version": "geomorphology-regions/v1",
+  "description": "Curated starter mapping for cave register regional tags. It is intentionally partial and should grow through review of ambiguous cave names.",
+  "sources": [
+    {
+      "title": "Geomorfologické členenie Slovenska",
+      "url": "https://sk.wikipedia.org/wiki/Geomorfologick%C3%A9_%C4%8Dlenenie_Slovenska",
+      "note": "Hierarchy summary and unit names based on Mazúr/Lukniš and Kočický/Ivanič mapping."
+    },
+    {
+      "title": "Tematická mapa: Geomorfologické členenie Slovenska",
+      "url": "https://apl.geology.sk/mapportal/img/pdf/tm19a.pdf",
+      "note": "Reference map for later manual curation."
+    }
+  ],
+  "areas": {
+    "Slovenský raj / Psie diery": {
+      "local_area": "Psie diery",
+      "geomorph_unit": "Slovenský raj",
+      "geomorph_parent": "Spišsko-gemerský kras",
+      "geomorph_area": "Slovenské rudohorie",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "existing-cave-area-rule"
+    },
+    "Slovenský raj / Stratenská hornatina": {
+      "local_area": "Stratenská hornatina",
+      "geomorph_unit": "Slovenský raj",
+      "geomorph_parent": "Spišsko-gemerský kras",
+      "geomorph_area": "Slovenské rudohorie",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "existing-cave-area-rule"
+    },
+    "Demänovská dolina / Nízke Tatry": {
+      "local_area": "Demänovská dolina",
+      "geomorph_unit": "Nízke Tatry",
+      "geomorph_subunit": "Ďumbierske Tatry",
+      "geomorph_part": "Demänovské vrchy",
+      "geomorph_area": "Fatransko-tatranská oblasť",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "existing-cave-area-rule"
+    },
+    "Jánska dolina / Nízke Tatry": {
+      "local_area": "Jánska dolina",
+      "geomorph_unit": "Nízke Tatry",
+      "geomorph_subunit": "Ďumbierske Tatry",
+      "geomorph_area": "Fatransko-tatranská oblasť",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "existing-cave-area-rule"
+    },
+    "Vrátna dolina / Malá Fatra": {
+      "local_area": "Vrátna dolina",
+      "geomorph_unit": "Malá Fatra",
+      "geomorph_subunit": "Krivánska Fatra",
+      "geomorph_area": "Fatransko-tatranská oblasť",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "existing-cave-area-rule"
+    },
+    "Malá Fatra": {
+      "local_area": "Malá Fatra",
+      "geomorph_unit": "Malá Fatra",
+      "geomorph_area": "Fatransko-tatranská oblasť",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "article-context",
+      "source": "existing-cave-area-rule"
+    },
+    "Belianska dolina / Veľká Fatra": {
+      "local_area": "Belianska dolina",
+      "geomorph_unit": "Veľká Fatra",
+      "geomorph_area": "Fatransko-tatranská oblasť",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "existing-cave-area-rule"
+    },
+    "Nitrické vrchy": {
+      "local_area": "Nitrické vrchy",
+      "geomorph_unit": "Strážovské vrchy",
+      "geomorph_subunit": "Nitrické vrchy",
+      "geomorph_area": "Fatransko-tatranská oblasť",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "article-context",
+      "source": "existing-cave-area-rule"
+    },
+    "Tuhársky kras / Revúcka vrchovina": {
+      "local_area": "Tuhársky kras",
+      "geomorph_unit": "Revúcka vrchovina",
+      "geomorph_area": "Slovenské rudohorie",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "article-context",
+      "source": "existing-cave-area-rule"
+    },
+    "Humenec / Čierna Hora": {
+      "local_area": "Humenec",
+      "geomorph_unit": "Čierna hora",
+      "geomorph_area": "Slovenské rudohorie",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "article-context",
+      "source": "existing-cave-area-rule"
+    },
+    "Poľsko": {
+      "local_area": "Poľsko",
+      "geomorph_unit": "mimo Slovenska",
+      "geomorph_area": "mimo slovenského geomorfologického členenia",
+      "geomorph_subprovince": "",
+      "confidence": "article-context",
+      "source": "existing-cave-area-rule"
+    }
+  },
+  "caves": {
+    "Demänovské jaskyne": {
+      "local_area": "Demänovská dolina",
+      "geomorph_unit": "Nízke Tatry",
+      "geomorph_subunit": "Ďumbierske Tatry",
+      "geomorph_part": "Demänovské vrchy",
+      "geomorph_area": "Fatransko-tatranská oblasť",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "curated-cave-name"
+    },
+    "Demänovská jaskyňa slobody": {
+      "local_area": "Demänovská dolina",
+      "geomorph_unit": "Nízke Tatry",
+      "geomorph_subunit": "Ďumbierske Tatry",
+      "geomorph_part": "Demänovské vrchy",
+      "geomorph_area": "Fatransko-tatranská oblasť",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "curated-cave-name"
+    },
+    "Domica": {
+      "local_area": "Silická planina",
+      "geomorph_unit": "Slovenský kras",
+      "geomorph_area": "Slovenské rudohorie",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "curated-cave-name"
+    },
+    "Jasovská jaskyňa": {
+      "local_area": "Jasovská planina",
+      "geomorph_unit": "Slovenský kras",
+      "geomorph_area": "Slovenské rudohorie",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "curated-cave-name"
+    },
+    "Stratenská jaskyňa": {
+      "local_area": "Stratenská hornatina",
+      "geomorph_unit": "Slovenský raj",
+      "geomorph_parent": "Spišsko-gemerský kras",
+      "geomorph_area": "Slovenské rudohorie",
+      "geomorph_subprovince": "Vnútorné Západné Karpaty",
+      "confidence": "curated",
+      "source": "curated-cave-name"
+    }
+  }
+}

@@ -242,6 +242,7 @@ Register jaskýň sa generuje z kurátorovaného poľa `caves`, nie z voľných 
 Generovanie:
 
 ```bash
+python3 scripts/import_smopaj_cave_register.py
 python3 scripts/build_cave_index.py
 ```
 
@@ -250,11 +251,16 @@ Výstupom je `web/src/data/caves.json`. Web z neho generuje:
 - `/jaskyne/` ako register všetkých jaskýň,
 - `/jaskyne/<slug>/` ako detail jaskyne,
 - vertikálnu časovú os článkov zoradenú od najstaršieho po najnovší,
+- oficiálne číslo jaskyne zo SMOPaJ registra, ak je názov jednoznačne spárovaný,
 - odkazy na detail článku a PDF stranu so spoločným offsetom `+2`.
 
 Duplicitné alebo pádové varianty názvov jaskýň sa zlučujú cez kurátorovaný súbor `data/cave_aliases.json`. Každá položka má kanonický názov a zoznam aliasov, napríklad `Jasovská jaskyňa` + `Jasovskej jaskyne` + `Jasovská jeskyně`. Pri generovaní registra sa články z aliasov presunú pod kanonický názov a na karte jaskyne sa zobrazí aj zoznam aliasov.
 
 Nejednoznačné názvy sa nemajú zlučovať naslepo. Ak rovnaký názov označuje rôzne jaskyne v rôznych oblastiach, register ich rozdeľuje podľa oblasti, napríklad pri názve `Medvedia jaskyňa`. Podrobné pravidlá pre aliasy, delenie podľa oblasti a pripravovanú geomorfologickú vrstvu sú v [runbooku registra jaskýň a geomorfologického členenia](docs/REGISTER_JASKYN_A_GEOMORFOLOGIA.md).
+
+Geomorfologické tagy sa načítavajú z `data/geomorphology_regions.json` a z oficiálneho SMOPaJ registra `data/smopaj_cave_register_2017.json`, ktorý sa generuje z textových extraktov v `data/source_text/`. Kurátorovaný súbor má prednosť pri problematických známych prípadoch, oficiálny register dopĺňa číslo jaskyne a geomorfologické zaradenie pri jednoznačnej zhode názvu alebo aliasu.
+
+Pri aktuálnom generovaní má webový register 1105 kariet jaskýň/lokalít, 242 z nich má geomorfologický región a 232 má priradené oficiálne SMOPaJ číslo jaskyne. Viacnásobné názvy typu `Medvedia jaskyňa` sa nespájajú naslepo; zostávajú rozdelené podľa oblasti alebo bez oficiálneho čísla, kým nie je zhoda jednoznačná.
 
 Pomocný admin režim je dostupný lokálne na:
 

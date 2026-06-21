@@ -39,12 +39,21 @@ def test_cave_timeline_shows_publication_and_alternates_sides():
     css_source = (ROOT / "web" / "src" / "styles" / "global.css").read_text(encoding="utf-8")
 
     assert "article.journal_short_title" in detail_source
+    assert "smopaj_cave_number" in detail_source
+    assert "Číslo jaskyne" in detail_source
     assert "cave-timeline-side" in detail_source
     assert "--timeline-stagger-offset" in css_source
     assert "margin-top: var(--timeline-stagger-offset);" in css_source
     assert "cave-timeline-item:nth-child(odd)" in css_source
     assert "cave-timeline-item:nth-child(even)" in css_source
     assert "@media (max-width: 767px)" in css_source
+
+
+def test_cave_register_cards_show_official_smopaj_cave_number():
+    index_source = (ROOT / "web" / "src" / "pages" / "jaskyne" / "index.astro").read_text(encoding="utf-8")
+
+    assert "smopaj_cave_number" in index_source
+    assert "Číslo jaskyne" in index_source
 
 
 def test_web_pages_hide_generic_import_abstracts():

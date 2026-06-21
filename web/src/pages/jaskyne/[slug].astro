@@ -17,6 +17,7 @@ if (!cave) {
 }
 const timeline = [...cave.articles].sort((a, b) => Number(a.year || 0) - Number(b.year || 0) || Number(a.id) - Number(b.id));
 const DEFAULT_JOURNAL_SHORT_TITLE = 'Spravodaj SSS';
+const region = cave.region || {};
 const isGenericImportAbstract = (value) => /Obsahový\s+záznam\s+z\s+čísla\b.*\bimportovaný\s+z\s+obsahu\s+čísla\b/i.test(String(value || '').replace(/\s+/g, ' ').trim());
 const displayAbstract = (article) => {
   const abstract = String(article.abstract || '').trim();
@@ -44,6 +45,17 @@ const formatAuthorsDisplay = (authors) => {
               Oblasť: {cave.area}
             </p>
           )}
+          {region.geomorph_unit && (
+            <p class="mt-2 inline-flex rounded-full border border-belly-darkgray px-3 py-1 text-xs font-bold text-belly-dimgray-blue">
+              Geomorfologický celok: {region.geomorph_unit}
+              {region.local_area && region.local_area !== region.geomorph_unit ? ` / ${region.local_area}` : ''}
+            </p>
+          )}
+          {cave.smopaj_cave_number && (
+            <p class="mt-2 inline-flex rounded-full border border-belly-darkgray px-3 py-1 text-xs font-bold text-belly-dimgray-blue">
+              Číslo jaskyne: {cave.smopaj_cave_number}
+            </p>
+          )}
           <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray-warm">
             Chronologický prehľad článkov naprieč spracovanými speleologickými publikáciami, kde je táto jaskyňa uvedená v kurátorovanom zozname lokalít.
           </p>
@@ -57,7 +69,7 @@ const formatAuthorsDisplay = (authors) => {
     </header>
 
     <main class="mx-auto max-w-5xl px-5 py-6">
-      <section class="portal-stat-grid mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <section class="portal-stat-grid mb-6 grid grid-cols-2 gap-3 lg:grid-cols-6">
         <div class="portal-stat">
           <span>Články</span>
           <strong>{cave.article_count}</strong>
@@ -65,6 +77,14 @@ const formatAuthorsDisplay = (authors) => {
         <div class="portal-stat">
           <span>Mapy/plány</span>
           <strong>{cave.map_plan_count}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Geomorf. celok</span>
+          <strong class="text-lg leading-tight">{region.geomorph_unit || '—'}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Číslo jaskyne</span>
+          <strong class="text-lg leading-tight">{cave.smopaj_cave_number || '—'}</strong>
         </div>
         <div class="portal-stat">
           <span>Prvý rok</span>
@@ -81,6 +101,14 @@ const formatAuthorsDisplay = (authors) => {
         <p class="mt-1 text-sm text-belly-dimgray">
           Položky sú zoradené od najstarších po najnovšie. Odkaz PDF smeruje na fyzickú stranu PDF súboru s globálnym offsetom +2.
         </p>
+        {region.geomorph_area && (
+          <p class="mt-2 text-xs font-mono uppercase tracking-wider text-belly-lightslategray">
+            {region.geomorph_subprovince ? `${region.geomorph_subprovince} / ` : ''}{region.geomorph_area}
+            {region.geomorph_parent ? ` / ${region.geomorph_parent}` : ''}
+            {region.geomorph_subunit ? ` / ${region.geomorph_subunit}` : ''}
+            {region.geomorph_part ? ` / ${region.geomorph_part}` : ''}
+          </p>
+        )}
       </section>
 
       <ol class="cave-timeline">

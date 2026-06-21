@@ -6,6 +6,7 @@ import caves from '../../data/caves.json';
 const totalCaves = caves.length;
 const totalArticles = caves.reduce((sum, cave) => sum + cave.article_count, 0);
 const totalMapPlans = caves.reduce((sum, cave) => sum + cave.map_plan_count, 0);
+const totalRegions = new Set(caves.map((cave) => cave.region?.geomorph_unit).filter(Boolean)).size;
 const years = caves.flatMap((cave) => [cave.first_year, cave.last_year]).filter(Boolean);
 const firstYear = Math.min(...years);
 const lastYear = Math.max(...years);
@@ -31,7 +32,7 @@ const lastYear = Math.max(...years);
     </header>
 
     <main class="mx-auto max-w-6xl px-5 py-6">
-      <section class="portal-stat-grid mb-6 grid grid-cols-2 gap-3 lg:grid-cols-4">
+      <section class="portal-stat-grid mb-6 grid grid-cols-2 gap-3 lg:grid-cols-5">
         <div class="portal-stat">
           <span>Jaskyne</span>
           <strong>{totalCaves}</strong>
@@ -43,6 +44,10 @@ const lastYear = Math.max(...years);
         <div class="portal-stat">
           <span>Mapy/plány</span>
           <strong>{totalMapPlans}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Geomorf. celky</span>
+          <strong>{totalRegions}</strong>
         </div>
         <div class="portal-stat">
           <span>Roky</span>
@@ -104,8 +109,10 @@ const lastYear = Math.max(...years);
             data-cave-name={cave.name}
             data-cave-slug={cave.slug}
             data-cave-area={cave.area || ''}
+            data-cave-region={cave.region?.geomorph_unit || ''}
+            data-cave-number={cave.smopaj_cave_number || ''}
             data-cave-aliases={(cave.aliases || []).join('|')}
-            data-search={`${cave.name} ${cave.area || ''} ${(cave.aliases || []).join(' ')} ${cave.first_year} ${cave.last_year}`.toLocaleLowerCase('sk')}
+            data-search={`${cave.name} ${cave.area || ''} ${cave.region?.local_area || ''} ${cave.region?.geomorph_unit || ''} ${cave.region?.geomorph_area || ''} ${cave.smopaj_cave_number || ''} ${cave.smopaj_registry_number || ''} ${(cave.aliases || []).join(' ')} ${cave.first_year} ${cave.last_year}`.toLocaleLowerCase('sk')}
           >
             <div class="flex items-start justify-between gap-3">
               <h3 class="font-display text-lg font-bold leading-tight text-belly-black-brown">{cave.name}</h3>
@@ -114,6 +121,17 @@ const lastYear = Math.max(...years);
             {cave.area && (
               <p class="mt-1 text-xs font-bold leading-snug text-belly-firebrick">
                 Oblasť: {cave.area}
+              </p>
+            )}
+            {cave.region?.geomorph_unit && (
+              <p class="mt-1 text-xs font-semibold leading-snug text-belly-dimgray-blue">
+                Geomorfologický celok: {cave.region.geomorph_unit}
+                {cave.region.local_area && cave.region.local_area !== cave.region.geomorph_unit ? ` / ${cave.region.local_area}` : ''}
+              </p>
+            )}
+            {cave.smopaj_cave_number && (
+              <p class="mt-1 text-xs font-mono font-bold leading-snug text-belly-dimgray">
+                Číslo jaskyne: {cave.smopaj_cave_number}
               </p>
             )}
             {(cave.aliases || []).length > 0 && (
@@ -203,10 +221,12 @@ const lastYear = Math.max(...years);
       const aliases = uniqueValues(names).filter((name) => normalizeText(name) !== normalizeText(canonical));
       const slugs = uniqueValues(selected.map((card) => card.dataset.caveSlug));
       const areas = uniqueValues(selected.map((card) => card.dataset.caveArea));
+      const regions = uniqueValues(selected.map((card) => card.dataset.caveRegion));
       const payload = {
         canonical,
         aliases,
         areas,
+        regions,
         note: slugs.length ? `Admin merge: ${slugs.join(', ')}` : '',
       };
       adminCount.textContent = `${selected.length} vybraných`;

@@ -1,0 +1,318 @@
+Geomorfologické jednotky:              Celok Podcelok Časť
+Bachureň                                  19
+Beskydské predhorie                       13
+    Hanušovská pahorkatina                               3
+    Mernícka pahorkatina                                 4
+    Ublianska pahorkatina                                5
+    Záhradnianska brázda                                 1
+Biele Karpaty                             32
+    Bošácke bradlá                                       17
+    Javorinská hornatina                                  1
+    Kobylináč                                             2
+    Súčanská vrchovina                                    2
+    Vršatské bradlá                                      10
+             Vršatské predhorie                               4
+             Vysoké Vršatce                                   6
+Bodvianska pahorkatina                     5
+    Gemerská pahorkatina                                 5
+Branisko                                  60
+    Sľubica                                               5
+    Smrekovica                                           55
+Bukovské vrchy                             7
+    Bukovce                                              7
+Burda                                      6
+Busov                                      7
+Cerová vrchovina                          43
+    Hajnáčska vrchovina                                  42
+    Mučínska vrchovina                                    1
+Čergov                                    20
+Čierna hora                               98
+   Bujanovské vrchy                                      24
+   Hornádske predhorie                                    5
+   Pokryvy                                               66
+   Sopotnické vrchy                                       3
+Horehronské podolie                       97
+   Bystrianske podhorie                                  52
+   Heľpianske podolie                                    10
+   Lopejská kotlina                                      35
+Hornádska kotlina                         44
+   Hornádske podolie                                      4
+   Medvedie chrbty                                       40
+Hornonitrianska kotlina                    8
+   Handlovská kotlina                                    3
+   Prievidzská kotlina                                   5
+Chočské vrchy                             93
+   Choč                                                  50
+   Prosečné                                              38
+   Sielnické vrchy                                        5
+Javorie                                    2
+   Lomnianska vrchovina                                  2
+Javorníky                                  2
+    Vysoké Javorníky                                     2
+                Javornícka hornatina                          1
+
+
+
+                                           Page 1 of 6
+                Lysianska brázda                         1
+Juhoslovenská kotlina              53
+   Ipeľská kotlina                                 2
+          Pôtorská pahorkatina                           2
+   Lučenská kotlina                                2
+         Jelšovská pahorkatina                           1
+         Poltárska pahorkatina                           1
+   Rimavská kotlina                               49
+        Gemerské terasy                                  3
+        Licinská pahorkatina                            46
+Košická kotlina                    67
+   Medzevská pahorkatina                          65
+   Toryská pahorkatina                             2
+Kozie chrbty                       112
+   Dúbrava                                        36
+   Važecký chrbát                                 76
+Kremnické vrchy                    25
+   Flochovský chrbát                              16
+   Malachovské predhorie                           7
+   Turovské predhorie                              2
+Krupinská planina                   9
+   Bzovícka pahorkatina                            2
+   Dačolomská planina                              2
+   Modrokamenské úboče                             5
+Kysucká vrchovina                   7
+   Kysucké bradlá                                  7
+Kysucké Beskydy                     4
+   Rača                                            4
+Laborecká vrchovina                 1
+   Papínska brázda                                 1
+Levočské vrchy                     50
+   Levočská vysočina                              34
+   Levočské planiny                               16
+         Olšavická planina                              16
+Ľubovnianska vrchovina              12
+Malá Fatra                         235
+   Krivánska Fatra                                104
+         Krivánske Veterné hole                         79
+         Osnica                                          9
+         Rozsutce                                       15
+        Štefanovská kotlina                              1
+   Lúčanská Fatra                                 131
+          Kľak                                           12
+         Kýčery                                          16
+         Lúčanské Veterné hole                          103
+Malé Karpaty                       324
+  Brezovské Karpaty                               53
+  Čachtické Karpaty                               34
+        Nedze                                           34
+  Devínske Karpaty                                22
+        Bratislavské predhorie                           1
+        Devínska Kobyla                                 21
+  Pezinské Karpaty                                215
+        Biele hory                                      101
+
+
+                                    Page 2 of 6
+         Homoľské Karpaty                               61
+         Plavecké predhorie                             14
+         Smolenická vrchovina                           39
+Myjavská pahorkatina                 2
+Nízke Tatry                        803
+   Ďumbierske Tatry                               747
+        Demänovské vrchy                                666
+        Ďumbier                                          29
+        Prašivá                                           7
+        Salatíny                                         45
+   Kráľovohoľské Tatry                            56
+        Kráľova hoľa                                    11
+        Predná hoľa                                      3
+        Priehyba                                        42
+Ondavská vrchovina                  2
+Oravská Magura                      1
+   Kubínska hoľa                                   1
+Oravská vrchovina                   9
+Oravské Beskydy                     7
+    Babia hora                                     7
+Ostrôžky                           17
+Pieniny                            29
+Podtatranská kotlina               80
+   Liptovská kotlina                              74
+        Hybianska pahorkatina                           27
+        Chočské podhorie                                37
+        Liptovské nivy                                   2
+        Ľubeľská pahorkatina                             4
+        Smrečianska pahorkatina                          4
+   Popradská kotlina                               1
+   Tatranské podhorie                              5
+Podunajská pahorkatina             16
+   Hronská pahorkatina                             1
+        Bešianska pahorkatina                            1
+   Ipeľská pahorkatina                             5
+        Santovská pahorkatina                            3
+        Sebechlebská pahorkatina                         2
+   Nitrianska pahorkatina                         10
+        Bánovská pahorkatina                             4
+        Nitrianske vršky                                 5
+       Tríbečské podhorie                                1
+Pohronský Inovec                    4
+   Veľký Inovec                                    4
+Poľana                              6
+   Detvianske predhorie                            4
+   Vysoká Poľana                                   2
+Považské podolie                   12
+   Bielokarpatské podhorie                        11
+   Trenčianska kotlina                             1
+Považský Inovec                    86
+   Inovecké predhorie                             31
+   Krahulčie vrchy                                18
+   Nízky Inovec                                   35
+
+
+
+                                    Page 3 of 6
+   Vysoký Inovec                               2
+Revúcka vrchovina              128
+   Cinobanské predhorie                        7
+   Dobšinské predhorie                        10
+   Hrádok                                     33
+   Turecká                                     7
+   Železnícke predhorie                       71
+      Blžská tabuľa                                 3
+      Pokoradzská tabuľa                            1
+Skorušinské vrchy               5
+       Skorušina                               5
+Slanské vrchy                   26
+   Makovica                                    3
+      Banské predhorie                              1
+   Mošník                                      8
+   Šimonka                                    15
+      Olšavské predhorie                            11
+      Zlatobanská kotlina                            4
+Slovenský kras                1200
+    Dolný vrch                                161
+    Horný vrch                                204
+        Borčianska brázda                           13
+   Jasovská planina                           106
+   Jelšavský kras                              17
+   Koniarska planina                           39
+   Plešivská planina                          231
+   Silická planina                            335
+   Turnianska kotlina                           2
+   Zádielska planina                          105
+Spišská Magura                  3
+   Veterný vrch                                3
+     Ružbašské predhorie                            3
+Spišsko-gemerský kras         1035
+   Muránska planina                           493
+   Slovenský raj                              542
+Spišsko-šarišské medzihorie     11
+   Hromovec                                    1
+   Ľubotínska pahorkatina                      7
+   Šarišské podolie                            3
+Starohorské vrchy              78
+   Kordícka brázda                            18
+Stolické vrchy                  2
+   Málinské vrchy                              1
+   Stolica                                     1
+Strážovské vrchy               545
+   Malá Magura                                 5
+   Nitrické vrchy                             82
+         Drieňov                                     9
+         Rokoš                                      53
+         Rokošské predhorie                         10
+         Suchý                                      10
+   Trenčianska vrchovina                      94
+        Butkovské bradlá                            20
+        Holázne                                     16
+
+
+
+                                Page 4 of 6
+        Ostrý                                        19
+        Teplická vrchovina                           39
+   Zliechovská hornatina                       364
+        Baske                                         80
+        Belianska vrchovina                           26
+        Kňaží stôl                                    17
+        Slatinská brázda                               1
+        Strážov                                      240
+Súľovské vrchy                  162
+   Manínska vrchovina                          82
+         Maníny                                      82
+   Skalky                                      25
+   Súľovské skaly                              55
+Šarišská vrchovina              12
+Štiavnické vrchy                29
+   Hodrušská hornatina                         27
+       Slovenská brána                                2
+Tatry                           439
+   Východné Tatry                              240
+       Belianske Tatry                               132
+       Vysoké Tatry                                  108
+   Západné Tatry                               199
+       Červené vrchy                                 70
+        Liptovské Tatry                               4
+        Osobitá                                      24
+        Roháče                                       31
+       Sivý vrch                                     70
+Tríbeč                          61
+   Rázdiel                                     43
+       Kolačnianska vrchovina                         3
+       Skýcovská vrchovina                            8
+       Veľkopoľská vrchovina                         32
+   Veľký Tríbeč                                 4
+       Hornianske predhorie                           3
+       Zlatnianske predhorie                          1
+   Zobor                                       14
+Turčianska kotlina               4
+   Šútovské podhorie                            3
+   Turčianske nivy                              1
+Veľká Fatra                     530
+   Bralná Fatra                                268
+   Hôľna Fatra                                  62
+   Lysec                                        59
+   Revúcke podolie                               7
+   Šiprúň                                        2
+   Šípska Fatra                                128
+   Zvolen                                        4
+Veporské vrchy                  47
+   Balocké vrchy                                5
+   Čierťaž                                     14
+   Fabova hoľa                                 28
+Vihorlatské vrchy               31
+   Humenské vrchy                              26
+      Krivoštianka                                   16
+
+
+
+                                 Page 5 of 6
+        Sokol                                             10
+   Vihorlat                                          5
+        Kyjovská planina                                   1
+        Vyhorlatská hornatina                              4
+Volovské vrchy                       217
+   Havranie vrchy                                     5
+   Hnilecké vrchy                                   132
+         Galmus                                           131
+   Kojšovská hoľa                                   59
+   Pipitka                                          20
+   Zlatý stôl                                        1
+Vtáčnik                               10
+   Vysoký Vtáčnik                                   10
+Zvolenská kotlina                     44
+   Bystrické podolie                                 3
+   Bystrická vrchovina                              16
+   Ponická vrchovina                                19
+   Zvolenská pahorkatina                             6
+Žiar                                  93
+   Horeňovo                                         12
+   Rovne                                            25
+   Sokol                                            25
+   Vyšehrad                                         31
+Žilinská kotlina                       1
+  Rajecká kotlina                                    1
+Spolu: 67 geomofologických celkov   7242
+
+
+
+
+                                      Page 6 of 6
+

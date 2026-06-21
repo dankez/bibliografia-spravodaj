@@ -407,6 +407,61 @@ def test_build_cave_index_splits_ambiguous_cave_names_by_area():
     assert all(item["slug"].startswith("medvedia-jaskyna-") for item in medvedie)
 
 
+def test_build_cave_index_adds_geomorphology_from_area_and_cave_name():
+    articles = [
+        {
+            "id": 1,
+            "title": "Medvedia jaskyňa v Jánskej doline",
+            "year": 1991,
+            "issue": "1",
+            "pages": "13-17",
+            "authors": ["Vajs, J."],
+            "abstract": "Poloha Medvedej jaskyne v Jánskej doline v Nízkych Tatrách.",
+            "caves": ["Medvedia jaskyňa"],
+            "caves_verified": True,
+        },
+        {
+            "id": 2,
+            "title": "Výskum Jasovskej jaskyne",
+            "year": 2018,
+            "issue": "2",
+            "pages": "20",
+            "authors": ["Novák, J."],
+            "abstract": "Správa z Jasovskej jaskyne.",
+            "caves": ["Jasovská jaskyňa"],
+            "caves_verified": True,
+        },
+    ]
+    geomorphology = {
+        "areas": {
+            "Jánska dolina / Nízke Tatry": {
+                "local_area": "Jánska dolina",
+                "geomorph_unit": "Nízke Tatry",
+                "geomorph_area": "Fatransko-tatranská oblasť",
+                "confidence": "curated",
+            }
+        },
+        "caves": {
+            "Jasovská jaskyňa": {
+                "local_area": "Jasovská planina",
+                "geomorph_unit": "Slovenský kras",
+                "geomorph_area": "Slovenské rudohorie",
+                "confidence": "curated",
+            }
+        },
+    }
+
+    caves = build_cave_index.build_cave_index(articles, geomorphology=geomorphology)
+
+    medvedia = next(item for item in caves if item["name"] == "Medvedia jaskyňa")
+    jasovska = next(item for item in caves if item["name"] == "Jasovská jaskyňa")
+
+    assert medvedia["region"]["geomorph_unit"] == "Nízke Tatry"
+    assert medvedia["region"]["local_area"] == "Jánska dolina"
+    assert jasovska["region"]["geomorph_unit"] == "Slovenský kras"
+    assert jasovska["region"]["local_area"] == "Jasovská planina"
+
+
 def test_build_cave_index_normalizes_medvedia_inflected_context_titles():
     articles = [
         {
@@ -473,6 +528,112 @@ def test_build_cave_index_does_not_assign_context_area_to_unambiguous_caves():
     assert domica["area"] == ""
     assert domica["slug"] == "domica"
     assert "cave_area" not in domica["articles"][0]
+
+
+def test_build_cave_index_adds_official_smopaj_cave_number_and_region_for_unique_match():
+    articles = [
+        {
+            "id": 1,
+            "title": "Výskum jaskyne Domica",
+            "year": 1970,
+            "issue": "1",
+            "pages": "10",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o jaskyni Domica.",
+            "caves": ["Jaskyňa Domica"],
+            "caves_verified": True,
+        },
+        {
+            "id": 2,
+            "title": "Dobšinská ľadová jaskyňa",
+            "year": 1971,
+            "issue": "2",
+            "pages": "20",
+            "authors": ["Kováč, P."],
+            "abstract": "Správa o Dobšinskej ľadovej jaskyni.",
+            "caves": ["Dobšinská ľadová jaskyňa"],
+            "caves_verified": True,
+        },
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "3483.1",
+                "registry_number": "238",
+                "official_name": "Domica",
+                "names": ["Domica"],
+                "geomorph_celok": "Slovenský kras",
+                "geomorph_podcelok": "Silická planina",
+                "geomorph_cast": "",
+            },
+            {
+                "cave_number": "4503",
+                "registry_number": "105",
+                "official_name": "Dobšinská ľadová jaskyňa",
+                "names": ["Dobšinská ľadová jaskyňa"],
+                "geomorph_celok": "Spišsko-gemerský kras",
+                "geomorph_podcelok": "Slovenský raj",
+                "geomorph_cast": "",
+            },
+        ]
+    }
+
+    caves = build_cave_index.build_cave_index(articles, smopaj_register=smopaj_register)
+
+    domica = next(item for item in caves if item["name"] == "Domica")
+    dobsinska = next(item for item in caves if item["name"] == "Dobšinská ľadová jaskyňa")
+
+    assert domica["smopaj_cave_number"] == "3483.1"
+    assert domica["smopaj_registry_number"] == "238"
+    assert domica["region"]["geomorph_unit"] == "Slovenský kras"
+    assert domica["region"]["local_area"] == "Silická planina"
+    assert dobsinska["smopaj_cave_number"] == "4503"
+    assert dobsinska["region"]["geomorph_unit"] == "Spišsko-gemerský kras"
+    assert dobsinska["region"]["local_area"] == "Slovenský raj"
+
+
+def test_build_cave_index_does_not_auto_assign_official_number_for_ambiguous_smopaj_name():
+    articles = [
+        {
+            "id": 1,
+            "title": "Medvedia jaskyňa",
+            "year": 1970,
+            "issue": "1",
+            "pages": "10",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o Medvedej jaskyni.",
+            "caves": ["Medvedia jaskyňa"],
+            "caves_verified": True,
+        }
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "276",
+                "registry_number": "1053",
+                "official_name": "Medvedia jaskyňa",
+                "names": ["Medvedia jaskyňa"],
+                "geomorph_celok": "Čierna hora",
+                "geomorph_podcelok": "Pokryvy",
+                "geomorph_cast": "",
+            },
+            {
+                "cave_number": "1810",
+                "registry_number": "360",
+                "official_name": "Medvedia jaskyňa",
+                "names": ["Medvedia jaskyňa", "Zimná jaskyňa"],
+                "geomorph_celok": "Nízke Tatry",
+                "geomorph_podcelok": "Ďumbierske Tatry",
+                "geomorph_cast": "Ďumbierske vrchy",
+            },
+        ]
+    }
+
+    caves = build_cave_index.build_cave_index(articles, smopaj_register=smopaj_register)
+
+    medvedia = next(item for item in caves if item["name"] == "Medvedia jaskyňa")
+    assert "smopaj_cave_number" not in medvedia
+    assert "region" not in medvedia
 
 
 def test_current_cave_index_data_is_generated_for_web():

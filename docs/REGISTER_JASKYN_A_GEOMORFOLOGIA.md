@@ -27,6 +27,7 @@ Aktuálne funguje:
 
 - zlučovanie ručných aliasov cez kanonický názov,
 - základná inferencia jaskýň z názvu a anotácie článku,
+- import oficiálneho registra jaskýň SMOPaJ s číslom jaskyne a geomorfologickou jednotkou,
 - ochrana proti všeobecným slovám typu výskum, prieskum, ochrana alebo návštevnosť,
 - deduplikácia rovnakých článkov v časovej osi,
 - zobrazenie časopisu pri každom článku,
@@ -119,7 +120,42 @@ Plánovaný minimálny model:
 }
 ```
 
-Na začiatku netreba pokryť celé Slovensko naraz. Praktickejšie je pridať
+Prvá implementácia používa kurátorovaný JSON súbor s dvoma typmi pravidiel:
+
+- `areas` mapuje existujúce disambiguation oblasti z registra, napríklad
+  `Jánska dolina / Nízke Tatry`,
+- `caves` mapuje konkrétne kanonické názvy jaskýň, napríklad `Domica` alebo
+  `Jasovská jaskyňa`.
+
+Pri generovaní registra má prednosť pravidlo podľa oblasti. Ak jaskyňa nemá
+disambiguation oblasť, použije sa pravidlo podľa kanonického názvu. Výsledok sa
+uloží do poľa `region` v dátach registra a web ho zobrazuje ako geomorfologický
+tag.
+
+Okrem kurátorovaného súboru sa používa oficiálny SMOPaJ register. V repozitári
+sú uložené textové extrakty z týchto PDF zdrojov:
+
+- `data/source_text/smopaj_zoznam_jaskyn_2017.txt` - Zoznam jaskýň k 31.12.2017 podľa geomorfologických jednotiek,
+- `data/source_text/smopaj_register_jaskyn.txt` - abecedný register jaskýň s číslom jaskyne,
+- `data/source_text/smopaj_geomorfologicke_celky.txt` - prehľad podľa geomorfologických celkov.
+
+Z nich sa generuje `data/smopaj_cave_register_2017.json`:
+
+```bash
+python3 scripts/import_smopaj_cave_register.py
+python3 scripts/build_cave_index.py
+```
+
+Dôležité rozlíšenie: v zdrojovom zozname sa vyskytuje poradové `Číslo jaskyne`
+aj interné `r. č.`. Mená z abecedného registra sa párujú podľa `Číslo jaskyne`,
+nie podľa `r. č.`, inak vznikajú falošné aliasy.
+
+Oficiálny register sa používa len pri jednoznačnej zhode názvu alebo aliasu.
+Ak rovnaký názov mapuje na viac čísiel jaskyne, napríklad `Medvedia jaskyňa`,
+skript mu automaticky nepriradí jedno oficiálne číslo. Také prípady sa ďalej
+delia podľa oblasti alebo riešia kurátorsky.
+
+Na začiatku netreba pokryť celé Slovensko ručne. Praktickejšie je dopĺňať
 kurátorované mapovanie pre lokality, ktoré už spôsobujú chyby v registri:
 
 - Medvedia jaskyňa,
