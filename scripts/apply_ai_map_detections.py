@@ -21,7 +21,7 @@ DEFAULT_PATTERN = "data/ai_map_detection/map_confirmed_*_hybrid_ocr_minicpm46_20
 
 
 def utc_now() -> str:
-    return dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat()
+    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 
 
 def read_json(path: Path) -> Any:

@@ -43,6 +43,15 @@ PDF_METADATA_KEYWORDS = (
     "Slovenská speleologická spoločnosť, Spravodaj SSS, bibliografia, "
     "jaskyne, speleológia, mapy, plány"
 )
+DEFAULT_EXPORT_TITLE = "Bibliografia Spravodaja SSS"
+DEFAULT_JOURNAL_ID = "spravodaj_sss"
+DEFAULT_JOURNAL_TITLE = "Spravodaj SSS"
+JOURNAL_EXPORT_ORDER = ("spravodaj_sss", "aragonit", "slovensky_kras")
+JOURNAL_TITLE_FALLBACKS = {
+    "spravodaj_sss": "Spravodaj SSS",
+    "aragonit": "Aragonit",
+    "slovensky_kras": "Slovenský kras",
+}
 EXPORT_BRAND_ALT = "Digitálna bibliografia SSS"
 EXPORT_LOGO_ALT = "Logo Digitálnej bibliografie SSS"
 EXPORT_BRAND_MARKDOWN = f"![{EXPORT_BRAND_ALT}](../brand/bibliografia-banner.png)"
@@ -147,6 +156,10 @@ def authors_label(authors: list[str]) -> str:
     return ", ".join(authors)
 
 
+def article_number(article: dict) -> int:
+    return int(article.get("export_number") or article["id"])
+
+
 def article_anchor(article: dict) -> str:
     return f"clanok-{article['id']}"
 
@@ -167,7 +180,7 @@ def article_line(article: dict, markdown: bool = False) -> str:
             url = f"{article['pdf_url']}#page={pdf_link_page(article)}"
             pdf_link = f" {markdown_pdf_link(url)}"
         lines = [
-            f"{markdown_article_anchor(article)}**{article['id']}. {title}**",
+            f"{markdown_article_anchor(article)}**{article_number(article)}. {title}**",
             f"**AUTOR:** {authors}  ",
             f"**STRANY:** {pages}{pdf_link}  ",
         ]
@@ -176,7 +189,7 @@ def article_line(article: dict, markdown: bool = False) -> str:
         return "\n".join(lines)
 
     lines = [
-        f"{article['id']}. {title}",
+        f"{article_number(article)}. {title}",
         f"     AUTOR: {authors}",
         f"     STRANY: {pages}",
     ]
@@ -253,8 +266,8 @@ def register_reference(article: dict, markdown: bool = False) -> str:
     pages = format_pages(article.get("pages", ""))
     suffix = f"({year}, č. {issue}, s. {pages})"
     if markdown:
-        return f"[{article['id']}](#{article_anchor(article)}) {suffix}"
-    return f"{article['id']} {suffix}"
+        return f"[{article_number(article)}](#{article_anchor(article)}) {suffix}"
+    return f"{article_number(article)} {suffix}"
 
 
 def build_register_index(articles: list[dict], term_getter) -> dict[str, list[dict]]:
@@ -265,7 +278,7 @@ def build_register_index(articles: list[dict], term_getter) -> dict[str, list[di
             if term:
                 index[term][article["id"]] = article
     return {
-        term: sorted(article_map.values(), key=lambda item: item["id"])
+        term: sorted(article_map.values(), key=lambda item: article_number(item))
         for term, article_map in index.items()
     }
 
@@ -323,6 +336,72 @@ def plain_issue_heading(issue: str) -> str:
     return f"---- ČÍSLO {issue} ----"
 
 
+def plain_journal_heading(journal_title: str) -> str:
+    return "\n".join([plain_rule("*"), str(journal_title).upper(), plain_rule("*")])
+
+
+def article_journal_id(article: dict) -> str:
+    return str(article.get("journal_id") or DEFAULT_JOURNAL_ID)
+
+
+def article_journal_title(article: dict) -> str:
+    journal_id = article_journal_id(article)
+    return str(
+        article.get("journal_short_title")
+        or article.get("journal_title")
+        or JOURNAL_TITLE_FALLBACKS.get(journal_id)
+        or journal_id
+    )
+
+
+def journal_sort_key(journal_id: str, title: str) -> tuple[int, str]:
+    try:
+        order = JOURNAL_EXPORT_ORDER.index(journal_id)
+    except ValueError:
+        order = len(JOURNAL_EXPORT_ORDER)
+    return order, title.casefold()
+
+
+def iter_articles_in_issue_order(articles: list[dict]):
+    grouped: dict[tuple[int, str], dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
+    for article in articles:
+        grouped[(article.get("year"), article.get("volume", ""))][str(article.get("issue", ""))].append(article)
+
+    for (year, volume) in sorted(grouped.keys()):
+        issues = grouped[(year, volume)]
+        for issue in sorted(issues.keys(), key=issue_sort_key):
+            yield from sorted(issues[issue], key=lambda item: item["id"])
+
+
+def iter_articles_in_export_order(articles: list[dict], group_by_journal: bool = False):
+    if not group_by_journal:
+        yield from iter_articles_in_issue_order(articles)
+        return
+
+    journal_groups: dict[str, list[dict]] = defaultdict(list)
+    journal_titles: dict[str, str] = {}
+    for article in articles:
+        journal_id = article_journal_id(article)
+        journal_groups[journal_id].append(article)
+        journal_titles.setdefault(journal_id, article_journal_title(article))
+
+    for journal_id in sorted(
+        journal_groups.keys(),
+        key=lambda item: journal_sort_key(item, journal_titles.get(item, item)),
+    ):
+        yield from iter_articles_in_issue_order(journal_groups[journal_id])
+
+
+def prepare_export_articles(articles: list[dict], group_by_journal: bool = False) -> list[dict]:
+    prepared = [dict(article) for article in articles]
+    for index, article in enumerate(
+        iter_articles_in_export_order(prepared, group_by_journal=group_by_journal),
+        start=1,
+    ):
+        article["export_number"] = index
+    return prepared
+
+
 def has_map_or_plan(article: dict) -> bool:
     if article.get("has_map_plan") is True:
         return True
@@ -346,29 +425,54 @@ def has_map_or_plan(article: dict) -> bool:
     )
 
 
-def render_articles(articles: list[dict], markdown: bool = False) -> str:
+def render_article_issue_groups(articles: list[dict], markdown: bool = False) -> list[str]:
     grouped: dict[tuple[int, str], dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
     for article in articles:
         grouped[(article.get("year"), article.get("volume", ""))][str(article.get("issue", ""))].append(article)
 
     lines: list[str] = []
-    title = "## Zoznam článkov" if markdown else "Zoznam článkov"
-    lines.extend([title, ""])
-
     for (year, volume) in sorted(grouped.keys()):
         volume_part = f" ({volume})" if volume else ""
         heading = f"### Ročník {year}{volume_part}" if markdown else plain_volume_heading(year, volume)
         lines.extend([heading, ""])
         issues = grouped[(year, volume)]
         for issue in sorted(issues.keys(), key=issue_sort_key):
-            issue_heading = f"#### Číslo {issue}" if markdown else plain_issue_heading(issue)
-            lines.extend([issue_heading, ""])
+            if issue.strip():
+                issue_heading = f"#### Číslo {issue}" if markdown else plain_issue_heading(issue)
+                lines.extend([issue_heading, ""])
             for article in sorted(issues[issue], key=lambda item: item["id"]):
                 lines.append(article_line(article, markdown=markdown))
                 abstract = (article.get("abstract") or "").strip()
                 if abstract:
                     lines.append(abstract)
                 lines.append("")
+    return lines
+
+
+def render_articles(articles: list[dict], markdown: bool = False, group_by_journal: bool = False) -> str:
+    lines: list[str] = []
+    title = "## Zoznam článkov" if markdown else "Zoznam článkov"
+    lines.extend([title, ""])
+    if not group_by_journal:
+        lines.extend(render_article_issue_groups(articles, markdown=markdown))
+        return "\n".join(lines).rstrip() + "\n"
+
+    journal_groups: dict[str, list[dict]] = defaultdict(list)
+    journal_titles: dict[str, str] = {}
+    for article in articles:
+        journal_id = article_journal_id(article)
+        journal_groups[journal_id].append(article)
+        journal_titles.setdefault(journal_id, article_journal_title(article))
+
+    for journal_id in sorted(
+        journal_groups.keys(),
+        key=lambda item: journal_sort_key(item, journal_titles.get(item, item)),
+    ):
+        journal_title = journal_titles.get(journal_id, journal_id)
+        heading = f"### {journal_title}" if markdown else plain_journal_heading(journal_title)
+        lines.extend([heading, ""])
+        lines.extend(render_article_issue_groups(journal_groups[journal_id], markdown=markdown))
+        lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -397,8 +501,11 @@ def render_bibliography(
     articles: list[dict],
     markdown: bool = False,
     section_pages: dict[str, int] | None = None,
+    title: str = DEFAULT_EXPORT_TITLE,
+    group_by_journal: bool = False,
 ) -> str:
-    title = "# Bibliografia Spravodaja SSS" if markdown else "Bibliografia Spravodaja SSS"
+    articles = prepare_export_articles(articles, group_by_journal=group_by_journal)
+    title = f"# {title}" if markdown else title
     name_locality_subject = {"Menný register", "Lokalitný register", "Vecný register"}
     cave_register = {"Názvový register jaskýň"}
     brand = f"{EXPORT_BRAND_MARKDOWN}\n\n" if markdown else ""
@@ -413,7 +520,7 @@ def render_bibliography(
         + "\n\n"
         + render_contents(markdown=markdown, section_pages=section_pages)
         + "\n"
-        + render_articles(articles, markdown=markdown)
+        + render_articles(articles, markdown=markdown, group_by_journal=group_by_journal)
         + "\n"
         + render_registers(articles, markdown=markdown, titles=name_locality_subject)
         + "\n"
@@ -438,7 +545,11 @@ def render_markdown_line(line: str) -> str:
         return render_heading(2, title)
     if text.startswith("### "):
         title = text[4:].strip()
-        css_class = "volume-heading" if title.startswith("Ročník ") else None
+        css_class = None
+        if title.startswith("Ročník "):
+            css_class = "volume-heading"
+        elif title in set(JOURNAL_TITLE_FALLBACKS.values()):
+            css_class = "journal-heading"
         return render_heading(3, title, css_class=css_class)
     if text.startswith("#### "):
         title = text[5:].strip()
@@ -517,6 +628,16 @@ def render_html_document(markdown_text: str, title: str) -> str:
       font-size: 12pt;
       margin: 5mm 0 2mm;
       page-break-after: avoid;
+    }}
+    h3.journal-heading {{
+      background: rgb(246, 244, 241);
+      border: 1px solid rgb(206, 61, 59);
+      color: rgb(206, 61, 59);
+      font-family: "DejaVu Sans", Arial, sans-serif;
+      font-size: 14pt;
+      margin: 9mm 0 4mm;
+      padding: 3mm 4mm;
+      text-transform: uppercase;
     }}
     h3.volume-heading {{
       background: white;
@@ -621,7 +742,12 @@ def render_html_document(markdown_text: str, title: str) -> str:
 """
 
 
-def build_pdf_from_html(html_path: Path, pdf_path: Path, pdf_engine: str = "wkhtmltopdf") -> None:
+def build_pdf_from_html(
+    html_path: Path,
+    pdf_path: Path,
+    pdf_engine: str = "wkhtmltopdf",
+    metadata_title: str = PDF_METADATA_TITLE,
+) -> None:
     engine_path = shutil.which(pdf_engine)
     if not engine_path:
         raise RuntimeError(f"PDF engine not found on PATH: {pdf_engine}")
@@ -640,7 +766,7 @@ def build_pdf_from_html(html_path: Path, pdf_path: Path, pdf_engine: str = "wkht
         "--margin-right",
         "14mm",
         "--title",
-        PDF_METADATA_TITLE,
+        metadata_title,
         "--footer-center",
         "[page]",
         "--footer-font-size",
@@ -651,17 +777,17 @@ def build_pdf_from_html(html_path: Path, pdf_path: Path, pdf_engine: str = "wkht
     result = subprocess.run(command, capture_output=True, text=True, check=False)
     if result.returncode != 0:
         raise RuntimeError(result.stderr.strip() or "wkhtmltopdf failed")
-    write_pdf_metadata(pdf_path)
+    write_pdf_metadata(pdf_path, title=metadata_title)
 
 
-def write_pdf_metadata(pdf_path: Path) -> None:
+def write_pdf_metadata(pdf_path: Path, title: str = PDF_METADATA_TITLE) -> None:
     exiftool_path = shutil.which("exiftool")
     if not exiftool_path:
         raise RuntimeError("PDF metadata tool not found on PATH: exiftool")
     command = [
         exiftool_path,
         "-overwrite_original",
-        f"-Title={PDF_METADATA_TITLE}",
+        f"-Title={title}",
         f"-Author={PDF_METADATA_AUTHOR}",
         f"-Subject={PDF_METADATA_SUBJECT}",
         f"-Keywords={PDF_METADATA_KEYWORDS}",
@@ -705,13 +831,27 @@ def write_exports(
     md_path: Path,
     html_path: Path | None = None,
     section_pages: dict[str, int] | None = None,
+    title: str = DEFAULT_EXPORT_TITLE,
+    group_by_journal: bool = False,
 ) -> tuple[str, str]:
-    text_output = render_bibliography(articles, markdown=False, section_pages=section_pages)
-    markdown_output = render_bibliography(articles, markdown=True, section_pages=section_pages)
+    text_output = render_bibliography(
+        articles,
+        markdown=False,
+        section_pages=section_pages,
+        title=title,
+        group_by_journal=group_by_journal,
+    )
+    markdown_output = render_bibliography(
+        articles,
+        markdown=True,
+        section_pages=section_pages,
+        title=title,
+        group_by_journal=group_by_journal,
+    )
     txt_path.write_text(text_output, encoding="utf-8")
     md_path.write_text(markdown_output, encoding="utf-8")
     if html_path:
-        html_path.write_text(render_html_document(markdown_output, "Bibliografia Spravodaja SSS"), encoding="utf-8")
+        html_path.write_text(render_html_document(markdown_output, title), encoding="utf-8")
     return text_output, markdown_output
 
 
@@ -720,6 +860,8 @@ def main() -> int:
     parser.add_argument("--articles", default=str(ARTICLES_PATH), help="Path to article JSON database.")
     parser.add_argument("--output-dir", default=str(EXPORT_DIR), help="Directory for export files.")
     parser.add_argument("--basename", default=None, help="Output basename without extension.")
+    parser.add_argument("--title", default=DEFAULT_EXPORT_TITLE, help="Human-readable export title.")
+    parser.add_argument("--group-by-journal", action="store_true", help="Group article list by journal title.")
     parser.add_argument("--pdf", action="store_true", help="Also create HTML and PDF export using wkhtmltopdf.")
     parser.add_argument("--pdf-engine", default="wkhtmltopdf", help="PDF engine command, defaults to wkhtmltopdf.")
     args = parser.parse_args()
@@ -740,21 +882,37 @@ def main() -> int:
         pdf_path = output_dir / f"{basename}.pdf"
         section_pages: dict[str, int] | None = None
         for _ in range(3):
-            write_exports(articles, txt_path, md_path, html_path=html_path, section_pages=section_pages)
-            build_pdf_from_html(html_path, pdf_path, args.pdf_engine)
+            write_exports(
+                articles,
+                txt_path,
+                md_path,
+                html_path=html_path,
+                section_pages=section_pages,
+                title=args.title,
+                group_by_journal=args.group_by_journal,
+            )
+            build_pdf_from_html(html_path, pdf_path, args.pdf_engine, metadata_title=args.title)
             detected_pages = detect_pdf_section_pages(pdf_path)
             if not detected_pages or detected_pages == section_pages:
                 break
             section_pages = detected_pages
         if section_pages:
-            write_exports(articles, txt_path, md_path, html_path=html_path, section_pages=section_pages)
-            build_pdf_from_html(html_path, pdf_path, args.pdf_engine)
+            write_exports(
+                articles,
+                txt_path,
+                md_path,
+                html_path=html_path,
+                section_pages=section_pages,
+                title=args.title,
+                group_by_journal=args.group_by_journal,
+            )
+            build_pdf_from_html(html_path, pdf_path, args.pdf_engine, metadata_title=args.title)
         print(f"Wrote {txt_path}")
         print(f"Wrote {md_path}")
         print(f"Wrote {html_path}")
         print(f"Wrote {pdf_path}")
     else:
-        write_exports(articles, txt_path, md_path)
+        write_exports(articles, txt_path, md_path, title=args.title, group_by_journal=args.group_by_journal)
         print(f"Wrote {txt_path}")
         print(f"Wrote {md_path}")
     return 0

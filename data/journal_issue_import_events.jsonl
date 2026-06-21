@@ -1,0 +1,306 @@
+{"at": "2026-06-19T18:28:46.589932+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 112}
+{"at": "2026-06-19T18:28:46.633527+00:00", "event": "dry_run_complete", "total": 112}
+{"at": "2026-06-19T18:28:53.015938+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 1}
+{"at": "2026-06-19T18:28:53.035075+00:00", "event": "issue_start", "index": 1, "key": "aragonit:29_1"}
+{"articles": 6, "at": "2026-06-19T18:30:00.383763+00:00", "event": "issue_finish", "key": "aragonit:29_1"}
+{"added_articles": 6, "at": "2026-06-19T18:30:00.584354+00:00", "completed": 1, "event": "run_finish", "failed": 0}
+{"at": "2026-06-19T18:30:32.906118+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 111}
+{"at": "2026-06-19T18:30:32.962489+00:00", "event": "issue_start", "index": 1, "key": "aragonit:1"}
+{"articles": 38, "at": "2026-06-19T18:32:17.842798+00:00", "event": "issue_finish", "key": "aragonit:1"}
+{"at": "2026-06-19T18:32:18.112173+00:00", "event": "issue_start", "index": 2, "key": "aragonit:2"}
+{"articles": 43, "at": "2026-06-19T18:34:24.193126+00:00", "event": "issue_finish", "key": "aragonit:2"}
+{"at": "2026-06-19T18:34:24.603776+00:00", "event": "issue_start", "index": 3, "key": "aragonit:3"}
+{"articles": 41, "at": "2026-06-19T18:36:03.901434+00:00", "event": "issue_finish", "key": "aragonit:3"}
+{"at": "2026-06-19T18:36:04.114863+00:00", "event": "issue_start", "index": 4, "key": "aragonit:4"}
+{"at": "2026-06-19T18:38:42.527546+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 108}
+{"at": "2026-06-19T18:38:42.584928+00:00", "event": "issue_start", "index": 1, "key": "aragonit:4"}
+{"articles": 43, "at": "2026-06-19T18:40:25.757694+00:00", "event": "issue_finish", "key": "aragonit:4"}
+{"at": "2026-06-19T18:40:25.958368+00:00", "event": "issue_start", "index": 2, "key": "aragonit:5"}
+{"at": "2026-06-19T18:43:16.060750+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 107}
+{"at": "2026-06-19T18:43:16.062125+00:00", "event": "issue_start", "index": 1, "key": "aragonit:5"}
+{"articles": 42, "at": "2026-06-19T18:44:57.132187+00:00", "event": "issue_finish", "key": "aragonit:5"}
+{"at": "2026-06-19T18:44:57.332804+00:00", "event": "issue_start", "index": 2, "key": "aragonit:9"}
+{"articles": 36, "at": "2026-06-19T18:46:08.893543+00:00", "event": "issue_finish", "key": "aragonit:9"}
+{"at": "2026-06-19T18:46:09.094125+00:00", "event": "issue_start", "index": 3, "key": "aragonit:11"}
+{"articles": 62, "at": "2026-06-19T18:47:57.238105+00:00", "event": "issue_finish", "key": "aragonit:11"}
+{"at": "2026-06-19T18:47:57.438967+00:00", "completed": 3, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T18:48:03.848504+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 104}
+{"at": "2026-06-19T18:48:03.849567+00:00", "event": "issue_start", "index": 1, "key": "aragonit:12"}
+{"articles": 62, "at": "2026-06-19T18:49:53.888979+00:00", "event": "issue_finish", "key": "aragonit:12"}
+{"at": "2026-06-19T18:49:54.089591+00:00", "event": "issue_start", "index": 2, "key": "aragonit:13_1"}
+{"articles": 35, "at": "2026-06-19T18:51:00.946151+00:00", "event": "issue_finish", "key": "aragonit:13_1"}
+{"at": "2026-06-19T18:51:01.146786+00:00", "event": "issue_start", "index": 3, "key": "aragonit:13_2"}
+{"articles": 20, "at": "2026-06-19T18:51:53.818298+00:00", "event": "issue_finish", "key": "aragonit:13_2"}
+{"at": "2026-06-19T18:51:54.018957+00:00", "event": "issue_start", "index": 4, "key": "aragonit:14_1"}
+{"articles": 32, "at": "2026-06-19T18:52:58.767384+00:00", "event": "issue_finish", "key": "aragonit:14_1"}
+{"at": "2026-06-19T18:52:58.968014+00:00", "completed": 4, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T18:53:05.672369+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 100}
+{"at": "2026-06-19T18:53:05.673838+00:00", "event": "issue_start", "index": 1, "key": "aragonit:14_2"}
+{"articles": 30, "at": "2026-06-19T18:54:05.949045+00:00", "event": "issue_finish", "key": "aragonit:14_2"}
+{"at": "2026-06-19T18:54:06.149673+00:00", "event": "issue_start", "index": 2, "key": "aragonit:15_1"}
+{"articles": 26, "at": "2026-06-19T18:55:03.033024+00:00", "event": "issue_finish", "key": "aragonit:15_1"}
+{"at": "2026-06-19T18:55:03.233639+00:00", "event": "issue_start", "index": 3, "key": "aragonit:15_2"}
+{"articles": 27, "at": "2026-06-19T18:56:02.025871+00:00", "event": "issue_finish", "key": "aragonit:15_2"}
+{"at": "2026-06-19T18:56:02.226468+00:00", "event": "issue_start", "index": 4, "key": "aragonit:16"}
+{"articles": 25, "at": "2026-06-19T18:57:09.129426+00:00", "event": "issue_finish", "key": "aragonit:16"}
+{"at": "2026-06-19T18:57:09.330107+00:00", "completed": 4, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T18:57:15.707187+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 96}
+{"at": "2026-06-19T18:57:15.714777+00:00", "event": "issue_start", "index": 1, "key": "aragonit:17_2"}
+{"articles": 22, "at": "2026-06-19T18:58:12.784349+00:00", "event": "issue_finish", "key": "aragonit:17_2"}
+{"at": "2026-06-19T18:58:12.985066+00:00", "event": "issue_start", "index": 2, "key": "aragonit:18_1"}
+{"articles": 10, "at": "2026-06-19T18:58:44.585588+00:00", "event": "issue_finish", "key": "aragonit:18_1"}
+{"at": "2026-06-19T18:58:44.786224+00:00", "event": "issue_start", "index": 3, "key": "aragonit:18_2"}
+{"articles": 15, "at": "2026-06-19T18:59:24.662728+00:00", "event": "issue_finish", "key": "aragonit:18_2"}
+{"at": "2026-06-19T18:59:24.863386+00:00", "event": "issue_start", "index": 4, "key": "aragonit:19"}
+{"articles": 21, "at": "2026-06-19T19:00:14.022602+00:00", "event": "issue_finish", "key": "aragonit:19"}
+{"at": "2026-06-19T19:00:14.223345+00:00", "event": "issue_start", "index": 5, "key": "aragonit:20_1"}
+{"articles": 10, "at": "2026-06-19T19:00:49.038772+00:00", "event": "issue_finish", "key": "aragonit:20_1"}
+{"at": "2026-06-19T19:00:49.239358+00:00", "event": "issue_start", "index": 6, "key": "aragonit:20_2"}
+{"articles": 14, "at": "2026-06-19T19:01:35.236265+00:00", "event": "issue_finish", "key": "aragonit:20_2"}
+{"at": "2026-06-19T19:01:35.445678+00:00", "completed": 6, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:01:40.178114+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 90}
+{"at": "2026-06-19T19:01:40.179359+00:00", "event": "issue_start", "index": 1, "key": "aragonit:21_2"}
+{"articles": 17, "at": "2026-06-19T19:02:26.259975+00:00", "event": "issue_finish", "key": "aragonit:21_2"}
+{"at": "2026-06-19T19:02:26.460672+00:00", "event": "issue_start", "index": 2, "key": "aragonit:22"}
+{"articles": 5, "at": "2026-06-19T19:02:47.559886+00:00", "event": "issue_finish", "key": "aragonit:22"}
+{"at": "2026-06-19T19:02:47.760565+00:00", "event": "issue_start", "index": 3, "key": "aragonit:22_2"}
+{"articles": 11, "at": "2026-06-19T19:03:19.733385+00:00", "event": "issue_finish", "key": "aragonit:22_2"}
+{"at": "2026-06-19T19:03:19.934102+00:00", "event": "issue_start", "index": 4, "key": "aragonit:23_1"}
+{"articles": 21, "at": "2026-06-19T19:04:08.216690+00:00", "event": "issue_finish", "key": "aragonit:23_1"}
+{"at": "2026-06-19T19:04:08.417299+00:00", "event": "issue_start", "index": 5, "key": "aragonit:24_1"}
+{"articles": 11, "at": "2026-06-19T19:04:50.486499+00:00", "event": "issue_finish", "key": "aragonit:24_1"}
+{"at": "2026-06-19T19:04:50.687167+00:00", "event": "issue_start", "index": 6, "key": "aragonit:24_2"}
+{"articles": 19, "at": "2026-06-19T19:05:43.498540+00:00", "event": "issue_finish", "key": "aragonit:24_2"}
+{"at": "2026-06-19T19:05:43.784172+00:00", "completed": 6, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:05:53.792611+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 84}
+{"at": "2026-06-19T19:05:54.103028+00:00", "event": "issue_start", "index": 1, "key": "aragonit:25_1"}
+{"articles": 10, "at": "2026-06-19T19:06:51.764943+00:00", "event": "issue_finish", "key": "aragonit:25_1"}
+{"at": "2026-06-19T19:06:52.055231+00:00", "event": "issue_start", "index": 2, "key": "aragonit:25_2"}
+{"articles": 15, "at": "2026-06-19T19:07:41.543388+00:00", "event": "issue_finish", "key": "aragonit:25_2"}
+{"at": "2026-06-19T19:07:41.744097+00:00", "event": "issue_start", "index": 3, "key": "aragonit:26_1"}
+{"articles": 6, "at": "2026-06-19T19:08:17.356450+00:00", "event": "issue_finish", "key": "aragonit:26_1"}
+{"at": "2026-06-19T19:08:17.780370+00:00", "event": "issue_start", "index": 4, "key": "aragonit:26_2"}
+{"articles": 16, "at": "2026-06-19T19:09:03.291178+00:00", "event": "issue_finish", "key": "aragonit:26_2"}
+{"at": "2026-06-19T19:09:03.491810+00:00", "event": "issue_start", "index": 5, "key": "aragonit:27_1"}
+{"articles": 14, "at": "2026-06-19T19:09:43.471298+00:00", "event": "issue_finish", "key": "aragonit:27_1"}
+{"at": "2026-06-19T19:09:43.701336+00:00", "event": "issue_start", "index": 6, "key": "aragonit:27_2"}
+{"articles": 18, "at": "2026-06-19T19:10:29.926143+00:00", "event": "issue_finish", "key": "aragonit:27_2"}
+{"at": "2026-06-19T19:10:30.127966+00:00", "completed": 6, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:10:35.646834+00:00", "event": "run_start", "journals": ["aragonit", "slovensky_kras"], "total": 78}
+{"at": "2026-06-19T19:10:35.668338+00:00", "event": "issue_start", "index": 1, "key": "aragonit:28_1-2"}
+{"articles": 10, "at": "2026-06-19T19:11:19.424186+00:00", "event": "issue_finish", "key": "aragonit:28_1-2"}
+{"at": "2026-06-19T19:11:19.624992+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:1_1958"}
+{"articles": 1, "at": "2026-06-19T19:11:50.545934+00:00", "event": "issue_finish", "key": "slovensky_kras:1_1958"}
+{"at": "2026-06-19T19:11:50.746577+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:2_1957-1958"}
+{"articles": 1, "at": "2026-06-19T19:12:22.120078+00:00", "event": "issue_finish", "key": "slovensky_kras:2_1957-1958"}
+{"at": "2026-06-19T19:12:22.361896+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:3_1959-1960"}
+{"articles": 1, "at": "2026-06-19T19:12:57.904889+00:00", "event": "issue_finish", "key": "slovensky_kras:3_1959-1960"}
+{"at": "2026-06-19T19:12:58.105473+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:4_1961-1962"}
+{"articles": 1, "at": "2026-06-19T19:13:30.283213+00:00", "event": "issue_finish", "key": "slovensky_kras:4_1961-1962"}
+{"at": "2026-06-19T19:13:30.483795+00:00", "event": "issue_start", "index": 6, "key": "slovensky_kras:5_1963-1964"}
+{"articles": 1, "at": "2026-06-19T19:14:00.959286+00:00", "event": "issue_finish", "key": "slovensky_kras:5_1963-1964"}
+{"at": "2026-06-19T19:14:01.159823+00:00", "event": "issue_start", "index": 7, "key": "slovensky_kras:6_1965-1966"}
+{"articles": 2, "at": "2026-06-19T19:14:51.590443+00:00", "event": "issue_finish", "key": "slovensky_kras:6_1965-1966"}
+{"at": "2026-06-19T19:14:51.992769+00:00", "completed": 7, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:16:26.174995+00:00", "event": "run_start", "journals": ["aragonit"], "total": 0}
+{"at": "2026-06-19T19:16:26.224048+00:00", "event": "dry_run_complete", "total": 0}
+{"at": "2026-06-19T19:26:08.496176+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 65}
+{"at": "2026-06-19T19:26:08.508859+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:4_1961-1962"}
+{"articles": 1, "at": "2026-06-19T19:26:45.013039+00:00", "event": "issue_finish", "key": "slovensky_kras:4_1961-1962"}
+{"at": "2026-06-19T19:26:45.225135+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:7_1967-1968"}
+{"articles": 1, "at": "2026-06-19T19:27:06.781255+00:00", "event": "issue_finish", "key": "slovensky_kras:7_1967-1968"}
+{"at": "2026-06-19T19:27:06.981781+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:8_1969-1970"}
+{"articles": 2, "at": "2026-06-19T19:27:31.427898+00:00", "event": "issue_finish", "key": "slovensky_kras:8_1969-1970"}
+{"at": "2026-06-19T19:27:31.628604+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:10_1972"}
+{"articles": 3, "at": "2026-06-19T19:27:57.424850+00:00", "event": "issue_finish", "key": "slovensky_kras:10_1972"}
+{"at": "2026-06-19T19:27:57.625533+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:11_1973"}
+{"at": "2026-06-19T19:28:01.951029+00:00", "error": "No TOC marker found; requires full-text article segmentation", "event": "issue_failed", "key": "slovensky_kras:11_1973"}
+{"at": "2026-06-19T19:28:02.151701+00:00", "event": "issue_start", "index": 6, "key": "slovensky_kras:12_1974"}
+{"articles": 1, "at": "2026-06-19T19:28:25.441887+00:00", "event": "issue_finish", "key": "slovensky_kras:12_1974"}
+{"at": "2026-06-19T19:28:25.671641+00:00", "event": "issue_start", "index": 7, "key": "slovensky_kras:13_1975"}
+{"articles": 1, "at": "2026-06-19T19:29:12.323713+00:00", "event": "issue_finish", "key": "slovensky_kras:13_1975"}
+{"at": "2026-06-19T19:29:12.524356+00:00", "event": "issue_start", "index": 8, "key": "slovensky_kras:14_1976"}
+{"articles": 1, "at": "2026-06-19T19:29:36.669898+00:00", "event": "issue_finish", "key": "slovensky_kras:14_1976"}
+{"at": "2026-06-19T19:29:36.870573+00:00", "event": "issue_start", "index": 9, "key": "slovensky_kras:15_1977"}
+{"articles": 1, "at": "2026-06-19T19:29:58.285969+00:00", "event": "issue_finish", "key": "slovensky_kras:15_1977"}
+{"at": "2026-06-19T19:29:58.486693+00:00", "event": "issue_start", "index": 10, "key": "slovensky_kras:16_1978"}
+{"articles": 2, "at": "2026-06-19T19:30:20.299030+00:00", "event": "issue_finish", "key": "slovensky_kras:16_1978"}
+{"at": "2026-06-19T19:30:20.577507+00:00", "completed": 9, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:30:49.545557+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 34}
+{"at": "2026-06-19T19:30:49.638636+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:42_2004"}
+{"articles": 11, "at": "2026-06-19T19:31:28.666777+00:00", "event": "issue_finish", "key": "slovensky_kras:42_2004"}
+{"at": "2026-06-19T19:31:28.867458+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:43_2005"}
+{"articles": 21, "at": "2026-06-19T19:32:25.823505+00:00", "event": "issue_finish", "key": "slovensky_kras:43_2005"}
+{"at": "2026-06-19T19:32:26.024195+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:44_2006"}
+{"articles": 16, "at": "2026-06-19T19:33:35.593088+00:00", "event": "issue_finish", "key": "slovensky_kras:44_2006"}
+{"at": "2026-06-19T19:33:35.793783+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:45_2007"}
+{"articles": 19, "at": "2026-06-19T19:34:37.886799+00:00", "event": "issue_finish", "key": "slovensky_kras:45_2007"}
+{"at": "2026-06-19T19:34:38.087523+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:46_2008_1"}
+{"articles": 24, "at": "2026-06-19T19:35:41.383961+00:00", "event": "issue_finish", "key": "slovensky_kras:46_2008_1"}
+{"at": "2026-06-19T19:35:41.584635+00:00", "completed": 5, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:35:47.062471+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 29}
+{"at": "2026-06-19T19:35:47.075377+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:46_2008_2"}
+{"articles": 21, "at": "2026-06-19T19:36:39.574393+00:00", "event": "issue_finish", "key": "slovensky_kras:46_2008_2"}
+{"at": "2026-06-19T19:36:39.775074+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:46_2008_suppl"}
+{"articles": 11, "at": "2026-06-19T19:37:16.718539+00:00", "event": "issue_finish", "key": "slovensky_kras:46_2008_suppl"}
+{"at": "2026-06-19T19:37:16.933842+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:46_2008_suppl-1"}
+{"articles": 11, "at": "2026-06-19T19:37:56.297100+00:00", "event": "issue_finish", "key": "slovensky_kras:46_2008_suppl-1"}
+{"at": "2026-06-19T19:37:56.497673+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:47_2009_1"}
+{"articles": 11, "at": "2026-06-19T19:38:30.140919+00:00", "event": "issue_finish", "key": "slovensky_kras:47_2009_1"}
+{"at": "2026-06-19T19:38:30.341592+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:47_2009_2"}
+{"articles": 16, "at": "2026-06-19T19:39:15.183745+00:00", "event": "issue_finish", "key": "slovensky_kras:47_2009_2"}
+{"at": "2026-06-19T19:39:15.384438+00:00", "event": "issue_start", "index": 6, "key": "slovensky_kras:48_2010_1"}
+{"articles": 8, "at": "2026-06-19T19:39:56.006661+00:00", "event": "issue_finish", "key": "slovensky_kras:48_2010_1"}
+{"at": "2026-06-19T19:39:56.258438+00:00", "completed": 6, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:40:04.319544+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 23}
+{"at": "2026-06-19T19:40:04.320745+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:48_2010_2"}
+{"articles": 11, "at": "2026-06-19T19:40:57.898594+00:00", "event": "issue_finish", "key": "slovensky_kras:48_2010_2"}
+{"at": "2026-06-19T19:40:58.099260+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:49_2011_1"}
+{"articles": 6, "at": "2026-06-19T19:41:29.433868+00:00", "event": "issue_finish", "key": "slovensky_kras:49_2011_1"}
+{"at": "2026-06-19T19:41:29.634949+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:49_2011_2"}
+{"articles": 10, "at": "2026-06-19T19:42:29.614002+00:00", "event": "issue_finish", "key": "slovensky_kras:49_2011_2"}
+{"at": "2026-06-19T19:42:29.814679+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:50_2012_1"}
+{"articles": 12, "at": "2026-06-19T19:43:07.714622+00:00", "event": "issue_finish", "key": "slovensky_kras:50_2012_1"}
+{"at": "2026-06-19T19:43:07.915266+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:50_2012_2"}
+{"articles": 12, "at": "2026-06-19T19:43:47.344214+00:00", "event": "issue_finish", "key": "slovensky_kras:50_2012_2"}
+{"at": "2026-06-19T19:43:47.545260+00:00", "event": "issue_start", "index": 6, "key": "slovensky_kras:51_2013_1"}
+{"articles": 6, "at": "2026-06-19T19:44:15.622543+00:00", "event": "issue_finish", "key": "slovensky_kras:51_2013_1"}
+{"at": "2026-06-19T19:44:15.823190+00:00", "completed": 6, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:44:21.501159+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 17}
+{"at": "2026-06-19T19:44:21.502476+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:51_2013_2"}
+{"articles": 6, "at": "2026-06-19T19:44:46.786214+00:00", "event": "issue_finish", "key": "slovensky_kras:51_2013_2"}
+{"at": "2026-06-19T19:44:46.986911+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:52_2014_1"}
+{"articles": 10, "at": "2026-06-19T19:45:20.831459+00:00", "event": "issue_finish", "key": "slovensky_kras:52_2014_1"}
+{"at": "2026-06-19T19:45:21.032096+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:52_2014_2"}
+{"articles": 11, "at": "2026-06-19T19:46:07.897446+00:00", "event": "issue_finish", "key": "slovensky_kras:52_2014_2"}
+{"at": "2026-06-19T19:46:08.098084+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:54_2016_2"}
+{"articles": 7, "at": "2026-06-19T19:46:48.193949+00:00", "event": "issue_finish", "key": "slovensky_kras:54_2016_2"}
+{"at": "2026-06-19T19:46:48.394692+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:55_2017_1"}
+{"articles": 9, "at": "2026-06-19T19:47:31.229246+00:00", "event": "issue_finish", "key": "slovensky_kras:55_2017_1"}
+{"at": "2026-06-19T19:47:31.429915+00:00", "event": "issue_start", "index": 6, "key": "slovensky_kras:55_2017_2"}
+{"articles": 9, "at": "2026-06-19T19:48:07.258842+00:00", "event": "issue_finish", "key": "slovensky_kras:55_2017_2"}
+{"at": "2026-06-19T19:48:07.459508+00:00", "event": "issue_start", "index": 7, "key": "slovensky_kras:56_2018_1"}
+{"articles": 9, "at": "2026-06-19T19:48:44.310999+00:00", "event": "issue_finish", "key": "slovensky_kras:56_2018_1"}
+{"at": "2026-06-19T19:48:44.712241+00:00", "completed": 7, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:48:50.116126+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 10}
+{"at": "2026-06-19T19:48:50.117490+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:56_2018_2"}
+{"articles": 7, "at": "2026-06-19T19:49:24.014170+00:00", "event": "issue_finish", "key": "slovensky_kras:56_2018_2"}
+{"at": "2026-06-19T19:49:24.214852+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:57_2019_1"}
+{"articles": 9, "at": "2026-06-19T19:50:02.038300+00:00", "event": "issue_finish", "key": "slovensky_kras:57_2019_1"}
+{"at": "2026-06-19T19:50:02.238941+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:57_2019_2"}
+{"articles": 9, "at": "2026-06-19T19:50:38.392835+00:00", "event": "issue_finish", "key": "slovensky_kras:57_2019_2"}
+{"at": "2026-06-19T19:50:38.593515+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:58_2020_1"}
+{"articles": 7, "at": "2026-06-19T19:51:26.220280+00:00", "event": "issue_finish", "key": "slovensky_kras:58_2020_1"}
+{"at": "2026-06-19T19:51:26.420964+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:58_2020_2"}
+{"articles": 6, "at": "2026-06-19T19:51:54.273267+00:00", "event": "issue_finish", "key": "slovensky_kras:58_2020_2"}
+{"at": "2026-06-19T19:51:54.473909+00:00", "event": "issue_start", "index": 6, "key": "slovensky_kras:59_2021_1"}
+{"articles": 6, "at": "2026-06-19T19:52:21.626381+00:00", "event": "issue_finish", "key": "slovensky_kras:59_2021_1"}
+{"at": "2026-06-19T19:52:21.864452+00:00", "event": "issue_start", "index": 7, "key": "slovensky_kras:59_2021_2"}
+{"articles": 7, "at": "2026-06-19T19:52:59.293212+00:00", "event": "issue_finish", "key": "slovensky_kras:59_2021_2"}
+{"at": "2026-06-19T19:52:59.493843+00:00", "completed": 7, "event": "run_partial_time_budget"}
+{"at": "2026-06-19T19:53:10.559382+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 3}
+{"at": "2026-06-19T19:53:10.560651+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:60_2022_1"}
+{"articles": 5, "at": "2026-06-19T19:53:47.731798+00:00", "event": "issue_finish", "key": "slovensky_kras:60_2022_1"}
+{"at": "2026-06-19T19:53:47.996724+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:60_2022_2"}
+{"articles": 5, "at": "2026-06-19T19:54:13.976737+00:00", "event": "issue_finish", "key": "slovensky_kras:60_2022_2"}
+{"at": "2026-06-19T19:54:14.177395+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:61_2023_1"}
+{"articles": 6, "at": "2026-06-19T19:54:41.855081+00:00", "event": "issue_finish", "key": "slovensky_kras:61_2023_1"}
+{"added_articles": 16, "at": "2026-06-19T19:54:42.055639+00:00", "completed": 3, "event": "run_finish", "failed": 0}
+{"at": "2026-06-19T19:54:56.491451+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 0}
+{"at": "2026-06-19T19:54:56.495964+00:00", "event": "dry_run_complete", "total": 0}
+{"at": "2026-06-19T20:00:25.860046+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 31}
+{"at": "2026-06-19T20:00:25.919415+00:00", "event": "dry_run_complete", "total": 31}
+{"at": "2026-06-19T20:00:32.693975+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 31}
+{"at": "2026-06-19T20:00:32.695139+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:4_1961-1962"}
+{"articles": 19, "at": "2026-06-19T20:01:24.363500+00:00", "event": "issue_finish", "key": "slovensky_kras:4_1961-1962"}
+{"at": "2026-06-19T20:01:24.564113+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:7_1967-1968"}
+{"articles": 30, "at": "2026-06-19T20:02:33.152213+00:00", "event": "issue_finish", "key": "slovensky_kras:7_1967-1968"}
+{"at": "2026-06-19T20:02:33.352751+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:8_1969-1970"}
+{"at": "2026-06-19T20:02:36.095559+00:00", "error": "No TOC marker found; requires full-text article segmentation", "event": "issue_failed", "key": "slovensky_kras:8_1969-1970"}
+{"at": "2026-06-19T20:02:36.296246+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:10_1972"}
+{"articles": 34, "at": "2026-06-19T20:03:37.956575+00:00", "event": "issue_finish", "key": "slovensky_kras:10_1972"}
+{"at": "2026-06-19T20:03:38.157475+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:11_1973"}
+{"articles": 11, "at": "2026-06-19T20:04:11.747671+00:00", "event": "issue_finish", "key": "slovensky_kras:11_1973"}
+{"at": "2026-06-19T20:04:11.948293+00:00", "event": "issue_start", "index": 6, "key": "slovensky_kras:12_1974"}
+{"articles": 17, "at": "2026-06-19T20:04:56.530593+00:00", "event": "issue_finish", "key": "slovensky_kras:12_1974"}
+{"at": "2026-06-19T20:04:56.731205+00:00", "event": "issue_start", "index": 7, "key": "slovensky_kras:13_1975"}
+{"articles": 21, "at": "2026-06-19T20:06:11.563872+00:00", "event": "issue_finish", "key": "slovensky_kras:13_1975"}
+{"at": "2026-06-19T20:06:11.764522+00:00", "event": "issue_start", "index": 8, "key": "slovensky_kras:14_1976"}
+{"articles": 22, "at": "2026-06-19T20:07:08.787638+00:00", "event": "issue_finish", "key": "slovensky_kras:14_1976"}
+{"at": "2026-06-19T20:07:08.988153+00:00", "event": "issue_start", "index": 9, "key": "slovensky_kras:15_1977"}
+{"articles": 17, "at": "2026-06-19T20:07:57.006186+00:00", "event": "issue_finish", "key": "slovensky_kras:15_1977"}
+{"at": "2026-06-19T20:07:57.206807+00:00", "event": "issue_start", "index": 10, "key": "slovensky_kras:16_1978"}
+{"articles": 20, "at": "2026-06-19T20:08:49.144910+00:00", "event": "issue_finish", "key": "slovensky_kras:16_1978"}
+{"at": "2026-06-19T20:08:49.345555+00:00", "event": "issue_start", "index": 11, "key": "slovensky_kras:17_1979"}
+{"articles": 23, "at": "2026-06-19T20:09:49.542212+00:00", "event": "issue_finish", "key": "slovensky_kras:17_1979"}
+{"at": "2026-06-19T20:09:49.759874+00:00", "event": "issue_start", "index": 12, "key": "slovensky_kras:18_1980"}
+{"articles": 28, "at": "2026-06-19T20:10:58.905461+00:00", "event": "issue_finish", "key": "slovensky_kras:18_1980"}
+{"at": "2026-06-19T20:10:59.106086+00:00", "event": "issue_start", "index": 13, "key": "slovensky_kras:19_1981"}
+{"articles": 10, "at": "2026-06-19T20:11:50.242401+00:00", "event": "issue_finish", "key": "slovensky_kras:19_1981"}
+{"at": "2026-06-19T20:11:50.454999+00:00", "event": "issue_start", "index": 14, "key": "slovensky_kras:20_1982"}
+{"articles": 24, "at": "2026-06-19T20:12:56.410196+00:00", "event": "issue_finish", "key": "slovensky_kras:20_1982"}
+{"at": "2026-06-19T20:12:56.610731+00:00", "event": "issue_start", "index": 15, "key": "slovensky_kras:21_1983"}
+{"articles": 27, "at": "2026-06-19T20:14:07.498918+00:00", "event": "issue_finish", "key": "slovensky_kras:21_1983"}
+{"at": "2026-06-19T20:14:07.699571+00:00", "event": "issue_start", "index": 16, "key": "slovensky_kras:22_1984"}
+{"articles": 28, "at": "2026-06-19T20:15:26.128250+00:00", "event": "issue_finish", "key": "slovensky_kras:22_1984"}
+{"at": "2026-06-19T20:15:26.328766+00:00", "event": "issue_start", "index": 17, "key": "slovensky_kras:23_1985"}
+{"articles": 32, "at": "2026-06-19T20:16:44.345740+00:00", "event": "issue_finish", "key": "slovensky_kras:23_1985"}
+{"at": "2026-06-19T20:16:44.643435+00:00", "event": "issue_start", "index": 18, "key": "slovensky_kras:24_1986"}
+{"articles": 25, "at": "2026-06-19T20:17:44.765450+00:00", "event": "issue_finish", "key": "slovensky_kras:24_1986"}
+{"at": "2026-06-19T20:17:44.966060+00:00", "event": "issue_start", "index": 19, "key": "slovensky_kras:25_1987"}
+{"articles": 24, "at": "2026-06-19T20:18:46.058709+00:00", "event": "issue_finish", "key": "slovensky_kras:25_1987"}
+{"at": "2026-06-19T20:18:46.259443+00:00", "event": "issue_start", "index": 20, "key": "slovensky_kras:29_1991"}
+{"articles": 18, "at": "2026-06-19T20:19:31.772265+00:00", "event": "issue_finish", "key": "slovensky_kras:29_1991"}
+{"at": "2026-06-19T20:19:31.992032+00:00", "event": "issue_start", "index": 21, "key": "slovensky_kras:30_1992"}
+{"articles": 22, "at": "2026-06-19T20:20:33.999366+00:00", "event": "issue_finish", "key": "slovensky_kras:30_1992"}
+{"at": "2026-06-19T20:20:34.199945+00:00", "event": "issue_start", "index": 22, "key": "slovensky_kras:31_1993"}
+{"articles": 24, "at": "2026-06-19T20:21:25.278659+00:00", "event": "issue_finish", "key": "slovensky_kras:31_1993"}
+{"at": "2026-06-19T20:21:25.479279+00:00", "event": "issue_start", "index": 23, "key": "slovensky_kras:33_1995"}
+{"articles": 18, "at": "2026-06-19T20:22:53.122374+00:00", "event": "issue_finish", "key": "slovensky_kras:33_1995"}
+{"at": "2026-06-19T20:22:53.322988+00:00", "event": "issue_start", "index": 24, "key": "slovensky_kras:34_1996"}
+{"articles": 21, "at": "2026-06-19T20:23:47.031628+00:00", "event": "issue_finish", "key": "slovensky_kras:34_1996"}
+{"at": "2026-06-19T20:23:47.232191+00:00", "event": "issue_start", "index": 25, "key": "slovensky_kras:35_1997"}
+{"articles": 26, "at": "2026-06-19T20:25:23.961075+00:00", "event": "issue_finish", "key": "slovensky_kras:35_1997"}
+{"at": "2026-06-19T20:25:24.161701+00:00", "event": "issue_start", "index": 26, "key": "slovensky_kras:36_1998"}
+{"articles": 21, "at": "2026-06-19T20:26:24.313416+00:00", "event": "issue_finish", "key": "slovensky_kras:36_1998"}
+{"at": "2026-06-19T20:26:24.514041+00:00", "event": "issue_start", "index": 27, "key": "slovensky_kras:37_1999"}
+{"articles": 28, "at": "2026-06-19T20:27:32.392981+00:00", "event": "issue_finish", "key": "slovensky_kras:37_1999"}
+{"at": "2026-06-19T20:27:32.593600+00:00", "event": "issue_start", "index": 28, "key": "slovensky_kras:38_2000"}
+{"articles": 13, "at": "2026-06-19T20:28:18.387940+00:00", "event": "issue_finish", "key": "slovensky_kras:38_2000"}
+{"at": "2026-06-19T20:28:18.588489+00:00", "event": "issue_start", "index": 29, "key": "slovensky_kras:39_2001"}
+{"articles": 24, "at": "2026-06-19T20:29:16.603124+00:00", "event": "issue_finish", "key": "slovensky_kras:39_2001"}
+{"at": "2026-06-19T20:29:17.300556+00:00", "event": "issue_start", "index": 30, "key": "slovensky_kras:40_2002"}
+{"articles": 17, "at": "2026-06-19T20:30:20.124819+00:00", "event": "issue_finish", "key": "slovensky_kras:40_2002"}
+{"at": "2026-06-19T20:30:20.325475+00:00", "event": "issue_start", "index": 31, "key": "slovensky_kras:41_2003"}
+{"articles": 15, "at": "2026-06-19T20:31:08.457089+00:00", "event": "issue_finish", "key": "slovensky_kras:41_2003"}
+{"added_articles": 659, "at": "2026-06-19T20:31:08.657695+00:00", "completed": 30, "event": "run_finish", "failed": 1}
+{"at": "2026-06-19T20:33:43.110014+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 13}
+{"at": "2026-06-19T20:33:43.113597+00:00", "event": "dry_run_complete", "total": 13}
+{"at": "2026-06-19T20:33:49.748261+00:00", "event": "run_start", "journals": ["slovensky_kras"], "total": 13}
+{"at": "2026-06-19T20:33:49.791642+00:00", "event": "issue_start", "index": 1, "key": "slovensky_kras:1_1958"}
+{"articles": 23, "at": "2026-06-19T20:35:02.369987+00:00", "event": "issue_finish", "key": "slovensky_kras:1_1958"}
+{"at": "2026-06-19T20:35:02.570767+00:00", "event": "issue_start", "index": 2, "key": "slovensky_kras:2_1957-1958"}
+{"articles": 37, "at": "2026-06-19T20:36:06.030186+00:00", "event": "issue_finish", "key": "slovensky_kras:2_1957-1958"}
+{"at": "2026-06-19T20:36:06.240071+00:00", "event": "issue_start", "index": 3, "key": "slovensky_kras:3_1959-1960"}
+{"articles": 36, "at": "2026-06-19T20:37:23.743181+00:00", "event": "issue_finish", "key": "slovensky_kras:3_1959-1960"}
+{"at": "2026-06-19T20:37:23.945639+00:00", "event": "issue_start", "index": 4, "key": "slovensky_kras:5_1963-1964"}
+{"articles": 23, "at": "2026-06-19T20:38:12.096517+00:00", "event": "issue_finish", "key": "slovensky_kras:5_1963-1964"}
+{"at": "2026-06-19T20:38:12.297131+00:00", "event": "issue_start", "index": 5, "key": "slovensky_kras:6_1965-1966"}
+{"articles": 29, "at": "2026-06-19T20:39:13.997275+00:00", "event": "issue_finish", "key": "slovensky_kras:6_1965-1966"}
+{"at": "2026-06-19T20:39:14.198218+00:00", "event": "issue_start", "index": 6, "key": "slovensky_kras:8_1969-1970"}
+{"articles": 23, "at": "2026-06-19T20:40:08.581515+00:00", "event": "issue_finish", "key": "slovensky_kras:8_1969-1970"}
+{"at": "2026-06-19T20:40:08.783915+00:00", "event": "issue_start", "index": 7, "key": "slovensky_kras:9_1971"}
+{"articles": 21, "at": "2026-06-19T20:41:09.220090+00:00", "event": "issue_finish", "key": "slovensky_kras:9_1971"}
+{"at": "2026-06-19T20:41:09.420708+00:00", "event": "issue_start", "index": 8, "key": "slovensky_kras:26_1988"}
+{"articles": 16, "at": "2026-06-19T20:42:12.196183+00:00", "event": "issue_finish", "key": "slovensky_kras:26_1988"}
+{"at": "2026-06-19T20:42:12.396697+00:00", "event": "issue_start", "index": 9, "key": "slovensky_kras:27_1989"}
+{"articles": 19, "at": "2026-06-19T20:43:07.287697+00:00", "event": "issue_finish", "key": "slovensky_kras:27_1989"}
+{"at": "2026-06-19T20:43:07.519751+00:00", "event": "issue_start", "index": 10, "key": "slovensky_kras:28_1990"}
+{"articles": 15, "at": "2026-06-19T20:43:56.727904+00:00", "event": "issue_finish", "key": "slovensky_kras:28_1990"}
+{"at": "2026-06-19T20:43:56.973803+00:00", "event": "issue_start", "index": 11, "key": "slovensky_kras:32_1994"}
+{"at": "2026-06-19T20:43:57.027204+00:00", "error": "PDF download failed: http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/32_1994.pdf", "event": "issue_failed", "key": "slovensky_kras:32_1994"}
+{"at": "2026-06-19T20:43:57.292695+00:00", "event": "issue_start", "index": 12, "key": "slovensky_kras:53_2015_1-2"}
+{"at": "2026-06-19T20:44:12.885519+00:00", "error": "AI returned no articles", "event": "issue_failed", "key": "slovensky_kras:53_2015_1-2"}
+{"at": "2026-06-19T20:44:13.086059+00:00", "event": "issue_start", "index": 13, "key": "slovensky_kras:61_2023_suppl"}
+{"at": "2026-06-19T20:44:24.859173+00:00", "error": "AI returned no articles", "event": "issue_failed", "key": "slovensky_kras:61_2023_suppl"}
+{"added_articles": 242, "at": "2026-06-19T20:44:25.059717+00:00", "completed": 10, "event": "run_finish", "failed": 3}

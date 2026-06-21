@@ -2,13 +2,13 @@
 
 Verzia 1.0
 
-Digitálny bibliografický a research portál pre časopis Spravodaj Slovenskej speleologickej spoločnosti. Cieľom projektu nie je iba zobraziť PDF súbory, ale vytvoriť použiteľnú znalostnú vrstvu nad článkami: bibliografiu, fulltext, citácie, mapové/plánové odkazy, exporty a podklady pre neskoršiu tvorbu súhrnných AI článkov o jaskyniach, oblastiach a histórii objavovania.
+Digitálny bibliografický a research portál pre speleologické časopisy Spravodaj SSS, Aragonit a Slovenský kras. Cieľom projektu nie je iba zobraziť PDF súbory, ale vytvoriť použiteľnú znalostnú vrstvu nad článkami: bibliografiu, fulltext, citácie, mapové/plánové odkazy, exporty a podklady pre neskoršiu tvorbu súhrnných AI článkov o jaskyniach, oblastiach a histórii objavovania.
 
 ## Pre koho je projekt
 
 Projekt je určený pre:
 
-- čitateľov Spravodaja SSS, ktorí chcú rýchlo nájsť článok, autora, jaskyňu alebo tému,
+- čitateľov Spravodaja SSS, Aragonitu a Slovenského krasu, ktorí chcú rýchlo nájsť článok, autora, jaskyňu alebo tému,
 - správcov bibliografie, ktorí potrebujú overiteľný export v štýle pôvodnej Lalkovičovej bibliografie,
 - autorov odborných a sumarizačných článkov, ktorí potrebujú pracovať s celou históriou textov, citácií a PDF strán,
 - vývojára alebo správcu portálu, ktorý potrebuje obnoviť dáta, spustiť web a rozumieť pravidlám spracovania.
@@ -19,16 +19,19 @@ Po prečítaní tohto README by mal správca vedieť spustiť web, obnoviť expo
 
 Aktuálny dataset obsahuje:
 
-- 3802 bibliografických záznamov,
-- roky 1970 až 2026,
-- 3665 článkov s online PDF odkazom,
-- 3645 článkov s extrahovaným fulltextom,
-- 10594 research chunkov,
-- 1339 rozpoznaných entít,
-- 449 chronologických research timeline výstupov,
-- 164 prísne potvrdených článkov s mapou alebo plánom naprieč archívom.
+- 5911 bibliografických záznamov,
+- roky 1958 až 2026,
+- 3802 záznamov zo Spravodaja SSS,
+- 845 záznamov z Aragonitu,
+- 1264 záznamov zo Slovenského krasu,
+- 5774 článkov s online PDF odkazom alebo lokálne spracovaným PDF zdrojom,
+- 5700 článkov s extrahovaným fulltextom v research databáze,
+- 25569 research chunkov,
+- 2122 rozpoznaných entít,
+- 909 chronologických research timeline výstupov,
+- 672 článkov označených ako články s mapou alebo plánom naprieč archívom.
 
-Research manifest uvádza približne 25,8 milióna znakov a 3,95 milióna slov v spracovanom fulltexte. SQLite research databáza sa generuje lokálne a nie je commitovaná, pretože má viac ako 100 MB.
+Research manifest uvádza približne 65,8 milióna znakov a 10,3 milióna slov v spracovanom fulltexte. SQLite research databáza sa generuje lokálne a nie je commitovaná, pretože má viac ako 300 MB.
 
 ## Čo portál poskytuje používateľovi
 
@@ -120,8 +123,9 @@ Základný postup:
 2. PDF sa lokálne cacheuje,
 3. text sa extrahuje cez lokálne nástroje,
 4. článok sa oreže podľa rozsahu strán a susedných titulov,
-5. vznikne článkový fulltextový JSONL,
-6. research builder vytvorí SQLite FTS databázu, JSONL chunky, entity a timeline výstupy.
+5. vznikne článkový fulltextový JSONL ako lokálny rebuildovateľný artefakt,
+6. research builder vytvorí SQLite FTS databázu, JSONL chunky, entity a timeline výstupy,
+7. webový fulltext export sa rozdelí podľa časopisu a roku do menších shardov.
 
 AI sa používa iba tam, kde má pridanú hodnotu: štruktúrované dopĺňanie problematických metadát, voliteľné obohatenie znalostí a potvrdenie mapových/plánových objektov po lokálnom prefiltri.
 
@@ -142,14 +146,30 @@ Research databáza je offline pracovná databáza pre budúce AI články a suma
 - JSON-LD údaje,
 - informácie o vizuálnych prvkoch.
 
-SQLite databáza sa neukladá do GitHubu, pretože je veľká a rebuildovateľná. Prenosné výstupy ako JSONL chunky, timeline JSON a manifest môžu byť súčasťou repozitára.
+SQLite databáza, článkový fulltextový JSONL, rešeršné chunky a rešeršné balíky sa neukladajú do GitHubu, pretože sú veľké a rebuildovateľné. Web používa iba menší manifest `web/public/data/fulltext_manifest.json` a delené fulltextové shardy v `web/public/data/fulltext/<journal>/<year>.json`.
+
+SQLite schéma nedrží plný text duplicitne v tabuľke článkov. Text je uložený v chunk tabuľke `article_chunks`, zatiaľ čo `chunks_fts` je externý FTS5 index nad touto tabuľkou. Vďaka tomu databáza ostáva menšia a stále vie robiť fulltextové dotazy aj AI rešeršné balíky.
 
 Typické použitie:
 
 ```bash
+python3 scripts/extract_pdf_fulltext.py --sync-articles
 python3 scripts/build_research_knowledge_db.py --force
+python3 scripts/export_web_fulltext_index.py
 python3 scripts/build_research_knowledge_db.py --query-only --query "Demänovské jaskyne" --top 10
+python3 scripts/generate_research_brief.py "Domica" --text-mode chunks
+python3 scripts/generate_research_brief.py "Domica" --text-mode full --max-total-chars 240000
 ```
+
+`generate_research_brief.py` vytvorí AI-ready rešeršný balík v `data/research_briefs/`.
+Balík obsahuje iba textové zdroje bez obrázkov: bibliografické údaje, citácie,
+PDF odkazy, anotácie a buď vybrané fulltextové chunky, alebo plný text článkov
+do nastaveného znakového rozpočtu. Hodí sa ako vstup pre neskoršie písanie
+súhrnných článkov o jaskyni alebo lokalite.
+
+Research databáza je multi-journal. Legacy Spravodaj bez explicitného
+`journal_id` používa PDF offset `+2`; nové časopisy ako Aragonit a Slovenský kras
+používajú fyzické PDF strany uložené pri importe.
 
 ## Detekcia máp a plánov
 
@@ -188,10 +208,10 @@ Exporty obsahujú:
 - čitateľnejšie rozlíšenie názvu, autora a strán,
 - biele pozadie vhodné pre tlač.
 
-Typický príkaz:
+Typický príkaz na regenerovanie verejných exportov:
 
 ```bash
-python3 scripts/export_lalkovic_format.py --basename spravodaj_sss_danko --pdf
+python3 scripts/generate_public_exports.py
 ```
 
 Výstupy:
@@ -201,23 +221,19 @@ Výstupy:
 - HTML pre prehliadač,
 - PDF pre tlač a zdieľanie.
 
+Wrapper vytvorí kombinovaný export pre všetky spracované časopisy aj samostatné exporty pre `Spravodaj SSS`, `Aragonit` a `Slovenský kras`. Rovnaké delenie platí pre HTML, Markdown, PDF aj SQLite export. Samostatný export každého časopisu čísluje články od `1`. Kombinovaný export má v zozname článkov samostatné sekcie podľa časopisov v poradí `Spravodaj SSS`, `Aragonit`, `Slovenský kras`; číslovanie v ňom pokračuje naprieč sekciami, aby registre odkazovali na jednoznačné čísla. Staré názvy `spravodaj_sss_danko.*` a `spravodaj_sss.sqlite` zostávajú ako kompatibilné aliasy na kombinovaný export.
+
 ## SQLite export
 
 Verejný SQLite export je určený pre výskumníkov a správcov, ktorí chcú robiť vlastné SQL dotazy nad článkami, autormi, jaskyňami, tagmi, skupinami a mapami/plánmi.
 
-Generovanie pracovnej databázy:
+Generovanie všetkých verejných SQLite databáz:
 
 ```bash
-python3 scripts/export_public_sqlite.py
+python3 scripts/generate_public_exports.py
 ```
 
-Publikovateľná kópia pre web:
-
-```bash
-install -m 0644 data/exports/spravodaj_sss.sqlite web/public/exports/spravodaj_sss.sqlite
-```
-
-Pracovný súbor `data/exports/*.sqlite` je ignorovaný ako rebuildovateľný artefakt. Verejný súbor `web/public/exports/spravodaj_sss.sqlite` je malý public export a môže byť súčasťou deploya. Aktuálna schéma obsahuje tabuľky `articles`, `authors`, `article_authors`, `caves`, `article_caves`, `tags`, `article_tags`, `groups`, `article_groups`, `map_plans` a `export_metadata`.
+Pracovné súbory `data/exports/*.sqlite` sú rebuildovateľné artefakty. Verejné SQLite súbory v `web/public/exports/` obsahujú kombinovaný export aj exporty po časopisoch; `spravodaj_sss.sqlite` zostáva kompatibilný alias na kombinovaný export. Aktuálna schéma obsahuje tabuľky `articles`, `authors`, `article_authors`, `caves`, `article_caves`, `tags`, `article_tags`, `groups`, `article_groups`, `map_plans` a `export_metadata`.
 
 ## Register jaskýň
 
@@ -235,6 +251,25 @@ Výstupom je `web/src/data/caves.json`. Web z neho generuje:
 - `/jaskyne/<slug>/` ako detail jaskyne,
 - vertikálnu časovú os článkov zoradenú od najstaršieho po najnovší,
 - odkazy na detail článku a PDF stranu so spoločným offsetom `+2`.
+
+Duplicitné alebo pádové varianty názvov jaskýň sa zlučujú cez kurátorovaný súbor `data/cave_aliases.json`. Každá položka má kanonický názov a zoznam aliasov, napríklad `Jasovská jaskyňa` + `Jasovskej jaskyne` + `Jasovská jeskyně`. Pri generovaní registra sa články z aliasov presunú pod kanonický názov a na karte jaskyne sa zobrazí aj zoznam aliasov.
+
+Nejednoznačné názvy sa nemajú zlučovať naslepo. Ak rovnaký názov označuje rôzne jaskyne v rôznych oblastiach, register ich rozdeľuje podľa oblasti, napríklad pri názve `Medvedia jaskyňa`. Podrobné pravidlá pre aliasy, delenie podľa oblasti a pripravovanú geomorfologickú vrstvu sú v [runbooku registra jaskýň a geomorfologického členenia](docs/REGISTER_JASKYN_A_GEOMORFOLOGIA.md).
+
+Pomocný admin režim je dostupný lokálne na:
+
+```text
+/jaskyne/?admin=1
+```
+
+Postup pri ďalších duplicitách:
+
+1. Otvor `/jaskyne/?admin=1`.
+2. Vyhľadaj podozrivý názov jaskyne.
+3. Kliknutím označ duplicitné karty.
+4. Podľa potreby uprav kanonický názov.
+5. Skopíruj vygenerovaný JSON do `data/cave_aliases.json`.
+6. Spusti `python3 scripts/build_cave_index.py` a následne rebuild webu.
 
 ## Komunitné errata
 
@@ -303,6 +338,40 @@ Bez Ollamy je stále možné robiť bibliografiu, fulltext, exporty aj web. Visi
 11. Overiť konkrétne PDF odkazy na problematických článkoch.
 12. Commitnúť a pushnúť verziu.
 
+## Ďalšie časopisy a publikácie
+
+Projekt má samostatnú discovery vrstvu pre ďalšie speleologické časopisy a publikácie. Táto vrstva zatiaľ nemení existujúcu bibliografiu článkov; vytvára iba manifest PDF zdrojov, ktorý sa dá skontrolovať pred importom článkov.
+
+Podporované zdroje:
+
+- `slovensky_kras` - Slovenský kras, prioritne SSJ, potom nová stránka SMOPaJ a starý archív SMOPaJ,
+- `aragonit` - časopis Aragonit zo SSJ, iba celé čísla PDF,
+- `ine_publikacie` - iné publikácie zo SSJ/SMOPaJ, bez Spravodaja a bez duplicitného Slovenského krasu.
+
+Priorita odkazov pri duplicitách je:
+
+1. `sss.sk`
+2. `ssj.sk`
+3. `smopaj.sk`
+4. `archiv.smopaj.sk`
+
+Vygenerovanie manifestu:
+
+```bash
+python3 scripts/journal_sources.py --output data/journal_sources_manifest.json
+```
+
+Rýchla kontrola len jedného zdroja:
+
+```bash
+python3 scripts/journal_sources.py --journal slovensky_kras --output /tmp/slovensky_kras_manifest.json
+python3 scripts/journal_sources.py --journal aragonit --output /tmp/aragonit_manifest.json
+```
+
+Aktuálny manifest obsahuje 134 položiek: 78 pre Slovenský kras, 36 pre Aragonit a 20 iných publikácií. Slovenský kras je pokrytý od historických ročníkov zo starého archívu po ročník 61/2023 z novej stránky SMOPaJ. PDF súbory sa pri discovery nesťahujú; čítajú sa iba HTML stránky a odkazy.
+
+Pre budúci import článkov sú pripravené polia `journal_id`, `journal_title`, `journal_short_title` a `pdf_page_offset`. Existujúci Spravodaj používa defaultný offset `+2`, Aragonit používa offset `+2` a Slovenský kras používa offset `0`, pokiaľ konkrétny import neurčí presnejšiu mapu tlačená strana -> fyzická PDF strana.
+
 ## Testovanie a overenie
 
 Python skripty majú testy v pytest štýle.
@@ -334,6 +403,7 @@ Do GitHubu patria:
 - webová aplikácia,
 - malé a stredné JSON/JSONL výstupy potrebné na reprodukovateľnosť,
 - verejné exporty,
+- delené webové fulltextové shardy podľa časopisu/roku,
 - dokumentácia,
 - testy.
 
@@ -346,6 +416,8 @@ Do GitHubu nepatria:
 - lokálna PDF cache,
 - renderované stránky PDF pre AI mapovú detekciu,
 - veľká SQLite research databáza,
+- článkový fulltextový JSONL a rešeršné JSONL chunky,
+- generované rešeršné balíky,
 - dočasné alebo predchádzajúce fulltextové zálohy.
 
 Tieto súbory sú ignorované v `.gitignore`. Ak sa pridá nový lokálny artefakt alebo token, musí sa najprv doplniť ignore pravidlo a až potom robiť `git add`.
@@ -368,6 +440,7 @@ Verzia 1.0 znamená prvý ucelený stav projektu:
 
 Najbližšie vhodné smerovanie:
 
+- doplniť geomorfologické členenie Slovenska ako kurátorovanú vrstvu pre register jaskýň,
 - priebežne manuálne auditovať potvrdené mapy a plány v starších ročníkoch,
 - doplniť viac AI znalostných obohatení fulltextu cez lacnejší lokálny alebo dávkový režim,
 - vytvoriť samostatnú funkciu na generovanie tematických článkov z research databázy,

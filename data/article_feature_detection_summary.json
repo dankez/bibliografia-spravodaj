@@ -1,16 +1,16 @@
 {
-  "generated_at": "2026-06-17T08:45:22+00:00",
-  "articles": 3802,
+  "generated_at": "2026-06-19T21:08:28+00:00",
+  "articles": 5911,
   "feature_counts": {
-    "map_plan": 0,
-    "photo": 1979,
-    "table": 498,
-    "bibliography": 912,
+    "map_plan": 672,
+    "photo": 1982,
+    "table": 501,
+    "bibliography": 913,
     "measurement_data": 1245,
     "coordinates": 147,
-    "cross_section": 293
+    "cross_section": 294
   },
-  "map_plan_candidates": 0,
+  "map_plan_candidates": 814,
   "ollama_calls": 0,
   "thresholds": {
     "map_plan": 0.85,
@@ -21,7 +21,5 @@
     "coordinates": 0.5,
     "cross_section": 0.55
   },
-  "candidate_threshold": 0.38,
-  "map_plan_cleared_at": "2026-06-17T09:09:39+00:00",
-  "map_plan_clear_note": "Generated map/plan detection removed before AI-only PDF test."
+  "candidate_threshold": 0.38
 }

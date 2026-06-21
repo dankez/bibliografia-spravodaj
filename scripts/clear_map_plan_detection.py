@@ -23,7 +23,7 @@ MAP_KEYS = ("has_map_plan", "map_plan_score", "map_plan_pages")
 
 
 def utc_now() -> str:
-    return dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat()
+    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 
 
 def read_json(path: Path) -> Any:

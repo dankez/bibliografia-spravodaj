@@ -32,6 +32,57 @@ def test_resolve_physical_page_range_reports_start_after_pdf_end():
     assert error == "page_out_of_range"
 
 
+def test_resolve_article_physical_page_range_uses_imported_journal_pages():
+    article = {
+        "journal_id": "aragonit",
+        "pages": "51-60",
+        "pdf_page_start": 5,
+        "pdf_page_end": 14,
+        "pdf_page_offset": 0,
+    }
+
+    start, end, error = fulltext.resolve_article_physical_page_range(
+        article,
+        51,
+        60,
+        {},
+        pdf_pages=80,
+    )
+
+    assert error is None
+    assert (start, end) == (5, 14)
+
+
+def test_resolve_article_physical_page_range_falls_back_to_legacy_offset():
+    article = {"pages": "57", "pdf_page_offset": 2}
+
+    start, end, error = fulltext.resolve_article_physical_page_range(
+        article,
+        57,
+        57,
+        {},
+        pdf_pages=90,
+    )
+
+    assert error is None
+    assert (start, end) == (59, 59)
+
+
+def test_resolve_article_physical_page_range_uses_aragonit_offset_without_imported_page():
+    article = {"journal_id": "aragonit", "pages": "47-48", "pdf_page_offset": 0}
+
+    start, end, error = fulltext.resolve_article_physical_page_range(
+        article,
+        47,
+        48,
+        {},
+        pdf_pages=80,
+    )
+
+    assert error is None
+    assert (start, end) == (49, 50)
+
+
 def test_empty_text_probe_ranges_try_following_pages_for_unmapped_printed_page():
     ranges = fulltext.empty_text_probe_ranges(
         physical_start=1,

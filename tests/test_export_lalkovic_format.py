@@ -96,6 +96,122 @@ def test_render_bibliography_adds_markdown_brand_and_author_signature():
     assert markdown.rstrip().endswith("_Autor: [DankeZ](https://github.com/dankez)_")
 
 
+def test_render_bibliography_accepts_custom_export_title():
+    markdown = exporter.render_bibliography([], markdown=True, title="Bibliografia časopisu Aragonit")
+
+    assert "# Bibliografia časopisu Aragonit" in markdown
+    assert "# Bibliografia Spravodaja SSS" not in markdown
+
+
+def test_render_bibliography_renumbers_articles_for_current_export_scope():
+    articles = [
+        {
+            "id": 3828,
+            "authors": ["Hlaváč, J.", "Bella, P."],
+            "title": "Jaskyne Slovenského a Aggtelekského krasu",
+            "year": 1996,
+            "volume": "1",
+            "issue": "1",
+            "pages": "3-4",
+            "extras": [],
+            "abstract": "",
+            "tags": [],
+            "caves": ["Domica"],
+            "groups": [],
+            "knowledge": {"locations": ["Slovenský kras"]},
+            "journal_id": "aragonit",
+            "journal_title": "Aragonit",
+        },
+        {
+            "id": 3830,
+            "authors": ["Bella, P."],
+            "title": "Ďalší článok",
+            "year": 1996,
+            "volume": "1",
+            "issue": "1",
+            "pages": "5",
+            "extras": [],
+            "abstract": "",
+            "tags": [],
+            "caves": ["Domica"],
+            "groups": [],
+            "knowledge": {},
+            "journal_id": "aragonit",
+            "journal_title": "Aragonit",
+        },
+    ]
+
+    markdown = exporter.render_bibliography(articles, markdown=True, title="Bibliografia časopisu Aragonit")
+
+    assert '<span id="clanok-3828"></span>**1. Jaskyne Slovenského a Aggtelekského krasu**' in markdown
+    assert '<span id="clanok-3830"></span>**2. Ďalší článok**' in markdown
+    assert "**3828. Jaskyne" not in markdown
+    assert "Slovenský kras: [1](#clanok-3828) (1996, č. 1, s. 3 – 4)" in markdown
+
+
+def test_combined_export_groups_articles_by_journal_order_and_renumbers_continuously():
+    articles = [
+        {
+            "id": 5668,
+            "authors": [],
+            "title": "Úvod",
+            "year": 1958,
+            "volume": "1",
+            "issue": "1",
+            "pages": "3-4",
+            "extras": [],
+            "abstract": "",
+            "tags": [],
+            "caves": [],
+            "groups": [],
+            "knowledge": {},
+            "journal_id": "slovensky_kras",
+            "journal_title": "Slovenský kras",
+        },
+        {
+            "id": 1,
+            "authors": [],
+            "title": "Úvodník",
+            "year": 1970,
+            "volume": "I.",
+            "issue": "1",
+            "pages": "1-3",
+            "extras": [],
+            "abstract": "",
+            "tags": [],
+            "caves": [],
+            "groups": [],
+            "knowledge": {},
+        },
+        {
+            "id": 3828,
+            "authors": ["Hlaváč, J."],
+            "title": "Aragonit článok",
+            "year": 1996,
+            "volume": "1",
+            "issue": "1",
+            "pages": "3-4",
+            "extras": [],
+            "abstract": "",
+            "tags": [],
+            "caves": [],
+            "groups": [],
+            "knowledge": {},
+            "journal_id": "aragonit",
+            "journal_title": "Aragonit",
+        },
+    ]
+
+    markdown = exporter.render_bibliography(articles, markdown=True, group_by_journal=True)
+
+    assert markdown.index("### Spravodaj SSS") < markdown.index("### Aragonit")
+    assert markdown.index("### Aragonit") < markdown.index("### Slovenský kras")
+    assert '<span id="clanok-1"></span>**1. Úvodník**' in markdown
+    assert '<span id="clanok-3828"></span>**2. Aragonit článok**' in markdown
+    assert '<span id="clanok-5668"></span>**3. Úvod**' in markdown
+    assert "**5668. Úvod**" not in markdown
+
+
 def test_render_html_document_adds_brand_banner_and_author_signature():
     html = exporter.render_html_document("# Bibliografia Spravodaja SSS", "Test")
 
@@ -232,6 +348,27 @@ def test_render_articles_emphasizes_year_and_issue_in_plain_text():
     assert "---- ČÍSLO 1 ----" in text
 
 
+def test_render_articles_skips_empty_issue_heading():
+    article = {
+        "id": 3828,
+        "authors": ["Hlaváč, J."],
+        "title": "Jaskyne Slovenského a Aggtelekského krasu",
+        "year": 1996,
+        "volume": "1",
+        "issue": "",
+        "pages": "3-4",
+        "extras": [],
+        "abstract": "",
+    }
+
+    markdown = exporter.render_articles([article], markdown=True)
+    text = exporter.render_articles([article], markdown=False)
+
+    assert "#### Číslo" not in markdown
+    assert "---- ČÍSLO" not in text
+    assert "**3828. Jaskyne Slovenského" in markdown
+
+
 def test_render_html_document_styles_year_and_issue_headings():
     markdown = "### Ročník 2001 (XXXII.)\n\n#### Číslo 1\n"
 
@@ -363,10 +500,10 @@ def test_build_pdf_from_html_writes_pdf_document_metadata(monkeypatch, tmp_path)
 
     monkeypatch.setattr(exporter.subprocess, "run", fake_run)
 
-    exporter.build_pdf_from_html(html_path, pdf_path, "wkhtmltopdf")
+    exporter.build_pdf_from_html(html_path, pdf_path, "wkhtmltopdf", metadata_title="Bibliografia časopisu Aragonit")
 
     metadata_command = calls[1]
-    assert "-Title=Bibliografia Spravodaja SSS" in metadata_command
+    assert "-Title=Bibliografia časopisu Aragonit" in metadata_command
     assert "-Author=DankeZ" in metadata_command
     assert "-Subject=Digitálna bibliografia Spravodaja Slovenskej speleologickej spoločnosti" in metadata_command
     assert any(argument.startswith("-Keywords=") and "speleológia" in argument for argument in metadata_command)

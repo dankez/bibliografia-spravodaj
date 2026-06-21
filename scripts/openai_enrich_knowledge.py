@@ -128,7 +128,7 @@ def finalize_knowledge(data: dict, record: dict, model: str, backend: str) -> di
     data["article_id"] = record["id"]
     data["model"] = model
     data["backend"] = backend
-    data["generated_at"] = dt.datetime.now(dt.UTC).isoformat()
+    data["generated_at"] = dt.datetime.now(dt.timezone.utc).isoformat()
     return data
 
 

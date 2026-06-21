@@ -25,7 +25,7 @@ DEFAULT_SUPERVISOR_PID = OUTPUT_DIR / "map_detection_prefilter_latest_supervisor
 
 
 def utc_now() -> str:
-    return dt.datetime.now(dt.UTC).replace(microsecond=0).isoformat()
+    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0).isoformat()
 
 
 def append_line(path: Path, message: str) -> None:

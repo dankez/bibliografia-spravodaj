@@ -4,9 +4,13 @@ import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import articlesData from '../data/articles.json';
 
 const uiArticlesData = articlesData;
+const DEFAULT_JOURNAL_ID = 'spravodaj_sss';
+const DEFAULT_JOURNAL_TITLE = 'Spravodaj Slovenskej speleologickej spoločnosti';
+const DEFAULT_JOURNAL_SHORT_TITLE = 'Spravodaj SSS';
+const articleJournalId = (article) => article.journal_id || DEFAULT_JOURNAL_ID;
+const articleJournalLabel = (article) => article.journal_short_title || article.journal_title || DEFAULT_JOURNAL_SHORT_TITLE;
 const articleHasMapPlan = (article) =>
-  article.has_map_plan === true ||
-  article.detected_features?.map_plan?.present === true;
+  article.has_map_plan === true || (article.map_plan_pages || []).length > 0;
 
 const totalArticles = uiArticlesData.length;
 const startYear = Math.min(...uiArticlesData.map((article) => article.year));
@@ -15,12 +19,55 @@ const articlesWithMaps = uiArticlesData.filter(articleHasMapPlan).length;
 const totalUniqueAuthors = new Set(
   uiArticlesData.flatMap((article) => article.authors || []).filter((author) => !['Anonymus', 'Redakcia'].includes(author))
 ).size;
+const journalOptions = Array.from(
+  uiArticlesData.reduce((items, article) => {
+    const id = articleJournalId(article);
+    if (!items.has(id)) {
+      items.set(id, {
+        id,
+        label: articleJournalLabel(article),
+        title: article.journal_title || DEFAULT_JOURNAL_TITLE,
+      });
+    }
+    return items;
+  }, new Map()).values()
+).sort((a, b) => {
+  const order = new Map([
+    ['spravodaj_sss', 0],
+    ['aragonit', 1],
+    ['slovensky_kras', 2],
+  ]);
+  return (order.get(a.id) ?? 99) - (order.get(b.id) ?? 99) || a.label.localeCompare(b.label, 'sk');
+});
 
-const bibliographyExports = [
-  { href: '/exports/spravodaj_sss_danko.html', label: 'HTML' },
-  { href: '/exports/spravodaj_sss_danko.md', label: 'MD', download: true },
-  { href: '/exports/spravodaj_sss_danko.pdf', label: 'PDF', download: true, primary: true },
-  { href: '/exports/spravodaj_sss.sqlite', label: 'SQL', download: true },
+const exportScopes = [
+  { label: 'Všetko spolu', dankoBase: 'bibliografia_vsetko_danko', sqlite: 'bibliografia_vsetko.sqlite' },
+  { label: 'Spravodaj SSS', dankoBase: 'bibliografia_spravodaj_sss_danko', sqlite: 'bibliografia_spravodaj_sss.sqlite' },
+  { label: 'Aragonit', dankoBase: 'bibliografia_aragonit_danko', sqlite: 'bibliografia_aragonit.sqlite' },
+  { label: 'Slovenský kras', dankoBase: 'bibliografia_slovensky_kras_danko', sqlite: 'bibliografia_slovensky_kras.sqlite' },
+];
+const bibliographyExportMenus = [
+  {
+    label: 'HTML',
+    download: false,
+    items: exportScopes.map((scope) => ({ label: scope.label, href: `/exports/${scope.dankoBase}.html` })),
+  },
+  {
+    label: 'MD',
+    download: true,
+    items: exportScopes.map((scope) => ({ label: scope.label, href: `/exports/${scope.dankoBase}.md` })),
+  },
+  {
+    label: 'PDF',
+    download: true,
+    primary: true,
+    items: exportScopes.map((scope) => ({ label: scope.label, href: `/exports/${scope.dankoBase}.pdf` })),
+  },
+  {
+    label: 'SQL',
+    download: true,
+    items: exportScopes.map((scope) => ({ label: scope.label, href: `/exports/${scope.sqlite}` })),
+  },
 ];
 ---
 
@@ -70,17 +117,24 @@ const bibliographyExports = [
               Register jaskýň
             </a>
             <div class="bibliography-export-links" aria-label="Danko exporty bibliografie">
-              {bibliographyExports.map((exportLink) => (
-                <a
-                  href={exportLink.href}
-                  class:list={[
-                    'bibliography-link-button',
-                    exportLink.primary && 'bibliography-link-button-primary',
-                  ]}
-                  download={exportLink.download ? true : undefined}
-                >
-                  Export {exportLink.label}
-                </a>
+              {bibliographyExportMenus.map((exportMenu) => (
+                <details class="bibliography-export-menu">
+                  <summary
+                    class:list={[
+                      'bibliography-link-button',
+                      exportMenu.primary && 'bibliography-link-button-primary',
+                    ]}
+                  >
+                    Export {exportMenu.label}
+                  </summary>
+                  <div class="bibliography-export-menu-panel" role="menu" aria-label={`Export ${exportMenu.label}`}>
+                    {exportMenu.items.map((item) => (
+                      <a href={item.href} role="menuitem" download={exportMenu.download ? true : undefined}>
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </details>
               ))}
             </div>
           </div>
@@ -89,17 +143,24 @@ const bibliographyExports = [
               Register jaskýň
             </a>
             <div class="bibliography-mobile-menu-section" data-mobile-menu-link="exports" aria-label="Exporty bibliografie">
-              {bibliographyExports.map((exportLink) => (
-                <a
-                  href={exportLink.href}
-                  class:list={[
-                    'bibliography-link-button',
-                    exportLink.primary && 'bibliography-link-button-primary',
-                  ]}
-                  download={exportLink.download ? true : undefined}
-                >
-                  Export {exportLink.label}
-                </a>
+              {bibliographyExportMenus.map((exportMenu) => (
+                <details class="bibliography-export-menu bibliography-export-menu-mobile">
+                  <summary
+                    class:list={[
+                      'bibliography-link-button',
+                      exportMenu.primary && 'bibliography-link-button-primary',
+                    ]}
+                  >
+                    Export {exportMenu.label}
+                  </summary>
+                  <div class="bibliography-export-menu-panel" role="menu" aria-label={`Export ${exportMenu.label}`}>
+                    {exportMenu.items.map((item) => (
+                      <a href={item.href} role="menuitem" download={exportMenu.download ? true : undefined}>
+                        {item.label}
+                      </a>
+                    ))}
+                  </div>
+                </details>
               ))}
             </div>
           </div>
@@ -145,10 +206,14 @@ const bibliographyExports = [
               </div>
             </div>
 
-            <div class="bibliography-control flex items-center gap-1 border border-belly-gray p-1" aria-label="Filter čísla">
-              {[1, 2, 3, 4].map((issue) => (
-                <button type="button" class="issue-filter-btn flex-1 px-2 py-1.5 text-xs font-bold text-belly-dimgray-blue hover:bg-belly-darkgray" data-issue={String(issue)}>č. {issue}</button>
-              ))}
+            <div class="bibliography-control flex items-center gap-2 border border-belly-gray p-2" aria-label="Filter časopisu">
+              <label for="journal-filter-select" class="shrink-0 text-[11px] font-mono uppercase text-belly-dimgray">Časopis</label>
+              <select id="journal-filter-select" class="journal-filter-select min-w-0 flex-1 bg-transparent text-xs font-bold text-belly-dimgray-blue outline-none">
+                <option value="">Všetky</option>
+                {journalOptions.map((journal) => (
+                  <option value={journal.id}>{journal.label}</option>
+                ))}
+              </select>
             </div>
 
             <label class="bibliography-control flex items-center justify-center gap-2 border border-belly-gray px-2 py-1.5 text-xs text-belly-dimgray-blue">
@@ -306,8 +371,21 @@ const bibliographyExports = [
     import MiniSearch from 'minisearch';
     import articlesRaw from '../data/articles.json';
 
-    const PDF_PAGE_LINK_OFFSET = 2;
-    const articles = articlesRaw.map((article) => ({ ...article, year_str: String(article.year) }));
+    const DEFAULT_PDF_PAGE_LINK_OFFSET = 2;
+    const DEFAULT_JOURNAL_ID = 'spravodaj_sss';
+    const DEFAULT_JOURNAL_TITLE = 'Spravodaj Slovenskej speleologickej spoločnosti';
+    const DEFAULT_JOURNAL_SHORT_TITLE = 'Spravodaj SSS';
+
+    function isGenericImportAbstract(value) {
+      return /Obsahový\s+záznam\s+z\s+čísla\b.*\bimportovaný\s+z\s+obsahu\s+čísla\b/i.test(String(value || '').replace(/\s+/g, ' ').trim());
+    }
+
+    function displayAbstract(article) {
+      const abstract = String(article.abstract || '').trim();
+      return isGenericImportAbstract(abstract) ? '' : abstract;
+    }
+
+    const articles = articlesRaw.map((article) => ({ ...article, abstract: displayAbstract(article), year_str: String(article.year) }));
     const articlesById = new Map(articles.map((article) => [article.id, article]));
     const articleYears = articles.map((article) => article.year);
     const START_YEAR = Math.min(...articleYears);
@@ -327,7 +405,7 @@ const bibliographyExports = [
       search: '',
       yearMin: START_YEAR,
       yearMax: END_YEAR,
-      issue: '',
+      journal: '',
       mapsOnly: false,
       fulltext: false,
       page: 1,
@@ -349,7 +427,7 @@ const bibliographyExports = [
     const yearMinInput = byId('year-min');
     const yearMaxInput = byId('year-max');
     const yearLabel = byId('year-range-label');
-    const issueButtons = Array.from(document.querySelectorAll('.issue-filter-btn'));
+    const journalFilterSelect = byId('journal-filter-select');
     const filterMapsOnly = byId('filter-maps-only');
     const filterFulltext = byId('filter-fulltext');
     const filterStatus = byId('filter-status');
@@ -359,16 +437,19 @@ const bibliographyExports = [
     const nextPageBtn = byId('next-page-btn');
     let filtered = articles;
     let fulltextMiniSearch = null;
+    let fulltextManifest = null;
+    let fulltextManifestPromise = null;
     let fulltextLoadPromise = null;
     let fulltextLoadState = 'idle';
     let fulltextStats = null;
+    const fulltextLoadedShards = new Set();
+    const fulltextLoadingShards = new Map();
+    const fulltextLoadedArticleIds = new Set();
     let setupComplete = false;
 
     function hasMap(article) {
       if (article.has_map_plan === true) return true;
-      const detected = article.detected_features?.map_plan;
-      if (detected?.present === true) return true;
-      return false;
+      return (article.map_plan_pages || []).length > 0;
     }
 
     function firstArticlePage(article) {
@@ -378,7 +459,10 @@ const bibliographyExports = [
 
     function pdfPage(article) {
       const printedPage = Number(article.pdf_page_start || firstArticlePage(article) || 1);
-      return printedPage + PDF_PAGE_LINK_OFFSET;
+      const offset = Number.isFinite(Number(article.pdf_page_offset))
+        ? Number(article.pdf_page_offset)
+        : DEFAULT_PDF_PAGE_LINK_OFFSET;
+      return printedPage + offset;
     }
 
     function articlePdfUrl(article) {
@@ -401,10 +485,12 @@ const bibliographyExports = [
       ];
     }
 
-    function issueMatches(articleIssue, selectedIssue) {
-      if (!selectedIssue) return true;
-      const issue = String(articleIssue || '');
-      return new RegExp(`(^|[^0-9])${selectedIssue}([^0-9]|$)`).test(issue);
+    function articleJournalId(article) {
+      return article.journal_id || DEFAULT_JOURNAL_ID;
+    }
+
+    function articleJournalLabel(article) {
+      return article.journal_short_title || article.journal_title || DEFAULT_JOURNAL_SHORT_TITLE;
     }
 
     function publicDataUrl(fileName) {
@@ -412,41 +498,101 @@ const bibliographyExports = [
       return `${pathname}data/${fileName}`;
     }
 
-    function loadFulltextIndex() {
-      if (fulltextMiniSearch) return Promise.resolve(fulltextMiniSearch);
-      if (fulltextLoadPromise) return fulltextLoadPromise;
+    function ensureFulltextMiniSearch() {
+      if (fulltextMiniSearch) return fulltextMiniSearch;
+      fulltextMiniSearch = new MiniSearch({
+        fields: ['t'],
+        storeFields: ['a'],
+        searchOptions: {
+          prefix: true,
+          fuzzy: 0.1
+        }
+      });
+      return fulltextMiniSearch;
+    }
 
-      fulltextLoadState = 'loading';
-      fulltextLoadPromise = fetch(publicDataUrl('fulltext_index.json'))
+    function loadFulltextManifest() {
+      if (fulltextManifest) return Promise.resolve(fulltextManifest);
+      if (fulltextManifestPromise) return fulltextManifestPromise;
+      fulltextManifestPromise = fetch(publicDataUrl('fulltext_manifest.json'))
         .then((response) => {
-          if (!response.ok) throw new Error(`Fulltext index HTTP ${response.status}`);
+          if (!response.ok) throw new Error(`Fulltext manifest HTTP ${response.status}`);
+          return response.json();
+        })
+        .then((manifest) => {
+          fulltextManifest = manifest;
+          fulltextStats = {
+            chunks: 0,
+            articles: 0,
+            totalChunks: manifest.chunks || 0,
+            totalArticles: manifest.articles || 0
+          };
+          return manifest;
+        });
+      return fulltextManifestPromise;
+    }
+
+    function fulltextRelevantShards(manifest = fulltextManifest) {
+      if (!manifest?.shards?.length) return [];
+      return manifest.shards.filter((shard) => {
+        if (state.journal && shard.journal_id !== state.journal) return false;
+        const year = Number(shard.year);
+        if (Number.isFinite(year) && (year < state.yearMin || year > state.yearMax)) return false;
+        return true;
+      });
+    }
+
+    function fulltextMissingRelevantShards() {
+      return fulltextRelevantShards().filter((shard) => !fulltextLoadedShards.has(shard.path));
+    }
+
+    function loadFulltextShard(shard) {
+      if (fulltextLoadedShards.has(shard.path)) return Promise.resolve();
+      if (fulltextLoadingShards.has(shard.path)) return fulltextLoadingShards.get(shard.path);
+      const promise = fetch(publicDataUrl(shard.path))
+        .then((response) => {
+          if (!response.ok) throw new Error(`Fulltext shard HTTP ${response.status}: ${shard.path}`);
           return response.json();
         })
         .then((records) => {
-          const index = new MiniSearch({
-            fields: ['t'],
-            storeFields: ['a'],
-            searchOptions: {
-              prefix: true,
-              fuzzy: 0.1
-            }
-          });
+          const index = ensureFulltextMiniSearch();
           index.addAll(records);
-          fulltextMiniSearch = index;
-          fulltextLoadState = 'ready';
+          records.forEach((record) => fulltextLoadedArticleIds.add(record.a));
+          fulltextLoadedShards.add(shard.path);
           fulltextStats = {
-            chunks: records.length,
-            articles: new Set(records.map((record) => record.a)).size
+            chunks: (fulltextStats?.chunks || 0) + records.length,
+            articles: fulltextLoadedArticleIds.size,
+            totalChunks: fulltextManifest?.chunks || 0,
+            totalArticles: fulltextManifest?.articles || 0
           };
+        })
+        .finally(() => {
+          fulltextLoadingShards.delete(shard.path);
+        });
+      fulltextLoadingShards.set(shard.path, promise);
+      return promise;
+    }
+
+    function loadFulltextIndex() {
+      ensureFulltextMiniSearch();
+      if (fulltextLoadPromise) return fulltextLoadPromise;
+
+      fulltextLoadState = 'loading';
+      fulltextLoadPromise = loadFulltextManifest()
+        .then((manifest) => Promise.all(fulltextRelevantShards(manifest).map(loadFulltextShard)))
+        .then(() => {
+          fulltextLoadState = 'ready';
           applyFilters();
-          return index;
+          return fulltextMiniSearch;
         })
         .catch((error) => {
           console.error('Fulltext index sa nepodarilo načítať.', error);
           fulltextLoadState = 'error';
-          fulltextLoadPromise = null;
           applyFilters();
           return null;
+        })
+        .finally(() => {
+          fulltextLoadPromise = null;
         });
 
       applyFilters();
@@ -459,18 +605,10 @@ const bibliographyExports = [
       if (fulltextLoadState === 'loading') return 'fulltext sa načítava';
       if (fulltextLoadState === 'error') return 'fulltext index nie je dostupný';
       if (fulltextLoadState === 'ready' && fulltextStats) {
-        return `fulltext: ${fulltextStats.articles} článkov`;
+        const total = fulltextStats.totalArticles ? `/${fulltextStats.totalArticles}` : '';
+        return `fulltext: ${fulltextStats.articles}${total} článkov`;
       }
       return 'fulltext zapnutý';
-    }
-
-    function renderIssueButtons() {
-      issueButtons.forEach((button) => {
-        const active = button.dataset.issue === state.issue;
-        button.className = active
-          ? 'issue-filter-btn flex-1 bg-belly-firebrick px-2 py-1.5 text-xs font-bold text-belly-gainsboro'
-          : 'issue-filter-btn flex-1 px-2 py-1.5 text-xs font-bold text-belly-dimgray-blue hover:bg-belly-darkgray';
-      });
     }
 
     function setTab(tab) {
@@ -568,14 +706,15 @@ const bibliographyExports = [
               seen.add(article.id);
             }
           });
-        } else if (fulltextLoadState !== 'loading') {
+        }
+        if (!fulltextManifest || fulltextMissingRelevantShards().length) {
           loadFulltextIndex();
         }
       }
 
       filtered = base.filter((article) => {
         if (article.year < state.yearMin || article.year > state.yearMax) return false;
-        if (!issueMatches(article.issue, state.issue)) return false;
+        if (state.journal && articleJournalId(article) !== state.journal) return false;
         if (state.mapsOnly && !hasMap(article)) return false;
         return true;
       }).sort((a, b) => {
@@ -583,14 +722,18 @@ const bibliographyExports = [
         return mapDelta || b.year - a.year || b.id - a.id;
       });
 
+      const selectedStillVisible = filtered.some((article) => article.id === state.selectedId);
       state.page = Math.min(state.page, Math.max(1, Math.ceil(filtered.length / state.pageSize)));
-      const active = query || state.yearMin > START_YEAR || state.yearMax < END_YEAR || state.issue || state.mapsOnly || state.fulltext;
+      const active = query || state.yearMin > START_YEAR || state.yearMax < END_YEAR || state.journal || state.mapsOnly || state.fulltext;
       filterStatus.classList.toggle('hidden', !active);
       filterStatusText.textContent = [`${filtered.length} výsledkov`, fulltextStatusLabel(query)].filter(Boolean).join(' · ');
       byId('stat-total').textContent = String(filtered.length);
       byId('stat-maps').textContent = String(filtered.filter(hasMap).length);
-      renderIssueButtons();
       renderList();
+      if (!selectedStillVisible) {
+        if (filtered.length) selectArticle(filtered[0].id);
+        else clearSelectedArticle();
+      }
       if (state.activeTab === 'analytics') renderCharts();
     }
 
@@ -606,11 +749,14 @@ const bibliographyExports = [
       }
 
       pageItems.forEach((article) => {
+        const abstract = displayAbstract(article);
         const row = document.createElement('button');
         row.type = 'button';
         row.className = `article-result-card ${state.selectedId === article.id ? 'is-selected' : ''}`;
         row.innerHTML = `
           <div class="article-result-meta">
+            <span>${articleJournalLabel(article)}</span>
+            <span class="separator">/</span>
             <span>${article.year}</span>
             <span class="separator">/</span>
             <span>č. ${article.issue}</span>
@@ -620,7 +766,7 @@ const bibliographyExports = [
           </div>
           <h3 class="article-result-title">${article.title}</h3>
           <p class="article-result-author">${formatAuthorsDisplay(article.authors || [])}</p>
-          <p class="article-result-abstract line-clamp-2">${article.abstract || ''}</p>
+          ${abstract ? `<p class="article-result-abstract line-clamp-2">${abstract}</p>` : ''}
         `;
         row.addEventListener('click', () => selectArticle(article.id));
         listEl.appendChild(row);
@@ -643,6 +789,13 @@ const bibliographyExports = [
       return element;
     }
 
+    function clearSelectedArticle() {
+      state.selectedId = null;
+      byId('no-selection').classList.remove('hidden');
+      byId('selected-detail').classList.add('hidden');
+      renderList();
+    }
+
     function selectArticle(id) {
       const article = articles.find((item) => item.id === id);
       if (!article) return;
@@ -658,7 +811,7 @@ const bibliographyExports = [
       byId('detail-issue').textContent = article.issue || '-';
       byId('detail-year').textContent = String(article.year || '-');
       byId('detail-pages').textContent = article.pages || '-';
-      byId('detail-abstract').textContent = article.abstract || 'Anotácia zatiaľ nie je k dispozícii.';
+      byId('detail-abstract').textContent = displayAbstract(article) || 'Anotácia zatiaľ nie je k dispozícii.';
 
       const tagsEl = byId('detail-tags');
       tagsEl.innerHTML = '';
@@ -681,17 +834,17 @@ const bibliographyExports = [
       if (pdfUrl) {
         pdfOpenLink.href = pdfUrl;
         pdfOpenLink.classList.remove('pointer-events-none', 'opacity-40');
-        byId('pdf-label').textContent = `PDF: ${article.year}, č. ${article.issue}, s. ${article.pages}`;
+        byId('pdf-label').textContent = `PDF: ${articleJournalLabel(article)}, ${article.year}, č. ${article.issue}, s. ${article.pages}`;
         pdfMissing.classList.add('hidden');
 
         const coverCandidates = pdfCoverCandidates(article);
         if (coverCandidates.length) {
           pdfCoverBox.classList.remove('hidden');
           pdfCoverLink.href = article.pdf_url || pdfUrl;
-          pdfCoverCaption.textContent = `Obálka čísla ${article.year}, č. ${article.issue}`;
+          pdfCoverCaption.textContent = `Obálka ${articleJournalLabel(article)} ${article.year}, č. ${article.issue}`;
           pdfCoverImage.dataset.coverCandidates = coverCandidates.join('|');
           pdfCoverImage.dataset.coverIndex = '0';
-          pdfCoverImage.alt = `Obálka Spravodaja SSS ${article.year}, číslo ${article.issue}`;
+          pdfCoverImage.alt = `Obálka ${articleJournalLabel(article)} ${article.year}, číslo ${article.issue}`;
           pdfCoverImage.src = coverCandidates[0];
         } else {
           pdfCoverBox.classList.add('hidden');
@@ -733,7 +886,7 @@ const bibliographyExports = [
     }
 
     function generateCitations(article) {
-      const journal = 'Spravodaj Slovenskej speleologickej spoločnosti';
+      const journal = article.journal_title || 'Spravodaj Slovenskej speleologickej spoločnosti';
       const authors = article.authors || ['Anonymus'];
       byId('cite-iso').textContent = `${formatAuthorsIso(authors)}. ${article.title}. In: ${journal}. ${article.year}, roč. ${article.volume || 'I.'}, č. ${article.issue}, s. ${article.pages}.`;
       byId('cite-apa').textContent = `${formatAuthorsPlain(authors)} (${article.year}). ${article.title}. ${journal}, ${article.volume || 'I.'}(${article.issue}), ${article.pages}.`;
@@ -867,12 +1020,10 @@ const bibliographyExports = [
         state.page = 1;
         applyFilters();
       });
-      issueButtons.forEach((button) => {
-        button.addEventListener('click', () => {
-          state.issue = state.issue === button.dataset.issue ? '' : button.dataset.issue;
-          state.page = 1;
-          applyFilters();
-        });
+      journalFilterSelect.addEventListener('change', (event) => {
+        state.journal = event.target.value;
+        state.page = 1;
+        applyFilters();
       });
       filterMapsOnly.addEventListener('change', (event) => {
         state.mapsOnly = event.target.checked;
@@ -888,13 +1039,14 @@ const bibliographyExports = [
         state.search = '';
         state.yearMin = START_YEAR;
         state.yearMax = END_YEAR;
-        state.issue = '';
+        state.journal = '';
         state.mapsOnly = false;
         state.fulltext = false;
         state.page = 1;
         syncSearchFields('');
         yearMinInput.value = String(START_YEAR);
         yearMaxInput.value = String(END_YEAR);
+        journalFilterSelect.value = '';
         filterMapsOnly.checked = false;
         filterFulltext.checked = false;
         yearLabel.textContent = `${START_YEAR} - ${END_YEAR}`;

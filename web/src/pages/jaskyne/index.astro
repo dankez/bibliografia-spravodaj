@@ -20,7 +20,7 @@ const lastYear = Math.max(...years);
           <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Výskumný portál</p>
           <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">Register jaskýň</h1>
           <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray-warm">
-            Jaskyne a lokality extrahované z bibliografie Spravodaja SSS. Každý detail obsahuje časovú os článkov a odkazy na pôvodné PDF.
+            Jaskyne a lokality extrahované zo spracovaných speleologických publikácií. Každý detail obsahuje časovú os článkov a odkazy na pôvodné PDF.
           </p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
@@ -67,6 +67,32 @@ const lastYear = Math.max(...years);
         </label>
       </section>
 
+      <section id="cave-admin-panel" class="cave-admin-panel mb-4 border border-belly-firebrick p-4" hidden>
+        <div class="flex flex-col gap-3 lg:flex-row lg:items-start lg:justify-between">
+          <div>
+            <h2 class="font-display text-xl font-bold text-belly-black-brown">Admin zlúčenie jaskýň</h2>
+            <p class="mt-1 text-sm leading-relaxed text-belly-dimgray">
+              Kliknutím vyber duplicitné karty. Výstup vlož do <code>data/cave_aliases.json</code> a znovu vygeneruj register.
+            </p>
+          </div>
+          <a href="/jaskyne/" class="bibliography-link-button">Vypnúť admin</a>
+        </div>
+        <div class="mt-4 grid gap-3 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.2fr)]">
+          <label class="report-field">
+            <span>Kanonický názov</span>
+            <input id="cave-admin-canonical" type="text" autocomplete="off" placeholder="Napr. Jasovská jaskyňa" />
+          </label>
+          <div class="cave-admin-summary">
+            <span id="cave-admin-count">0 vybraných</span>
+            <button id="cave-admin-copy" class="bibliography-button-secondary px-4 py-2 font-bold" type="button">Kopírovať JSON</button>
+          </div>
+        </div>
+        <label class="report-field mt-3">
+          <span>Alias JSON</span>
+          <textarea id="cave-admin-output" rows="6" readonly></textarea>
+        </label>
+      </section>
+
       <p id="cave-count" class="mb-3 text-xs font-mono uppercase text-belly-lightslategray">{totalCaves} záznamov</p>
 
       <section id="cave-list" class="cave-list grid gap-3 md:grid-cols-2 xl:grid-cols-3">
@@ -75,12 +101,26 @@ const lastYear = Math.max(...years);
             class="cave-card border border-belly-darkgray p-4"
             href={`/jaskyne/${cave.slug}/`}
             data-cave-card
-            data-search={`${cave.name} ${cave.first_year} ${cave.last_year}`.toLocaleLowerCase('sk')}
+            data-cave-name={cave.name}
+            data-cave-slug={cave.slug}
+            data-cave-area={cave.area || ''}
+            data-cave-aliases={(cave.aliases || []).join('|')}
+            data-search={`${cave.name} ${cave.area || ''} ${(cave.aliases || []).join(' ')} ${cave.first_year} ${cave.last_year}`.toLocaleLowerCase('sk')}
           >
             <div class="flex items-start justify-between gap-3">
               <h3 class="font-display text-lg font-bold leading-tight text-belly-black-brown">{cave.name}</h3>
               {cave.map_plan_count > 0 && <span class="article-result-badge shrink-0">mapy {cave.map_plan_count}</span>}
             </div>
+            {cave.area && (
+              <p class="mt-1 text-xs font-bold leading-snug text-belly-firebrick">
+                Oblasť: {cave.area}
+              </p>
+            )}
+            {(cave.aliases || []).length > 0 && (
+              <p class="mt-2 text-xs leading-snug text-belly-dimgray">
+                Alias: {(cave.aliases || []).join(', ')}
+              </p>
+            )}
             <dl class="mt-4 grid grid-cols-3 gap-2 text-xs font-mono">
               <div>
                 <dt class="text-belly-lightslategray">Články</dt>
@@ -105,6 +145,13 @@ const lastYear = Math.max(...years);
     const search = document.getElementById('cave-search');
     const count = document.getElementById('cave-count');
     const cards = Array.from(document.querySelectorAll('[data-cave-card]'));
+    const params = new URLSearchParams(window.location.search);
+    const adminMode = params.get('admin') === '1';
+    const adminPanel = document.getElementById('cave-admin-panel');
+    const adminCanonical = document.getElementById('cave-admin-canonical');
+    const adminOutput = document.getElementById('cave-admin-output');
+    const adminCount = document.getElementById('cave-admin-count');
+    const adminCopy = document.getElementById('cave-admin-copy');
 
     function normalizeText(value) {
       return String(value || '')
@@ -118,12 +165,84 @@ const lastYear = Math.max(...years);
       let visible = 0;
       cards.forEach((card) => {
         const match = !query || normalizeText(card.dataset.search).includes(query);
-        card.classList.toggle('hidden', !match);
+        card.toggleAttribute('hidden', !match);
         if (match) visible += 1;
       });
       count.textContent = `${visible} záznamov`;
     }
 
     search?.addEventListener('input', applyCaveFilter);
+
+    function selectedAdminCards() {
+      return cards.filter((card) => card.classList.contains('is-selected-for-merge'));
+    }
+
+    function uniqueValues(values) {
+      const seen = new Set();
+      const result = [];
+      values.forEach((value) => {
+        const text = String(value || '').trim();
+        const key = normalizeText(text);
+        if (!text || seen.has(key)) return;
+        seen.add(key);
+        result.push(text);
+      });
+      return result;
+    }
+
+    function updateAdminOutput() {
+      const selected = selectedAdminCards();
+      if (selected.length && !adminCanonical.value.trim()) {
+        adminCanonical.value = selected[0].dataset.caveName || '';
+      }
+      const canonical = adminCanonical.value.trim();
+      const names = selected.flatMap((card) => [
+        card.dataset.caveName,
+        ...(card.dataset.caveAliases || '').split('|'),
+      ]);
+      const aliases = uniqueValues(names).filter((name) => normalizeText(name) !== normalizeText(canonical));
+      const slugs = uniqueValues(selected.map((card) => card.dataset.caveSlug));
+      const areas = uniqueValues(selected.map((card) => card.dataset.caveArea));
+      const payload = {
+        canonical,
+        aliases,
+        areas,
+        note: slugs.length ? `Admin merge: ${slugs.join(', ')}` : '',
+      };
+      adminCount.textContent = `${selected.length} vybraných`;
+      adminOutput.value = selected.length ? JSON.stringify(payload, null, 2) : '';
+    }
+
+    if (adminMode) {
+      adminPanel.hidden = false;
+      document.getElementById('cave-list')?.classList.add('is-admin-mode');
+      cards.forEach((card) => {
+        card.setAttribute('aria-label', `Vybrať na zlúčenie: ${card.dataset.caveName || ''}`);
+        card.addEventListener('click', (event) => {
+          event.preventDefault();
+          card.classList.toggle('is-selected-for-merge');
+          if (selectedAdminCards().length === 1) {
+            adminCanonical.value = selectedAdminCards()[0].dataset.caveName || '';
+          }
+          updateAdminOutput();
+        });
+      });
+      adminCanonical?.addEventListener('input', updateAdminOutput);
+      adminCopy?.addEventListener('click', async () => {
+        if (!adminOutput.value.trim()) return;
+        try {
+          await navigator.clipboard?.writeText(adminOutput.value);
+          adminCopy.textContent = 'Skopírované';
+        } catch {
+          adminOutput.focus();
+          adminOutput.select();
+          adminCopy.textContent = 'Označené';
+        }
+        window.setTimeout(() => {
+          adminCopy.textContent = 'Kopírovať JSON';
+        }, 1200);
+      });
+      updateAdminOutput();
+    }
   </script>
 </Layout>

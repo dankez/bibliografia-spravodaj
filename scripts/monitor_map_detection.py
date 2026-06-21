@@ -35,7 +35,7 @@ ANSI_RE = re.compile(r"\033\[[0-9;]*m")
 
 
 def utc_now() -> dt.datetime:
-    return dt.datetime.now(dt.UTC).replace(microsecond=0)
+    return dt.datetime.now(dt.timezone.utc).replace(microsecond=0)
 
 
 def read_json(path: Path) -> tuple[dict[str, Any], str | None]:
@@ -69,8 +69,8 @@ def parse_ts(value: Any) -> dt.datetime | None:
     except ValueError:
         return None
     if parsed.tzinfo is None:
-        return parsed.replace(tzinfo=dt.UTC)
-    return parsed.astimezone(dt.UTC)
+        return parsed.replace(tzinfo=dt.timezone.utc)
+    return parsed.astimezone(dt.timezone.utc)
 
 
 def human_age(value: Any) -> str:

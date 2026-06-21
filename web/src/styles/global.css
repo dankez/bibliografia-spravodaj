@@ -505,6 +505,71 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   gap: 0.45rem;
 }
 
+.bibliography-export-menu {
+  position: relative;
+  flex: 0 0 auto;
+}
+
+.bibliography-export-menu summary {
+  cursor: pointer;
+  list-style: none;
+}
+
+.bibliography-export-menu summary::-webkit-details-marker {
+  display: none;
+}
+
+.bibliography-export-menu summary::after {
+  content: "v";
+  font-size: 0.68rem;
+  line-height: 1;
+}
+
+.bibliography-export-menu[open] summary {
+  border-color: rgb(var(--sss-firebrick) / 0.65);
+  box-shadow: var(--sss-card-shadow-hover);
+}
+
+.bibliography-export-menu-panel {
+  position: absolute;
+  top: calc(100% + 0.45rem);
+  right: 0;
+  z-index: 80;
+  display: grid;
+  min-width: 190px;
+  gap: 0.22rem;
+  border: 1px solid rgb(var(--sss-darkgray));
+  border-radius: var(--sss-radius-lg);
+  background: rgb(var(--sss-card));
+  padding: 0.35rem;
+  box-shadow: var(--sss-panel-shadow);
+}
+
+.bibliography-export-menu-panel a {
+  display: flex;
+  min-height: 36px;
+  align-items: center;
+  border-radius: var(--sss-radius-md);
+  color: rgb(var(--sss-dimgray-blue));
+  padding: 0.48rem 0.58rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  text-decoration: none;
+  text-transform: uppercase;
+  white-space: nowrap;
+}
+
+.bibliography-export-menu-panel a:hover {
+  background: rgb(var(--sss-surface-muted));
+  color: rgb(var(--sss-firebrick));
+}
+
+.bibliography-export-menu-panel a:focus-visible {
+  outline: 2px solid rgb(var(--sss-firebrick));
+  outline-offset: 2px;
+}
+
 .bibliography-desktop-actions {
   flex-wrap: nowrap;
   white-space: nowrap;
@@ -814,10 +879,62 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   outline-offset: 3px;
 }
 
+.cave-admin-panel {
+  border-radius: var(--sss-radius-lg);
+  background: rgb(var(--sss-card));
+  box-shadow: var(--sss-card-shadow);
+}
+
+.cave-admin-summary {
+  display: flex;
+  min-height: 100%;
+  align-items: end;
+  justify-content: space-between;
+  gap: 0.75rem;
+  color: rgb(var(--sss-firebrick));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.78rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.cave-list.is-admin-mode .cave-card {
+  cursor: pointer;
+}
+
+.cave-list.is-admin-mode .cave-card::after {
+  content: "Vybrať";
+  display: inline-flex;
+  margin-top: 0.85rem;
+  border: 1px solid rgb(var(--sss-firebrick) / 0.35);
+  border-radius: var(--sss-radius-sm);
+  padding: 0.25rem 0.5rem;
+  color: rgb(var(--sss-firebrick));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 850;
+  text-transform: uppercase;
+}
+
+.cave-list.is-admin-mode .cave-card.is-selected-for-merge {
+  border-color: rgb(var(--sss-firebrick));
+  box-shadow: var(--sss-card-shadow-hover);
+}
+
+.cave-list.is-admin-mode .cave-card.is-selected-for-merge::after {
+  content: "Vybrané";
+  background: rgb(var(--sss-firebrick));
+  color: rgb(var(--sss-on-accent));
+}
+
 .cave-timeline {
   position: relative;
+  --timeline-stagger-offset: 4rem;
   margin: 0;
-  padding: 0 0 0 7.5rem;
+  display: grid;
+  gap: 1.15rem 2.5rem;
+  grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+  padding: 0;
   list-style: none;
 }
 
@@ -825,22 +942,64 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   content: "";
   position: absolute;
   inset-block: 0.4rem;
-  left: 5.85rem;
+  left: 50%;
   width: 2px;
   border-radius: var(--sss-radius-full);
   background: rgb(var(--sss-darkgray));
+  transform: translateX(-50%);
 }
 
 .cave-timeline-item {
   position: relative;
-  margin-bottom: 1rem;
+  min-width: 0;
+  margin-bottom: 0;
+}
+
+.cave-timeline-item::before {
+  content: "";
+  position: absolute;
+  top: 1.03rem;
+  z-index: 1;
+  width: 0.62rem;
+  height: 0.62rem;
+  border: 2px solid rgb(var(--sss-firebrick));
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-card));
+}
+
+.cave-timeline-item:nth-child(odd) {
+  grid-column: 1;
+  padding-right: 1.9rem;
+}
+
+.cave-timeline-item:nth-child(even) {
+  grid-column: 2;
+  margin-top: var(--timeline-stagger-offset);
+  padding-left: 1.9rem;
+}
+
+.cave-timeline-item:nth-child(odd)::before {
+  right: -0.85rem;
+}
+
+.cave-timeline-item:nth-child(even)::before {
+  left: -0.85rem;
+}
+
+.cave-timeline-side-left {
+  justify-self: stretch;
+}
+
+.cave-timeline-side-right {
+  justify-self: stretch;
 }
 
 .cave-timeline-year {
-  position: absolute;
-  top: 1rem;
-  left: -7.5rem;
-  width: 4.8rem;
+  position: relative;
+  z-index: 1;
+  width: fit-content;
+  min-width: 4.2rem;
+  margin-bottom: 0.45rem;
   border: 1px solid rgb(var(--sss-firebrick) / 0.45);
   border-radius: var(--sss-radius-full);
   background: rgb(var(--sss-card));
@@ -849,25 +1008,21 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
   font-size: 0.78rem;
   font-weight: 850;
-  line-height: 2.15rem;
+  line-height: 1.85rem;
   text-align: center;
 }
 
-.cave-timeline-year::after {
-  content: "";
-  position: absolute;
-  top: 50%;
-  right: -1.66rem;
-  width: 0.8rem;
-  height: 0.8rem;
-  border: 2px solid rgb(var(--sss-firebrick));
-  border-radius: var(--sss-radius-full);
-  background: rgb(var(--sss-card));
-  transform: translateY(-50%);
+.cave-timeline-item:nth-child(odd) .cave-timeline-year {
+  margin-left: auto;
+}
+
+.cave-timeline-item:nth-child(even) .cave-timeline-year {
+  margin-right: auto;
 }
 
 .cave-timeline-card {
   position: relative;
+  padding: 0.95rem;
 }
 
 .report-form {
@@ -1016,6 +1171,24 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 
   .bibliography-mobile-menu .bibliography-link-button {
     width: 100%;
+  }
+
+  .bibliography-mobile-menu .bibliography-export-menu {
+    width: 100%;
+  }
+
+  .bibliography-mobile-menu .bibliography-export-menu-panel {
+    position: static;
+    margin-top: 0.4rem;
+    min-width: 0;
+    width: 100%;
+    box-shadow: none;
+  }
+
+  .bibliography-mobile-menu .bibliography-export-menu-panel a {
+    min-height: 42px;
+    justify-content: center;
+    text-align: center;
   }
 
   .mobile-search-overlay {
@@ -1300,30 +1473,67 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   }
 
   .cave-timeline {
+    --timeline-stagger-offset: 0;
+    display: block;
     padding-left: 0;
   }
 
   .cave-timeline::before {
     left: 0.8rem;
+    transform: none;
   }
 
   .cave-timeline-item {
+    display: block;
+    grid-template-columns: none;
+    column-gap: 0;
     padding-left: 2.1rem;
+    padding-right: 0;
+    margin-bottom: 0.85rem;
+  }
+
+  .cave-timeline-item::before,
+  .cave-timeline-item:nth-child(odd)::before,
+  .cave-timeline-item:nth-child(even)::before {
+    left: 0.52rem;
+    right: auto;
+    transform: none;
+  }
+
+  .cave-timeline-item:nth-child(odd),
+  .cave-timeline-item:nth-child(even) {
+    grid-column: auto;
+    margin-top: 0;
+    padding-left: 2.1rem;
+    padding-right: 0;
   }
 
   .cave-timeline-year {
     position: relative;
     top: auto;
     left: auto;
+    right: auto;
     width: fit-content;
     min-width: 4.4rem;
+    margin-left: 0;
+    margin-right: 0;
     margin-bottom: 0.5rem;
     line-height: 2rem;
   }
 
-  .cave-timeline-year::after {
-    left: -1.65rem;
+  .cave-timeline-item:nth-child(odd) .cave-timeline-year,
+  .cave-timeline-item:nth-child(even) .cave-timeline-year {
+    grid-column: auto;
+    left: auto;
     right: auto;
+    justify-self: auto;
+    margin-left: 0;
+    margin-right: 0;
+  }
+
+  .cave-timeline-item:nth-child(odd) .cave-timeline-card,
+  .cave-timeline-item:nth-child(even) .cave-timeline-card {
+    grid-column: auto;
   }
 
   .cave-timeline-card {

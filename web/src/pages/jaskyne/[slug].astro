@@ -3,15 +3,25 @@ import Layout from '../../layouts/Layout.astro';
 import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
 import caves from '../../data/caves.json';
 
+const cavesBySlug = new Map(caves.map((cave) => [String(cave.slug), cave]));
+
 export async function getStaticPaths() {
   return caves.map((cave) => ({
     params: { slug: cave.slug },
-    props: { cave },
   }));
 }
 
-const { cave } = Astro.props;
+const cave = cavesBySlug.get(String(Astro.params.slug || ''));
+if (!cave) {
+  throw new Error(`Cave not found: ${Astro.params.slug}`);
+}
 const timeline = [...cave.articles].sort((a, b) => Number(a.year || 0) - Number(b.year || 0) || Number(a.id) - Number(b.id));
+const DEFAULT_JOURNAL_SHORT_TITLE = 'Spravodaj SSS';
+const isGenericImportAbstract = (value) => /Obsahový\s+záznam\s+z\s+čísla\b.*\bimportovaný\s+z\s+obsahu\s+čísla\b/i.test(String(value || '').replace(/\s+/g, ' ').trim());
+const displayAbstract = (article) => {
+  const abstract = String(article.abstract || '').trim();
+  return isGenericImportAbstract(abstract) ? '' : abstract;
+};
 
 const formatAuthorsDisplay = (authors) => {
   if (!authors?.length) return 'Anonymus';
@@ -21,7 +31,7 @@ const formatAuthorsDisplay = (authors) => {
 };
 ---
 
-<Layout title={`${cave.name} — časová os článkov`}>
+<Layout title={`${cave.name}${cave.area ? ` (${cave.area})` : ''} — časová os článkov`}>
   <div class="portal-page min-h-screen text-belly-black">
     <header class="portal-header border-b border-belly-darkgray">
       <div class="h-2 bg-belly-firebrick"></div>
@@ -29,8 +39,13 @@ const formatAuthorsDisplay = (authors) => {
         <div>
           <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Časová os jaskyne</p>
           <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">{cave.name}</h1>
+          {cave.area && (
+            <p class="mt-2 inline-flex rounded-full border border-belly-firebrick px-3 py-1 text-xs font-bold text-belly-firebrick">
+              Oblasť: {cave.area}
+            </p>
+          )}
           <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray-warm">
-            Chronologický prehľad článkov v Spravodaji SSS, kde je táto jaskyňa uvedená v kurátorovanom zozname lokalít.
+            Chronologický prehľad článkov naprieč spracovanými speleologickými publikáciami, kde je táto jaskyňa uvedená v kurátorovanom zozname lokalít.
           </p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
@@ -69,21 +84,37 @@ const formatAuthorsDisplay = (authors) => {
       </section>
 
       <ol class="cave-timeline">
-        {timeline.map((article) => (
-          <li class="cave-timeline-item">
+        {timeline.map((article, index) => (
+          <li class={`cave-timeline-item cave-timeline-side-${index % 2 === 0 ? 'left' : 'right'}`}>
             <div class="cave-timeline-year" aria-label={`Rok ${article.year}`}>{article.year}</div>
             <article class="cave-timeline-card border border-belly-darkgray p-4">
               <div class="article-result-meta">
+                <span>{article.journal_short_title || DEFAULT_JOURNAL_SHORT_TITLE}</span>
+                <span class="separator">/</span>
+                <span>{article.year}</span>
+                {article.volume && (
+                  <>
+                    <span class="separator">/</span>
+                    <span>roč. {article.volume}</span>
+                  </>
+                )}
+                <span class="separator">/</span>
                 <span>č. {article.issue}</span>
                 <span class="separator">/</span>
                 <span>s. {article.pages}</span>
+                {article.cave_area && article.cave_area !== cave.area && (
+                  <>
+                    <span class="separator">/</span>
+                    <span>{article.cave_area}</span>
+                  </>
+                )}
                 {article.has_map_plan && <span class="article-result-badge ml-auto">mapa/plán</span>}
               </div>
               <h3 class="mt-2 font-display text-xl font-bold leading-tight text-belly-black-brown">
                 <a class="hover:text-belly-firebrick" href={article.detail_url}>{article.title}</a>
               </h3>
               <p class="mt-2 text-sm font-semibold text-belly-dimgray-earth">{formatAuthorsDisplay(article.authors)}</p>
-              {article.abstract && <p class="mt-3 text-sm leading-relaxed text-belly-dimgray-blue">{article.abstract}</p>}
+              {displayAbstract(article) && <p class="mt-3 text-sm leading-relaxed text-belly-dimgray-blue">{displayAbstract(article)}</p>}
               <div class="mt-4 flex flex-wrap gap-2">
                 <a href={article.detail_url} class="bibliography-link-button">Detail článku</a>
                 {article.pdf_link && (

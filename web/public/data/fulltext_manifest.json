@@ -1,8 +1,1151 @@
 {
+  "version": 2,
   "source": "data/research_chunks.jsonl",
-  "index": "web/public/data/fulltext_index.json",
-  "chunks": 10594,
-  "articles": 3645,
-  "text_chars": 28180374,
-  "bytes": 31560605
+  "index_dir": "web/public/data/fulltext",
+  "chunks": 25569,
+  "articles": 5700,
+  "text_chars": 72690117,
+  "bytes": 80513675,
+  "journals": [
+    {
+      "journal_id": "aragonit",
+      "chunks": 3933,
+      "articles": 794,
+      "bytes": 12395977
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "chunks": 11042,
+      "articles": 1261,
+      "bytes": 36557038
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "chunks": 10594,
+      "articles": 3645,
+      "bytes": 31560660
+    }
+  ],
+  "shards": [
+    {
+      "journal_id": "aragonit",
+      "year": 1996,
+      "path": "fulltext/aragonit/1996.json",
+      "chunks": 103,
+      "articles": 38,
+      "bytes": 298088
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 1997,
+      "path": "fulltext/aragonit/1997.json",
+      "chunks": 48,
+      "articles": 43,
+      "bytes": 74953
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 1998,
+      "path": "fulltext/aragonit/1998.json",
+      "chunks": 116,
+      "articles": 41,
+      "bytes": 336970
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 1999,
+      "path": "fulltext/aragonit/1999.json",
+      "chunks": 110,
+      "articles": 43,
+      "bytes": 302301
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2000,
+      "path": "fulltext/aragonit/2000.json",
+      "chunks": 2,
+      "articles": 1,
+      "bytes": 4752
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2004,
+      "path": "fulltext/aragonit/2004.json",
+      "chunks": 164,
+      "articles": 36,
+      "bytes": 510330
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2006,
+      "path": "fulltext/aragonit/2006.json",
+      "chunks": 242,
+      "articles": 61,
+      "bytes": 749199
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2007,
+      "path": "fulltext/aragonit/2007.json",
+      "chunks": 354,
+      "articles": 62,
+      "bytes": 1122332
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2008,
+      "path": "fulltext/aragonit/2008.json",
+      "chunks": 221,
+      "articles": 54,
+      "bytes": 699887
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2009,
+      "path": "fulltext/aragonit/2009.json",
+      "chunks": 444,
+      "articles": 62,
+      "bytes": 1469153
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2010,
+      "path": "fulltext/aragonit/2010.json",
+      "chunks": 214,
+      "articles": 52,
+      "bytes": 665688
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2011,
+      "path": "fulltext/aragonit/2011.json",
+      "chunks": 121,
+      "articles": 23,
+      "bytes": 387346
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2012,
+      "path": "fulltext/aragonit/2012.json",
+      "chunks": 101,
+      "articles": 22,
+      "bytes": 308799
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2013,
+      "path": "fulltext/aragonit/2013.json",
+      "chunks": 122,
+      "articles": 24,
+      "bytes": 398645
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2014,
+      "path": "fulltext/aragonit/2014.json",
+      "chunks": 69,
+      "articles": 20,
+      "bytes": 203639
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2015,
+      "path": "fulltext/aragonit/2015.json",
+      "chunks": 270,
+      "articles": 24,
+      "bytes": 907233
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2016,
+      "path": "fulltext/aragonit/2016.json",
+      "chunks": 67,
+      "articles": 15,
+      "bytes": 211475
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2017,
+      "path": "fulltext/aragonit/2017.json",
+      "chunks": 138,
+      "articles": 16,
+      "bytes": 441142
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2018,
+      "path": "fulltext/aragonit/2018.json",
+      "chunks": 52,
+      "articles": 21,
+      "bytes": 141839
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2019,
+      "path": "fulltext/aragonit/2019.json",
+      "chunks": 188,
+      "articles": 30,
+      "bytes": 604678
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2020,
+      "path": "fulltext/aragonit/2020.json",
+      "chunks": 200,
+      "articles": 25,
+      "bytes": 643686
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2021,
+      "path": "fulltext/aragonit/2021.json",
+      "chunks": 206,
+      "articles": 22,
+      "bytes": 677576
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2022,
+      "path": "fulltext/aragonit/2022.json",
+      "chunks": 167,
+      "articles": 31,
+      "bytes": 538474
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2023,
+      "path": "fulltext/aragonit/2023.json",
+      "chunks": 61,
+      "articles": 10,
+      "bytes": 197268
+    },
+    {
+      "journal_id": "aragonit",
+      "year": 2024,
+      "path": "fulltext/aragonit/2024.json",
+      "chunks": 153,
+      "articles": 18,
+      "bytes": 500524
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1958,
+      "path": "fulltext/slovensky_kras/1958.json",
+      "chunks": 287,
+      "articles": 60,
+      "bytes": 906545
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1960,
+      "path": "fulltext/slovensky_kras/1960.json",
+      "chunks": 133,
+      "articles": 36,
+      "bytes": 413932
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1962,
+      "path": "fulltext/slovensky_kras/1962.json",
+      "chunks": 106,
+      "articles": 19,
+      "bytes": 352248
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1964,
+      "path": "fulltext/slovensky_kras/1964.json",
+      "chunks": 121,
+      "articles": 23,
+      "bytes": 385929
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1966,
+      "path": "fulltext/slovensky_kras/1966.json",
+      "chunks": 131,
+      "articles": 29,
+      "bytes": 417324
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1968,
+      "path": "fulltext/slovensky_kras/1968.json",
+      "chunks": 111,
+      "articles": 30,
+      "bytes": 333789
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1970,
+      "path": "fulltext/slovensky_kras/1970.json",
+      "chunks": 123,
+      "articles": 23,
+      "bytes": 396367
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1971,
+      "path": "fulltext/slovensky_kras/1971.json",
+      "chunks": 161,
+      "articles": 21,
+      "bytes": 520023
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1972,
+      "path": "fulltext/slovensky_kras/1972.json",
+      "chunks": 136,
+      "articles": 34,
+      "bytes": 431750
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1973,
+      "path": "fulltext/slovensky_kras/1973.json",
+      "chunks": 103,
+      "articles": 11,
+      "bytes": 334206
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1974,
+      "path": "fulltext/slovensky_kras/1974.json",
+      "chunks": 204,
+      "articles": 17,
+      "bytes": 690625
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1975,
+      "path": "fulltext/slovensky_kras/1975.json",
+      "chunks": 216,
+      "articles": 21,
+      "bytes": 721461
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1976,
+      "path": "fulltext/slovensky_kras/1976.json",
+      "chunks": 148,
+      "articles": 22,
+      "bytes": 480821
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1977,
+      "path": "fulltext/slovensky_kras/1977.json",
+      "chunks": 161,
+      "articles": 17,
+      "bytes": 537496
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1978,
+      "path": "fulltext/slovensky_kras/1978.json",
+      "chunks": 171,
+      "articles": 20,
+      "bytes": 568546
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1979,
+      "path": "fulltext/slovensky_kras/1979.json",
+      "chunks": 182,
+      "articles": 23,
+      "bytes": 600435
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1980,
+      "path": "fulltext/slovensky_kras/1980.json",
+      "chunks": 203,
+      "articles": 28,
+      "bytes": 669475
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1981,
+      "path": "fulltext/slovensky_kras/1981.json",
+      "chunks": 136,
+      "articles": 10,
+      "bytes": 457680
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1982,
+      "path": "fulltext/slovensky_kras/1982.json",
+      "chunks": 141,
+      "articles": 24,
+      "bytes": 459642
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1983,
+      "path": "fulltext/slovensky_kras/1983.json",
+      "chunks": 240,
+      "articles": 27,
+      "bytes": 788074
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1984,
+      "path": "fulltext/slovensky_kras/1984.json",
+      "chunks": 231,
+      "articles": 28,
+      "bytes": 768905
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1985,
+      "path": "fulltext/slovensky_kras/1985.json",
+      "chunks": 256,
+      "articles": 32,
+      "bytes": 853991
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1986,
+      "path": "fulltext/slovensky_kras/1986.json",
+      "chunks": 187,
+      "articles": 25,
+      "bytes": 615974
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1987,
+      "path": "fulltext/slovensky_kras/1987.json",
+      "chunks": 198,
+      "articles": 24,
+      "bytes": 658915
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1988,
+      "path": "fulltext/slovensky_kras/1988.json",
+      "chunks": 155,
+      "articles": 16,
+      "bytes": 522771
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1989,
+      "path": "fulltext/slovensky_kras/1989.json",
+      "chunks": 159,
+      "articles": 19,
+      "bytes": 520455
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1990,
+      "path": "fulltext/slovensky_kras/1990.json",
+      "chunks": 153,
+      "articles": 15,
+      "bytes": 511159
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1991,
+      "path": "fulltext/slovensky_kras/1991.json",
+      "chunks": 175,
+      "articles": 18,
+      "bytes": 578255
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1992,
+      "path": "fulltext/slovensky_kras/1992.json",
+      "chunks": 168,
+      "articles": 22,
+      "bytes": 560512
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1993,
+      "path": "fulltext/slovensky_kras/1993.json",
+      "chunks": 151,
+      "articles": 24,
+      "bytes": 489738
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1995,
+      "path": "fulltext/slovensky_kras/1995.json",
+      "chunks": 149,
+      "articles": 18,
+      "bytes": 492825
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1996,
+      "path": "fulltext/slovensky_kras/1996.json",
+      "chunks": 190,
+      "articles": 21,
+      "bytes": 632610
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1997,
+      "path": "fulltext/slovensky_kras/1997.json",
+      "chunks": 169,
+      "articles": 26,
+      "bytes": 547092
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1998,
+      "path": "fulltext/slovensky_kras/1998.json",
+      "chunks": 220,
+      "articles": 21,
+      "bytes": 737814
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 1999,
+      "path": "fulltext/slovensky_kras/1999.json",
+      "chunks": 174,
+      "articles": 28,
+      "bytes": 556512
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2000,
+      "path": "fulltext/slovensky_kras/2000.json",
+      "chunks": 175,
+      "articles": 13,
+      "bytes": 585702
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2001,
+      "path": "fulltext/slovensky_kras/2001.json",
+      "chunks": 175,
+      "articles": 24,
+      "bytes": 573161
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2002,
+      "path": "fulltext/slovensky_kras/2002.json",
+      "chunks": 193,
+      "articles": 17,
+      "bytes": 652575
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2003,
+      "path": "fulltext/slovensky_kras/2003.json",
+      "chunks": 192,
+      "articles": 15,
+      "bytes": 641114
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2004,
+      "path": "fulltext/slovensky_kras/2004.json",
+      "chunks": 143,
+      "articles": 11,
+      "bytes": 477975
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2005,
+      "path": "fulltext/slovensky_kras/2005.json",
+      "chunks": 219,
+      "articles": 21,
+      "bytes": 726020
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2006,
+      "path": "fulltext/slovensky_kras/2006.json",
+      "chunks": 202,
+      "articles": 16,
+      "bytes": 676426
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2007,
+      "path": "fulltext/slovensky_kras/2007.json",
+      "chunks": 232,
+      "articles": 19,
+      "bytes": 778931
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2008,
+      "path": "fulltext/slovensky_kras/2008.json",
+      "chunks": 656,
+      "articles": 67,
+      "bytes": 2166821
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2009,
+      "path": "fulltext/slovensky_kras/2009.json",
+      "chunks": 367,
+      "articles": 27,
+      "bytes": 1234258
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2010,
+      "path": "fulltext/slovensky_kras/2010.json",
+      "chunks": 308,
+      "articles": 19,
+      "bytes": 1039320
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2011,
+      "path": "fulltext/slovensky_kras/2011.json",
+      "chunks": 167,
+      "articles": 16,
+      "bytes": 550006
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2012,
+      "path": "fulltext/slovensky_kras/2012.json",
+      "chunks": 260,
+      "articles": 24,
+      "bytes": 876476
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2013,
+      "path": "fulltext/slovensky_kras/2013.json",
+      "chunks": 119,
+      "articles": 12,
+      "bytes": 403068
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2014,
+      "path": "fulltext/slovensky_kras/2014.json",
+      "chunks": 186,
+      "articles": 21,
+      "bytes": 612574
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2015,
+      "path": "fulltext/slovensky_kras/2015.json",
+      "chunks": 86,
+      "articles": 1,
+      "bytes": 302047
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2016,
+      "path": "fulltext/slovensky_kras/2016.json",
+      "chunks": 73,
+      "articles": 7,
+      "bytes": 240369
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2017,
+      "path": "fulltext/slovensky_kras/2017.json",
+      "chunks": 201,
+      "articles": 18,
+      "bytes": 672934
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2018,
+      "path": "fulltext/slovensky_kras/2018.json",
+      "chunks": 130,
+      "articles": 16,
+      "bytes": 429054
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2019,
+      "path": "fulltext/slovensky_kras/2019.json",
+      "chunks": 178,
+      "articles": 18,
+      "bytes": 592755
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2020,
+      "path": "fulltext/slovensky_kras/2020.json",
+      "chunks": 234,
+      "articles": 13,
+      "bytes": 781423
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2021,
+      "path": "fulltext/slovensky_kras/2021.json",
+      "chunks": 232,
+      "articles": 13,
+      "bytes": 792796
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2022,
+      "path": "fulltext/slovensky_kras/2022.json",
+      "chunks": 176,
+      "articles": 7,
+      "bytes": 601356
+    },
+    {
+      "journal_id": "slovensky_kras",
+      "year": 2023,
+      "path": "fulltext/slovensky_kras/2023.json",
+      "chunks": 189,
+      "articles": 14,
+      "bytes": 635981
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1970,
+      "path": "fulltext/spravodaj_sss/1970.json",
+      "chunks": 71,
+      "articles": 55,
+      "bytes": 149969
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1971,
+      "path": "fulltext/spravodaj_sss/1971.json",
+      "chunks": 83,
+      "articles": 45,
+      "bytes": 227496
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1972,
+      "path": "fulltext/spravodaj_sss/1972.json",
+      "chunks": 68,
+      "articles": 32,
+      "bytes": 198181
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1973,
+      "path": "fulltext/spravodaj_sss/1973.json",
+      "chunks": 82,
+      "articles": 34,
+      "bytes": 239339
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1974,
+      "path": "fulltext/spravodaj_sss/1974.json",
+      "chunks": 91,
+      "articles": 36,
+      "bytes": 256338
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1975,
+      "path": "fulltext/spravodaj_sss/1975.json",
+      "chunks": 87,
+      "articles": 39,
+      "bytes": 241466
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1976,
+      "path": "fulltext/spravodaj_sss/1976.json",
+      "chunks": 88,
+      "articles": 32,
+      "bytes": 264714
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1977,
+      "path": "fulltext/spravodaj_sss/1977.json",
+      "chunks": 92,
+      "articles": 36,
+      "bytes": 263306
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1978,
+      "path": "fulltext/spravodaj_sss/1978.json",
+      "chunks": 91,
+      "articles": 31,
+      "bytes": 273005
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1979,
+      "path": "fulltext/spravodaj_sss/1979.json",
+      "chunks": 160,
+      "articles": 53,
+      "bytes": 486973
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1980,
+      "path": "fulltext/spravodaj_sss/1980.json",
+      "chunks": 98,
+      "articles": 39,
+      "bytes": 276164
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1981,
+      "path": "fulltext/spravodaj_sss/1981.json",
+      "chunks": 27,
+      "articles": 10,
+      "bytes": 78964
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1983,
+      "path": "fulltext/spravodaj_sss/1983.json",
+      "chunks": 254,
+      "articles": 82,
+      "bytes": 761116
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1984,
+      "path": "fulltext/spravodaj_sss/1984.json",
+      "chunks": 204,
+      "articles": 68,
+      "bytes": 608933
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1985,
+      "path": "fulltext/spravodaj_sss/1985.json",
+      "chunks": 115,
+      "articles": 41,
+      "bytes": 331946
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1986,
+      "path": "fulltext/spravodaj_sss/1986.json",
+      "chunks": 199,
+      "articles": 63,
+      "bytes": 593649
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1987,
+      "path": "fulltext/spravodaj_sss/1987.json",
+      "chunks": 72,
+      "articles": 22,
+      "bytes": 216098
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1988,
+      "path": "fulltext/spravodaj_sss/1988.json",
+      "chunks": 83,
+      "articles": 25,
+      "bytes": 248978
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1989,
+      "path": "fulltext/spravodaj_sss/1989.json",
+      "chunks": 160,
+      "articles": 50,
+      "bytes": 476197
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1990,
+      "path": "fulltext/spravodaj_sss/1990.json",
+      "chunks": 56,
+      "articles": 22,
+      "bytes": 163661
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1991,
+      "path": "fulltext/spravodaj_sss/1991.json",
+      "chunks": 72,
+      "articles": 27,
+      "bytes": 209602
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1992,
+      "path": "fulltext/spravodaj_sss/1992.json",
+      "chunks": 91,
+      "articles": 43,
+      "bytes": 253753
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1993,
+      "path": "fulltext/spravodaj_sss/1993.json",
+      "chunks": 135,
+      "articles": 58,
+      "bytes": 374248
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1994,
+      "path": "fulltext/spravodaj_sss/1994.json",
+      "chunks": 160,
+      "articles": 56,
+      "bytes": 462972
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1995,
+      "path": "fulltext/spravodaj_sss/1995.json",
+      "chunks": 173,
+      "articles": 57,
+      "bytes": 518993
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1996,
+      "path": "fulltext/spravodaj_sss/1996.json",
+      "chunks": 200,
+      "articles": 75,
+      "bytes": 596848
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1997,
+      "path": "fulltext/spravodaj_sss/1997.json",
+      "chunks": 214,
+      "articles": 84,
+      "bytes": 601612
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1998,
+      "path": "fulltext/spravodaj_sss/1998.json",
+      "chunks": 251,
+      "articles": 79,
+      "bytes": 750650
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 1999,
+      "path": "fulltext/spravodaj_sss/1999.json",
+      "chunks": 317,
+      "articles": 91,
+      "bytes": 967277
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2000,
+      "path": "fulltext/spravodaj_sss/2000.json",
+      "chunks": 426,
+      "articles": 149,
+      "bytes": 1249806
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2001,
+      "path": "fulltext/spravodaj_sss/2001.json",
+      "chunks": 286,
+      "articles": 107,
+      "bytes": 826650
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2002,
+      "path": "fulltext/spravodaj_sss/2002.json",
+      "chunks": 296,
+      "articles": 100,
+      "bytes": 901421
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2003,
+      "path": "fulltext/spravodaj_sss/2003.json",
+      "chunks": 337,
+      "articles": 126,
+      "bytes": 971497
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2004,
+      "path": "fulltext/spravodaj_sss/2004.json",
+      "chunks": 373,
+      "articles": 108,
+      "bytes": 1145983
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2005,
+      "path": "fulltext/spravodaj_sss/2005.json",
+      "chunks": 306,
+      "articles": 107,
+      "bytes": 907536
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2006,
+      "path": "fulltext/spravodaj_sss/2006.json",
+      "chunks": 342,
+      "articles": 110,
+      "bytes": 1027348
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2007,
+      "path": "fulltext/spravodaj_sss/2007.json",
+      "chunks": 363,
+      "articles": 104,
+      "bytes": 1119095
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2008,
+      "path": "fulltext/spravodaj_sss/2008.json",
+      "chunks": 321,
+      "articles": 93,
+      "bytes": 971805
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2009,
+      "path": "fulltext/spravodaj_sss/2009.json",
+      "chunks": 310,
+      "articles": 62,
+      "bytes": 979966
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2010,
+      "path": "fulltext/spravodaj_sss/2010.json",
+      "chunks": 157,
+      "articles": 67,
+      "bytes": 447491
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2011,
+      "path": "fulltext/spravodaj_sss/2011.json",
+      "chunks": 178,
+      "articles": 54,
+      "bytes": 532416
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2012,
+      "path": "fulltext/spravodaj_sss/2012.json",
+      "chunks": 116,
+      "articles": 51,
+      "bytes": 323179
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2013,
+      "path": "fulltext/spravodaj_sss/2013.json",
+      "chunks": 181,
+      "articles": 73,
+      "bytes": 506340
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2014,
+      "path": "fulltext/spravodaj_sss/2014.json",
+      "chunks": 178,
+      "articles": 65,
+      "bytes": 518829
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2015,
+      "path": "fulltext/spravodaj_sss/2015.json",
+      "chunks": 246,
+      "articles": 62,
+      "bytes": 767005
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2016,
+      "path": "fulltext/spravodaj_sss/2016.json",
+      "chunks": 182,
+      "articles": 52,
+      "bytes": 544393
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2017,
+      "path": "fulltext/spravodaj_sss/2017.json",
+      "chunks": 184,
+      "articles": 53,
+      "bytes": 554341
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2018,
+      "path": "fulltext/spravodaj_sss/2018.json",
+      "chunks": 250,
+      "articles": 99,
+      "bytes": 732852
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2019,
+      "path": "fulltext/spravodaj_sss/2019.json",
+      "chunks": 233,
+      "articles": 58,
+      "bytes": 723380
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2020,
+      "path": "fulltext/spravodaj_sss/2020.json",
+      "chunks": 264,
+      "articles": 60,
+      "bytes": 834657
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2021,
+      "path": "fulltext/spravodaj_sss/2021.json",
+      "chunks": 296,
+      "articles": 118,
+      "bytes": 866305
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2022,
+      "path": "fulltext/spravodaj_sss/2022.json",
+      "chunks": 257,
+      "articles": 88,
+      "bytes": 748893
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2023,
+      "path": "fulltext/spravodaj_sss/2023.json",
+      "chunks": 236,
+      "articles": 70,
+      "bytes": 927283
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2024,
+      "path": "fulltext/spravodaj_sss/2024.json",
+      "chunks": 200,
+      "articles": 52,
+      "bytes": 615330
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2025,
+      "path": "fulltext/spravodaj_sss/2025.json",
+      "chunks": 209,
+      "articles": 114,
+      "bytes": 553922
+    },
+    {
+      "journal_id": "spravodaj_sss",
+      "year": 2026,
+      "path": "fulltext/spravodaj_sss/2026.json",
+      "chunks": 73,
+      "articles": 58,
+      "bytes": 170489
+    }
+  ]
 }

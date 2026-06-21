@@ -3,14 +3,18 @@ import Layout from '../../layouts/Layout.astro';
 import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
 import articles from '../../data/articles.json';
 
+const articlesById = new Map(articles.map((article) => [String(article.id), article]));
+
 export async function getStaticPaths() {
   return articles.map(art => ({
-    params: { id: String(art.id) },
-    props: { art }
+    params: { id: String(art.id) }
   }));
 }
 
-const { art } = Astro.props;
+const art = articlesById.get(String(Astro.params.id || ''));
+if (!art) {
+  throw new Error(`Article not found: ${Astro.params.id}`);
+}
 const formatAuthorsDisplay = (authors) => {
   if (!authors.length) return 'Anonymus';
   if (authors.length === 1) return authors[0];
@@ -19,7 +23,13 @@ const formatAuthorsDisplay = (authors) => {
 };
 const authorsStr = formatAuthorsDisplay(art.authors);
 const assetBase = import.meta.env.BASE_URL;
-const PDF_PAGE_LINK_OFFSET = 2;
+const DEFAULT_PDF_PAGE_LINK_OFFSET = 2;
+const isGenericImportAbstract = (value) => /Obsahový\s+záznam\s+z\s+čísla\b.*\bimportovaný\s+z\s+obsahu\s+čísla\b/i.test(String(value || '').replace(/\s+/g, ' ').trim());
+const displayAbstract = (article) => {
+  const abstract = String(article.abstract || '').trim();
+  return isGenericImportAbstract(abstract) ? '' : abstract;
+};
+const articleAbstract = displayAbstract(art);
 
 // Parse pages
 let firstPage = "";
@@ -30,7 +40,10 @@ if (art.pages) {
   lastPage = parts[1] || parts[0];
 }
 const pdfPrintedPageStart = Number(art.pdf_page_start || firstPage || 1);
-const pdfPageStart = pdfPrintedPageStart + PDF_PAGE_LINK_OFFSET;
+const pdfPageOffset = Number.isFinite(Number(art.pdf_page_offset))
+  ? Number(art.pdf_page_offset)
+  : DEFAULT_PDF_PAGE_LINK_OFFSET;
+const pdfPageStart = pdfPrintedPageStart + pdfPageOffset;
 const errorReportUrl = `/nahlasit-chybu/?article=${encodeURIComponent(String(art.id))}&title=${encodeURIComponent(art.title)}&url=${encodeURIComponent(`/clanky/${art.id}/`)}`;
 
 // Citation formatting
@@ -58,7 +71,7 @@ const formattedAuthorsMla = art.authors.map(a => {
   return a;
 });
 
-const journal = "Spravodaj Slovenskej speleologickej spoločnosti";
+const journal = art.journal_title || "Spravodaj Slovenskej speleologickej spoločnosti";
 const isoCitation = `${formattedAuthorsIso}. ${art.title}. In: ${journal}. ${art.year}, roč. ${art.volume || 'I.'}, č. ${art.issue}, s. ${art.pages}.`;
 const apaCitation = `${formatAuthorsDisplay(formattedAuthorsApa)} (${art.year}). ${art.title}. ${journal}, ${art.volume || 'I.'}(${art.issue}), ${art.pages}.`;
 const mlaCitation = `${formatAuthorsDisplay(formattedAuthorsMla)}. "${art.title}." ${journal}, vol. ${art.volume || 'I.'}, no. ${art.issue}, ${art.year}, pp. ${art.pages}.`;
@@ -71,14 +84,14 @@ const risContent = `TY  - JOUR\nT1  - ${art.title}\n` +
   `JO  - ${journal}\nPY  - ${art.year}\nVL  - ${art.volume || 'I'}\nIS  - ${art.issue}\nSP  - ${firstPage}\nEP  - ${lastPage}\nUR  - ${art.pdf_url || ''}\nER  - `;
 ---
 
-<Layout title={`${art.title} — Spravodaj SSS`}>
+<Layout title={`${art.title} — ${art.journal_short_title || 'Spravodaj SSS'}`}>
   <!-- Google Scholar / Highwire Press Meta Tags -->
   <meta slot="head" name="citation_title" content={art.title} />
   {art.authors.map(auth => (
     <meta slot="head" name="citation_author" content={auth} />
   ))}
   <meta slot="head" name="citation_publication_date" content={String(art.year)} />
-  <meta slot="head" name="citation_journal_title" content="Spravodaj Slovenskej speleologickej spoločnosti" />
+  <meta slot="head" name="citation_journal_title" content={journal} />
   {art.volume && <meta slot="head" name="citation_volume" content={art.volume} />}
   {art.issue && <meta slot="head" name="citation_issue" content={art.issue} />}
   {firstPage && <meta slot="head" name="citation_firstpage" content={firstPage} />}
@@ -91,7 +104,7 @@ const risContent = `TY  - JOUR\nT1  - ${art.title}\n` +
     <meta slot="head" name="DC.creator" content={auth} />
   ))}
   <meta slot="head" name="DC.issued" content={String(art.year)} />
-  <meta slot="head" name="DC.relation.ispartof" content="Spravodaj Slovenskej speleologickej spoločnosti" />
+  <meta slot="head" name="DC.relation.ispartof" content={journal} />
   {art.volume && <meta slot="head" name="DC.citation.volume" content={art.volume} />}
   {art.issue && <meta slot="head" name="DC.citation.issue" content={art.issue} />}
   {firstPage && <meta slot="head" name="DC.citation.spage" content={firstPage} />}
@@ -116,7 +129,7 @@ const risContent = `TY  - JOUR\nT1  - ${art.title}\n` +
         "volumeNumber": art.volume,
         "isPartOf": {
           "@type": "Periodical",
-          "name": "Spravodaj Slovenskej speleologickej spoločnosti"
+          "name": journal
         }
       }
     },
@@ -138,7 +151,7 @@ const risContent = `TY  - JOUR\nT1  - ${art.title}\n` +
             </svg>
           </div>
           <div>
-            <span class="text-sm font-bold font-display uppercase tracking-widest text-belly-peru">Spravodaj SSS</span>
+            <span class="text-sm font-bold font-display uppercase tracking-widest text-belly-peru">{art.journal_short_title || 'Spravodaj SSS'}</span>
             <span class="text-xs block text-belly-gainsboro font-mono">DIGITÁLNA BIBLIOGRAFICKÁ KNIŽNICA</span>
           </div>
         </div>
@@ -172,7 +185,7 @@ const risContent = `TY  - JOUR\nT1  - ${art.title}\n` +
           <!-- Metadata Tag -->
           <div class="article-detail-kicker flex justify-between items-center text-xxs font-mono text-belly-lightslategray uppercase tracking-wider border-b border-belly-darkgray pb-3">
             <span>Číslo článku #{art.id}</span>
-            <span>Spravodajca SSS — {art.year}</span>
+            <span>{art.journal_short_title || 'Spravodaj SSS'} — {art.year}</span>
           </div>
 
           <!-- Title -->
@@ -209,7 +222,7 @@ const risContent = `TY  - JOUR\nT1  - ${art.title}\n` +
           <div class="space-y-2">
             <h4 class="article-section-title text-xs font-bold font-mono text-belly-firebrick uppercase tracking-wider">Anotácia / Bibliografický abstrakt</h4>
             <div class="article-abstract-box p-4 rounded-lg border border-belly-darkgray text-sm text-belly-dimgray-blue leading-relaxed font-sans italic">
-              {art.abstract || "Pre tento článok nie je k dispozícii žiadna anotácia. Môžete si ju prečítať priamo v PDF súbore časopisu."}
+              {articleAbstract || "Pre tento článok nie je k dispozícii žiadna anotácia. Môžete si ju prečítať priamo v PDF súbore časopisu."}
             </div>
           </div>
 

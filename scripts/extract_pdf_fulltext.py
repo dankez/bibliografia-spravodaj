@@ -27,6 +27,12 @@ FRONTEND_ARTICLES_PATH = BASE_DIR / "web" / "src" / "data" / "articles.json"
 PDF_CACHE_DIR = BASE_DIR / "data" / "pdf_cache"
 TEXT_CACHE_DIR = BASE_DIR / "data" / "pdf_text"
 FULLTEXT_PATH = BASE_DIR / "data" / "article_fulltext.jsonl"
+DEFAULT_PDF_PAGE_OFFSET = 2
+JOURNAL_DEFAULT_PDF_PAGE_OFFSETS = {
+    "aragonit": 2,
+    "slovensky_kras": 0,
+    "spravodaj_sss": 2,
+}
 
 
 def safe_name(url: str) -> str:
@@ -67,6 +73,65 @@ def resolve_physical_page_range(
     physical_end = page_map.get(printed_end, physical_start + max(printed_end - printed_start, 0))
     if physical_end < physical_start:
         physical_end = physical_start + max(printed_end - printed_start, 0)
+    if pdf_pages is not None:
+        if physical_start > pdf_pages:
+            return None, None, "page_out_of_range"
+        physical_end = min(physical_end, pdf_pages)
+    return physical_start, physical_end, None
+
+
+def int_or_none(value) -> int | None:
+    try:
+        number = int(value)
+    except (TypeError, ValueError):
+        return None
+    return number if number > 0 else None
+
+
+def article_pdf_page_offset(article: dict) -> int:
+    journal_id = str(article.get("journal_id") or "spravodaj_sss")
+    if journal_id in JOURNAL_DEFAULT_PDF_PAGE_OFFSETS and not int_or_none(article.get("pdf_page_start")):
+        return JOURNAL_DEFAULT_PDF_PAGE_OFFSETS[journal_id]
+    try:
+        return int(article.get("pdf_page_offset"))
+    except (TypeError, ValueError):
+        pass
+    return JOURNAL_DEFAULT_PDF_PAGE_OFFSETS.get(journal_id, DEFAULT_PDF_PAGE_OFFSET)
+
+
+def has_imported_physical_pages(article: dict) -> bool:
+    """Newly imported journals store physical PDF pages directly in metadata."""
+    return bool(article.get("journal_id")) and int_or_none(article.get("pdf_page_start")) is not None
+
+
+def resolve_article_physical_page_range(
+    article: dict,
+    printed_start: int,
+    printed_end: int,
+    page_map: dict[int, int],
+    pdf_pages: int | None = None,
+) -> tuple[int | None, int | None, str | None]:
+    if has_imported_physical_pages(article):
+        physical_start = int_or_none(article.get("pdf_page_start"))
+        physical_end = int_or_none(article.get("pdf_page_end"))
+        if physical_start is None:
+            return None, None, "missing_page_range"
+        if physical_end is None:
+            physical_end = physical_start + max(printed_end - printed_start, 0)
+        if physical_end < physical_start:
+            physical_end = physical_start
+        if pdf_pages is not None:
+            if physical_start > pdf_pages:
+                return None, None, "page_out_of_range"
+            physical_end = min(physical_end, pdf_pages)
+        return physical_start, physical_end, None
+
+    if page_map:
+        return resolve_physical_page_range(printed_start, printed_end, page_map, pdf_pages)
+
+    offset = article_pdf_page_offset(article)
+    physical_start = max(1, printed_start + offset)
+    physical_end = max(physical_start, printed_end + offset)
     if pdf_pages is not None:
         if physical_start > pdf_pages:
             return None, None, "page_out_of_range"
@@ -236,7 +301,7 @@ def infer_printed_page_map(pdf_path: Path, cache_path: Path, force: bool = False
     return page_map
 
 
-def load_done_ids(path: Path) -> set[int]:
+def load_done_ids(path: Path, retry_failed: bool = False) -> set[int]:
     done: set[int] = set()
     if not path.exists():
         return done
@@ -249,6 +314,8 @@ def load_done_ids(path: Path) -> set[int]:
             except json.JSONDecodeError:
                 continue
             article_id = record.get("id")
+            if retry_failed and record.get("status") != "ok":
+                continue
             if isinstance(article_id, int):
                 done.add(article_id)
     return done
@@ -286,12 +353,16 @@ def build_record(
         "page_end": end,
         "pdf_page_start": physical_start,
         "pdf_page_end": physical_end,
+        "pdf_page_offset": article_pdf_page_offset(article),
         "pdf_url": pdf_url,
         "pdf_cache": str(pdf_path.relative_to(BASE_DIR)),
+        "journal_id": article.get("journal_id") or "spravodaj_sss",
+        "journal_title": article.get("journal_title") or "Spravodaj Slovenskej speleologickej spoločnosti",
+        "journal_short_title": article.get("journal_short_title") or "Spravodaj SSS",
         "text": text,
         "text_chars": len(text),
         "status": status,
-        "extracted_at": dt.datetime.now(dt.UTC).isoformat(),
+        "extracted_at": dt.datetime.now(dt.timezone.utc).isoformat(),
     }
 
 
@@ -349,6 +420,7 @@ def main() -> int:
     parser.add_argument("--limit-articles", type=int, default=None, help="Process only first N article records.")
     parser.add_argument("--force", action="store_true", help="Re-download PDFs and re-extract existing article records.")
     parser.add_argument("--force-page-map", action="store_true", help="Rebuild printed-to-physical PDF page maps.")
+    parser.add_argument("--retry-failed", action="store_true", help="Re-extract previous non-ok records without forcing all articles.")
     parser.add_argument("--no-cache-text", action="store_true", help="Do not store whole-issue text cache files.")
     parser.add_argument("--sync-articles", action="store_true", help="Write inferred PDF page links back to article JSON files.")
     args = parser.parse_args()
@@ -369,8 +441,14 @@ def main() -> int:
     TEXT_CACHE_DIR.mkdir(parents=True, exist_ok=True)
     output_path.parent.mkdir(parents=True, exist_ok=True)
 
-    done_ids = set() if args.force else load_done_ids(output_path)
+    done_ids = set() if args.force else load_done_ids(output_path, retry_failed=args.retry_failed)
     grouped = group_articles_by_pdf(articles)
+    if not args.force:
+        grouped = {
+            pdf_url: [article for article in issue_articles if article.get("id") not in done_ids]
+            for pdf_url, issue_articles in grouped.items()
+        }
+        grouped = {pdf_url: issue_articles for pdf_url, issue_articles in grouped.items() if issue_articles}
     pdf_items = list(grouped.items())
     if args.limit_pdfs is not None:
         pdf_items = pdf_items[: args.limit_pdfs]
@@ -389,10 +467,15 @@ def main() -> int:
                 failed_articles += len(issue_articles)
                 continue
 
-            page_map = infer_printed_page_map(
-                pdf_path,
-                TEXT_CACHE_DIR / f"{pdf_name}.pages.json",
-                force=args.force or args.force_page_map,
+            needs_page_map = not all(has_imported_physical_pages(article) for article in issue_articles)
+            page_map = (
+                infer_printed_page_map(
+                    pdf_path,
+                    TEXT_CACHE_DIR / f"{pdf_name}.pages.json",
+                    force=args.force or args.force_page_map,
+                )
+                if needs_page_map
+                else {}
             )
             try:
                 pdf_pages = pdf_page_count(pdf_path)
@@ -420,7 +503,8 @@ def main() -> int:
                     record = build_record(article, pdf_url, pdf_path, "", "missing_page_range")
                     failed_articles += 1
                 else:
-                    physical_start, physical_end, range_error = resolve_physical_page_range(
+                    physical_start, physical_end, range_error = resolve_article_physical_page_range(
+                        article,
                         start,
                         end,
                         page_map,

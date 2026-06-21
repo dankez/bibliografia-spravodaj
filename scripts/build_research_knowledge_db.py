@@ -5,8 +5,8 @@ Build an offline research knowledge database for Spravodaj SSS articles.
 This is the non-AI layer for later article generation. It consumes already
 cached PDF text and metadata, then creates a SQLite database with:
 
-- article metadata and cleaned full text
-- chunked full text for retrieval-augmented AI writing
+- article metadata and full-text statistics
+- chunked full text for retrieval-augmented AI writing, stored once in article_chunks
 - FTS5 search over chunks, titles, authors, caves, groups, tags and locations
 - entity links for caves, SSS groups, people, locations, tags and keywords
 - citation strings and JSON-LD ScholarlyArticle payloads
@@ -44,6 +44,14 @@ CHUNKS_JSONL_PATH = BASE_DIR / "data" / "research_chunks.jsonl"
 TIMELINES_PATH = BASE_DIR / "data" / "research_timelines.json"
 MANIFEST_PATH = BASE_DIR / "data" / "research_manifest.json"
 MEDIA_DIR = BASE_DIR / "data" / "research_media"
+DEFAULT_JOURNAL_ID = "spravodaj_sss"
+DEFAULT_JOURNAL_TITLE = "Spravodaj Slovenskej speleologickej spoločnosti"
+DEFAULT_JOURNAL_SHORT_TITLE = "Spravodaj SSS"
+JOURNAL_DEFAULT_PDF_PAGE_OFFSETS = {
+    "aragonit": 2,
+    "slovensky_kras": 0,
+    "spravodaj_sss": 2,
+}
 
 
 VISUAL_PATTERNS = [
@@ -70,7 +78,7 @@ VISUAL_PATTERNS = [
 
 
 def utc_now() -> str:
-    return dt.datetime.now(dt.UTC).isoformat()
+    return dt.datetime.now(dt.timezone.utc).isoformat()
 
 
 def read_json(path: Path, default: Any) -> Any:
@@ -135,20 +143,92 @@ def parse_page_start(pages: str) -> str:
     return match.group(1) if match else "1"
 
 
-def pdf_link_page(article: dict) -> str:
-    page = article.get("pdf_page_start") or parse_page_start(article.get("pages", ""))
+def parse_page_range(pages: str) -> tuple[int | None, int | None]:
+    cleaned = str(pages or "").replace("–", "-").replace("—", "-").replace(" ", "")
+    match = re.match(r"^(\d+)(?:-(\d+))?", cleaned)
+    if not match:
+        return None, None
+    start = int(match.group(1))
+    end = int(match.group(2) or start)
+    return start, max(start, end)
+
+
+def int_or_none(value: Any) -> int | None:
     try:
-        page_number = int(page)
+        number = int(value)
     except (TypeError, ValueError):
+        return None
+    return number if number > 0 else None
+
+
+def article_journal_id(article: dict) -> str:
+    return str(article.get("journal_id") or DEFAULT_JOURNAL_ID)
+
+
+def article_journal_title(article: dict) -> str:
+    return str(article.get("journal_title") or DEFAULT_JOURNAL_TITLE)
+
+
+def article_journal_short_title(article: dict) -> str:
+    if article.get("journal_short_title"):
+        return str(article["journal_short_title"])
+    if article_journal_id(article) == DEFAULT_JOURNAL_ID:
+        return DEFAULT_JOURNAL_SHORT_TITLE
+    return article_journal_title(article)
+
+
+def article_pdf_page_offset(article: dict) -> int:
+    journal_id = article_journal_id(article)
+    if journal_id in JOURNAL_DEFAULT_PDF_PAGE_OFFSETS and not int_or_none(article.get("pdf_page_start")):
+        return JOURNAL_DEFAULT_PDF_PAGE_OFFSETS[journal_id]
+    try:
+        return int(article.get("pdf_page_offset"))
+    except (TypeError, ValueError):
+        pass
+    return JOURNAL_DEFAULT_PDF_PAGE_OFFSETS.get(journal_id, PDF_LINK_PAGE_OFFSET)
+
+
+def has_imported_physical_pages(article: dict) -> bool:
+    return bool(article.get("journal_id")) and int_or_none(article.get("pdf_page_start")) is not None
+
+
+def resolve_article_pdf_page_start(article: dict, fulltext: dict | None = None) -> int | None:
+    """Return the final physical PDF page used in links and citations."""
+    if article.get("_pdf_page_start_resolved"):
+        return int_or_none(article.get("pdf_page_start"))
+    if has_imported_physical_pages(article):
+        return int_or_none(article.get("pdf_page_start"))
+
+    parsed_start, _ = parse_page_range(article.get("pages", ""))
+    printed = int_or_none(article.get("page_start")) or parsed_start
+    if printed is not None:
+        return printed + article_pdf_page_offset(article)
+
+    return int_or_none((fulltext or {}).get("pdf_page_start"))
+
+
+def resolve_article_pdf_page_end(article: dict, fulltext: dict | None = None) -> int | None:
+    if has_imported_physical_pages(article):
+        return int_or_none(article.get("pdf_page_end")) or int_or_none(article.get("pdf_page_start"))
+    start = resolve_article_pdf_page_start(article, fulltext)
+    parsed_start, parsed_end = parse_page_range(article.get("pages", ""))
+    printed_start = int_or_none(article.get("page_start")) or parsed_start
+    printed_end = int_or_none(article.get("page_end")) or parsed_end
+    if start is None or printed_start is None or printed_end is None:
+        return int_or_none((fulltext or {}).get("pdf_page_end")) or start
+    return max(start, start + max(printed_end - printed_start, 0))
+
+
+def pdf_link_page(article: dict) -> str:
+    page_number = resolve_article_pdf_page_start(article)
+    if page_number is None:
         return ""
-    return str(page_number + PDF_LINK_PAGE_OFFSET)
+    return str(page_number)
 
 
 def pdf_anchor_page(page: Any) -> str:
-    try:
-        return str(int(page) + PDF_LINK_PAGE_OFFSET)
-    except (TypeError, ValueError):
-        return str(page or "")
+    number = int_or_none(page)
+    return str(number or "")
 
 
 def pdf_url_for_article(article: dict) -> str:
@@ -174,9 +254,10 @@ def citation_iso690(article: dict) -> str:
     issue = article.get("issue") or ""
     volume = article.get("volume") or ""
     pages = normalize_pages(article.get("pages") or "")
+    journal = article_journal_short_title(article)
     parts = [
         f"{authors}. {article.get('title', '').strip()}.",
-        f"Spravodaj SSS, {year}",
+        f"{journal}, {year}",
     ]
     if volume:
         parts.append(f"roc. {volume}")
@@ -196,7 +277,7 @@ def citation_apa(article: dict) -> str:
     pages = normalize_pages(article.get("pages") or "")
     issue = article.get("issue") or ""
     suffix = f", {pages}" if pages else ""
-    return f"{authors}. ({year}). {article.get('title', '').strip()}. Spravodaj SSS, {issue}{suffix}."
+    return f"{authors}. ({year}). {article.get('title', '').strip()}. {article_journal_short_title(article)}, {issue}{suffix}."
 
 
 def citation_mla(article: dict) -> str:
@@ -205,7 +286,7 @@ def citation_mla(article: dict) -> str:
     year = article.get("year") or ""
     issue = article.get("issue") or ""
     pages = normalize_pages(article.get("pages") or "")
-    parts = [f'{authors}. "{title}."', "Spravodaj SSS"]
+    parts = [f'{authors}. "{title}."', article_journal_short_title(article)]
     if issue:
         parts.append(f"no. {issue}")
     if year:
@@ -225,12 +306,12 @@ def jsonld_scholarly_article(article: dict, entities: dict[str, list[str]]) -> d
     payload = {
         "@context": "https://schema.org",
         "@type": "ScholarlyArticle",
-        "identifier": f"spravodaj-sss-{article.get('id')}",
+        "identifier": f"{article_journal_id(article)}-{article.get('id')}",
         "name": article.get("title", ""),
         "headline": article.get("title", ""),
         "author": [{"@type": "Person", "name": author} for author in article.get("authors", [])],
         "datePublished": str(article.get("year") or ""),
-        "isPartOf": {"@type": "Periodical", "name": "Spravodaj SSS"},
+        "isPartOf": {"@type": "Periodical", "name": article_journal_title(article)},
         "pagination": article.get("pages", ""),
         "url": pdf_url_for_article(article),
         "abstract": article.get("abstract", ""),
@@ -495,6 +576,9 @@ def create_schema(conn: sqlite3.Connection) -> None:
 
         CREATE TABLE IF NOT EXISTS articles (
             id INTEGER PRIMARY KEY,
+            journal_id TEXT NOT NULL,
+            journal_title TEXT NOT NULL,
+            journal_short_title TEXT NOT NULL,
             title TEXT NOT NULL,
             authors_json TEXT NOT NULL,
             authors_text TEXT NOT NULL,
@@ -506,12 +590,12 @@ def create_schema(conn: sqlite3.Connection) -> None:
             page_end INTEGER,
             pdf_page_start INTEGER,
             pdf_page_end INTEGER,
+            pdf_page_offset INTEGER NOT NULL DEFAULT 0,
             pdf_url TEXT,
             pdf_cache TEXT,
             abstract TEXT,
             summary TEXT,
             lalkovic_note TEXT,
-            clean_text TEXT,
             text_chars INTEGER NOT NULL DEFAULT 0,
             word_count INTEGER NOT NULL DEFAULT 0,
             fulltext_status TEXT,
@@ -551,18 +635,9 @@ def create_schema(conn: sqlite3.Connection) -> None:
         );
 
         CREATE VIRTUAL TABLE IF NOT EXISTS chunks_fts USING fts5(
-            chunk_id UNINDEXED,
-            article_id UNINDEXED,
-            title,
-            authors,
-            year UNINDEXED,
-            issue UNINDEXED,
             text,
-            caves,
-            tags,
-            groups,
-            people,
-            locations
+            content='article_chunks',
+            content_rowid='rowid'
         );
 
         CREATE TABLE IF NOT EXISTS entities (
@@ -630,6 +705,9 @@ def create_schema(conn: sqlite3.Connection) -> None:
             e.name,
             e.wikidata_url,
             a.id AS article_id,
+            a.journal_id,
+            a.journal_title,
+            a.journal_short_title,
             a.year,
             a.issue,
             a.pages,
@@ -653,6 +731,11 @@ def reset_database(conn: sqlite3.Connection) -> None:
         """
         DROP VIEW IF EXISTS entity_article_timeline;
         DROP TABLE IF EXISTS chunks_fts;
+        DROP TABLE IF EXISTS chunks_fts_data;
+        DROP TABLE IF EXISTS chunks_fts_idx;
+        DROP TABLE IF EXISTS chunks_fts_content;
+        DROP TABLE IF EXISTS chunks_fts_docsize;
+        DROP TABLE IF EXISTS chunks_fts_config;
         DROP TABLE IF EXISTS media_assets;
         DROP TABLE IF EXISTS article_entities;
         DROP TABLE IF EXISTS entities;
@@ -731,11 +814,10 @@ def article_row(
     people = unique_strings(as_list(knowledge.get("people")) + as_list(article_knowledge.get("people")))
     themes = unique_strings(as_list(knowledge.get("themes")) + as_list(article.get("tags")))
     article_for_citation = dict(article)
-    article_for_citation["pdf_page_start"] = (
-        article.get("pdf_page_start")
-        or (fulltext or {}).get("pdf_page_start")
-        or parse_page_start(article.get("pages", ""))
-    )
+    article_for_citation["pdf_page_start"] = resolve_article_pdf_page_start(article, fulltext)
+    article_for_citation["pdf_page_end"] = resolve_article_pdf_page_end(article, fulltext)
+    article_for_citation["pdf_page_offset"] = 0
+    article_for_citation["_pdf_page_start_resolved"] = True
     jsonld = jsonld_scholarly_article(article_for_citation, entities)
     has_visual = bool(
         visual_terms
@@ -746,6 +828,9 @@ def article_row(
     )
     return {
         "id": article["id"],
+        "journal_id": article_journal_id(article),
+        "journal_title": article_journal_title(article),
+        "journal_short_title": article_journal_short_title(article),
         "title": article.get("title", ""),
         "authors_json": json_dumps(article.get("authors") or []),
         "authors_text": authors_label(article.get("authors") or []),
@@ -756,13 +841,13 @@ def article_row(
         "page_start": (fulltext or {}).get("page_start"),
         "page_end": (fulltext or {}).get("page_end"),
         "pdf_page_start": article_for_citation.get("pdf_page_start"),
-        "pdf_page_end": article.get("pdf_page_end") or (fulltext or {}).get("pdf_page_end"),
+        "pdf_page_end": article_for_citation.get("pdf_page_end"),
+        "pdf_page_offset": 0,
         "pdf_url": article.get("pdf_url", ""),
         "pdf_cache": (fulltext or {}).get("pdf_cache", ""),
         "abstract": knowledge.get("bibliographic_abstract") or article.get("abstract", ""),
         "summary": summary,
         "lalkovic_note": knowledge.get("lalkovic_note", ""),
-        "clean_text": clean_text,
         "text_chars": len(clean_text),
         "word_count": word_count(clean_text),
         "fulltext_status": (
@@ -845,26 +930,15 @@ def insert_chunk(
             utc_now(),
         ),
     )
+    chunk_rowid = conn.execute("SELECT rowid FROM article_chunks WHERE chunk_id = ?", (cid,)).fetchone()[0]
     conn.execute(
         """
-        INSERT INTO chunks_fts(
-            chunk_id, article_id, title, authors, year, issue, text, caves, tags, groups, people, locations
-        )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        INSERT INTO chunks_fts(rowid, text)
+        VALUES (?, ?)
         """,
         (
-            cid,
-            article_id,
-            row["title"],
-            row["authors_text"],
-            str(row.get("year") or ""),
-            str(row.get("issue") or ""),
+            chunk_rowid,
             chunk["text"],
-            " ".join(json.loads(row["caves_json"])),
-            " ".join(json.loads(row["tags_json"]) + json.loads(row["themes_json"]) + json.loads(row["keywords_json"])),
-            " ".join(json.loads(row["groups_json"])),
-            " ".join(json.loads(row["people_json"])),
-            " ".join(json.loads(row["locations_json"])),
         ),
     )
     return cid
@@ -1142,6 +1216,7 @@ def build_timelines(conn: sqlite3.Connection, path: Path, min_articles: int) -> 
             e.name,
             e.wikidata_url,
             a.id,
+            a.journal_short_title,
             a.year,
             a.issue,
             a.pages,
@@ -1160,7 +1235,21 @@ def build_timelines(conn: sqlite3.Connection, path: Path, min_articles: int) -> 
     ).fetchall()
     grouped: dict[str, dict[str, Any]] = {}
     for row in rows:
-        entity_type, name, wikidata_url, article_id, year, issue, pages, title, authors, summary, pdf_url, pdf_page = row
+        (
+            entity_type,
+            name,
+            wikidata_url,
+            article_id,
+            journal_short_title,
+            year,
+            issue,
+            pages,
+            title,
+            authors,
+            summary,
+            pdf_url,
+            pdf_page,
+        ) = row
         pdf_link_page_value = pdf_anchor_page(pdf_page)
         key = f"{entity_type}:{normalize_key(name)}"
         entry = grouped.setdefault(
@@ -1176,6 +1265,7 @@ def build_timelines(conn: sqlite3.Connection, path: Path, min_articles: int) -> 
         entry["articles"].append(
             {
                 "article_id": article_id,
+                "journal": journal_short_title,
                 "year": year,
                 "issue": issue,
                 "pages": pages,
@@ -1215,18 +1305,7 @@ def build_database(args: argparse.Namespace) -> dict:
     conn = sqlite3.connect(db_path)
     conn.execute("PRAGMA journal_mode = WAL")
     conn.execute("PRAGMA synchronous = NORMAL")
-    create_schema(conn)
-    if args.force:
-        reset_database(conn)
-    else:
-        conn.execute("DELETE FROM chunks_fts")
-        conn.execute("DELETE FROM media_assets")
-        conn.execute("DELETE FROM article_chunks")
-        conn.execute("DELETE FROM article_entities")
-        conn.execute("DELETE FROM issue_pdfs")
-        conn.execute("DELETE FROM build_metadata")
-        conn.execute("DELETE FROM articles")
-        conn.execute("DELETE FROM entities")
+    reset_database(conn)
 
     all_chunk_exports: list[dict] = []
     stats = {
@@ -1236,6 +1315,7 @@ def build_database(args: argparse.Namespace) -> dict:
         "fulltext_input": relative_path(Path(args.fulltext)),
         "ai_knowledge_input": relative_path(Path(args.ai_knowledge)),
         "articles_total": len(articles),
+        "journals": sorted({article_journal_id(article) for article in articles if isinstance(article.get("id"), int)}),
         "articles_with_fulltext": 0,
         "articles_with_ai_knowledge": 0,
         "chunks": 0,
@@ -1330,6 +1410,8 @@ def build_database(args: argparse.Namespace) -> dict:
                     "chunk_id": cid,
                     "article_id": article_id,
                     "ordinal": chunk["ordinal"],
+                    "journal": row["journal_short_title"],
+                    "journal_id": row["journal_id"],
                     "title": row["title"],
                     "authors": row["authors_text"],
                     "year": row["year"],
@@ -1358,18 +1440,21 @@ def build_database(args: argparse.Namespace) -> dict:
                 print(f"Processed {index}/{len(articles)} articles, chunks={stats['chunks']}")
 
         build_issue_pdf_table(conn)
+        conn.execute("INSERT INTO chunks_fts(chunks_fts) VALUES ('optimize')")
         stats["entities"] = conn.execute("SELECT COUNT(*) FROM entities").fetchone()[0]
         stats["article_entity_links"] = conn.execute("SELECT COUNT(*) FROM article_entities").fetchone()[0]
         stats["media_assets"] = conn.execute("SELECT COUNT(*) FROM media_assets").fetchone()[0]
         stats["issue_pdfs"] = conn.execute("SELECT COUNT(*) FROM issue_pdfs").fetchone()[0]
         stats["sqlite_fts5"] = True
-        write_build_metadata(conn, stats)
 
     write_chunks_jsonl(Path(args.chunks_jsonl), all_chunk_exports)
     stats["chunks_jsonl"] = relative_path(Path(args.chunks_jsonl))
-    stats["timelines"] = build_timelines(conn, Path(args.timelines), args.timeline_min_articles)
-    stats["timelines_json"] = relative_path(Path(args.timelines))
+    with conn:
+        stats["timelines"] = build_timelines(conn, Path(args.timelines), args.timeline_min_articles)
+        stats["timelines_json"] = relative_path(Path(args.timelines))
+        write_build_metadata(conn, stats)
     Path(args.manifest).write_text(json.dumps(stats, ensure_ascii=False, indent=2), encoding="utf-8")
+    conn.execute("PRAGMA wal_checkpoint(TRUNCATE)")
     conn.close()
     return stats
 
@@ -1421,10 +1506,11 @@ def query_database(db_path: Path, query: str, limit: int) -> list[dict]:
         return conn.execute(
                 """
                 SELECT
-                    f.chunk_id,
-                    f.article_id,
+                    c.chunk_id,
+                    c.article_id,
                     a.year,
                     a.issue,
+                    a.journal_short_title,
                     a.pages,
                     a.title,
                     a.authors_text,
@@ -1432,10 +1518,10 @@ def query_database(db_path: Path, query: str, limit: int) -> list[dict]:
                     c.pdf_page,
                     c.citation_label,
                     c.text,
-                    snippet(chunks_fts, 6, '[', ']', '...', 24) AS snippet,
+                    snippet(chunks_fts, 0, '[', ']', '...', 24) AS snippet,
                     bm25(chunks_fts) AS score
                 FROM chunks_fts f
-                JOIN article_chunks c ON c.chunk_id = f.chunk_id
+                JOIN article_chunks c ON c.rowid = f.rowid
                 JOIN articles a ON a.id = c.article_id
                 WHERE chunks_fts MATCH ?
                 ORDER BY score
@@ -1457,6 +1543,7 @@ def query_database(db_path: Path, query: str, limit: int) -> list[dict]:
                 c.article_id,
                 a.year,
                 a.issue,
+                a.journal_short_title,
                 a.pages,
                 a.title,
                 a.authors_text,
@@ -1488,6 +1575,7 @@ def query_database(db_path: Path, query: str, limit: int) -> list[dict]:
             {
                 "chunk_id": row["chunk_id"],
                 "article_id": row["article_id"],
+                "journal": row["journal_short_title"],
                 "year": row["year"],
                 "issue": row["issue"],
                 "pages": row["pages"],

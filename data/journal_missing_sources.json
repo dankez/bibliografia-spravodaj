@@ -1,0 +1,13 @@
+[
+  {
+    "source_issue_key": "slovensky_kras:32_1994",
+    "journal_id": "slovensky_kras",
+    "journal_title": "Slovenský kras",
+    "year": 1994,
+    "issue_key": "32_1994",
+    "pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/32_1994.pdf",
+    "status": "source_pdf_404",
+    "checked_at": "2026-06-19",
+    "note": "Oficiálna stránka Online publikácie odkazuje na tento PDF súbor, ale HTTP variant vracia 404 a HTTPS variant sa nedá načítať. Testované boli aj základné varianty prípony .PDF."
+  }
+]

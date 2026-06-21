@@ -43,6 +43,24 @@ def sample_articles():
             "tags": ["dejiny"],
             "groups": [],
         },
+        {
+            "id": 9001,
+            "journal_id": "slovensky_kras",
+            "journal_title": "Slovenský kras",
+            "authors": ["Bella, P."],
+            "title": "Geomorfologické procesy v jaskyniach",
+            "year": 2009,
+            "volume": "47",
+            "issue": "1",
+            "pages": "5-39",
+            "abstract": "Štúdia o geomorfologických procesoch v jaskyniach.",
+            "pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/47_2009_1.pdf",
+            "pdf_page_start": 5,
+            "pdf_page_offset": 0,
+            "caves": [],
+            "tags": [],
+            "groups": [],
+        },
     ]
 
 
@@ -52,8 +70,9 @@ def test_export_database_creates_research_friendly_tables(tmp_path):
     summary = public_sqlite.export_database(sample_articles(), db_path)
 
     assert summary == {
-        "articles": 2,
-        "authors": 3,
+        "articles": 3,
+        "journals": 2,
+        "authors": 4,
         "caves": 2,
         "tags": 2,
         "groups": 1,
@@ -79,6 +98,7 @@ def test_export_database_creates_research_friendly_tables(tmp_path):
             "article_groups",
             "map_plans",
             "export_metadata",
+            "journals",
         }.issubset(tables)
 
         article = conn.execute("SELECT * FROM articles WHERE id = 3413").fetchone()
@@ -99,5 +119,14 @@ def test_export_database_creates_research_friendly_tables(tmp_path):
 
         map_row = conn.execute("SELECT * FROM map_plans WHERE article_id = 3413").fetchone()
         assert json.loads(map_row["pages_json"]) == [59]
+
+        spravodaj_journal = conn.execute("SELECT * FROM journals WHERE id = 'spravodaj_sss'").fetchone()
+        assert spravodaj_journal["title"] == "Spravodaj Slovenskej speleologickej spoločnosti"
+
+        kras_article = conn.execute("SELECT * FROM articles WHERE id = 9001").fetchone()
+        assert kras_article["journal_id"] == "slovensky_kras"
+        assert kras_article["journal_title"] == "Slovenský kras"
+        assert kras_article["pdf_page"] == 5
+        assert kras_article["pdf_link"] == "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/47_2009_1.pdf#page=5"
     finally:
         conn.close()

@@ -1,0 +1,28 @@
+{
+  "updated_at": "2026-06-19T20:44:25.059485+00:00",
+  "status": "complete",
+  "started_at": "2026-06-19T20:33:49.741812+00:00",
+  "journals": [
+    "slovensky_kras"
+  ],
+  "total": 13,
+  "completed": 10,
+  "failed": 3,
+  "added_articles": 242,
+  "dry_run": false,
+  "current": null,
+  "failures": [
+    {
+      "key": "slovensky_kras:32_1994",
+      "error": "PDF download failed: http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/32_1994.pdf"
+    },
+    {
+      "key": "slovensky_kras:53_2015_1-2",
+      "error": "AI returned no articles"
+    },
+    {
+      "key": "slovensky_kras:61_2023_suppl",
+      "error": "AI returned no articles"
+    }
+  ]
+}

@@ -17,10 +17,12 @@ BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_ARTICLES_PATH = BASE_DIR / "data" / "articles_with_urls.json"
 DEFAULT_OUTPUT_PATH = BASE_DIR / "data" / "exports" / "spravodaj_sss.sqlite"
 PDF_LINK_PAGE_OFFSET = 2
+DEFAULT_JOURNAL_ID = "spravodaj_sss"
+DEFAULT_JOURNAL_TITLE = "Spravodaj Slovenskej speleologickej spoločnosti"
 
 
 def utc_now() -> str:
-    return dt.datetime.now(dt.UTC).isoformat()
+    return dt.datetime.now(dt.timezone.utc).isoformat()
 
 
 def normalize_key(value: Any) -> str:
@@ -57,7 +59,11 @@ def page_start(article: dict[str, Any]) -> int | None:
 
 def pdf_page(article: dict[str, Any]) -> int | None:
     start = page_start(article)
-    return start + PDF_LINK_PAGE_OFFSET if start is not None else None
+    try:
+        offset = int(article.get("pdf_page_offset", PDF_LINK_PAGE_OFFSET))
+    except (TypeError, ValueError):
+        offset = PDF_LINK_PAGE_OFFSET
+    return start + offset if start is not None else None
 
 
 def pdf_link(article: dict[str, Any]) -> str:
@@ -81,10 +87,20 @@ def create_schema(conn: sqlite3.Connection) -> None:
         DROP TABLE IF EXISTS caves;
         DROP TABLE IF EXISTS article_authors;
         DROP TABLE IF EXISTS authors;
+        DROP TABLE IF EXISTS journals;
         DROP TABLE IF EXISTS articles;
+
+        CREATE TABLE journals (
+            id TEXT PRIMARY KEY,
+            title TEXT NOT NULL,
+            short_title TEXT NOT NULL,
+            pdf_page_offset INTEGER NOT NULL DEFAULT 0
+        );
 
         CREATE TABLE articles (
             id INTEGER PRIMARY KEY,
+            journal_id TEXT NOT NULL REFERENCES journals(id),
+            journal_title TEXT NOT NULL,
             title TEXT NOT NULL,
             year INTEGER,
             volume TEXT,
@@ -177,6 +193,40 @@ def ensure_lookup(conn: sqlite3.Connection, table: str, name: str) -> int:
     return int(row[0])
 
 
+def journal_id(article: dict[str, Any]) -> str:
+    return str(article.get("journal_id") or DEFAULT_JOURNAL_ID)
+
+
+def journal_title(article: dict[str, Any]) -> str:
+    return str(article.get("journal_title") or DEFAULT_JOURNAL_TITLE)
+
+
+def journal_short_title(article: dict[str, Any]) -> str:
+    return str(article.get("journal_short_title") or journal_title(article))
+
+
+def article_pdf_page_offset(article: dict[str, Any]) -> int:
+    try:
+        return int(article.get("pdf_page_offset", PDF_LINK_PAGE_OFFSET))
+    except (TypeError, ValueError):
+        return PDF_LINK_PAGE_OFFSET
+
+
+def ensure_journal(conn: sqlite3.Connection, article: dict[str, Any]) -> None:
+    conn.execute(
+        """
+        INSERT OR IGNORE INTO journals(id, title, short_title, pdf_page_offset)
+        VALUES (?, ?, ?, ?)
+        """,
+        (
+            journal_id(article),
+            journal_title(article),
+            journal_short_title(article),
+            article_pdf_page_offset(article),
+        ),
+    )
+
+
 def insert_many_to_many(
     conn: sqlite3.Connection,
     article_id: int,
@@ -198,17 +248,20 @@ def insert_many_to_many(
 
 def insert_article(conn: sqlite3.Connection, article: dict[str, Any]) -> None:
     article_id = int(article["id"])
+    ensure_journal(conn, article)
     has_map_plan = 1 if article.get("has_map_plan") or (article.get("map_plan_pages") or []) else 0
     conn.execute(
         """
         INSERT INTO articles(
-            id, title, year, volume, issue, pages, abstract, pdf_url, pdf_page,
+            id, journal_id, journal_title, title, year, volume, issue, pages, abstract, pdf_url, pdf_page,
             pdf_link, has_map_plan, raw_json
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
         """,
         (
             article_id,
+            journal_id(article),
+            journal_title(article),
             str(article.get("title") or ""),
             article.get("year"),
             str(article.get("volume") or ""),
@@ -267,6 +320,7 @@ def export_database(articles: list[dict[str, Any]], output_path: Path) -> dict[s
             insert_article(conn, article)
         summary = {
             "articles": count_rows(conn, "articles"),
+            "journals": count_rows(conn, "journals"),
             "authors": count_rows(conn, "authors"),
             "caves": count_rows(conn, "caves"),
             "tags": count_rows(conn, "tags"),

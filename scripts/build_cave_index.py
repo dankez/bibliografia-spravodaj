@@ -15,7 +15,252 @@ from typing import Any
 BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_ARTICLES_PATH = BASE_DIR / "web" / "src" / "data" / "articles.json"
 DEFAULT_OUTPUT_PATH = BASE_DIR / "web" / "src" / "data" / "caves.json"
+DEFAULT_ALIASES_PATH = BASE_DIR / "data" / "cave_aliases.json"
 PDF_LINK_PAGE_OFFSET = 2
+DEFAULT_JOURNAL_ID = "spravodaj_sss"
+DEFAULT_JOURNAL_TITLE = "Spravodaj Slovenskej speleologickej spoločnosti"
+DEFAULT_JOURNAL_SHORT_TITLE = "Spravodaj SSS"
+CAVE_HEADWORDS = (
+    "jaskyňa",
+    "jaskyne",
+    "jaskyni",
+    "jaskyňu",
+    "jaskyňou",
+    "jeskyňa",
+    "jeskyně",
+    "priepasť",
+    "priepasti",
+    "priepasťou",
+    "diera",
+    "diery",
+    "dieru",
+    "ľadnica",
+    "jama",
+    "sifón",
+    "vyvieračka",
+)
+CAVE_HEADWORD_PATTERN = "|".join(re.escape(word) for word in CAVE_HEADWORDS)
+CAVE_NAME_CHAR_PATTERN = r"A-Za-zÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽáäčďéíĺľňóôŕšťúýž0-9'’\-/"
+CAVE_GENERIC_PREFIXES = {
+    "ako",
+    "clenovia",
+    "dalsia",
+    "dalsi",
+    "dalsie",
+    "dve",
+    "historia",
+    "k",
+    "kratko",
+    "medzinarodny",
+    "najdlhsie",
+    "najhlbsie",
+    "navrh",
+    "navstevnost",
+    "nove",
+    "novych",
+    "o",
+    "ochrana",
+    "osvetlenie",
+    "popisovanie",
+    "poznamky",
+    "prehlad",
+    "prispevok",
+    "prieskum",
+    "sprava",
+    "spristupnene",
+    "technicke",
+    "udaje",
+    "vplyv",
+    "vsetkym",
+    "zaklady",
+    "zasady",
+}
+CAVE_GENERIC_WORDS = {
+    "akcii",
+    "a",
+    "alebo",
+    "ako",
+    "akcia",
+    "akcie",
+    "bezpecnost",
+    "ciny",
+    "clanok",
+    "co",
+    "cesta",
+    "cerpanie",
+    "ceskoslovenske",
+    "cesky",
+    "cerpacie",
+    "cerpaci",
+    "cistenie",
+    "dokumentacia",
+    "do",
+    "jej",
+    "koncoveho",
+    "ladovej",
+    "jaskyniar",
+    "jaskyniari",
+    "jaskyniarska",
+    "jaskyniarske",
+    "jaskyniarsky",
+    "jaskyniarstva",
+    "jaskyniarstve",
+    "jaskyniarstvo",
+    "lokality",
+    "mapovanie",
+    "meranie",
+    "mikroklima",
+    "nazov",
+    "navstevnost",
+    "ochrana",
+    "opis",
+    "pomocky",
+    "pokus",
+    "pokusy",
+    "prehlad",
+    "pre",
+    "prirody",
+    "rok",
+    "roky",
+    "sa",
+    "skolenie",
+    "skryva",
+    "slovenska",
+    "slovenske",
+    "slovenskych",
+    "spristupnene",
+    "straze",
+    "sveta",
+    "tabulka",
+    "tyzden",
+    "tyzdna",
+    "vyskresov",
+    "vyznamne",
+    "uraz",
+    "zahada",
+    "zachranny",
+    "zachrana",
+    "zapis",
+    "zber",
+    "ziadna",
+    "zname",
+    "zostup",
+    "kosti",
+}
+CAVE_AREA_RULES: tuple[tuple[str, tuple[str, ...]], ...] = (
+    (
+        "Slovenský raj / Psie diery",
+        (
+            r"\bpsie diery\b",
+            r"\bpsich dier\b",
+            r"\bmedvedej chodby\b",
+        ),
+    ),
+    (
+        "Slovenský raj / Stratenská hornatina",
+        (
+            r"\bslovensky raj\b",
+            r"\bslovenskom raji\b",
+            r"\bstratensk\w* hornatin\w*\b",
+            r"\bglack\w* planin\w*\b",
+            r"\bplanin\w* glac\b",
+            r"\bmasiv\w* glatz\b",
+            r"\bglatz\b",
+            r"\bglac\b",
+        ),
+    ),
+    (
+        "Demänovská dolina / Nízke Tatry",
+        (
+            r"\bdemanovsk\w* dolin\w*\b",
+            r"\bdemanovsk\w+ medved\w+ jaskyn\w*\b",
+            r"\bdemanovsk\w+ jaskyn\w*\b",
+        ),
+    ),
+    (
+        "Jánska dolina / Nízke Tatry",
+        (
+            r"\bjansk\w* dolin\w*\b",
+            r"\bnizk\w* tatr\w*\b",
+            r"\bjaskyn\w* zlomisk\b",
+            r"\bzlomisk\b",
+            r"\bliptovsky jan\b",
+        ),
+    ),
+    (
+        "Vrátna dolina / Malá Fatra",
+        (
+            r"\bvratn\w* dolin\w*\b",
+            r"\bmedved\w+ jaskyn\w* ii\b",
+            r"\bwratnuella\b",
+            r"\bpod suchym\b",
+            r"\bjaskyniarsk\w* klub\w* varin\b",
+            r"\bklub\w* varin\b",
+            r"\bvarin\b",
+        ),
+    ),
+    (
+        "Malá Fatra",
+        (
+            r"\bmala fatra\b",
+            r"\bmalej fatre\b",
+        ),
+    ),
+    (
+        "Belianska dolina / Veľká Fatra",
+        (
+            r"\bbeliansk\w* dolin\w*\b",
+            r"\bvelk\w* fatr\w*\b",
+            r"\bjavorin\w*\b",
+            r"\bblatnic\w*\b",
+        ),
+    ),
+    (
+        "Nitrické vrchy",
+        (
+            r"\bnitrick\w* vrch\w*\b",
+            r"\bvestenic\w*\b",
+            r"\bhradistnic\w*\b",
+            r"\brokos\w*\b",
+        ),
+    ),
+    (
+        "Tuhársky kras / Revúcka vrchovina",
+        (
+            r"\btuharsk\w* kras\w*\b",
+            r"\brevuck\w* vrchovin\w*\b",
+            r"\bmara medved\w*\b",
+        ),
+    ),
+    (
+        "Humenec / Čierna Hora",
+        (
+            r"\bhumen\w*\b",
+            r"\bcierna hora\b",
+            r"\bciernej hore\b",
+        ),
+    ),
+    (
+        "Poľsko",
+        (
+            r"\bpolsk\w*\b",
+            r"\bkletn\w*\b",
+            r"\bkralick\w* sneznik\w*\b",
+        ),
+    ),
+)
+AREA_SPLIT_CAVE_NAMES = {
+    "medvedia-jaskyna",
+    "medvedie-jaskyne",
+}
+AREA_TAG_CAVE_NAMES = {
+    "jaskyna-psie-diery",
+}
+CAVE_AREA_OVERRIDES: dict[tuple[int, str], str] = {
+    (1361, "medvedia-jaskyna"): "Jánska dolina / Nízke Tatry",
+    (5686, "medvedia-jaskyna"): "Slovenský raj / Stratenská hornatina",
+    (5658, "medvedia-jaskyna"): "Slovenský raj / Stratenská hornatina",
+}
 
 
 def normalize_text(value: Any) -> str:
@@ -43,6 +288,208 @@ def unique_strings(values: list[Any]) -> list[str]:
     return result
 
 
+def clean_inferred_cave_name(value: Any) -> str:
+    text = re.sub(r"\s+", " ", str(value or "")).strip()
+    text = re.sub(r"^[,;:–—\-\s]+|[,;:–—\-\s]+$", "", text)
+    text = re.sub(r"\s+(?:v|vo|na|pri|pod|nad|z|zo|do|pre|a|alebo)$", "", text, flags=re.IGNORECASE)
+    words = text.split()
+    for index, word in enumerate(words):
+        if index > 0 and normalize_text(word) in {"v", "vo", "pri"}:
+            text = " ".join(words[:index])
+            break
+    return text.strip()
+
+
+def article_context_text(article: dict[str, Any]) -> str:
+    return " ".join(
+        str(value or "")
+        for value in (
+            article.get("title"),
+            article.get("abstract"),
+            article.get("journal_title"),
+            article.get("journal_short_title"),
+        )
+    )
+
+
+def is_contextual_cave_candidate(value: Any) -> bool:
+    tokens = normalize_text(value).split()
+    if not tokens:
+        return False
+    return tokens[0] in {
+        "charakter",
+        "dovody",
+        "komplexny",
+        "moznosti",
+        "niekolkorocne",
+        "objav",
+        "podrobny",
+        "prejavy",
+        "revizne",
+        "spodnej",
+        "uzavretie",
+        "vek",
+        "vyskum",
+    }
+
+
+def normalize_cave_candidate_name(cave_name: str, article: dict[str, Any]) -> str:
+    candidate_key = normalize_text(cave_name)
+    context_key = normalize_text(f"{cave_name} {article_context_text(article)}")
+
+    if "psie diery" in context_key and ("medvedej chodby" in context_key or candidate_key.startswith("medvedej chodby")):
+        return "Jaskyňa Psie diery"
+    if "mara medved" in context_key:
+        return "Jaskyňa Mara medvedia"
+    if "vestenic" in context_key and "medved" in context_key and "jaskyn" in context_key:
+        return "Vestenická Medvedia jaskyňa"
+    if "demanov" in context_key and "medved" in context_key and "jaskyn" in context_key:
+        return "Demänovská medvedia jaskyňa"
+    if re.search(r"\bmedvedie jaskyne\b", candidate_key):
+        return "Medvedie jaskyne"
+    if "medved" in candidate_key and "jaskyn" in candidate_key:
+        if re.search(r"\b(?:jaskyn\w* +medved\w*|medved\w* +jaskyn\w*) +(ii|2)\b", context_key):
+            return "Jaskyňa Medvedia II"
+        if "medvedej jaskyn" in candidate_key or "medvedia jaskyn" in candidate_key or is_contextual_cave_candidate(cave_name):
+            return "Medvedia jaskyňa"
+    return cave_name
+
+
+def infer_cave_area(article: dict[str, Any], cave_name: str) -> str:
+    article_id = int(article.get("id") or 0)
+    override = CAVE_AREA_OVERRIDES.get((article_id, slugify(cave_name)))
+    if override:
+        return override
+
+    context_key = normalize_text(article_context_text(article))
+    for area, patterns in CAVE_AREA_RULES:
+        if any(re.search(pattern, context_key) for pattern in patterns):
+            return area
+    return ""
+
+
+def should_keep_cave_area(name_key: str) -> bool:
+    return "medved" in name_key or name_key in AREA_SPLIT_CAVE_NAMES or name_key in AREA_TAG_CAVE_NAMES
+
+
+def is_probable_cave_name(value: str) -> bool:
+    text = clean_inferred_cave_name(value)
+    if len(text) < 4 or len(text) > 86:
+        return False
+    normalized = normalize_text(text)
+    if not normalized:
+        return False
+    tokens = normalized.split()
+    if len(tokens) > 7:
+        return False
+    if tokens[0] in CAVE_GENERIC_PREFIXES:
+        return False
+    if any(token in CAVE_GENERIC_WORDS for token in tokens):
+        return False
+    if re.search(r"\bnaj(?:dlh|hlb)", normalized):
+        return False
+    if len(tokens) == 1 and tokens[0] in CAVE_GENERIC_WORDS:
+        return False
+    generic_hits = sum(1 for token in tokens if token in CAVE_GENERIC_WORDS)
+    if generic_hits >= max(2, len(tokens) // 2):
+        return False
+    if re.search(r"\b(?:sss|uis|msk|rok|roky|storoč|vyroc|tyzden|tabulka)\b", normalized):
+        return False
+    return True
+
+
+def infer_caves_from_text(text: str) -> list[str]:
+    if not text:
+        return []
+
+    inferred: list[str] = []
+    type_before = re.compile(
+        rf"\b(?P<head>(?i:{CAVE_HEADWORD_PATTERN}))\s+"
+        rf"(?P<name>[A-ZÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0-9][{CAVE_NAME_CHAR_PATTERN}]+"
+        rf"(?:\s+(?:[a-záäčďéíĺľňóôŕšťúýž]+|[A-ZÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0-9][{CAVE_NAME_CHAR_PATTERN}]+)){{0,5}})",
+    )
+    name_before = re.compile(
+        rf"\b(?P<name>[A-ZÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0-9][{CAVE_NAME_CHAR_PATTERN}]+"
+        rf"(?:\s+(?:[a-záäčďéíĺľňóôŕšťúýž]+|[A-ZÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽ0-9][{CAVE_NAME_CHAR_PATTERN}]+)){{0,4}})"
+        rf"\s+(?P<head>(?i:{CAVE_HEADWORD_PATTERN}))\b",
+    )
+
+    for match in type_before.finditer(text):
+        head = match.group("head")
+        name = clean_inferred_cave_name(match.group("name"))
+        if not is_probable_cave_name(name):
+            continue
+        normalized_head = normalize_text(head)
+        if normalized_head.startswith("jaskyn") or normalized_head.startswith("jeskyn"):
+            candidate = name if normalize_text(name).startswith(("jaskyn", "jeskyn")) else f"Jaskyňa {name}"
+        elif normalized_head.startswith("priepast"):
+            candidate = name if "priepast" in normalize_text(name) else f"Priepasť {name}"
+        else:
+            candidate = name
+        if is_probable_cave_name(candidate):
+            inferred.append(candidate)
+
+    for match in name_before.finditer(text):
+        candidate = clean_inferred_cave_name(f"{match.group('name')} {match.group('head')}")
+        if is_probable_cave_name(candidate):
+            inferred.append(candidate)
+
+    return unique_strings(inferred)
+
+
+def infer_special_caves_from_article(article: dict[str, Any]) -> list[str]:
+    context_key = normalize_text(article_context_text(article))
+    candidates: list[str] = []
+    if re.search(r"\bmedved(?:ia|ej|iu|ou|ie|ich|im|i)? +jaskyn", context_key):
+        candidate = normalize_cave_candidate_name("Medvedia jaskyňa", article)
+        if infer_cave_area(article, candidate):
+            candidates.append(candidate)
+    return unique_strings(candidates)
+
+
+def article_cave_candidates(article: dict[str, Any]) -> list[str]:
+    knowledge = article.get("knowledge") or {}
+    explicit = (
+        list(article.get("caves") or [])
+        + list(knowledge.get("caves") or [])
+        + list(knowledge.get("locations") or [])
+    )
+    explicit = [name for name in unique_strings(explicit) if is_probable_cave_name(name)]
+    if explicit:
+        return explicit
+    inferred = infer_caves_from_text(". ".join([article.get("title") or "", article.get("abstract") or ""]))
+    if not inferred:
+        inferred = infer_special_caves_from_article(article)
+    return unique_strings(inferred)
+
+
+def load_cave_aliases(path: Path) -> list[dict[str, Any]]:
+    if not path.exists():
+        return []
+    data = json.loads(path.read_text(encoding="utf-8"))
+    aliases = data.get("aliases", []) if isinstance(data, dict) else data
+    if not isinstance(aliases, list):
+        raise ValueError(f"Invalid cave alias file: {path}")
+    return aliases
+
+
+def build_alias_lookup(entries: list[dict[str, Any]]) -> dict[str, str]:
+    lookup: dict[str, str] = {}
+    for entry in entries:
+        canonical = str(entry.get("canonical") or "").strip()
+        if not canonical:
+            continue
+        names = [canonical, *list(entry.get("aliases") or [])]
+        for name in unique_strings(names):
+            lookup[slugify(name)] = canonical
+            lookup[normalize_text(name)] = canonical
+    return lookup
+
+
+def canonical_cave_name(cave_name: str, alias_lookup: dict[str, str]) -> str:
+    return alias_lookup.get(slugify(cave_name)) or alias_lookup.get(normalize_text(cave_name)) or cave_name
+
+
 def first_page(article: dict[str, Any]) -> int:
     value = article.get("pdf_page_start")
     if value in (None, ""):
@@ -54,11 +501,18 @@ def first_page(article: dict[str, Any]) -> int:
         return 1
 
 
+def pdf_page_offset(article: dict[str, Any]) -> int:
+    try:
+        return int(article.get("pdf_page_offset", PDF_LINK_PAGE_OFFSET))
+    except (TypeError, ValueError):
+        return PDF_LINK_PAGE_OFFSET
+
+
 def pdf_link(article: dict[str, Any]) -> str:
     url = str(article.get("pdf_url") or "").strip()
     if not url:
         return ""
-    return f"{url}#page={first_page(article) + PDF_LINK_PAGE_OFFSET}"
+    return f"{url}#page={first_page(article) + pdf_page_offset(article)}"
 
 
 def has_map_plan(article: dict[str, Any]) -> bool:
@@ -72,6 +526,10 @@ def has_map_plan(article: dict[str, Any]) -> bool:
 def cave_token_pattern(token: str) -> str:
     if token.startswith("jaskyn"):
         return r"jaskyn(?:a|e|i|u|ou|am|ami|ach|iach)?"
+    if token == "medvedia":
+        return r"medved(?:ia|ej|iu|ou|ie|ich|im|i)?"
+    if token == "medvedie":
+        return r"medved(?:ie|ich|im|i|ia|ej|iu|ou)?"
     if token.isdigit():
         return re.escape(token)
     if len(token) <= 3:
@@ -98,19 +556,25 @@ def article_text_for_cave_match(article: dict[str, Any]) -> str:
 
 
 def article_mentions_cave(article: dict[str, Any], cave_name: str) -> bool:
+    if article.get("caves_verified"):
+        return True
     pattern = cave_phrase_pattern(cave_name)
     if pattern is None:
         return False
     return bool(pattern.search(article_text_for_cave_match(article)))
 
 
-def article_summary(article: dict[str, Any]) -> dict[str, Any]:
-    return {
+def article_summary(article: dict[str, Any], cave_area: str = "") -> dict[str, Any]:
+    summary = {
         "id": int(article["id"]),
         "title": article.get("title") or "",
         "year": article.get("year"),
+        "volume": str(article.get("volume") or ""),
         "issue": str(article.get("issue") or ""),
         "pages": str(article.get("pages") or ""),
+        "journal_id": str(article.get("journal_id") or DEFAULT_JOURNAL_ID),
+        "journal_title": str(article.get("journal_title") or DEFAULT_JOURNAL_TITLE),
+        "journal_short_title": str(article.get("journal_short_title") or DEFAULT_JOURNAL_SHORT_TITLE),
         "authors": unique_strings(article.get("authors") or []),
         "abstract": article.get("abstract") or "",
         "has_map_plan": has_map_plan(article),
@@ -119,27 +583,109 @@ def article_summary(article: dict[str, Any]) -> dict[str, Any]:
         "pdf_link": pdf_link(article),
         "detail_url": f"/clanky/{article['id']}/",
     }
+    if cave_area:
+        summary["cave_area"] = cave_area
+    return summary
 
 
-def build_cave_index(articles: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    grouped: dict[str, dict[str, Any]] = {}
-    slug_counts: defaultdict[str, int] = defaultdict(int)
+def duplicate_article_key(article: dict[str, Any]) -> tuple[Any, ...]:
+    return (
+        article.get("journal_id") or DEFAULT_JOURNAL_ID,
+        int(article.get("year") or 0),
+        normalize_text(article.get("title") or ""),
+        tuple(normalize_text(author) for author in article.get("authors", [])),
+        normalize_text(article.get("pages") or ""),
+    )
+
+
+def duplicate_article_score(article: dict[str, Any]) -> tuple[int, int, int, int]:
+    issue_key = normalize_text(article.get("issue") or "")
+    has_clean_issue = int("chybne strankovanie" not in issue_key and "nove vydanie" not in issue_key)
+    return (
+        has_clean_issue,
+        int(bool(article.get("pdf_link") or article.get("pdf_url"))),
+        len(str(article.get("abstract") or "").strip()),
+        int(article.get("id") or 0),
+    )
+
+
+def deduplicate_timeline_articles(articles: list[dict[str, Any]]) -> list[dict[str, Any]]:
+    best_by_key: dict[tuple[Any, ...], dict[str, Any]] = {}
+    for article in articles:
+        key = duplicate_article_key(article)
+        current = best_by_key.get(key)
+        if current is None or duplicate_article_score(article) > duplicate_article_score(current):
+            best_by_key[key] = article
+    return list(best_by_key.values())
+
+
+def build_cave_index(articles: list[dict[str, Any]], aliases: list[dict[str, Any]] | None = None) -> list[dict[str, Any]]:
+    alias_lookup = build_alias_lookup(aliases or [])
+    candidate_rows: list[dict[str, Any]] = []
 
     for article in articles:
-        for cave_name in unique_strings(article.get("caves") or []):
-            if not article_mentions_cave(article, cave_name):
+        for cave_name in article_cave_candidates(article):
+            normalized_name = normalize_cave_candidate_name(cave_name, article)
+            canonical_name = canonical_cave_name(normalized_name, alias_lookup)
+            if not any(
+                article_mentions_cave(article, name)
+                for name in unique_strings([cave_name, normalized_name, canonical_name])
+            ):
                 continue
-            key = slugify(cave_name)
-            if key not in grouped:
-                slug_counts[key] += 1
-                slug = key if slug_counts[key] == 1 else f"{key}-{slug_counts[key]}"
-                grouped[key] = {"name": cave_name, "slug": slug, "articles": []}
-            grouped[key]["articles"].append(article_summary(article))
+            candidate_rows.append(
+                {
+                    "article": article,
+                    "source_name": cave_name,
+                    "normalized_name": normalized_name,
+                    "canonical_name": canonical_name,
+                    "area": infer_cave_area(article, canonical_name),
+                }
+            )
+
+    areas_by_name: defaultdict[str, set[str]] = defaultdict(set)
+    for row in candidate_rows:
+        if row["area"]:
+            areas_by_name[slugify(row["canonical_name"])].add(row["area"])
+
+    area_split_names = {
+        name_key
+        for name_key, areas in areas_by_name.items()
+        if should_keep_cave_area(name_key) and (len(areas) > 1 or name_key in AREA_SPLIT_CAVE_NAMES)
+    }
+
+    grouped: dict[str, dict[str, Any]] = {}
+    slug_counts: defaultdict[str, int] = defaultdict(int)
+    for row in candidate_rows:
+        canonical_name = row["canonical_name"]
+        source_name = row["source_name"]
+        normalized_name = row["normalized_name"]
+        name_key = slugify(canonical_name)
+        area = row["area"] if should_keep_cave_area(name_key) else ""
+        use_area_key = bool(area) and name_key in area_split_names
+        key = f"{name_key}--{slugify(area)}" if use_area_key else name_key
+        slug_base = f"{name_key}-{slugify(area)}" if use_area_key else name_key
+        if key not in grouped:
+            slug_counts[slug_base] += 1
+            slug = slug_base if slug_counts[slug_base] == 1 else f"{slug_base}-{slug_counts[slug_base]}"
+            grouped[key] = {
+                "name": canonical_name,
+                "slug": slug,
+                "aliases": set(),
+                "articles": [],
+                "area_counts": defaultdict(int),
+            }
+        if area:
+            grouped[key]["area_counts"][area] += 1
+        if normalize_text(source_name) != normalize_text(canonical_name) and not is_contextual_cave_candidate(source_name):
+            grouped[key]["aliases"].add(source_name)
+        if normalize_text(normalized_name) != normalize_text(canonical_name) and not is_contextual_cave_candidate(normalized_name):
+            grouped[key]["aliases"].add(normalized_name)
+        grouped[key]["articles"].append(article_summary(row["article"], area))
 
     caves: list[dict[str, Any]] = []
     for cave in grouped.values():
         article_rows = sorted(
-            cave["articles"],
+            deduplicate_timeline_articles(cave["articles"]),
             key=lambda item: (int(item.get("year") or 0), int(item.get("id") or 0)),
         )
         years = [int(item["year"]) for item in article_rows if item.get("year")]
@@ -149,10 +695,16 @@ def build_cave_index(articles: list[dict[str, Any]]) -> list[dict[str, Any]]:
             for author in item.get("authors", [])
             if author not in {"Anonymus", "Redakcia"}
         }
+        area_counts = cave.get("area_counts") or {}
+        cave_area = ""
+        if area_counts:
+            cave_area = sorted(area_counts.items(), key=lambda item: (-item[1], item[0]))[0][0]
         caves.append(
             {
                 "name": cave["name"],
                 "slug": cave["slug"],
+                "area": cave_area,
+                "aliases": unique_strings(sorted(cave["aliases"])),
                 "article_count": len(article_rows),
                 "map_plan_count": sum(1 for item in article_rows if item.get("has_map_plan")),
                 "first_year": min(years) if years else None,
@@ -171,6 +723,7 @@ def build_cave_index(articles: list[dict[str, Any]]) -> list[dict[str, Any]]:
 def parse_args() -> argparse.Namespace:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--articles", type=Path, default=DEFAULT_ARTICLES_PATH)
+    parser.add_argument("--aliases", type=Path, default=DEFAULT_ALIASES_PATH)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
     return parser.parse_args()
 
@@ -178,10 +731,11 @@ def parse_args() -> argparse.Namespace:
 def main() -> int:
     args = parse_args()
     articles = json.loads(args.articles.read_text(encoding="utf-8"))
-    caves = build_cave_index(articles)
+    aliases = load_cave_aliases(args.aliases)
+    caves = build_cave_index(articles, aliases)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(caves, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
-    print(json.dumps({"output": str(args.output), "caves": len(caves)}, ensure_ascii=False, indent=2))
+    print(json.dumps({"output": str(args.output), "caves": len(caves), "alias_groups": len(aliases)}, ensure_ascii=False, indent=2))
     return 0
 
 

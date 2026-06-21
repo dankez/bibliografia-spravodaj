@@ -23,9 +23,49 @@ def test_mobile_navigation_and_search_controls_exist():
     assert 'id="mobile-search-input"' in home_source
     assert 'data-mobile-menu-link="jaskyne"' in home_source
     assert 'data-mobile-menu-link="exports"' in home_source
+    assert "bibliographyExportMenus" in home_source
+    assert "bibliografia_vsetko_danko" in home_source
+    assert "bibliografia_aragonit_danko" in home_source
+    assert "PDF" in home_source
+    assert "bibliografia_slovensky_kras.sqlite" in home_source
+    assert ".bibliography-export-menu-panel" in css_source
     assert '.bibliography-mobile-actions' in css_source
     assert '.mobile-theme-hidden' in css_source
     assert '.mobile-search-overlay.is-open' in css_source
+
+
+def test_cave_timeline_shows_publication_and_alternates_sides():
+    detail_source = (ROOT / "web" / "src" / "pages" / "jaskyne" / "[slug].astro").read_text(encoding="utf-8")
+    css_source = (ROOT / "web" / "src" / "styles" / "global.css").read_text(encoding="utf-8")
+
+    assert "article.journal_short_title" in detail_source
+    assert "cave-timeline-side" in detail_source
+    assert "--timeline-stagger-offset" in css_source
+    assert "margin-top: var(--timeline-stagger-offset);" in css_source
+    assert "cave-timeline-item:nth-child(odd)" in css_source
+    assert "cave-timeline-item:nth-child(even)" in css_source
+    assert "@media (max-width: 767px)" in css_source
+
+
+def test_web_pages_hide_generic_import_abstracts():
+    home_source = (ROOT / "web" / "src" / "pages" / "index.astro").read_text(encoding="utf-8")
+    article_detail = (ROOT / "web" / "src" / "pages" / "clanky" / "[id].astro").read_text(encoding="utf-8")
+    cave_detail = (ROOT / "web" / "src" / "pages" / "jaskyne" / "[slug].astro").read_text(encoding="utf-8")
+
+    assert "isGenericImportAbstract" in home_source
+    assert "displayAbstract" in home_source
+    assert "displayAbstract(article)" in home_source
+    assert "isGenericImportAbstract" in article_detail
+    assert "displayAbstract" in article_detail
+    assert "isGenericImportAbstract" in cave_detail
+    assert "displayAbstract(article)" in cave_detail
+
+
+def test_article_detail_uses_current_journal_name_in_metadata():
+    article_detail = (ROOT / "web" / "src" / "pages" / "clanky" / "[id].astro").read_text(encoding="utf-8")
+
+    assert "{art.journal_short_title || 'Spravodaj SSS'} — {art.year}" in article_detail
+    assert "Spravodajca SSS — {art.year}" not in article_detail
 
 
 def test_theme_switcher_uses_day_night_labels():

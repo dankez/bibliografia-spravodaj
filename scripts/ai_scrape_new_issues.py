@@ -522,7 +522,7 @@ def main() -> int:
                     "groups": [],
                     "wikidata": [],
                     "created_by": f"{args.ai_backend}_structured_toc",
-                    "created_at": dt.datetime.now(dt.UTC).isoformat(),
+                    "created_at": dt.datetime.now(dt.timezone.utc).isoformat(),
                 }
             )
 
