@@ -18,6 +18,8 @@ DEFAULT_OUTPUT_PATH = BASE_DIR / "web" / "src" / "data" / "caves.json"
 DEFAULT_ALIASES_PATH = BASE_DIR / "data" / "cave_aliases.json"
 DEFAULT_GEOMORPHOLOGY_PATH = BASE_DIR / "data" / "geomorphology_regions.json"
 DEFAULT_SMOPAJ_REGISTER_PATH = BASE_DIR / "data" / "smopaj_cave_register_2017.json"
+DEFAULT_SMOPAJ_OVERRIDES_PATH = BASE_DIR / "data" / "smopaj_cave_match_overrides.json"
+DEFAULT_SMOPAJ_AI_MATCHES_PATH = BASE_DIR / "data" / "smopaj_cave_ai_matches.json"
 PDF_LINK_PAGE_OFFSET = 2
 DEFAULT_JOURNAL_ID = "spravodaj_sss"
 DEFAULT_JOURNAL_TITLE = "Spravodaj Slovenskej speleologickej spoločnosti"
@@ -493,6 +495,70 @@ def load_smopaj_cave_register(path: Path) -> dict[str, Any]:
     return data
 
 
+def load_smopaj_cave_match_overrides(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {}
+    data = json.loads(path.read_text(encoding="utf-8"))
+    if not isinstance(data, dict):
+        raise ValueError(f"Invalid SMOPaJ cave match override file: {path}")
+    matches = data.get("matches", [])
+    if matches is not None and not isinstance(matches, list):
+        raise ValueError(f"Invalid SMOPaJ cave match override file: {path}")
+    return data
+
+
+def smopaj_match_identity_keys(match: dict[str, Any]) -> list[str]:
+    key_values: list[str] = []
+    cave_slug = str(match.get("cave_slug") or "").strip()
+    cave_name = str(match.get("cave_name") or "").strip()
+    cave_area = str(match.get("cave_area") or match.get("area") or "").strip()
+    if cave_slug:
+        key_values.extend(smopaj_override_lookup_keys(cave_slug, cave_area))
+    if cave_name:
+        key_values.extend(smopaj_override_lookup_keys(cave_name, cave_area))
+    return sorted({key for key in key_values if key})
+
+
+def merge_smopaj_match_sources(*sources: dict[str, Any] | None) -> dict[str, Any]:
+    """Merge curated and generated SMOPaJ match files.
+
+    Earlier sources win. The first source is treated as manually curated;
+    later sources are treated as generated suggestions unless they specify
+    their own `match_source`.
+    """
+    merged: dict[str, Any] = {
+        "schema_version": "smopaj-cave-match-overrides/v1",
+        "sources": [],
+        "matches": [],
+        "deferred": [],
+    }
+    seen_keys: set[str] = set()
+
+    for index, source in enumerate(sources):
+        if not isinstance(source, dict) or not source:
+            continue
+        source_label = "curated-override" if index == 0 else "ai-generated-override"
+        merged["sources"].extend(source.get("sources") or [])
+        merged["deferred"].extend(source.get("deferred") or [])
+        matches = source.get("matches", [])
+        if not isinstance(matches, list):
+            raise ValueError("Invalid SMOPaJ cave match source: matches must be a list")
+        for match in matches:
+            if not isinstance(match, dict):
+                raise ValueError("Invalid SMOPaJ cave match source entry")
+            identity_keys = smopaj_match_identity_keys(match)
+            if not identity_keys:
+                raise ValueError("Invalid SMOPaJ cave match source entry without cave_slug or cave_name")
+            if any(key in seen_keys for key in identity_keys):
+                continue
+            normalized_match = dict(match)
+            normalized_match.setdefault("match_source", source_label)
+            merged["matches"].append(normalized_match)
+            seen_keys.update(identity_keys)
+
+    return merged
+
+
 def build_alias_lookup(entries: list[dict[str, Any]]) -> dict[str, str]:
     lookup: dict[str, str] = {}
     for entry in entries:
@@ -532,6 +598,90 @@ def build_smopaj_lookup(data: dict[str, Any] | None) -> dict[str, list[dict[str,
     return buckets
 
 
+def build_smopaj_number_lookup(data: dict[str, Any] | None) -> dict[str, dict[str, Any]]:
+    entries = data.get("entries", []) if isinstance(data, dict) else []
+    if not isinstance(entries, list):
+        return {}
+    lookup: dict[str, dict[str, Any]] = {}
+    for entry in entries:
+        if not isinstance(entry, dict):
+            continue
+        cave_number = str(entry.get("cave_number") or "").strip()
+        if cave_number and cave_number not in lookup:
+            lookup[cave_number] = entry
+    return lookup
+
+
+def smopaj_override_base_keys(value: Any) -> list[str]:
+    keys: list[str] = []
+    for key in (slugify(value), normalize_text(value)):
+        if key and key not in keys:
+            keys.append(key)
+    return keys
+
+
+def smopaj_override_lookup_keys(value: Any, cave_area: str = "") -> list[str]:
+    area_slug = slugify(cave_area) if cave_area else ""
+    area_key = normalize_text(cave_area) if cave_area else ""
+    keys: list[str] = []
+    for base_key in smopaj_override_base_keys(value):
+        if area_slug:
+            keys.append(f"{base_key}--{area_slug}")
+            keys.append(f"{base_key}::{area_key}")
+        else:
+            keys.append(base_key)
+    return [key for key in keys if key]
+
+
+def build_smopaj_override_lookup(
+    overrides: dict[str, Any] | None,
+    smopaj_register: dict[str, Any] | None,
+) -> dict[str, dict[str, Any]]:
+    if not overrides:
+        return {}
+    entries_by_number = build_smopaj_number_lookup(smopaj_register)
+    lookup: dict[str, dict[str, Any]] = {}
+    matches = overrides.get("matches", []) if isinstance(overrides, dict) else []
+    if not isinstance(matches, list):
+        raise ValueError("Invalid SMOPaJ cave match overrides: matches must be a list")
+
+    for match in matches:
+        if not isinstance(match, dict):
+            raise ValueError("Invalid SMOPaJ cave match override entry")
+        cave_number = str(match.get("cave_number") or "").strip()
+        if not cave_number:
+            raise ValueError("Invalid SMOPaJ cave match override entry without cave_number")
+        entry = entries_by_number.get(cave_number)
+        if not entry:
+            raise ValueError(f"SMOPaJ cave match override references unknown cave_number: {cave_number}")
+
+        key_values = smopaj_match_identity_keys(match)
+        if not key_values:
+            raise ValueError(f"SMOPaJ cave match override for {cave_number} has no cave_slug or cave_name")
+
+        override = dict(match)
+        override["entry"] = entry
+        for key in {key for key in key_values if key}:
+            existing = lookup.get(key)
+            if existing and str(existing.get("cave_number") or "") != cave_number:
+                raise ValueError(f"Conflicting SMOPaJ cave match override for key: {key}")
+            lookup[key] = override
+    return lookup
+
+
+def resolve_smopaj_override(
+    cave_names: list[str],
+    lookup: dict[str, dict[str, Any]],
+    cave_area: str = "",
+) -> dict[str, Any] | None:
+    for cave_name in unique_strings(cave_names):
+        for key in [*smopaj_override_lookup_keys(cave_name, cave_area), *smopaj_override_lookup_keys(cave_name)]:
+            override = lookup.get(key)
+            if override:
+                return override
+    return None
+
+
 def resolve_smopaj_entry(cave_name: str, lookup: dict[str, list[dict[str, Any]]]) -> dict[str, Any] | None:
     matches: dict[str, dict[str, Any]] = {}
     for key in cave_match_keys(cave_name):
@@ -569,6 +719,23 @@ def unique_smopaj_entry(entries: list[dict[str, Any]]) -> dict[str, Any] | None:
         cave_number = str(entry.get("cave_number") or "").strip()
         if cave_number:
             by_number[cave_number] = entry
+    if len(by_number) != 1:
+        return None
+    return next(iter(by_number.values()))
+
+
+def unique_smopaj_match(matches: list[dict[str, Any]]) -> dict[str, Any] | None:
+    by_number: dict[str, dict[str, Any]] = {}
+    for match in matches:
+        entry = match.get("entry") if isinstance(match, dict) else None
+        if not isinstance(entry, dict):
+            continue
+        cave_number = str(entry.get("cave_number") or "").strip()
+        if not cave_number:
+            continue
+        current = by_number.get(cave_number)
+        if current is None or (not current.get("override") and match.get("override")):
+            by_number[cave_number] = match
     if len(by_number) != 1:
         return None
     return next(iter(by_number.values()))
@@ -762,18 +929,26 @@ def build_cave_index(
     aliases: list[dict[str, Any]] | None = None,
     geomorphology: dict[str, Any] | None = None,
     smopaj_register: dict[str, Any] | None = None,
+    smopaj_overrides: dict[str, Any] | None = None,
 ) -> list[dict[str, Any]]:
     alias_lookup = build_alias_lookup(aliases or [])
     area_region_lookup, cave_region_lookup = build_geomorphology_lookup(geomorphology or {})
     smopaj_lookup = build_smopaj_lookup(smopaj_register or {})
+    smopaj_override_lookup = build_smopaj_override_lookup(smopaj_overrides or {}, smopaj_register or {})
     candidate_rows: list[dict[str, Any]] = []
 
     for article in articles:
         for cave_name in article_cave_candidates(article):
             normalized_name = normalize_cave_candidate_name(cave_name, article)
             canonical_name = canonical_cave_name(normalized_name, alias_lookup)
-            smopaj_entry = resolve_smopaj_entry(canonical_name, smopaj_lookup)
-            if smopaj_entry:
+            candidate_area = infer_cave_area(article, canonical_name)
+            smopaj_override = resolve_smopaj_override(
+                [canonical_name, normalized_name, cave_name],
+                smopaj_override_lookup,
+                candidate_area,
+            )
+            smopaj_entry = smopaj_override["entry"] if smopaj_override else resolve_smopaj_entry(canonical_name, smopaj_lookup)
+            if smopaj_entry and not (smopaj_override and smopaj_override.get("preserve_name")):
                 canonical_name = str(smopaj_entry.get("official_name") or canonical_name).strip() or canonical_name
             if not any(
                 article_mentions_cave(article, name)
@@ -787,7 +962,8 @@ def build_cave_index(
                     "normalized_name": normalized_name,
                     "canonical_name": canonical_name,
                     "smopaj_entry": smopaj_entry,
-                    "area": infer_cave_area(article, canonical_name),
+                    "smopaj_override": smopaj_override,
+                    "area": candidate_area,
                 }
             )
 
@@ -822,10 +998,15 @@ def build_cave_index(
                 "aliases": set(),
                 "articles": [],
                 "area_counts": defaultdict(int),
-                "smopaj_entries": [],
+                "smopaj_matches": [],
             }
         if row["smopaj_entry"]:
-            grouped[key]["smopaj_entries"].append(row["smopaj_entry"])
+            grouped[key]["smopaj_matches"].append(
+                {
+                    "entry": row["smopaj_entry"],
+                    "override": row.get("smopaj_override"),
+                }
+            )
         if area:
             grouped[key]["area_counts"][area] += 1
         if normalize_text(source_name) != normalize_text(canonical_name) and not is_contextual_cave_candidate(source_name):
@@ -863,7 +1044,8 @@ def build_cave_index(
             "authors_count": len(authors),
             "articles": article_rows,
         }
-        smopaj_entry = unique_smopaj_entry(list(cave.get("smopaj_entries") or []))
+        smopaj_match = unique_smopaj_match(list(cave.get("smopaj_matches") or []))
+        smopaj_entry = smopaj_match.get("entry") if smopaj_match else None
         if smopaj_entry:
             cave_item["smopaj_cave_number"] = str(smopaj_entry.get("cave_number") or "").strip()
             if smopaj_entry.get("registry_number"):
@@ -871,6 +1053,13 @@ def build_cave_index(
             official_name = str(smopaj_entry.get("official_name") or "").strip()
             if official_name and normalize_text(official_name) != normalize_text(cave_item["name"]):
                 cave_item["smopaj_official_name"] = official_name
+            smopaj_override = smopaj_match.get("override") if smopaj_match else None
+            if smopaj_override:
+                cave_item["smopaj_match_source"] = str(smopaj_override.get("match_source") or "curated-override")
+                if smopaj_override.get("confidence"):
+                    cave_item["smopaj_match_confidence"] = str(smopaj_override.get("confidence") or "").strip()
+                if smopaj_override.get("note"):
+                    cave_item["smopaj_match_note"] = str(smopaj_override.get("note") or "").strip()
         region = resolve_geomorphology(cave["name"], cave_area, area_region_lookup, cave_region_lookup)
         if not region and smopaj_entry:
             region = region_from_smopaj_entry(smopaj_entry)
@@ -890,6 +1079,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--aliases", type=Path, default=DEFAULT_ALIASES_PATH)
     parser.add_argument("--geomorphology", type=Path, default=DEFAULT_GEOMORPHOLOGY_PATH)
     parser.add_argument("--smopaj-register", type=Path, default=DEFAULT_SMOPAJ_REGISTER_PATH)
+    parser.add_argument("--smopaj-overrides", type=Path, default=DEFAULT_SMOPAJ_OVERRIDES_PATH)
+    parser.add_argument("--smopaj-ai-matches", type=Path, default=DEFAULT_SMOPAJ_AI_MATCHES_PATH)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
     return parser.parse_args()
 
@@ -900,7 +1091,10 @@ def main() -> int:
     aliases = load_cave_aliases(args.aliases)
     geomorphology = load_geomorphology(args.geomorphology)
     smopaj_register = load_smopaj_cave_register(args.smopaj_register)
-    caves = build_cave_index(articles, aliases, geomorphology, smopaj_register)
+    smopaj_overrides = load_smopaj_cave_match_overrides(args.smopaj_overrides)
+    smopaj_ai_matches = load_smopaj_cave_match_overrides(args.smopaj_ai_matches)
+    smopaj_matches = merge_smopaj_match_sources(smopaj_overrides, smopaj_ai_matches)
+    caves = build_cave_index(articles, aliases, geomorphology, smopaj_register, smopaj_matches)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(caves, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     print(
@@ -911,6 +1105,8 @@ def main() -> int:
                 "alias_groups": len(aliases),
                 "geomorphology_regions": sum(1 for cave in caves if cave.get("region")),
                 "smopaj_matches": sum(1 for cave in caves if cave.get("smopaj_cave_number")),
+                "smopaj_curated_matches": sum(1 for cave in caves if cave.get("smopaj_match_source") == "curated-override"),
+                "smopaj_ai_matches": sum(1 for cave in caves if cave.get("smopaj_match_source") == "ai-generated-override"),
             },
             ensure_ascii=False,
             indent=2,

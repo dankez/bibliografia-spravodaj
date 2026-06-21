@@ -143,6 +143,7 @@ Z nich sa generuje `data/smopaj_cave_register_2017.json`:
 
 ```bash
 python3 scripts/import_smopaj_cave_register.py
+python3 scripts/export_smopaj_public_register.py
 python3 scripts/build_cave_index.py
 ```
 
@@ -154,6 +155,72 @@ Oficiálny register sa používa len pri jednoznačnej zhode názvu alebo aliasu
 Ak rovnaký názov mapuje na viac čísiel jaskyne, napríklad `Medvedia jaskyňa`,
 skript mu automaticky nepriradí jedno oficiálne číslo. Také prípady sa ďalej
 delia podľa oblasti alebo riešia kurátorsky.
+
+Verejná časť webu používa samostatný zmenšený index
+`web/public/data/smopaj_cave_register_2017_search.json`. Generuje ho
+`scripts/export_smopaj_public_register.py` z rovnakého oficiálneho JSONu a
+obsahuje všetkých 7329 položiek so základnými poliami: číslo jaskyne, r. č.,
+oficiálny názov, aliasy a geomorfologické členenie. Formulár
+`/nahlasit-chybu/` tento index načíta iba pri type opravy
+`Číslo jaskyne / SMOPaJ`, aby používateľ mohol vyhľadať správnu položku a
+navrhnúť číslo aj pre zatiaľ nespárovanú kartu.
+
+Verejný návrh nikdy nemení dáta priamo. Backend vytvorí GitHub issue s typom
+`smopaj_number`; správca po kontrole doplní potvrdenú väzbu do
+`data/smopaj_cave_match_overrides.json` a spustí `scripts/build_cave_index.py`.
+
+Kurátorované oficiálne zhody sú v `data/smopaj_cave_match_overrides.json`.
+Sú určené pre prípady, kde je identita overená z názvu, anotácie, oblasti alebo
+oficiálneho zoznamu, ale automatická zhoda by bola príliš riziková. Položka môže
+byť viazaná:
+
+- na `cave_slug`, napríklad pádový variant `drienovskej-jaskyne`,
+- na `cave_name`, ak sa má párovať podľa názvu,
+- na kombináciu `cave_name` + `cave_area`, ak rovnaký názov označuje viac jaskýň.
+
+Každé `cave_number` z override súboru sa pri generovaní validuje proti
+`data/smopaj_cave_register_2017.json`. Neexistujúce číslo generovanie zastaví.
+Tým sa dá použiť AI alebo manuálne párovanie bez toho, aby sa do webu ticho
+dostali neplatné čísla.
+
+AI-asistované zhody sú oddelené v `data/smopaj_cave_ai_matches.json`.
+Generuje ich skript `scripts/ai_match_smopaj_caves.py`. Tento súbor sa pri
+generovaní registra pripája až za ručne kurátorované override, takže manuálne
+potvrdené zhody majú vždy prednosť. AI výstup obsahuje aj `deferred` položky,
+kde model alebo kontext nevedel bezpečne vybrať jednu jaskyňu.
+
+Odporúčaný postup pre ďalšie dávky:
+
+```bash
+python3 scripts/ai_match_smopaj_caves.py --backend heuristic --limit 100 --output /tmp/sss-heuristic-queue.json
+python3 scripts/ai_match_smopaj_caves.py --backend codex --codex-model gpt-5.5 --max-candidates 5 --resume --output data/smopaj_cave_ai_matches.json --slug <slug>
+python3 scripts/build_cave_index.py
+```
+
+Ak schema režim Codex CLI padá na app-server alebo sandbox inicializácii, dá sa
+použiť úzky recovery helper pre konkrétne slugs:
+
+```bash
+python3 scripts/confirm_smopaj_matches_direct.py --slug <slug>
+python3 scripts/build_cave_index.py
+```
+
+Helper používa rovnaký kandidátny shortlist, Codex/GPT-5.5 rozhodnutie a
+validáciu `cave_number` proti SMOPaJ kandidátom. Nie je určený na slepé
+spracovanie celého registra, ale na malé overené dávky, kde treba obísť
+nestabilné dlhé volanie.
+
+Lokálny model `gemma4:e2b-it-qat` je použiteľný na hrubý shortlist, ale pri
+testovaní vracal protirečivé rozhodnutia pre kurátorské párovanie. Na zápis do
+produkčného registra sa preto používa iba Codex/GPT-5.5 alebo ručné potvrdenie.
+Pri dlhých dávkach používaj `--resume`; skript po každej spracovanej karte
+zapíše checkpoint do výstupného JSON súboru.
+
+Kurátorské pravidlo Domica: `Domica`, `Baradla`, `Baradla Cave`,
+`Jaskyňa Baradla`, `Jaskynný systém Domica-Baradla` a bibliografická karta
+`Domica - Kľúčová dierka` sa v časovej osi zlučujú pod oficiálnu SMOPaJ jaskyňu
+`Domica` (`3483.1`). `Kľúčová dierka` je v tomto kontexte lokalita výskumu alebo
+objavu v Domici, nie samostatná strážovská jaskyňa s rovnakým názvom.
 
 Na začiatku netreba pokryť celé Slovensko ručne. Praktickejšie je dopĺňať
 kurátorované mapovanie pre lokality, ktoré už spôsobujú chyby v registri:
@@ -185,11 +252,13 @@ automatické zlučovanie.
 2. Otvoriť detail jaskyne a skontrolovať časovú os.
 3. Pri každom nejasnom článku overiť názov, anotáciu a PDF stránku.
 4. Rozhodnúť, či ide o alias tej istej jaskyne alebo o inú jaskyňu.
-5. Alias pridať do aliasového súboru.
-6. Nejednoznačnú jaskyňu zaradiť do oblasti alebo geomorfologického celku.
-7. Spustiť generovanie registra.
-8. Skontrolovať webový register a detailnú časovú os.
-9. Pridať test pre nový problematický prípad.
+5. Jednoduchý alias pridať do `data/cave_aliases.json`.
+6. Overenú oficiálnu zhodu, ktorú automatika nevie bezpečne vybrať, pridať do
+   `data/smopaj_cave_match_overrides.json`.
+7. Nejednoznačnú jaskyňu zaradiť do oblasti alebo geomorfologického celku.
+8. Spustiť generovanie registra.
+9. Skontrolovať webový register a detailnú časovú os.
+10. Pridať test pre nový problematický prípad.
 
 ## Dôležitá zásada
 

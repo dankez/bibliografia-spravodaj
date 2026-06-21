@@ -243,6 +243,7 @@ Generovanie:
 
 ```bash
 python3 scripts/import_smopaj_cave_register.py
+python3 scripts/export_smopaj_public_register.py
 python3 scripts/build_cave_index.py
 ```
 
@@ -258,9 +259,11 @@ Duplicitné alebo pádové varianty názvov jaskýň sa zlučujú cez kurátorov
 
 Nejednoznačné názvy sa nemajú zlučovať naslepo. Ak rovnaký názov označuje rôzne jaskyne v rôznych oblastiach, register ich rozdeľuje podľa oblasti, napríklad pri názve `Medvedia jaskyňa`. Podrobné pravidlá pre aliasy, delenie podľa oblasti a pripravovanú geomorfologickú vrstvu sú v [runbooku registra jaskýň a geomorfologického členenia](docs/REGISTER_JASKYN_A_GEOMORFOLOGIA.md).
 
-Geomorfologické tagy sa načítavajú z `data/geomorphology_regions.json` a z oficiálneho SMOPaJ registra `data/smopaj_cave_register_2017.json`, ktorý sa generuje z textových extraktov v `data/source_text/`. Kurátorovaný súbor má prednosť pri problematických známych prípadoch, oficiálny register dopĺňa číslo jaskyne a geomorfologické zaradenie pri jednoznačnej zhode názvu alebo aliasu.
+Geomorfologické tagy sa načítavajú z `data/geomorphology_regions.json` a z oficiálneho SMOPaJ registra `data/smopaj_cave_register_2017.json`, ktorý sa generuje z textových extraktov v `data/source_text/`. Kurátorované SMOPaJ zhody pre pádové varianty a oblasťovo rozlíšené názvy sú v `data/smopaj_cave_match_overrides.json`; AI-asistované, ale oddelene auditovateľné zhody sú v `data/smopaj_cave_ai_matches.json`. Oficiálny register dopĺňa číslo jaskyne a geomorfologické zaradenie pri jednoznačnej zhode názvu alebo aliasu.
 
-Pri aktuálnom generovaní má webový register 1105 kariet jaskýň/lokalít, 242 z nich má geomorfologický región a 232 má priradené oficiálne SMOPaJ číslo jaskyne. Viacnásobné názvy typu `Medvedia jaskyňa` sa nespájajú naslepo; zostávajú rozdelené podľa oblasti alebo bez oficiálneho čísla, kým nie je zhoda jednoznačná.
+Pre verejný formulár sa z oficiálneho registra generuje zmenšený search index `web/public/data/smopaj_cave_register_2017_search.json`. Obsahuje všetkých 7329 položiek zo zoznamu jaskýň k 31. 12. 2017, ale len polia potrebné na vyhľadanie a navrhnutie čísla jaskyne. Ak karta jaskyne ešte nemá číslo, detail jaskyne ponúkne tlačidlo "Doplniť číslo jaskyne"; návrh sa odošle ako GitHub issue a po kontrole sa zapisuje do `data/smopaj_cave_match_overrides.json`.
+
+Pri aktuálnom generovaní má webový register 1073 kariet jaskýň/lokalít, 267 z nich má geomorfologický región a 262 má priradené oficiálne SMOPaJ číslo jaskyne. Viacnásobné názvy typu `Medvedia jaskyňa` sa nespájajú naslepo; zostávajú rozdelené podľa oblasti alebo bez oficiálneho čísla, kým nie je zhoda jednoznačná.
 
 Pomocný admin režim je dostupný lokálne na:
 

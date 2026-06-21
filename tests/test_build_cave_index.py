@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
@@ -636,9 +638,285 @@ def test_build_cave_index_does_not_auto_assign_official_number_for_ambiguous_smo
     assert "region" not in medvedia
 
 
+def test_build_cave_index_uses_curated_smopaj_override_for_ambiguous_name():
+    articles = [
+        {
+            "id": 1,
+            "title": "Jaskyňa Pustá – pokračovanie prieskumu",
+            "year": 1980,
+            "issue": "1",
+            "pages": "10",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o jaskyni Pustá v systéme Pustá – Psie diery v Demänovskej doline.",
+            "caves": ["Jaskyňa Pustá"],
+            "caves_verified": True,
+        }
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "1509.8",
+                "registry_number": "247",
+                "official_name": "Pustá jaskyňa",
+                "names": ["Pustá jaskyňa", "Psie diery"],
+                "geomorph_celok": "Nízke Tatry",
+                "geomorph_podcelok": "Demänovské vrchy",
+                "geomorph_cast": "",
+            },
+            {
+                "cave_number": "4784",
+                "registry_number": "867",
+                "official_name": "Pustá jaskyňa",
+                "names": ["Pustá jaskyňa"],
+                "geomorph_celok": "Spišsko-gemerský kras",
+                "geomorph_podcelok": "Slovenský raj",
+                "geomorph_cast": "",
+            },
+        ]
+    }
+    smopaj_overrides = {
+        "matches": [
+            {
+                "cave_slug": "jaskyna-pusta",
+                "cave_number": "1509.8",
+                "confidence": "ai-curated-high",
+                "note": "Article context mentions Pustá - Psie diery in Demänovská dolina.",
+            }
+        ]
+    }
+
+    caves = build_cave_index.build_cave_index(
+        articles,
+        smopaj_register=smopaj_register,
+        smopaj_overrides=smopaj_overrides,
+    )
+
+    pusta = next(item for item in caves if item["name"] == "Pustá jaskyňa")
+    assert pusta["smopaj_cave_number"] == "1509.8"
+    assert pusta["smopaj_registry_number"] == "247"
+    assert pusta["smopaj_match_confidence"] == "ai-curated-high"
+    assert pusta["smopaj_match_source"] == "curated-override"
+    assert pusta["region"]["geomorph_unit"] == "Nízke Tatry"
+    assert pusta["aliases"] == ["Jaskyňa Pustá"]
+
+
+def test_build_cave_index_rejects_curated_smopaj_override_with_unknown_number():
+    articles = [
+        {
+            "id": 1,
+            "title": "Jaskyňa Pustá",
+            "year": 1980,
+            "issue": "1",
+            "pages": "10",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o jaskyni Pustá.",
+            "caves": ["Jaskyňa Pustá"],
+            "caves_verified": True,
+        }
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "1509.8",
+                "registry_number": "247",
+                "official_name": "Pustá jaskyňa",
+                "names": ["Pustá jaskyňa"],
+            }
+        ]
+    }
+    smopaj_overrides = {
+        "matches": [
+            {
+                "cave_slug": "jaskyna-pusta",
+                "cave_number": "999999",
+                "confidence": "ai-curated-high",
+            }
+        ]
+    }
+
+    with pytest.raises(ValueError, match="999999"):
+        build_cave_index.build_cave_index(
+            articles,
+            smopaj_register=smopaj_register,
+            smopaj_overrides=smopaj_overrides,
+        )
+
+
+def test_build_cave_index_uses_area_specific_curated_override_for_repeated_cave_name():
+    articles = [
+        {
+            "id": 1,
+            "title": "Medvedia jaskyňa v Stratenskej hornatine",
+            "year": 1964,
+            "issue": "",
+            "pages": "10-36",
+            "authors": ["Janáčik, P."],
+            "abstract": "Príspevok opisuje Medvediu jaskyňu v Stratenskej hornatine v Slovenskom raji.",
+            "caves": ["Medvedia jaskyňa"],
+            "caves_verified": True,
+        },
+        {
+            "id": 2,
+            "title": "Medvedia jaskyňa v Jánskej doline",
+            "year": 1991,
+            "issue": "1",
+            "pages": "13-17",
+            "authors": ["Vajs, J."],
+            "abstract": "Poloha Medvedej jaskyne v Jánskej doline v Nízkych Tatrách.",
+            "caves": ["Medvedia jaskyňa"],
+            "caves_verified": True,
+        },
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "4692",
+                "registry_number": "95",
+                "official_name": "Medvedia jaskyňa",
+                "names": ["Medvedia jaskyňa"],
+                "geomorph_celok": "Spišsko-gemerský kras",
+                "geomorph_podcelok": "Slovenský raj",
+            },
+            {
+                "cave_number": "1810",
+                "registry_number": "360",
+                "official_name": "Medvedia jaskyňa",
+                "names": ["Medvedia jaskyňa", "Zimná jaskyňa"],
+                "geomorph_celok": "Nízke Tatry",
+                "geomorph_podcelok": "Ďumbierske Tatry",
+                "geomorph_cast": "Demänovské vrchy",
+            },
+        ]
+    }
+    smopaj_overrides = {
+        "matches": [
+            {
+                "cave_name": "Medvedia jaskyňa",
+                "cave_area": "Slovenský raj / Stratenská hornatina",
+                "cave_number": "4692",
+                "confidence": "ai-curated-high",
+            },
+            {
+                "cave_name": "Medvedia jaskyňa",
+                "cave_area": "Jánska dolina / Nízke Tatry",
+                "cave_number": "1810",
+                "confidence": "ai-curated-high",
+            },
+        ]
+    }
+
+    caves = build_cave_index.build_cave_index(
+        articles,
+        smopaj_register=smopaj_register,
+        smopaj_overrides=smopaj_overrides,
+    )
+
+    by_area = {item["area"]: item for item in caves if item["name"] == "Medvedia jaskyňa"}
+    assert by_area["Slovenský raj / Stratenská hornatina"]["smopaj_cave_number"] == "4692"
+    assert by_area["Jánska dolina / Nízke Tatry"]["smopaj_cave_number"] == "1810"
+
+
+def test_build_cave_index_merges_ai_smopaj_match_source_after_curated_overrides():
+    manual_overrides = {
+        "matches": [
+            {
+                "cave_slug": "jaskyna-pusta",
+                "cave_number": "1509.8",
+                "confidence": "manual-confirmed-high",
+            }
+        ]
+    }
+    ai_matches = {
+        "matches": [
+            {
+                "cave_slug": "jaskyna-okno",
+                "cave_number": "1519",
+                "confidence": "ai-assisted-high",
+            },
+            {
+                "cave_slug": "jaskyna-pusta",
+                "cave_number": "4784",
+                "confidence": "ai-assisted-high",
+            },
+        ]
+    }
+
+    merged = build_cave_index.merge_smopaj_match_sources(manual_overrides, ai_matches)
+
+    by_slug = {item["cave_slug"]: item for item in merged["matches"]}
+    assert by_slug["jaskyna-pusta"]["cave_number"] == "1509.8"
+    assert by_slug["jaskyna-pusta"]["match_source"] == "curated-override"
+    assert by_slug["jaskyna-okno"]["cave_number"] == "1519"
+    assert by_slug["jaskyna-okno"]["match_source"] == "ai-generated-override"
+
+
+def test_build_cave_index_marks_ai_generated_smopaj_override_source():
+    articles = [
+        {
+            "id": 1,
+            "title": "Jaskyňa Okno v Demänovskej doline",
+            "year": 1980,
+            "issue": "1",
+            "pages": "10",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o jaskyni Okno v Demänovskej doline.",
+            "caves": ["Jaskyňa Okno"],
+            "caves_verified": True,
+        }
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "1519",
+                "registry_number": "1001",
+                "official_name": "Okno",
+                "names": ["Okno", "Jaskyňa Okno"],
+                "geomorph_celok": "Nízke Tatry",
+                "geomorph_podcelok": "Demänovské vrchy",
+            }
+        ]
+    }
+    ai_overrides = build_cave_index.merge_smopaj_match_sources(
+        {},
+        {
+            "matches": [
+                {
+                    "cave_slug": "jaskyna-okno",
+                    "cave_number": "1519",
+                    "confidence": "ai-assisted-high",
+                }
+            ]
+        },
+    )
+
+    caves = build_cave_index.build_cave_index(
+        articles,
+        smopaj_register=smopaj_register,
+        smopaj_overrides=ai_overrides,
+    )
+
+    okno = next(item for item in caves if item["name"] == "Okno")
+    assert okno["smopaj_cave_number"] == "1519"
+    assert okno["smopaj_match_source"] == "ai-generated-override"
+    assert okno["smopaj_match_confidence"] == "ai-assisted-high"
+
+
 def test_current_cave_index_data_is_generated_for_web():
     caves_path = ROOT / "web" / "src" / "data" / "caves.json"
     assert caves_path.exists()
+
+
+def test_current_javorinka_alias_points_to_high_tatras_official_record():
+    import json
+
+    caves_path = ROOT / "web" / "src" / "data" / "caves.json"
+    caves = json.loads(caves_path.read_text(encoding="utf-8"))
+
+    javorinka = next(item for item in caves if item["slug"] == "javorinka")
+    assert javorinka["name"] == "Javorinka"
+    assert "Jaskyňa Javorinka" in javorinka["aliases"]
+    assert javorinka["smopaj_cave_number"] == "5930.1"
+    assert javorinka["region"]["geomorph_part"] == "Vysoké Tatry"
 
 
 def test_current_stratenska_jaskyna_timeline_excludes_known_false_positives():

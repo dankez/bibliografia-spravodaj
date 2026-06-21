@@ -1,4 +1,4 @@
-const ALLOWED_TYPES = new Set(['author', 'title', 'pages', 'pdf', 'map_plan', 'abstract', 'other']);
+const ALLOWED_TYPES = new Set(['author', 'title', 'pages', 'pdf', 'map_plan', 'smopaj_number', 'abstract', 'other']);
 
 const TYPE_LABELS = {
   author: 'Autor',
@@ -6,6 +6,7 @@ const TYPE_LABELS = {
   pages: 'Strany',
   pdf: 'PDF odkaz',
   map_plan: 'Mapa/plán',
+  smopaj_number: 'Číslo jaskyne / SMOPaJ',
   abstract: 'Anotácia',
   other: 'Iné',
 };
@@ -48,6 +49,11 @@ function validatePayload(payload) {
     return { ok: false, status: 400, error: 'Kontaktný email nemá platný formát.' };
   }
 
+  const smopajCaveNumber = cleanText(payload.smopajCaveNumber, 40);
+  if (type === 'smopaj_number' && !/^\d+(?:\.\d+)?$/.test(smopajCaveNumber)) {
+    return { ok: false, status: 400, error: 'Číslo jaskyne zo zoznamu SMOPaJ nemá platný formát.' };
+  }
+
   return {
     ok: true,
     data: {
@@ -57,6 +63,11 @@ function validatePayload(payload) {
       articleId: cleanText(payload.articleId, 40),
       articleTitle: cleanText(payload.articleTitle, 260),
       articleUrl: cleanText(payload.articleUrl, 500),
+      caveName: cleanText(payload.caveName, 260),
+      caveSlug: cleanText(payload.caveSlug, 160),
+      smopajCaveNumber,
+      smopajCaveSearch: cleanText(payload.smopajCaveSearch, 260),
+      smopajCaveLabel: cleanText(payload.smopajCaveLabel, 500),
       turnstileToken: cleanText(payload.turnstileToken, 3000),
     },
   };
@@ -93,6 +104,11 @@ function issueBody(data, request) {
     `- Článok ID: ${data.articleId || 'neuvedené'}`,
     `- Názov: ${data.articleTitle || 'neuvedené'}`,
     `- URL: ${data.articleUrl || request.headers.get('Referer') || 'neuvedené'}`,
+    `- Karta jaskyne: ${data.caveName || 'neuvedené'}`,
+    `- Slug jaskyne: ${data.caveSlug || 'neuvedené'}`,
+    `- Návrh čísla jaskyne SMOPaJ: ${data.smopajCaveNumber || 'neuvedené'}`,
+    `- Vybraná položka zo zoznamu: ${data.smopajCaveLabel || 'neuvedené'}`,
+    `- Hľadaný text v zozname: ${data.smopajCaveSearch || 'neuvedené'}`,
     `- Kontakt: ${data.email || 'neuvedený'}`,
     '',
     'Popis:',
@@ -109,7 +125,12 @@ async function createGithubIssue(env, data, request) {
     return { ok: false, status: 503, error: 'Prijímanie opráv nie je nakonfigurované.' };
   }
 
-  const titleTarget = data.articleId ? `#${data.articleId}` : data.articleTitle || 'bez čísla článku';
+  const titleTarget =
+    data.type === 'smopaj_number'
+      ? `${data.caveName || data.caveSlug || 'karta jaskyne'} -> ${data.smopajCaveNumber}`
+      : data.articleId
+        ? `#${data.articleId}`
+        : data.articleTitle || 'bez čísla článku';
   const payload = {
     title: `[errata] ${TYPE_LABELS[data.type] || data.type}: ${titleTarget}`,
     body: issueBody(data, request),

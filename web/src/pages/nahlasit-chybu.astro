@@ -4,6 +4,7 @@ import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 const endpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-report';
+const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
 ---
 
 <Layout title="Našiel som chybu — Spravodaj SSS">
@@ -46,6 +47,7 @@ const endpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-rep
               <option value="pages">Strany</option>
               <option value="pdf">PDF odkaz</option>
               <option value="map_plan">Mapa/plán</option>
+              <option value="smopaj_number">Číslo jaskyne / SMOPaJ</option>
               <option value="abstract">Anotácia</option>
               <option value="other">Iné</option>
             </select>
@@ -61,6 +63,37 @@ const endpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-rep
           <span>Odkaz na stránku článku</span>
           <input id="article-url" name="articleUrl" type="url" autocomplete="off" />
         </label>
+
+        <div class="grid gap-4 sm:grid-cols-2">
+          <label class="report-field">
+            <span>Jaskyňa / lokalita</span>
+            <input id="cave-name" name="caveName" type="text" autocomplete="off" />
+          </label>
+          <label class="report-field">
+            <span>Slug karty jaskyne</span>
+            <input id="cave-slug" name="caveSlug" type="text" autocomplete="off" />
+          </label>
+        </div>
+
+        <section id="smopaj-number-panel" class="report-smopaj-panel" data-register-url={smopajRegisterUrl} hidden>
+          <div>
+            <h3 class="font-display text-lg font-bold text-belly-black-brown">Oficiálne číslo zo zoznamu SMOPaJ</h3>
+            <p class="mt-1 text-sm leading-relaxed text-belly-dimgray">
+              Vyhľadaj jaskyňu v zozname k 31. 12. 2017 a vyber správne číslo. Návrh pôjde správcovi na kontrolu.
+            </p>
+          </div>
+          <label class="report-field">
+            <span>Hľadať v oficiálnom zozname</span>
+            <input id="smopaj-cave-search" name="smopajCaveSearch" type="search" autocomplete="off" placeholder="Napr. Domica, Baradla, Medvedia..." />
+          </label>
+          <div id="smopaj-search-results" class="smopaj-search-results" aria-live="polite"></div>
+          <label class="report-field">
+            <span>Navrhované číslo jaskyne</span>
+            <input id="smopaj-cave-number" name="smopajCaveNumber" type="text" inputmode="decimal" autocomplete="off" placeholder="Napr. 3483.1" />
+          </label>
+          <input id="smopaj-cave-label" name="smopajCaveLabel" type="hidden" />
+          <p id="smopaj-match-preview" class="report-smopaj-preview">Zoznam sa načíta pri výbere tohto typu opravy.</p>
+        </section>
 
         <label class="report-field">
           <span>Čo treba opraviť</span>
@@ -100,12 +133,30 @@ const endpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-rep
     const form = document.getElementById('error-report-form');
     const status = document.getElementById('error-report-status');
     const params = new URLSearchParams(window.location.search);
+    const typeSelect = form?.querySelector('select[name="type"]');
+    const messageField = form?.querySelector('textarea[name="message"]');
+    const smopajPanel = document.getElementById('smopaj-number-panel');
+    const smopajSearch = document.getElementById('smopaj-cave-search');
+    const smopajResults = document.getElementById('smopaj-search-results');
+    const smopajNumber = document.getElementById('smopaj-cave-number');
+    const smopajLabel = document.getElementById('smopaj-cave-label');
+    const smopajPreview = document.getElementById('smopaj-match-preview');
+    let smopajEntries = [];
+    let smopajLoaded = false;
 
     document.getElementById('article-id').value = params.get('article') || '';
     document.getElementById('article-title').value = params.get('title') || '';
     document.getElementById('article-url').value = params.get('url')
       ? new URL(params.get('url'), window.location.origin).toString()
       : document.referrer || '';
+    document.getElementById('cave-name').value = params.get('caveName') || '';
+    document.getElementById('cave-slug').value = params.get('cave') || '';
+    if (params.get('type')) {
+      typeSelect.value = params.get('type');
+    }
+    if (params.get('smopajNumber')) {
+      smopajNumber.value = params.get('smopajNumber');
+    }
 
     window.onTurnstileSuccess = (token) => {
       document.getElementById('turnstile-token').value = token;
@@ -117,8 +168,138 @@ const endpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-rep
       status.classList.toggle('text-belly-dimgray', !isError);
     }
 
+    function normalizeText(value) {
+      return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLocaleLowerCase('sk');
+    }
+
+    function formatSmopajEntry(entry) {
+      const geomorphology = [entry.geomorph_celok, entry.geomorph_podcelok, entry.geomorph_cast].filter(Boolean).join(' / ');
+      return `${entry.cave_number} — ${entry.official_name}${geomorphology ? ` (${geomorphology})` : ''}`;
+    }
+
+    function findSmopajEntry(number) {
+      const wanted = String(number || '').trim();
+      return smopajEntries.find((entry) => String(entry.cave_number || '') === wanted);
+    }
+
+    async function loadSmopajRegister() {
+      if (smopajLoaded) return;
+      smopajPreview.textContent = 'Načítavam oficiálny zoznam jaskýň...';
+      const response = await fetch(smopajPanel.dataset.registerUrl, { headers: { Accept: 'application/json' } });
+      const payload = await response.json();
+      smopajEntries = Array.isArray(payload.entries) ? payload.entries : [];
+      smopajLoaded = true;
+      smopajPreview.textContent = `Načítaných ${smopajEntries.length} oficiálnych položiek zo zoznamu SMOPaJ.`;
+      updateSmopajPreview();
+    }
+
+    function renderSmopajResults() {
+      if (!smopajLoaded) return;
+      const query = normalizeText(smopajSearch.value.trim());
+      smopajResults.replaceChildren();
+      if (query.length < 2) {
+        smopajResults.textContent = 'Zadaj aspoň 2 znaky názvu alebo čísla.';
+        return;
+      }
+      const matches = smopajEntries
+        .filter((entry) => {
+          const haystack = normalizeText([
+            entry.cave_number,
+            entry.official_name,
+            ...(entry.names || []),
+            entry.geomorph_celok,
+            entry.geomorph_podcelok,
+            entry.geomorph_cast,
+          ].join(' '));
+          return haystack.includes(query);
+        })
+        .slice(0, 8);
+      if (!matches.length) {
+        smopajResults.textContent = 'Nenašla sa zhoda v oficiálnom zozname.';
+        return;
+      }
+      const fragment = document.createDocumentFragment();
+      matches.forEach((entry) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'smopaj-result-button';
+        button.dataset.caveNumber = entry.cave_number;
+        button.textContent = formatSmopajEntry(entry);
+        button.addEventListener('click', () => {
+          smopajNumber.value = entry.cave_number;
+          smopajLabel.value = formatSmopajEntry(entry);
+          updateSmopajPreview();
+          syncSmopajMessage();
+        });
+        fragment.append(button);
+      });
+      smopajResults.append(fragment);
+    }
+
+    function updateSmopajPreview() {
+      if (!smopajLoaded) return;
+      const entry = findSmopajEntry(smopajNumber.value);
+      if (!String(smopajNumber.value || '').trim()) {
+        smopajLabel.value = '';
+        smopajPreview.textContent = `Načítaných ${smopajEntries.length} oficiálnych položiek zo zoznamu SMOPaJ.`;
+        return;
+      }
+      if (!entry) {
+        smopajLabel.value = '';
+        smopajPreview.textContent = 'Toto číslo som nenašiel v načítanom zozname. Skontroluj ho pred odoslaním.';
+        return;
+      }
+      const label = formatSmopajEntry(entry);
+      smopajLabel.value = label;
+      smopajPreview.textContent = `Vybrané: ${label}`;
+    }
+
+    function syncSmopajMessage() {
+      if (typeSelect.value !== 'smopaj_number') return;
+      const caveName = document.getElementById('cave-name').value.trim() || 'táto karta jaskyne';
+      const caveSlug = document.getElementById('cave-slug').value.trim();
+      const number = smopajNumber.value.trim();
+      if (!number) return;
+      if (messageField.value.trim() && messageField.dataset.autogenerated !== '1') return;
+      const label = smopajLabel.value.trim() || `číslo ${number}`;
+      messageField.value = `Navrhujem priradiť kartu "${caveName}"${caveSlug ? ` (${caveSlug})` : ''} k oficiálnej položke SMOPaJ: ${label}.`;
+      messageField.dataset.autogenerated = '1';
+    }
+
+    async function syncTypeSpecificUi() {
+      const isSmopajNumber = typeSelect.value === 'smopaj_number';
+      smopajPanel.hidden = !isSmopajNumber;
+      if (!isSmopajNumber) return;
+      try {
+        await loadSmopajRegister();
+        renderSmopajResults();
+      } catch {
+        smopajPreview.textContent = 'Oficiálny zoznam sa nepodarilo načítať. Číslo môžeš zadať ručne.';
+      }
+    }
+
+    typeSelect?.addEventListener('change', syncTypeSpecificUi);
+    smopajSearch?.addEventListener('input', async () => {
+      await syncTypeSpecificUi();
+      renderSmopajResults();
+    });
+    smopajNumber?.addEventListener('input', () => {
+      updateSmopajPreview();
+      syncSmopajMessage();
+    });
+    messageField?.addEventListener('input', () => {
+      if (messageField.dataset.autogenerated === '1') {
+        messageField.dataset.autogenerated = '0';
+      }
+    });
+    syncTypeSpecificUi();
+
     form?.addEventListener('submit', async (event) => {
       event.preventDefault();
+      syncSmopajMessage();
       const data = Object.fromEntries(new FormData(form).entries());
       setStatus('Odosielam...');
 

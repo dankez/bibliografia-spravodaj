@@ -30,6 +30,8 @@ const formatAuthorsDisplay = (authors) => {
   if (authors.length === 2) return `${authors[0]} a ${authors[1]}`;
   return `${authors.slice(0, -1).join(', ')} a ${authors[authors.length - 1]}`;
 };
+const caveDetailUrl = `/jaskyne/${cave.slug}/`;
+const smopajNumberReportUrl = `/nahlasit-chybu/?type=smopaj_number&cave=${encodeURIComponent(cave.slug)}&caveName=${encodeURIComponent(cave.name)}&url=${encodeURIComponent(caveDetailUrl)}`;
 ---
 
 <Layout title={`${cave.name}${cave.area ? ` (${cave.area})` : ''} — časová os článkov`}>
@@ -64,6 +66,11 @@ const formatAuthorsDisplay = (authors) => {
           <ThemeSwitcher />
           <a href="/jaskyne/" class="bibliography-link-button">Register jaskýň</a>
           <a href="/" class="bibliography-link-button">Hlavný archív</a>
+          {!cave.smopaj_cave_number && (
+            <a href={smopajNumberReportUrl} class="bibliography-link-button bibliography-link-button-primary">
+              Doplniť číslo jaskyne
+            </a>
+          )}
         </div>
       </div>
     </header>
@@ -107,6 +114,13 @@ const formatAuthorsDisplay = (authors) => {
             {region.geomorph_parent ? ` / ${region.geomorph_parent}` : ''}
             {region.geomorph_subunit ? ` / ${region.geomorph_subunit}` : ''}
             {region.geomorph_part ? ` / ${region.geomorph_part}` : ''}
+          </p>
+        )}
+        {!cave.smopaj_cave_number && (
+          <p class="mt-3 text-sm leading-relaxed text-belly-dimgray">
+            Táto karta ešte nemá priradené oficiálne číslo jaskyne. Ak ho poznáš zo zoznamu SMOPaJ, môžeš ho navrhnúť na doplnenie.
+            {' '}
+            <a class="font-bold text-belly-firebrick underline" href={smopajNumberReportUrl}>Doplniť číslo jaskyne</a>
           </p>
         )}
       </section>

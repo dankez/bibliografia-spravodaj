@@ -1,0 +1,211 @@
+{
+  "schema_version": "smopaj-cave-match-overrides/v1",
+  "description": "AI-assisted curated matches for cave register records whose bibliographic name is inflected, abbreviated, translated or context-dependent. The target cave_number must exist in the official SMOPaJ cave register import.",
+  "sources": [
+    {
+      "title": "Codex GPT-5.5-style review of unmatched cave register cards",
+      "date": "2026-06-21",
+      "note": "Only high-confidence links were accepted. Ambiguous cards were deferred for manual or deeper contextual review."
+    }
+  ],
+  "matches": [
+    {
+      "cave_slug": "demanovske-jaskyne",
+      "cave_number": "1509",
+      "confidence": "ai-curated-high",
+      "note": "Bibliographic group name for the Demänovské jaskyne cave system; canonical official parent record is Demänovský jaskynný systém."
+    },
+    {
+      "cave_slug": "jaskyna-slobody",
+      "cave_number": "1509.2",
+      "confidence": "ai-curated-high",
+      "note": "Short form used in article titles and abstracts for Demänovská jaskyňa slobody."
+    },
+    {
+      "cave_slug": "dobsina-ice-cave",
+      "cave_number": "4503",
+      "confidence": "ai-curated-high",
+      "note": "English Aragonit records explicitly refer to Dobšinská ľadová jaskyňa."
+    },
+    {
+      "cave_slug": "ardovskej-jaskyne",
+      "cave_number": "3449",
+      "confidence": "ai-curated-high",
+      "note": "Genitive bibliographic form of Ardovská jaskyňa."
+    },
+    {
+      "cave_slug": "drienovskej-jaskyni",
+      "cave_number": "3070",
+      "confidence": "ai-curated-high",
+      "note": "Inflected bibliographic form of Drienovská jaskyňa."
+    },
+    {
+      "cave_slug": "drienovskej-jaskyne",
+      "cave_number": "3070",
+      "confidence": "ai-curated-high",
+      "note": "Genitive bibliographic form of Drienovská jaskyňa."
+    },
+    {
+      "cave_slug": "ladzianskeho-jaskyni",
+      "cave_number": "4142",
+      "confidence": "ai-curated-high",
+      "note": "Inflected title form of Ladzianskeho jaskyňa."
+    },
+    {
+      "cave_slug": "ladzianskeho-jaskyne",
+      "cave_number": "4142",
+      "confidence": "ai-curated-high",
+      "note": "Genitive bibliographic form of Ladzianskeho jaskyňa."
+    },
+    {
+      "cave_slug": "pruzinskej-dupnej-jaskyne",
+      "cave_number": "5513",
+      "confidence": "ai-curated-high",
+      "note": "Genitive bibliographic form of Pružinská Dúpna jaskyňa."
+    },
+    {
+      "cave_slug": "pruzinskej-dupnej-jaskyni",
+      "cave_number": "5513",
+      "confidence": "ai-curated-high",
+      "note": "Locative bibliographic form of Pružinská Dúpna jaskyňa."
+    },
+    {
+      "cave_slug": "jaskyna-pruzinska-dupna",
+      "cave_number": "5513",
+      "confidence": "ai-curated-high",
+      "note": "Reversed title form of Pružinská Dúpna jaskyňa."
+    },
+    {
+      "cave_slug": "pruzinske-dupne-jeskyne",
+      "cave_number": "5513",
+      "confidence": "ai-curated-high",
+      "note": "Czech bibliographic title form of Pružinská Dúpna jaskyňa."
+    },
+    {
+      "cave_slug": "jaskyna-medvedia-ii",
+      "cave_number": "951",
+      "confidence": "ai-curated-high",
+      "note": "Article context places the cave in Vrátna dolina / Malá Fatra, matching official Medvedia jaskyňa II."
+    },
+    {
+      "cave_name": "Medvedia jaskyňa",
+      "cave_area": "Slovenský raj / Stratenská hornatina",
+      "cave_number": "4692",
+      "confidence": "ai-curated-high",
+      "note": "Article context repeatedly places this Medvedia jaskyňa in Stratenská hornatina / Slovenský raj; official record 4692 is k. ú. Letanovce, Slovenský raj."
+    },
+    {
+      "cave_name": "Medvedia jaskyňa",
+      "cave_area": "Jánska dolina / Nízke Tatry",
+      "cave_number": "1810",
+      "confidence": "ai-curated-high",
+      "note": "Article context places this Medvedia jaskyňa in Jánska dolina; official record 1810 is k. ú. Liptovský Ján and alias Zimná jaskyňa."
+    },
+    {
+      "cave_slug": "modra-jaskyna",
+      "cave_number": "1819",
+      "confidence": "ai-curated-high",
+      "note": "Article context points to Malužinský kras and Bocianska dolina in Nízke Tatry, not the Muránska planina cave with the same name."
+    },
+    {
+      "cave_slug": "majkova-jaskyna",
+      "cave_number": "1343.2",
+      "confidence": "ai-curated-high",
+      "note": "Article context points to Malé Karpaty, selecting the Malé Karpaty Majkova jaskyňa rather than the Slovenský kras record."
+    },
+    {
+      "cave_slug": "javorova-priepast",
+      "cave_number": "1713",
+      "confidence": "ai-curated-high",
+      "note": "Article context mentions Krakova hoľa / Nízke Tatry, selecting the Nízke Tatry Javorová priepasť."
+    },
+    {
+      "cave_slug": "jaskyna-pusta",
+      "cave_number": "1509.8",
+      "confidence": "ai-curated-high",
+      "note": "Article context mentions Pustá - Psie diery and the Demänovský cave system, selecting Pustá jaskyňa in Nízke Tatry."
+    },
+    {
+      "cave_slug": "jaskyna-sokolova",
+      "cave_number": "1953",
+      "confidence": "ai-curated-high",
+      "note": "Article context mentions Jánska dolina / Nízke Tatry, selecting official Sokolová in Nízke Tatry."
+    },
+    {
+      "cave_slug": "sokolova-jaskyna",
+      "cave_number": "1953",
+      "confidence": "ai-curated-high",
+      "note": "Adjectival bibliographic form of Sokolová in Nízke Tatry."
+    },
+    {
+      "cave_slug": "krystalova-jaskyna",
+      "cave_number": "995",
+      "confidence": "ai-curated-high",
+      "note": "Article context mentions Malý Rozsutec, selecting official Kryštálová jaskyňa in Malá Fatra / Rozsutce."
+    },
+    {
+      "cave_slug": "domica-baradla",
+      "cave_number": "3483.1",
+      "confidence": "manual-confirmed-high",
+      "note": "User confirmed Domica == Baradla in bibliographic context; Baradla is the Hungarian-side/name context, while the Slovak SMOPaJ cave record is Domica."
+    },
+    {
+      "cave_slug": "baradla",
+      "cave_number": "3483.1",
+      "confidence": "manual-confirmed-high",
+      "note": "User confirmed Baradla should be treated as Domica in this bibliography."
+    },
+    {
+      "cave_slug": "baradla-cave",
+      "cave_number": "3483.1",
+      "confidence": "manual-confirmed-high",
+      "note": "English bibliographic form of Baradla; user confirmed it belongs under Domica."
+    },
+    {
+      "cave_slug": "jaskyna-baradla",
+      "cave_number": "3483.1",
+      "confidence": "manual-confirmed-high",
+      "note": "Bibliographic form Jaskyňa Baradla is grouped under Domica per user confirmation."
+    },
+    {
+      "cave_slug": "jaskynny-system-domica-baradla",
+      "cave_number": "3483.1",
+      "confidence": "manual-confirmed-high",
+      "note": "Bibliographic Domica-Baradla system records are grouped under the Slovak SMOPaJ cave Domica for the cave timeline."
+    },
+    {
+      "cave_slug": "domica-klucova-dierka",
+      "cave_number": "3483.1",
+      "confidence": "manual-confirmed-high",
+      "note": "User confirmed Kľúčová dierka is the locality/context of research or discovery in Domica, not the separate SMOPaJ cave Kľúčová dierka."
+    },
+    {
+      "cave_slug": "javorinka",
+      "cave_number": "5930.1",
+      "confidence": "manual-confirmed-high",
+      "note": "User confirmed Javorinka equals bibliographic Jaskyňa Javorinka; article context places it in Vysoké Tatry / Javorová dolina, matching official child record 5930.1, not the Ždiar cave 5842."
+    }
+  ],
+  "deferred": [
+    {
+      "cave_slug": "jaskyna-okno",
+      "reason": "Several official Okno records exist. Article context suggests Demänovská dolina, but the exact official record still needs verification."
+    },
+    {
+      "cave_slug": "jaskyna-stefanova",
+      "reason": "Likely linked to Štefanová 1 in Demänovská dolina, but the bibliographic card may represent a broader local name."
+    },
+    {
+      "cave_slug": "dracia-jaskyna",
+      "reason": "The current card appears to mix Dračia jaskyňa with the Dračia jaskyňa alias of Demänovská ľadová jaskyňa."
+    },
+    {
+      "cave_slug": "diablova-diera",
+      "reason": "The card mixes Branisko and Javorníky contexts and also possible ponor/vyvieračka records."
+    },
+    {
+      "cave_slug": "jazvecia-jaskyna",
+      "reason": "The card mixes at least Dubná skala / Malá Fatra and Dobšinsko-stratenský system contexts."
+    }
+  ]
+}

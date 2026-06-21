@@ -4,6 +4,7 @@
 from __future__ import annotations
 
 import json
+import re
 import shutil
 import sys
 import subprocess
@@ -28,6 +29,25 @@ AUTH_ERROR_MARKERS = (
     "session has ended",
     "Please log out and sign in again",
 )
+APP_SERVER_ERROR_MARKERS = (
+    "failed to initialize in-process app-server client",
+    "could not create PATH aliases",
+    "Read-only file system",
+)
+
+
+def extract_json_object(text: str) -> dict[str, Any]:
+    """Extract a JSON object from a Codex text response."""
+    raw = text.strip()
+    if raw.startswith("```"):
+        raw = re.sub(r"^```(?:json)?\s*|\s*```$", "", raw, flags=re.IGNORECASE | re.DOTALL).strip()
+    try:
+        return json.loads(raw)
+    except json.JSONDecodeError:
+        match = re.search(r"\{.*\}", raw, flags=re.DOTALL)
+        if not match:
+            raise
+        return json.loads(match.group(0))
 
 
 def run_codex_json(prompt: str, schema: dict[str, Any], model: str, timeout: int = 300) -> dict[str, Any]:
@@ -74,7 +94,7 @@ def run_codex_json(prompt: str, schema: dict[str, Any], model: str, timeout: int
             stdout=subprocess.PIPE,
             stderr=subprocess.PIPE,
             text=True,
-            cwd=tmp_path,
+            cwd=Path.cwd(),
         )
         assert process.stdin is not None
         process.stdin.write(prompt)
@@ -109,6 +129,55 @@ def run_codex_json(prompt: str, schema: dict[str, Any], model: str, timeout: int
                     "Codex auth failed. Run `codex logout && codex login`, then verify with "
                     "`codex exec --skip-git-repo-check --ephemeral \"Return ok\"`."
                 )
+            if any(marker.lower() in stderr.lower() for marker in APP_SERVER_ERROR_MARKERS):
+                fallback_prompt = prompt + "\n\nReturn only one valid JSON object."
+                fallback_cmd = [
+                    *codex_cmd,
+                    "exec",
+                    "--skip-git-repo-check",
+                    "--ephemeral",
+                    "--sandbox",
+                    "workspace-write",
+                    "--color",
+                    "never",
+                    "--model",
+                    model,
+                    "-o",
+                    str(output_path),
+                    fallback_prompt,
+                ]
+                fallback_process = subprocess.Popen(
+                    fallback_cmd,
+                    stdin=subprocess.DEVNULL,
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                    cwd=Path.cwd(),
+                )
+                fallback_started = time.monotonic()
+                fallback_last_heartbeat = fallback_started
+                while fallback_process.poll() is None:
+                    now = time.monotonic()
+                    if now - fallback_started > timeout:
+                        fallback_process.kill()
+                        fallback_process.wait()
+                        raise CodexBackendError(f"codex exec fallback timed out after {timeout}s")
+                    if now - fallback_last_heartbeat >= 20:
+                        print(f"  codex backend fallback still running ({int(now - fallback_started)}s)", file=sys.stderr, flush=True)
+                        fallback_last_heartbeat = now
+                    time.sleep(1)
+                fallback_stdout = fallback_process.stdout.read() if fallback_process.stdout is not None else ""
+                fallback_stderr = fallback_process.stderr.read() if fallback_process.stderr is not None else ""
+                if fallback_process.returncode != 0:
+                    fallback_error = (fallback_stderr or fallback_stdout or "").strip()
+                    raise CodexBackendError(f"codex exec fallback failed with code {fallback_process.returncode}: {fallback_error[-1200:]}")
+                fallback_raw = output_path.read_text(encoding="utf-8").strip() if output_path.exists() else ""
+                if not fallback_raw:
+                    fallback_raw = fallback_stdout.strip()
+                try:
+                    return extract_json_object(fallback_raw)
+                except json.JSONDecodeError as exc:
+                    raise CodexBackendError(f"codex exec fallback returned invalid JSON: {fallback_raw[:1200]}") from exc
             raise CodexBackendError(f"codex exec failed with code {result.returncode}: {stderr[-1200:]}")
 
         raw = output_path.read_text(encoding="utf-8").strip() if output_path.exists() else ""
@@ -118,6 +187,6 @@ def run_codex_json(prompt: str, schema: dict[str, Any], model: str, timeout: int
             raise CodexBackendError("codex exec returned an empty response")
 
         try:
-            return json.loads(raw)
+            return extract_json_object(raw)
         except json.JSONDecodeError as exc:
             raise CodexBackendError(f"codex exec returned invalid JSON: {raw[:1200]}") from exc

@@ -1,4 +1,5 @@
 from pathlib import Path
+import json
 
 ROOT = Path(__file__).resolve().parents[1]
 
@@ -47,6 +48,8 @@ def test_cave_timeline_shows_publication_and_alternates_sides():
     assert "cave-timeline-item:nth-child(odd)" in css_source
     assert "cave-timeline-item:nth-child(even)" in css_source
     assert "@media (max-width: 767px)" in css_source
+    assert "Doplniť číslo jaskyne" in detail_source
+    assert "smopaj_number" in detail_source
 
 
 def test_cave_register_cards_show_official_smopaj_cave_number():
@@ -122,6 +125,24 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
     assert "Našiel som chybu" in detail_source
     assert "cf-turnstile" in form_source
     assert "turnstileToken" in backend_source
+    assert "smopaj_number" in form_source
+    assert "smopaj_number" in backend_source
+    assert "smopaj_cave_register_2017_search.json" in form_source
+    assert "smopajCaveNumber" in backend_source
+    assert "Číslo jaskyne / SMOPaJ" in backend_source
     assert "GITHUB_TOKEN" in backend_source
     assert "sk-" not in backend_source
     assert "ghp_" not in backend_source
+
+
+def test_public_smopaj_cave_register_search_index_contains_official_numbers():
+    public_register = ROOT / "web" / "public" / "data" / "smopaj_cave_register_2017_search.json"
+
+    assert public_register.exists()
+    payload = json.loads(public_register.read_text(encoding="utf-8"))
+    assert payload["schema_version"] == "smopaj-cave-public-search/v1"
+    assert payload["stats"]["entries"] == 7329
+    by_number = {entry["cave_number"]: entry for entry in payload["entries"]}
+    assert by_number["3483.1"]["official_name"] == "Domica"
+    assert by_number["3483.1"]["geomorph_celok"] == "Slovenský kras"
+    assert "Baradla" in by_number["3483.1"]["names"]
