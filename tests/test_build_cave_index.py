@@ -281,6 +281,266 @@ def test_build_cave_index_filters_title_fragments_that_are_not_cave_names():
     assert "Dojmy z návštevy jaskyne" not in names
 
 
+def test_build_cave_index_filters_common_loose_extraction_false_positives():
+    articles = [
+        {
+            "id": 1,
+            "title": "Nakreslite si jaskyňu axonometricky",
+            "year": 1981,
+            "issue": "4",
+            "pages": "44",
+            "authors": ["Novák, J."],
+            "abstract": "Program axonometrického znázornenia jaskyne pre dokumentáciu.",
+            "caves": [],
+        },
+        {
+            "id": 2,
+            "title": "Objavili nám novú jaskyňu",
+            "year": 1989,
+            "issue": "1",
+            "pages": "60",
+            "authors": ["Novák, J."],
+            "abstract": "Mýlna informácia ďalekopisu o objave jaskyne bez uvedenia vlastného názvu.",
+            "caves": [],
+        },
+        {
+            "id": 3,
+            "title": "Rekonštrukcia uzáveru jaskyne Zlá diera",
+            "year": 1996,
+            "issue": "3",
+            "pages": "20",
+            "authors": ["Novák, J."],
+            "abstract": "Oprava uzáveru jaskyne a technické poznámky k zabezpečeniu vchodu.",
+            "caves": [],
+        },
+        {
+            "id": 4,
+            "title": "Oneskorený príbeh objavu jaskyne Šoldovo vo Važeckom krase",
+            "year": 2024,
+            "issue": "4",
+            "pages": "80",
+            "authors": ["Novák, J."],
+            "abstract": "Oneskorený príbeh objavu jaskyne Šoldovo.",
+            "caves": [],
+        },
+        {
+            "id": 5,
+            "title": "Jama Baredine",
+            "year": 2007,
+            "issue": "3",
+            "pages": "55",
+            "authors": ["Novák, J."],
+            "abstract": "Návšteva sprístupnenej jaskyne v Chorvátsku.",
+            "caves": [],
+        },
+    ]
+
+    caves = build_cave_index.build_cave_index(articles)
+    names = {item["name"] for item in caves}
+
+    assert "Jaskyňa Zlá diera" in names
+    assert "Jaskyňa Šoldovo" in names
+    assert "Baredine" in names
+    assert "Nakreslite si jaskyňu" not in names
+    assert "Program axonometrického znázornenia jaskyne" not in names
+    assert "Objavili nám novú jaskyňu" not in names
+    assert "Mylná informácia ďalekopisu o objave jaskyne" not in names
+    assert "Rekonštrukcia uzáveru jaskyne Zlá diera" not in names
+    assert "Oprava uzáveru jaskyne" not in names
+    assert "Oneskorený príbeh objavu jaskyne" not in names
+    assert "Návšteva sprístupnenej jaskyne" not in names
+
+
+def test_build_cave_index_keeps_verified_plural_or_group_cave_names():
+    articles = [
+        {
+            "id": 1,
+            "title": "Jaskyne na Stodôlke v Demänovskej doline",
+            "year": 1995,
+            "issue": "1",
+            "pages": "10",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o jaskyniach na Stodôlke.",
+            "caves": ["Jaskyne na Stodôlke"],
+            "caves_verified": True,
+        },
+        {
+            "id": 2,
+            "title": "K problematike Dračích jaskýň Demänovskej doliny",
+            "year": 2004,
+            "issue": "2",
+            "pages": "20",
+            "authors": ["Novák, J."],
+            "abstract": "Výskum Dračích jaskýň.",
+            "caves": ["Dračie jaskyne"],
+            "caves_verified": True,
+        },
+        {
+            "id": 3,
+            "title": "Kryštály kalcitu v Kalcitových jaskyniach 1 a 2",
+            "year": 2008,
+            "issue": "3",
+            "pages": "30",
+            "authors": ["Novák, J."],
+            "abstract": "Výskum Kalcitových jaskýň 1 a 2 na Poludnici.",
+            "caves": ["Kalcitové jaskyne 1 a 2"],
+            "caves_verified": True,
+        },
+    ]
+
+    caves = build_cave_index.build_cave_index(articles)
+    names = {item["name"] for item in caves}
+
+    assert "Jaskyne na Stodôlke" in names
+    assert "Dračie jaskyne" in names
+    assert "Kalcitové jaskyne 1 a 2" in names
+
+
+def test_build_cave_index_filters_report_titles_and_workflow_fragments():
+    articles = [
+        {
+            "id": 1,
+            "title": "Krátka správa o Tichej jaskyni",
+            "year": 2011,
+            "issue": "4",
+            "pages": "34",
+            "authors": ["Novák, J."],
+            "abstract": "Krátka správa, nie štandardizovaný názov karty.",
+            "caves": [],
+        },
+        {
+            "id": 2,
+            "title": "Výskum jaskyne",
+            "year": 1997,
+            "issue": "1",
+            "pages": "40",
+            "authors": ["Novák, J."],
+            "abstract": "Zpráva o výkopových prácach v jaskyni.",
+            "caves": [],
+        },
+        {
+            "id": 3,
+            "title": "Zameranie jaskyne",
+            "year": 2002,
+            "issue": "4",
+            "pages": "37",
+            "authors": ["Novák, J."],
+            "abstract": "Výsledky mapovacieho kurzu.",
+            "caves": [],
+        },
+        {
+            "id": 4,
+            "title": "Vyhlásenie súťaže o umelecké stvárnenie jaskyne",
+            "year": 2009,
+            "issue": "1",
+            "pages": "78",
+            "authors": ["Redakcia"],
+            "abstract": "Administratívna správa bez mena konkrétnej jaskyne.",
+            "caves": [],
+        },
+        {
+            "id": 5,
+            "title": "Text zachytáva spomienky spájajúce jaskyne",
+            "year": 2010,
+            "issue": "4",
+            "pages": "41",
+            "authors": ["Novák, J."],
+            "abstract": "Text zachytáva spomienky spájajúce jaskyne a vojnové udalosti.",
+            "caves": [],
+        },
+        {
+            "id": 6,
+            "title": "Pôdorysná mapa Mamutej jaskyne",
+            "year": 1973,
+            "issue": "4",
+            "pages": "20",
+            "authors": ["Novák, J."],
+            "abstract": "Pôdorysná mapa nie je samostatný názov slovenskej jaskyne.",
+            "caves": [],
+        },
+    ]
+
+    caves = build_cave_index.build_cave_index(articles)
+    names = {item["name"] for item in caves}
+
+    assert "Krátka správa o Tichej jaskyni" not in names
+    assert "Výskum jaskyne" not in names
+    assert "Zameranie jaskyne" not in names
+    assert "Vyhlásenie súťaže o umelecké stvárnenie jaskyne" not in names
+    assert "Text zachytáva spomienky spájajúce jaskyne" not in names
+    assert "Pôdorysná mapa Mamutej jaskyne" not in names
+
+
+def test_build_cave_index_keeps_real_cave_and_filters_neighboring_descriptive_fragment():
+    articles = [
+        {
+            "id": 1,
+            "title": "Jaskyňa Kamenné mlieko v Belianskych Tatrách",
+            "year": 1982,
+            "issue": "1",
+            "pages": "12",
+            "authors": ["Novák, J."],
+            "abstract": "Speleologický prieskum a charakter jaskyne v závere doliny Medzisteny.",
+            "caves": [],
+        },
+        {
+            "id": 2,
+            "title": "Jaskyňa Plačúca skala",
+            "year": 1996,
+            "issue": "2",
+            "pages": "15",
+            "authors": ["Novák, J."],
+            "abstract": "Krátka riečna jaskyňa ukončená prietokovým vodným sifónom.",
+            "caves": [],
+        },
+        {
+            "id": 3,
+            "title": "Vystrojovanie jaskyne Veľké Prepadlé",
+            "year": 2006,
+            "issue": "2",
+            "pages": "40",
+            "authors": ["Novák, J."],
+            "abstract": "Osadenie rebríkov v jaskyni koncom sezóny.",
+            "caves": [],
+        },
+        {
+            "id": 4,
+            "title": "Rudolf Gajda a jaskyne na Slovensku",
+            "year": 2007,
+            "issue": "1",
+            "pages": "93",
+            "authors": ["Novák, J."],
+            "abstract": "Charakter záujmu R. Gajdu o jaskyne Slovenského krasu.",
+            "caves": [],
+        },
+        {
+            "id": 5,
+            "title": "Súčasťou Novohradského geoparku budú aj jaskyne",
+            "year": 2008,
+            "issue": "1",
+            "pages": "70",
+            "authors": ["Novák, J."],
+            "abstract": "Príspevok informuje, že súčasťou geoparku budú aj jaskyne.",
+            "caves": [],
+        },
+    ]
+
+    caves = build_cave_index.build_cave_index(articles)
+    names = {item["name"] for item in caves}
+
+    assert "Jaskyňa Kamenné mlieko" in names
+    assert "Jaskyňa Plačúca skala" in names
+    assert "Jaskyňa Veľké Prepadlé" in names
+    assert "Speleologický prieskum" not in names
+    assert "Krátka riečna jaskyňa" not in names
+    assert "Vystrojovanie jaskyne" not in names
+    assert "Rudolf Gajda" not in names
+    assert "Gajdu o jaskyne" not in names
+    assert "Jaskyňa Slovenského krasu" not in names
+    assert "Súčasťou Novohradského geoparku budú aj jaskyne" not in names
+    assert "Novohradského geoparku budú aj jaskyne" not in names
+
+
 def test_build_cave_index_uses_article_pdf_page_offset_when_present():
     articles = [
         {
@@ -792,6 +1052,42 @@ def test_build_cave_index_infers_inflected_official_smopaj_cave_mentions():
     assert "Sifón Tichá tôňa" not in names
     assert "Demänovský sifón" not in names
     assert "Jaskyňa Zlomísk Cave" not in names
+
+
+def test_build_cave_index_uses_short_distinctive_token_for_registered_cave_name():
+    articles = [
+        {
+            "id": 1469,
+            "title": "Nová turisticky sprístupnená jaskyňa Zlá diera pri Lipovciach",
+            "year": 1999,
+            "issue": "2",
+            "pages": "37",
+            "authors": ["Novák, J."],
+            "abstract": "Stručne o sprístupnení ďalšej jaskyne a jej slávnostnom otvorení.",
+            "caves": [],
+        }
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "19",
+                "registry_number": "100",
+                "official_name": "Zlá diera",
+                "names": ["Zlá diera", "Zlá džura"],
+                "geomorph_celok": "Bachureň",
+                "geomorph_podcelok": "",
+                "geomorph_cast": "",
+            }
+        ]
+    }
+
+    caves = build_cave_index.build_cave_index(articles, smopaj_register=smopaj_register)
+    names = {item["name"] for item in caves}
+
+    assert names == {"Zlá diera"}
+    zla_diera = caves[0]
+    assert zla_diera["smopaj_cave_number"] == "19"
+    assert zla_diera["article_count"] == 1
 
 
 def test_build_cave_index_does_not_auto_assign_official_number_for_ambiguous_smopaj_name():

@@ -14388,159 +14388,6 @@
     }
   },
   {
-    "name": "Jaskyňa Slovenského krasu",
-    "slug": "jaskyna-slovenskeho-krasu",
-    "area": "",
-    "aliases": [],
-    "article_count": 7,
-    "map_plan_count": 1,
-    "first_year": 1984,
-    "last_year": 2023,
-    "authors_count": 7,
-    "articles": [
-      {
-        "id": 651,
-        "title": "Čertova diera – najhlbšia jaskyňa Slovenského krasu",
-        "year": 1984,
-        "volume": "XV.",
-        "issue": "2-3",
-        "pages": "3-7",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Erdélyi, P."
-        ],
-        "abstract": "Opis prieskumných akcií z novembra 1983, decembra 1983, januára a marca 1984, kedy sa objavili ďalšie časti a po ich zameraní a zdokumentovaní sa Čertova diera stala najhlbšou a najťažšou v Slovenskom krase",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_2-3_1984.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_2-3_1984.pdf#page=7",
-        "detail_url": "/clanky/651/"
-      },
-      {
-        "id": 4031,
-        "title": "Jaskyne Slovenského krasu – svetové prírodné dedičstvo",
-        "year": 2000,
-        "volume": "5",
-        "issue": "",
-        "pages": "",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Lucinkiewicz, A."
-        ],
-        "abstract": "Príspevok sa venuje jaskyniam Slovenského krasu ako svetovému prírodnému dedičstvu.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit5_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit5_komplet.pdf#page=1",
-        "detail_url": "/clanky/4031/"
-      },
-      {
-        "id": 4095,
-        "title": "Náučný chodník Jaskyne Slovenského krasu – svetové prírodné dedičstvo",
-        "year": 2006,
-        "volume": "11",
-        "issue": "",
-        "pages": "65-66",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Stankovič, J."
-        ],
-        "abstract": "Príspevok sa venuje náučnému chodníku Jaskyne Slovenského krasu – svetové prírodné dedičstvo.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=65",
-        "detail_url": "/clanky/4095/"
-      },
-      {
-        "id": 4125,
-        "title": "J. Stankovič – P. Horváth: Jaskyne Slovenského krasu v živote Viliama Rozložníka",
-        "year": 2006,
-        "volume": "11",
-        "issue": "",
-        "pages": "99",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Gaál, Ľ."
-        ],
-        "abstract": "Príspevok predstavuje publikáciu Jaskyne Slovenského krasu v živote Viliama Rozložníka.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=99",
-        "detail_url": "/clanky/4125/"
-      },
-      {
-        "id": 2290,
-        "title": "Rudolf Gajda a jaskyne na Slovensku",
-        "year": 2007,
-        "volume": "XXXVIII.",
-        "issue": "1",
-        "pages": "71-75",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Lalkovič, M."
-        ],
-        "abstract": "Charakter záujmu R. Gajdu o jaskyne Slovenského krasu v čase jeho pôsobenia na poste veliteľa 11. divízie v Košiciach",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-1.pdf#page=75",
-        "detail_url": "/clanky/2290/"
-      },
-      {
-        "id": 4761,
-        "title": "Jaskyne Slovenského krasu a okolia vo svetle nových archeologických objavov",
-        "year": 2008,
-        "volume": "46",
-        "issue": "2",
-        "pages": "419-438",
-        "journal_id": "slovensky_kras",
-        "journal_title": "Slovenský kras",
-        "journal_short_title": "Slovenský kras",
-        "authors": [
-          "Soják, M."
-        ],
-        "abstract": "Článok hodnotí jaskyne Slovenského krasu a okolia z hľadiska nových archeologických objavov.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=261&filename=sk-46_2-2008.pdf",
-        "pdf_link": "https://www.smopaj.sk/sk/documentloader.php?id=261&filename=sk-46_2-2008.pdf#page=163",
-        "detail_url": "/clanky/4761/"
-      },
-      {
-        "id": 3818,
-        "title": "Rukopisné mapy v Maďarskom národnom archíve a jaskyne Slovenského krasu",
-        "year": 2023,
-        "volume": "61",
-        "issue": "2",
-        "pages": "139-158",
-        "journal_id": "slovensky_kras",
-        "journal_title": "Slovenský kras",
-        "journal_short_title": "Slovenský kras",
-        "authors": [
-          "Jerg, Z."
-        ],
-        "abstract": "Príspevok sa venuje mapovým podkladom a téme „Rukopisné mapy v Maďarskom národnom archíve a jaskyne Slovenského krasu“.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=5336&filename=zborník 61_2_2023.pdf",
-        "pdf_link": "https://www.smopaj.sk/sk/documentloader.php?id=5336&filename=zborník 61_2_2023.pdf#page=43",
-        "detail_url": "/clanky/3818/"
-      }
-    ]
-  },
-  {
     "name": "Okno",
     "slug": "okno",
     "area": "",
@@ -14878,9 +14725,7 @@
     "name": "Zlá diera",
     "slug": "zla-diera",
     "area": "",
-    "aliases": [
-      "Jaskyňa Zlá diera"
-    ],
+    "aliases": [],
     "article_count": 7,
     "map_plan_count": 2,
     "first_year": 1977,
@@ -20673,81 +20518,6 @@
     }
   },
   {
-    "name": "Jaskyňa Slovenského",
-    "slug": "jaskyna-slovenskeho",
-    "area": "",
-    "aliases": [],
-    "article_count": 3,
-    "map_plan_count": 0,
-    "first_year": 1996,
-    "last_year": 2008,
-    "authors_count": 4,
-    "articles": [
-      {
-        "id": 1208,
-        "title": "Jaskyne Slovenského a Aggtelekského krasu v zozname svetového dedičstva",
-        "year": 1996,
-        "volume": "XXVII.",
-        "issue": "1",
-        "pages": "51-53",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Bella, P."
-        ],
-        "abstract": "O schválení bilaterálneho slovensko-maďarského projektu a zaradení týchto jaskýň medzi svetové prírodné dedičstvo na zasadnutí Výboru Svetového dedičstva v dňoch 4. – 9. 12. 1995 v Berlíne",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_1_1996.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_1_1996.pdf#page=55",
-        "detail_url": "/clanky/1208/"
-      },
-      {
-        "id": 3828,
-        "title": "Jaskyne Slovenského a Aggtelekského krasu vo svetovom prírodnom dedičstve",
-        "year": 1996,
-        "volume": "1",
-        "issue": "",
-        "pages": "3-4",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Hlaváč, J.",
-          "Bella, P."
-        ],
-        "abstract": "Príspevok sa venuje jaskyniam Slovenského a Aggtelekského krasu v súvislosti so svetovým prírodným dedičstvom.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit1_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit1_komplet.pdf#page=5",
-        "detail_url": "/clanky/3828/"
-      },
-      {
-        "id": 4201,
-        "title": "Zmena hraníc lokality svetového dedičstva Jaskyne Slovenského a Aggtelekského krasu",
-        "year": 2008,
-        "volume": "13",
-        "issue": "1",
-        "pages": "35",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Gaál, Ľ.",
-          "Gažík, P."
-        ],
-        "abstract": "Príspevok informuje o zmene hraníc lokality svetového dedičstva Jaskyne Slovenského a Aggtelekského krasu.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=42",
-        "detail_url": "/clanky/4201/"
-      }
-    ]
-  },
-  {
     "name": "Jaskyňa strateného prsteňa",
     "slug": "jaskyna-strateneho-prstena",
     "area": "",
@@ -24820,63 +24590,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_2_1994.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_2_1994.pdf#page=8",
         "detail_url": "/clanky/1090/"
-      }
-    ]
-  },
-  {
-    "name": "Jaskyne Slovenského a Aggtelekského krasu",
-    "slug": "jaskyne-slovenskeho-a-aggtelekskeho-krasu",
-    "area": "",
-    "aliases": [],
-    "article_count": 2,
-    "map_plan_count": 0,
-    "first_year": 2015,
-    "last_year": 2015,
-    "authors_count": 6,
-    "articles": [
-      {
-        "id": 4458,
-        "title": "20 rokov svetového dedičstva Jaskyne Slovenského a Aggtelekského krasu",
-        "year": 2015,
-        "volume": "20",
-        "issue": "1",
-        "pages": "3-7",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Klinda, J."
-        ],
-        "abstract": "Príspevok sa venuje dvadsiatim rokom lokality Jaskyne Slovenského a Aggtelekského krasu ako svetového dedičstva.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "http://www.ssj.sk/web/user_files/Arag20_1_2015_1.pdf",
-        "pdf_link": "http://www.ssj.sk/web/user_files/Arag20_1_2015_1.pdf#page=5",
-        "detail_url": "/clanky/4458/"
-      },
-      {
-        "id": 4460,
-        "title": "Výnimočné hodnoty lokality svetového dedičstva „Jaskyne Slovenského a Aggtelekského krasu“",
-        "year": 2015,
-        "volume": "20",
-        "issue": "1",
-        "pages": "15-23",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Bella, P.",
-          "Gaál, Ľ.",
-          "Papáč, V.",
-          "Gruber, P.",
-          "Soják, M."
-        ],
-        "abstract": "Príspevok opisuje výnimočné hodnoty lokality svetového dedičstva Jaskyne Slovenského a Aggtelekského krasu.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "http://www.ssj.sk/web/user_files/Arag20_1_2015_1.pdf",
-        "pdf_link": "http://www.ssj.sk/web/user_files/Arag20_1_2015_1.pdf#page=17",
-        "detail_url": "/clanky/4460/"
       }
     ]
   },
@@ -32566,39 +32279,6 @@
     }
   },
   {
-    "name": "Gajdu o jaskyne",
-    "slug": "gajdu-o-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2007,
-    "last_year": 2007,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2290,
-        "title": "Rudolf Gajda a jaskyne na Slovensku",
-        "year": 2007,
-        "volume": "XXXVIII.",
-        "issue": "1",
-        "pages": "71-75",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Lalkovič, M."
-        ],
-        "abstract": "Charakter záujmu R. Gajdu o jaskyne Slovenského krasu v čase jeho pôsobenia na poste veliteľa 11. divízie v Košiciach",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-1.pdf#page=75",
-        "detail_url": "/clanky/2290/"
-      }
-    ]
-  },
-  {
     "name": "Garlika",
     "slug": "garlika",
     "area": "",
@@ -33523,171 +33203,6 @@
     ]
   },
   {
-    "name": "Informácia o jaskyni",
-    "slug": "informacia-o-jaskyni",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2017,
-    "last_year": 2017,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 3110,
-        "title": "Jaskyňa pod Nitrianskym hradom",
-        "year": 2017,
-        "volume": "",
-        "issue": "2",
-        "pages": "32",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Holúbek, P."
-        ],
-        "abstract": "Informácia o jaskyni nachádzajúcej sa pod Nitrianskym hradom.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2017/10/172.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2017/10/172.pdf#page=34",
-        "detail_url": "/clanky/3110/"
-      }
-    ]
-  },
-  {
-    "name": "Informácia o objave jaskyne",
-    "slug": "informacia-o-objave-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 2001,
-    "last_year": 2001,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1702,
-        "title": "K 90. výročiu objavenia jaskyne v Kysaku",
-        "year": 2001,
-        "volume": "XXXII.",
-        "issue": "1",
-        "pages": "63-64",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Derfiňák, P."
-        ],
-        "abstract": "Informácia o objave jaskyne podľa dobovej tlače z roku 1911",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_1.pdf#page=66",
-        "detail_url": "/clanky/1702/"
-      }
-    ]
-  },
-  {
-    "name": "Informácia o publikácii vydavateľstva Academia Jeskyně",
-    "slug": "informacia-o-publikacii-vydavatelstva-academia-jeskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1981,
-    "last_year": 1981,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 490,
-        "title": "Knižná novinka",
-        "year": 1981,
-        "volume": "XII.",
-        "issue": "4",
-        "pages": "51",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hipman, P."
-        ],
-        "abstract": "Informácia o publikácii vydavateľstva Academia Jeskyně a propasti v Československu",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "",
-        "pdf_link": "",
-        "detail_url": "/clanky/490/"
-      }
-    ]
-  },
-  {
-    "name": "Informácia o výsledkoch prieskumu jaskyne",
-    "slug": "informacia-o-vysledkoch-prieskumu-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 1976,
-    "last_year": 1976,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 259,
-        "title": "Nové objavy v jaskyni Bobačka v Muránskom krase",
-        "year": 1976,
-        "volume": "VII.",
-        "issue": "3",
-        "pages": "19-23",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Sasvári, T."
-        ],
-        "abstract": "Informácia o výsledkoch prieskumu jaskyne po tom, ako roku 1973 poklesla vodná hladina v I. sifóne natoľko, že sa cez sifón dalo preniknúť bez potápačského prístroja",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2017/10/763.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2017/10/763.pdf#page=22",
-        "detail_url": "/clanky/259/"
-      }
-    ]
-  },
-  {
-    "name": "Inštalácia uzáveru jaskyne",
-    "slug": "instalacia-uzaveru-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2005,
-    "last_year": 2005,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2091,
-        "title": "Uzavretie Medvedej jaskyne II",
-        "year": 2005,
-        "volume": "XXXVI.",
-        "issue": "1",
-        "pages": "66",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Cvacho, P."
-        ],
-        "abstract": "Inštalácia uzáveru jaskyne v roku 2003 členmi Jaskyniarskeho klubu Varín",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_1_2005.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_1_2005.pdf#page=68",
-        "detail_url": "/clanky/2091/"
-      }
-    ]
-  },
-  {
     "name": "Janka",
     "slug": "janka",
     "area": "",
@@ -34554,39 +34069,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2022/04/Spravodaj_SSS_1987_1-2.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2022/04/Spravodaj_SSS_1987_1-2.pdf#page=72",
         "detail_url": "/clanky/825/"
-      }
-    ]
-  },
-  {
-    "name": "Jaskyňa Bystrá počas Slovenského národného povstania",
-    "slug": "jaskyna-bystra-pocas-slovenskeho-narodneho-povstania",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2023,
-    "last_year": 2023,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 3582,
-        "title": "Jaskyňa Bystrá počas SNP",
-        "year": 2023,
-        "volume": "",
-        "issue": "3",
-        "pages": "51-54",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Majko, F."
-        ],
-        "abstract": "Pamäťový príspevok o udalostiach v priestore jaskyne Bystrá počas Slovenského národného povstania.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2023/11/Spravodaj_3_2023_web.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2023/11/Spravodaj_3_2023_web.pdf#page=53",
-        "detail_url": "/clanky/3582/"
       }
     ]
   },
@@ -37167,39 +36649,6 @@
     ]
   },
   {
-    "name": "Jaskyňa Michňová Spomienky",
-    "slug": "jaskyna-michnova-spomienky",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2009,
-    "last_year": 2009,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2533,
-        "title": "Dvadsať rokov symbolického cintorína v jaskyni Michňová",
-        "year": 2009,
-        "volume": "XL.",
-        "issue": "4",
-        "pages": "45-46",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hutka, D."
-        ],
-        "abstract": "O vzniku a súčasnej podobe symbolického cintorína vo Veľkej sále jaskyne Michňová Spomienky",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-4.pdf#page=49",
-        "detail_url": "/clanky/2533/"
-      }
-    ]
-  },
-  {
     "name": "Jaskyňa Mníchova diera",
     "slug": "jaskyna-mnichova-diera",
     "area": "",
@@ -38849,39 +38298,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-1.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-1.pdf#page=54",
         "detail_url": "/clanky/2865/"
-      }
-    ]
-  },
-  {
-    "name": "Jaskyňa Prvá",
-    "slug": "jaskyna-prva",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 1990,
-    "last_year": 1990,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 913,
-        "title": "Pracovný rajón oblastnej skupiny B. Štiavnica",
-        "year": 1990,
-        "volume": "XXI.",
-        "issue": "1",
-        "pages": "24-28",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Karsten, I."
-        ],
-        "abstract": "Charakter pracovného rajónu oblastnej skupiny, opis jaskyne Prvá a možnosti existencie rozsiahlejšieho jaskynného systému na tejto lokalite",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodajca_SSS_1990_1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/09/Spravodajca_SSS_1990_1.pdf#page=28",
-        "detail_url": "/clanky/913/"
       }
     ]
   },
@@ -41190,39 +40606,6 @@
     ]
   },
   {
-    "name": "Jaskyňa Zlá diera počas školského výletu",
-    "slug": "jaskyna-zla-diera-pocas-skolskeho-vyletu",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2003,
-    "last_year": 2003,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1931,
-        "title": "O budúcich jaskyniaroch",
-        "year": 2003,
-        "volume": "XXXIV.",
-        "issue": "3",
-        "pages": "51",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Evansová, B."
-        ],
-        "abstract": "O návšteve jaskyne Zlá diera počas školského výletu v júni 2002 a besede z marca 2003 so zameraním na problematiku jaskyniarstva",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_3.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_3.pdf#page=54",
-        "detail_url": "/clanky/1931/"
-      }
-    ]
-  },
-  {
     "name": "Jaskyňa Záskočie",
     "slug": "jaskyna-zaskocie",
     "area": "",
@@ -42924,41 +42307,6 @@
     ]
   },
   {
-    "name": "Krasový fenomén Zlej diery",
-    "slug": "krasovy-fenomen-zlej-diery",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 2006,
-    "last_year": 2006,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2171,
-        "title": "Krasový fenomén Zlej diery a jaskýň krasovej oblasti „Na skaly“ (Bachureň)",
-        "year": 2006,
-        "volume": "XXXVII.",
-        "issue": "1",
-        "pages": "37-44",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hochmuth, Z."
-        ],
-        "abstract": "Zdroje poznania, geologická stavba okolia, geomorfologické pomery širšieho okolia jaskyne Zlá diera, morfológia jaskynných priestorov, ostatné jaskyne v bezprostrednom okolí, ochranárske opatrenia, vodcovská služba a sprístupnenie jaskyne",
-        "has_map_plan": true,
-        "map_plan_pages": [
-          39
-        ],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf#page=41",
-        "detail_url": "/clanky/2171/"
-      }
-    ]
-  },
-  {
     "name": "Kremencová jaskyňa",
     "slug": "kremencova-jaskyna",
     "area": "",
@@ -43164,207 +42512,6 @@
     ]
   },
   {
-    "name": "Krátka riečna jaskyňa",
-    "slug": "kratka-riecna-jaskyna",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 1996,
-    "last_year": 1996,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1200,
-        "title": "Jaskyňa Plačúca skala",
-        "year": 1996,
-        "volume": "XXVII.",
-        "issue": "1",
-        "pages": "35",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Holúbek, P."
-        ],
-        "abstract": "Krátka riečna jaskyňa, ktorá je ukončená prietokovým vodným sifónom, na západnej strane údolia oproti Stanišovskej doline",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_1_1996.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_1_1996.pdf#page=39",
-        "detail_url": "/clanky/1200/"
-      }
-    ]
-  },
-  {
-    "name": "Krátka správa o Tichej jaskyni",
-    "slug": "kratka-sprava-o-tichej-jaskyni",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2011,
-    "last_year": 2011,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2753,
-        "title": "Krátka správa o Tichej jaskyni (G6, Piu)",
-        "year": 2011,
-        "volume": "",
-        "issue": "1",
-        "pages": "51-54",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Šmoll, J."
-        ],
-        "abstract": "Stručná správa opisuje poznatky a prieskum v Tichej jaskyni označovanej aj G6 alebo Piu.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-1.pdf#page=53",
-        "detail_url": "/clanky/2753/"
-      }
-    ]
-  },
-  {
-    "name": "Krátka správa predstavuje objav novej jaskyne",
-    "slug": "kratka-sprava-predstavuje-objav-novej-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2011,
-    "last_year": 2011,
-    "authors_count": 2,
-    "articles": [
-      {
-        "id": 2790,
-        "title": "Nová jaskyňa v Západných Tatrách",
-        "year": 2011,
-        "volume": "",
-        "issue": "4",
-        "pages": "29-30",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Holúbek, P.",
-          "Jurík, Z."
-        ],
-        "abstract": "Krátka správa predstavuje objav novej jaskyne v Západných Tatrách a základné poznatky o jej polohe a charaktere.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-4.pdf#page=31",
-        "detail_url": "/clanky/2790/"
-      }
-    ]
-  },
-  {
-    "name": "Krátky príspevok opisuje priepasť",
-    "slug": "kratky-prispevok-opisuje-priepast",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2021,
-    "last_year": 2021,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 3466,
-        "title": "„Priepasť“ na Prednej holi v Nízkych Tatrách",
-        "year": 2021,
-        "volume": "",
-        "issue": "4",
-        "pages": "39",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Miháľ, F."
-        ],
-        "abstract": "Krátky príspevok opisuje priepasť alebo priepasťovitý jav na Prednej holi v Nízkych Tatrách.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_4_2021.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_4_2021.pdf#page=41",
-        "detail_url": "/clanky/3466/"
-      }
-    ]
-  },
-  {
-    "name": "Krátky príspevok oznamuje objav ďalšej jaskyne",
-    "slug": "kratky-prispevok-oznamuje-objav-dalsej-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2022,
-    "last_year": 2022,
-    "authors_count": 3,
-    "articles": [
-      {
-        "id": 3534,
-        "title": "Opäť nová jaskyňa v Suchých doloch",
-        "year": 2022,
-        "volume": "",
-        "issue": "4",
-        "pages": "57",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hutka, D.",
-          "Vlček, L.",
-          "Poprocký, M."
-        ],
-        "abstract": "Krátky príspevok oznamuje objav ďalšej jaskyne v Suchých doloch a základné údaje o lokalite.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_4_2022web.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_4_2022web.pdf#page=59",
-        "detail_url": "/clanky/3534/"
-      }
-    ]
-  },
-  {
-    "name": "Krátky príspevok venovaný Dračej jaskyni",
-    "slug": "kratky-prispevok-venovany-dracej-jaskyni",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2015,
-    "last_year": 2015,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 3001,
-        "title": "Dračia jaskyňa",
-        "year": 2015,
-        "volume": "",
-        "issue": "2",
-        "pages": "51",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hunsdorfer, E."
-        ],
-        "abstract": "Krátky príspevok venovaný Dračej jaskyni.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-2.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-2.pdf#page=53",
-        "detail_url": "/clanky/3001/"
-      }
-    ]
-  },
-  {
     "name": "Krížová",
     "slug": "krizova",
     "area": "",
@@ -43473,6 +42620,51 @@
         "detail_url": "/clanky/2643/"
       }
     ]
+  },
+  {
+    "name": "Kášter",
+    "slug": "kaster",
+    "area": "",
+    "aliases": [],
+    "article_count": 1,
+    "map_plan_count": 1,
+    "first_year": 1993,
+    "last_year": 1993,
+    "authors_count": 3,
+    "articles": [
+      {
+        "id": 1001,
+        "title": "Jaskyňa č. 138 Kášter",
+        "year": 1993,
+        "volume": "XXIV.",
+        "issue": "1",
+        "pages": "16-17",
+        "journal_id": "spravodaj_sss",
+        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
+        "journal_short_title": "Spravodaj SSS",
+        "authors": [
+          "Čipka, D.",
+          "Kubíni, I.",
+          "Vojtko, E."
+        ],
+        "abstract": "Opis novej jaskyne na južnom úpätí ŠPR Kášter",
+        "has_map_plan": true,
+        "map_plan_pages": [],
+        "pdf_url": "",
+        "pdf_link": "",
+        "detail_url": "/clanky/1001/"
+      }
+    ],
+    "smopaj_cave_number": "4116",
+    "smopaj_registry_number": "2827",
+    "region": {
+      "local_area": "Muránska planina",
+      "geomorph_unit": "Spišsko-gemerský kras",
+      "geomorph_area": "Spišsko-gemerský kras",
+      "geomorph_subunit": "Muránska planina",
+      "confidence": "official-smopaj-2017",
+      "source": "smopaj-cave-register-2017"
+    }
   },
   {
     "name": "Kľúč",
@@ -45167,6 +44359,39 @@
     }
   },
   {
+    "name": "Moja prvá jaskyňa",
+    "slug": "moja-prva-jaskyna",
+    "area": "",
+    "aliases": [],
+    "article_count": 1,
+    "map_plan_count": 0,
+    "first_year": 2016,
+    "last_year": 2016,
+    "authors_count": 1,
+    "articles": [
+      {
+        "id": 3050,
+        "title": "Moja prvá jaskyňa",
+        "year": 2016,
+        "volume": "",
+        "issue": "1",
+        "pages": "99",
+        "journal_id": "spravodaj_sss",
+        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
+        "journal_short_title": "Spravodaj SSS",
+        "authors": [
+          "Hutková, K."
+        ],
+        "abstract": "Krátky príspevok venovaný osobnej skúsenosti s prvou návštevou jaskyne.",
+        "has_map_plan": false,
+        "map_plan_pages": [],
+        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/161.pdf",
+        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/161.pdf#page=101",
+        "detail_url": "/clanky/3050/"
+      }
+    ]
+  },
+  {
     "name": "Mojtínska jaskyňa",
     "slug": "mojtinska-jaskyna",
     "area": "",
@@ -45451,39 +44676,6 @@
     }
   },
   {
-    "name": "Mylná informácia ďalekopisu o objave jaskyne",
-    "slug": "mylna-informacia-dalekopisu-o-objave-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1989,
-    "last_year": 1989,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 869,
-        "title": "Objavili nám novú jaskyňu",
-        "year": 1989,
-        "volume": "XX.",
-        "issue": "1",
-        "pages": "52",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Kámen, S."
-        ],
-        "abstract": "Mylná informácia ďalekopisu o objave jaskyne na Muránskej planine",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_1.pdf#page=56",
-        "detail_url": "/clanky/869/"
-      }
-    ]
-  },
-  {
     "name": "Márnikova jaskyňa",
     "slug": "marnikova-jaskyna",
     "area": "",
@@ -45556,210 +44748,6 @@
         "pdf_url": "",
         "pdf_link": "",
         "detail_url": "/clanky/477/"
-      }
-    ]
-  },
-  {
-    "name": "Múzeum slovenského krasu",
-    "slug": "muzeum-slovenskeho-krasu",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1981,
-    "last_year": 1981,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 5255,
-        "title": "Múzeum slovenského krasu a sprístupnené jaskyne",
-        "year": 1981,
-        "volume": "19",
-        "issue": "",
-        "pages": "101-108",
-        "journal_id": "slovensky_kras",
-        "journal_title": "Slovenský kras",
-        "journal_short_title": "Slovenský kras",
-        "authors": [
-          "Chovan, A."
-        ],
-        "abstract": "Príspevok sa venuje vzťahu Múzea slovenského krasu k sprístupneným jaskyniam.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/19_1981.pdf",
-        "pdf_link": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/19_1981.pdf#page=101",
-        "detail_url": "/clanky/5255/"
-      }
-    ]
-  },
-  {
-    "name": "Naj jaskyne",
-    "slug": "naj-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2008,
-    "last_year": 2008,
-    "authors_count": 3,
-    "articles": [
-      {
-        "id": 2465,
-        "title": "Dve knihy z Frankfurtu, tretia z Moravy",
-        "year": 2008,
-        "volume": "XXXIX.",
-        "issue": "4",
-        "pages": "49-54",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "KOrtman, B.",
-          "ŠmÍda, B.",
-          "Horňák, M."
-        ],
-        "abstract": "Recenzie publikácií Max Wisshak: Inside Mother Earth (Vnútri matky Zeme), Tony Waltham: Great Caves of the World (Naj jaskyne sveta) a Marek Audy: Brány do Ztraceného světa / Unikátní objevy na stolových horách Venezuely; informácia o novom časopise Jamar slovinských jaskyniarov",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-4.pdf#page=53",
-        "detail_url": "/clanky/2465/"
-      }
-    ]
-  },
-  {
-    "name": "Najfarebnejšie jaskyne",
-    "slug": "najfarebnejsie-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1998,
-    "last_year": 1998,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 3930,
-        "title": "Najfarebnejšie jaskyne na svete",
-        "year": 1998,
-        "volume": "3",
-        "issue": "",
-        "pages": "39",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Bernadovič, F."
-        ],
-        "abstract": "Príspevok predstavuje najfarebnejšie jaskyne na svete.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit3_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit3_komplet.pdf#page=41",
-        "detail_url": "/clanky/3930/"
-      }
-    ]
-  },
-  {
-    "name": "Najnavštevovanejšie jaskyne",
-    "slug": "najnavstevovanejsie-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2012,
-    "last_year": 2012,
-    "authors_count": 4,
-    "articles": [
-      {
-        "id": 2820,
-        "title": "Najnavštevovanejšie jaskyne v Tisovskom krase",
-        "year": 2012,
-        "volume": "",
-        "issue": "2",
-        "pages": "47-48",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Vlček, L.",
-          "Vlček, P.",
-          "Hutka, D.",
-          "Kubíni, I."
-        ],
-        "abstract": "Prehľad najčastejšie navštevovaných jaskýň v Tisovskom krase a ich významu pre miestne jaskyniarstvo.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-2.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-2.pdf#page=49",
-        "detail_url": "/clanky/2820/"
-      }
-    ]
-  },
-  {
-    "name": "Najväčšie jaskyne",
-    "slug": "najvacsie-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2013,
-    "last_year": 2013,
-    "authors_count": 2,
-    "articles": [
-      {
-        "id": 2891,
-        "title": "Najväčšie jaskyne Strážova",
-        "year": 2013,
-        "volume": "",
-        "issue": "3",
-        "pages": "14-21",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Kortman, B.",
-          "Kasák, J."
-        ],
-        "abstract": "Prehľad najväčších jaskýň v masíve Strážova s údajmi o ich prieskume, polohe a speleologickom význame.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-3.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-3.pdf#page=16",
-        "detail_url": "/clanky/2891/"
-      }
-    ]
-  },
-  {
-    "name": "Nakreslite si jaskyňu",
-    "slug": "nakreslite-si-jaskynu",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1981,
-    "last_year": 1981,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 481,
-        "title": "Nakreslite si jaskyňu axonometricky",
-        "year": 1981,
-        "volume": "XII.",
-        "issue": "4",
-        "pages": "28-32",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hipman, P."
-        ],
-        "abstract": "Program axonometrického znázornenia jaskyne v jazyku Basic",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "",
-        "pdf_link": "",
-        "detail_url": "/clanky/481/"
       }
     ]
   },
@@ -45996,39 +44984,6 @@
     ]
   },
   {
-    "name": "Novohradského geoparku budú aj jaskyne",
-    "slug": "novohradskeho-geoparku-budu-aj-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2008,
-    "last_year": 2008,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 4207,
-        "title": "Súčasťou Novohradského geoparku budú aj jaskyne",
-        "year": 2008,
-        "volume": "13",
-        "issue": "1",
-        "pages": "42",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Gaál, Ľ."
-        ],
-        "abstract": "Príspevok informuje, že súčasťou Novohradského geoparku budú aj jaskyne.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=49",
-        "detail_url": "/clanky/4207/"
-      }
-    ]
-  },
-  {
     "name": "Nová brzotínska jaskyňa",
     "slug": "nova-brzotinska-jaskyna",
     "area": "",
@@ -46110,39 +45065,6 @@
     ]
   },
   {
-    "name": "Nová turisticky sprístupnená jaskyňa Zlá diera",
-    "slug": "nova-turisticky-spristupnena-jaskyna-zla-diera",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1999,
-    "last_year": 1999,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1469,
-        "title": "Nová turisticky sprístupnená jaskyňa Zlá diera pri Lipovciach (pohorie Bachureň)",
-        "year": 1999,
-        "volume": "XXX.",
-        "issue": "2",
-        "pages": "45-46",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hochmuth, Z."
-        ],
-        "abstract": "Stručne o sprístupnení ďalšej jaskyne a jej slávnostnom otvorení pre verejnosť",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_1999.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_1999.pdf#page=49",
-        "detail_url": "/clanky/1469/"
-      }
-    ]
-  },
-  {
     "name": "Nová éra",
     "slug": "nova-era",
     "area": "",
@@ -46218,138 +45140,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_2_1996.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_2_1996.pdf#page=21",
         "detail_url": "/clanky/1216/"
-      }
-    ]
-  },
-  {
-    "name": "Nájdeme Kátlinskú jaskyňu",
-    "slug": "najdeme-katlinsku-jaskynu",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2006,
-    "last_year": 2006,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2255,
-        "title": "Nájdeme Kátlinskú jaskyňu?",
-        "year": 2006,
-        "volume": "XXXVII.",
-        "issue": "4",
-        "pages": "35",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Kortman, B."
-        ],
-        "abstract": "Legenda, ktorá sa zachovala medzi obyvateľmi Marikovskej doliny v Javorníkoch, výkopové práce v minulosti, pátranie po pseudokrasovej jaskyni",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-4.pdf#page=38",
-        "detail_url": "/clanky/2255/"
-      }
-    ]
-  },
-  {
-    "name": "Náučný chodník Jaskyne",
-    "slug": "naucny-chodnik-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2006,
-    "last_year": 2006,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 4095,
-        "title": "Náučný chodník Jaskyne Slovenského krasu – svetové prírodné dedičstvo",
-        "year": 2006,
-        "volume": "11",
-        "issue": "",
-        "pages": "65-66",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Stankovič, J."
-        ],
-        "abstract": "Príspevok sa venuje náučnému chodníku Jaskyne Slovenského krasu – svetové prírodné dedičstvo.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=65",
-        "detail_url": "/clanky/4095/"
-      }
-    ]
-  },
-  {
-    "name": "Návšteva jaskyne",
-    "slug": "navsteva-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1995,
-    "last_year": 1995,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1180,
-        "title": "LOST SEA – Najväčšie podzemné jazero Ameriky",
-        "year": 1995,
-        "volume": "XXVI.",
-        "issue": "4",
-        "pages": "24-25",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Schwarz, J."
-        ],
-        "abstract": "Návšteva jaskyne Lost Sea v novembri 1994, jej stručný opis, niekoľko praktických rád",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1995.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1995.pdf#page=28",
-        "detail_url": "/clanky/1180/"
-      }
-    ]
-  },
-  {
-    "name": "Návšteva sprístupnenej jaskyne",
-    "slug": "navsteva-spristupnenej-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 2007,
-    "last_year": 2007,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2342,
-        "title": "Jama Baredine",
-        "year": 2007,
-        "volume": "XXXVIII.",
-        "issue": "3",
-        "pages": "45-45",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Kasák, J."
-        ],
-        "abstract": "Návšteva sprístupnenej jaskyne počas dovolenky v okolí chorvátskeho mestečka Poreč",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-3.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-3.pdf#page=49",
-        "detail_url": "/clanky/2342/"
       }
     ]
   },
@@ -46518,39 +45308,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_4.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_4.pdf#page=19",
         "detail_url": "/clanky/1655/"
-      }
-    ]
-  },
-  {
-    "name": "Objavili nám novú jaskyňu",
-    "slug": "objavili-nam-novu-jaskynu",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1989,
-    "last_year": 1989,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 869,
-        "title": "Objavili nám novú jaskyňu",
-        "year": 1989,
-        "volume": "XX.",
-        "issue": "1",
-        "pages": "52",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Kámen, S."
-        ],
-        "abstract": "Mylná informácia ďalekopisu o objave jaskyne na Muránskej planine",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_1.pdf#page=56",
-        "detail_url": "/clanky/869/"
       }
     ]
   },
@@ -46753,108 +45510,6 @@
       "confidence": "official-smopaj-2017",
       "source": "smopaj-cave-register-2017"
     }
-  },
-  {
-    "name": "Oneskorený príbeh objavu jaskyne",
-    "slug": "oneskoreny-pribeh-objavu-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2024,
-    "last_year": 2024,
-    "authors_count": 2,
-    "articles": [
-      {
-        "id": 3656,
-        "title": "Oneskorený príbeh objavu jaskyne Šoldovo vo Važeckom krase",
-        "year": 2024,
-        "volume": "",
-        "issue": "4",
-        "pages": "3-8",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Holúbek, P.",
-          "Jurík, Z."
-        ],
-        "abstract": "Príspevok dokumentuje históriu prieskumu a objavu jaskyne Šoldovo v oblasti Priepadlé vo Važeckom krase, opisuje priebeh prác od roku 2003, morfológiu lokality, hydrologické súvislosti a novšie objavy z roku 2024.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2025/05/Spravodaj_4_2024_NET-1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2025/05/Spravodaj_4_2024_NET-1.pdf#page=5",
-        "detail_url": "/clanky/3656/"
-      }
-    ]
-  },
-  {
-    "name": "Oprava uzáveru jaskyne",
-    "slug": "oprava-uzaveru-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1996,
-    "last_year": 1996,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1256,
-        "title": "Rekonštrukcia uzáveru jaskyne Zlá diera",
-        "year": 1996,
-        "volume": "XXVII.",
-        "issue": "4",
-        "pages": "28",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Košč, R."
-        ],
-        "abstract": "Oprava uzáveru jaskyne po jeho násilnom poškodení v roku 1995",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1996.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1996.pdf#page=32",
-        "detail_url": "/clanky/1256/"
-      }
-    ]
-  },
-  {
-    "name": "Opäť nová jaskyňa",
-    "slug": "opat-nova-jaskyna",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2022,
-    "last_year": 2022,
-    "authors_count": 3,
-    "articles": [
-      {
-        "id": 3534,
-        "title": "Opäť nová jaskyňa v Suchých doloch",
-        "year": 2022,
-        "volume": "",
-        "issue": "4",
-        "pages": "57",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hutka, D.",
-          "Vlček, L.",
-          "Poprocký, M."
-        ],
-        "abstract": "Krátky príspevok oznamuje objav ďalšej jaskyne v Suchých doloch a základné údaje o lokalite.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_4_2022web.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_4_2022web.pdf#page=59",
-        "detail_url": "/clanky/3534/"
-      }
-    ]
   },
   {
     "name": "Ordinskaja peščera",
@@ -47633,39 +46288,6 @@
     ]
   },
   {
-    "name": "Podmienky vzniku Kryštálovej jaskyne",
-    "slug": "podmienky-vzniku-krystalovej-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2023,
-    "last_year": 2023,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 3564,
-        "title": "Podmienky vzniku Kryštálovej jaskyne pod Rozsutcom - zhrnutie prvých výsledkov",
-        "year": 2023,
-        "volume": "",
-        "issue": "2",
-        "pages": "26-28",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Ševčíková, P."
-        ],
-        "abstract": "Zhrnutie prvých výsledkov výskumu podmienok vzniku Kryštálovej jaskyne pod Rozsutcom.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2023/11/Spravodaj_2_2023_web.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2023/11/Spravodaj_2_2023_web.pdf#page=28",
-        "detail_url": "/clanky/3564/"
-      }
-    ]
-  },
-  {
     "name": "Podskalská jaskyňa",
     "slug": "podskalska-jaskyna",
     "area": "",
@@ -47754,39 +46376,6 @@
       "confidence": "official-smopaj-2017",
       "source": "smopaj-cave-register-2017"
     }
-  },
-  {
-    "name": "Pokračovanie príspevku o Kryštálovej jaskyni",
-    "slug": "pokracovanie-prispevku-o-krystalovej-jaskyni",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2014,
-    "last_year": 2014,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2930,
-        "title": "Kryštálová jaskyňa pod Malým Rozsutcom, 2. časť",
-        "year": 2014,
-        "volume": "",
-        "issue": "2",
-        "pages": "14-15",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Dubravay, J."
-        ],
-        "abstract": "Pokračovanie príspevku o Kryštálovej jaskyni pod Malým Rozsutcom so zameraním na jej poznanie a jaskyniarske súvislosti.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-2.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-2.pdf#page=16",
-        "detail_url": "/clanky/2930/"
-      }
-    ]
   },
   {
     "name": "Poliaci",
@@ -49688,149 +48277,6 @@
     ]
   },
   {
-    "name": "Program axonometrického znázornenia jaskyne",
-    "slug": "program-axonometrickeho-znazornenia-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1981,
-    "last_year": 1981,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 481,
-        "title": "Nakreslite si jaskyňu axonometricky",
-        "year": 1981,
-        "volume": "XII.",
-        "issue": "4",
-        "pages": "28-32",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hipman, P."
-        ],
-        "abstract": "Program axonometrického znázornenia jaskyne v jazyku Basic",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "",
-        "pdf_link": "",
-        "detail_url": "/clanky/481/"
-      }
-    ]
-  },
-  {
-    "name": "Prvá 1000 metrová priepasť",
-    "slug": "prva-1000-metrova-priepast",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1996,
-    "last_year": 1996,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1252,
-        "title": "Prvá 1000 metrová priepasť na južnej pologuli",
-        "year": 1996,
-        "volume": "XXVII.",
-        "issue": "4",
-        "pages": "23-25",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Sounier, J. P."
-        ],
-        "abstract": "Januárová expedícia z roku 1995 do Papui-Novej Guinei podľa International Caver 17/96",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1996.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1996.pdf#page=27",
-        "detail_url": "/clanky/1252/"
-      }
-    ]
-  },
-  {
-    "name": "Prvá jaskyňa",
-    "slug": "prva-jaskyna",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2016,
-    "last_year": 2016,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 3050,
-        "title": "Moja prvá jaskyňa",
-        "year": 2016,
-        "volume": "",
-        "issue": "1",
-        "pages": "99",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hutková, K."
-        ],
-        "abstract": "Krátky príspevok venovaný osobnej skúsenosti s prvou návštevou jaskyne.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/161.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/161.pdf#page=101",
-        "detail_url": "/clanky/3050/"
-      }
-    ],
-    "smopaj_cave_number": "664",
-    "smopaj_registry_number": "7117",
-    "region": {
-      "local_area": "Medzevská pahorkatina",
-      "geomorph_unit": "Košická kotlina",
-      "geomorph_area": "Košická kotlina",
-      "geomorph_subunit": "Medzevská pahorkatina",
-      "confidence": "official-smopaj-2017",
-      "source": "smopaj-cave-register-2017"
-    }
-  },
-  {
-    "name": "Prvá časť príspevku opisuje Kryštálovú jaskyňu",
-    "slug": "prva-cast-prispevku-opisuje-krystalovu-jaskynu",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2013,
-    "last_year": 2013,
-    "authors_count": 2,
-    "articles": [
-      {
-        "id": 2904,
-        "title": "Kryštálová jaskyňa pod Malým Rozsutcom. 1. časť",
-        "year": 2013,
-        "volume": "",
-        "issue": "4",
-        "pages": "25-27",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Dubravay, J.",
-          "Štefko, O."
-        ],
-        "abstract": "Prvá časť príspevku opisuje Kryštálovú jaskyňu pod Malým Rozsutcom a poznatky z jej prieskumu.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-4.pdf#page=27",
-        "detail_url": "/clanky/2904/"
-      }
-    ]
-  },
-  {
     "name": "Prvé vyhlásené verejnosti voľne prístupné jaskyne",
     "slug": "prve-vyhlasene-verejnosti-volne-pristupne-jaskyne",
     "area": "",
@@ -49860,105 +48306,6 @@
         "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf",
         "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=46",
         "detail_url": "/clanky/4204/"
-      }
-    ]
-  },
-  {
-    "name": "Prvé zmienky o jaskyni",
-    "slug": "prve-zmienky-o-jaskyni",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 2001,
-    "last_year": 2001,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1710,
-        "title": "Jazvečia jaskyňa na Dubnej skale pri Vrútkach",
-        "year": 2001,
-        "volume": "XXXII.",
-        "issue": "2",
-        "pages": "15-19",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Piovarči, E."
-        ],
-        "abstract": "Prvé zmienky o jaskyni v 18. storočí, geológia a polohopis, opis jaskyne a morfológia, prieskum",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_2.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_2.pdf#page=18",
-        "detail_url": "/clanky/1710/"
-      }
-    ]
-  },
-  {
-    "name": "Prémia Literárneho fondu za dielo Jaskyne",
-    "slug": "premia-literarneho-fondu-za-dielo-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2006,
-    "last_year": 2006,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2245,
-        "title": "Ocenenie",
-        "year": 2006,
-        "volume": "XXXVII.",
-        "issue": "3",
-        "pages": "67",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Kortman, B."
-        ],
-        "abstract": "Prémia Literárneho fondu za dielo Jaskyne svetového dedičstva na Slovensku",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-3.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-3.pdf#page=71",
-        "detail_url": "/clanky/2245/"
-      }
-    ]
-  },
-  {
-    "name": "Príbeh kratšej jaskyne",
-    "slug": "pribeh-kratsej-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2015,
-    "last_year": 2015,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 3017,
-        "title": "Príbeh kratšej jaskyne s dlhším kopaním",
-        "year": 2015,
-        "volume": "",
-        "issue": "3",
-        "pages": "47-49",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Holúbek, P."
-        ],
-        "abstract": "Príspevok opisuje objavovanie a postupné sprístupňovanie menšej jaskyne, pri ktorej si výskum vyžiadal dlhodobé kopáčske práce.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-3.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-3.pdf#page=49",
-        "detail_url": "/clanky/3017/"
       }
     ]
   },
@@ -50194,39 +48541,6 @@
     }
   },
   {
-    "name": "Pôdorysná mapa Mamutej jaskyne",
-    "slug": "podorysna-mapa-mamutej-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1973,
-    "last_year": 1973,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 163,
-        "title": "Mamutia jaskyňa – najdlhší jaskynný systém sveta",
-        "year": 1973,
-        "volume": "IV.",
-        "issue": "4",
-        "pages": "27-28",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Roda, Š."
-        ],
-        "abstract": "Pôdorysná mapa Mamutej jaskyne, ktorú americkí speleológovia priniesli pri príležitosti 6. medzinárodného speleologického kongresu a spolu s dokumentáciou bola predložená na schválenie, jaskyňa má podľa nej dĺžku 252,5 km",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2017/10/734.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2017/10/734.pdf#page=30",
-        "detail_url": "/clanky/163/"
-      }
-    ]
-  },
-  {
     "name": "Rakytník neďaleko priepasti",
     "slug": "rakytnik-nedaleko-priepasti",
     "area": "",
@@ -50338,72 +48652,6 @@
     }
   },
   {
-    "name": "Recenzný príspevok predstavuje publikáciu Jeskyně",
-    "slug": "recenzny-prispevok-predstavuje-publikaciu-jeskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2009,
-    "last_year": 2009,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 4308,
-        "title": "Hromas, J. (Ed.) a kol.: Jeskyně. Chráněná úzěmí ČR, sv. XIV",
-        "year": 2009,
-        "volume": "14",
-        "issue": "2",
-        "pages": "156",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Zelinka, J."
-        ],
-        "abstract": "Recenzný príspevok predstavuje publikáciu Jeskyně zo série Chráněná území ČR.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit14_2_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit14_2_komplet.pdf#page=70",
-        "detail_url": "/clanky/4308/"
-      }
-    ]
-  },
-  {
-    "name": "Rekonštrukcia uzáveru jaskyne Zlá diera",
-    "slug": "rekonstrukcia-uzaveru-jaskyne-zla-diera",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1996,
-    "last_year": 1996,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1256,
-        "title": "Rekonštrukcia uzáveru jaskyne Zlá diera",
-        "year": 1996,
-        "volume": "XXVII.",
-        "issue": "4",
-        "pages": "28",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Košč, R."
-        ],
-        "abstract": "Oprava uzáveru jaskyne po jeho násilnom poškodení v roku 1995",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1996.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1996.pdf#page=32",
-        "detail_url": "/clanky/1256/"
-      }
-    ]
-  },
-  {
     "name": "Riečnej jaskyne vyzerá",
     "slug": "riecnej-jaskyne-vyzera",
     "area": "",
@@ -50512,39 +48760,6 @@
       "confidence": "official-smopaj-2017",
       "source": "smopaj-cave-register-2017"
     }
-  },
-  {
-    "name": "Rudolf Gajda",
-    "slug": "rudolf-gajda",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2007,
-    "last_year": 2007,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2290,
-        "title": "Rudolf Gajda a jaskyne na Slovensku",
-        "year": 2007,
-        "volume": "XXXVIII.",
-        "issue": "1",
-        "pages": "71-75",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Lalkovič, M."
-        ],
-        "abstract": "Charakter záujmu R. Gajdu o jaskyne Slovenského krasu v čase jeho pôsobenia na poste veliteľa 11. divízie v Košiciach",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-1.pdf#page=75",
-        "detail_url": "/clanky/2290/"
-      }
-    ]
   },
   {
     "name": "Ružinská diera",
@@ -51094,39 +49309,6 @@
     ]
   },
   {
-    "name": "Speleologický prieskum",
-    "slug": "speleologicky-prieskum",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 1982,
-    "last_year": 1982,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 521,
-        "title": "Jaskyňa Kamenné mlieko v Belianskych Tatrách",
-        "year": 1982,
-        "volume": "XIII.",
-        "issue": "3",
-        "pages": "33-36",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Pavlarčík, S."
-        ],
-        "abstract": "Speleologický prieskum a charakter jaskyne, ktorá sa nachádza v závere doliny Medzisteny v západnej časti Belianskych Tatier",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "",
-        "pdf_link": "",
-        "detail_url": "/clanky/521/"
-      }
-    ]
-  },
-  {
     "name": "Speleológia",
     "slug": "speleologia",
     "area": "",
@@ -51189,39 +49371,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodajca_SSS_1990_1.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2022/09/Spravodajca_SSS_1990_1.pdf#page=15",
         "detail_url": "/clanky/908/"
-      }
-    ]
-  },
-  {
-    "name": "Spresnenie informácií o objave Koreňovej jaskyne",
-    "slug": "spresnenie-informacii-o-objave-korenovej-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 2003,
-    "last_year": 2003,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1889,
-        "title": "Reakcia breznianskych jaskyniarov na objav Koreňovej jaskyne",
-        "year": 2003,
-        "volume": "XXXIV.",
-        "issue": "1",
-        "pages": "41-43",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Matejka, M."
-        ],
-        "abstract": "Spresnenie informácií o objave Koreňovej jaskyne, lokalizácia, história objavenia a prieskumu, opis jaskynných priestorov",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_1.pdf#page=44",
-        "detail_url": "/clanky/1889/"
       }
     ]
   },
@@ -51419,173 +49568,6 @@
       "confidence": "official-smopaj-2017",
       "source": "smopaj-cave-register-2017"
     }
-  },
-  {
-    "name": "Stručne o sprístupnení ďalšej jaskyne",
-    "slug": "strucne-o-spristupneni-dalsej-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1999,
-    "last_year": 1999,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1469,
-        "title": "Nová turisticky sprístupnená jaskyňa Zlá diera pri Lipovciach (pohorie Bachureň)",
-        "year": 1999,
-        "volume": "XXX.",
-        "issue": "2",
-        "pages": "45-46",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hochmuth, Z."
-        ],
-        "abstract": "Stručne o sprístupnení ďalšej jaskyne a jej slávnostnom otvorení pre verejnosť",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_1999.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_1999.pdf#page=49",
-        "detail_url": "/clanky/1469/"
-      }
-    ]
-  },
-  {
-    "name": "Stručná história doterajšieho prieskumu priepasti",
-    "slug": "strucna-historia-doterajsieho-prieskumu-priepasti",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 1982,
-    "last_year": 1982,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 494,
-        "title": "Čertova diera – 144 m!",
-        "year": 1982,
-        "volume": "XIII.",
-        "issue": "1",
-        "pages": "13",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Stibrányi, G."
-        ],
-        "abstract": "Stručná história doterajšieho prieskumu priepasti",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "",
-        "pdf_link": "",
-        "detail_url": "/clanky/494/"
-      }
-    ]
-  },
-  {
-    "name": "Stručná história objavu Jaskyne",
-    "slug": "strucna-historia-objavu-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2012,
-    "last_year": 2012,
-    "authors_count": 3,
-    "articles": [
-      {
-        "id": 2811,
-        "title": "Stručná história objavu Jaskyne nad vyvieračkou vo Vrátnej doline",
-        "year": 2012,
-        "volume": "",
-        "issue": "1",
-        "pages": "76",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Štefko, O.",
-          "Hanuliak, J.",
-          "Mucha, Š."
-        ],
-        "abstract": "Prehľad histórie objavu Jaskyne nad vyvieračkou vo Vrátnej doline.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=78",
-        "detail_url": "/clanky/2811/"
-      }
-    ]
-  },
-  {
-    "name": "Stručná informácia o prieskume priepasti",
-    "slug": "strucna-informacia-o-prieskume-priepasti",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1996,
-    "last_year": 1996,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1233,
-        "title": "Z horúceho hrnca severovelebitského (Slovakia – 1017 m)",
-        "year": 1996,
-        "volume": "XXVII.",
-        "issue": "3",
-        "pages": "11-12",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Šmída, B."
-        ],
-        "abstract": "Stručná informácia o prieskume priepasti Slovakia v roku 1995 a priepasti Ester i Varnjače, prienik do významného traktu v Slovakii v roku 1996",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_3_1996.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_3_1996.pdf#page=15",
-        "detail_url": "/clanky/1233/"
-      }
-    ]
-  },
-  {
-    "name": "Stručná zmienka o jaskyni",
-    "slug": "strucna-zmienka-o-jaskyni",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2006,
-    "last_year": 2006,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2224,
-        "title": "Jaskyniarov sen alebo „Jaskyňa“ ako malina",
-        "year": 2006,
-        "volume": "XXXVII.",
-        "issue": "3",
-        "pages": "29",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Haspra, Z."
-        ],
-        "abstract": "Stručná zmienka o jaskyni vybudovanej v umelom skalnom masíve v juhovýchodnej časti Čínskej ľudovej republiky",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-3.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-3.pdf#page=33",
-        "detail_url": "/clanky/2224/"
-      }
-    ]
   },
   {
     "name": "Strážovská priepasť",
@@ -52037,39 +50019,6 @@
     ]
   },
   {
-    "name": "Súčasťou Novohradského geoparku budú aj jaskyne",
-    "slug": "sucastou-novohradskeho-geoparku-budu-aj-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2008,
-    "last_year": 2008,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 4207,
-        "title": "Súčasťou Novohradského geoparku budú aj jaskyne",
-        "year": 2008,
-        "volume": "13",
-        "issue": "1",
-        "pages": "42",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Gaál, Ľ."
-        ],
-        "abstract": "Príspevok informuje, že súčasťou Novohradského geoparku budú aj jaskyne.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=49",
-        "detail_url": "/clanky/4207/"
-      }
-    ]
-  },
-  {
     "name": "Tajomstvo Amatérskej jaskyne",
     "slug": "tajomstvo-amaterskej-jaskyne",
     "area": "",
@@ -52243,39 +50192,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_2.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_2.pdf#page=25",
         "detail_url": "/clanky/2012/"
-      }
-    ]
-  },
-  {
-    "name": "Text zachytáva spomienky spájajúce jaskyne",
-    "slug": "text-zachytava-spomienky-spajajuce-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2010,
-    "last_year": 2010,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2740,
-        "title": "Spomienka na jaskyne a vojnové udalosti",
-        "year": 2010,
-        "volume": "",
-        "issue": "4",
-        "pages": "37",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Holúbek, P."
-        ],
-        "abstract": "Text zachytáva spomienky spájajúce jaskyne s vojnovými udalosťami a približuje historické súvislosti ich využitia alebo významu.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-4.pdf#page=41",
-        "detail_url": "/clanky/2740/"
       }
     ]
   },
@@ -53461,39 +51377,6 @@
     ]
   },
   {
-    "name": "Vybrané písomné zmienky o jaskyni",
-    "slug": "vybrane-pisomne-zmienky-o-jaskyni",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2006,
-    "last_year": 2006,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2173,
-        "title": "Vybrané písomné zmienky o jaskyni Diablova diera v Branisku",
-        "year": 2006,
-        "volume": "XXXVII.",
-        "issue": "1",
-        "pages": "48-50",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Ducár, J."
-        ],
-        "abstract": "Ján Štiavnický: Januš z Braniska, Die geologischen und hydrografischen Verhältnisse des Branyiszkó-Gebirges, povesť o Diablovej diere, legendy o použití jaskyne v bitkách o priesmyk, Levoča a okolie",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf#page=52",
-        "detail_url": "/clanky/2173/"
-      }
-    ]
-  },
-  {
     "name": "Vybrané slobodomurárske iniciačné jaskyne",
     "slug": "vybrane-slobodomurarske-iniciacne-jaskyne",
     "area": "",
@@ -53527,72 +51410,6 @@
     ]
   },
   {
-    "name": "Vyhlásenie súťaže o umelecké stvárnenie jaskyne",
-    "slug": "vyhlasenie-sutaze-o-umelecke-stvarnenie-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2009,
-    "last_year": 2009,
-    "authors_count": 0,
-    "articles": [
-      {
-        "id": 2488,
-        "title": "Vyhlásenie súťaže o umelecké stvárnenie jaskyne, III. ročník",
-        "year": 2009,
-        "volume": "XL.",
-        "issue": "1",
-        "pages": "78",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Anonymus"
-        ],
-        "abstract": "Podmienky súťaže",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-1.pdf#page=82",
-        "detail_url": "/clanky/2488/"
-      }
-    ]
-  },
-  {
-    "name": "Vyhodnotenie súťaže o umelecké stvárnenie jaskyne",
-    "slug": "vyhodnotenie-sutaze-o-umelecke-stvarnenie-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2010,
-    "last_year": 2010,
-    "authors_count": 0,
-    "articles": [
-      {
-        "id": 2633,
-        "title": "Vyhodnotenie súťaže o umelecké stvárnenie jaskyne",
-        "year": 2010,
-        "volume": "",
-        "issue": "1",
-        "pages": "87",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Redakcia"
-        ],
-        "abstract": "Príspevok informuje o výsledkoch súťaže zameranej na umelecké stvárnenie jaskyne.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-1.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-1.pdf#page=91",
-        "detail_url": "/clanky/2633/"
-      }
-    ]
-  },
-  {
     "name": "Vykopané jaskyne",
     "slug": "vykopane-jaskyne",
     "area": "",
@@ -53622,39 +51439,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_2_1995.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_2_1995.pdf#page=16",
         "detail_url": "/clanky/1147/"
-      }
-    ]
-  },
-  {
-    "name": "Vystrojovanie jaskyne",
-    "slug": "vystrojovanie-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2006,
-    "last_year": 2006,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2258,
-        "title": "Vystrojovanie jaskyne Veľké Prepadlé",
-        "year": 2006,
-        "volume": "XXXVII.",
-        "issue": "4",
-        "pages": "40-41",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Magdolen, P."
-        ],
-        "abstract": "Osadenie hliníkových a železných rebríkov v jaskyni koncom sezóny roku 2006, čím sa dosiahlo vystrojenie vstupných vertikálnych častí jaskyne",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-4.pdf#page=43",
-        "detail_url": "/clanky/2258/"
       }
     ]
   },
@@ -53767,105 +51551,6 @@
         "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-3.pdf",
         "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-3.pdf#page=30",
         "detail_url": "/clanky/2222/"
-      }
-    ]
-  },
-  {
-    "name": "Výskum jaskyne",
-    "slug": "vyskum-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 1997,
-    "last_year": 1997,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1270,
-        "title": "Zpráva o výkopových pracech v jeskyni Líščie diery ve Važeckém krasu",
-        "year": 1997,
-        "volume": "XXVIII.",
-        "issue": "1",
-        "pages": "36-37",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Votoupal, S."
-        ],
-        "abstract": "Výskum jaskyne v rokoch 1984 – 1987 skupinou Estrádní speleo selection company",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1_1997.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1_1997.pdf#page=40",
-        "detail_url": "/clanky/1270/"
-      }
-    ]
-  },
-  {
-    "name": "Výskumná správa opisuje priepasť",
-    "slug": "vyskumna-sprava-opisuje-priepast",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 1968,
-    "last_year": 1968,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 5031,
-        "title": "Priepasť pod vrcholom Malého Fatranského Kriváňa",
-        "year": 1968,
-        "volume": "7",
-        "issue": "",
-        "pages": "81-84",
-        "journal_id": "slovensky_kras",
-        "journal_title": "Slovenský kras",
-        "journal_short_title": "Slovenský kras",
-        "authors": [
-          "Prikryl, Ľ. V."
-        ],
-        "abstract": "Výskumná správa opisuje priepasť pod vrcholom Malého Fatranského Kriváňa.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/7_1967_1968.pdf",
-        "pdf_link": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/7_1967_1968.pdf#page=84",
-        "detail_url": "/clanky/5031/"
-      }
-    ]
-  },
-  {
-    "name": "Výsledky výskumu jaskyne Suchá diera",
-    "slug": "vysledky-vyskumu-jaskyne-sucha-diera",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 2000,
-    "last_year": 2000,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1657,
-        "title": "Prekvapivé archeologické objavy",
-        "year": 2000,
-        "volume": "XXXI.",
-        "issue": "4",
-        "pages": "25-27",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Soják, M."
-        ],
-        "abstract": "Výsledky výskumu jaskyne Suchá diera v katastri obce Spišská Teplica; poloha jaskyne, história výskumu a jeho hlavné výsledky",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_4.pdf#page=28",
-        "detail_url": "/clanky/1657/"
       }
     ]
   },
@@ -54081,72 +51766,6 @@
     ]
   },
   {
-    "name": "Zameranie jaskyne",
-    "slug": "zameranie-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 2002,
-    "last_year": 2002,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 1866,
-        "title": "Výsledky mapovacieho kurzu v Pružinskej jaskyni",
-        "year": 2002,
-        "volume": "XXXIII.",
-        "issue": "4",
-        "pages": "20-21",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Hochmuth, Z."
-        ],
-        "abstract": "Zameranie jaskyne účastníkmi mapovacieho kurzu SSS začiatkom mája 2002, niekoľko slov o jaskyni, mapovanie",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_4.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_4.pdf#page=23",
-        "detail_url": "/clanky/1866/"
-      }
-    ]
-  },
-  {
-    "name": "Zameriavanie jaskyne",
-    "slug": "zameriavanie-jaskyne",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 1,
-    "first_year": 2006,
-    "last_year": 2006,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2181,
-        "title": "Stručná správa: Kosovo a Macedónsko 2/2006",
-        "year": 2006,
-        "volume": "XXXVII.",
-        "issue": "1",
-        "pages": "70-71",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Šmoll, J."
-        ],
-        "abstract": "Zameriavanie jaskyne Velika klisura, prieskum Veľkej pukliny, povrchový prieskum pohoria Jakupica",
-        "has_map_plan": true,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf#page=74",
-        "detail_url": "/clanky/2181/"
-      }
-    ]
-  },
-  {
     "name": "Zaujímavé jaskyne",
     "slug": "zaujimave-jaskyne",
     "area": "",
@@ -54353,39 +51972,6 @@
       "confidence": "official-smopaj-2017",
       "source": "smopaj-cave-register-2017"
     }
-  },
-  {
-    "name": "Zmienky o jaskyni",
-    "slug": "zmienky-o-jaskyni",
-    "area": "",
-    "aliases": [],
-    "article_count": 1,
-    "map_plan_count": 0,
-    "first_year": 2008,
-    "last_year": 2008,
-    "authors_count": 1,
-    "articles": [
-      {
-        "id": 2416,
-        "title": "Jaskyňa Studňa v Bojniciach",
-        "year": 2008,
-        "volume": "XXXIX.",
-        "issue": "2",
-        "pages": "56-57",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Ducár, J."
-        ],
-        "abstract": "Zmienky o jaskyni Studňa v Bojniciach v publikácii M. Krčíka Testament grófa Pálffyho, ktorú vydalo Vydavateľstvo Matice slovenskej v roku 2007",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-2.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-2.pdf#page=60",
-        "detail_url": "/clanky/2416/"
-      }
-    ]
   },
   {
     "name": "Znovuobjevení Bielej jaskyne",
