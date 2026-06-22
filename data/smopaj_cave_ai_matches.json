@@ -1,15 +1,15 @@
 {
   "schema_version": "smopaj-cave-ai-matches/v1",
-  "generated_at": "2026-06-21T17:32:39.240477+00:00",
+  "generated_at": "2026-06-22T04:54:21.390027+00:00",
   "backend": "codex",
   "model": "gpt-5.5",
   "ollama_model": "gemma4:e2b-it-qat",
   "codex_model": "gpt-5.5",
-  "min_confidence": 0.86,
+  "min_confidence": 0.82,
   "sources": [
     {
       "title": "AI-assisted SMOPaJ cave register matching",
-      "date": "2026-06-21",
+      "date": "2026-06-22",
       "note": "Generated suggestions; manually curated overrides still take precedence."
     }
   ],
@@ -537,40 +537,6 @@
     }
   ],
   "deferred": [
-    {
-      "cave_slug": "diablova-diera",
-      "cave_name": "Diablova diera",
-      "reason": "Kontext jednoznačne smeruje na lokalitu Diablova diera v pohorí Branisko, ale v kandidátoch sú dve oficiálne položky SMOPaJ s rovnakým názvom v tej istej oblasti: č. 81 ako ponor a č. 82 ako vyvieračka. Články hovoria všeobecne o jaskyni alebo jaskynnom systéme Diablova diera v Branisku a neposkytujú lokálny dôkaz, či karta patrí práve k ponoru alebo k vyvieračke.",
-      "candidate_numbers": [
-        "81",
-        "82",
-        "4443",
-        "4454",
-        "4532"
-      ]
-    },
-    {
-      "cave_slug": "zbojnicka-diera",
-      "cave_name": "Zbojnícka diera",
-      "reason": "Karta spája názvy, ktoré kontext článkov viaže na rôzne lokality: Jaskyňa Oltárkameň/Zbojnícka diera v Čergove nad Drienicou zodpovedá kandidátovi 211, ale ďalšie články hovoria o Zbojníckej diere pri Švošove a Zbojníckej džure pri Sulíne. Keďže ide o viac rôznych jaskýň s rovnakým alebo podobným názvom, nemožno bezpečne priradiť jednu položku registra.",
-      "candidate_numbers": [
-        "211",
-        "212",
-        "867",
-        "894",
-        "2401"
-      ]
-    },
-    {
-      "cave_slug": "jaskyna-zbojnicka-diera",
-      "cave_name": "Jaskyňa Zbojnícka diera",
-      "reason": "Codex samostatne vybral kandidáta 6796 pre článok pri Švošove vo Veľkej Fatre, ale aktuálna webová karta sa po build-e stále mieša so širšou kartou Zbojnícka diera a nedáva jednoznačný samostatný SMOPaJ match. Treba najprv rozštiepiť kartu podľa lokality.",
-      "candidate_numbers": [
-        "6796",
-        "211",
-        "2401"
-      ]
-    },
     {
       "cave_slug": "hradocka-jaskyna",
       "cave_name": "Hrádocká jaskyňa",
@@ -1255,14 +1221,130 @@
         "5721",
         "5708"
       ]
+    },
+    {
+      "cave_slug": "diablova-diera",
+      "cave_name": "Diablova diera",
+      "reason": "Kontext jednoznačne smeruje na lokalitu Diablova diera v Branisku, ale v kandidátoch sú dve samostatné registrované jaskyne s rovnakým názvom: Diablova diera (ponor) č. 81 a Diablova diera (vyvieračka) č. 82. Článok 3805 výslovne opisuje jaskynný systém zložený z oboch častí, zatiaľ čo karta nešpecifikuje ponor ani vyvieračku. Preto nemožno bezpečne priradiť jedno kandidátne číslo.",
+      "candidate_numbers": [
+        "81",
+        "82",
+        "4443",
+        "4454",
+        "4532"
+      ]
+    },
+    {
+      "cave_slug": "jaskyna-zbojnicka-diera",
+      "cave_name": "Jaskyňa Zbojnícka diera",
+      "reason": "Karta spája najmenej dve rôzne jaskyne s rovnakým názvom: článok z roku 1985 lokalizuje Zbojnícku dieru pri obci Šambron na severnom okraji Levočských vrchov, zatiaľ čo článok z roku 2014 opisuje Zbojnícku dieru pri Švošove vo Veľkej Fatre. Kandidát 6796 zodpovedá švošovskej/veľkofatranskej lokalite, ale nevysvetľuje šambronský kontext, preto nemožno bezpečne priradiť celú bibliografickú kartu k jednej jaskyni.",
+      "candidate_numbers": [
+        "6796",
+        "4915",
+        "6538",
+        "3798",
+        "3437"
+      ]
+    },
+    {
+      "cave_slug": "zbojnicka-diera",
+      "cave_name": "Zbojnícka diera",
+      "reason": "Karta spája názvy z viacerých odlišných lokalít: Jaskyňa Oltárkameň v Čergove nad Drienicou zodpovedá kandidátovi 211, ale Zbojnícka diera pri Švošove ukazuje na inú jaskyňu a Zbojnícka džura pri Sulíne na ďalšiu lokalitu. Kontext teda nepreukazuje jednu totožnú jaskyňu.",
+      "candidate_numbers": [
+        "211",
+        "212",
+        "867",
+        "894",
+        "2401"
+      ]
     }
   ],
+  "audit": {
+    "confirmed": [],
+    "uncertain": [
+      {
+        "cave_slug": "diablova-diera",
+        "cave_name": "Diablova diera",
+        "status": "uncertain",
+        "allow_match": false,
+        "decision": "defer",
+        "selected_cave_number": "",
+        "confidence": 0.93,
+        "backend": "codex",
+        "model": "gpt-5.5",
+        "reason": "Kontext jednoznačne smeruje na lokalitu Diablova diera v Branisku, ale v kandidátoch sú dve samostatné registrované jaskyne s rovnakým názvom: Diablova diera (ponor) č. 81 a Diablova diera (vyvieračka) č. 82. Článok 3805 výslovne opisuje jaskynný systém zložený z oboch častí, zatiaľ čo karta nešpecifikuje ponor ani vyvieračku. Preto nemožno bezpečne priradiť jedno kandidátne číslo.",
+        "candidate_numbers": [
+          "81",
+          "82",
+          "4443",
+          "4454",
+          "4532",
+          "101",
+          "4413",
+          "4421"
+        ]
+      },
+      {
+        "cave_slug": "jaskyna-zbojnicka-diera",
+        "cave_name": "Jaskyňa Zbojnícka diera",
+        "status": "uncertain",
+        "allow_match": false,
+        "decision": "defer",
+        "selected_cave_number": "",
+        "confidence": 0.93,
+        "backend": "codex",
+        "model": "gpt-5.5",
+        "reason": "Karta spája najmenej dve rôzne jaskyne s rovnakým názvom: článok z roku 1985 lokalizuje Zbojnícku dieru pri obci Šambron na severnom okraji Levočských vrchov, zatiaľ čo článok z roku 2014 opisuje Zbojnícku dieru pri Švošove vo Veľkej Fatre. Kandidát 6796 zodpovedá švošovskej/veľkofatranskej lokalite, ale nevysvetľuje šambronský kontext, preto nemožno bezpečne priradiť celú bibliografickú kartu k jednej jaskyni.",
+        "candidate_numbers": [
+          "6796",
+          "4915",
+          "6538",
+          "3798",
+          "3437",
+          "3773",
+          "3774",
+          "3410"
+        ]
+      },
+      {
+        "cave_slug": "zbojnicka-diera",
+        "cave_name": "Zbojnícka diera",
+        "status": "uncertain",
+        "allow_match": false,
+        "decision": "defer",
+        "selected_cave_number": "",
+        "confidence": 0.94,
+        "backend": "codex",
+        "model": "gpt-5.5",
+        "reason": "Karta spája názvy z viacerých odlišných lokalít: Jaskyňa Oltárkameň v Čergove nad Drienicou zodpovedá kandidátovi 211, ale Zbojnícka diera pri Švošove ukazuje na inú jaskyňu a Zbojnícka džura pri Sulíne na ďalšiu lokalitu. Kontext teda nepreukazuje jednu totožnú jaskyňu.",
+        "candidate_numbers": [
+          "211",
+          "212",
+          "867",
+          "894",
+          "2401",
+          "6796",
+          "1183",
+          "4915"
+        ]
+      }
+    ],
+    "rejected": []
+  },
   "stats": {
-    "selected": 20,
+    "selected": 1,
     "matched": 65,
     "deferred": 81,
+    "confirmed": 0,
+    "uncertain": 3,
+    "rejected": 0,
     "errors": 0,
-    "resumed_matches": 49,
-    "resumed_deferred": 77
+    "resumed_matches": 65,
+    "resumed_deferred": 80,
+    "resumed_confirmed": 0,
+    "resumed_uncertain": 2,
+    "resumed_rejected": 0,
+    "retried_matches": 1,
+    "retried_deferred": 0
   }
 }

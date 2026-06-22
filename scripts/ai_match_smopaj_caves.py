@@ -329,9 +329,12 @@ def cave_is_probably_foreign_or_generic(cave: dict[str, Any]) -> str:
         return "generická alebo skupinová karta bez jednoznačného názvu jednej jaskyne"
     if tokens and tokens <= GENERIC_CAVE_CARD_TOKENS:
         return "generická karta bez jednoznačného názvu jaskyne"
-    if any(token in context or token in name_key for token in FOREIGN_CONTEXT_TOKENS) and not any(
-        token in context for token in SLOVAK_CONTEXT_TOKENS
-    ):
+    foreign_name = any(token in name_key for token in FOREIGN_CONTEXT_TOKENS)
+    foreign_context = any(token in context for token in FOREIGN_CONTEXT_TOKENS)
+    strong_slovak_geo_context = any(
+        token in context for token in SLOVAK_CONTEXT_TOKENS if token != "slovensk"
+    )
+    if foreign_name or (foreign_context and not strong_slovak_geo_context):
         return "zahraničná alebo mimo-slovenská lokalita bez SMOPaJ záznamu"
     return ""
 
@@ -531,6 +534,196 @@ def validate_decision(decision: dict[str, Any], candidates: list[dict[str, Any]]
     return normalized
 
 
+def candidate_region_key(candidate: dict[str, Any]) -> str:
+    return " / ".join(
+        normalize(candidate.get(key) or "")
+        for key in ("geomorph_celok", "geomorph_podcelok", "geomorph_cast")
+        if normalize(candidate.get(key) or "")
+    )
+
+
+def candidate_name_key(candidate: dict[str, Any]) -> str:
+    official_key = comparable_name(candidate.get("official_name") or "")
+    if official_key:
+        return official_key
+    return normalize(candidate.get("official_name") or "")
+
+
+def candidate_name_keys(candidate: dict[str, Any]) -> set[str]:
+    keys = {candidate_name_key(candidate)}
+    for name in candidate.get("names") or []:
+        key = comparable_name(name)
+        if key:
+            keys.add(key)
+    return {key for key in keys if key}
+
+
+def strict_name_variants(value: Any) -> set[str]:
+    key = normalize(value)
+    if not key:
+        return set()
+    variants = {key}
+    words = key.split()
+    if len(words) > 1 and words[0] in CAVE_TYPE_TOKENS:
+        variants.add(" ".join(words[1:]))
+    if len(words) > 2 and words[-1] in CAVE_TYPE_TOKENS:
+        variants.add(" ".join(words[:-1]))
+    return {variant for variant in variants if variant}
+
+
+def strict_candidate_name_match(cave: dict[str, Any], candidate: dict[str, Any]) -> bool:
+    cave_variants = strict_name_variants(cave.get("name") or "")
+    if not cave_variants:
+        return False
+    for entry_name in entry_names(candidate):
+        if cave_variants & strict_name_variants(entry_name):
+            return True
+    return False
+
+
+def ai_reason_indicates_mixed_card(reason: str) -> bool:
+    reason_key = normalize(reason)
+    if not reason_key:
+        return False
+    mixed_markers = (
+        "karta spaja",
+        "spaja viac",
+        "viac lokalit",
+        "rozne jaskyne",
+        "odlisnych jaskyn",
+        "ostatne clanky",
+        "rovnomenne lokality",
+        "samostatne lokality",
+        "samostatne rovnomenne lokality",
+        "samostatnych lokalit",
+    )
+    return any(marker in reason_key for marker in mixed_markers)
+
+
+def ambiguous_match_reason(
+    cave: dict[str, Any],
+    candidates: list[dict[str, Any]],
+    decision: dict[str, Any],
+    *,
+    backend: str,
+) -> str:
+    if decision.get("decision") != "match" or not candidates:
+        return ""
+    selected = next((item for item in candidates if item["cave_number"] == decision.get("cave_number")), None)
+    if not selected:
+        return ""
+
+    selected_score = float(selected.get("score") or 0.0)
+    selected_context = float(selected.get("context_score") or 0.0)
+    selected_name_key = candidate_name_key(selected)
+    selected_name_keys = candidate_name_keys(selected)
+    selected_region_key = candidate_region_key(selected)
+    if backend == "heuristic" and not strict_candidate_name_match(cave, selected):
+        return "heuristická zhoda je iba fuzzy alebo stemová; názov sa nezhoduje s oficiálnym názvom ani aliasom"
+
+    same_name_anywhere = [
+        candidate
+        for candidate in candidates
+        if candidate.get("cave_number") != selected.get("cave_number")
+        and bool(candidate_name_keys(candidate) & selected_name_keys)
+        and float(candidate.get("name_score") or 0.0) >= 0.96
+    ]
+    if backend == "heuristic" and same_name_anywhere:
+        return "rovnaký názov alebo rovnaký pádový základ má viac SMOPaJ kandidátov; treba lokálne overenie"
+    if backend == "heuristic" and len(name_tokens(cave.get("name") or "")) <= 1 and len(candidates) > 1:
+        return "jednoslovná alebo fragmentárna karta nie je bezpečný automatický match bez AI overenia"
+
+    close_candidates = [
+        candidate
+        for candidate in candidates
+        if candidate.get("cave_number") != selected.get("cave_number")
+        and (
+            float(candidate.get("score") or 0.0) >= selected_score - 0.08
+            or (
+                float(candidate.get("name_score") or 0.0) >= 0.96
+                and abs(float(candidate.get("context_score") or 0.0) - selected_context) <= 0.25
+            )
+        )
+    ]
+    if not close_candidates:
+        return ""
+
+    same_name_candidates = [
+        candidate
+        for candidate in close_candidates
+        if bool(candidate_name_keys(candidate) & selected_name_keys)
+        or (
+            float(candidate.get("name_score") or 0.0) >= 0.96
+            and float(selected.get("name_score") or 0.0) >= 0.96
+        )
+    ]
+    if not same_name_candidates:
+        return ""
+
+    if backend == "heuristic":
+        return "viac SMOPaJ kandidátov má rovnaký alebo takmer rovnaký názov; treba lokálne overenie"
+
+    same_region_candidates = [
+        candidate for candidate in same_name_candidates if candidate_region_key(candidate) == selected_region_key
+    ]
+    if same_region_candidates and float(decision.get("confidence") or 0.0) < 0.95:
+        return "viac SMOPaJ kandidátov má rovnaký názov aj geomorfologický kontext; AI zhoda nie je dostatočne jednoznačná"
+    return ""
+
+
+def audit_decision(
+    cave: dict[str, Any],
+    candidates: list[dict[str, Any]],
+    decision: dict[str, Any],
+    *,
+    backend: str,
+    model: str,
+) -> dict[str, Any]:
+    reject_reason = cave_is_probably_foreign_or_generic(cave)
+    candidate_numbers = [str(item.get("cave_number") or "") for item in candidates[:8] if str(item.get("cave_number") or "")]
+    audit = {
+        "cave_slug": cave.get("slug", ""),
+        "cave_name": cave.get("name", ""),
+        "status": "uncertain",
+        "allow_match": False,
+        "decision": decision.get("decision") or "defer",
+        "selected_cave_number": decision.get("cave_number") or "",
+        "confidence": float(decision.get("confidence") or 0.0),
+        "backend": backend,
+        "model": model,
+        "reason": str(decision.get("reason") or ""),
+        "candidate_numbers": candidate_numbers,
+    }
+
+    if decision.get("decision") == "match":
+        ambiguity = ambiguous_match_reason(cave, candidates, decision, backend=backend)
+        if ambiguity:
+            audit["status"] = "uncertain"
+            audit["reason"] = f"{ambiguity}. {audit['reason']}".strip()
+            return audit
+        if backend != "heuristic" and ai_reason_indicates_mixed_card(audit["reason"]):
+            audit["status"] = "uncertain"
+            audit["reason"] = f"AI odôvodnenie naznačuje zmiešanú kartu s viacerými lokalitami. {audit['reason']}".strip()
+            return audit
+        audit["status"] = "confirmed"
+        audit["allow_match"] = True
+        return audit
+
+    if reject_reason and (
+        not candidates
+        or reject_reason.startswith("generická")
+        or "zahrani" in normalize(reject_reason)
+        or "mimo" in normalize(reject_reason)
+    ):
+        audit["status"] = "rejected"
+        audit["reason"] = str(decision.get("reason") or reject_reason)
+        return audit
+
+    audit["status"] = "uncertain"
+    audit["reason"] = str(decision.get("reason") or "chýba dostatočne jednoznačný SMOPaJ kandidát")
+    return audit
+
+
 def iter_jsonl(path: Path):
     if not path.exists():
         return
@@ -594,9 +787,13 @@ def process_caves(args: argparse.Namespace) -> dict[str, Any]:
     register = load_json(args.register, {})
     entries = [entry for entry in register.get("entries", []) if isinstance(entry, dict)]
     existing_output = load_json(args.output, {}) if args.resume and args.output.exists() and not args.dry_run else {}
+    existing_matches = list(existing_output.get("matches") or [])
+    existing_deferred = list(existing_output.get("deferred") or [])
+    retry_deferred = bool(getattr(args, "retry_deferred", False))
+    retry_matches = bool(getattr(args, "retry_matches", False))
     processed_slugs = {
         str(item.get("cave_slug") or "")
-        for item in [*(existing_output.get("matches") or []), *(existing_output.get("deferred") or [])]
+        for item in [*([] if retry_matches else existing_matches), *([] if retry_deferred else existing_deferred)]
         if str(item.get("cave_slug") or "")
     }
     selected_caves = [
@@ -609,6 +806,24 @@ def process_caves(args: argparse.Namespace) -> dict[str, Any]:
     selected_caves.sort(key=lambda item: (-int(item.get("article_count") or 0), str(item.get("name") or "")))
     if args.limit:
         selected_caves = selected_caves[: args.limit]
+    selected_slugs = {str(cave.get("slug") or "") for cave in selected_caves if str(cave.get("slug") or "")}
+    initial_matches = [
+        item for item in existing_matches if str(item.get("cave_slug") or "") not in selected_slugs
+    ]
+    initial_deferred = [
+        item for item in existing_deferred if str(item.get("cave_slug") or "") not in selected_slugs
+    ]
+
+    existing_audit = existing_output.get("audit") if isinstance(existing_output.get("audit"), dict) else {}
+    existing_confirmed = [
+        item for item in existing_audit.get("confirmed") or [] if str(item.get("cave_slug") or "") not in selected_slugs
+    ]
+    existing_uncertain = [
+        item for item in existing_audit.get("uncertain") or [] if str(item.get("cave_slug") or "") not in selected_slugs
+    ]
+    existing_rejected = [
+        item for item in existing_audit.get("rejected") or [] if str(item.get("cave_slug") or "") not in selected_slugs
+    ]
 
     article_ids = {
         int(article.get("id") or 0)
@@ -633,15 +848,28 @@ def process_caves(args: argparse.Namespace) -> dict[str, Any]:
                 "note": "Generated suggestions; manually curated overrides still take precedence.",
             }
         ],
-        "matches": list(existing_output.get("matches") or []),
-        "deferred": list(existing_output.get("deferred") or []),
+        "matches": initial_matches,
+        "deferred": initial_deferred,
+        "audit": {
+            "confirmed": existing_confirmed,
+            "uncertain": existing_uncertain,
+            "rejected": existing_rejected,
+        },
         "stats": {
             "selected": len(selected_caves),
-            "matched": len(existing_output.get("matches") or []),
-            "deferred": len(existing_output.get("deferred") or []),
+            "matched": len(initial_matches),
+            "deferred": len(initial_deferred),
+            "confirmed": len(existing_confirmed),
+            "uncertain": len(existing_uncertain),
+            "rejected": len(existing_rejected),
             "errors": 0,
-            "resumed_matches": len(existing_output.get("matches") or []),
-            "resumed_deferred": len(existing_output.get("deferred") or []),
+            "resumed_matches": len(initial_matches),
+            "resumed_deferred": len(initial_deferred),
+            "resumed_confirmed": len(existing_confirmed),
+            "resumed_uncertain": len(existing_uncertain),
+            "resumed_rejected": len(existing_rejected),
+            "retried_matches": len(existing_matches) - len(initial_matches),
+            "retried_deferred": len(existing_deferred) - len(initial_deferred),
         },
     }
 
@@ -680,7 +908,17 @@ def process_caves(args: argparse.Namespace) -> dict[str, Any]:
                     }
 
         decision = validate_decision(decision, candidates, args.min_confidence)
-        if decision["decision"] == "match":
+        audit = audit_decision(
+            cave,
+            candidates,
+            decision,
+            backend=backend_used,
+            model=args.model if backend_used != "codex" else args.codex_model,
+        )
+        output["audit"][audit["status"]].append(audit)
+        output["stats"][audit["status"]] += 1
+
+        if decision["decision"] == "match" and audit["allow_match"]:
             output["matches"].append(
                 decision_to_match(cave, decision, candidates, backend=backend_used, model=args.model if backend_used != "codex" else args.codex_model)
             )
@@ -691,12 +929,12 @@ def process_caves(args: argparse.Namespace) -> dict[str, Any]:
                 {
                     "cave_slug": cave.get("slug", ""),
                     "cave_name": cave.get("name", ""),
-                    "reason": decision.get("reason") or error or "AI nevybrala dostatočne istý SMOPaJ záznam",
+                    "reason": audit.get("reason") or decision.get("reason") or error or "AI nevybrala dostatočne istý SMOPaJ záznam",
                     "candidate_numbers": [item["cave_number"] for item in candidates[:5]],
                 }
             )
             output["stats"]["deferred"] += 1
-            status = "defer"
+            status = audit["status"]
 
         print(
             f"[{index}/{len(selected_caves)}] {status} {cave.get('name')} "
@@ -728,6 +966,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--slug", action="append", default=[])
     parser.add_argument("--dry-run", action="store_true")
     parser.add_argument("--resume", action="store_true")
+    parser.add_argument("--retry-deferred", action="store_true")
+    parser.add_argument("--retry-matches", action="store_true")
     return parser.parse_args()
 
 
