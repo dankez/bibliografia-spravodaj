@@ -1,5 +1,6 @@
 ---
 import '../styles/global.css';
+import packageInfo from '../../package.json';
 
 interface Props {
 	title?: string;
@@ -7,6 +8,9 @@ interface Props {
 
 const { title = "Spravodaj SSS — Bibliografický portál" } = Astro.props;
 const assetBase = import.meta.env.BASE_URL;
+const releaseDate = import.meta.env.PUBLIC_RELEASE_DATE || new Date().toISOString().slice(0, 10).replaceAll('-', '');
+const releaseSha = String(import.meta.env.PUBLIC_RELEASE_SHA || import.meta.env.CF_PAGES_COMMIT_SHA || 'local').slice(0, 7);
+const releaseLabel = `v${packageInfo.version}-beta.${releaseDate}+${releaseSha}`;
 ---
 
 <!doctype html>
@@ -48,7 +52,8 @@ const assetBase = import.meta.env.BASE_URL;
 	<body class="bg-belly-gainsboro text-belly-black font-sans antialiased min-h-screen">
 		<slot />
 		<footer class="site-author-signature" aria-label="Autor projektu">
-			Autor: <a href="https://github.com/dankez" rel="author noopener" target="_blank">DankeZ</a>
+			<span>Autor: <a href="https://github.com/dankez" rel="author noopener" target="_blank">DankeZ</a></span>
+			<span class="site-release">release: {releaseLabel}</span>
 		</footer>
 		<script src={`${assetBase}theme-switcher.js`} defer></script>
 	</body>

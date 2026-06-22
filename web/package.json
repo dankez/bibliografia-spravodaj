@@ -7,7 +7,7 @@
   },
   "scripts": {
     "dev": "astro dev",
-    "build": "NODE_OPTIONS=--max-old-space-size=6144 astro build",
+    "build": "PUBLIC_RELEASE_SHA=$(git rev-parse --short HEAD 2>/dev/null || echo local) PUBLIC_RELEASE_DATE=$(date -u +%Y%m%d) NODE_OPTIONS=--max-old-space-size=6144 astro build",
     "preview": "astro preview",
     "astro": "astro"
   },

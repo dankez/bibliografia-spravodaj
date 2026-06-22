@@ -781,6 +781,11 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 }
 
 .site-author-signature {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  gap: 0.35rem 0.75rem;
   border-top: 1px solid rgb(var(--sss-darkgray) / 0.72);
   background: rgb(var(--sss-surface));
   color: rgb(var(--sss-dimgray));
@@ -789,6 +794,11 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   font-size: 0.68rem;
   line-height: 1.2;
   text-align: center;
+}
+
+.site-release {
+  color: rgb(var(--sss-lightslategray));
+  font-weight: 700;
 }
 
 .site-author-signature a {
