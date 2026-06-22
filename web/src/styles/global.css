@@ -1102,6 +1102,43 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   text-transform: uppercase;
 }
 
+.report-field .report-field-label {
+  display: inline-flex;
+  width: fit-content;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.report-field .report-help-icon {
+  display: inline-flex;
+  width: 1.05rem;
+  height: 1.05rem;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid rgb(var(--sss-firebrick) / 0.45);
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-card));
+  color: rgb(var(--sss-firebrick));
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  line-height: 1;
+  text-transform: none;
+}
+
+.report-help-text {
+  color: rgb(var(--sss-dimgray));
+  font-size: 0.78rem;
+  line-height: 1.45;
+}
+
+.report-help-text code {
+  color: rgb(var(--sss-firebrick));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.76rem;
+}
+
 .report-field input,
 .report-field select,
 .report-field textarea {

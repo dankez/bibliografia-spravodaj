@@ -2,8 +2,16 @@
 import Layout from '../../layouts/Layout.astro';
 import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
 import articles from '../../data/articles.json';
+import caves from '../../data/caves.json';
 
 const articlesById = new Map(articles.map((article) => [String(article.id), article]));
+const caveSlugByName = new Map(
+  caves.flatMap((cave) =>
+    [cave.name, ...(cave.aliases || [])]
+      .filter(Boolean)
+      .map((name) => [String(name), cave.slug])
+  )
+);
 
 export async function getStaticPaths() {
   return articles.map(art => ({
@@ -44,7 +52,16 @@ const pdfPageOffset = Number.isFinite(Number(art.pdf_page_offset))
   ? Number(art.pdf_page_offset)
   : DEFAULT_PDF_PAGE_LINK_OFFSET;
 const pdfPageStart = pdfPrintedPageStart + pdfPageOffset;
-const errorReportUrl = `/nahlasit-chybu/?article=${encodeURIComponent(String(art.id))}&title=${encodeURIComponent(art.title)}&url=${encodeURIComponent(`/clanky/${art.id}/`)}`;
+const primaryCaveName = Array.isArray(art.caves) && art.caves.length ? String(art.caves[0]) : '';
+const primaryCaveSlug = primaryCaveName ? caveSlugByName.get(primaryCaveName) || '' : '';
+const errorReportParams = new URLSearchParams({
+  article: String(art.id),
+  title: art.title,
+  url: `/clanky/${art.id}/`,
+});
+if (primaryCaveName) errorReportParams.set('caveName', primaryCaveName);
+if (primaryCaveSlug) errorReportParams.set('cave', primaryCaveSlug);
+const errorReportUrl = `/nahlasit-chybu/?${errorReportParams.toString()}`;
 
 // Citation formatting
 const formattedAuthorsIso = formatAuthorsDisplay(art.authors.map(a => {

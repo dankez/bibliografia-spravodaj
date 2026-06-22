@@ -66,12 +66,32 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
 
         <div class="grid gap-4 sm:grid-cols-2">
           <label class="report-field">
-            <span>Jaskyňa / lokalita</span>
-            <input id="cave-name" name="caveName" type="text" autocomplete="off" />
+            <span class="report-field-label">
+              Jaskyňa / lokalita
+              <span
+                class="report-help-icon"
+                aria-label="Nápoveda k názvu jaskyne alebo lokality"
+                title="Názov jaskyne alebo lokality, ktorej sa oprava týka. Pri príchode z článku alebo časovej osi sa vyplní automaticky."
+              >?</span>
+            </span>
+            <input id="cave-name" name="caveName" type="text" autocomplete="off" aria-describedby="cave-name-help" />
+            <small id="cave-name-help" class="report-help-text">
+              Pri odkaze z článku alebo časovej osi sa doplní automaticky. Ak je článok o viacerých lokalitách, nechaj správnu alebo ju prepíš.
+            </small>
           </label>
           <label class="report-field">
-            <span>Slug karty jaskyne</span>
-            <input id="cave-slug" name="caveSlug" type="text" autocomplete="off" />
+            <span class="report-field-label">
+              Slug karty jaskyne
+              <span
+                class="report-help-icon"
+                aria-label="Nápoveda k slugu karty jaskyne"
+                title="Interný názov v URL adrese karty jaskyne, napríklad dobsinska-ladova-jaskyna. Ak ho nevieš, môže zostať prázdny."
+              >?</span>
+            </span>
+            <input id="cave-slug" name="caveSlug" type="text" autocomplete="off" aria-describedby="cave-slug-help" />
+            <small id="cave-slug-help" class="report-help-text">
+              Interný odkaz karty, napr. <code>dobsinska-ladova-jaskyna</code>. Ak ho nevieš, nechaj pole prázdne.
+            </small>
           </label>
         </div>
 
