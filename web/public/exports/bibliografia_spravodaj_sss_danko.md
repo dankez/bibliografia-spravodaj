@@ -4,12 +4,12 @@
 
 ## Obsah
 
-[Zoznam článkov](#zoznam-clankov) - 1
-[Menný register](#menny-register) - 382
-[Lokalitný register](#lokalitny-register) - 411
-[Vecný register](#vecny-register) - 414
-[Súpis plánov jaskýň](#supis-planov-jaskyn) - 451
-[Názvový register jaskýň](#nazvovy-register-jaskyn) - 483
+[Zoznam článkov](#zoznam-clankov)
+[Menný register](#menny-register)
+[Lokalitný register](#lokalitny-register)
+[Vecný register](#vecny-register)
+[Súpis plánov jaskýň](#supis-planov-jaskyn)
+[Názvový register jaskýň](#nazvovy-register-jaskyn)
 
 ## Zoznam článkov
 

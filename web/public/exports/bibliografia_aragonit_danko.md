@@ -209,197 +209,197 @@ Príspevok informuje o úmrtí Ondreja Šeďa.
 
 <span id="clanok-3866"></span>**39. Speleoklimatický monitoring Ochtinskej aragonitovej jaskyne**
 **AUTOR:** Klaučo, S., Filová, J., Zelinka, J.  
-**STRANY:** s. 3 – 5 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 3 – 5 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok sa venuje speleoklimatickému monitoringu Ochtinskej aragonitovej jaskyne.
 
 <span id="clanok-3867"></span>**40. Pohyb ľadu v Dobšinskej ľadovej jaskyni**
 **AUTOR:** Tulis, J.  
-**STRANY:** s. 6 – 7 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 6 – 7 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok opisuje pohyb ľadu v Dobšinskej ľadovej jaskyni.
 
 <span id="clanok-3868"></span>**41. Geofyzikálny prieskum ponornej oblasti jaskyne Domica**
 **AUTOR:** Géczy, J., Kucharič, Ľ.  
-**STRANY:** s. 8 – 10 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 8 – 10 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok sa zaoberá geofyzikálnym prieskumom ponornej oblasti jaskyne Domica.
 
 <span id="clanok-3869"></span>**42. Seizmické merania v Gombaseckej jaskyni**
 **AUTOR:** Müncner, E.  
-**STRANY:** s. 11 – 12 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 11 – 12 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok prináša informácie o seizmických meraniach v Gombaseckej jaskyni.
 
 <span id="clanok-3870"></span>**43. Názory na genézu Ochtinskej aragonitovej jaskyne**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 13 – 14 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 13 – 14 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok sumarizuje názory na genézu Ochtinskej aragonitovej jaskyne.
 
 <span id="clanok-3871"></span>**44. Meračská dokumentácia sprístupnených jaskýň v kontexte Bezpečnostného predpisu pre jaskyne**
 **AUTOR:** Sýkora, J.  
-**STRANY:** s. 15 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 15 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok sa venuje meračskej dokumentácii sprístupnených jaskýň v súvislosti s bezpečnostným predpisom pre jaskyne.
 
 <span id="clanok-3872"></span>**45. Objav Vianočnej priepasti v Harmaneckej jaskyni**
 **AUTOR:** Kurka, M.  
-**STRANY:** s. 16 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 16 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok informuje o objave Vianočnej priepasti v Harmaneckej jaskyni.
 
 <span id="clanok-3873"></span>**46. Uzatváranie vchodov do jaskýň**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 16 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 16 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=6)  
 Príspevok sa zaoberá uzatváraním vchodov do jaskýň.
 
 <span id="clanok-3874"></span>**47. Úprava odtoku prívalových vôd v Gombaseckej jaskyni**
 **AUTOR:** Peško, M.  
-**STRANY:** s. 17 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 17 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok opisuje úpravu odtoku prívalových vôd v Gombaseckej jaskyni.
 
 <span id="clanok-3875"></span>**48. Nová elektroinštalácia Ochtinskej aragonitovej jaskyne**
 **AUTOR:** Fillo, M.  
-**STRANY:** s. 18 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 18 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok informuje o novej elektroinštalácii Ochtinskej aragonitovej jaskyne.
 
 <span id="clanok-3876"></span>**49. Návštevnosť sprístupnených jaskýň v roku 1996**
 **AUTOR:** Nudzíková, Ľ.  
-**STRANY:** s. 18 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 18 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok hodnotí návštevnosť sprístupnených jaskýň v roku 1996.
 
 <span id="clanok-3877"></span>**50. Rekonštrukcia dolnej časti prehliadkovej trasy v Dobšinskej ľadovej jaskyni**
 **AUTOR:** Paulus, J.  
-**STRANY:** s. 19 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 19 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok opisuje rekonštrukciu dolnej časti prehliadkovej trasy v Dobšinskej ľadovej jaskyni.
 
 <span id="clanok-3878"></span>**51. Náučný chodník k Belianskej jaskyni**
 **AUTOR:** Bernadovič, F.  
-**STRANY:** s. 20 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 20 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok predstavuje náučný chodník k Belianskej jaskyni.
 
 <span id="clanok-3879"></span>**52. Vstupný areál Belianskej jaskyne útulnejší**
 **AUTOR:** Janíček, V.  
-**STRANY:** s. 20 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 20 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok informuje o úpravách vstupného areálu Belianskej jaskyne.
 
 <span id="clanok-3880"></span>**53. Stála výstava vo vstupnom areáli Jasovskej jaskyne**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 21 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 21 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok predstavuje stálu výstavu vo vstupnom areáli Jasovskej jaskyne.
 
 <span id="clanok-3881"></span>**54. Hudobné koncerty v Belianskej jaskyni**
 **AUTOR:** Bachleda, J., Pavlarčík, S.  
-**STRANY:** s. 22 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 22 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok informuje o hudobných koncertoch v Belianskej jaskyni.
 
 <span id="clanok-3882"></span>**55. Domica a Ochtinská aragonitová jaskyňa na poštových známkach**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 23 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 23 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok sa venuje zobrazeniu Domice a Ochtinskej aragonitovej jaskyne na poštových známkach.
 
 <span id="clanok-3883"></span>**56. 75. výročie objavenia Važeckej jaskyne**
 **AUTOR:** Orfánus, M.  
-**STRANY:** s. 24 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 24 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok pripomína 75. výročie objavenia Važeckej jaskyne.
 
 <span id="clanok-3884"></span>**57. 25 rokov sprístupnenia Ochtinskej aragonitovej jaskyne**
 **AUTOR:** Ujházy, J.  
-**STRANY:** s. 25 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 25 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok pripomína 25 rokov od sprístupnenia Ochtinskej aragonitovej jaskyne.
 
 <span id="clanok-3885"></span>**58. Študijná cesta - Francúzsko 1996**
 **AUTOR:** Mičuch, D.  
-**STRANY:** s. 26 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 26 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=6)  
 Príspevok informuje o študijnej ceste do Francúzska v roku 1996.
 
 <span id="clanok-3886"></span>**59. Poznatky zo študijnej cesty po sprístupnených jaskyniach Francúzska**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 27 – 28 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 27 – 28 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok sumarizuje poznatky zo študijnej cesty po sprístupnených jaskyniach Francúzska.
 
 <span id="clanok-3887"></span>**60. Študijná cesta - Taliansko 1996**
 **AUTOR:** Račko, I.  
-**STRANY:** s. 29 – 30 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 29 – 30 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=6)  
 Príspevok informuje o študijnej ceste do Talianska v roku 1996.
 
 <span id="clanok-3888"></span>**61. Niektoré poznatky zo študijnej cesty v Taliansku**
 **AUTOR:** Lucinkiewicz, A.  
-**STRANY:** s. 31 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 31 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok uvádza niektoré poznatky zo študijnej cesty v Taliansku.
 
 <span id="clanok-3889"></span>**62. Sprístupnené jaskyne pri Castletone vo Veľkej Británii**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 32 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 32 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok sa venuje sprístupneným jaskyniam pri Castletone vo Veľkej Británii.
 
 <span id="clanok-3890"></span>**63. Mininetopier z jaskýň Say Yoka v Thajsku**
 **AUTOR:** Bernadovič, F.  
-**STRANY:** s. 33 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 33 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=6)  
 Príspevok informuje o mininetopierovi z jaskýň Say Yoka v Thajsku.
 
 <span id="clanok-3891"></span>**64. Vyhlásenie jaskýň Slovenského a Aggtelekského krasu za svetové dedičstvo**
 **AUTOR:** Hlaváč, J.  
-**STRANY:** s. 34 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 34 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok informuje o vyhlásení jaskýň Slovenského a Aggtelekského krasu za svetové dedičstvo.
 
 <span id="clanok-3892"></span>**65. Odborný seminár „Sprístupnené jaskyne - výskum, ochrana, využívanie“**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 35 – 36 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 35 – 36 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok informuje o odbornom seminári venovanom výskumu, ochrane a využívaniu sprístupnených jaskýň.
 
 <span id="clanok-3893"></span>**66. Medzinárodný míting sprístupnených jaskýň, Budapešť - Aggtelek 1996**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 37 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 37 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok informuje o medzinárodnom mítingu sprístupnených jaskýň v Budapešti a Aggteleku v roku 1996.
 
 <span id="clanok-3894"></span>**67. Dohoda o spolupráci medzi Správou slovenských jaskýň a Agentúrou ochrany prírody a krajiny Českej republiky**
 **AUTOR:** Hlaváč, J.  
-**STRANY:** s. 38 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 38 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok informuje o dohode o spolupráci medzi Správou slovenských jaskýň a Agentúrou ochrany prírody a krajiny Českej republiky.
 
 <span id="clanok-3895"></span>**68. Ulica a pamätná tabuľa Jána Majku v Dolnej Strede**
 **AUTOR:** Macko, D.  
-**STRANY:** s. 38 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 38 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=6)  
 Príspevok informuje o ulici a pamätnej tabuli Jána Majku v Dolnej Strede.
 
 <span id="clanok-3896"></span>**69. Premiéri vlád Slovenska a Litvy v Demänovskej jaskyni slobody**
 **AUTOR:** Mičuch, D.  
-**STRANY:** s. 39 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 39 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok informuje o návšteve premiérov vlád Slovenska a Litvy v Demänovskej jaskyni slobody.
 
 <span id="clanok-3897"></span>**70. Poslanci v Ochtinskej aragonitovej jaskyni**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 40 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 40 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok informuje o návšteve poslancov v Ochtinskej aragonitovej jaskyni.
 
 <span id="clanok-3898"></span>**71. 2. odborný seminár pre pracovníkov sprístupnených jaskýň**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 40 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 40 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok informuje o druhom odbornom seminári pre pracovníkov sprístupnených jaskýň.
 
 <span id="clanok-3899"></span>**72. Slovensko - Sprístupnené jaskyne**
 **AUTOR:** Jakál, J.  
-**STRANY:** s. 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok predstavuje publikáciu alebo literárny záznam o sprístupnených jaskyniach Slovenska.
 
 <span id="clanok-3900"></span>**73. Sprístupnené jaskyne - výskum, ochrana a využívanie**
 **AUTOR:** Peško, M.  
-**STRANY:** s. 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok predstavuje publikáciu alebo literárny záznam o výskume, ochrane a využívaní sprístupnených jaskýň.
 
 <span id="clanok-3901"></span>**74. Show Caves and Environmental Monitoring**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=4)  
 Príspevok predstavuje publikáciu alebo literárny záznam o sprístupnených jaskyniach a environmentálnom monitoringu.
 
 <span id="clanok-3902"></span>**75. Netopiere 1/1995**
 **AUTOR:** Bernadovič, F.  
-**STRANY:** s. 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=6)  
 Príspevok predstavuje publikáciu alebo literárny záznam Netopiere 1/1995.
 
 <span id="clanok-3903"></span>**76. Martin Knez: Vpliv lezik na razvoj kraških jam (primer Velike doline, Škocjanske jame)**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok predstavuje prácu Martina Kneza o vplyve vrstevných plôch na vývoj krasových jaskýň na príklade Velike doline a Škocjanských jaskýň.
 
 <span id="clanok-3904"></span>**77. Škocjanske jame: A Contribution to Bibliography**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=3)  
+**STRANY:** s. 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf#page=5)  
 Príspevok predstavuje bibliografický príspevok k Škocjanským jaskyniam.
 
 <span id="clanok-3905"></span>**78. Z bibliografie slovenských sprístupnených jaskýň, II. časť**
@@ -1324,232 +1324,232 @@ Príspevok porovnáva mýty a skutočnosť o Trstínskej vodnej priepasti.
 
 <span id="clanok-4087"></span>**260. Nové ochranné pásma jaskýň**
 **AUTOR:** Gaál, Ľ., Peško, M.  
-**STRANY:** s. 47 – 48 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=119)  
+**STRANY:** s. 47 – 48 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=49)  
 Príspevok informuje o nových ochranných pásmach jaskýň.
 
 <span id="clanok-4088"></span>**261. Čistenie priepastí v Slovenskom krase**
 **AUTOR:** Balciar, I.  
-**STRANY:** s. 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=121)  
+**STRANY:** s. 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=51)  
 Príspevok sa venuje čisteniu priepastí v Slovenskom krase.
 
 <span id="clanok-4089"></span>**262. Praktická starostlivosť o jaskyne na Slovensku v roku 2005**
 **AUTOR:** Staník, P., Balciar, I.  
-**STRANY:** s. 50 – 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=122)  
+**STRANY:** s. 50 – 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=52)  
 Príspevok sumarizuje praktickú starostlivosť o jaskyne na Slovensku v roku 2005.
 
 <span id="clanok-4090"></span>**263. Nové priestory v Gombitových sieňach Demänovskej jaskyne slobody**
 **AUTOR:** Holúbek, P., Staník, P.  
-**STRANY:** s. 52 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=124)  
+**STRANY:** s. 52 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=54)  
 Príspevok informuje o nových priestoroch v Gombitových sieňach Demänovskej jaskyne slobody.
 
 <span id="clanok-4091"></span>**264. Návštevnosť sprístupnených jaskýň v rokoch 1995 – 2005**
 **AUTOR:** Gall, T., Nudzíková, Ľ.  
-**STRANY:** s. 53 – 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=125)  
+**STRANY:** s. 53 – 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=55)  
 Príspevok hodnotí návštevnosť sprístupnených jaskýň v rokoch 1995 až 2005.
 
 <span id="clanok-4092"></span>**265. Nové náučné centrum v Domici**
 **AUTOR:** Gaál, Ľ., Gažík, P., Soják, M.  
-**STRANY:** s. 57 – 59 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=129)  
+**STRANY:** s. 57 – 59 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=59)  
 Príspevok informuje o novom náučnom centre v Domici.
 
 <span id="clanok-4093"></span>**266. Paleontologická expozícia medveďa jaskynného (Ursus spelaeus) vo Važeckej jaskyni**
 **AUTOR:** Višňovská, Z.  
-**STRANY:** s. 60 – 63 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=132)  
+**STRANY:** s. 60 – 63 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=62)  
 Príspevok predstavuje paleontologickú expozíciu medveďa jaskynného vo Važeckej jaskyni.
 
 <span id="clanok-4094"></span>**267. Zlá diera – nová sprístupnená jaskyňa na Slovensku**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 64 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=136)  
+**STRANY:** s. 64 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=66)  
 Príspevok predstavuje jaskyňu Zlá diera ako novú sprístupnenú jaskyňu na Slovensku.
 
 <span id="clanok-4095"></span>**268. Náučný chodník Jaskyne Slovenského krasu – svetové prírodné dedičstvo**
 **AUTOR:** Stankovič, J.  
-**STRANY:** s. 65 – 66 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=137)  
+**STRANY:** s. 65 – 66 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=67)  
 Príspevok sa venuje náučnému chodníku Jaskyne Slovenského krasu – svetové prírodné dedičstvo.
 
 <span id="clanok-4096"></span>**269. Náučný chodník v Ďumbierskom vysokohorskom krase**
 **AUTOR:** Štéc, M.  
-**STRANY:** s. 67 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=139)  
+**STRANY:** s. 67 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=69)  
 Príspevok predstavuje náučný chodník v Ďumbierskom vysokohorskom krase.
 
 <span id="clanok-4097"></span>**270. Vodný zdroj pre prevádzku Demänovskej jaskyne slobody**
 **AUTOR:** Labaška, P.  
-**STRANY:** s. 68 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=140)  
+**STRANY:** s. 68 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=70)  
 Príspevok sa zaoberá vodným zdrojom pre prevádzku Demänovskej jaskyne slobody.
 
 <span id="clanok-4098"></span>**271. Z histórie Liskovskej jaskyne**
 **AUTOR:** Lalkovič, M.  
-**STRANY:** s. 69 – 73 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=141)  
+**STRANY:** s. 69 – 73 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=71)  
 Príspevok približuje históriu Liskovskej jaskyne.
 
 <span id="clanok-4099"></span>**272. Miloš Janoška a jeho záujem o jaskyne**
 **AUTOR:** Lalkovič, M.  
-**STRANY:** s. 74 – 76 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=146)  
+**STRANY:** s. 74 – 76 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=76)  
 Príspevok sa venuje Milošovi Janoškovi a jeho záujmu o jaskyne.
 
 <span id="clanok-4100"></span>**273. Študijná cesta po vybraných jaskyniach a krasových lokalitách Grécka**
 **AUTOR:** Bella, P., Gaál, Ľ., Gažík, P., Zelinka, J.  
-**STRANY:** s. 77 – 78 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=149)  
+**STRANY:** s. 77 – 78 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=79)  
 Príspevok opisuje študijnú cestu po vybraných jaskyniach a krasových lokalitách Grécka.
 
 <span id="clanok-4101"></span>**274. Podzemie Dánska**
 **AUTOR:** Vlček, L., Šurka, J., Hrončová, J.  
-**STRANY:** s. 79 – 80 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=151)  
+**STRANY:** s. 79 – 80 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=81)  
 Príspevok sa venuje podzemiu Dánska.
 
 <span id="clanok-4102"></span>**275. Vznikla Správa jeskyní České republiky**
 **AUTOR:** Hromas, J.  
-**STRANY:** s. 81 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=153)  
+**STRANY:** s. 81 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=83)  
 Príspevok informuje o vzniku Správy jeskyní České republiky.
 
 <span id="clanok-4103"></span>**276. 5. vedecká konferencia „Výskum, využívanie a ochrana jaskýň“**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 82 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=154)  
+**STRANY:** s. 82 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=84)  
 Príspevok informuje o 5. vedeckej konferencii Výskum, využívanie a ochrana jaskýň.
 
 <span id="clanok-4104"></span>**277. 2. medzinárodný workshop o ľadových jaskyniach (IWIC-II), Demänovská Dolina 2006**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 83 – 84 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=155)  
+**STRANY:** s. 83 – 84 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=85)  
 Príspevok informuje o 2. medzinárodnom workshope o ľadových jaskyniach v Demänovskej Doline v roku 2006.
 
 <span id="clanok-4105"></span>**278. 9. medzinárodné sympózium o pseudokrase v Poľsku**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 85 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=157)  
+**STRANY:** s. 85 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=87)  
 Príspevok informuje o 9. medzinárodnom sympóziu o pseudokrase v Poľsku.
 
 <span id="clanok-4106"></span>**279. 18. medzinárodné biospeleologické sympózium v Rumunsku – 100 rokov biospeleológie**
 **AUTOR:** Papáč, V., Višňovská, Z.  
-**STRANY:** s. 86 – 87 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=158)  
+**STRANY:** s. 86 – 87 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=88)  
 Príspevok informuje o 18. medzinárodnom biospeleologickom sympóziu v Rumunsku a storočí biospeleológie.
 
 <span id="clanok-4107"></span>**280. 14. medzinárodná karsologická škola v Postojnej**
 **AUTOR:** Haviarová, D.  
-**STRANY:** s. 88 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=160)  
+**STRANY:** s. 88 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=90)  
 Príspevok informuje o 14. medzinárodnej karsologickej škole v Postojnej.
 
 <span id="clanok-4108"></span>**281. 12. zasadnutie slovensko-maďarskej pracovnej skupiny na ochranu prírody a krajiny v maďarskom Csopaku**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 89 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=161)  
+**STRANY:** s. 89 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=91)  
 Príspevok informuje o 12. zasadnutí slovensko-maďarskej pracovnej skupiny na ochranu prírody a krajiny v Csopaku.
 
 <span id="clanok-4109"></span>**282. 5. seminár speleologickej strážnej služby**
 **AUTOR:** Staník, P.  
-**STRANY:** s. 90 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=162)  
+**STRANY:** s. 90 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=92)  
 Príspevok informuje o 5. seminári speleologickej strážnej služby.
 
 <span id="clanok-4110"></span>**283. 11. odborný seminár pre zamestnancov sprístupnených jaskýň**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 91 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=163)  
+**STRANY:** s. 91 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=93)  
 Príspevok informuje o 11. odbornom seminári pre zamestnancov sprístupnených jaskýň.
 
 <span id="clanok-4111"></span>**284. Návštevnosť sprístupnených jaskýň v roku 2005**
 **AUTOR:** Nudzíková, Ľ., Gaál, Ľ.  
-**STRANY:** s. 92 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=164)  
+**STRANY:** s. 92 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=94)  
 Krátka správa uvádza návštevnosť sprístupnených jaskýň v roku 2005.
 
 <span id="clanok-4112"></span>**285. Prezentácia slovenských sprístupnených jaskýň v Aténach**
 **AUTOR:** Gall, T.  
-**STRANY:** s. 92 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=164)  
+**STRANY:** s. 92 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=94)  
 Krátka správa informuje o prezentácii slovenských sprístupnených jaskýň v Aténach.
 
 <span id="clanok-4113"></span>**286. Mučínska jaskyňa – nová náučná lokalita v Cerovej vrchovine**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 93 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=165)  
+**STRANY:** s. 93 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=95)  
 Krátka správa predstavuje Mučínsku jaskyňu ako novú náučnú lokalitu v Cerovej vrchovine.
 
 <span id="clanok-4114"></span>**287. Predstavitelia Austrálskej asociácie manažmentu jaskýň a krasu na Slovensku**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 93 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=165)  
+**STRANY:** s. 93 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=95)  
 Krátka správa informuje o návšteve predstaviteľov Austrálskej asociácie manažmentu jaskýň a krasu na Slovensku.
 
 <span id="clanok-4115"></span>**288. Navštívili sme jaskyne Skalky skřítků v Doupovských horách**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 93 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=165)  
+**STRANY:** s. 93 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=95)  
 Krátka správa informuje o návšteve jaskýň Skalky skřítků v Doupovských horách.
 
 <span id="clanok-4116"></span>**289. Pamätná tabuľa Ing. Svätoplukovi Kámenovi v Tisovci**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 94 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=166)  
+**STRANY:** s. 94 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=96)  
 Krátka správa informuje o pamätnej tabuli Ing. Svätoplukovi Kámenovi v Tisovci.
 
 <span id="clanok-4117"></span>**290. 11. Kvartér 2005**
 **AUTOR:** Psotka, J.  
-**STRANY:** s. 94 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=166)  
+**STRANY:** s. 94 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=96)  
 Krátka správa informuje o podujatí 11. Kvartér 2005.
 
 <span id="clanok-4118"></span>**291. Úprava vstupu do Gombaseckej jaskyne**
 **AUTOR:** Peška, J.  
-**STRANY:** s. 94 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=166)  
+**STRANY:** s. 94 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=96)  
 Krátka správa informuje o úprave vstupu do Gombaseckej jaskyne.
 
 <span id="clanok-4119"></span>**292. J. Jakál a kol.: Jaskyne svetového dedičstva na Slovensku**
 **AUTOR:** Galvánek, J.  
-**STRANY:** s. 95 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=167)  
+**STRANY:** s. 95 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=97)  
 Príspevok predstavuje publikáciu Jaskyne svetového dedičstva na Slovensku.
 
 <span id="clanok-4120"></span>**293. D. C. Culvier – W. B. White, Eds. Encyclopedia of Caves**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 95 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=167)  
+**STRANY:** s. 95 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=97)  
 Príspevok predstavuje publikáciu Encyclopedia of Caves.
 
 <span id="clanok-4121"></span>**294. H. Wilkens – D. C. Culver – W. F. Humphreys, Eds. Ecosystems of the World 30. Subterranean ecosystems**
 **AUTOR:** Mock, A.  
-**STRANY:** s. 96 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=168)  
+**STRANY:** s. 96 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=98)  
 Príspevok predstavuje publikáciu Ecosystems of the World 30. Subterranean ecosystems.
 
 <span id="clanok-4122"></span>**295. K. S. Woo: Caves – A Wonderful Underground**
 **AUTOR:** Gažík, P.  
-**STRANY:** s. 97 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=169)  
+**STRANY:** s. 97 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=99)  
 Príspevok predstavuje publikáciu Caves – A Wonderful Underground.
 
 <span id="clanok-4123"></span>**296. V. N. Dubljanskij a kol.: Kungurskaja ledjanaja peščera: opyt režimnych nabljudenij**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 97 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=169)  
+**STRANY:** s. 97 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=99)  
 Príspevok predstavuje publikáciu o Kungurskej ľadovej jaskyni.
 
 <span id="clanok-4124"></span>**297. Výskum, využívanie a ochrana jaskýň 4 – zborník referátov z vedeckej konferencie**
 **AUTOR:** Psotka, J.  
-**STRANY:** s. 98 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=170)  
+**STRANY:** s. 98 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=100)  
 Príspevok predstavuje zborník referátov z vedeckej konferencie Výskum, využívanie a ochrana jaskýň 4.
 
 <span id="clanok-4125"></span>**298. J. Stankovič – P. Horváth: Jaskyne Slovenského krasu v živote Viliama Rozložníka**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 99 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=171)  
+**STRANY:** s. 99 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=101)  
 Príspevok predstavuje publikáciu Jaskyne Slovenského krasu v živote Viliama Rozložníka.
 
 <span id="clanok-4126"></span>**299. Udin boršt**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 99 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=171)  
+**STRANY:** s. 99 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=101)  
 Príspevok predstavuje publikáciu Udin boršt.
 
 <span id="clanok-4127"></span>**300. Speleofórum 25**
 **AUTOR:** Psotka, J.  
-**STRANY:** s. 100 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=172)  
+**STRANY:** s. 100 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=102)  
 Príspevok predstavuje publikáciu Speleofórum 25.
 
 <span id="clanok-4128"></span>**301. P. Michal: Drienocká vrchovina ako krasová krajina**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 100 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=172)  
+**STRANY:** s. 100 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=102)  
 Príspevok predstavuje publikáciu Drienocká vrchovina ako krasová krajina.
 
 <span id="clanok-4129"></span>**302. Príspevky o krase a jaskyniach v časopise Geomorphologia Slovaca, roč. 1 – 5**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 101 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=173)  
+**STRANY:** s. 101 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=103)  
 Príspevok sa venuje príspevkom o krase a jaskyniach v časopise Geomorphologia Slovaca v ročníkoch 1 až 5.
 
 <span id="clanok-4130"></span>**303. Jaskyniarske články v časopise Reussia**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 102 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=174)  
+**STRANY:** s. 102 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=104)  
 Príspevok sa venuje jaskyniarskym článkom v časopise Reussia.
 
 <span id="clanok-4131"></span>**304. Z. Nišponský: V zaplavených hlbinách pod Tisovským a Muránskym hradom**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 102 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=174)  
+**STRANY:** s. 102 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=104)  
 Príspevok predstavuje publikáciu V zaplavených hlbinách pod Tisovským a Muránskym hradom.
 
 <span id="clanok-4132"></span>**305. Dr. Jacek Piasecki šesťdesiatnikom**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 103 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=175)  
+**STRANY:** s. 103 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf#page=105)  
 Spoločenská správa je venovaná šesťdesiatemu jubileu Dr. Jaceka Piaseckeho.
 
 ### Ročník 2007 (12)
@@ -1576,292 +1576,292 @@ Príspevok charakterizuje zvislé a šikmé skalné žľaby v jaskyniach z hľad
 
 <span id="clanok-4137"></span>**310. Geologický prieskum Perlovej jaskyne vo Veľkej Fatre**
 **AUTOR:** Vlček, L., Psotka, J.  
-**STRANY:** s. 26 – 32 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=148)  
+**STRANY:** s. 26 – 32 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=28)  
 Príspevok sa zaoberá geologickým prieskumom Perlovej jaskyne vo Veľkej Fatre.
 
 <span id="clanok-4138"></span>**311. Scallops, transverse flutes, Laugfacetten a solution bevels v slovenskej speleogeomorfologickej terminológii**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 33 – 37 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=155)  
+**STRANY:** s. 33 – 37 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=35)  
 Článok rieši používanie vybraných speleogeomorfologických termínov v slovenskej terminológii.
 
 <span id="clanok-4139"></span>**312. Posúdenie vplyvu poľnohospodárskych aktivít na kvalitu vôd podzemného hydrologického systému Važeckého krasu**
 **AUTOR:** Haviarová, D.  
-**STRANY:** s. 38 – 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=160)  
+**STRANY:** s. 38 – 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=40)  
 Príspevok posudzuje vplyv poľnohospodárskych aktivít na kvalitu vôd podzemného hydrologického systému Važeckého krasu.
 
 <span id="clanok-4140"></span>**313. Výsledky speleoklimatologického monitoringu jaskyne Snežná diera v klimatickom roku 2005 – 2006**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 43 – 46 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=165)  
+**STRANY:** s. 43 – 46 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=45)  
 Článok uvádza výsledky speleoklimatologického monitoringu jaskyne Snežná diera za klimatický rok 2005 – 2006.
 
 <span id="clanok-4141"></span>**314. Bezstavovce (Evertebrata) Liskovskej jaskyne**
 **AUTOR:** Kováč, Ľ., Ľuptáčik, P., Višňovská, Z., Mock, A.  
-**STRANY:** s. 47 – 50 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=169)  
+**STRANY:** s. 47 – 50 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=49)  
 Príspevok sa venuje bezstavovcom Liskovskej jaskyne.
 
 <span id="clanok-4142"></span>**315. Terestrické bezstavovce Obrovskej priepasti (Slovenský kras, Dolný vrch)**
 **AUTOR:** Papáč, V., Luptáčik, P., Fenďa, P.  
-**STRANY:** s. 51 – 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=173)  
+**STRANY:** s. 51 – 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=53)  
 Článok opisuje terestrické bezstavovce Obrovskej priepasti v Slovenskom krase.
 
 <span id="clanok-4143"></span>**316. Jaskyne Demänovskej doliny – významné zimoviská netopierov**
 **AUTOR:** Višňovská, Z.  
-**STRANY:** s. 54 – 61 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=176)  
+**STRANY:** s. 54 – 61 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=56)  
 Príspevok predstavuje jaskyne Demänovskej doliny ako významné zimoviská netopierov.
 
 <span id="clanok-4144"></span>**317. Jaskyňa Leotína (Ľudmila) v archeologických prameňoch**
 **AUTOR:** Soják, M.  
-**STRANY:** s. 62 – 67 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=184)  
+**STRANY:** s. 62 – 67 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=64)  
 Článok sa venuje Jaskyni Leotína (Ľudmila) v archeologických prameňoch.
 
 <span id="clanok-4145"></span>**318. Jaskyne Demänovskej doliny – nová lokalita v zozname mokradí medzinárodného významu**
 **AUTOR:** Haviarová, D.  
-**STRANY:** s. 68 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=190)  
+**STRANY:** s. 68 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=70)  
 Príspevok informuje o jaskyniach Demänovskej doliny ako novej lokalite v zozname mokradí medzinárodného významu.
 
 <span id="clanok-4146"></span>**319. Jaskyňa pod cestou pri Dolnom Jelenci – ďalšia syngenetická travertínová jaskyňa na Slovensku**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 69 – 70 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=191)  
+**STRANY:** s. 69 – 70 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=71)  
 Článok predstavuje Jaskyňu pod cestou pri Dolnom Jelenci ako ďalšiu syngenetickú travertínovú jaskyňu na Slovensku.
 
 <span id="clanok-4147"></span>**320. Nové zameranie a speleologická dokumentácia Bystrianskej jaskyne**
 **AUTOR:** Matejka, M., Múka, Ľ.  
-**STRANY:** s. 71 – 74 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=193)  
+**STRANY:** s. 71 – 74 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=73)  
 Príspevok sa venuje novému zameraniu a speleologickej dokumentácii Bystrianskej jaskyne.
 
 <span id="clanok-4148"></span>**321. Uzatváranie a čistenie jaskýň v roku 2006**
 **AUTOR:** Staník, P., Balciar, I.  
-**STRANY:** s. 75 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=197)  
+**STRANY:** s. 75 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=77)  
 Článok sumarizuje uzatváranie a čistenie jaskýň v roku 2006.
 
 <span id="clanok-4149"></span>**322. Čistenie spodných častí Dobšinskej ľadovej jaskyne**
 **AUTOR:** Staník, P.  
-**STRANY:** s. 76 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=198)  
+**STRANY:** s. 76 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=78)  
 Príspevok opisuje čistenie spodných častí Dobšinskej ľadovej jaskyne.
 
 <span id="clanok-4150"></span>**323. Podarí sa uviesť Čertovicu do pôvodného stavu?**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 77 – 78 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=199)  
+**STRANY:** s. 77 – 78 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=79)  
 Článok sa zaoberá otázkou uvedenia Čertovice do pôvodného stavu.
 
 <span id="clanok-4151"></span>**324. Nové ochranné pásma jaskýň**
 **AUTOR:** Papáč, V.  
-**STRANY:** s. 79 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=201)  
+**STRANY:** s. 79 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=81)  
 Príspevok informuje o nových ochranných pásmach jaskýň.
 
 <span id="clanok-4152"></span>**325. Belianska jaskyňa – súčasná a budúca výstavba**
 **AUTOR:** Peška, J.  
-**STRANY:** s. 80 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=202)  
+**STRANY:** s. 80 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=82)  
 Článok sa venuje súčasnej a budúcej výstavbe v Belianskej jaskyni.
 
 <span id="clanok-4153"></span>**326. Prepoštská jaskyňa a Morské oko – nové náučné lokality**
 **AUTOR:** Gaál, Ľ., Gažík, P.  
-**STRANY:** s. 81 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=203)  
+**STRANY:** s. 81 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=83)  
 Príspevok predstavuje Prepoštskú jaskyňu a Morské oko ako nové náučné lokality.
 
 <span id="clanok-4154"></span>**327. Oprava prehliadkového chodníka vo vstupnej časti Harmaneckej jaskyne**
 **AUTOR:** Labaška, P.  
-**STRANY:** s. 82 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=204)  
+**STRANY:** s. 82 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=84)  
 Článok opisuje opravu prehliadkového chodníka vo vstupnej časti Harmaneckej jaskyne.
 
 <span id="clanok-4155"></span>**328. Niektoré súvislosti sprístupnenia Demänovskej jaskyne slobody v roku 1924**
 **AUTOR:** Lalkovič, M.  
-**STRANY:** s. 83 – 85 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=205)  
+**STRANY:** s. 83 – 85 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=85)  
 Príspevok približuje niektoré súvislosti sprístupnenia Demänovskej jaskyne slobody v roku 1924.
 
 <span id="clanok-4156"></span>**329. Málo známa aktivita**
 **AUTOR:** Lalkovič, M.  
-**STRANY:** s. 86 – 88 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=208)  
+**STRANY:** s. 86 – 88 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=88)  
 Článok sa venuje málo známej historickej aktivite.
 
 <span id="clanok-4157"></span>**330. Objavy členov slovenskej speleologickej expedície Roraima – Kukenán 2006 na stolovej hore Roraima v Guayanskej vysočine (Venezuela)**
 **AUTOR:** Vlček, L., Šmída, B.  
-**STRANY:** s. 89 – 92 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=211)  
+**STRANY:** s. 89 – 92 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=91)  
 Príspevok informuje o objavoch členov slovenskej speleologickej expedície Roraima – Kukenán 2006 vo Venezuele.
 
 <span id="clanok-4158"></span>**331. V jaskyni slepých vtákov – Cueva del Guácharos (Venezuela)**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 93 – 94 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=215)  
+**STRANY:** s. 93 – 94 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=95)  
 Článok opisuje návštevu jaskyne Cueva del Guácharos vo Venezuele.
 
 <span id="clanok-4159"></span>**332. Geologické a geomorfologické pozoruhodnosti krasu a jaskýň na Bermudách**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 95 – 97 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=217)  
+**STRANY:** s. 95 – 97 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=97)  
 Príspevok predstavuje geologické a geomorfologické pozoruhodnosti krasu a jaskýň na Bermudách.
 
 <span id="clanok-4160"></span>**333. Za jaskynnou faunou do centra Brazílie**
 **AUTOR:** Kováč, Ľ.  
-**STRANY:** s. 98 – 99 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=220)  
+**STRANY:** s. 98 – 99 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=100)  
 Článok sa venuje jaskynnej faune v centre Brazílie.
 
 <span id="clanok-4161"></span>**334. 5. kongres Medzinárodnej asociácie sprístupnených jaskýň**
 **AUTOR:** Gažík, P.  
-**STRANY:** s. 100 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=222)  
+**STRANY:** s. 100 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=102)  
 Príspevok informuje o 5. kongrese Medzinárodnej asociácie sprístupnených jaskýň.
 
 <span id="clanok-4162"></span>**335. „Kras a kryokras“ – 25. speleologická škola a 8. sympózium GLACKIPR-UIS v Poľsku**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 101 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=223)  
+**STRANY:** s. 101 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=103)  
 Článok informuje o 25. speleologickej škole a 8. sympóziu GLACKIPR-UIS v Poľsku.
 
 <span id="clanok-4163"></span>**336. 15. medzinárodná karsologická škola – Manažment cezhraničných krasových akviférov (Postojna, Slovinsko)**
 **AUTOR:** Haviarová, D., Vlček, L.  
-**STRANY:** s. 102 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=224)  
+**STRANY:** s. 102 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=104)  
 Príspevok približuje 15. medzinárodnú karsologickú školu o manažmente cezhraničných krasových akviférov v Postojnej.
 
 <span id="clanok-4164"></span>**337. Jaskinia Niedżwiedzia w Kletne – 40. výročie jej objavu**
 **AUTOR:** Zelinka, J., Piasecki, J.  
-**STRANY:** s. 103 – 104 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=225)  
+**STRANY:** s. 103 – 104 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=105)  
 Článok informuje o 40. výročí objavu jaskyne Jaskinia Niedżwiedzia w Kletne.
 
 <span id="clanok-4165"></span>**338. Medzinárodný workshop „Ako manažovať lokality svetového prírodného dedičstva“ (Vilm, Nemecko)**
 **AUTOR:** Haviarová, D., Gaál, Ľ.  
-**STRANY:** s. 105 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=227)  
+**STRANY:** s. 105 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=107)  
 Príspevok informuje o medzinárodnom workshope venovanom manažmentu lokalít svetového prírodného dedičstva vo Vilme.
 
 <span id="clanok-4166"></span>**339. Konferencia „Muránska planina – ochrana, výskum, využívanie“**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 106 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=228)  
+**STRANY:** s. 106 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=108)  
 Článok informuje o konferencii venovanej ochrane, výskumu a využívaniu Muránskej planiny.
 
 <span id="clanok-4167"></span>**340. 1. chiropterologický seminár na Slovensku**
 **AUTOR:** Uhrin, M., Ceľúch, M., Višňovská, Z.  
-**STRANY:** s. 106 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=228)  
+**STRANY:** s. 106 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=108)  
 Príspevok informuje o prvom chiropterologickom seminári na Slovensku.
 
 <span id="clanok-4168"></span>**341. 6. seminár speleologickej strážnej služby v Danišovciach**
 **AUTOR:** Balciar, I.  
-**STRANY:** s. 107 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=229)  
+**STRANY:** s. 107 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=109)  
 Článok informuje o 6. seminári speleologickej strážnej služby v Danišovciach.
 
 <span id="clanok-4169"></span>**342. 12. odborný seminár pre zamestnancov sprístupnených jaskýň**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 108 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=230)  
+**STRANY:** s. 108 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=110)  
 Príspevok informuje o 12. odbornom seminári pre zamestnancov sprístupnených jaskýň.
 
 <span id="clanok-4170"></span>**343. Návštevnosť sprístupnených jaskýň v roku 2006**
 **AUTOR:** Nudzíková, Ľ., Gaál, Ľ.  
-**STRANY:** s. 109 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=231)  
+**STRANY:** s. 109 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=111)  
 Krátka správa uvádza návštevnosť sprístupnených jaskýň v roku 2006.
 
 <span id="clanok-4171"></span>**344. Geodynamika litosféry – sympózium k sedemdesiatym narodeninám profesora Głazeka**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 109 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=231)  
+**STRANY:** s. 109 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=111)  
 Krátka správa informuje o sympóziu Geodynamika litosféry pri príležitosti sedemdesiatych narodenín profesora Głazeka.
 
 <span id="clanok-4172"></span>**345. 6. Speleologická škola Slovenskej speleologickej spoločnosti**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 110 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=232)  
+**STRANY:** s. 110 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=112)  
 Krátka správa informuje o 6. speleologickej škole Slovenskej speleologickej spoločnosti.
 
 <span id="clanok-4173"></span>**346. Výmena dverí a mreží vo vchodoch do sprístupnených jaskýň**
 **AUTOR:** Labaška, P.  
-**STRANY:** s. 110 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=232)  
+**STRANY:** s. 110 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=112)  
 Krátka správa sa venuje výmene dverí a mreží vo vchodoch do sprístupnených jaskýň.
 
 <span id="clanok-4174"></span>**347. Medzinárodná geomorfologická konferencia v Malenoviciach, Česká republika**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 111 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=233)  
+**STRANY:** s. 111 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=113)  
 Krátka správa informuje o medzinárodnej geomorfologickej konferencii v Malenoviciach v Českej republike.
 
 <span id="clanok-4175"></span>**348. Deň Zeme na Správe slovenských jaskýň**
 **AUTOR:** Balciar, I.  
-**STRANY:** s. 111 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=233)  
+**STRANY:** s. 111 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=113)  
 Krátka správa informuje o Dni Zeme na Správe slovenských jaskýň.
 
 <span id="clanok-4176"></span>**349. Filmové dokumenty o ochrane jaskýň na Slovensku**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 111 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=233)  
+**STRANY:** s. 111 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=113)  
 Krátka správa sa venuje filmovým dokumentom o ochrane jaskýň na Slovensku.
 
 <span id="clanok-4177"></span>**350. Slovenský kras, Acta Carsologica Slovaca XLIV**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 112 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=234)  
+**STRANY:** s. 112 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=114)  
 Príspevok predstavuje publikáciu Slovenský kras, Acta Carsologica Slovaca XLIV.
 
 <span id="clanok-4178"></span>**351. P. Bella, Ed.: Výskum, využívanie a ochrana jaskýň 5**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 112 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=234)  
+**STRANY:** s. 112 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=114)  
 Príspevok predstavuje publikáciu Výskum, využívanie a ochrana jaskýň 5 editovanú P. Bellom.
 
 <span id="clanok-4179"></span>**352. J. Zelinka, Ed.: 2nd International Workshop on Ice Caves – Proceedings**
 **AUTOR:** Bosák, P.  
-**STRANY:** s. 113 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=235)  
+**STRANY:** s. 113 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=115)  
 Príspevok predstavuje zborník 2nd International Workshop on Ice Caves – Proceedings editovaný J. Zelinkom.
 
 <span id="clanok-4180"></span>**353. International Journal of Speleology – 40 years of Speleological Science**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 114 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=236)  
+**STRANY:** s. 114 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=116)  
 Príspevok predstavuje publikáciu International Journal of Speleology – 40 years of Speleological Science.
 
 <span id="clanok-4181"></span>**354. The 2006 ACKMA CD, Conference Proceedings and Journal Articles 1973 – 2005**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 114 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=236)  
+**STRANY:** s. 114 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=116)  
 Príspevok predstavuje The 2006 ACKMA CD so zborníkmi konferencií a článkami z rokov 1973 – 2005.
 
 <span id="clanok-4182"></span>**355. M. Leutscher: Processes in ice caves and their significance for paleoenvironmental reconstructions**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 115 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=237)  
+**STRANY:** s. 115 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=117)  
 Príspevok predstavuje prácu M. Leutschera o procesoch v ľadových jaskyniach a ich význame pre paleoenvironmentálne rekonštrukcie.
 
 <span id="clanok-4183"></span>**356. P. B. Urich: Land use in karst terrain: review of impacts of primary activities in temperate kast ecosystems**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 116 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=238)  
+**STRANY:** s. 116 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=118)  
 Príspevok predstavuje prácu P. B. Uricha o využívaní krajiny v krasovom teréne a vplyvoch primárnych aktivít v temperátnych krasových ekosystémoch.
 
 <span id="clanok-4184"></span>**357. Karst Management Handbook for British Columbia**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 117 – 118 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=239)  
+**STRANY:** s. 117 – 118 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=119)  
 Príspevok predstavuje príručku Karst Management Handbook for British Columbia.
 
 <span id="clanok-4185"></span>**358. Acta carsologica 35/2**
 **AUTOR:** Haviarová, D.  
-**STRANY:** s. 119 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=241)  
+**STRANY:** s. 119 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=121)  
 Príspevok predstavuje číslo Acta carsologica 35/2.
 
 <span id="clanok-4186"></span>**359. Speleofórum 26**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 120 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=242)  
+**STRANY:** s. 120 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=122)  
 Príspevok predstavuje publikáciu Speleofórum 26.
 
 <span id="clanok-4187"></span>**360. Méailles et la région d´Annot**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 121 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=243)  
+**STRANY:** s. 121 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=123)  
 Príspevok predstavuje publikáciu Méailles et la région d´Annot.
 
 <span id="clanok-4188"></span>**361. Jaskinia Niedźwiedzia w Kletnie – 40 lat eksploracji, badań, ochrony i turystyki**
 **AUTOR:** Zelinka, J.  
-**STRANY:** s. 122 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=244)  
+**STRANY:** s. 122 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=124)  
 Príspevok predstavuje publikáciu o 40 rokoch explorácie, výskumu, ochrany a turistiky v jaskyni Jaskinia Niedźwiedzia w Kletnie.
 
 <span id="clanok-4189"></span>**362. K. S. Woo: Caves – Mysterious Underground World through Water and Time**
 **AUTOR:** Gažík, P.  
-**STRANY:** s. 123 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=245)  
+**STRANY:** s. 123 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=125)  
 Príspevok predstavuje publikáciu K. S. Woo Caves – Mysterious Underground World through Water and Time.
 
 <span id="clanok-4190"></span>**363. K sedemdesiatke doc. RNDr. Jozefa Jakála, DrSc.**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 124 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=246)  
+**STRANY:** s. 124 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=126)  
 Spoločenský príspevok je venovaný sedemdesiatke doc. RNDr. Jozefa Jakála, DrSc.
 
 <span id="clanok-4191"></span>**364. Ján Farkaš 60-ročný**
 **AUTOR:** Mišurová, J.  
-**STRANY:** s. 125 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=247)  
+**STRANY:** s. 125 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=127)  
 Spoločenský príspevok je venovaný šesťdesiatke Jána Farkaša.
 
 <span id="clanok-4192"></span>**365. Životné jubileum Jozefa Mačáka**
 **AUTOR:** Bachleda, J.  
-**STRANY:** s. 125 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=247)  
+**STRANY:** s. 125 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=127)  
 Spoločenský príspevok je venovaný životnému jubileu Jozefa Mačáka.
 
 <span id="clanok-4193"></span>**366. Za Michalom Baumgärtnerom**
 **AUTOR:** Očkaik, Ľ.  
-**STRANY:** s. 126 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=248)  
+**STRANY:** s. 126 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=128)  
 Spoločenský príspevok je venovaný Michalovi Baumgärtnerovi.
 
 <span id="clanok-4194"></span>**367. 6. vedecká konferencia „Výskum, využívanie a ochrana jaskýň“**
 **AUTOR:** Anonymus  
-**STRANY:** s. 127 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=249)  
+**STRANY:** s. 127 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=129)  
 Príspevok obsahuje abstrakty zo 6. vedeckej konferencie Výskum, využívanie a ochrana jaskýň.
 
 ### Ročník 2008 (13)
@@ -2015,32 +2015,32 @@ Príspevok v časti literatúry sa venuje publikácii Moldavská jaskyňa v zrka
 
 <span id="clanok-4224"></span>**397. Speleofórum 27**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 58 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=67)  
+**STRANY:** s. 58 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=60)  
 Príspevok v časti literatúry sa venuje publikácii Speleofórum 27.
 
 <span id="clanok-4225"></span>**398. Životné jubileum Ing. Lýdie Jánošíkovej**
 **AUTOR:** Nudzíková, Ľ.  
-**STRANY:** s. 59 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=68)  
+**STRANY:** s. 59 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=61)  
 Spoločenská správa je venovaná životnému jubileu Ing. Lýdie Jánošíkovej.
 
 <span id="clanok-4226"></span>**399. Ing. Jozef Peška šesťdesiatnik**
 **AUTOR:** Hlaváč, J.  
-**STRANY:** s. 59 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=68)  
+**STRANY:** s. 59 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=61)  
 Spoločenská správa je venovaná šesťdesiatke Ing. Jozefa Pešku.
 
 <span id="clanok-4227"></span>**400. K sedemdesiatke Dušana Macka**
 **AUTOR:** Knap, J.  
-**STRANY:** s. 60 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=69)  
+**STRANY:** s. 60 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=62)  
 Spoločenská správa je venovaná sedemdesiatke Dušana Macka.
 
 <span id="clanok-4228"></span>**401. Životné jubileum Jarmily Michníkovej**
 **AUTOR:** Jánošíková, L.  
-**STRANY:** s. 60 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=69)  
+**STRANY:** s. 60 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=62)  
 Spoločenská správa je venovaná životnému jubileu Jarmily Michníkovej.
 
 <span id="clanok-4229"></span>**402. Dušan Hejhal 50-ročný**
 **AUTOR:** Mičuch, D.  
-**STRANY:** s. 60 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=69)  
+**STRANY:** s. 60 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf#page=62)  
 Spoločenská správa je venovaná päťdesiatke Dušana Hejhala.
 
 #### Číslo 2
@@ -2092,57 +2092,57 @@ Príspevok približuje históriu prieskumu, názory na kvarcitový kras a speleo
 
 <span id="clanok-4239"></span>**412. Pozoruhodné geomorfologické znaky viacfázového vývoja jaskyne Senbutsu v Japonsku**
 **AUTOR:** Bella, P., Urata, K.  
-**STRANY:** s. 47 – 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=69)  
+**STRANY:** s. 47 – 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=49)  
 Článok sa venuje geomorfologickým znakom viacfázového vývoja jaskyne Senbutsu v Japonsku.
 
 <span id="clanok-4240"></span>**413. 3. medzinárodný workshop o ľadových jaskyniach (IWIC-III)**
 **AUTOR:** Zelinka, J., Kadebskaja, O.  
-**STRANY:** s. 50 – 52 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=72)  
+**STRANY:** s. 50 – 52 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=52)  
 Príspevok informuje o 3. medzinárodnom workshope o ľadových jaskyniach IWIC-III.
 
 <span id="clanok-4241"></span>**414. 16. medzinárodná karsologická škola – Krasové sedimenty (Postojna, Slovinsko)**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=75)  
+**STRANY:** s. 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=55)  
 Príspevok informuje o 16. medzinárodnej karsologickej škole venovanej krasovým sedimentom v Postojnej.
 
 <span id="clanok-4242"></span>**415. 10. medzinárodné sympózium o pseudokrase**
 **AUTOR:** Gaál, Ľ., Balciar, I.  
-**STRANY:** s. 54 – 55 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=76)  
+**STRANY:** s. 54 – 55 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=56)  
 Príspevok informuje o 10. medzinárodnom sympóziu o pseudokrase.
 
 <span id="clanok-4243"></span>**416. Regulačné lesohospodárske zásahy nad Silickou ľadnicou**
 **AUTOR:** Gaál, Ľ., Zelinka, J.  
-**STRANY:** s. 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=78)  
+**STRANY:** s. 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=58)  
 Krátka správa sa venuje regulačným lesohospodárskym zásahom nad Silickou ľadnicou.
 
 <span id="clanok-4244"></span>**417. Zasadnutie komisie Medzinárodnej speleologickej únie pre pseudokras**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=78)  
+**STRANY:** s. 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=58)  
 Krátka správa informuje o zasadnutí komisie Medzinárodnej speleologickej únie pre pseudokras.
 
 <span id="clanok-4245"></span>**418. 13. odborný seminár pre zamestnancov sprístupnených jaskýň**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=78)  
+**STRANY:** s. 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=58)  
 Krátka správa informuje o 13. odbornom seminári pre zamestnancov sprístupnených jaskýň.
 
 <span id="clanok-4246"></span>**419. V. Andrejčuk: Karst kak geoekologičeskij faktor**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 57 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=79)  
+**STRANY:** s. 57 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=59)  
 Recenzný príspevok sa venuje publikácii V. Andrejčuka o krase ako geoekologickom faktore.
 
 <span id="clanok-4247"></span>**420. M. Soják: Osídlenie spišských jaskýň od praveku po novovek**
 **AUTOR:** Balciar, I.  
-**STRANY:** s. 58 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=80)  
+**STRANY:** s. 58 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=60)  
 Recenzný príspevok sa venuje publikácii M. Sojáka o osídlení spišských jaskýň od praveku po novovek.
 
 <span id="clanok-4248"></span>**421. Nature Conservation, vol. 63 (6), 2007**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 58 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=80)  
+**STRANY:** s. 58 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=60)  
 Recenzný príspevok sa venuje časopisu Nature Conservation, ročník 63, číslo 6 z roku 2007.
 
 <span id="clanok-4249"></span>**422. J. B. Tržcinskij – E. A. Kozyreva – O. A. Mazaeva – V. A. Chak: Sovremennaja ekzogeodinamika juga Sibirskogo regiona**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 59 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=81)  
+**STRANY:** s. 59 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf#page=61)  
 Recenzný príspevok sa venuje publikácii o súčasnej exogeodynamike juhu Sibírskeho regiónu.
 
 ### Ročník 2009 (14)
@@ -2756,107 +2756,107 @@ Príspevok približuje históriu Alabastrovej jaskyne.
 
 <span id="clanok-4369"></span>**542. Syndróm bieleho nosa – vážna hrozba pre zimujúce netopiere**
 **AUTOR:** Višňovská, Z., Martínková, N.  
-**STRANY:** s. 26 – 30 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=97)  
+**STRANY:** s. 26 – 30 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=28)  
 Príspevok sa zaoberá syndrómom bieleho nosa ako hrozbou pre zimujúce netopiere.
 
 <span id="clanok-4370"></span>**543. Paleontologický výskum Važeckej jaskyne – sezóna 2010**
 **AUTOR:** Sabol, M., Laughlan, L., Rabeder, G.  
-**STRANY:** s. 31 – 32 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=102)  
+**STRANY:** s. 31 – 32 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=33)  
 Príspevok prináša informácie o paleontologickom výskume Važeckej jaskyne v sezóne 2010.
 
 <span id="clanok-4371"></span>**544. Interpretácia nálezov ľudských pozostatkov z priepasti Studňa pri Spišských Tomášovciach**
 **AUTOR:** Soják, M.  
-**STRANY:** s. 33 – 34 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=104)  
+**STRANY:** s. 33 – 34 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=35)  
 Príspevok interpretuje nálezy ľudských pozostatkov z priepasti Studňa pri Spišských Tomášovciach.
 
 <span id="clanok-4372"></span>**545. Kešeľova diera pri Vernári – najväčší ponor v Slovenskom raji**
 **AUTOR:** Miháľ, F.  
-**STRANY:** s. 35 – 38 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=106)  
+**STRANY:** s. 35 – 38 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=37)  
 Príspevok predstavuje Kešeľovu dieru pri Vernári ako najväčší ponor v Slovenskom raji.
 
 <span id="clanok-4373"></span>**546. Nová jaskyňa na Žibrici (Tribeč, Zobor)**
 **AUTOR:** Vlček, L., Lisý, M., Staník, P., Peško, M.  
-**STRANY:** s. 39 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=110)  
+**STRANY:** s. 39 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=41)  
 Príspevok informuje o novej jaskyni na Žibrici v oblasti Tribeča a Zobora.
 
 <span id="clanok-4374"></span>**547. Ochranné pásma Brestovskej, Gombaseckej a Važeckej jaskyne (konečne) vyhlásené**
 **AUTOR:** Gaál, Ľ., Haviarová, D., Gažík, P., Peško, M.  
-**STRANY:** s. 40 – 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=111)  
+**STRANY:** s. 40 – 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=42)  
 Príspevok informuje o vyhlásení ochranných pásiem Brestovskej, Gombaseckej a Važeckej jaskyne.
 
 <span id="clanok-4375"></span>**548. Nové verejnosti voľne prístupné jaskyne na Slovensku**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 42 – 43 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=113)  
+**STRANY:** s. 42 – 43 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=44)  
 Príspevok sa venuje novým verejnosti voľne prístupným jaskyniam na Slovensku.
 
 <span id="clanok-4376"></span>**549. Krasom a jaskyňami juhovýchodnej Austrálie a Tasmánie, konferencia ACKMA 2011**
 **AUTOR:** Gažík, P.  
-**STRANY:** s. 44 – 47 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=115)  
+**STRANY:** s. 44 – 47 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=46)  
 Príspevok informuje o krase a jaskyniach juhovýchodnej Austrálie a Tasmánie v súvislosti s konferenciou ACKMA 2011.
 
 <span id="clanok-4377"></span>**550. 19. medzinárodná karsologická škola, Postojna (Slovinsko)**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 48 – 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=119)  
+**STRANY:** s. 48 – 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=50)  
 Príspevok podáva správu o 19. medzinárodnej karsologickej škole v Postojnej v Slovinsku.
 
 <span id="clanok-4378"></span>**551. Spriechodnenie a stabilizácia vstupnej chodby Pustej jaskyne v Demänovskej doline**
 **AUTOR:** Labaška, P.  
-**STRANY:** s. 50 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=121)  
+**STRANY:** s. 50 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=52)  
 Príspevok opisuje spriechodnenie a stabilizáciu vstupnej chodby Pustej jaskyne v Demänovskej doline.
 
 <span id="clanok-4379"></span>**552. Čistenie potokov v oblasti Domice**
 **AUTOR:** Gaál, Ľ., Balciar, I.  
-**STRANY:** s. 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=122)  
+**STRANY:** s. 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=53)  
 Príspevok informuje o čistení potokov v oblasti Domice.
 
 <span id="clanok-4380"></span>**553. Niektoré centrálne podujatia Slovenskej a Českej speleologickej spoločnosti v roku 2011**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=122)  
+**STRANY:** s. 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=53)  
 Príspevok prináša prehľad niektorých centrálnych podujatí Slovenskej a Českej speleologickej spoločnosti v roku 2011.
 
 <span id="clanok-4381"></span>**554. Návštevnosť sprístupnených jaskýň v roku 2010**
 **AUTOR:** Nudzíková, Ľ., Gaál, Ľ.  
-**STRANY:** s. 52 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=123)  
+**STRANY:** s. 52 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=54)  
 Príspevok sumarizuje návštevnosť sprístupnených jaskýň v roku 2010.
 
 <span id="clanok-4382"></span>**555. M. Knez – H. Liu – T. Slabe (Eds.): South China Karst II**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 52 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=123)  
+**STRANY:** s. 52 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=54)  
 Príspevok je bibliografickou informáciou alebo recenziou publikácie South China Karst II.
 
 <span id="clanok-4383"></span>**556. M. Prelovšek – N. Zupan Hajna (Eds.): Pressures and Protection of the Underground Karst – Cases from Slovenia and Croatia**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=124)  
+**STRANY:** s. 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=55)  
 Príspevok je bibliografickou informáciou alebo recenziou publikácie o tlakoch a ochrane podzemného krasu v Slovinsku a Chorvátsku.
 
 <span id="clanok-4384"></span>**557. Peščery 32**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=124)  
+**STRANY:** s. 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=55)  
 Príspevok je bibliografickou informáciou alebo recenziou publikácie Peščery 32.
 
 <span id="clanok-4385"></span>**558. K. Székely: Ottokár Kadić**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 54 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=125)  
+**STRANY:** s. 54 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=56)  
 Príspevok je bibliografickou informáciou alebo recenziou publikácie K. Székelyho o Ottokárovi Kadićovi.
 
 <span id="clanok-4386"></span>**559. Karsztfejlődés 11 (2006), 14 (2009)**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 55 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=126)  
+**STRANY:** s. 55 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=57)  
 Príspevok je bibliografickou informáciou alebo recenziou čísel periodika Karsztfejlődés.
 
 <span id="clanok-4387"></span>**560. J. Adamovič – R. Mikuláš – V. Cílek: Atlas pískovcových skalních měst České a Slovenské republiky**
 **AUTOR:** Vlček, L.  
-**STRANY:** s. 55 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=126)  
+**STRANY:** s. 55 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=57)  
 Príspevok je bibliografickou informáciou alebo recenziou atlasu pieskovcových skalných miest Českej a Slovenskej republiky.
 
 <span id="clanok-4388"></span>**561. R. Fľaková – Z. Ženišová – M. Seman: Chemická analýza vody v hydrogeológii**
 **AUTOR:** Haviarová, D.  
-**STRANY:** s. 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=127)  
+**STRANY:** s. 56 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=58)  
 Príspevok je bibliografickou informáciou alebo recenziou publikácie o chemickej analýze vody v hydrogeológii.
 
 <span id="clanok-4389"></span>**562. Poďakovanie Lucii Bobákovej**
 **AUTOR:** Fulín, M.  
-**STRANY:** s. 57 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=128)  
+**STRANY:** s. 57 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf#page=59)  
 Príspevok je spoločenskou správou s poďakovaním Lucii Bobákovej.
 
 ### Ročník 2012 (17)
@@ -2895,82 +2895,82 @@ Príspevok približuje históriu jaskyne Aksamitka.
 
 <span id="clanok-4396"></span>**569. Rekonštrukcia prehliadkového chodníka v Harmaneckej jaskyni**
 **AUTOR:** Labaška, P.  
-**STRANY:** s. 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=67)  
+**STRANY:** s. 41 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=43)  
 Príspevok informuje o rekonštrukcii prehliadkového chodníka v Harmaneckej jaskyni.
 
 <span id="clanok-4397"></span>**570. Ochranné pásmo Jeleneckej jaskyne**
 **AUTOR:** Papáč, V., Gažík, P.  
-**STRANY:** s. 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=68)  
+**STRANY:** s. 42 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=44)  
 Príspevok sa venuje ochrannému pásmu Jeleneckej jaskyne.
 
 <span id="clanok-4398"></span>**571. Praktická starostlivosť o jaskyne na Slovensku v roku 2011**
 **AUTOR:** Balciar, I., Staník, P.  
-**STRANY:** s. 43 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=69)  
+**STRANY:** s. 43 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=45)  
 Príspevok sumarizuje praktickú starostlivosť o jaskyne na Slovensku v roku 2011.
 
 <span id="clanok-4399"></span>**572. 8. vedecká konferencia „Výskum, využívanie a ochrana jaskýň“**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 44 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=70)  
+**STRANY:** s. 44 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=46)  
 Príspevok informuje o 8. vedeckej konferencii Výskum, využívanie a ochrana jaskýň.
 
 <span id="clanok-4400"></span>**573. 21. medzinárodná konferencia o subteránnej biológii na Slovensku**
 **AUTOR:** Papáč, V., Višňovská, Z.  
-**STRANY:** s. 45 – 46 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=71)  
+**STRANY:** s. 45 – 46 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=47)  
 Príspevok informuje o 21. medzinárodnej konferencii o subteránnej biológii na Slovensku.
 
 <span id="clanok-4401"></span>**574. Slávnostné zhromaždenie k 90. výročiu objavenia Važeckej jaskyne**
 **AUTOR:** Hlaváč, J.  
-**STRANY:** s. 47 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=73)  
+**STRANY:** s. 47 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=49)  
 Príspevok informuje o slávnostnom zhromaždení k 90. výročiu objavenia Važeckej jaskyne.
 
 <span id="clanok-4402"></span>**575. Slávnostné zhromaždenie k 60. výročiu objavenia Gombaseckej jaskyne**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 48 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=74)  
+**STRANY:** s. 48 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=50)  
 Príspevok informuje o slávnostnom zhromaždení k 60. výročiu objavenia Gombaseckej jaskyne.
 
 <span id="clanok-4403"></span>**576. Výstava o jaskyniach svetového dedičstva v Čechách**
 **AUTOR:** Gaál, Ľ., Hlaváč, J.  
-**STRANY:** s. 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=75)  
+**STRANY:** s. 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=51)  
 Príspevok informuje o výstave venovanej jaskyniam svetového dedičstva v Čechách.
 
 <span id="clanok-4404"></span>**577. 16. seminár pre zamestnancov sprístupnených jaskýň**
 **AUTOR:** Nudzíková, Ľ.  
-**STRANY:** s. 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=75)  
+**STRANY:** s. 49 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=51)  
 Príspevok informuje o 16. seminári pre zamestnancov sprístupnených jaskýň.
 
 <span id="clanok-4405"></span>**578. Návštevnosť sprístupnených jaskýň v roku 2011**
 **AUTOR:** Nudzíková, Ľ., Gaál, Ľ.  
-**STRANY:** s. 50 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=76)  
+**STRANY:** s. 50 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=52)  
 Príspevok sumarizuje návštevnosť sprístupnených jaskýň v roku 2011.
 
 <span id="clanok-4406"></span>**579. M. Knez, M. Petrič, T. Slabe (Eds.): Karstology and Development Challenges on Karst I – Water**
 **AUTOR:** Haviarová, D.  
-**STRANY:** s. 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=77)  
+**STRANY:** s. 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=53)  
 Príspevok je recenziou publikácie Karstology and Development Challenges on Karst I – Water.
 
 <span id="clanok-4407"></span>**580. D. C. Culver, B. Debevc, M. Knez, G. Kovačič, A. Kranjc, J. Mulec, T. Pipan, M. Prelovšek, N. Ravbar, A. Semeja, T. Slabe, S. Šebela, N. Zupan Hajna: Karstology and Development Challenges on Karst II – Construction, Tourism, Ecology, Protection**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=77)  
+**STRANY:** s. 51 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=53)  
 Príspevok je recenziou publikácie Karstology and Development Challenges on Karst II – Construction, Tourism, Ecology, Protection.
 
 <span id="clanok-4408"></span>**581. P. Bella, P. Gažík (Eds.): Proceedings, International Show Caves Association 6th Congress, October 18 – 23, 2010 Demänovská Valley, Slovakia**
 **AUTOR:** Višňovská, Z.  
-**STRANY:** s. 52 – 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=78)  
+**STRANY:** s. 52 – 53 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=54)  
 Príspevok je recenziou zborníka z 6. kongresu International Show Caves Association v Demänovskej doline.
 
 <span id="clanok-4409"></span>**582. D. Šubová, L. Ambróz (Eds.): Atlas druhov európskeho významu pre územia Natura 2000 na Slovensku**
 **AUTOR:** Papáč, V.  
-**STRANY:** s. 54 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=80)  
+**STRANY:** s. 54 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=56)  
 Príspevok je recenziou atlasu druhov európskeho významu pre územia Natura 2000 na Slovensku.
 
 <span id="clanok-4410"></span>**583. R. Pokorný, M. Holec: Jeskyně Ústeckého kraje**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 54 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=80)  
+**STRANY:** s. 54 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=56)  
 Príspevok je recenziou publikácie Jeskyně Ústeckého kraje.
 
 <span id="clanok-4411"></span>**584. K životnému jubileu Prof. RNDr. Pavla Bosáka, DrSc.**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 55 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=81)  
+**STRANY:** s. 55 [↗ PDF](https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf#page=57)  
 Príspevok je spoločenskou správou k životnému jubileu profesora Pavla Bosáka.
 
 ### Ročník 2013 (18)
@@ -3031,7 +3031,7 @@ Príspevok informuje o aktivitách environmentálnej výchovy v roku 2012.
 
 <span id="clanok-4422"></span>**595. Demänovská dolina: vzťah povrchových a podzemných vôd**
 **AUTOR:** Malík, P., Haviarová, D., Gregor, M., Švasta, J., Bottlik, F., Černák, R., Mikita, S., Pažická, A., Auxt, A.  
-**STRANY:** s. 67 – 77 [↗ PDF](http://www.ssj.sk/web/user_files/Aragonit18_2_cely.pdf#page=72)  
+**STRANY:** s. 67 – 77 [↗ PDF](http://www.ssj.sk/web/user_files/Aragonit18_2_cely.pdf#page=69)  
 Príspevok sa venuje vzťahu povrchových a podzemných vôd v Demänovskej doline.
 
 <span id="clanok-4423"></span>**596. Korózne šikmé facety v jaskyniach a ich morfogenetické znaky – príklady z vybraných jaskýň na Slovensku**
@@ -3403,27 +3403,27 @@ Správa informuje o prezentáciách krasu a jaskýň na 9. vedeckej konferencii 
 
 <span id="clanok-4494"></span>**667. Svetový pohár FIS sa ako pokračovanie Veľkej ceny Demänovských jaskýň vrátil do Jasnej po 32 rokoch**
 **AUTOR:** Gažík, P.  
-**STRANY:** s. 44 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=53)  
+**STRANY:** s. 44 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=46)  
 Správa sa venuje návratu Svetového pohára FIS do Jasnej ako pokračovaniu Veľkej ceny Demänovských jaskýň.
 
 <span id="clanok-4495"></span>**668. Stretnutie riaditeľov ochrany prírody a biodiverzity členských štátov Európskej únie**
 **AUTOR:** Rendoš, M., Višňovská, Z.  
-**STRANY:** s. 44 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=53)  
+**STRANY:** s. 44 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=46)  
 Správa informuje o stretnutí riaditeľov ochrany prírody a biodiverzity členských štátov Európskej únie.
 
 <span id="clanok-4496"></span>**669. P. Zajíček: Jeskyně České republiky na historických mapách**
 **AUTOR:** Herich, P.  
-**STRANY:** s. 44 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=53)  
+**STRANY:** s. 44 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=46)  
 Príspevok je recenziou publikácie P. Zajíčka o jaskyniach Českej republiky na historických mapách.
 
 <span id="clanok-4497"></span>**670. V. Stockmann: Dejiny ochrany prírody na Slovensku**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 45 – 47 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=54)  
+**STRANY:** s. 45 – 47 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=47)  
 Príspevok je recenziou publikácie V. Stockmanna o dejinách ochrany prírody na Slovensku.
 
 <span id="clanok-4498"></span>**671. Spomienka na Ing. Marcela Lalkoviča, CSc.**
 **AUTOR:** Bella, P., Gaál, Ľ.  
-**STRANY:** s. 48 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=57)  
+**STRANY:** s. 48 [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=50)  
 Spoločenská správa prináša spomienku na Ing. Marcela Lalkoviča, CSc.
 
 ### Ročník 2017 (22)
@@ -3606,17 +3606,17 @@ Príspevok sumarizuje návštevnosť sprístupnených jaskýň v roku 2017.
 
 <span id="clanok-4533"></span>**706. T. Chavez – P. Reehling (Eds.): Proceedings of DeepKarst 2016: Origins, Resources, and Management of Hypogene Karst**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 51 [↗ PDF](http://www.ssj.sk/user_files/Aragon23_1_m.pdf#page=55)  
+**STRANY:** s. 51 [↗ PDF](http://www.ssj.sk/user_files/Aragon23_1_m.pdf#page=53)  
 Príspevok predstavuje publikáciu Proceedings of DeepKarst 2016 venovanú pôvodu, zdrojom a manažmentu hypogénneho krasu.
 
 <span id="clanok-4534"></span>**707. Zomrel RNDr. Vlastimil Konečný, CSc.**
 **AUTOR:** Gaál, Ľ.  
-**STRANY:** s. 52 [↗ PDF](http://www.ssj.sk/user_files/Aragon23_1_m.pdf#page=56)  
+**STRANY:** s. 52 [↗ PDF](http://www.ssj.sk/user_files/Aragon23_1_m.pdf#page=54)  
 Spoločenská správa oznamuje úmrtie RNDr. Vlastimila Konečného, CSc.
 
 <span id="clanok-4535"></span>**708. Blahoželali sme Paľkovi Staníkovi**
 **AUTOR:** Anonymus  
-**STRANY:** s. 52 [↗ PDF](http://www.ssj.sk/user_files/Aragon23_1_m.pdf#page=56)  
+**STRANY:** s. 52 [↗ PDF](http://www.ssj.sk/user_files/Aragon23_1_m.pdf#page=54)  
 Spoločenská správa prináša blahoželanie Pavlovi Staníkovi.
 
 ### Ročník 2019 (24)
@@ -4100,7 +4100,7 @@ Položka obsahuje abstrakty zo 14. vedeckej konferencie o výskume, využívaní
 
 <span id="clanok-4627"></span>**800. Nejednotnosť definície pojmu kryptokras a terminologické konzekvencie v typológii krasu na Slovensku a v Česku**
 **AUTOR:** Bella, P., Bosák, P.  
-**STRANY:** s. 61 – 67 [↗ PDF](http://www.ssj.sk/user_files/Aragon_27_2_web.pdf#page=64)  
+**STRANY:** s. 61 – 67 [↗ PDF](http://www.ssj.sk/user_files/Aragon_27_2_web.pdf#page=63)  
 Príspevok sa zaoberá nejednotnosťou definície pojmu kryptokras a jej dôsledkami pre typológiu krasu na Slovensku a v Česku.
 
 <span id="clanok-4628"></span>**801. Jaskyne v paleogénnych zlepencoch na Slovensku**
@@ -4571,7 +4571,7 @@ Výskum krasu a jaskýň: [834](#clanok-3803) (2024, č. 2, s. 51 – 60); [835]
 
 ## Súpis plánov jaskýň
 
-1. P. Zajíček: Jeskyně České republiky na historických mapách (2016, č. 2, s. 44) [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=53)
+1. P. Zajíček: Jeskyně České republiky na historických mapách (2016, č. 2, s. 44) [↗ PDF](http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf#page=46)
 Súvisiaci článok: Herich, P.: P. Zajíček: Jeskyně České republiky na historických mapách
 
 ## Názvový register jaskýň

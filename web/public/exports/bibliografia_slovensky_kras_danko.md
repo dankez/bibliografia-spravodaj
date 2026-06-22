@@ -6438,12 +6438,12 @@ Príspevok skúma nápisy v jaskyniach Plešiveckej planiny v súvislosti s deji
 
 <span id="clanok-5001"></span>**1249. Vladimír Panoš by se dožil 100 let**
 **AUTOR:** Bosák, P.  
-**STRANY:** s. 179 – 211 [↗ PDF](https://www.smopaj.sk/sk/documentloader.php?id=3646&filename=zborník 60_2_2022.pdf#page=61)  
+**STRANY:** s. 179 – 211 [↗ PDF](https://www.smopaj.sk/sk/documentloader.php?id=3646&filename=zborník 60_2_2022.pdf#page=181)  
 Príspevok pripomína sté výročie narodenia Vladimíra Panoša.
 
 <span id="clanok-5002"></span>**1250. Mošnická jaskyňa v začiatkoch speleologických výskumov Vladimíra Panoša**
 **AUTOR:** Bella, P.  
-**STRANY:** s. 212 [↗ PDF](https://www.smopaj.sk/sk/documentloader.php?id=3646&filename=zborník 60_2_2022.pdf#page=94)  
+**STRANY:** s. 212 [↗ PDF](https://www.smopaj.sk/sk/documentloader.php?id=3646&filename=zborník 60_2_2022.pdf#page=214)  
 Správa približuje Mošnickú jaskyňu v kontexte začiatkov speleologických výskumov Vladimíra Panoša.
 
 ### Ročník 2023 (61)

@@ -46,7 +46,7 @@ PDF_METADATA_KEYWORDS = (
 DEFAULT_EXPORT_TITLE = "Bibliografia Spravodaja SSS"
 DEFAULT_JOURNAL_ID = "spravodaj_sss"
 DEFAULT_JOURNAL_TITLE = "Spravodaj SSS"
-JOURNAL_EXPORT_ORDER = ("spravodaj_sss", "aragonit", "slovensky_kras")
+JOURNAL_EXPORT_ORDER = ("spravodaj_sss", "slovensky_kras", "aragonit")
 JOURNAL_TITLE_FALLBACKS = {
     "spravodaj_sss": "Spravodaj SSS",
     "aragonit": "Aragonit",
@@ -108,7 +108,17 @@ def slugify_heading(value: str) -> str:
     return re.sub(r"[^a-z0-9]+", "-", ascii_text.casefold()).strip("-")
 
 
+def journal_anchor(journal_title: str) -> str:
+    return f"zoznam-clankov-{slugify_heading(journal_title)}"
+
+
+def known_journal_titles() -> set[str]:
+    return set(JOURNAL_TITLE_FALLBACKS.values())
+
+
 def heading_id(title: str) -> str:
+    if title in known_journal_titles():
+        return journal_anchor(title)
     return HEADING_IDS.get(title, "")
 
 
@@ -130,13 +140,20 @@ def content_line(
     return f"{label} - {page}" if page else label
 
 
-def render_contents(markdown: bool = False, section_pages: dict[str, int] | None = None) -> str:
+def render_contents(
+    markdown: bool = False,
+    section_pages: dict[str, int] | None = None,
+    journal_sections: list[tuple[str, str]] | None = None,
+) -> str:
     title = "## Obsah" if markdown else "Obsah"
     lines = [title, ""]
-    lines.extend(
-        content_line(section_title, anchor, markdown=markdown, section_pages=section_pages)
-        for section_title, anchor in CONTENT_SECTIONS
-    )
+    for section_title, anchor in CONTENT_SECTIONS:
+        lines.append(content_line(section_title, anchor, markdown=markdown, section_pages=section_pages))
+        if section_title == "Zoznam článkov" and journal_sections:
+            for journal_title, journal_anchor_id in journal_sections:
+                label = f"[{journal_title}](#{journal_anchor_id})" if markdown else journal_title
+                page = (section_pages or {}).get(journal_title)
+                lines.append(f"  - {label} - {page}" if page else f"  - {label}")
     return "\n".join(lines).rstrip() + "\n"
 
 
@@ -327,9 +344,10 @@ def plain_rule(char: str = "=", width: int = 72) -> str:
     return char * width
 
 
-def plain_volume_heading(year: int, volume: str) -> str:
+def plain_volume_heading(year: int, volume: str, journal_title: str | None = None) -> str:
     volume_part = f" ({volume})" if volume else ""
-    return "\n".join([plain_rule("="), f"ROČNÍK {year}{volume_part}", plain_rule("=")])
+    journal_part = f" - {journal_title}" if journal_title else ""
+    return "\n".join([plain_rule("="), f"ROČNÍK {year}{volume_part}{journal_part}", plain_rule("=")])
 
 
 def plain_issue_heading(issue: str) -> str:
@@ -392,6 +410,23 @@ def iter_articles_in_export_order(articles: list[dict], group_by_journal: bool =
         yield from iter_articles_in_issue_order(journal_groups[journal_id])
 
 
+def journal_sections_for_articles(articles: list[dict]) -> list[tuple[str, str]]:
+    journal_groups: dict[str, list[dict]] = defaultdict(list)
+    journal_titles: dict[str, str] = {}
+    for article in articles:
+        journal_id = article_journal_id(article)
+        journal_groups[journal_id].append(article)
+        journal_titles.setdefault(journal_id, article_journal_title(article))
+
+    return [
+        (journal_titles.get(journal_id, journal_id), journal_anchor(journal_titles.get(journal_id, journal_id)))
+        for journal_id in sorted(
+            journal_groups.keys(),
+            key=lambda item: journal_sort_key(item, journal_titles.get(item, item)),
+        )
+    ]
+
+
 def prepare_export_articles(articles: list[dict], group_by_journal: bool = False) -> list[dict]:
     prepared = [dict(article) for article in articles]
     for index, article in enumerate(
@@ -425,7 +460,11 @@ def has_map_or_plan(article: dict) -> bool:
     )
 
 
-def render_article_issue_groups(articles: list[dict], markdown: bool = False) -> list[str]:
+def render_article_issue_groups(
+    articles: list[dict],
+    markdown: bool = False,
+    journal_title: str | None = None,
+) -> list[str]:
     grouped: dict[tuple[int, str], dict[str, list[dict]]] = defaultdict(lambda: defaultdict(list))
     for article in articles:
         grouped[(article.get("year"), article.get("volume", ""))][str(article.get("issue", ""))].append(article)
@@ -433,7 +472,12 @@ def render_article_issue_groups(articles: list[dict], markdown: bool = False) ->
     lines: list[str] = []
     for (year, volume) in sorted(grouped.keys()):
         volume_part = f" ({volume})" if volume else ""
-        heading = f"### Ročník {year}{volume_part}" if markdown else plain_volume_heading(year, volume)
+        journal_part = f" - {journal_title}" if journal_title else ""
+        heading = (
+            f"### Ročník {year}{volume_part}{journal_part}"
+            if markdown
+            else plain_volume_heading(year, volume, journal_title=journal_title)
+        )
         lines.extend([heading, ""])
         issues = grouped[(year, volume)]
         for issue in sorted(issues.keys(), key=issue_sort_key):
@@ -471,7 +515,13 @@ def render_articles(articles: list[dict], markdown: bool = False, group_by_journ
         journal_title = journal_titles.get(journal_id, journal_id)
         heading = f"### {journal_title}" if markdown else plain_journal_heading(journal_title)
         lines.extend([heading, ""])
-        lines.extend(render_article_issue_groups(journal_groups[journal_id], markdown=markdown))
+        lines.extend(
+            render_article_issue_groups(
+                journal_groups[journal_id],
+                markdown=markdown,
+                journal_title=journal_title,
+            )
+        )
         lines.append("")
     return "\n".join(lines).rstrip() + "\n"
 
@@ -506,6 +556,7 @@ def render_bibliography(
 ) -> str:
     articles = prepare_export_articles(articles, group_by_journal=group_by_journal)
     title = f"# {title}" if markdown else title
+    journal_sections = journal_sections_for_articles(articles) if group_by_journal else None
     name_locality_subject = {"Menný register", "Lokalitný register", "Vecný register"}
     cave_register = {"Názvový register jaskýň"}
     brand = f"{EXPORT_BRAND_MARKDOWN}\n\n" if markdown else ""
@@ -518,7 +569,11 @@ def render_bibliography(
         brand
         + title
         + "\n\n"
-        + render_contents(markdown=markdown, section_pages=section_pages)
+        + render_contents(
+            markdown=markdown,
+            section_pages=section_pages,
+            journal_sections=journal_sections,
+        )
         + "\n"
         + render_articles(articles, markdown=markdown, group_by_journal=group_by_journal)
         + "\n"
@@ -767,16 +822,18 @@ def build_pdf_from_html(
         "14mm",
         "--title",
         metadata_title,
-        "--footer-center",
-        "[page]",
+        "--footer-left",
+        "[section] / [subsection]",
+        "--footer-right",
+        "[page] / [topage]",
         "--footer-font-size",
         "8",
         str(html_path),
         str(pdf_path),
     ]
-    result = subprocess.run(command, capture_output=True, text=True, check=False)
+    result = subprocess.run(command, check=False)
     if result.returncode != 0:
-        raise RuntimeError(result.stderr.strip() or "wkhtmltopdf failed")
+        raise RuntimeError("wkhtmltopdf failed")
     write_pdf_metadata(pdf_path, title=metadata_title)
 
 
@@ -798,20 +855,43 @@ def write_pdf_metadata(pdf_path: Path, title: str = PDF_METADATA_TITLE) -> None:
         raise RuntimeError(result.stderr.strip() or "exiftool failed to write PDF metadata")
 
 
-def parse_pdf_section_pages_from_text(pdf_text: str) -> dict[str, int]:
+def normalized_pdf_heading(value: str) -> str:
+    return re.sub(r"\s+", " ", str(value or "")).strip().casefold()
+
+
+def parse_pdf_section_pages_from_text(
+    pdf_text: str,
+    extra_titles: list[str] | None = None,
+) -> dict[str, int]:
     pages: dict[str, int] = {}
     wanted = {title for title, _ in CONTENT_SECTIONS}
     wanted.add("Obsah")
+    wanted.update(extra_titles or [])
+    wanted_by_key = {normalized_pdf_heading(title): title for title in wanted}
+    has_contents = normalized_pdf_heading("Obsah") in {
+        normalized_pdf_heading(line)
+        for line in pdf_text.split("\f", 1)[0].splitlines()
+    }
+    body_started = not has_contents
+    article_heading_hits = 0
     for page_number, page_text in enumerate(pdf_text.split("\f"), start=1):
         for raw_line in page_text.splitlines():
             line = re.sub(r"\s+", " ", raw_line).strip()
-            if line in wanted and line not in pages:
-                pages[line] = page_number
+            title = wanted_by_key.get(normalized_pdf_heading(line))
+            if title == "Zoznam článkov":
+                article_heading_hits += 1
+                if has_contents and page_number == 1 and not body_started and article_heading_hits < 2:
+                    continue
+                body_started = True
+            if title and title not in pages:
+                if title != "Zoznam článkov" and not body_started:
+                    continue
+                pages[title] = page_number
     pages.pop("Obsah", None)
     return pages
 
 
-def detect_pdf_section_pages(pdf_path: Path) -> dict[str, int]:
+def detect_pdf_section_pages(pdf_path: Path, extra_titles: list[str] | None = None) -> dict[str, int]:
     if not shutil.which("pdftotext"):
         return {}
     result = subprocess.run(
@@ -822,7 +902,7 @@ def detect_pdf_section_pages(pdf_path: Path) -> dict[str, int]:
     )
     if result.returncode != 0:
         return {}
-    return parse_pdf_section_pages_from_text(result.stdout)
+    return parse_pdf_section_pages_from_text(result.stdout, extra_titles=extra_titles)
 
 
 def write_exports(
@@ -881,22 +961,26 @@ def main() -> int:
         html_path = output_dir / f"{basename}.html"
         pdf_path = output_dir / f"{basename}.pdf"
         section_pages: dict[str, int] | None = None
-        for _ in range(3):
-            write_exports(
-                articles,
-                txt_path,
-                md_path,
-                html_path=html_path,
-                section_pages=section_pages,
-                title=args.title,
-                group_by_journal=args.group_by_journal,
-            )
-            build_pdf_from_html(html_path, pdf_path, args.pdf_engine, metadata_title=args.title)
-            detected_pages = detect_pdf_section_pages(pdf_path)
-            if not detected_pages or detected_pages == section_pages:
-                break
+        journal_section_titles = (
+            [title for title, _ in journal_sections_for_articles(articles)]
+            if args.group_by_journal
+            else []
+        )
+        detect_section_pages = args.group_by_journal or len(articles) <= 1500
+        write_exports(
+            articles,
+            txt_path,
+            md_path,
+            html_path=html_path,
+            section_pages=section_pages,
+            title=args.title,
+            group_by_journal=args.group_by_journal,
+        )
+        build_pdf_from_html(html_path, pdf_path, args.pdf_engine, metadata_title=args.title)
+        if detect_section_pages and (
+            detected_pages := detect_pdf_section_pages(pdf_path, extra_titles=journal_section_titles)
+        ):
             section_pages = detected_pages
-        if section_pages:
             write_exports(
                 articles,
                 txt_path,

@@ -204,12 +204,18 @@ def test_combined_export_groups_articles_by_journal_order_and_renumbers_continuo
 
     markdown = exporter.render_bibliography(articles, markdown=True, group_by_journal=True)
 
-    assert markdown.index("### Spravodaj SSS") < markdown.index("### Aragonit")
-    assert markdown.index("### Aragonit") < markdown.index("### Slovenský kras")
+    assert markdown.index("### Spravodaj SSS") < markdown.index("### Slovenský kras")
+    assert markdown.index("### Slovenský kras") < markdown.index("### Aragonit")
     assert '<span id="clanok-1"></span>**1. Úvodník**' in markdown
-    assert '<span id="clanok-3828"></span>**2. Aragonit článok**' in markdown
-    assert '<span id="clanok-5668"></span>**3. Úvod**' in markdown
+    assert '<span id="clanok-5668"></span>**2. Úvod**' in markdown
+    assert '<span id="clanok-3828"></span>**3. Aragonit článok**' in markdown
     assert "**5668. Úvod**" not in markdown
+    assert "  - [Spravodaj SSS](#zoznam-clankov-spravodaj-sss)" in markdown
+    assert "  - [Slovenský kras](#zoznam-clankov-slovensky-kras)" in markdown
+    assert "  - [Aragonit](#zoznam-clankov-aragonit)" in markdown
+    assert "### Ročník 1970 (I.) - Spravodaj SSS" in markdown
+    assert "### Ročník 1958 (1) - Slovenský kras" in markdown
+    assert "### Ročník 1996 (1) - Aragonit" in markdown
 
 
 def test_render_html_document_adds_brand_banner_and_author_signature():
@@ -403,6 +409,55 @@ def test_render_contents_links_major_bibliography_sections():
     assert "..." not in contents
 
 
+def test_render_contents_lists_journal_article_sections_with_pages():
+    contents = exporter.render_contents(
+        markdown=True,
+        section_pages={
+            "Zoznam článkov": 1,
+            "Spravodaj SSS": 2,
+            "Slovenský kras": 210,
+            "Aragonit": 318,
+        },
+        journal_sections=[
+            ("Spravodaj SSS", "zoznam-clankov-spravodaj-sss"),
+            ("Slovenský kras", "zoznam-clankov-slovensky-kras"),
+            ("Aragonit", "zoznam-clankov-aragonit"),
+        ],
+    )
+
+    assert "[Zoznam článkov](#zoznam-clankov) - 1" in contents
+    assert "  - [Spravodaj SSS](#zoznam-clankov-spravodaj-sss) - 2" in contents
+    assert "  - [Slovenský kras](#zoznam-clankov-slovensky-kras) - 210" in contents
+    assert "  - [Aragonit](#zoznam-clankov-aragonit) - 318" in contents
+
+
+def test_parse_pdf_section_pages_ignores_contents_entries():
+    pdf_text = (
+        "Obsah\n"
+        "Zoznam článkov\n"
+        "- Spravodaj SSS\n"
+        "Menný register\n"
+        "Lokalitný register\n"
+        "\n"
+        "Zoznam článkov\n"
+        "SPRAVODAJ SSS\n"
+        "\f"
+        "Menný register\n"
+        "\f"
+        "Lokalitný register\n"
+    )
+
+    pages = exporter.parse_pdf_section_pages_from_text(
+        pdf_text,
+        extra_titles=["Spravodaj SSS"],
+    )
+
+    assert pages["Zoznam článkov"] == 1
+    assert pages["Spravodaj SSS"] == 1
+    assert pages["Menný register"] == 2
+    assert pages["Lokalitný register"] == 3
+
+
 def test_render_bibliography_places_contents_before_main_sections():
     articles = [
         {
@@ -435,8 +490,10 @@ def test_render_html_document_adds_heading_ids_for_contents_links():
     markdown = (
         "# Bibliografia Spravodaja SSS\n\n"
         "## Obsah\n\n"
-        "[Zoznam článkov](#zoznam-clankov) - 9\n\n"
+        "[Zoznam článkov](#zoznam-clankov) - 9\n"
+        "  - [Spravodaj SSS](#zoznam-clankov-spravodaj-sss) - 10\n\n"
         "## Zoznam článkov\n\n"
+        "### Spravodaj SSS\n\n"
         "## Menný register\n"
     )
 
@@ -444,7 +501,9 @@ def test_render_html_document_adds_heading_ids_for_contents_links():
 
     assert '<h2 id="obsah">Obsah</h2>' in html
     assert '<a href="#zoznam-clankov">Zoznam článkov</a>' in html
+    assert '<a href="#zoznam-clankov-spravodaj-sss">Spravodaj SSS</a>' in html
     assert '<h2 id="zoznam-clankov">Zoznam článkov</h2>' in html
+    assert '<h3 id="zoznam-clankov-spravodaj-sss" class="journal-heading">Spravodaj SSS</h3>' in html
     assert '<h2 id="menny-register">Menný register</h2>' in html
 
 
@@ -456,7 +515,7 @@ def test_build_pdf_from_html_invokes_wkhtmltopdf(monkeypatch, tmp_path):
 
     monkeypatch.setattr(exporter.shutil, "which", lambda binary: f"/usr/bin/{binary}")
 
-    def fake_run(command, capture_output, text, check):
+    def fake_run(command, *args, **kwargs):
         calls.append(command)
         pdf_path.write_bytes(b"%PDF-1.4\n")
 
@@ -474,6 +533,10 @@ def test_build_pdf_from_html_invokes_wkhtmltopdf(monkeypatch, tmp_path):
     assert calls
     assert calls[0][0] == "/usr/bin/wkhtmltopdf"
     assert "--encoding" in calls[0]
+    assert "--footer-left" in calls[0]
+    assert "[section] / [subsection]" in calls[0]
+    assert "--footer-right" in calls[0]
+    assert "[page] / [topage]" in calls[0]
     assert str(html_path) in calls[0]
     assert str(pdf_path) in calls[0]
     assert calls[1][0] == "/usr/bin/exiftool"
@@ -488,7 +551,7 @@ def test_build_pdf_from_html_writes_pdf_document_metadata(monkeypatch, tmp_path)
 
     monkeypatch.setattr(exporter.shutil, "which", lambda binary: f"/usr/bin/{binary}")
 
-    def fake_run(command, capture_output, text, check):
+    def fake_run(command, *args, **kwargs):
         calls.append(command)
         pdf_path.write_bytes(b"%PDF-1.4\n")
 
