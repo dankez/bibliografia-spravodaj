@@ -456,6 +456,134 @@ def test_section_anchor_pages_maps_major_and_journal_sections():
     assert anchors["menny-register"] == 577
 
 
+def test_article_anchor_pages_from_pdf_text_maps_article_ids_to_pdf_pages():
+    articles = [
+        {
+            "id": 3828,
+            "title": "Jaskyne Slovenského a Aggtelekského krasu",
+            "year": 1996,
+            "volume": "1",
+            "issue": "1",
+        },
+        {
+            "id": 3830,
+            "title": "Dlhý názov rozdelený cez zalomenie",
+            "year": 1996,
+            "volume": "1",
+            "issue": "1",
+        },
+    ]
+    pdf_text = (
+        "Obsah\n"
+        "Zoznam článkov - 2\n"
+        "\f"
+        "Zoznam článkov\n"
+        "1. Jaskyne Slovenského a Aggtelekského krasu\n"
+        "\f"
+        "2. Dlhý názov rozdelený\n"
+        "cez zalomenie\n"
+        "\f"
+        "Menný register\n"
+        "Hlaváč, J.: 1\n"
+    )
+
+    anchors = exporter.article_anchor_pages_from_pdf_text(
+        pdf_text,
+        articles,
+        {"Zoznam článkov": 2, "Menný register": 4},
+    )
+
+    assert anchors == {"clanok-3828": 2, "clanok-3830": 3}
+
+
+def test_article_anchor_pages_from_pdf_text_ignores_soft_hyphen_word_breaks():
+    articles = [
+        {
+            "id": 605,
+            "title": "Z činnosti komisie pre fyzikálny, chemický a hydrogeologický vý\xadskum krasu",
+            "year": 1983,
+            "volume": "XIV.",
+            "issue": "3",
+        },
+        {
+            "id": 1762,
+            "title": "Pozoruhodná huba alebo speleo\xad logicko-mykologický príbeh",
+            "year": 2001,
+            "volume": "XXXII.",
+            "issue": "4",
+        },
+    ]
+    pdf_text = (
+        "Zoznam článkov\n"
+        "1. Z činnosti komisie pre fyzikálny, chemický a hydrogeologický vý\u200bskum krasu\n"
+        "\f"
+        "2. Pozoruhodná huba alebo speleo\u200b logicko-mykologický príbeh\n"
+        "\f"
+        "Menný register\n"
+    )
+
+    anchors = exporter.article_anchor_pages_from_pdf_text(
+        pdf_text,
+        articles,
+        {"Zoznam článkov": 1, "Menný register": 3},
+    )
+
+    assert anchors == {"clanok-605": 1, "clanok-1762": 2}
+
+
+def test_article_anchor_pages_include_page_where_register_starts():
+    articles = [
+        {
+            "id": 3795,
+            "title": "Speleoklub Univerzity P. J. Šafárika",
+            "year": 2026,
+            "volume": "LVII.",
+            "issue": "1",
+        }
+    ]
+    pdf_text = (
+        "Zoznam článkov\n"
+        "\f"
+        "1. Speleoklub Univerzity P. J. Šafárika\n"
+        "\n"
+        "Menný register\n"
+    )
+
+    anchors = exporter.article_anchor_pages_from_pdf_text(
+        pdf_text,
+        articles,
+        {"Zoznam článkov": 1, "Menný register": 2},
+    )
+
+    assert anchors == {"clanok-3795": 2}
+
+
+def test_article_anchor_pages_from_pdf_text_falls_back_when_pdf_drops_punctuation():
+    articles = [
+        {
+            "id": 5439,
+            "title": "Novšie poznatky z prieskumu jaskyne Skalistý potok a morfológia častí objavených v rokoch 1989-1990",
+            "year": 1992,
+            "volume": "30",
+            "issue": "",
+        }
+    ]
+    pdf_text = (
+        "Zoznam článkov\n"
+        "1. Novšie poznatky z prieskumu jaskyne Skalistý potok a morfológia častí objavených v rokoch 19891990\n"
+        "\f"
+        "Menný register\n"
+    )
+
+    anchors = exporter.article_anchor_pages_from_pdf_text(
+        pdf_text,
+        articles,
+        {"Zoznam článkov": 1, "Menný register": 2},
+    )
+
+    assert anchors == {"clanok-5439": 1}
+
+
 def test_rewrite_pdf_internal_html_links_converts_known_local_anchors_to_pdf_goto(tmp_path):
     pikepdf = pytest.importorskip("pikepdf")
     from pikepdf import Array, Dictionary, Name, String
@@ -554,6 +682,25 @@ def test_parse_pdf_section_pages_ignores_contents_entries():
     assert pages["Spravodaj SSS"] == 1
     assert pages["Menný register"] == 2
     assert pages["Lokalitný register"] == 3
+
+
+def test_parse_pdf_section_pages_detects_body_heading_after_numbered_contents():
+    pdf_text = (
+        "Obsah\n"
+        "Zoznam článkov - 1\n"
+        "Menný register - 3\n"
+        "\n"
+        "Zoznam článkov\n"
+        "ROČNÍK 1970 (I.)\n"
+        "\f"
+        "1. Úvodník\n"
+        "\f"
+        "Menný register\n"
+    )
+
+    pages = exporter.parse_pdf_section_pages_from_text(pdf_text)
+
+    assert pages == {"Zoznam článkov": 1, "Menný register": 3}
 
 
 def test_render_bibliography_places_contents_before_main_sections():

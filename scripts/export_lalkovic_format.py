@@ -444,6 +444,82 @@ def section_anchor_pages(
     return anchors
 
 
+def normalized_pdf_lookup_text(value: str) -> str:
+    normalized = unicodedata.normalize("NFKC", str(value or ""))
+    normalized = re.sub(r"[\u00ad\u200b\u200c\u200d]\s*", "", normalized)
+    return re.sub(r"\s+", " ", normalized).strip().casefold()
+
+
+def normalized_pdf_loose_text(value: str) -> str:
+    return re.sub(r"[^\w]+", "", normalized_pdf_lookup_text(value), flags=re.UNICODE)
+
+
+def article_anchor_pages_from_pdf_text(
+    pdf_text: str,
+    articles: list[dict],
+    section_pages: dict[str, int] | None,
+    group_by_journal: bool = False,
+) -> dict[str, int]:
+    if not pdf_text:
+        return {}
+    pages = pdf_text.split("\f")
+    if not pages:
+        return {}
+
+    start_page = max(1, int((section_pages or {}).get("Zoznam článkov") or 1))
+    section_end_candidates = [
+        page
+        for title in ("Menný register", "Lokalitný register", "Vecný register", MAPS_AND_PLANS_TITLE, "Názvový register jaskýň")
+        if (page := (section_pages or {}).get(title)) and page > start_page
+    ]
+    end_page = min(section_end_candidates) if section_end_candidates else len(pages)
+    if end_page < start_page:
+        end_page = len(pages)
+
+    normalized_pages = {
+        page_number: normalized_pdf_lookup_text(pages[page_number - 1])
+        for page_number in range(start_page, min(end_page, len(pages)) + 1)
+    }
+    loose_pages: dict[int, str] | None = None
+    anchors: dict[str, int] = {}
+    cursor_page = start_page
+    for article in prepare_export_articles(articles, group_by_journal=group_by_journal):
+        raw_needle = f"{article_number(article)}. {article.get('title', '')}"
+        needle = normalized_pdf_lookup_text(raw_needle)
+        if not needle:
+            continue
+        found_page = None
+        for page_number in range(cursor_page, end_page + 1):
+            if needle in normalized_pages.get(page_number, ""):
+                found_page = page_number
+                break
+        if found_page is None:
+            for page_number in range(start_page, end_page + 1):
+                if needle in normalized_pages.get(page_number, ""):
+                    found_page = page_number
+                    break
+        if found_page is None:
+            if loose_pages is None:
+                loose_pages = {
+                    page_number: normalized_pdf_loose_text(pages[page_number - 1])
+                    for page_number in range(start_page, min(end_page, len(pages)) + 1)
+                }
+            loose_needle = normalized_pdf_loose_text(raw_needle)
+            for page_number in range(cursor_page, end_page + 1):
+                if loose_needle in loose_pages.get(page_number, ""):
+                    found_page = page_number
+                    break
+            if found_page is None:
+                for page_number in range(start_page, end_page + 1):
+                    if loose_needle in loose_pages.get(page_number, ""):
+                        found_page = page_number
+                        break
+        if found_page is not None:
+            anchors[article_anchor(article)] = found_page
+            cursor_page = found_page
+    return anchors
+
+
 def prepare_export_articles(articles: list[dict], group_by_journal: bool = False) -> list[dict]:
     prepared = [dict(article) for article in articles]
     for index, article in enumerate(
@@ -934,10 +1010,15 @@ def parse_pdf_section_pages_from_text(
     wanted.add("Obsah")
     wanted.update(extra_titles or [])
     wanted_by_key = {normalized_pdf_heading(title): title for title in wanted}
+    first_page_lines = [re.sub(r"\s+", " ", line).strip() for line in pdf_text.split("\f", 1)[0].splitlines()]
     has_contents = normalized_pdf_heading("Obsah") in {
         normalized_pdf_heading(line)
-        for line in pdf_text.split("\f", 1)[0].splitlines()
+        for line in first_page_lines
     }
+    contents_has_numbered_article_entry = any(
+        re.match(r"^Zoznam článkov\s+-\s+\d+$", line)
+        for line in first_page_lines
+    )
     body_started = not has_contents
     article_heading_hits = 0
     for page_number, page_text in enumerate(pdf_text.split("\f"), start=1):
@@ -946,7 +1027,13 @@ def parse_pdf_section_pages_from_text(
             title = wanted_by_key.get(normalized_pdf_heading(line))
             if title == "Zoznam článkov":
                 article_heading_hits += 1
-                if has_contents and page_number == 1 and not body_started and article_heading_hits < 2:
+                if (
+                    has_contents
+                    and page_number == 1
+                    and not body_started
+                    and article_heading_hits < 2
+                    and not contents_has_numbered_article_entry
+                ):
                     continue
                 body_started = True
             if title and title not in pages:
@@ -957,9 +1044,9 @@ def parse_pdf_section_pages_from_text(
     return pages
 
 
-def detect_pdf_section_pages(pdf_path: Path, extra_titles: list[str] | None = None) -> dict[str, int]:
+def extract_pdf_text(pdf_path: Path) -> str:
     if not shutil.which("pdftotext"):
-        return {}
+        return ""
     result = subprocess.run(
         ["pdftotext", str(pdf_path), "-"],
         capture_output=True,
@@ -967,8 +1054,15 @@ def detect_pdf_section_pages(pdf_path: Path, extra_titles: list[str] | None = No
         check=False,
     )
     if result.returncode != 0:
+        return ""
+    return result.stdout
+
+
+def detect_pdf_section_pages(pdf_path: Path, extra_titles: list[str] | None = None) -> dict[str, int]:
+    pdf_text = extract_pdf_text(pdf_path)
+    if not pdf_text:
         return {}
-    return parse_pdf_section_pages_from_text(result.stdout, extra_titles=extra_titles)
+    return parse_pdf_section_pages_from_text(pdf_text, extra_titles=extra_titles)
 
 
 def write_exports(
@@ -1057,11 +1151,28 @@ def main() -> int:
                 group_by_journal=args.group_by_journal,
             )
             build_pdf_from_html(html_path, pdf_path, args.pdf_engine, metadata_title=args.title)
-        rewrite_pdf_internal_html_links(
-            pdf_path,
-            html_path,
-            section_anchor_pages(section_pages, journal_sections_for_articles(articles) if args.group_by_journal else None),
+        final_pdf_text = extract_pdf_text(pdf_path)
+        if final_pdf_text and detect_section_pages:
+            final_section_pages = parse_pdf_section_pages_from_text(
+                final_pdf_text,
+                extra_titles=journal_section_titles,
+            )
+            if final_section_pages:
+                section_pages = final_section_pages
+        anchor_pages = section_anchor_pages(
+            section_pages,
+            journal_sections_for_articles(articles) if args.group_by_journal else None,
         )
+        if final_pdf_text:
+            anchor_pages.update(
+                article_anchor_pages_from_pdf_text(
+                    final_pdf_text,
+                    articles,
+                    section_pages,
+                    group_by_journal=args.group_by_journal,
+                )
+            )
+        rewrite_pdf_internal_html_links(pdf_path, html_path, anchor_pages)
         print(f"Wrote {txt_path}")
         print(f"Wrote {md_path}")
         print(f"Wrote {html_path}")
