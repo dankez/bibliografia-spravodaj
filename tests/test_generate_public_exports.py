@@ -14,6 +14,10 @@ def test_export_scopes_include_combined_and_each_journal():
     assert set(scopes) == {"all", "spravodaj_sss", "aragonit", "slovensky_kras"}
     assert scopes["all"]["basename"] == "bibliografia_vsetko_danko"
     assert scopes["all"]["group_by_journal"] is True
+    assert "legacy_basename" not in scopes["all"]
+    assert "legacy_sqlite" not in scopes["all"]
+    assert scopes["spravodaj_sss"]["legacy_basename"] == "spravodaj_sss_danko"
+    assert scopes["spravodaj_sss"]["legacy_sqlite"] == "spravodaj_sss.sqlite"
     assert scopes["aragonit"]["sqlite"] == "bibliografia_aragonit.sqlite"
     assert "group_by_journal" not in scopes["aragonit"]
     assert scopes["slovensky_kras"]["title"] == "Bibliografia časopisu Slovenský kras"
