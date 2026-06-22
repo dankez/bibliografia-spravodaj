@@ -23165,84 +23165,6 @@
     }
   },
   {
-    "name": "Zbojnícka diera",
-    "slug": "zbojnicka-diera",
-    "area": "",
-    "aliases": [
-      "Jaskyňa Oltárkameň",
-      "Zbojnícka džura"
-    ],
-    "article_count": 3,
-    "map_plan_count": 0,
-    "first_year": 1997,
-    "last_year": 2018,
-    "authors_count": 5,
-    "articles": [
-      {
-        "id": 1272,
-        "title": "Jaskyňa Oltárkameň v Čergove",
-        "year": 1997,
-        "volume": "XXVIII.",
-        "issue": "1",
-        "pages": "38-39",
-        "journal_id": "spravodaj_sss",
-        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
-        "journal_short_title": "Spravodaj SSS",
-        "authors": [
-          "Ducár, J."
-        ],
-        "abstract": "O prvej písomnej zmienke o jaskyni nad obcou Drienica severne od Sabinova, ako vznikol jej názov, práce, ktoré tu treba vykonať z dôvodov turistických a ekologických",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1_1997.pdf",
-        "pdf_link": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1_1997.pdf#page=42",
-        "detail_url": "/clanky/1272/"
-      },
-      {
-        "id": 4317,
-        "title": "Zbojnícka diera pri Švošove – nová archeologická lokalita pred zánikom",
-        "year": 2010,
-        "volume": "15",
-        "issue": "1",
-        "pages": "34-36",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Soják, M."
-        ],
-        "abstract": "Príspevok predstavuje Zbojnícku dieru pri Švošove ako novú archeologickú lokalitu pred zánikom.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit15_1_komplet.pdf",
-        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit15_1_komplet.pdf#page=36",
-        "detail_url": "/clanky/4317/"
-      },
-      {
-        "id": 4521,
-        "title": "Preskúmali sme Zbojnícku džuru pri Sulíne",
-        "year": 2018,
-        "volume": "23",
-        "issue": "1",
-        "pages": "37",
-        "journal_id": "aragonit",
-        "journal_title": "Aragonit",
-        "journal_short_title": "Aragonit",
-        "authors": [
-          "Gaál, Ľ.",
-          "Pavlarčík, S.",
-          "Herich, P."
-        ],
-        "abstract": "Príspevok informuje o prieskume Zbojníckej džury pri Sulíne.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "http://www.ssj.sk/user_files/Aragon23_1_m.pdf",
-        "pdf_link": "http://www.ssj.sk/user_files/Aragon23_1_m.pdf#page=39",
-        "detail_url": "/clanky/4521/"
-      }
-    ]
-  },
-  {
     "name": "Zlatá diera",
     "slug": "zlata-diera",
     "area": "",
@@ -25839,60 +25761,6 @@
       "confidence": "official-smopaj-2017",
       "source": "smopaj-cave-register-2017"
     }
-  },
-  {
-    "name": "Jaskyňa Zbojnícka diera",
-    "slug": "jaskyna-zbojnicka-diera",
-    "area": "",
-    "aliases": [],
-    "article_count": 2,
-    "map_plan_count": 0,
-    "first_year": 1985,
-    "last_year": 2014,
-    "authors_count": 3,
-    "articles": [
-      {
-        "id": 5353,
-        "title": "Jaskyňa Zbojnícka diera",
-        "year": 1985,
-        "volume": "23",
-        "issue": "",
-        "pages": "261-266",
-        "journal_id": "slovensky_kras",
-        "journal_title": "Slovenský kras",
-        "journal_short_title": "Slovenský kras",
-        "authors": [
-          "Pavlarčík, S."
-        ],
-        "abstract": "Správa opisuje Jaskyňu Zbojnícka diera.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/23_1985.pdf",
-        "pdf_link": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/23_1985.pdf#page=259",
-        "detail_url": "/clanky/5353/"
-      },
-      {
-        "id": 4900,
-        "title": "Jaskyňa Zbojnícka diera v polymiktných zlepencoch pri Švošove, Veľká Fatra",
-        "year": 2014,
-        "volume": "52",
-        "issue": "2",
-        "pages": "141-146",
-        "journal_id": "slovensky_kras",
-        "journal_title": "Slovenský kras",
-        "journal_short_title": "Slovenský kras",
-        "authors": [
-          "Bella, P.",
-          "Soták, J."
-        ],
-        "abstract": "Článok sa zaoberá Jaskyňou Zbojnícka diera v polymiktných zlepencoch pri Švošove vo Veľkej Fatre.",
-        "has_map_plan": false,
-        "map_plan_pages": [],
-        "pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=285&filename=sk-52_2-2014.pdf",
-        "pdf_link": "https://www.smopaj.sk/sk/documentloader.php?id=285&filename=sk-52_2-2014.pdf#page=45",
-        "detail_url": "/clanky/4900/"
-      }
-    ]
   },
   {
     "name": "Jaskyňa Čertova pec",
@@ -29061,6 +28929,77 @@
       "geomorph_subprovince": "Vnútorné Západné Karpaty",
       "confidence": "article-context",
       "source": "existing-cave-area-rule"
+    }
+  },
+  {
+    "name": "Zbojnícka diera",
+    "slug": "zbojnicka-diera-velka-fatra-sipska-fatra",
+    "area": "Veľká Fatra / Šípska Fatra",
+    "aliases": [
+      "Jaskyňa Zbojnícka diera"
+    ],
+    "article_count": 2,
+    "map_plan_count": 0,
+    "first_year": 2010,
+    "last_year": 2014,
+    "authors_count": 3,
+    "articles": [
+      {
+        "id": 4317,
+        "title": "Zbojnícka diera pri Švošove – nová archeologická lokalita pred zánikom",
+        "year": 2010,
+        "volume": "15",
+        "issue": "1",
+        "pages": "34-36",
+        "journal_id": "aragonit",
+        "journal_title": "Aragonit",
+        "journal_short_title": "Aragonit",
+        "authors": [
+          "Soják, M."
+        ],
+        "abstract": "Príspevok predstavuje Zbojnícku dieru pri Švošove ako novú archeologickú lokalitu pred zánikom.",
+        "has_map_plan": false,
+        "map_plan_pages": [],
+        "pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit15_1_komplet.pdf",
+        "pdf_link": "https://www.ssj.sk/sk/user_files/Aragonit15_1_komplet.pdf#page=36",
+        "detail_url": "/clanky/4317/",
+        "cave_area": "Veľká Fatra / Šípska Fatra"
+      },
+      {
+        "id": 4900,
+        "title": "Jaskyňa Zbojnícka diera v polymiktných zlepencoch pri Švošove, Veľká Fatra",
+        "year": 2014,
+        "volume": "52",
+        "issue": "2",
+        "pages": "141-146",
+        "journal_id": "slovensky_kras",
+        "journal_title": "Slovenský kras",
+        "journal_short_title": "Slovenský kras",
+        "authors": [
+          "Bella, P.",
+          "Soták, J."
+        ],
+        "abstract": "Článok sa zaoberá Jaskyňou Zbojnícka diera v polymiktných zlepencoch pri Švošove vo Veľkej Fatre.",
+        "has_map_plan": false,
+        "map_plan_pages": [],
+        "pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=285&filename=sk-52_2-2014.pdf",
+        "pdf_link": "https://www.smopaj.sk/sk/documentloader.php?id=285&filename=sk-52_2-2014.pdf#page=45",
+        "detail_url": "/clanky/4900/",
+        "cave_area": "Veľká Fatra / Šípska Fatra"
+      }
+    ],
+    "smopaj_cave_number": "6796",
+    "smopaj_registry_number": "2961",
+    "smopaj_match_source": "curated-override",
+    "smopaj_match_confidence": "manual-fulltext-high",
+    "smopaj_match_note": "Článok Aragonit 2010 opakovane uvádza Zbojnícku dieru pri Švošove.",
+    "region": {
+      "local_area": "Šípska Fatra",
+      "geomorph_unit": "Veľká Fatra",
+      "geomorph_area": "Veľká Fatra",
+      "geomorph_subunit": "Šípska Fatra",
+      "confidence": "official-smopaj-2017",
+      "source": "smopaj-cave-register-2017"
     }
   },
   {
@@ -51797,6 +51736,154 @@
         "detail_url": "/clanky/1247/"
       }
     ]
+  },
+  {
+    "name": "Zbojnícka diera",
+    "slug": "zbojnicka-diera-cergov",
+    "area": "Čergov",
+    "aliases": [
+      "Jaskyňa Oltárkameň"
+    ],
+    "article_count": 1,
+    "map_plan_count": 0,
+    "first_year": 1997,
+    "last_year": 1997,
+    "authors_count": 1,
+    "articles": [
+      {
+        "id": 1272,
+        "title": "Jaskyňa Oltárkameň v Čergove",
+        "year": 1997,
+        "volume": "XXVIII.",
+        "issue": "1",
+        "pages": "38-39",
+        "journal_id": "spravodaj_sss",
+        "journal_title": "Spravodaj Slovenskej speleologickej spoločnosti",
+        "journal_short_title": "Spravodaj SSS",
+        "authors": [
+          "Ducár, J."
+        ],
+        "abstract": "O prvej písomnej zmienke o jaskyni nad obcou Drienica severne od Sabinova, ako vznikol jej názov, práce, ktoré tu treba vykonať z dôvodov turistických a ekologických",
+        "has_map_plan": false,
+        "map_plan_pages": [],
+        "pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1_1997.pdf",
+        "pdf_link": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1_1997.pdf#page=42",
+        "detail_url": "/clanky/1272/",
+        "cave_area": "Čergov"
+      }
+    ],
+    "smopaj_cave_number": "211",
+    "smopaj_registry_number": "3757",
+    "smopaj_match_source": "curated-override",
+    "smopaj_match_confidence": "manual-fulltext-high",
+    "smopaj_match_note": "Článok lokalizuje Jaskyňu Oltárkameň v Čergove; SMOPaJ 211 eviduje Zbojnícku dieru s aliasom Oltárkameň.",
+    "region": {
+      "local_area": "Čergov",
+      "geomorph_unit": "Čergov",
+      "geomorph_area": "Čergov",
+      "confidence": "official-smopaj-2017",
+      "source": "smopaj-cave-register-2017"
+    }
+  },
+  {
+    "name": "Zbojnícka diera",
+    "slug": "zbojnicka-diera-podtatranska-kotlina-popradska-kotlina",
+    "area": "Podtatranská kotlina / Popradská kotlina",
+    "aliases": [
+      "Zbojnícka džura"
+    ],
+    "article_count": 1,
+    "map_plan_count": 0,
+    "first_year": 2018,
+    "last_year": 2018,
+    "authors_count": 3,
+    "articles": [
+      {
+        "id": 4521,
+        "title": "Preskúmali sme Zbojnícku džuru pri Sulíne",
+        "year": 2018,
+        "volume": "23",
+        "issue": "1",
+        "pages": "37",
+        "journal_id": "aragonit",
+        "journal_title": "Aragonit",
+        "journal_short_title": "Aragonit",
+        "authors": [
+          "Gaál, Ľ.",
+          "Pavlarčík, S.",
+          "Herich, P."
+        ],
+        "abstract": "Príspevok informuje o prieskume Zbojníckej džury pri Sulíne.",
+        "has_map_plan": false,
+        "map_plan_pages": [],
+        "pdf_url": "http://www.ssj.sk/user_files/Aragon23_1_m.pdf",
+        "pdf_link": "http://www.ssj.sk/user_files/Aragon23_1_m.pdf#page=39",
+        "detail_url": "/clanky/4521/",
+        "cave_area": "Podtatranská kotlina / Popradská kotlina"
+      }
+    ],
+    "smopaj_cave_number": "2401",
+    "smopaj_registry_number": "4736",
+    "smopaj_match_source": "curated-override",
+    "smopaj_match_confidence": "manual-fulltext-high",
+    "smopaj_match_note": "Článok Aragonit 2018 uvádza Zbojnícku džuru pri Sulíne; SMOPaJ 2401 má alias Zbojnícka džura.",
+    "region": {
+      "local_area": "Popradská kotlina",
+      "geomorph_unit": "Podtatranská kotlina",
+      "geomorph_area": "Podtatranská kotlina",
+      "geomorph_subunit": "Popradská kotlina",
+      "confidence": "official-smopaj-2017",
+      "source": "smopaj-cave-register-2017"
+    }
+  },
+  {
+    "name": "Zbojnícka diera",
+    "slug": "zbojnicka-diera-levocske-vrchy-levocska-vysocina",
+    "area": "Levočské vrchy / Levočská vysočina",
+    "aliases": [
+      "Jaskyňa Zbojnícka diera"
+    ],
+    "article_count": 1,
+    "map_plan_count": 0,
+    "first_year": 1985,
+    "last_year": 1985,
+    "authors_count": 1,
+    "articles": [
+      {
+        "id": 5353,
+        "title": "Jaskyňa Zbojnícka diera",
+        "year": 1985,
+        "volume": "23",
+        "issue": "",
+        "pages": "261-266",
+        "journal_id": "slovensky_kras",
+        "journal_title": "Slovenský kras",
+        "journal_short_title": "Slovenský kras",
+        "authors": [
+          "Pavlarčík, S."
+        ],
+        "abstract": "Správa opisuje Jaskyňu Zbojnícka diera.",
+        "has_map_plan": false,
+        "map_plan_pages": [],
+        "pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/23_1985.pdf",
+        "pdf_link": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/23_1985.pdf#page=259",
+        "detail_url": "/clanky/5353/",
+        "cave_area": "Levočské vrchy / Levočská vysočina"
+      }
+    ],
+    "smopaj_cave_number": "867",
+    "smopaj_registry_number": "507",
+    "smopaj_match_source": "curated-override",
+    "smopaj_match_confidence": "manual-fulltext-high",
+    "smopaj_match_note": "Fulltext Slovenský kras 1985 uvádza kataster obce Šambron a severný okraj Levočských vrchov.",
+    "region": {
+      "local_area": "Levočská vysočina",
+      "geomorph_unit": "Levočské vrchy",
+      "geomorph_area": "Levočské vrchy",
+      "geomorph_subunit": "Levočská vysočina",
+      "confidence": "official-smopaj-2017",
+      "source": "smopaj-cave-register-2017"
+    }
   },
   {
     "name": "Zbojnícka jaskyňa",

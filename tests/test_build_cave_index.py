@@ -1312,6 +1312,85 @@ def test_build_cave_index_uses_area_specific_curated_override_for_repeated_cave_
     assert by_area["Jánska dolina / Nízke Tatry"]["smopaj_cave_number"] == "1810"
 
 
+def test_build_cave_index_splits_same_name_by_article_specific_smopaj_match():
+    articles = [
+        {
+            "id": 1,
+            "title": "Zbojnícka diera v Čergove",
+            "year": 1997,
+            "issue": "1",
+            "pages": "38-39",
+            "authors": ["Novák, J."],
+            "abstract": "Správa o Zbojníckej diere známej aj ako Oltárkameň v Čergove.",
+            "caves": ["Zbojnícka diera"],
+            "caves_verified": True,
+        },
+        {
+            "id": 2,
+            "title": "Zbojnícka diera pri Švošove",
+            "year": 2010,
+            "issue": "2",
+            "pages": "34-36",
+            "authors": ["Kováč, P."],
+            "abstract": "Príspevok predstavuje Zbojnícku dieru pri Švošove vo Veľkej Fatre.",
+            "caves": ["Zbojnícka diera"],
+            "caves_verified": True,
+        },
+    ]
+    smopaj_register = {
+        "entries": [
+            {
+                "cave_number": "211",
+                "registry_number": "3757",
+                "official_name": "Zbojnícka diera",
+                "names": ["Zbojnícka diera", "Oltárkameň"],
+                "aliases": ["Oltárkameň"],
+                "geomorph_celok": "Čergov",
+                "geomorph_podcelok": "",
+            },
+            {
+                "cave_number": "6796",
+                "registry_number": "2961",
+                "official_name": "Zbojnícka diera",
+                "names": ["Zbojnícka diera"],
+                "geomorph_celok": "Veľká Fatra",
+                "geomorph_podcelok": "Šípska Fatra",
+            },
+        ]
+    }
+    smopaj_overrides = {
+        "article_matches": [
+            {
+                "article_ids": [1],
+                "cave_slug": "zbojnicka-diera",
+                "cave_number": "211",
+                "confidence": "manual-confirmed-high",
+            },
+            {
+                "article_ids": [2],
+                "cave_slug": "zbojnicka-diera",
+                "cave_number": "6796",
+                "confidence": "manual-confirmed-high",
+            },
+        ]
+    }
+
+    caves = build_cave_index.build_cave_index(
+        articles,
+        smopaj_register=smopaj_register,
+        smopaj_overrides=smopaj_overrides,
+    )
+
+    by_number = {item["smopaj_cave_number"]: item for item in caves if item["name"] == "Zbojnícka diera"}
+    assert set(by_number) == {"211", "6796"}
+    assert [item["id"] for item in by_number["211"]["articles"]] == [1]
+    assert [item["id"] for item in by_number["6796"]["articles"]] == [2]
+    assert by_number["211"]["area"] == "Čergov"
+    assert by_number["6796"]["area"] == "Veľká Fatra / Šípska Fatra"
+    assert by_number["211"]["region"]["geomorph_unit"] == "Čergov"
+    assert by_number["6796"]["region"]["geomorph_subunit"] == "Šípska Fatra"
+
+
 def test_build_cave_index_merges_ai_smopaj_match_source_after_curated_overrides():
     manual_overrides = {
         "matches": [

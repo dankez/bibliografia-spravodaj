@@ -186,6 +186,53 @@
       "note": "User confirmed Javorinka equals bibliographic Jaskyňa Javorinka; article context places it in Vysoké Tatry / Javorová dolina, matching official child record 5930.1, not the Ždiar cave 5842."
     }
   ],
+  "article_matches": [
+    {
+      "article_ids": [
+        1272
+      ],
+      "cave_name": "Jaskyňa Oltárkameň",
+      "cave_number": "211",
+      "confidence": "manual-fulltext-high",
+      "note": "Článok lokalizuje Jaskyňu Oltárkameň v Čergove; SMOPaJ 211 eviduje Zbojnícku dieru s aliasom Oltárkameň."
+    },
+    {
+      "article_ids": [
+        5353
+      ],
+      "cave_slug": "jaskyna-zbojnicka-diera",
+      "cave_number": "867",
+      "confidence": "manual-fulltext-high",
+      "note": "Fulltext Slovenský kras 1985 uvádza kataster obce Šambron a severný okraj Levočských vrchov."
+    },
+    {
+      "article_ids": [
+        4317
+      ],
+      "cave_slug": "zbojnicka-diera",
+      "cave_number": "6796",
+      "confidence": "manual-fulltext-high",
+      "note": "Článok Aragonit 2010 opakovane uvádza Zbojnícku dieru pri Švošove."
+    },
+    {
+      "article_ids": [
+        4900
+      ],
+      "cave_slug": "jaskyna-zbojnicka-diera",
+      "cave_number": "6796",
+      "confidence": "manual-fulltext-high",
+      "note": "Článok Slovenský kras 2014 uvádza Jaskyňu Zbojnícka diera pri Švošove vo Veľkej Fatre."
+    },
+    {
+      "article_ids": [
+        4521
+      ],
+      "cave_name": "Zbojnícka džura",
+      "cave_number": "2401",
+      "confidence": "manual-fulltext-high",
+      "note": "Článok Aragonit 2018 uvádza Zbojnícku džuru pri Sulíne; SMOPaJ 2401 má alias Zbojnícka džura."
+    }
+  ],
   "deferred": [
     {
       "cave_slug": "jaskyna-okno",
