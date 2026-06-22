@@ -369,8 +369,8 @@ const bibliographyExportMenus = [
 
   <script>
     import MiniSearch from 'minisearch';
-    import articlesRaw from '../data/articles.json';
 
+    const ARTICLES_DATA_URL = '/data/articles.json';
     const DEFAULT_PDF_PAGE_LINK_OFFSET = 2;
     const DEFAULT_JOURNAL_ID = 'spravodaj_sss';
     const DEFAULT_JOURNAL_TITLE = 'Spravodaj Slovenskej speleologickej spoločnosti';
@@ -385,6 +385,13 @@ const bibliographyExportMenus = [
       return isGenericImportAbstract(abstract) ? '' : abstract;
     }
 
+    async function loadArticlesData() {
+      const response = await fetch(ARTICLES_DATA_URL);
+      if (!response.ok) throw new Error(`Articles data HTTP ${response.status}`);
+      return response.json();
+    }
+
+    const articlesRaw = await loadArticlesData();
     const articles = articlesRaw.map((article) => ({ ...article, abstract: displayAbstract(article), year_str: String(article.year) }));
     const articlesById = new Map(articles.map((article) => [article.id, article]));
     const articleYears = articles.map((article) => article.year);
@@ -1097,6 +1104,10 @@ const bibliographyExportMenus = [
       setupComplete = true;
     }
 
-    window.addEventListener('DOMContentLoaded', setup);
+    if (document.readyState === 'loading') {
+      window.addEventListener('DOMContentLoaded', setup);
+    } else {
+      setup();
+    }
   </script>
 </Layout>
