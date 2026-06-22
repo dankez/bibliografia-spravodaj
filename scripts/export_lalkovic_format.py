@@ -23,6 +23,7 @@ import re
 import shutil
 import subprocess
 import unicodedata
+import urllib.parse
 from collections import defaultdict
 from pathlib import Path
 
@@ -425,6 +426,22 @@ def journal_sections_for_articles(articles: list[dict]) -> list[tuple[str, str]]
             key=lambda item: journal_sort_key(item, journal_titles.get(item, item)),
         )
     ]
+
+
+def section_anchor_pages(
+    section_pages: dict[str, int] | None,
+    journal_sections: list[tuple[str, str]] | None = None,
+) -> dict[str, int]:
+    if not section_pages:
+        return {}
+    anchors: dict[str, int] = {}
+    for title, anchor in CONTENT_SECTIONS:
+        if page := section_pages.get(title):
+            anchors[anchor] = page
+    for journal_title, anchor in journal_sections or []:
+        if page := section_pages.get(journal_title):
+            anchors[anchor] = page
+    return anchors
 
 
 def prepare_export_articles(articles: list[dict], group_by_journal: bool = False) -> list[dict]:
@@ -855,6 +872,55 @@ def write_pdf_metadata(pdf_path: Path, title: str = PDF_METADATA_TITLE) -> None:
         raise RuntimeError(result.stderr.strip() or "exiftool failed to write PDF metadata")
 
 
+def html_anchor_from_uri(uri: str, html_path: Path) -> str | None:
+    parsed = urllib.parse.urlsplit(uri)
+    if not parsed.fragment:
+        return None
+    if parsed.scheme == "file":
+        uri_path = Path(urllib.parse.unquote(parsed.path)).resolve()
+        if uri_path == html_path.resolve():
+            return urllib.parse.unquote(parsed.fragment)
+    return None
+
+
+def rewrite_pdf_internal_html_links(
+    pdf_path: Path,
+    html_path: Path,
+    anchor_pages: dict[str, int],
+) -> int:
+    if not anchor_pages:
+        return 0
+    try:
+        import pikepdf
+        from pikepdf import Array, Name
+    except ImportError:
+        return 0
+
+    rewritten = 0
+    with pikepdf.Pdf.open(pdf_path) as pdf:
+        for page in pdf.pages:
+            annots = page.obj.get("/Annots", [])
+            for annot in annots:
+                action = annot.get("/A")
+                if not action or action.get("/S") != Name("/URI"):
+                    continue
+                anchor = html_anchor_from_uri(str(action.get("/URI", "")), html_path)
+                page_number = anchor_pages.get(anchor or "")
+                if not page_number or not 1 <= page_number <= len(pdf.pages):
+                    continue
+                action["/S"] = Name("/GoTo")
+                action["/D"] = Array([pdf.pages[page_number - 1].obj, Name("/Fit")])
+                if "/URI" in action:
+                    del action["/URI"]
+                rewritten += 1
+
+        if rewritten:
+            tmp_path = pdf_path.with_suffix(pdf_path.suffix + ".tmp")
+            pdf.save(tmp_path)
+            tmp_path.replace(pdf_path)
+    return rewritten
+
+
 def normalized_pdf_heading(value: str) -> str:
     return re.sub(r"\s+", " ", str(value or "")).strip().casefold()
 
@@ -966,7 +1032,7 @@ def main() -> int:
             if args.group_by_journal
             else []
         )
-        detect_section_pages = args.group_by_journal or len(articles) <= 1500
+        detect_section_pages = True
         write_exports(
             articles,
             txt_path,
@@ -991,6 +1057,11 @@ def main() -> int:
                 group_by_journal=args.group_by_journal,
             )
             build_pdf_from_html(html_path, pdf_path, args.pdf_engine, metadata_title=args.title)
+        rewrite_pdf_internal_html_links(
+            pdf_path,
+            html_path,
+            section_anchor_pages(section_pages, journal_sections_for_articles(articles) if args.group_by_journal else None),
+        )
         print(f"Wrote {txt_path}")
         print(f"Wrote {md_path}")
         print(f"Wrote {html_path}")

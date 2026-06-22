@@ -1,6 +1,8 @@
 import sys
 from pathlib import Path
 
+import pytest
+
 ROOT = Path(__file__).resolve().parents[1]
 sys.path.insert(0, str(ROOT / "scripts"))
 
@@ -429,6 +431,102 @@ def test_render_contents_lists_journal_article_sections_with_pages():
     assert "  - [Spravodaj SSS](#zoznam-clankov-spravodaj-sss) - 2" in contents
     assert "  - [Slovenský kras](#zoznam-clankov-slovensky-kras) - 210" in contents
     assert "  - [Aragonit](#zoznam-clankov-aragonit) - 318" in contents
+
+
+def test_section_anchor_pages_maps_major_and_journal_sections():
+    anchors = exporter.section_anchor_pages(
+        {
+            "Zoznam článkov": 1,
+            "Spravodaj SSS": 1,
+            "Slovenský kras": 382,
+            "Aragonit": 499,
+            "Menný register": 577,
+        },
+        [
+            ("Spravodaj SSS", "zoznam-clankov-spravodaj-sss"),
+            ("Slovenský kras", "zoznam-clankov-slovensky-kras"),
+            ("Aragonit", "zoznam-clankov-aragonit"),
+        ],
+    )
+
+    assert anchors["zoznam-clankov"] == 1
+    assert anchors["zoznam-clankov-spravodaj-sss"] == 1
+    assert anchors["zoznam-clankov-slovensky-kras"] == 382
+    assert anchors["zoznam-clankov-aragonit"] == 499
+    assert anchors["menny-register"] == 577
+
+
+def test_rewrite_pdf_internal_html_links_converts_known_local_anchors_to_pdf_goto(tmp_path):
+    pikepdf = pytest.importorskip("pikepdf")
+    from pikepdf import Array, Dictionary, Name, String
+
+    html_path = tmp_path / "export.html"
+    pdf_path = tmp_path / "export.pdf"
+    html_path.write_text("<h2 id='menny-register'>Menný register</h2>", encoding="utf-8")
+
+    pdf = pikepdf.Pdf.new()
+    first_page = pdf.add_blank_page(page_size=(300, 300))
+    pdf.add_blank_page(page_size=(300, 300))
+    annotations = Array(
+        [
+            pdf.make_indirect(
+                Dictionary(
+                    Type=Name("/Annot"),
+                    Subtype=Name("/Link"),
+                    Rect=Array([0, 0, 100, 100]),
+                    Border=Array([0, 0, 0]),
+                    A=Dictionary(
+                        S=Name("/URI"),
+                        URI=String(f"{html_path.resolve().as_uri()}#menny-register"),
+                    ),
+                )
+            ),
+            pdf.make_indirect(
+                Dictionary(
+                    Type=Name("/Annot"),
+                    Subtype=Name("/Link"),
+                    Rect=Array([0, 100, 100, 200]),
+                    Border=Array([0, 0, 0]),
+                    A=Dictionary(
+                        S=Name("/URI"),
+                        URI=String(f"{html_path.resolve().as_uri()}#neznamy-register"),
+                    ),
+                )
+            ),
+            pdf.make_indirect(
+                Dictionary(
+                    Type=Name("/Annot"),
+                    Subtype=Name("/Link"),
+                    Rect=Array([0, 200, 100, 300]),
+                    Border=Array([0, 0, 0]),
+                    A=Dictionary(
+                        S=Name("/URI"),
+                        URI=String("https://sss.sk/example.pdf#page=12"),
+                    ),
+                )
+            ),
+        ]
+    )
+    first_page.obj.Annots = annotations
+    pdf.save(pdf_path)
+
+    rewritten = exporter.rewrite_pdf_internal_html_links(
+        pdf_path,
+        html_path,
+        {"menny-register": 2},
+    )
+
+    assert rewritten == 1
+    with pikepdf.Pdf.open(pdf_path) as updated:
+        actions = [annot["/A"] for annot in updated.pages[0].obj["/Annots"]]
+        assert actions[0]["/S"] == Name("/GoTo")
+        assert "/URI" not in actions[0]
+        assert actions[0]["/D"][0].objgen == updated.pages[1].obj.objgen
+        assert actions[0]["/D"][1] == Name("/Fit")
+        assert actions[1]["/S"] == Name("/URI")
+        assert str(actions[1]["/URI"]).endswith("#neznamy-register")
+        assert actions[2]["/S"] == Name("/URI")
+        assert str(actions[2]["/URI"]) == "https://sss.sk/example.pdf#page=12"
 
 
 def test_parse_pdf_section_pages_ignores_contents_entries():
