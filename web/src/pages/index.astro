@@ -385,6 +385,18 @@ const bibliographyExportMenus = [
       return isGenericImportAbstract(abstract) ? '' : abstract;
     }
 
+    function normalizeSearchText(value) {
+      return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLocaleLowerCase('sk')
+        .trim();
+    }
+
+    function processSearchTerm(term) {
+      return normalizeSearchText(term) || null;
+    }
+
     async function loadArticlesData() {
       const response = await fetch(ARTICLES_DATA_URL);
       if (!response.ok) throw new Error(`Articles data HTTP ${response.status}`);
@@ -400,6 +412,7 @@ const bibliographyExportMenus = [
     const miniSearch = new MiniSearch({
       fields: ['title', 'authors', 'abstract', 'year_str', 'volume', 'issue', 'tags', 'caves', 'groups'],
       storeFields: ['id'],
+      processTerm: processSearchTerm,
       searchOptions: {
         boost: { title: 4, caves: 3, authors: 2, tags: 2, groups: 2, abstract: 1 },
         prefix: true,
@@ -510,6 +523,7 @@ const bibliographyExportMenus = [
       fulltextMiniSearch = new MiniSearch({
         fields: ['t'],
         storeFields: ['a'],
+        processTerm: processSearchTerm,
         searchOptions: {
           prefix: true,
           fuzzy: 0.1
