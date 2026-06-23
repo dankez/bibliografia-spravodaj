@@ -575,6 +575,7 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   display: flex;
   min-width: 0;
   flex-wrap: wrap;
+  align-items: center;
   gap: 0.4rem;
 }
 
@@ -583,9 +584,24 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   flex: 0 0 auto;
 }
 
+.bibliography-share-label {
+  display: inline-flex;
+  min-height: 40px;
+  align-items: center;
+  color: rgb(var(--sss-dimgray));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 850;
+  letter-spacing: 0.04em;
+  line-height: 1;
+  text-transform: uppercase;
+}
+
 .bibliography-share-icon-button {
+  position: relative;
   width: 40px;
   min-width: 40px;
+  overflow: hidden;
   padding: 0;
   border-radius: var(--sss-radius-md);
   font-family: "Inter", system-ui, sans-serif;
@@ -597,13 +613,43 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 
 .bibliography-share-icon-button .bibliography-share-icon {
   display: inline-flex;
+  width: 22px;
+  height: 22px;
   align-items: center;
   justify-content: center;
   line-height: 1;
   transform: translateY(-0.02rem);
-  transition-property: color, transform;
+  transition-property: opacity, transform, filter;
   transition-duration: 150ms;
   transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.bibliography-share-icon-link {
+  fill: none;
+  stroke: #2563eb;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 2.25;
+}
+
+.bibliography-share-icon-email rect {
+  fill: #ea4335;
+}
+
+.bibliography-share-icon-email path {
+  fill: none;
+  stroke: #fff;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+  stroke-width: 1.9;
+}
+
+.bibliography-share-icon-facebook circle {
+  fill: #1877f2;
+}
+
+.bibliography-share-icon-facebook path {
+  fill: #fff;
 }
 
 .bibliography-share-icon-button:hover .bibliography-share-icon {
@@ -615,9 +661,38 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 }
 
 .bibliography-share-icon-button.is-confirmed {
-  border-color: rgb(var(--sss-firebrick));
-  background: rgb(var(--sss-firebrick));
-  color: rgb(var(--sss-on-accent));
+  border-color: rgb(28 135 84 / 0.55);
+  background: rgb(28 135 84 / 0.1);
+}
+
+.bibliography-share-icon-button.is-confirmed .bibliography-share-icon {
+  opacity: 0;
+  filter: blur(4px);
+  transform: translateY(-0.02rem) scale(0.25);
+}
+
+.bibliography-share-icon-button::after {
+  content: "✓";
+  position: absolute;
+  inset: 0;
+  display: grid;
+  place-items: center;
+  color: rgb(28 135 84);
+  font-size: 1rem;
+  font-weight: 900;
+  line-height: 1;
+  opacity: 0;
+  filter: blur(4px);
+  transform: scale(0.25);
+  transition-property: opacity, transform, filter;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.bibliography-share-icon-button.is-confirmed::after {
+  opacity: 1;
+  filter: blur(0);
+  transform: scale(1);
 }
 
 .bibliography-export-menu {
