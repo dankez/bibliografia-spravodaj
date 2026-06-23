@@ -1,0 +1,2795 @@
+{
+  "schema_version": "publication-covers/v1",
+  "covers": {
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/10_1972.pdf": {
+      "cover_url": "/covers/slovensky_kras/1972_bez-cisla_4297b9caef.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1972,
+      "issue": "",
+      "volume": "10",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/10_1972.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/11_1973.pdf": {
+      "cover_url": "/covers/slovensky_kras/1973_bez-cisla_0af3a1a726.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1973,
+      "issue": "",
+      "volume": "11",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/11_1973.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/12_1974.pdf": {
+      "cover_url": "/covers/slovensky_kras/1974_bez-cisla_78a881533e.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1974,
+      "issue": "",
+      "volume": "12",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/12_1974.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/13_1975.pdf": {
+      "cover_url": "/covers/slovensky_kras/1975_bez-cisla_2a028ab66a.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1975,
+      "issue": "",
+      "volume": "13",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/13_1975.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/14_1976.pdf": {
+      "cover_url": "/covers/slovensky_kras/1976_bez-cisla_df0c3ee742.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1976,
+      "issue": "",
+      "volume": "14",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/14_1976.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/15_1977.pdf": {
+      "cover_url": "/covers/slovensky_kras/1977_bez-cisla_434eddf408.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1977,
+      "issue": "",
+      "volume": "15",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/15_1977.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/16_1978.pdf": {
+      "cover_url": "/covers/slovensky_kras/1978_bez-cisla_340eab5e6b.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1978,
+      "issue": "",
+      "volume": "16",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/16_1978.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/17_1979.pdf": {
+      "cover_url": "/covers/slovensky_kras/1979_bez-cisla_b093716752.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1979,
+      "issue": "",
+      "volume": "17",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/17_1979.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/18_1980.pdf": {
+      "cover_url": "/covers/slovensky_kras/1980_bez-cisla_bdc74f9df5.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1980,
+      "issue": "",
+      "volume": "18",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/18_1980.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/19_1981.pdf": {
+      "cover_url": "/covers/slovensky_kras/1981_bez-cisla_a24987673a.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1981,
+      "issue": "",
+      "volume": "19",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/19_1981.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/1_1958.pdf": {
+      "cover_url": "/covers/slovensky_kras/1958_bez-cisla_77425a0d28.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1958,
+      "issue": "",
+      "volume": "1",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/1_1958.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/20_1982.pdf": {
+      "cover_url": "/covers/slovensky_kras/1982_bez-cisla_45f2a03a32.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1982,
+      "issue": "",
+      "volume": "20",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/20_1982.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/21_1983.pdf": {
+      "cover_url": "/covers/slovensky_kras/1983_bez-cisla_3b1375a83c.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1983,
+      "issue": "",
+      "volume": "21",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/21_1983.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/22_1984.pdf": {
+      "cover_url": "/covers/slovensky_kras/1984_bez-cisla_8b5e8cd06d.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1984,
+      "issue": "",
+      "volume": "22",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/22_1984.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/23_1985.pdf": {
+      "cover_url": "/covers/slovensky_kras/1985_bez-cisla_05ae9b7ff7.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1985,
+      "issue": "",
+      "volume": "23",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/23_1985.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/24_1986.pdf": {
+      "cover_url": "/covers/slovensky_kras/1986_bez-cisla_79efcdad92.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1986,
+      "issue": "",
+      "volume": "24",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/24_1986.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/25_1987.pdf": {
+      "cover_url": "/covers/slovensky_kras/1987_bez-cisla_483e0fcf7b.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1987,
+      "issue": "",
+      "volume": "25",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/25_1987.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/26_1988.pdf": {
+      "cover_url": "/covers/slovensky_kras/1988_bez-cisla_c476c31a66.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1988,
+      "issue": "",
+      "volume": "26",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/26_1988.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/27_1989.pdf": {
+      "cover_url": "/covers/slovensky_kras/1989_bez-cisla_66ea846b47.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1989,
+      "issue": "",
+      "volume": "27",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/27_1989.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/28_1990.pdf": {
+      "cover_url": "/covers/slovensky_kras/1990_bez-cisla_8e57474435.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1990,
+      "issue": "",
+      "volume": "28",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/28_1990.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/29_1991.pdf": {
+      "cover_url": "/covers/slovensky_kras/1991_bez-cisla_5176b4749c.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1991,
+      "issue": "",
+      "volume": "29",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/29_1991.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/2_1957_1958.pdf": {
+      "cover_url": "/covers/slovensky_kras/1958_bez-cisla_3f6de3dcc2.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1958,
+      "issue": "",
+      "volume": "2",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/2_1957_1958.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/30_1992.pdf": {
+      "cover_url": "/covers/slovensky_kras/1992_bez-cisla_80021b4dcf.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1992,
+      "issue": "",
+      "volume": "30",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/30_1992.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/31_1993.pdf": {
+      "cover_url": "/covers/slovensky_kras/1993_bez-cisla_36ce24dc61.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1993,
+      "issue": "",
+      "volume": "31",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/31_1993.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/33_1995.pdf": {
+      "cover_url": "/covers/slovensky_kras/1995_bez-cisla_7833c47d0d.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1995,
+      "issue": "",
+      "volume": "33",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/33_1995.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/35_1997.pdf": {
+      "cover_url": "/covers/slovensky_kras/1997_bez-cisla_e67372c83d.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1997,
+      "issue": "",
+      "volume": "35",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/35_1997.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/36_1998.pdf": {
+      "cover_url": "/covers/slovensky_kras/1998_bez-cisla_0091306b57.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1998,
+      "issue": "",
+      "volume": "36",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/36_1998.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/37_1999.pdf": {
+      "cover_url": "/covers/slovensky_kras/1999_bez-cisla_c2b61e285f.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1999,
+      "issue": "",
+      "volume": "37",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/37_1999.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/39_2001.pdf": {
+      "cover_url": "/covers/slovensky_kras/2001_bez-cisla_141aa2fd93.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2001,
+      "issue": "",
+      "volume": "39",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/39_2001.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/3_1959_1960.pdf": {
+      "cover_url": "/covers/slovensky_kras/1960_bez-cisla_ca89d65138.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1960,
+      "issue": "",
+      "volume": "3",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/3_1959_1960.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/40_2002.pdf": {
+      "cover_url": "/covers/slovensky_kras/2002_bez-cisla_0eb30582dc.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2002,
+      "issue": "",
+      "volume": "40",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/40_2002.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/41_2003.pdf": {
+      "cover_url": "/covers/slovensky_kras/2003_bez-cisla_0df245aea0.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2003,
+      "issue": "",
+      "volume": "41",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/41_2003.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/46_2008_supl_1.pdf": {
+      "cover_url": "/covers/slovensky_kras/2008_suppl-1_c4cde66c86.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2008,
+      "issue": "suppl-1",
+      "volume": "46",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/46_2008_supl_1.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/4_1961_1962.pdf": {
+      "cover_url": "/covers/slovensky_kras/1962_bez-cisla_94ba0974ee.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1962,
+      "issue": "",
+      "volume": "4",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/4_1961_1962.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/5_1963_1964.pdf": {
+      "cover_url": "/covers/slovensky_kras/1964_bez-cisla_7ad73d66e7.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1964,
+      "issue": "",
+      "volume": "5",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/5_1963_1964.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/6_1965_1966.pdf": {
+      "cover_url": "/covers/slovensky_kras/1966_bez-cisla_924167b7b7.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1966,
+      "issue": "",
+      "volume": "6",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/6_1965_1966.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/7_1967_1968.pdf": {
+      "cover_url": "/covers/slovensky_kras/1968_bez-cisla_f36a06fad9.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1968,
+      "issue": "",
+      "volume": "7",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/7_1967_1968.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/8_1969_1970.pdf": {
+      "cover_url": "/covers/slovensky_kras/1970_bez-cisla_61c7913d6f.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1970,
+      "issue": "",
+      "volume": "8",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/8_1969_1970.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/9_1971.pdf": {
+      "cover_url": "/covers/slovensky_kras/1971_bez-cisla_34cecd82a4.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1971,
+      "issue": "",
+      "volume": "9",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/9_1971.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/slovensky_kras_34_1996.pdf": {
+      "cover_url": "/covers/slovensky_kras/1996_bez-cisla_4a6271a433.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 1996,
+      "issue": "",
+      "volume": "34",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/slovensky_kras_34_1996.pdf"
+    },
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/slovensky_kras_38_2000.pdf": {
+      "cover_url": "/covers/slovensky_kras/2000_bez-cisla_3ffaf6c00e.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2000,
+      "issue": "",
+      "volume": "38",
+      "source_pdf_url": "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/slovensky_kras_38_2000.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon22_2_web2.pdf": {
+      "cover_url": "/covers/aragonit/2017_2_e1404f29a8.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2017,
+      "issue": "2",
+      "volume": "22",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon22_2_web2.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon23_1_m.pdf": {
+      "cover_url": "/covers/aragonit/2018_1_351336b93f.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2018,
+      "issue": "1",
+      "volume": "23",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon23_1_m.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon24_1_web_2.pdf": {
+      "cover_url": "/covers/aragonit/2019_1_217a9f09e6.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2019,
+      "issue": "1",
+      "volume": "24",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon24_1_web_2.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_24_2_web.pdf": {
+      "cover_url": "/covers/aragonit/2019_2_8d6aaf5fa2.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2019,
+      "issue": "2",
+      "volume": "24",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_24_2_web.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_25_1_web1.pdf": {
+      "cover_url": "/covers/aragonit/2020_1_71e4e4835e.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2020,
+      "issue": "1",
+      "volume": "25",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_25_1_web1.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_25_2.pdf": {
+      "cover_url": "/covers/aragonit/2020_2_ec9ac55575.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2020,
+      "issue": "2",
+      "volume": "25",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_25_2.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_26_1.pdf": {
+      "cover_url": "/covers/aragonit/2021_1_afc2b49b63.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2021,
+      "issue": "1",
+      "volume": "26",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_26_1.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_26_2web.pdf": {
+      "cover_url": "/covers/aragonit/2021_2_a2497a4572.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2021,
+      "issue": "2",
+      "volume": "26",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_26_2web.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_27_2_web.pdf": {
+      "cover_url": "/covers/aragonit/2022_2_a6e3941320.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2022,
+      "issue": "2",
+      "volume": "27",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_27_2_web.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_28_1-2-3.pdf": {
+      "cover_url": "/covers/aragonit/2023_1-2_32cd752c8e.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2023,
+      "issue": "1-2",
+      "volume": "28",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_28_1-2-3.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_29_1_web1.pdf": {
+      "cover_url": "/covers/aragonit/2024_1_0d226907b7.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2024,
+      "issue": "1",
+      "volume": "29",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_29_1_web1.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragon_29_2_web.pdf": {
+      "cover_url": "/covers/aragonit/2024_2_10613cf47c.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2024,
+      "issue": "2",
+      "volume": "29",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragon_29_2_web.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf": {
+      "cover_url": "/covers/aragonit/2016_2_68aaa4ceaa.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2016,
+      "issue": "2",
+      "volume": "21",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragonit_21_2016_web4.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragonit_22(1)_2017_web.pdf": {
+      "cover_url": "/covers/aragonit/2017_bez-cisla_8999229311.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2017,
+      "issue": "",
+      "volume": "22",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragonit_22(1)_2017_web.pdf"
+    },
+    "http://www.ssj.sk/user_files/Aragonit_27_1web.pdf": {
+      "cover_url": "/covers/aragonit/2022_1_a3ce497e38.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2022,
+      "issue": "1",
+      "volume": "27",
+      "source_pdf_url": "http://www.ssj.sk/user_files/Aragonit_27_1web.pdf"
+    },
+    "http://www.ssj.sk/web/user_files/Arag20_1_2015_1.pdf": {
+      "cover_url": "/covers/aragonit/2015_1_f676f1d4d0.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2015,
+      "issue": "1",
+      "volume": "20",
+      "source_pdf_url": "http://www.ssj.sk/web/user_files/Arag20_1_2015_1.pdf"
+    },
+    "http://www.ssj.sk/web/user_files/Arag_20_2_20151.pdf": {
+      "cover_url": "/covers/aragonit/2015_2_ff887908be.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2015,
+      "issue": "2",
+      "volume": "20",
+      "source_pdf_url": "http://www.ssj.sk/web/user_files/Arag_20_2_20151.pdf"
+    },
+    "http://www.ssj.sk/web/user_files/Aragonit 19_cely.pdf": {
+      "cover_url": "/covers/aragonit/2014_bez-cisla_14c86b3091.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2014,
+      "issue": "",
+      "volume": "19",
+      "source_pdf_url": "http://www.ssj.sk/web/user_files/Aragonit 19_cely.pdf"
+    },
+    "http://www.ssj.sk/web/user_files/Aragonit18_2_cely.pdf": {
+      "cover_url": "/covers/aragonit/2013_2_f07b7994a9.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2013,
+      "issue": "2",
+      "volume": "18",
+      "source_pdf_url": "http://www.ssj.sk/web/user_files/Aragonit18_2_cely.pdf"
+    },
+    "http://www.ssj.sk/web/user_files/SlovKras-kompl.pdf": {
+      "cover_url": "/covers/slovensky_kras/2008_suppl_7b78b52303.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2008,
+      "issue": "suppl",
+      "volume": "46",
+      "source_pdf_url": "http://www.ssj.sk/web/user_files/SlovKras-kompl.pdf"
+    },
+    "http://www.ssj.sk/web/user_files/aragonit18_1_cely.pdf": {
+      "cover_url": "/covers/aragonit/2013_1_832603d816.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2013,
+      "issue": "1",
+      "volume": "18",
+      "source_pdf_url": "http://www.ssj.sk/web/user_files/aragonit18_1_cely.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/161.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2016_1_68c7b686ad.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2016,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/161.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/162.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2016_2_4077ee4b83.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2016,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/162.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/163.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2016_3_ee1fcae081.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2016,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/163.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/164.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2016_4_d14b47344d.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2016,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/164.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2006_3_d275f9f7bc.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2006,
+      "issue": "3",
+      "volume": "XXXVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2006_4_ec3b2bf108.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2006,
+      "issue": "4",
+      "volume": "XXXVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2006-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2007_1_16f59e7645.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2007,
+      "issue": "1",
+      "volume": "XXXVIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2007_2_fe18d6415c.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2007,
+      "issue": "2",
+      "volume": "XXXVIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2007_3_52f94c4060.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2007,
+      "issue": "3",
+      "volume": "XXXVIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2007_4_058742f684.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2007,
+      "issue": "4",
+      "volume": "XXXVIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2007-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2008_1_31eee97cb3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2008,
+      "issue": "1",
+      "volume": "XXXIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2008_2_71518b3563.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2008,
+      "issue": "2",
+      "volume": "XXXIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2008_3_689ef7b77e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2008,
+      "issue": "3",
+      "volume": "XXXIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2008_4_d311b06f9e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2008,
+      "issue": "4",
+      "volume": "XXXIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2008-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2009_1_df92f650de.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2009,
+      "issue": "1",
+      "volume": "XL.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2009_2_a4339a16b7.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2009,
+      "issue": "2",
+      "volume": "XL.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2009_3_ceac4ecd2d.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2009,
+      "issue": "3",
+      "volume": "XL.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2009_4_1376b21b20.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2009,
+      "issue": "4",
+      "volume": "XL.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2009-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2010_1_2a5a988ec2.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2010,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2010_2_5e4a38f25e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2010,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2010_3_0de1d02dc2.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2010,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2010_4_1a61f96347.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2010,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2011_1_1ca1607885.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2011,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2011_2_2d77ab6802.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2011,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2011_3_ee4d89d06e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2011,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2011_4_aa8a0183fe.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2011,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2011-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2012_1_be0ca11dcd.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2012,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2012_2_bf23c2952e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2012,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2012_3_a509997ef6.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2012,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2012_4_ec7d54a1d0.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2012,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2013_1_9f093b0f00.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2013,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2013_2_cd80865e2d.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2013,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2013_3_a084477ae1.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2013,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2013_4_6af9c206f2.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2013,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2013-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2014_1_9424f9f571.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2014,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2014_2_0846ff47f3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2014,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2014_3_35fe03e263.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2014,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2014_4_9b5073e6fb.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2014,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2014-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2015_1_7f78540762.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2015,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2015_2_c932300ac3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2015,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2015_3_5e73cea301.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2015,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2015_4_aea738859e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2015,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2015-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/171.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2017_1_7fe3155ab6.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2017,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/171.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/172.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2017_2_5612eb6308.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2017,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/172.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/173.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2017_3_edc543b4c8.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2017,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/173.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/174.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2017_4_fe3f9865c6.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2017,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/174.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/701.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1970_1_01714448cd.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1970,
+      "issue": "1",
+      "volume": "I.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/701.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/702.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1970_2_603f3274ef.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1970,
+      "issue": "2",
+      "volume": "I.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/702.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/7034.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1970_3-4_aa5edca6bd.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1970,
+      "issue": "3-4",
+      "volume": "I.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/7034.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/711.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1971_1_1af3f9d47d.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1971,
+      "issue": "1",
+      "volume": "II.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/711.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/712.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1971_2_00ebb0bd79.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1971,
+      "issue": "2",
+      "volume": "II.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/712.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/713.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1971_3_9b8a1eccd7.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1971,
+      "issue": "3",
+      "volume": "II.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/713.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/714.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1971_4-chybne-strankovanie_197c41cd0a.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1971,
+      "issue": "4 (chybné stránkovanie)",
+      "volume": "II.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/714.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/721.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1972_1_ca80051bf1.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1972,
+      "issue": "1",
+      "volume": "III.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/721.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/722.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1972_2_4a61b50514.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1972,
+      "issue": "2",
+      "volume": "III.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/722.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/723.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1972_3_9b130bcc99.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1972,
+      "issue": "3",
+      "volume": "III.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/723.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/724.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1972_4_93666ed0e7.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1972,
+      "issue": "4",
+      "volume": "III.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/724.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/731.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1973_1_3c8a38d1b5.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1973,
+      "issue": "1",
+      "volume": "IV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/731.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/732.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1973_2_79a114e856.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1973,
+      "issue": "2",
+      "volume": "IV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/732.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/733.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1973_3_3696b9820c.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1973,
+      "issue": "3",
+      "volume": "IV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/733.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/734.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1973_4_2ef9c38e24.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1973,
+      "issue": "4",
+      "volume": "IV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/734.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/741.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1974_1_d8e2058b02.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1974,
+      "issue": "1",
+      "volume": "V.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/741.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/742.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1974_2_4f1f1aae30.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1974,
+      "issue": "2",
+      "volume": "V.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/742.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/743.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1974_3_1d8992e66a.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1974,
+      "issue": "3",
+      "volume": "V.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/743.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/744.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1974_4_bb9cc8ef73.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1974,
+      "issue": "4",
+      "volume": "V.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/744.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/751.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1975_1_0e2ff1eb77.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1975,
+      "issue": "1",
+      "volume": "VI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/751.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/752.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1975_2_94aa6d0229.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1975,
+      "issue": "2",
+      "volume": "VI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/752.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/753.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1975_3_5dab0435de.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1975,
+      "issue": "3",
+      "volume": "VI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/753.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/754.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1975_4_b01e75ecf9.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1975,
+      "issue": "4",
+      "volume": "VI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/754.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/761.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1976_1_c9a3f2e7c9.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1976,
+      "issue": "1",
+      "volume": "VII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/761.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/762.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1976_2_138fb4fede.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1976,
+      "issue": "2",
+      "volume": "VII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/762.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/763.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1976_3_67cc020b32.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1976,
+      "issue": "3",
+      "volume": "VII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/763.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/764.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1976_4_757eb0e65f.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1976,
+      "issue": "4",
+      "volume": "VII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/764.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/771.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1977_1_4b4ab887a2.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1977,
+      "issue": "1",
+      "volume": "VIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/771.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/772.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1977_2_4df8dabb08.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1977,
+      "issue": "2",
+      "volume": "VIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/772.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/773.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1977_3_0ba680841e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1977,
+      "issue": "3",
+      "volume": "VIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/773.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/774.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1977_4_b9a39992bb.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1977,
+      "issue": "4",
+      "volume": "VIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/774.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/781.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1978_1_888dfccb0a.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1978,
+      "issue": "1",
+      "volume": "IX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/781.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/782.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1978_2_dcd16e1f08.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1978,
+      "issue": "2",
+      "volume": "IX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/782.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/783.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1978_3_5659fecce0.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1978,
+      "issue": "3",
+      "volume": "IX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/783.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/784.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1978_4_075b60cf25.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1978,
+      "issue": "4",
+      "volume": "IX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/784.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/SSS_2005_2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2005_2_9ba3387c06.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2005,
+      "issue": "2",
+      "volume": "XXXVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/SSS_2005_2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2017/10/SSS_2005_4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2005_4_893af4fddd.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2005,
+      "issue": "4",
+      "volume": "XXXVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2017/10/SSS_2005_4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2020/01/spravodaj2018_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2018_1_7eca839dce.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2018,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2020/01/spravodaj2018_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2020/01/spravodaj2018_2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2018_2_f35704ff00.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2018,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2020/01/spravodaj2018_2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2020/01/spravodaj2018_3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2018_3_eac69c2e55.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2018,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2020/01/spravodaj2018_3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2020/01/spravodaj2018_4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2018_4_1b9b70c536.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2018,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2020/01/spravodaj2018_4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/01/Spravodaj-2019-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2019_1_c233727dc3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2019,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/01/Spravodaj-2019-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/01/Spravodaj-2019-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2019_2_3cefec5da3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2019,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/01/Spravodaj-2019-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/01/Spravodaj-2019-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2019_3_9e030b8964.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2019,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/01/Spravodaj-2019-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/01/Spravodaj-2019-4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2019_4_a55d6fac9e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2019,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/01/Spravodaj-2019-4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2006_1_bfbdb46035.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2006,
+      "issue": "1",
+      "volume": "XXXVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_2013_kongres.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2013,
+      "issue": "kongres",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_2013_kongres.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_2_2006o.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2006_2_5e56a1480f.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2006,
+      "issue": "2",
+      "volume": "XXXVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_2_2006o.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/10/Spravodaj_Kongres_2005.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2005,
+      "issue": "kongres",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/10/Spravodaj_Kongres_2005.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_1_1979.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1979_1_aa056a1e24.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1979,
+      "issue": "1",
+      "volume": "X.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_1_1979.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_1_2005.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2005_1_339228182b.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2005,
+      "issue": "1",
+      "volume": "XXXVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_1_2005.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1979_2-venovane-konferencii-dokumentacia-krasu-a-jaskyn_d05213b943.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1979,
+      "issue": "2 (venované konferencii Dokumentácia krasu a jaskýň)",
+      "volume": "X.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_3_1979.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1979_3_8f7d21731f.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1979,
+      "issue": "3",
+      "volume": "X.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_3_1979.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_4_1979.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1979_4_d97e0876f4.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1979,
+      "issue": "4",
+      "volume": "X.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_4_1979.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_1_1980.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1980_1_144d59238b.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1980,
+      "issue": "1",
+      "volume": "XI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_1_1980.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_2_1980.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1980_2_27700fb0d5.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1980,
+      "issue": "2",
+      "volume": "XI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_2_1980.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_3_1980.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1980_3_724a8c1be7.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1980,
+      "issue": "3",
+      "volume": "XI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_3_1980.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_4_1980.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1980_4_feeae4a727.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1980,
+      "issue": "4",
+      "volume": "XI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_4_1980.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_1_1981.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1981_1_450abe22d6.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1981,
+      "issue": "1",
+      "volume": "XII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_1_1981.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2000_1_3a65042dce.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2000,
+      "issue": "1",
+      "volume": "XXXI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2000_2_3e2856f642.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2000,
+      "issue": "2",
+      "volume": "XXXI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2000_3_648db784eb.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2000,
+      "issue": "3",
+      "volume": "XXXI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2000_4_7dc27d7acf.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2000,
+      "issue": "4",
+      "volume": "XXXI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2001_1_09f804b62d.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2001,
+      "issue": "1",
+      "volume": "XXXII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2001_2_023e429cf3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2001,
+      "issue": "2",
+      "volume": "XXXII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2001_3_7378dd383a.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2001,
+      "issue": "3",
+      "volume": "XXXII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2001_4_7757ab930c.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2001,
+      "issue": "4",
+      "volume": "XXXII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2002_1_8084e81e0a.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2002,
+      "issue": "1",
+      "volume": "XXXIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2002_2_a8300a4b4f.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2002,
+      "issue": "2",
+      "volume": "XXXIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2002_3_dec1543c86.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2002,
+      "issue": "3",
+      "volume": "XXXIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2002_4_ba110d0a3b.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2002,
+      "issue": "4",
+      "volume": "XXXIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2003_1_211ff86db6.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2003,
+      "issue": "1",
+      "volume": "XXXIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2003_3_78dc8ff1bb.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2003,
+      "issue": "3",
+      "volume": "XXXIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2003_4_3d66874c88.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2003,
+      "issue": "4",
+      "volume": "XXXIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2003_4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2004_1_7a560483a1.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2004,
+      "issue": "1",
+      "volume": "XXXV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2004_2_8ce5056a5d.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2004,
+      "issue": "2",
+      "volume": "XXXV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2004_3_e2db7d6096.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2004,
+      "issue": "3",
+      "volume": "XXXV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2004_4_6ea84af537.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2004,
+      "issue": "4",
+      "volume": "XXXV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj-2005-3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2005,
+      "issue": "3 (mimoriadne číslo)",
+      "volume": "XXXVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj-2005-3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1983_1_5c90a31add.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1983,
+      "issue": "1",
+      "volume": "XIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1983_2_5028ad9715.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1983,
+      "issue": "2",
+      "volume": "XIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_3.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1983_3_f95d611d1c.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1983,
+      "issue": "3",
+      "volume": "XIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_3.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_4.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1983_4_7152a34d66.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1983,
+      "issue": "4",
+      "volume": "XIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_4.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1_1999.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1999_1_56afdd7f24.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1999,
+      "issue": "1",
+      "volume": "XXX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1_1999.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1_2020.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2020_1_b4071081ad.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2020,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1_2020.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2003_2-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2003_2-mimoriadne-cislo_e4080271a8.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2003,
+      "issue": "2 (mimoriadne číslo)",
+      "volume": "XXXIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2003_2-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_1999.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1999_2_d7642aaae2.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1999,
+      "issue": "2",
+      "volume": "XXX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_1999.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_2020.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2020_2_33ab2cbbb4.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2020,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_2020.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_3_1999.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1999_3_0c14af8d47.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1999,
+      "issue": "3",
+      "volume": "XXX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_3_1999.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_3_2020.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2020_3_1e93f83b11.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2020,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_3_2020.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_4_1999.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1999_4_7e015e9e87.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1999,
+      "issue": "4",
+      "volume": "XXX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_4_1999.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_4_2020.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2020_4_2c596b537a.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2020,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_4_2020.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_1-2_1985.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1985_1-2_001e4aaa0a.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1985,
+      "issue": "1-2",
+      "volume": "XVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_1-2_1985.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_1-2_1986.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1986_1-2_a8cc93cf93.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1986,
+      "issue": "1-2",
+      "volume": "XVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_1-2_1986.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_1_1984.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1984_1_49a7b7c50d.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1984,
+      "issue": "1",
+      "volume": "XV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_1_1984.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_2-3_1984.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1984_2-3_8c187c02d3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1984,
+      "issue": "2-3",
+      "volume": "XV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_2-3_1984.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_3-4_1985.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1985_3-4_e83517a768.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1985,
+      "issue": "3-4",
+      "volume": "XVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_3-4_1985.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_4_1984.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1984_4_4a62604579.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1984,
+      "issue": "4",
+      "volume": "XV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_4_1984.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/04/Spravodaj_SSS_1987_1-2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1987_1-2_9162bfcf08.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1987,
+      "issue": "1-2",
+      "volume": "XVIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/04/Spravodaj_SSS_1987_1-2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/04/Spravodaj_SSS_3-4_1986.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1986_3-4_20315ff6b3.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1986,
+      "issue": "3-4",
+      "volume": "XVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/04/Spravodaj_SSS_3-4_1986.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_1-2_1988.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1988_1-2_630623d8c9.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1988,
+      "issue": "1-2",
+      "volume": "XIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_1-2_1988.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_1_1998.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1998_1_8b34c41139.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1998,
+      "issue": "1",
+      "volume": "XXIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_1_1998.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_2_1998-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1998_2_a5cb872bfe.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1998,
+      "issue": "2",
+      "volume": "XXIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_2_1998-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_3_1998.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1998_3_aa250315d9.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1998,
+      "issue": "3",
+      "volume": "XXIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_3_1998.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_4_1998.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1998_4_25b7949179.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1998,
+      "issue": "4",
+      "volume": "XXIX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/05/Spravodaj_SSS_4_1998.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/08/Spravodaj_2022_kongres_web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2022,
+      "issue": "kongres",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/08/Spravodaj_2022_kongres_web.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1989_1_ce770ca992.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1989,
+      "issue": "1",
+      "volume": "XX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_2.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1989_2_41bbf6d2f0.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1989,
+      "issue": "2",
+      "volume": "XX.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_2.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1_1997.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1997_1_f929ea3948.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1997,
+      "issue": "1",
+      "volume": "XXVIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1_1997.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_3_1997.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1997_3_3ce40816c5.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1997,
+      "issue": "3",
+      "volume": "XXVIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_3_1997.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_4_1997.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1997_4_7faeb92cc0.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1997,
+      "issue": "4",
+      "volume": "XXVIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_4_1997.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/09/Spravodajca_SSS_1990_1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1990_1_62c8873795.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1990,
+      "issue": "1",
+      "volume": "XXI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodajca_SSS_1990_1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/10/Jaskyniar_SSS_1991.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1991_1_dcdcd2dbb6.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1991,
+      "issue": "1",
+      "volume": "XXII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/10/Jaskyniar_SSS_1991.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_1_1995.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1995_1_c831a7dd35.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1995,
+      "issue": "1",
+      "volume": "XXVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_1_1995.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_2_1995.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1995_2_2a3226f742.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1995,
+      "issue": "2",
+      "volume": "XXVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_2_1995.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_3_1994.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1994_3_37242aae36.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1994,
+      "issue": "3",
+      "volume": "XXV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_3_1994.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_3_1995.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1995_3_7ff9f18bc4.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1995,
+      "issue": "3",
+      "volume": "XXVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_3_1995.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_3_1996.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1996_3_bb89e7b4f0.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1996,
+      "issue": "3",
+      "volume": "XXVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_3_1996.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1994.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1994_4_e6e8d034da.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1994,
+      "issue": "4",
+      "volume": "XXV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1994.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1995.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1995_4_90d3486f55.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1995,
+      "issue": "4",
+      "volume": "XXVI.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1995.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1996.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1996_4_3366fb21c8.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1996,
+      "issue": "4",
+      "volume": "XXVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/11/Spravodaj_SSS_4_1996.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_1_1996.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1996_1_6ee2182da5.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1996,
+      "issue": "1",
+      "volume": "XXVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_1_1996.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_2_1993.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1993_2_0725f046e8.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1993,
+      "issue": "2",
+      "volume": "XXIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_2_1993.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_2_1996.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1996_2_2044d3658b.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1996,
+      "issue": "2",
+      "volume": "XXVII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_2_1996.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_3_1993.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1993_3_e9476632a4.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1993,
+      "issue": "3",
+      "volume": "XXIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_3_1993.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_4_1993.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1993_4_28701032fe.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1993,
+      "issue": "4",
+      "volume": "XXIV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_4_1993.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_1_1994.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1994_1_942d1955ff.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1994,
+      "issue": "1",
+      "volume": "XXV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_1_1994.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_1_2021.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2021_1_7c73a6bfef.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2021,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_1_2021.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_2_1994.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1994_2_47a47063f9.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1994,
+      "issue": "2",
+      "volume": "XXV.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_2_1994.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_2_2021.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2021_2_c5899145fc.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2021,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_2_2021.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_3_2021.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2021_3_5f2cf69a31.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2021,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_3_2021.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_4_2021.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2021_4_351258d5fd.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2021,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/01/Spravodaj_SSS_4_2021.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/01/sp921.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1992_1_03eb6215c5.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1992,
+      "issue": "1",
+      "volume": "XXIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/01/sp921.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/01/sp922.pdf": {
+      "cover_url": "/covers/spravodaj_sss/1992_2_2b7827f706.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 1992,
+      "issue": "2",
+      "volume": "XXIII.",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/01/sp922.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/07/SpravodajSSS_1_2023web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2023_1_f6ef30251c.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2023,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/07/SpravodajSSS_1_2023web.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_1_2022_web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2022_1_e17f34d02b.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2022,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_1_2022_web.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_4_2022web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2022_4_f7b5e987df.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2022,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_4_2022web.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_SSS_2_2022_web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2022_2_ec78e81470.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2022,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_SSS_2_2022_web.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_SSS_3_2022w.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2022_3_7867568b4a.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2022,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/07/Spravodaj_SSS_3_2022w.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/11/Spravodaj_2_2023_web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2023_2_8941e941ff.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2023,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/11/Spravodaj_2_2023_web.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2023/11/Spravodaj_3_2023_web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2023_3_e302acac2e.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2023,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2023/11/Spravodaj_3_2023_web.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2024/05/Spravodaj_1-2024_155x227.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2024_1_dd84a57ece.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2024,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2024/05/Spravodaj_1-2024_155x227.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2024/05/Spravodaj_4-2023_155x227.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2023_4_397a2ea707.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2023,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2024/05/Spravodaj_4-2023_155x227.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2024/08/Spravodaj_2_2024_NET_optimized.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2024_2_4e8929d6fe.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2024,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2024/08/Spravodaj_2_2024_NET_optimized.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2025/02/Spravodaj-3_2024.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2024_3_d1ade21f6f.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2024,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2025/02/Spravodaj-3_2024.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2025/05/Spravodaj_4_2024_NET-1.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2024_4_57d19c71bb.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2024,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2025/05/Spravodaj_4_2024_NET-1.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2025/06/Spravodaj_SSS_1_2025_NET.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2025_1_6b3e253dac.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2025,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2025/06/Spravodaj_SSS_1_2025_NET.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2025/10/Spravodaj_2_2025_net.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2025_2_68fcd241f4.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2025,
+      "issue": "2",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2025/10/Spravodaj_2_2025_net.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2026/01/Spravodaj_3_2025_web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2025_3_caec1cb4a1.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2025,
+      "issue": "3",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2026/01/Spravodaj_3_2025_web.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2026/03/Spravodaj_4_2025.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2025_4_e01113188c.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2025,
+      "issue": "4",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2026/03/Spravodaj_4_2025.pdf"
+    },
+    "https://sss.sk/wp-content/uploads/2026/06/Spravodaj_1_2026_vnutro_NET_web.pdf": {
+      "cover_url": "/covers/spravodaj_sss/2026_1_9442cb9c37.webp",
+      "journal_id": "spravodaj_sss",
+      "journal_title": "Spravodaj SSS",
+      "year": 2026,
+      "issue": "1",
+      "volume": "",
+      "source_pdf_url": "https://sss.sk/wp-content/uploads/2026/06/Spravodaj_1_2026_vnutro_NET_web.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=1227&filename=kras 54_2.pdf": {
+      "cover_url": "/covers/slovensky_kras/2016_2_a292ec9cc8.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2016,
+      "issue": "2",
+      "volume": "54",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=1227&filename=kras 54_2.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=1758&filename=kras 53_1_2.pdf": {
+      "cover_url": "/covers/slovensky_kras/2015_1-2_b988e6b1bf.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2015,
+      "issue": "1-2",
+      "volume": "53",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=1758&filename=kras 53_1_2.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=1795&filename=Zbornik 55_1_2017.pdf": {
+      "cover_url": "/covers/slovensky_kras/2017_1_3a170b4357.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2017,
+      "issue": "1",
+      "volume": "55",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=1795&filename=Zbornik 55_1_2017.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=1899&filename=Zbornik 55_2_2017.pdf": {
+      "cover_url": "/covers/slovensky_kras/2017_2_115e80f1a3.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2017,
+      "issue": "2",
+      "volume": "55",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=1899&filename=Zbornik 55_2_2017.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=2126&filename=kras 56_1.pdf": {
+      "cover_url": "/covers/slovensky_kras/2018_1_990705321f.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2018,
+      "issue": "1",
+      "volume": "56",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=2126&filename=kras 56_1.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=2129&filename=kras 56 2.pdf": {
+      "cover_url": "/covers/slovensky_kras/2018_2_011ea4f6dc.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2018,
+      "issue": "2",
+      "volume": "56",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=2129&filename=kras 56 2.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=2336&filename=kras 57_1.pdf": {
+      "cover_url": "/covers/slovensky_kras/2019_1_04590189e1.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2019,
+      "issue": "1",
+      "volume": "57",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=2336&filename=kras 57_1.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=2338&filename=kras 57 _2 .pdf": {
+      "cover_url": "/covers/slovensky_kras/2019_2_21f808bce1.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2019,
+      "issue": "2",
+      "volume": "57",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=2338&filename=kras 57 _2 .pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=251&filename=sk-42-2004.pdf": {
+      "cover_url": "/covers/slovensky_kras/2004_bez-cisla_d8d0b22627.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2004,
+      "issue": "",
+      "volume": "42",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=251&filename=sk-42-2004.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=253&filename=sk-43-2005.pdf": {
+      "cover_url": "/covers/slovensky_kras/2005_bez-cisla_283d2939f8.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2005,
+      "issue": "",
+      "volume": "43",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=253&filename=sk-43-2005.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=255&filename=sk-44-2006.pdf": {
+      "cover_url": "/covers/slovensky_kras/2006_bez-cisla_7feae03c4b.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2006,
+      "issue": "",
+      "volume": "44",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=255&filename=sk-44-2006.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=257&filename=sk-45-2007.pdf": {
+      "cover_url": "/covers/slovensky_kras/2007_bez-cisla_6e45d93838.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2007,
+      "issue": "",
+      "volume": "45",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=257&filename=sk-45-2007.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=259&filename=sk-46_1-2008.pdf": {
+      "cover_url": "/covers/slovensky_kras/2008_1_ecfe379b63.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2008,
+      "issue": "1",
+      "volume": "46",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=259&filename=sk-46_1-2008.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=261&filename=sk-46_2-2008.pdf": {
+      "cover_url": "/covers/slovensky_kras/2008_2_a4ee86c478.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2008,
+      "issue": "2",
+      "volume": "46",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=261&filename=sk-46_2-2008.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=263&filename=sk-47_1-2009.pdf": {
+      "cover_url": "/covers/slovensky_kras/2009_1_1bf6ac9a41.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2009,
+      "issue": "1",
+      "volume": "47",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=263&filename=sk-47_1-2009.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=265&filename=sk-47_2-2009.pdf": {
+      "cover_url": "/covers/slovensky_kras/2009_2_faa02f1f98.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2009,
+      "issue": "2",
+      "volume": "47",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=265&filename=sk-47_2-2009.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=267&filename=sk-48_1-2010.pdf": {
+      "cover_url": "/covers/slovensky_kras/2010_1_6f32aa4709.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2010,
+      "issue": "1",
+      "volume": "48",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=267&filename=sk-48_1-2010.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=269&filename=sk-48_2-2010.pdf": {
+      "cover_url": "/covers/slovensky_kras/2010_2_97a4b4ed68.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2010,
+      "issue": "2",
+      "volume": "48",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=269&filename=sk-48_2-2010.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=2700&filename=kras 58_1.pdf": {
+      "cover_url": "/covers/slovensky_kras/2020_1_d911df17fa.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2020,
+      "issue": "1",
+      "volume": "58",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=2700&filename=kras 58_1.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=2702&filename=zbornik kras 58_2.pdf": {
+      "cover_url": "/covers/slovensky_kras/2020_2_a484bf3eb6.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2020,
+      "issue": "2",
+      "volume": "58",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=2702&filename=zbornik kras 58_2.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=271&filename=sk-49_1-2011.pdf": {
+      "cover_url": "/covers/slovensky_kras/2011_1_46e415fbcf.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2011,
+      "issue": "1",
+      "volume": "49",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=271&filename=sk-49_1-2011.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=273&filename=sk-49_2-2011.pdf": {
+      "cover_url": "/covers/slovensky_kras/2011_2_1fa592cc22.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2011,
+      "issue": "2",
+      "volume": "49",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=273&filename=sk-49_2-2011.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=275&filename=sk-50_1-2012.pdf": {
+      "cover_url": "/covers/slovensky_kras/2012_1_a3b49b6576.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2012,
+      "issue": "1",
+      "volume": "50",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=275&filename=sk-50_1-2012.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=277&filename=sk-50_2-2012.pdf": {
+      "cover_url": "/covers/slovensky_kras/2012_2_2c4bc28ffb.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2012,
+      "issue": "2",
+      "volume": "50",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=277&filename=sk-50_2-2012.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=279&filename=sk-51_1-2013.pdf": {
+      "cover_url": "/covers/slovensky_kras/2013_1_2ac80f13fc.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2013,
+      "issue": "1",
+      "volume": "51",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=279&filename=sk-51_1-2013.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=281&filename=sk-51_2-2013.pdf": {
+      "cover_url": "/covers/slovensky_kras/2013_2_7c4ddb0267.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2013,
+      "issue": "2",
+      "volume": "51",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=281&filename=sk-51_2-2013.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=283&filename=sk-52_1-2014.pdf": {
+      "cover_url": "/covers/slovensky_kras/2014_1_f3707faff9.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2014,
+      "issue": "1",
+      "volume": "52",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=283&filename=sk-52_1-2014.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=285&filename=sk-52_2-2014.pdf": {
+      "cover_url": "/covers/slovensky_kras/2014_2_5c55acca9c.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2014,
+      "issue": "2",
+      "volume": "52",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=285&filename=sk-52_2-2014.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=3223&filename=zbornik 59_1_2021.indd.pdf": {
+      "cover_url": "/covers/slovensky_kras/2021_1_37d6432779.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2021,
+      "issue": "1",
+      "volume": "59",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=3223&filename=zbornik 59_1_2021.indd.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=3410&filename=kras 59 2.pdf": {
+      "cover_url": "/covers/slovensky_kras/2021_2_6defbaf4bb.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2021,
+      "issue": "2",
+      "volume": "59",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=3410&filename=kras 59 2.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=3640&filename=slovenský kras 60 1 2022.pdf": {
+      "cover_url": "/covers/slovensky_kras/2022_1_75495885ae.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2022,
+      "issue": "1",
+      "volume": "60",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=3640&filename=slovenský kras 60 1 2022.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=3646&filename=zborník 60_2_2022.pdf": {
+      "cover_url": "/covers/slovensky_kras/2022_2_5a20211112.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2022,
+      "issue": "2",
+      "volume": "60",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=3646&filename=zborník 60_2_2022.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=4915&filename=zborník slovensky kras 61_1_2023.pdf": {
+      "cover_url": "/covers/slovensky_kras/2023_1_2fd0307b8b.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2023,
+      "issue": "1",
+      "volume": "61",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=4915&filename=zborník slovensky kras 61_1_2023.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=5069&filename=zborník 61_supplementum net.pdf": {
+      "cover_url": "/covers/slovensky_kras/2023_suppl_699fb14d7b.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2023,
+      "issue": "suppl",
+      "volume": "61",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=5069&filename=zborník 61_supplementum net.pdf"
+    },
+    "https://www.smopaj.sk/sk/documentloader.php?id=5336&filename=zborník 61_2_2023.pdf": {
+      "cover_url": "/covers/slovensky_kras/2023_2_c61b2c747c.webp",
+      "journal_id": "slovensky_kras",
+      "journal_title": "Slovenský kras",
+      "year": 2023,
+      "issue": "2",
+      "volume": "61",
+      "source_pdf_url": "https://www.smopaj.sk/sk/documentloader.php?id=5336&filename=zborník 61_2_2023.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2006_bez-cisla_a3a8140a50.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2006,
+      "issue": "",
+      "volume": "11",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit11_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit12_.pdf": {
+      "cover_url": "/covers/aragonit/2007_bez-cisla_ccee6dc904.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2007,
+      "issue": "",
+      "volume": "12",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit12_.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2008_1_b518bf823b.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2008,
+      "issue": "1",
+      "volume": "13",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit13_1_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2008_2_34a109ab7a.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2008,
+      "issue": "2",
+      "volume": "13",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit13_2_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit14_1_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2009_1_a060e79bd7.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2009,
+      "issue": "1",
+      "volume": "14",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit14_1_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit14_2_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2009_2_6d705c65e1.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2009,
+      "issue": "2",
+      "volume": "14",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit14_2_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit15_1_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2010_1_94b66e9a88.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2010,
+      "issue": "1",
+      "volume": "15",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit15_1_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit15_2_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2010_2_2eb2d4484e.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2010,
+      "issue": "2",
+      "volume": "15",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit15_2_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2011_bez-cisla_88138e2fd1.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2011,
+      "issue": "",
+      "volume": "16",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit16_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2012_2_5b517f51f7.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2012,
+      "issue": "2",
+      "volume": "17",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit17_2012_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit1_komplet.pdf": {
+      "cover_url": "/covers/aragonit/1996_bez-cisla_218f1c1584.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 1996,
+      "issue": "",
+      "volume": "1",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit1_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf": {
+      "cover_url": "/covers/aragonit/1997_bez-cisla_9247d89f6c.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 1997,
+      "issue": "",
+      "volume": "2",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit2_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit3_komplet.pdf": {
+      "cover_url": "/covers/aragonit/1998_bez-cisla_49433feea2.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 1998,
+      "issue": "",
+      "volume": "3",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit3_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit4_komplet.pdf": {
+      "cover_url": "/covers/aragonit/1999_bez-cisla_4d49c30e3f.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 1999,
+      "issue": "",
+      "volume": "4",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit4_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit5_komplet.pdf": {
+      "cover_url": "/covers/aragonit/2000_bez-cisla_697c9e5ce4.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2000,
+      "issue": "",
+      "volume": "5",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit5_komplet.pdf"
+    },
+    "https://www.ssj.sk/sk/user_files/Aragonit_9_.pdf": {
+      "cover_url": "/covers/aragonit/2004_bez-cisla_956627005f.webp",
+      "journal_id": "aragonit",
+      "journal_title": "Aragonit",
+      "year": 2004,
+      "issue": "",
+      "volume": "9",
+      "source_pdf_url": "https://www.ssj.sk/sk/user_files/Aragonit_9_.pdf"
+    }
+  }
+}

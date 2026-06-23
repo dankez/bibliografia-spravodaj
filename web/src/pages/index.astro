@@ -557,10 +557,12 @@ const bibliographyExportMenus = [
     }
 
     function pdfCoverCandidates(article) {
+      const localCover = String(article.cover_url || '').trim();
       const baseUrl = pdfBaseUrl(article);
-      if (!baseUrl || !/\.pdf$/i.test(baseUrl)) return [];
+      if (!baseUrl || !/\.pdf$/i.test(baseUrl)) return localCover ? [localCover] : [];
       const withoutExtension = baseUrl.replace(/\.pdf$/i, '');
       return [
+        ...(localCover ? [localCover] : []),
         `${withoutExtension}-thumb.png`,
         `${withoutExtension}-thumb.jpg`,
         `${withoutExtension}.png`,
