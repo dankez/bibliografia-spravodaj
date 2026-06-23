@@ -100,40 +100,40 @@ html[data-theme="neutral"] {
 
 html[data-theme="dark"] {
   color-scheme: dark;
-  --sss-gainsboro: 68 64 58;
-  --sss-gray: 153 137 124;
-  --sss-darkgray: 105 97 87;
-  --sss-black: 238 233 222;
-  --sss-dimgray: 203 195 181;
-  --sss-lightslategray: 174 164 150;
-  --sss-dimgray-earth: 223 202 174;
-  --sss-dimgray-blue: 219 213 202;
-  --sss-black-brown: 246 241 230;
-  --sss-firebrick: 218 124 96;
-  --sss-dimgray-warm: 190 180 166;
-  --sss-peru: 207 166 100;
-  --sss-on-accent: 47 39 33;
-  --sss-accent-hover: 173 94 72;
-  --sss-shadow-rgb: 36 23 21;
-  --sss-card: 78 73 66;
-  --sss-surface: 61 57 52;
-  --sss-surface-muted: 91 84 75;
+  --sss-gainsboro: 5 11 22;
+  --sss-gray: 77 100 133;
+  --sss-darkgray: 42 68 101;
+  --sss-black: 232 238 247;
+  --sss-dimgray: 174 194 220;
+  --sss-lightslategray: 111 134 166;
+  --sss-dimgray-earth: 45 212 191;
+  --sss-dimgray-blue: 174 194 220;
+  --sss-black-brown: 232 238 247;
+  --sss-firebrick: 94 234 212;
+  --sss-dimgray-warm: 174 194 220;
+  --sss-peru: 212 176 106;
+  --sss-on-accent: 5 11 22;
+  --sss-accent-hover: 45 212 191;
+  --sss-shadow-rgb: 0 0 0;
+  --sss-card: 20 37 64;
+  --sss-surface: 10 20 40;
+  --sss-surface-muted: 15 28 51;
   --sss-radius-sm: 0.25rem;
   --sss-radius-md: 0.5rem;
   --sss-radius-lg: 0.75rem;
   --sss-radius-xl: 1rem;
   --sss-radius-full: 9999px;
   --sss-panel-shadow:
-    0 0 0 1px rgb(255 255 255 / 0.07),
-    0 14px 34px -24px rgb(0 0 0 / 0.5);
+    0 0 0 1px rgb(118 168 220 / 0.08),
+    0 18px 48px -36px rgb(0 0 0 / 0.72);
   --sss-card-shadow:
-    0 0 0 1px rgb(255 255 255 / 0.08),
-    0 1px 2px -1px rgb(0 0 0 / 0.34),
-    0 10px 24px -18px rgb(0 0 0 / 0.55);
+    0 0 0 1px rgb(118 168 220 / 0.1),
+    0 1px 2px -1px rgb(0 0 0 / 0.4),
+    0 12px 28px -22px rgb(0 0 0 / 0.72);
   --sss-card-shadow-hover:
-    0 0 0 1px rgb(var(--sss-peru) / 0.38),
-    0 2px 6px -2px rgb(0 0 0 / 0.38),
-    0 18px 34px -24px rgb(0 0 0 / 0.62);
+    0 0 0 1px rgb(var(--sss-firebrick) / 0.32),
+    0 0 0 3px rgb(var(--sss-firebrick) / 0.1),
+    0 18px 38px -26px rgb(0 0 0 / 0.75);
   --sss-font-display: "Source Serif 4", Georgia, serif;
 }
 
@@ -147,6 +147,13 @@ html,
 body {
   max-width: 100%;
   overflow-x: clip;
+}
+
+html[data-theme="dark"] body {
+  background:
+    radial-gradient(1200px 700px at 12% -10%, rgb(var(--sss-firebrick) / 0.06), transparent 60%),
+    radial-gradient(900px 600px at 110% 110%, rgb(94 200 234 / 0.05), transparent 60%),
+    rgb(var(--sss-gainsboro));
 }
 
 h1,
@@ -242,7 +249,7 @@ p {
 }
 
 html[data-theme="dark"] footer.bg-belly-black {
-  background: rgb(47 43 38);
+  background: rgb(var(--sss-surface) / 0.88);
   color: rgb(var(--sss-lightslategray));
   border-color: rgb(var(--sss-darkgray));
 }
