@@ -60,7 +60,6 @@ const bibliographyExportMenus = [
   {
     label: 'PDF',
     download: true,
-    primary: true,
     items: exportScopes.map((scope) => ({ label: scope.label, href: `/exports/${scope.dankoBase}.pdf` })),
   },
   {
@@ -120,12 +119,11 @@ const bibliographyExportMenus = [
               {bibliographyExportMenus.map((exportMenu) => (
                 <details class="bibliography-export-menu">
                   <summary
-                    class:list={[
-                      'bibliography-link-button',
-                      exportMenu.primary && 'bibliography-link-button-primary',
-                    ]}
+                    class="bibliography-link-button bibliography-export-trigger"
                   >
-                    Export {exportMenu.label}
+                    <span class="bibliography-export-download-icon" aria-hidden="true">↓</span>
+                    <span>{exportMenu.label}</span>
+                    <span class="bibliography-export-chevron" aria-hidden="true">⌄</span>
                   </summary>
                   <div class="bibliography-export-menu-panel" role="menu" aria-label={`Export ${exportMenu.label}`}>
                     {exportMenu.items.map((item) => (
@@ -146,12 +144,11 @@ const bibliographyExportMenus = [
               {bibliographyExportMenus.map((exportMenu) => (
                 <details class="bibliography-export-menu bibliography-export-menu-mobile">
                   <summary
-                    class:list={[
-                      'bibliography-link-button',
-                      exportMenu.primary && 'bibliography-link-button-primary',
-                    ]}
+                    class="bibliography-link-button bibliography-export-trigger"
                   >
-                    Export {exportMenu.label}
+                    <span class="bibliography-export-download-icon" aria-hidden="true">↓</span>
+                    <span>{exportMenu.label}</span>
+                    <span class="bibliography-export-chevron" aria-hidden="true">⌄</span>
                   </summary>
                   <div class="bibliography-export-menu-panel" role="menu" aria-label={`Export ${exportMenu.label}`}>
                     {exportMenu.items.map((item) => (

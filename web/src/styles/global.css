@@ -559,15 +559,43 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   display: none;
 }
 
-.bibliography-export-menu summary::after {
-  content: "v";
-  font-size: 0.68rem;
+.bibliography-export-trigger {
+  min-width: 74px;
+  gap: 0.32rem;
+  padding-inline: 0.6rem 0.52rem;
+  color: rgb(var(--sss-dimgray-blue));
+}
+
+.bibliography-export-download-icon,
+.bibliography-export-chevron {
+  display: inline-flex;
+  flex: 0 0 auto;
+  align-items: center;
+  justify-content: center;
+  color: rgb(var(--sss-firebrick));
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 0.92rem;
+  font-weight: 800;
   line-height: 1;
+}
+
+.bibliography-export-download-icon {
+  transform: translateY(-1px);
+}
+
+.bibliography-export-chevron {
+  color: rgb(var(--sss-lightslategray));
+  font-size: 0.82rem;
+  transition: transform 150ms cubic-bezier(0.2, 0, 0, 1);
 }
 
 .bibliography-export-menu[open] summary {
   border-color: rgb(var(--sss-firebrick) / 0.65);
   box-shadow: var(--sss-card-shadow-hover);
+}
+
+.bibliography-export-menu[open] .bibliography-export-chevron {
+  transform: rotate(180deg);
 }
 
 .bibliography-export-menu-panel {
