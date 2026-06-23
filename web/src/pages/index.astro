@@ -250,6 +250,22 @@ const bibliographyExportMenus = [
             <span id="filter-status-text">Filtre aktívne</span>
             <button id="clear-all-filters" class="float-right font-bold underline">Zrušiť</button>
           </div>
+
+          <div class="bibliography-selection-tools border border-belly-darkgray p-2" aria-label="Zdieľanie a export aktuálneho výberu">
+            <div class="bibliography-selection-summary">
+              <span>Výber</span>
+              <strong id="selection-result-count">{totalArticles}</strong>
+              <span id="selection-filter-summary">všetky články</span>
+            </div>
+            <div class="bibliography-selection-actions">
+              <button id="share-copy-link" class="bibliography-action-link" type="button">Kopírovať link</button>
+              <a id="share-email-link" class="bibliography-action-link" href="#">Email</a>
+              <a id="share-facebook-link" class="bibliography-action-link" href="#" target="_blank" rel="noreferrer">Facebook</a>
+              <button class="bibliography-action-link" type="button" data-filter-export="html">HTML</button>
+              <button class="bibliography-action-link" type="button" data-filter-export="md">MD</button>
+              <button class="bibliography-action-link" type="button" data-filter-export="sql">SQL</button>
+            </div>
+          </div>
         </div>
 
         <div id="article-list" class="bibliography-results min-h-0 flex-1 overflow-y-auto">
@@ -472,6 +488,11 @@ const bibliographyExportMenus = [
     const filterFulltext = byId('filter-fulltext');
     const filterStatus = byId('filter-status');
     const filterStatusText = byId('filter-status-text');
+    const selectionResultCount = byId('selection-result-count');
+    const selectionFilterSummary = byId('selection-filter-summary');
+    const shareCopyLink = byId('share-copy-link');
+    const shareEmailLink = byId('share-email-link');
+    const shareFacebookLink = byId('share-facebook-link');
     const pageIndicator = byId('page-indicator');
     const prevPageBtn = byId('prev-page-btn');
     const nextPageBtn = byId('next-page-btn');
@@ -531,6 +552,10 @@ const bibliographyExportMenus = [
 
     function articleJournalLabel(article) {
       return article.journal_short_title || article.journal_title || DEFAULT_JOURNAL_SHORT_TITLE;
+    }
+
+    function articleJournalTitle(article) {
+      return article.journal_title || articleJournalLabel(article);
     }
 
     function publicDataUrl(fileName) {
@@ -699,6 +724,108 @@ const bibliographyExportMenus = [
       yearRangeControl.style.setProperty('--range-end', `${Math.max(0, Math.min(100, endPercent))}%`);
     }
 
+    function clampYear(value, fallback) {
+      const year = Number(value);
+      if (!Number.isFinite(year)) return fallback;
+      return Math.max(START_YEAR, Math.min(END_YEAR, Math.round(year)));
+    }
+
+    function parseBooleanParam(value) {
+      return ['1', 'true', 'yes', 'ano'].includes(String(value || '').toLocaleLowerCase('sk'));
+    }
+
+    function hydrateStateFromUrl() {
+      const params = new URLSearchParams(window.location.search);
+      const query = params.get('q') || params.get('search') || '';
+      const journal = params.get('journal') || '';
+      const yearRange = params.get('year') || '';
+      const yearMatch = yearRange.match(/^(\d{4})-(\d{4})$/);
+      const rawYearMin = yearMatch ? yearMatch[1] : params.get('year_min');
+      const rawYearMax = yearMatch ? yearMatch[2] : params.get('year_max');
+
+      state.search = query.trim();
+      state.journal = journal;
+      state.yearMin = clampYear(rawYearMin, START_YEAR);
+      state.yearMax = clampYear(rawYearMax, END_YEAR);
+      if (state.yearMin > state.yearMax) {
+        [state.yearMin, state.yearMax] = [state.yearMax, state.yearMin];
+      }
+      state.mapsOnly = parseBooleanParam(params.get('maps'));
+      state.fulltext = parseBooleanParam(params.get('fulltext'));
+      state.page = 1;
+    }
+
+    function syncFilterControls() {
+      syncSearchFields(state.search);
+      syncYearRangeControl();
+      journalFilterSelect.value = state.journal;
+      filterMapsOnly.checked = state.mapsOnly;
+      filterFulltext.checked = state.fulltext;
+    }
+
+    function currentFilterParts() {
+      const parts = [];
+      if (state.search.trim()) parts.push(`hľadanie: ${state.search.trim()}`);
+      if (state.journal) {
+        const journalArticle = articles.find((article) => articleJournalId(article) === state.journal);
+        parts.push(`časopis: ${journalArticle ? articleJournalLabel(journalArticle) : state.journal}`);
+      }
+      if (state.yearMin > START_YEAR || state.yearMax < END_YEAR) parts.push(`roky: ${state.yearMin}-${state.yearMax}`);
+      if (state.mapsOnly) parts.push('iba mapy/plány');
+      if (state.fulltext) parts.push('vrátane fulltextu');
+      return parts;
+    }
+
+    function buildCurrentFilterUrl() {
+      const url = new URL(window.location.href);
+      url.search = '';
+      const query = state.search.trim();
+      if (query) url.searchParams.set('q', query);
+      if (state.journal) url.searchParams.set('journal', state.journal);
+      if (state.yearMin > START_YEAR || state.yearMax < END_YEAR) url.searchParams.set('year', `${state.yearMin}-${state.yearMax}`);
+      if (state.mapsOnly) url.searchParams.set('maps', '1');
+      if (state.fulltext) url.searchParams.set('fulltext', '1');
+      return url;
+    }
+
+    function syncShareAndExportControls() {
+      const url = buildCurrentFilterUrl();
+      const parts = currentFilterParts();
+      const filterText = parts.length ? parts.join(' · ') : 'všetky články';
+      const title = 'Digitálna bibliografia SSS - filtrovaný výber';
+      const body = `${title}\n${filterText}\n${filtered.length} výsledkov\n${url.toString()}`;
+
+      selectionResultCount.textContent = `${filtered.length} výsledkov`;
+      selectionFilterSummary.textContent = filterText;
+      shareEmailLink.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
+      shareFacebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url.toString())}`;
+      window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
+    }
+
+    async function copyText(value) {
+      if (navigator.clipboard?.writeText) {
+        await navigator.clipboard.writeText(value);
+        return;
+      }
+      const textarea = document.createElement('textarea');
+      textarea.value = value;
+      textarea.setAttribute('readonly', '');
+      textarea.style.position = 'fixed';
+      textarea.style.left = '-9999px';
+      document.body.appendChild(textarea);
+      textarea.select();
+      document.execCommand('copy');
+      document.body.removeChild(textarea);
+    }
+
+    function temporarilyRenameButton(button, label) {
+      const original = button.textContent;
+      button.textContent = label;
+      window.setTimeout(() => {
+        button.textContent = original;
+      }, 1600);
+    }
+
     function setSearchValue(value) {
       state.search = value;
       state.page = 1;
@@ -781,6 +908,7 @@ const bibliographyExportMenus = [
       filterStatusText.textContent = [`${filtered.length} výsledkov`, fulltextStatusLabel(query)].filter(Boolean).join(' · ');
       byId('stat-total').textContent = String(filtered.length);
       byId('stat-maps').textContent = String(filtered.filter(hasMap).length);
+      syncShareAndExportControls();
       renderList();
       if (!selectedStillVisible) {
         if (filtered.length) selectArticle(filtered[0].id);
@@ -941,6 +1069,171 @@ const bibliographyExportMenus = [
       return formatAuthorsDisplay(authors);
     }
 
+    function escapeHtml(value) {
+      return String(value ?? '')
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;')
+        .replace(/'/g, '&#039;');
+    }
+
+    function markdownEscape(value) {
+      return String(value ?? '').replace(/\r?\n/g, ' ').trim();
+    }
+
+    function sqlString(value) {
+      if (value === null || value === undefined || value === '') return 'NULL';
+      return `'${String(value).replace(/'/g, "''")}'`;
+    }
+
+    function exportMetadataLines() {
+      const parts = currentFilterParts();
+      return [
+        `Vygenerované: ${new Date().toLocaleString('sk-SK')}`,
+        `Výsledkov: ${filtered.length}`,
+        `Filtre: ${parts.length ? parts.join(' · ') : 'všetky články'}`,
+        `Share link: ${buildCurrentFilterUrl().toString()}`
+      ];
+    }
+
+    function articleExportRecord(article, index) {
+      return {
+        order: index + 1,
+        id: article.id,
+        title: article.title || '',
+        authors: formatAuthorsDisplay(article.authors || []),
+        journal: articleJournalTitle(article),
+        journalShort: articleJournalLabel(article),
+        year: article.year || '',
+        volume: article.volume || '',
+        issue: article.issue || '',
+        pages: article.pages || '',
+        abstract: displayAbstract(article) || '',
+        tags: [...(article.tags || []), ...(article.caves || []), ...(article.groups || [])].join('; '),
+        pdfUrl: articlePdfUrl(article)
+      };
+    }
+
+    function buildFilteredHtmlExport() {
+      const metadata = exportMetadataLines();
+      const rows = filtered.map(articleExportRecord);
+      return `<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <title>Filtrovaný export bibliografie</title>
+  <style>
+    body { font-family: Inter, system-ui, sans-serif; line-height: 1.5; margin: 2rem; color: #241715; }
+    h1 { color: #ce3d3b; }
+    article { border-top: 1px solid #ddd; padding: 1rem 0; }
+    h2 { font-size: 1.12rem; margin: 0 0 .35rem; }
+    .meta, .small { color: #5d5550; font-size: .9rem; }
+    .abstract { margin-top: .55rem; }
+  </style>
+</head>
+<body>
+  <h1>Filtrovaný export bibliografie</h1>
+  <ul>
+    ${metadata.map((item) => `<li>${escapeHtml(item)}</li>`).join('\n    ')}
+  </ul>
+  ${rows.map((item) => `<article id="clanok-${item.id}">
+    <h2>${item.order}. ${escapeHtml(item.title)}</h2>
+    <div class="meta"><strong>Autor:</strong> ${escapeHtml(item.authors)}</div>
+    <div class="meta"><strong>Časopis:</strong> ${escapeHtml(item.journal)} (${escapeHtml(item.year)}), roč. ${escapeHtml(item.volume || '-')}, č. ${escapeHtml(item.issue || '-')}, s. ${escapeHtml(item.pages || '-')}</div>
+    ${item.abstract ? `<p class="abstract">${escapeHtml(item.abstract)}</p>` : ''}
+    ${item.tags ? `<div class="small"><strong>Taxonómie:</strong> ${escapeHtml(item.tags)}</div>` : ''}
+    ${item.pdfUrl ? `<div class="small"><a href="${escapeHtml(item.pdfUrl)}">PDF strana</a></div>` : ''}
+    <div class="small">Pôvodné ID článku: ${escapeHtml(item.id)}</div>
+  </article>`).join('\n')}
+</body>
+</html>
+`;
+    }
+
+    function buildFilteredMarkdownExport() {
+      const metadata = exportMetadataLines().map((item) => `- ${item}`).join('\n');
+      const rows = filtered.map(articleExportRecord);
+      return `# Filtrovaný export bibliografie
+
+${metadata}
+
+${rows.map((item) => `## ${item.order}. ${markdownEscape(item.title)}
+
+- Pôvodné ID článku: ${item.id}
+- Autor: ${markdownEscape(item.authors)}
+- Časopis: ${markdownEscape(item.journal)}
+- Rok: ${item.year}
+- Ročník: ${markdownEscape(item.volume || '-')}
+- Číslo: ${markdownEscape(item.issue || '-')}
+- Strany: ${markdownEscape(item.pages || '-')}
+${item.tags ? `- Taxonómie: ${markdownEscape(item.tags)}\n` : ''}${item.pdfUrl ? `- PDF: ${item.pdfUrl}\n` : ''}
+${item.abstract ? `${markdownEscape(item.abstract)}\n` : ''}`).join('\n')}
+`;
+    }
+
+    function buildFilteredSqlExport() {
+      const rows = filtered.map(articleExportRecord);
+      const header = exportMetadataLines().map((item) => `-- ${item}`).join('\n');
+      const values = rows.map((item) => `INSERT INTO bibliography_search_export (
+  sort_order, source_article_id, title, authors, journal, journal_short, year, volume, issue, pages, abstract, tags, pdf_url
+) VALUES (
+  ${item.order}, ${item.id}, ${sqlString(item.title)}, ${sqlString(item.authors)}, ${sqlString(item.journal)}, ${sqlString(item.journalShort)}, ${Number(item.year) || 'NULL'}, ${sqlString(item.volume)}, ${sqlString(item.issue)}, ${sqlString(item.pages)}, ${sqlString(item.abstract)}, ${sqlString(item.tags)}, ${sqlString(item.pdfUrl)}
+);`).join('\n\n');
+      return `${header}
+
+DROP TABLE IF EXISTS bibliography_search_export;
+CREATE TABLE bibliography_search_export (
+  sort_order INTEGER NOT NULL,
+  source_article_id INTEGER NOT NULL,
+  title TEXT NOT NULL,
+  authors TEXT,
+  journal TEXT,
+  journal_short TEXT,
+  year INTEGER,
+  volume TEXT,
+  issue TEXT,
+  pages TEXT,
+  abstract TEXT,
+  tags TEXT,
+  pdf_url TEXT
+);
+
+${values}
+`;
+    }
+
+    function exportFileName(extension) {
+      const slug = normalizeSearchText(state.search || 'vyber')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-|-$/g, '')
+        .slice(0, 36) || 'vyber';
+      const date = new Date().toISOString().slice(0, 10).replace(/-/g, '');
+      return `bibliografia_${slug}_${date}.${extension}`;
+    }
+
+    function downloadTextFile(content, fileName, type) {
+      const blob = new Blob([content], { type });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = fileName;
+      document.body.appendChild(link);
+      link.click();
+      document.body.removeChild(link);
+      URL.revokeObjectURL(url);
+    }
+
+    function exportFilteredResults(format) {
+      if (format === 'html') {
+        downloadTextFile(buildFilteredHtmlExport(), exportFileName('html'), 'text/html;charset=utf-8');
+      } else if (format === 'md') {
+        downloadTextFile(buildFilteredMarkdownExport(), exportFileName('md'), 'text/markdown;charset=utf-8');
+      } else if (format === 'sql') {
+        downloadTextFile(buildFilteredSqlExport(), exportFileName('sql'), 'application/sql;charset=utf-8');
+      }
+    }
+
     function generateCitations(article) {
       const journal = article.journal_title || 'Spravodaj Slovenskej speleologickej spoločnosti';
       const authors = article.authors || ['Anonymus'];
@@ -1035,6 +1328,8 @@ const bibliographyExportMenus = [
 
     function setup() {
       loadErrata();
+      hydrateStateFromUrl();
+      syncFilterControls();
       applyFilters();
       if (filtered.length) selectArticle(filtered[0].id);
 
@@ -1053,7 +1348,6 @@ const bibliographyExportMenus = [
         if (!mobileSearchOverlay.hidden) closeMobileSearch();
         if (!mobileMenuPanel.hidden) closeMobileMenu();
       });
-      syncYearRangeControl();
       yearMinInput.addEventListener('input', (event) => {
         state.yearMin = Math.min(Number(event.target.value), state.yearMax);
         syncYearRangeControl();
@@ -1102,6 +1396,13 @@ const bibliographyExportMenus = [
         filterMapsOnly.checked = false;
         filterFulltext.checked = false;
         applyFilters();
+      });
+      shareCopyLink.addEventListener('click', async () => {
+        await copyText(buildCurrentFilterUrl().toString());
+        temporarilyRenameButton(shareCopyLink, 'Skopírované');
+      });
+      document.querySelectorAll('[data-filter-export]').forEach((button) => {
+        button.addEventListener('click', () => exportFilteredResults(button.dataset.filterExport));
       });
       prevPageBtn.addEventListener('click', () => {
         state.page = Math.max(1, state.page - 1);

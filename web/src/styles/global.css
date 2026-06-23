@@ -545,6 +545,44 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   gap: 0.45rem;
 }
 
+.bibliography-selection-tools {
+  display: grid;
+  gap: 0.55rem;
+  border-radius: var(--sss-radius-lg);
+  background: rgb(var(--sss-card));
+  box-shadow: var(--sss-card-shadow);
+}
+
+.bibliography-selection-summary {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.35rem;
+  color: rgb(var(--sss-dimgray));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  line-height: 1.35;
+  text-transform: uppercase;
+}
+
+.bibliography-selection-summary strong {
+  color: rgb(var(--sss-firebrick));
+}
+
+.bibliography-selection-actions {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  gap: 0.4rem;
+}
+
+.bibliography-selection-actions .bibliography-action-link {
+  min-height: 34px;
+  flex: 0 0 auto;
+}
+
 .bibliography-export-menu {
   position: relative;
   flex: 0 0 auto;
