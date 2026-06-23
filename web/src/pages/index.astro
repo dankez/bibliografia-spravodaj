@@ -14,7 +14,8 @@ const articleHasMapPlan = (article) =>
 
 const totalArticles = uiArticlesData.length;
 const startYear = Math.min(...uiArticlesData.map((article) => article.year));
-const endYear = Math.max(...uiArticlesData.map((article) => article.year));
+const endYear = Math.max(...uiArticlesData.map((article) => article.year), new Date().getFullYear());
+const archiveHomeHref = `/?year=${startYear}-${endYear}`;
 const articlesWithMaps = uiArticlesData.filter(articleHasMapPlan).length;
 const totalUniqueAuthors = new Set(
   uiArticlesData.flatMap((article) => article.authors || []).filter((author) => !['Anonymus', 'Redakcia'].includes(author))
@@ -78,7 +79,7 @@ const bibliographyExportMenus = [
       <div class="h-2 bg-belly-firebrick"></div>
       <div class="bibliography-header-inner mx-auto flex max-w-none flex-col gap-4 px-3 py-3 lg:flex-row lg:items-center lg:justify-between lg:px-3">
         <div class="bibliography-header-top flex items-start justify-between gap-3">
-          <a href="/" class="bibliography-brand" aria-label="Digitálna bibliografia Slovenská speleologická spoločnosť">
+          <a href={archiveHomeHref} class="bibliography-brand" aria-label="Digitálna bibliografia Slovenská speleologická spoločnosť">
             <img
               src="/brand/bibliografia-banner.png"
               alt="Digitálna bibliografia Slovenská speleologická spoločnosť"
@@ -465,7 +466,7 @@ const bibliographyExportMenus = [
     const articlesById = new Map(articles.map((article) => [article.id, article]));
     const articleYears = articles.map((article) => article.year);
     const START_YEAR = Math.min(...articleYears);
-    const END_YEAR = Math.max(...articleYears);
+    const END_YEAR = Math.max(...articleYears, new Date().getFullYear());
     const miniSearch = new MiniSearch({
       fields: ['title', 'authors', 'abstract', 'year_str', 'volume', 'issue', 'tags', 'caves', 'groups'],
       storeFields: ['id'],
@@ -749,6 +750,7 @@ const bibliographyExportMenus = [
     }
 
     function clampYear(value, fallback) {
+      if (value === null || value === undefined || String(value).trim() === '') return fallback;
       const year = Number(value);
       if (!Number.isFinite(year)) return fallback;
       return Math.max(START_YEAR, Math.min(END_YEAR, Math.round(year)));
