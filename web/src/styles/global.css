@@ -579,8 +579,45 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 }
 
 .bibliography-selection-actions .bibliography-action-link {
-  min-height: 34px;
+  min-height: 40px;
   flex: 0 0 auto;
+}
+
+.bibliography-share-icon-button {
+  width: 40px;
+  min-width: 40px;
+  padding: 0;
+  border-radius: var(--sss-radius-md);
+  font-family: "Inter", system-ui, sans-serif;
+  font-size: 1rem;
+  font-weight: 850;
+  letter-spacing: 0;
+  text-transform: none;
+}
+
+.bibliography-share-icon-button .bibliography-share-icon {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  line-height: 1;
+  transform: translateY(-0.02rem);
+  transition-property: color, transform;
+  transition-duration: 150ms;
+  transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
+}
+
+.bibliography-share-icon-button:hover .bibliography-share-icon {
+  transform: translateY(-0.02rem) scale(1.04);
+}
+
+.bibliography-share-icon-button:active .bibliography-share-icon {
+  transform: translateY(-0.02rem) scale(0.96);
+}
+
+.bibliography-share-icon-button.is-confirmed {
+  border-color: rgb(var(--sss-firebrick));
+  background: rgb(var(--sss-firebrick));
+  color: rgb(var(--sss-on-accent));
 }
 
 .bibliography-export-menu {

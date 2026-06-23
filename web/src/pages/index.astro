@@ -258,9 +258,18 @@ const bibliographyExportMenus = [
               <span id="selection-filter-summary">všetky články</span>
             </div>
             <div class="bibliography-selection-actions">
-              <button id="share-copy-link" class="bibliography-action-link" type="button">Kopírovať link</button>
-              <a id="share-email-link" class="bibliography-action-link" href="#">Email</a>
-              <a id="share-facebook-link" class="bibliography-action-link" href="#" target="_blank" rel="noreferrer">Facebook</a>
+              <button id="share-copy-link" class="bibliography-action-link bibliography-share-icon-button" type="button" aria-label="Kopírovať share link" title="Kopírovať link">
+                <span class="bibliography-share-icon" aria-hidden="true">⛓</span>
+                <span class="sr-only">Kopírovať link</span>
+              </button>
+              <a id="share-email-link" class="bibliography-action-link bibliography-share-icon-button" href="#" aria-label="Zdieľať emailom" title="Email">
+                <span class="bibliography-share-icon" aria-hidden="true">@</span>
+                <span class="sr-only">Email</span>
+              </a>
+              <a id="share-facebook-link" class="bibliography-action-link bibliography-share-icon-button" href="#" target="_blank" rel="noreferrer" aria-label="Zdieľať na Facebooku" title="Facebook">
+                <span class="bibliography-share-icon" aria-hidden="true">f</span>
+                <span class="sr-only">Facebook</span>
+              </a>
               <button class="bibliography-action-link" type="button" data-filter-export="html">HTML</button>
               <button class="bibliography-action-link" type="button" data-filter-export="md">MD</button>
               <button class="bibliography-action-link" type="button" data-filter-export="sql">SQL</button>
@@ -818,11 +827,16 @@ const bibliographyExportMenus = [
       document.body.removeChild(textarea);
     }
 
-    function temporarilyRenameButton(button, label) {
-      const original = button.textContent;
-      button.textContent = label;
+    function temporarilyConfirmButton(button) {
+      const icon = button.querySelector('.bibliography-share-icon');
+      const original = icon ? icon.textContent : button.textContent;
+      button.classList.add('is-confirmed');
+      if (icon) icon.textContent = '✓';
+      else button.textContent = '✓';
       window.setTimeout(() => {
-        button.textContent = original;
+        if (icon) icon.textContent = original;
+        else button.textContent = original;
+        button.classList.remove('is-confirmed');
       }, 1600);
     }
 
@@ -1399,7 +1413,7 @@ ${values}
       });
       shareCopyLink.addEventListener('click', async () => {
         await copyText(buildCurrentFilterUrl().toString());
-        temporarilyRenameButton(shareCopyLink, 'Skopírované');
+        temporarilyConfirmButton(shareCopyLink);
       });
       document.querySelectorAll('[data-filter-export]').forEach((button) => {
         button.addEventListener('click', () => exportFilteredResults(button.dataset.filterExport));
