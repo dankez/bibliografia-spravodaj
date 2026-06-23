@@ -44,7 +44,10 @@ DEFAULT_REPORT_PATH = REPORT_DIR / "anonymous_tail_signatures_dry_run.json"
 LETTER_RE = r"A-Za-zÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽáäčďéíĺľňóôŕšťúýž"
 TITLE_RE = re.compile(r"^(?:doc\.|ing\.|mgr\.|mudr\.|mvdr\.|phdr\.|rndr\.|bc\.|mga\.|phd\.|csc\.)$", re.I)
 PREFIX_RE = re.compile(
-    r"^\s*(?:napísal|napísala|napísali|autor|autori|text|spracoval|spracovala|spracovali|zostavil|zostavila|zostavili)\s*[:\-]?\s+",
+    r"^\s*(?:(?:správu|spravu|text|článok|clanok)?\s*"
+    r"(?:napísal|napísala|napísali|vypracoval|vypracovala|vypracovali|"
+    r"spracoval|spracovala|spracovali|pripravil|pripravila|pripravili|"
+    r"zostavil|zostavila|zostavili)|autor|autori|text)\s*[:\-]?\s+",
     re.I,
 )
 INITIAL_NAME_RE = re.compile(
@@ -57,8 +60,10 @@ SURNAME_INITIAL_RE = re.compile(
 ROLE_WORDS = {
     "predseda",
     "predsedkyna",
+    "predsednicka",
     "podpredseda",
     "podpredsedkyna",
+    "podpredsednicka",
     "veduci",
     "veduca",
     "tajomnik",
@@ -76,13 +81,21 @@ ROLE_WORDS = {
 }
 NAME_SUFFIX_RE = re.compile(r"\s+(?:st\.?|ml\.?|starší|mladší)\s*$", re.I)
 REJECT_TERMS = {
+    "cistenie",
     "foto",
     "fotografia",
+    "expedicia",
     "obr",
+    "mapovanie",
+    "monitoring",
     "tab",
+    "prieskum",
     "spravodaj",
     "organizacne spravy",
     "organizačne spravy",
+    "vyskum",
+    "vyzkum",
+    "zameranie",
     "issn",
     "isbn",
     "jaskyna",
@@ -406,13 +419,33 @@ def role_suffix(text: str) -> tuple[str, str | None]:
     return text, None
 
 
+def has_role_suffix(text: str) -> bool:
+    return role_suffix(clean_space(text).strip(" .;,"))[1] is not None
+
+
+def has_signature_prefix(text: str) -> bool:
+    text = clean_space(text)
+    return bool(text) and clean_space(PREFIX_RE.sub("", text)) != text
+
+
+def strip_group_lead_in(text: str) -> str:
+    text = clean_space(text)
+    if not fold_text(text).startswith("za "):
+        return text
+    words = text.split()
+    for width in range(2, min(4, len(words) - 1) + 1):
+        candidate = clean_space(" ".join(words[-width:]))
+        if format_person_name(candidate):
+            return candidate
+    return text
+
+
 def signature_text_variants(text: str) -> list[str]:
     text = clean_space(text)
     variants = [text]
-    if len(text.split()) > 7:
-        match = re.search(r"[.!?]\s+([^.!?]+)$", text)
-        if match:
-            variants.insert(0, clean_space(match.group(1)))
+    match = re.search(r"[.!?]\s+([^.!?]+)$", text)
+    if match:
+        variants.insert(0, clean_space(match.group(1)))
     return list(dict.fromkeys(variant for variant in variants if variant))
 
 
@@ -530,6 +563,7 @@ def parse_signature_line(text: str) -> tuple[list[str], str, list[str]] | None:
         candidate, role = role_suffix(candidate)
         if role:
             reasons.append(f"role_suffix:{role}")
+        candidate = strip_group_lead_in(candidate)
         contribution_match = re.match(r"^(?P<main>.+?)\s+s\s+pr[íi]spevkami\b", candidate, flags=re.I)
         if contribution_match:
             candidate = clean_space(contribution_match.group("main")).strip(" .;,")
@@ -592,7 +626,7 @@ def find_tail_signature(region_lines: list[BboxLine], tail_line_count: int = 42)
     tail_start = max(0, len(content) - tail_line_count)
     candidate_indexes = set(range(tail_start, len(content)))
     for index, line in enumerate(content[:tail_start]):
-        if line.y_min >= 560:
+        if line.y_min >= 560 or has_role_suffix(line.text) or has_signature_prefix(line.text):
             candidate_indexes.add(index)
     candidates: list[SignatureCandidate] = []
     for content_index in sorted(candidate_indexes, reverse=True):
