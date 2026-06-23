@@ -1309,6 +1309,134 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   font-size: 0.82rem;
 }
 
+.year-range-control {
+  position: relative;
+  min-height: 2.85rem;
+  padding-top: 1.18rem;
+  --range-start: 0%;
+  --range-end: 100%;
+}
+
+.year-range-control::before,
+.year-range-control::after {
+  content: "";
+  position: absolute;
+  top: 1.35rem;
+  right: 0;
+  left: 0;
+  height: 0.32rem;
+  border-radius: var(--sss-radius-full);
+  pointer-events: none;
+}
+
+.year-range-control::before {
+  background: rgb(var(--sss-darkgray));
+  box-shadow: inset 0 0 0 1px rgb(var(--sss-shadow-rgb) / 0.035);
+}
+
+.year-range-control::after {
+  right: calc(100% - var(--range-end));
+  left: var(--range-start);
+  background: rgb(var(--sss-firebrick) / 0.42);
+}
+
+.year-range-input {
+  position: absolute;
+  top: 0;
+  left: 0;
+  z-index: 2;
+  width: 100%;
+  height: 2.8rem;
+  margin: 0;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+  outline: none;
+  pointer-events: none;
+}
+
+.year-range-input:focus {
+  z-index: 4;
+}
+
+.year-range-input::-webkit-slider-runnable-track {
+  height: 0.32rem;
+  -webkit-appearance: none;
+  appearance: none;
+  background: transparent;
+}
+
+.year-range-input::-moz-range-track {
+  height: 0.32rem;
+  background: transparent;
+}
+
+.year-range-input::-webkit-slider-thumb {
+  width: 1rem;
+  height: 1rem;
+  margin-top: -0.34rem;
+  -webkit-appearance: none;
+  appearance: none;
+  border: 2px solid rgb(var(--sss-card));
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-firebrick));
+  box-shadow:
+    0 0 0 1px rgb(var(--sss-firebrick) / 0.32),
+    0 2px 6px rgb(var(--sss-shadow-rgb) / 0.18);
+  cursor: grab;
+  pointer-events: auto;
+}
+
+.year-range-input::-moz-range-thumb {
+  width: 0.82rem;
+  height: 0.82rem;
+  border: 2px solid rgb(var(--sss-card));
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-firebrick));
+  box-shadow:
+    0 0 0 1px rgb(var(--sss-firebrick) / 0.32),
+    0 2px 6px rgb(var(--sss-shadow-rgb) / 0.18);
+  cursor: grab;
+  pointer-events: auto;
+}
+
+.year-range-input:active::-webkit-slider-thumb {
+  cursor: grabbing;
+  transform: scale(0.96);
+}
+
+.year-range-input:active::-moz-range-thumb {
+  cursor: grabbing;
+  transform: scale(0.96);
+}
+
+.year-range-input:focus-visible::-webkit-slider-thumb {
+  box-shadow:
+    0 0 0 2px rgb(var(--sss-card)),
+    0 0 0 4px rgb(var(--sss-firebrick) / 0.55),
+    0 2px 6px rgb(var(--sss-shadow-rgb) / 0.18);
+}
+
+.year-range-input:focus-visible::-moz-range-thumb {
+  box-shadow:
+    0 0 0 2px rgb(var(--sss-card)),
+    0 0 0 4px rgb(var(--sss-firebrick) / 0.55),
+    0 2px 6px rgb(var(--sss-shadow-rgb) / 0.18);
+}
+
+.year-range-scale {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  left: 0;
+  display: flex;
+  justify-content: space-between;
+  color: rgb(var(--sss-lightslategray));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.64rem;
+  line-height: 1;
+}
+
 html[data-theme="neutral"] .bibliography-header,
 html[data-theme="neutral"] .portal-header,
 html[data-theme="neutral"] .article-detail-header {

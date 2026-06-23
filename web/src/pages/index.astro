@@ -200,9 +200,31 @@ const bibliographyExportMenus = [
                 <span>Roky: <strong id="year-range-label" class="text-belly-firebrick">{startYear} - {endYear}</strong></span>
                 <button id="reset-years-btn" class="font-bold hover:text-belly-firebrick">Reset</button>
               </div>
-              <div class="flex gap-2">
-                <input id="year-min" type="range" min={startYear} max={endYear} value={startYear} class="w-full accent-belly-firebrick" />
-                <input id="year-max" type="range" min={startYear} max={endYear} value={endYear} class="w-full accent-belly-firebrick" />
+              <div id="year-range-control" class="year-range-control" style="--range-start: 0%; --range-end: 100%;">
+                <label class="sr-only" for="year-min">Najskorší rok</label>
+                <input
+                  id="year-min"
+                  type="range"
+                  min={startYear}
+                  max={endYear}
+                  value={startYear}
+                  class="year-range-input year-range-input-min"
+                  aria-label="Najskorší rok"
+                />
+                <label class="sr-only" for="year-max">Najneskorší rok</label>
+                <input
+                  id="year-max"
+                  type="range"
+                  min={startYear}
+                  max={endYear}
+                  value={endYear}
+                  class="year-range-input year-range-input-max"
+                  aria-label="Najneskorší rok"
+                />
+                <div class="year-range-scale" aria-hidden="true">
+                  <span>{startYear}</span>
+                  <span>{endYear}</span>
+                </div>
               </div>
             </div>
 
@@ -444,6 +466,7 @@ const bibliographyExportMenus = [
     const mobileSearchClose = byId('mobile-search-close');
     const mobileMenuToggle = byId('mobile-menu-toggle');
     const mobileMenuPanel = byId('mobile-menu-panel');
+    const yearRangeControl = byId('year-range-control');
     const yearMinInput = byId('year-min');
     const yearMaxInput = byId('year-max');
     const yearLabel = byId('year-range-label');
@@ -666,6 +689,17 @@ const bibliographyExportMenus = [
     function syncSearchFields(value) {
       searchInput.value = value;
       mobileSearchInput.value = value;
+    }
+
+    function syncYearRangeControl() {
+      const span = Math.max(1, END_YEAR - START_YEAR);
+      const startPercent = ((state.yearMin - START_YEAR) / span) * 100;
+      const endPercent = ((state.yearMax - START_YEAR) / span) * 100;
+      yearMinInput.value = String(state.yearMin);
+      yearMaxInput.value = String(state.yearMax);
+      yearLabel.textContent = `${state.yearMin} - ${state.yearMax}`;
+      yearRangeControl.style.setProperty('--range-start', `${Math.max(0, Math.min(100, startPercent))}%`);
+      yearRangeControl.style.setProperty('--range-end', `${Math.max(0, Math.min(100, endPercent))}%`);
     }
 
     function setSearchValue(value) {
@@ -1022,26 +1056,23 @@ const bibliographyExportMenus = [
         if (!mobileSearchOverlay.hidden) closeMobileSearch();
         if (!mobileMenuPanel.hidden) closeMobileMenu();
       });
+      syncYearRangeControl();
       yearMinInput.addEventListener('input', (event) => {
         state.yearMin = Math.min(Number(event.target.value), state.yearMax);
-        yearMinInput.value = String(state.yearMin);
-        yearLabel.textContent = `${state.yearMin} - ${state.yearMax}`;
+        syncYearRangeControl();
         state.page = 1;
         applyFilters();
       });
       yearMaxInput.addEventListener('input', (event) => {
         state.yearMax = Math.max(Number(event.target.value), state.yearMin);
-        yearMaxInput.value = String(state.yearMax);
-        yearLabel.textContent = `${state.yearMin} - ${state.yearMax}`;
+        syncYearRangeControl();
         state.page = 1;
         applyFilters();
       });
       byId('reset-years-btn').addEventListener('click', () => {
         state.yearMin = START_YEAR;
         state.yearMax = END_YEAR;
-        yearMinInput.value = String(START_YEAR);
-        yearMaxInput.value = String(END_YEAR);
-        yearLabel.textContent = `${START_YEAR} - ${END_YEAR}`;
+        syncYearRangeControl();
         state.page = 1;
         applyFilters();
       });
@@ -1069,12 +1100,10 @@ const bibliographyExportMenus = [
         state.fulltext = false;
         state.page = 1;
         syncSearchFields('');
-        yearMinInput.value = String(START_YEAR);
-        yearMaxInput.value = String(END_YEAR);
+        syncYearRangeControl();
         journalFilterSelect.value = '';
         filterMapsOnly.checked = false;
         filterFulltext.checked = false;
-        yearLabel.textContent = `${START_YEAR} - ${END_YEAR}`;
         applyFilters();
       });
       prevPageBtn.addEventListener('click', () => {
