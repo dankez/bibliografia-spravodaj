@@ -1,4 +1,4 @@
-const safeTheme = (value) => (value === 'dark' ? 'dark' : 'default');
+const safeTheme = (value) => (['default', 'neutral', 'dark'].includes(value) ? value : 'default');
 
 function applyTheme(value) {
   const theme = safeTheme(value);

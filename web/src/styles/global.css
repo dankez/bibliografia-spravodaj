@@ -58,6 +58,46 @@ html[data-theme="default"] {
   --sss-font-display: "Source Serif 4", Georgia, serif;
 }
 
+html[data-theme="neutral"] {
+  color-scheme: light;
+  --sss-gainsboro: 250 250 249;
+  --sss-gray: 113 113 122;
+  --sss-darkgray: 228 228 231;
+  --sss-black: 24 24 27;
+  --sss-dimgray: 82 82 91;
+  --sss-lightslategray: 161 161 170;
+  --sss-dimgray-earth: 63 63 70;
+  --sss-dimgray-blue: 63 63 70;
+  --sss-black-brown: 9 9 11;
+  --sss-firebrick: 210 0 45;
+  --sss-dimgray-warm: 82 82 91;
+  --sss-peru: 217 119 6;
+  --sss-on-accent: 255 255 255;
+  --sss-accent-hover: 167 0 38;
+  --sss-shadow-rgb: 24 24 27;
+  --sss-card: 255 255 255;
+  --sss-surface: 246 246 247;
+  --sss-surface-muted: 244 244 245;
+  --sss-radius-sm: 0.22rem;
+  --sss-radius-md: 0.38rem;
+  --sss-radius-lg: 0.5rem;
+  --sss-radius-xl: 0.75rem;
+  --sss-radius-full: 9999px;
+  --sss-panel-shadow:
+    0 0 0 1px rgb(var(--sss-shadow-rgb) / 0.055),
+    0 1px 2px -1px rgb(var(--sss-shadow-rgb) / 0.07),
+    0 8px 20px -18px rgb(var(--sss-shadow-rgb) / 0.2);
+  --sss-card-shadow:
+    0 0 0 1px rgb(var(--sss-shadow-rgb) / 0.055),
+    0 1px 2px -1px rgb(var(--sss-shadow-rgb) / 0.08),
+    0 2px 5px -4px rgb(var(--sss-shadow-rgb) / 0.16);
+  --sss-card-shadow-hover:
+    0 0 0 1px rgb(var(--sss-firebrick) / 0.24),
+    0 2px 4px -2px rgb(var(--sss-shadow-rgb) / 0.11),
+    0 12px 24px -22px rgb(var(--sss-shadow-rgb) / 0.24);
+  --sss-font-display: "Source Serif 4", Georgia, serif;
+}
+
 html[data-theme="dark"] {
   color-scheme: dark;
   --sss-gainsboro: 68 64 58;
@@ -1267,6 +1307,197 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   color: rgb(var(--sss-dimgray));
   padding: 1rem;
   font-size: 0.82rem;
+}
+
+html[data-theme="neutral"] .bibliography-header,
+html[data-theme="neutral"] .portal-header,
+html[data-theme="neutral"] .article-detail-header {
+  background: rgb(var(--sss-card) / 0.94);
+  border-color: rgb(var(--sss-darkgray));
+  box-shadow: 0 1px 0 rgb(var(--sss-shadow-rgb) / 0.05);
+}
+
+html[data-theme="neutral"] .bibliography-header > .h-2,
+html[data-theme="neutral"] .portal-header > .h-2 {
+  height: 3px;
+}
+
+html[data-theme="neutral"] .bibliography-header-inner {
+  gap: 0.85rem;
+  padding-block: 0.72rem;
+}
+
+html[data-theme="neutral"] .bibliography-brand-banner {
+  width: min(28vw, 430px);
+  max-height: 52px;
+}
+
+html[data-theme="neutral"] .theme-switcher {
+  border-color: rgb(var(--sss-darkgray));
+  box-shadow: var(--sss-card-shadow);
+}
+
+html[data-theme="neutral"] .theme-switcher button {
+  color: rgb(var(--sss-lightslategray));
+}
+
+html[data-theme="neutral"] .theme-switcher button[data-active="true"] {
+  background: rgb(var(--sss-black));
+  color: rgb(var(--sss-card));
+  box-shadow: 0 1px 2px rgb(var(--sss-shadow-rgb) / 0.12);
+}
+
+html[data-theme="neutral"] .bibliography-link-button,
+html[data-theme="neutral"] .bibliography-button-secondary,
+html[data-theme="neutral"] .bibliography-icon-button,
+html[data-theme="neutral"] .bibliography-action-link {
+  border-color: rgb(var(--sss-darkgray));
+  box-shadow: none;
+}
+
+html[data-theme="neutral"] .bibliography-link-button-primary,
+html[data-theme="neutral"] .bibliography-button-primary,
+html[data-theme="neutral"] .bibliography-tabs .bg-belly-firebrick {
+  background: rgb(var(--sss-firebrick));
+  border-color: rgb(var(--sss-firebrick));
+  color: rgb(var(--sss-on-accent));
+}
+
+html[data-theme="neutral"] .bibliography-export-menu-panel,
+html[data-theme="neutral"] .bibliography-search,
+html[data-theme="neutral"] .bibliography-control,
+html[data-theme="neutral"] .bibliography-soft-box,
+html[data-theme="neutral"] .bibliography-meta-grid,
+html[data-theme="neutral"] .article-meta-grid,
+html[data-theme="neutral"] .bibliography-citation-box,
+html[data-theme="neutral"] .citation-box,
+html[data-theme="neutral"] .bibliography-document-box,
+html[data-theme="neutral"] .article-detail-card,
+html[data-theme="neutral"] .citation-panel,
+html[data-theme="neutral"] .article-abstract-box,
+html[data-theme="neutral"] .portal-toolbar,
+html[data-theme="neutral"] .portal-stat,
+html[data-theme="neutral"] .cave-card,
+html[data-theme="neutral"] .cave-timeline-card,
+html[data-theme="neutral"] .report-form,
+html[data-theme="neutral"] .article-edit-summary,
+html[data-theme="neutral"] .article-edit-gate,
+html[data-theme="neutral"] .article-edit-form,
+html[data-theme="neutral"] .article-edit-diff {
+  box-shadow: var(--sss-card-shadow);
+}
+
+html[data-theme="neutral"] .bibliography-main {
+  border-color: rgb(var(--sss-darkgray));
+  box-shadow: none;
+}
+
+html[data-theme="neutral"] .bibliography-pane:first-child {
+  background: rgb(var(--sss-surface));
+}
+
+html[data-theme="neutral"] .bibliography-filterbar,
+html[data-theme="neutral"] .bibliography-tabs,
+html[data-theme="neutral"] .bibliography-pager {
+  border-color: rgb(var(--sss-darkgray));
+  box-shadow: none;
+}
+
+html[data-theme="neutral"] .bibliography-search,
+html[data-theme="neutral"] .bibliography-control,
+html[data-theme="neutral"] .report-field input,
+html[data-theme="neutral"] .report-field select,
+html[data-theme="neutral"] .report-field textarea,
+html[data-theme="neutral"] .mobile-search-input {
+  border-color: transparent;
+  background: rgb(var(--sss-card));
+  box-shadow: 0 0 0 1px rgb(var(--sss-shadow-rgb) / 0.055);
+}
+
+html[data-theme="neutral"] .bibliography-search:focus,
+html[data-theme="neutral"] .report-field input:focus,
+html[data-theme="neutral"] .report-field select:focus,
+html[data-theme="neutral"] .report-field textarea:focus,
+html[data-theme="neutral"] .mobile-search-input:focus {
+  box-shadow: 0 0 0 2px rgb(var(--sss-firebrick) / 0.26);
+}
+
+html[data-theme="neutral"] .article-result-card {
+  width: 100%;
+  margin: 0;
+  border-radius: 0;
+  box-shadow: none;
+  border-bottom: 1px solid rgb(var(--sss-darkgray));
+  background: transparent;
+}
+
+html[data-theme="neutral"] .article-result-card:hover,
+html[data-theme="neutral"] .article-result-card.is-selected {
+  background: rgb(var(--sss-card));
+  box-shadow: none;
+  transform: none;
+}
+
+html[data-theme="neutral"] .article-result-card.is-selected::before {
+  inset-block: 0;
+  width: 2px;
+  border-radius: 0;
+}
+
+html[data-theme="neutral"] .article-result-title,
+html[data-theme="neutral"] .bibliography-detail-title,
+html[data-theme="neutral"] .article-detail-title {
+  font-weight: 600;
+}
+
+html[data-theme="neutral"] .article-result-meta,
+html[data-theme="neutral"] .bibliography-meta-line,
+html[data-theme="neutral"] .article-detail-kicker,
+html[data-theme="neutral"] .bibliography-section-title,
+html[data-theme="neutral"] .article-section-title,
+html[data-theme="neutral"] .report-field span {
+  color: rgb(var(--sss-lightslategray));
+  letter-spacing: 0.075em;
+}
+
+html[data-theme="neutral"] .article-result-author,
+html[data-theme="neutral"] .bibliography-detail-authors,
+html[data-theme="neutral"] .article-detail-authors {
+  color: rgb(var(--sss-firebrick));
+}
+
+html[data-theme="neutral"] .article-result-badge,
+html[data-theme="neutral"] .bibliography-tag {
+  border-radius: var(--sss-radius-sm);
+  background: rgb(var(--sss-surface-muted));
+  color: rgb(var(--sss-dimgray-blue));
+}
+
+html[data-theme="neutral"] .bibliography-cover-link,
+html[data-theme="neutral"] .bibliography-cover-link:hover {
+  box-shadow: 0 18px 42px -32px rgb(var(--sss-shadow-rgb) / 0.38);
+}
+
+html[data-theme="neutral"] .bibliography-cover-link img {
+  outline-color: rgb(var(--sss-shadow-rgb) / 0.08);
+}
+
+html[data-theme="neutral"] .portal-stat strong {
+  color: rgb(var(--sss-black));
+}
+
+html[data-theme="neutral"] .cave-timeline::before {
+  background: rgb(var(--sss-darkgray));
+}
+
+html[data-theme="neutral"] .cave-timeline-year {
+  border-color: rgb(var(--sss-darkgray));
+  color: rgb(var(--sss-firebrick));
+  box-shadow: none;
+}
+
+html[data-theme="neutral"] .site-author-signature {
+  background: rgb(var(--sss-card));
 }
 
 @media (max-width: 1023px) {
