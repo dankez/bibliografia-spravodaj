@@ -32,6 +32,9 @@ MANIFEST_PATH = COVERS_DIR / "manifest.json"
 
 DEFAULT_JOURNAL_ID = "spravodaj_sss"
 DEFAULT_JOURNAL_TITLE = "Spravodaj SSS"
+COVER_PAGE_OVERRIDES = {
+    "http://archiv.smopaj.sk/data/_uploaded/media/public/Slovensky_kras/1_1958.pdf": 2,
+}
 
 
 @dataclass(frozen=True)
@@ -108,6 +111,10 @@ def safe_cover_stem(publication: Publication) -> str:
         publication.digest,
     ]
     return "_".join(parts)
+
+
+def cover_page_for(publication: Publication) -> int:
+    return COVER_PAGE_OVERRIDES.get(publication.pdf_url, 1)
 
 
 def load_json(path: Path) -> list[dict]:
@@ -216,9 +223,9 @@ def render_cover(publication: Publication, *, width: int, quality: int, timeout:
             [
                 "pdftoppm",
                 "-f",
-                "1",
+                str(cover_page_for(publication)),
                 "-l",
-                "1",
+                str(cover_page_for(publication)),
                 "-singlefile",
                 "-scale-to-x",
                 str(width),
@@ -276,6 +283,7 @@ def parse_args(argv: list[str]) -> argparse.Namespace:
     parser.add_argument("--articles", type=Path, default=ARTICLES_PATH)
     parser.add_argument("--frontend-articles", type=Path, default=FRONTEND_ARTICLES_PATH)
     parser.add_argument("--journal", action="append", default=[], help="Filter by journal_id. Can be repeated.")
+    parser.add_argument("--pdf-url", action="append", default=[], help="Filter by exact source PDF URL. Can be repeated.")
     parser.add_argument("--limit", type=int, default=0, help="Process only N missing covers.")
     parser.add_argument("--max-created", type=int, default=0, help="Render at most N new covers in this run.")
     parser.add_argument("--width", type=int, default=640)
@@ -293,6 +301,9 @@ def main(argv: list[str] | None = None) -> int:
     if args.journal:
         allowed = set(args.journal)
         publications = [item for item in publications if item.journal_id in allowed]
+    if args.pdf_url:
+        allowed_urls = {strip_url_fragment(url) for url in args.pdf_url}
+        publications = [item for item in publications if item.pdf_url in allowed_urls]
 
     manifest = load_manifest()
     covers: dict[str, dict] = manifest["covers"]
@@ -337,6 +348,7 @@ def main(argv: list[str] | None = None) -> int:
             "year": publication.year,
             "issue": publication.issue,
             "volume": publication.volume,
+            "cover_page": cover_page_for(publication),
             "source_pdf_url": publication.pdf_url,
         }
         processed += 1

@@ -823,7 +823,6 @@ const bibliographyExportMenus = [
       selectionFilterSummary.textContent = filterText;
       shareEmailLink.href = `mailto:?subject=${encodeURIComponent(title)}&body=${encodeURIComponent(body)}`;
       shareFacebookLink.href = `https://www.facebook.com/sharer/sharer.php?u=${encodeURIComponent(url.toString())}`;
-      window.history.replaceState(null, '', `${url.pathname}${url.search}${url.hash}`);
     }
 
     async function copyText(value) {
