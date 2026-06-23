@@ -785,14 +785,76 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   white-space: nowrap;
 }
 
-.bibliography-export-menu-panel a:hover {
+.bibliography-export-menu-panel button {
+  display: flex;
+  width: 100%;
+  min-height: 36px;
+  align-items: center;
+  border-radius: var(--sss-radius-md);
+  color: rgb(var(--sss-dimgray-blue));
+  padding: 0.48rem 0.58rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  line-height: 1.2;
+  text-align: left;
+  text-transform: uppercase;
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.bibliography-export-menu-panel a:hover,
+.bibliography-export-menu-panel button:hover,
+.bibliography-export-menu-panel button.is-active {
   background: rgb(var(--sss-surface-muted));
   color: rgb(var(--sss-firebrick));
 }
 
-.bibliography-export-menu-panel a:focus-visible {
+.bibliography-export-menu-panel a:focus-visible,
+.bibliography-export-menu-panel button:focus-visible {
   outline: 2px solid rgb(var(--sss-firebrick));
   outline-offset: 2px;
+}
+
+.bibliography-journal-control {
+  position: relative;
+  padding: 0;
+  border-color: transparent;
+  background: transparent;
+  box-shadow: none;
+}
+
+.bibliography-journal-menu {
+  width: 100%;
+}
+
+.bibliography-journal-trigger {
+  width: 100%;
+  min-height: 44px;
+  justify-content: flex-start;
+}
+
+.bibliography-journal-kicker {
+  flex: 0 0 auto;
+  color: rgb(var(--sss-lightslategray));
+  font-size: 0.64rem;
+  letter-spacing: 0.08em;
+}
+
+.bibliography-journal-current {
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+  text-align: left;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.bibliography-journal-menu-panel {
+  right: auto;
+  left: 0;
+  width: 100%;
+  min-width: min(260px, calc(100vw - 2rem));
 }
 
 .bibliography-desktop-actions {

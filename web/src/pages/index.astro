@@ -226,14 +226,22 @@ const bibliographyExportMenus = [
               </div>
             </div>
 
-            <div class="bibliography-control flex items-center gap-2 border border-belly-gray p-2" aria-label="Filter časopisu">
-              <label for="journal-filter-select" class="shrink-0 text-[11px] font-mono uppercase text-belly-dimgray">Časopis</label>
-              <select id="journal-filter-select" class="journal-filter-select min-w-0 flex-1 bg-transparent text-xs font-bold text-belly-dimgray-blue outline-none">
-                <option value="">Všetky</option>
-                {journalOptions.map((journal) => (
-                  <option value={journal.id}>{journal.label}</option>
-                ))}
-              </select>
+            <div class="bibliography-control bibliography-journal-control border border-belly-gray p-2" aria-label="Filter časopisu">
+              <details id="journal-filter-menu" class="bibliography-export-menu bibliography-journal-menu">
+                <summary class="bibliography-link-button bibliography-export-trigger bibliography-journal-trigger">
+                  <span class="bibliography-journal-kicker">Časopis</span>
+                  <span id="journal-filter-current" class="bibliography-journal-current">Všetky</span>
+                  <span class="bibliography-export-chevron" aria-hidden="true">⌄</span>
+                </summary>
+                <div class="bibliography-export-menu-panel bibliography-journal-menu-panel" role="menu" aria-label="Filter časopisu">
+                  <button type="button" role="menuitemradio" aria-checked="true" data-journal-filter="">Všetky</button>
+                  {journalOptions.map((journal) => (
+                    <button type="button" role="menuitemradio" aria-checked="false" data-journal-filter={journal.id}>
+                      {journal.label}
+                    </button>
+                  ))}
+                </div>
+              </details>
             </div>
 
             <label class="bibliography-control flex items-center justify-center gap-2 border border-belly-gray px-2 py-1.5 text-xs text-belly-dimgray-blue">
@@ -506,7 +514,9 @@ const bibliographyExportMenus = [
     const yearMinInput = byId('year-min');
     const yearMaxInput = byId('year-max');
     const yearLabel = byId('year-range-label');
-    const journalFilterSelect = byId('journal-filter-select');
+    const journalFilterMenu = byId('journal-filter-menu');
+    const journalFilterCurrent = byId('journal-filter-current');
+    const journalFilterOptions = Array.from(document.querySelectorAll('[data-journal-filter]'));
     const filterMapsOnly = byId('filter-maps-only');
     const filterFulltext = byId('filter-fulltext');
     const filterStatus = byId('filter-status');
@@ -784,9 +794,24 @@ const bibliographyExportMenus = [
     function syncFilterControls() {
       syncSearchFields(state.search);
       syncYearRangeControl();
-      journalFilterSelect.value = state.journal;
+      syncJournalFilterControl();
       filterMapsOnly.checked = state.mapsOnly;
       filterFulltext.checked = state.fulltext;
+    }
+
+    function journalLabelForValue(value) {
+      if (!value) return 'Všetky';
+      const journalArticle = articles.find((article) => articleJournalId(article) === value);
+      return journalArticle ? articleJournalLabel(journalArticle) : value;
+    }
+
+    function syncJournalFilterControl() {
+      journalFilterCurrent.textContent = journalLabelForValue(state.journal);
+      journalFilterOptions.forEach((button) => {
+        const active = button.dataset.journalFilter === state.journal;
+        button.setAttribute('aria-checked', active ? 'true' : 'false');
+        button.classList.toggle('is-active', active);
+      });
     }
 
     function currentFilterParts() {
@@ -1391,10 +1416,14 @@ ${values}
         state.page = 1;
         applyFilters();
       });
-      journalFilterSelect.addEventListener('change', (event) => {
-        state.journal = event.target.value;
-        state.page = 1;
-        applyFilters();
+      journalFilterOptions.forEach((button) => {
+        button.addEventListener('click', () => {
+          state.journal = button.dataset.journalFilter || '';
+          state.page = 1;
+          syncJournalFilterControl();
+          journalFilterMenu.open = false;
+          applyFilters();
+        });
       });
       filterMapsOnly.addEventListener('change', (event) => {
         state.mapsOnly = event.target.checked;
@@ -1416,7 +1445,7 @@ ${values}
         state.page = 1;
         syncSearchFields('');
         syncYearRangeControl();
-        journalFilterSelect.value = '';
+        syncJournalFilterControl();
         filterMapsOnly.checked = false;
         filterFulltext.checked = false;
         applyFilters();
