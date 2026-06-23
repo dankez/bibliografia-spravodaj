@@ -282,7 +282,18 @@ Postup pri ďalších duplicitách:
 
 ## Komunitné errata
 
-Každý článok má odkaz "Našiel som chybu". Formulár je dostupný aj samostatne na `/nahlasit-chybu/`. Statický web používa Cloudflare Pages Function v `web/functions/api/error-report.js`, ktorá po antispam kontrole vytvorí GitHub issue.
+Každý článok má odkaz "Našiel som chybu", ktorý otvára štruktúrovaný edit režim na `/clanky/<id>/edit/`. Edit režim zobrazí údaje článku vo formulári, používateľ upraví iba chybné polia a odošle návrh opravy. Návrh sa neaplikuje priamo do dát; Cloudflare Pages Function v `web/functions/api/error-report.js` po antispam kontrole vytvorí GitHub issue s JSON diffom na ručné schválenie.
+
+Samostatný formulár `/nahlasit-chybu/` ostáva dostupný pre všeobecné hlásenia a doplnenie čísla jaskyne zo zoznamu SMOPaJ.
+
+Bezpečnostný model:
+
+- edit formulár je na stránke zamknutý, kým používateľ neprejde Cloudflare Turnstile,
+- odoslanie sa ešte raz overuje na serveri cez `TURNSTILE_SECRET_KEY`,
+- pre tvrdé overenie ešte pred načítaním edit stránky nastav v Cloudflare WAF pravidlo pre cestu `/clanky/*/edit/` s akciou Managed Challenge,
+- verejný používateľ nikdy nezapisuje priamo do repozitára ani do dátových súborov,
+- backend prijíma pri `article_edit` iba whitelistované polia článku a limituje dĺžky vstupov,
+- výsledkom je GitHub issue s čitateľným popisom a strojovo spracovateľným JSON diffom.
 
 Runtime premenné pre hosting:
 

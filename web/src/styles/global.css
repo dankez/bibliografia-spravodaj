@@ -1040,6 +1040,80 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   gap: 1rem;
 }
 
+.article-edit-summary,
+.article-edit-gate,
+.article-edit-form,
+.article-edit-diff {
+  background: rgb(var(--sss-card));
+  box-shadow: var(--sss-card-shadow);
+  border-radius: var(--sss-radius-lg);
+}
+
+.article-edit-gate {
+  position: relative;
+}
+
+.article-edit-gate::before {
+  content: "";
+  position: absolute;
+  inset-block: 1rem;
+  left: 0;
+  width: 3px;
+  border-radius: var(--sss-radius-full);
+  background: rgb(var(--sss-peru));
+}
+
+.article-edit-gate-verified::before {
+  background: rgb(var(--sss-firebrick));
+}
+
+.article-edit-fieldset {
+  min-width: 0;
+  border: 0;
+}
+
+.article-edit-fieldset:disabled {
+  opacity: 0.58;
+}
+
+.article-edit-checkbox {
+  align-content: start;
+}
+
+.article-edit-checkbox-row {
+  display: inline-flex;
+  min-height: 44px;
+  align-items: center;
+  gap: 0.55rem;
+  color: rgb(var(--sss-dimgray-blue));
+  font-size: 0.88rem;
+  line-height: 1.35;
+}
+
+.article-edit-checkbox-row input {
+  width: 1.1rem;
+  height: 1.1rem;
+  accent-color: rgb(var(--sss-firebrick));
+}
+
+.article-edit-diff-preview {
+  max-height: 340px;
+  overflow: auto;
+  border: 1px solid rgb(var(--sss-darkgray));
+  border-radius: var(--sss-radius-md);
+  background: rgb(var(--sss-surface-muted));
+  color: rgb(var(--sss-dimgray-blue));
+  padding: 0.85rem;
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.74rem;
+  line-height: 1.55;
+  white-space: pre-wrap;
+}
+
+.article-edit-form[hidden] {
+  display: none;
+}
+
 .report-smopaj-panel {
   display: grid;
   gap: 0.85rem;

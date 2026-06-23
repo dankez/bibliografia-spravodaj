@@ -1,4 +1,23 @@
-const ALLOWED_TYPES = new Set(['author', 'title', 'pages', 'pdf', 'map_plan', 'smopaj_number', 'abstract', 'other']);
+const ALLOWED_TYPES = new Set(['author', 'title', 'pages', 'pdf', 'map_plan', 'smopaj_number', 'abstract', 'article_edit', 'other']);
+const ARTICLE_EDIT_FIELDS = [
+  'title',
+  'authors',
+  'journal_id',
+  'journal_title',
+  'journal_short_title',
+  'year',
+  'volume',
+  'issue',
+  'pages',
+  'abstract',
+  'tags',
+  'caves',
+  'groups',
+  'has_map_plan',
+  'pdf_url',
+  'pdf_page_start',
+  'pdf_page_end',
+];
 
 const TYPE_LABELS = {
   author: 'Autor',
@@ -8,6 +27,7 @@ const TYPE_LABELS = {
   map_plan: 'Mapa/plán',
   smopaj_number: 'Číslo jaskyne / SMOPaJ',
   abstract: 'Anotácia',
+  article_edit: 'Editácia článku',
   other: 'Iné',
 };
 
@@ -29,6 +49,76 @@ function cleanMultiline(value, maxLength = 4000) {
   return String(value || '').replace(/\r\n/g, '\n').trim().slice(0, maxLength);
 }
 
+function parseJsonObject(value, fallback = {}) {
+  if (value && typeof value === 'object' && !Array.isArray(value)) return value;
+  if (typeof value !== 'string') return fallback;
+  try {
+    const parsed = JSON.parse(value);
+    return parsed && typeof parsed === 'object' && !Array.isArray(parsed) ? parsed : fallback;
+  } catch {
+    return fallback;
+  }
+}
+
+function parseStringArray(value, maxItems = 40, maxItemLength = 160) {
+  const source = Array.isArray(value)
+    ? value
+    : String(value || '')
+        .split('\n')
+        .flatMap((item) => item.split(';'));
+  return source
+    .map((item) => cleanText(item, maxItemLength))
+    .filter(Boolean)
+    .slice(0, maxItems);
+}
+
+function cleanArticlePatchValue(field, value) {
+  if (['authors', 'tags', 'caves', 'groups'].includes(field)) return parseStringArray(value);
+  if (field === 'has_map_plan') return value === true || value === 'true' || value === 'on' || value === '1';
+  if (['year', 'pdf_page_start', 'pdf_page_end'].includes(field)) {
+    const number = Number.parseInt(String(value || ''), 10);
+    return Number.isFinite(number) ? number : null;
+  }
+  if (field === 'abstract') return cleanMultiline(value, 2000);
+  if (field === 'pdf_url') return cleanText(value, 800);
+  return cleanText(value, 500);
+}
+
+function cleanArticlePatchObject(value) {
+  const raw = parseJsonObject(value);
+  return Object.fromEntries(
+    ARTICLE_EDIT_FIELDS.map((field) => [field, cleanArticlePatchValue(field, raw[field])])
+  );
+}
+
+function articleValuesEqual(left, right) {
+  return JSON.stringify(left) === JSON.stringify(right);
+}
+
+function validateArticleEdit(payload, message) {
+  const original = cleanArticlePatchObject(payload.originalArticle);
+  const proposed = cleanArticlePatchObject(payload.proposedArticle);
+  const changedFields = ARTICLE_EDIT_FIELDS.filter((field) => !articleValuesEqual(original[field], proposed[field]));
+
+  if (!cleanText(payload.articleId, 40)) {
+    return { ok: false, status: 400, error: 'Chýba číslo článku.' };
+  }
+  if (!changedFields.length) {
+    return { ok: false, status: 400, error: 'Nie je vyplnená žiadna zmena článku.' };
+  }
+  if (message.length < 10) {
+    return { ok: false, status: 400, error: 'Poznámka k oprave je povinná a musí mať aspoň 10 znakov.' };
+  }
+  if (proposed.year !== null && (proposed.year < 1800 || proposed.year > 2100)) {
+    return { ok: false, status: 400, error: 'Rok článku je mimo povoleného rozsahu.' };
+  }
+  if (proposed.pdf_url && !/^https?:\/\/[^\s]+$/i.test(proposed.pdf_url)) {
+    return { ok: false, status: 400, error: 'PDF URL nemá platný formát.' };
+  }
+
+  return { ok: true, original, proposed, changedFields };
+}
+
 function validatePayload(payload) {
   if (cleanText(payload.website)) {
     return { ok: false, status: 400, error: 'Neplatné hlásenie.' };
@@ -40,7 +130,7 @@ function validatePayload(payload) {
   }
 
   const message = cleanMultiline(payload.message);
-  if (message.length < 10) {
+  if (type !== 'article_edit' && message.length < 10) {
     return { ok: false, status: 400, error: 'Popis chyby je príliš krátky.' };
   }
 
@@ -52,6 +142,11 @@ function validatePayload(payload) {
   const smopajCaveNumber = cleanText(payload.smopajCaveNumber, 40);
   if (type === 'smopaj_number' && !/^\d+(?:\.\d+)?$/.test(smopajCaveNumber)) {
     return { ok: false, status: 400, error: 'Číslo jaskyne zo zoznamu SMOPaJ nemá platný formát.' };
+  }
+
+  const articleEdit = type === 'article_edit' ? validateArticleEdit(payload, message) : null;
+  if (articleEdit && !articleEdit.ok) {
+    return { ok: false, status: articleEdit.status, error: articleEdit.error };
   }
 
   return {
@@ -68,6 +163,10 @@ function validatePayload(payload) {
       smopajCaveNumber,
       smopajCaveSearch: cleanText(payload.smopajCaveSearch, 260),
       smopajCaveLabel: cleanText(payload.smopajCaveLabel, 500),
+      sourceVersion: cleanText(payload.sourceVersion, 120),
+      changedFields: articleEdit?.changedFields || [],
+      originalArticle: articleEdit?.original || null,
+      proposedArticle: articleEdit?.proposed || null,
       turnstileToken: cleanText(payload.turnstileToken, 3000),
     },
   };
@@ -97,6 +196,7 @@ async function verifyTurnstile(env, token, request) {
 }
 
 function issueBody(data, request) {
+  if (data.type === 'article_edit') return articleEditIssueBody(data, request);
   const rows = [
     'Používateľ nahlásil chybu v bibliografii Spravodaja SSS.',
     '',
@@ -118,6 +218,39 @@ function issueBody(data, request) {
   return rows.join('\n');
 }
 
+function articleEditIssueBody(data, request) {
+  const patch = {
+    schema: 'sss-bibliografia/article-edit/v1',
+    article_id: data.articleId,
+    source_version: data.sourceVersion || 'neuvedené',
+    changed_fields: data.changedFields,
+    original: data.originalArticle,
+    proposed: data.proposedArticle,
+  };
+  const rows = [
+    'Používateľ navrhol štruktúrovanú opravu článku v digitálnej bibliografii.',
+    '',
+    `- Typ chyby: ${TYPE_LABELS[data.type]}`,
+    `- Článok ID: ${data.articleId || 'neuvedené'}`,
+    `- Názov: ${data.articleTitle || data.proposedArticle?.title || 'neuvedené'}`,
+    `- URL: ${data.articleUrl || request.headers.get('Referer') || 'neuvedené'}`,
+    `- Zmenené polia: ${data.changedFields.length ? data.changedFields.join(', ') : 'neuvedené'}`,
+    `- Release zdroja: ${data.sourceVersion || 'neuvedené'}`,
+    `- Kontakt: ${data.email || 'neuvedený'}`,
+    '',
+    'Poznámka používateľa:',
+    '',
+    data.message,
+    '',
+    'JSON diff na kontrolu:',
+    '',
+    '```json',
+    JSON.stringify(patch, null, 2),
+    '```',
+  ];
+  return rows.join('\n');
+}
+
 async function createGithubIssue(env, data, request) {
   const token = env.GITHUB_TOKEN;
   const repository = env.GITHUB_REPOSITORY;
@@ -128,6 +261,8 @@ async function createGithubIssue(env, data, request) {
   const titleTarget =
     data.type === 'smopaj_number'
       ? `${data.caveName || data.caveSlug || 'karta jaskyne'} -> ${data.smopajCaveNumber}`
+      : data.type === 'article_edit'
+        ? `#${data.articleId}: ${data.changedFields.join(', ')}`
       : data.articleId
         ? `#${data.articleId}`
         : data.articleTitle || 'bez čísla článku';

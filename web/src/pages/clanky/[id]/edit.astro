@@ -1,0 +1,450 @@
+---
+import Layout from '../../../layouts/Layout.astro';
+import ThemeSwitcher from '../../../components/ThemeSwitcher.astro';
+import articles from '../../../data/articles.json';
+import packageInfo from '../../../../package.json';
+
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+const endpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-report';
+const releaseDate = import.meta.env.PUBLIC_RELEASE_DATE || new Date().toISOString().slice(0, 10).replaceAll('-', '');
+const releaseSha = String(import.meta.env.PUBLIC_RELEASE_SHA || import.meta.env.CF_PAGES_COMMIT_SHA || 'local').slice(0, 7);
+const sourceVersion = `v${packageInfo.version}-beta.${releaseDate}+${releaseSha}`;
+const articlesById = new Map(articles.map((article) => [String(article.id), article]));
+
+export async function getStaticPaths() {
+  return articles.map((article) => ({
+    params: { id: String(article.id) },
+  }));
+}
+
+const article = articlesById.get(String(Astro.params.id || ''));
+if (!article) {
+  throw new Error(`Article not found: ${Astro.params.id}`);
+}
+
+const journalOptions = Array.from(
+  new Map(
+    articles.map((item) => [
+      String(item.journal_id || 'spravodaj_sss'),
+      {
+        id: String(item.journal_id || 'spravodaj_sss'),
+        title: String(item.journal_title || 'Spravodaj Slovenskej speleologickej spoločnosti'),
+        shortTitle: String(item.journal_short_title || 'Spravodaj SSS'),
+      },
+    ])
+  ).values()
+).sort((a, b) => a.shortTitle.localeCompare(b.shortTitle, 'sk'));
+
+const editableArticle = {
+  title: article.title || '',
+  authors: article.authors || [],
+  journal_id: article.journal_id || 'spravodaj_sss',
+  journal_title: article.journal_title || 'Spravodaj Slovenskej speleologickej spoločnosti',
+  journal_short_title: article.journal_short_title || 'Spravodaj SSS',
+  year: Number.isFinite(Number(article.year)) ? Number(article.year) : null,
+  volume: article.volume || '',
+  issue: article.issue || '',
+  pages: article.pages || '',
+  abstract: article.abstract || '',
+  tags: article.tags || [],
+  caves: article.caves || [],
+  groups: article.groups || [],
+  has_map_plan: Boolean(article.has_map_plan),
+  pdf_url: article.pdf_url || '',
+  pdf_page_start: Number.isFinite(Number(article.pdf_page_start)) ? Number(article.pdf_page_start) : null,
+  pdf_page_end: Number.isFinite(Number(article.pdf_page_end)) ? Number(article.pdf_page_end) : null,
+};
+
+const jsonScript = (value) => JSON.stringify(value).replace(/</g, '\\u003c');
+---
+
+<Layout title={`Oprava článku #${article.id} — ${article.title}`}>
+  {turnstileSiteKey && <script slot="head" is:inline set:html={`
+    window.__articleEditTurnstileToken = '';
+    window.onArticleEditTurnstileSuccess = (token) => {
+      window.__articleEditTurnstileToken = token || '';
+      window.dispatchEvent(new CustomEvent('article-edit-turnstile-success', { detail: { token } }));
+    };
+  `}></script>}
+  {turnstileSiteKey && <script slot="head" src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+
+  <div class="portal-page min-h-screen text-belly-black">
+    <header class="portal-header border-b border-belly-darkgray">
+      <div class="h-2 bg-belly-firebrick"></div>
+      <div class="mx-auto flex max-w-4xl flex-col gap-4 px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Komunitná oprava článku</p>
+          <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">Našiel som chybu</h1>
+          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray">
+            Po overení uprav iba polia, ktoré chceš opraviť. Návrh sa odošle ako GitHub issue s JSON diffom na ručné schválenie.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <ThemeSwitcher />
+          <a href={`/clanky/${article.id}/`} class="bibliography-link-button">Späť na článok</a>
+          <a href="/" class="bibliography-link-button">Hlavný archív</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-4xl px-5 py-6">
+      <section class="article-edit-summary mb-5 border border-belly-darkgray p-4">
+        <div class="article-result-meta">
+          <span>Článok #{article.id}</span>
+          <span class="separator">/</span>
+          <span>{editableArticle.journal_short_title}</span>
+          <span class="separator">/</span>
+          <span>{editableArticle.year}</span>
+          <span class="separator">/</span>
+          <span>č. {editableArticle.issue || '—'}</span>
+          <span class="separator">/</span>
+          <span>s. {editableArticle.pages || '—'}</span>
+          {editableArticle.has_map_plan && <span class="article-result-badge ml-auto">mapa/plán</span>}
+        </div>
+        <h2 class="mt-2 font-display text-2xl font-bold leading-tight text-belly-black-brown">{article.title}</h2>
+        <p class="mt-2 text-sm font-semibold text-belly-dimgray-earth">{editableArticle.authors.length ? editableArticle.authors.join(' a ') : 'Anonymus'}</p>
+      </section>
+
+      <section id="article-edit-gate" class="article-edit-gate mb-5 border border-belly-darkgray p-4">
+        <h2 class="font-display text-xl font-bold text-belly-black-brown">Bezpečnostné overenie</h2>
+        <p class="mt-2 text-sm leading-relaxed text-belly-dimgray">
+          Editačný formulár sa zobrazí až po úspešnom Cloudflare Turnstile overení. Rovnaké overenie sa kontroluje aj na serveri pri odoslaní.
+        </p>
+        <div class="mt-4">
+          {turnstileSiteKey ? (
+            <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-callback="onArticleEditTurnstileSuccess" data-action="article_edit"></div>
+          ) : (
+            <div class="cf-turnstile report-antispam-placeholder">
+              Editačný režim bude aktívny po nastavení `PUBLIC_TURNSTILE_SITE_KEY`.
+            </div>
+          )}
+        </div>
+      </section>
+
+      <form
+        id="article-edit-form"
+        class="article-edit-form report-form border border-belly-darkgray p-4"
+        data-endpoint={endpoint}
+        data-source-version={sourceVersion}
+        data-article-id={article.id}
+        data-article-title={article.title}
+        data-article-url={`/clanky/${article.id}/`}
+        data-locked={turnstileSiteKey ? 'true' : 'missing-key'}
+        hidden={Boolean(turnstileSiteKey)}
+      >
+        <input name="type" type="hidden" value="article_edit" />
+        <input id="article-edit-turnstile-token" name="turnstileToken" type="hidden" />
+        <input name="articleId" type="hidden" value={article.id} />
+        <input name="articleTitle" type="hidden" value={article.title} />
+        <input name="articleUrl" type="hidden" value={`/clanky/${article.id}/`} />
+        <input name="sourceVersion" type="hidden" value={sourceVersion} />
+        <input id="article-edit-original" name="originalArticle" type="hidden" />
+        <input id="article-edit-proposed" name="proposedArticle" type="hidden" />
+        <input id="article-edit-changed-fields" name="changedFields" type="hidden" />
+
+        <label class="report-field report-honeypot" aria-hidden="true">
+          <span>Web</span>
+          <input name="website" type="text" tabindex="-1" autocomplete="off" />
+        </label>
+
+        <fieldset id="article-edit-fieldset" class="article-edit-fieldset" disabled={Boolean(turnstileSiteKey)}>
+          <div class="grid gap-4 sm:grid-cols-2">
+            <label class="report-field sm:col-span-2">
+              <span>Názov článku</span>
+              <input name="title" type="text" value={editableArticle.title} maxlength="500" required />
+            </label>
+
+            <label class="report-field sm:col-span-2">
+              <span>Autor/autori</span>
+              <textarea name="authors" rows="3" placeholder="Jeden autor na jeden riadok">{editableArticle.authors.join('\n')}</textarea>
+              <small class="report-help-text">Zadaj jedného autora na riadok, napr. <code>Pokrievka, P.</code></small>
+            </label>
+
+            <label class="report-field">
+              <span>Časopis</span>
+              <select name="journal_id" required>
+                {journalOptions.map((journal) => (
+                  <option
+                    value={journal.id}
+                    selected={journal.id === editableArticle.journal_id}
+                    data-title={journal.title}
+                    data-short-title={journal.shortTitle}
+                  >
+                    {journal.shortTitle}
+                  </option>
+                ))}
+              </select>
+            </label>
+            <label class="report-field">
+              <span>Názov časopisu</span>
+              <input name="journal_title" type="text" value={editableArticle.journal_title} maxlength="500" readonly />
+            </label>
+
+            <label class="report-field">
+              <span>Rok</span>
+              <input name="year" type="number" min="1800" max="2100" value={editableArticle.year ?? ''} required />
+            </label>
+            <label class="report-field">
+              <span>Ročník</span>
+              <input name="volume" type="text" value={editableArticle.volume} maxlength="80" />
+            </label>
+            <label class="report-field">
+              <span>Číslo</span>
+              <input name="issue" type="text" value={editableArticle.issue} maxlength="120" />
+            </label>
+            <label class="report-field">
+              <span>Strany</span>
+              <input name="pages" type="text" value={editableArticle.pages} maxlength="120" />
+            </label>
+
+            <label class="report-field sm:col-span-2">
+              <span>Anotácia</span>
+              <textarea name="abstract" rows="5" maxlength="2000">{editableArticle.abstract}</textarea>
+            </label>
+
+            <label class="report-field">
+              <span>Taxonómie / tagy</span>
+              <textarea name="tags" rows="4" placeholder="Jeden tag na jeden riadok">{editableArticle.tags.join('\n')}</textarea>
+            </label>
+            <label class="report-field">
+              <span>Jaskyne / lokality</span>
+              <textarea name="caves" rows="4" placeholder="Jedna lokalita na jeden riadok">{editableArticle.caves.join('\n')}</textarea>
+            </label>
+            <label class="report-field">
+              <span>Oblastná skupina</span>
+              <textarea name="groups" rows="3" placeholder="Jedna skupina na jeden riadok">{editableArticle.groups.join('\n')}</textarea>
+            </label>
+            <label class="report-field article-edit-checkbox">
+              <span>Mapa/plán</span>
+              <span class="article-edit-checkbox-row">
+                <input name="has_map_plan" type="checkbox" checked={editableArticle.has_map_plan} />
+                Článok obsahuje mapu alebo plán
+              </span>
+            </label>
+
+            <label class="report-field sm:col-span-2">
+              <span>PDF URL</span>
+              <input name="pdf_url" type="url" value={editableArticle.pdf_url} maxlength="800" />
+            </label>
+            <label class="report-field">
+              <span>PDF strana od</span>
+              <input name="pdf_page_start" type="number" min="1" value={editableArticle.pdf_page_start ?? ''} />
+            </label>
+            <label class="report-field">
+              <span>PDF strana do</span>
+              <input name="pdf_page_end" type="number" min="1" value={editableArticle.pdf_page_end ?? ''} />
+            </label>
+
+            <label class="report-field sm:col-span-2">
+              <span>Poznámka k oprave</span>
+              <textarea name="message" rows="4" required minlength="10" maxlength="4000" placeholder="Napíš, prečo je zmena správna alebo z akého zdroja vychádza."></textarea>
+            </label>
+
+            <label class="report-field sm:col-span-2">
+              <span>Kontakt pre doplnenie (nepovinné)</span>
+              <input name="email" type="email" autocomplete="email" placeholder="email@example.sk" />
+            </label>
+          </div>
+        </fieldset>
+
+        <section class="article-edit-diff mt-5 border border-belly-darkgray p-4">
+          <div class="flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-between">
+            <div>
+              <h2 class="font-display text-xl font-bold text-belly-black-brown">Návrh zmeny</h2>
+              <p class="mt-1 text-sm text-belly-dimgray">Pred odoslaním skontroluj polia, ktoré sa zmenili.</p>
+            </div>
+            <span id="article-edit-diff-count" class="article-result-badge">0 zmien</span>
+          </div>
+          <pre id="article-edit-diff-preview" class="article-edit-diff-preview mt-3">Po overení uprav údaje článku.</pre>
+        </section>
+
+        <div class="mt-4 flex flex-col gap-3 sm:flex-row sm:items-center">
+          <button id="article-edit-submit" class="bibliography-button-primary px-5 py-2.5 font-bold" type="submit" disabled={Boolean(turnstileSiteKey)}>
+            Odoslať návrh opravy
+          </button>
+          <p id="article-edit-status" class="text-sm text-belly-dimgray" role="status" aria-live="polite"></p>
+        </div>
+      </form>
+    </main>
+  </div>
+
+  <script id="article-edit-original-data" type="application/json" set:html={jsonScript(editableArticle)}></script>
+  <script>
+    const form = document.getElementById('article-edit-form');
+    const fieldset = document.getElementById('article-edit-fieldset');
+    const submitButton = document.getElementById('article-edit-submit');
+    const status = document.getElementById('article-edit-status');
+    const gate = document.getElementById('article-edit-gate');
+    const tokenInput = document.getElementById('article-edit-turnstile-token');
+    const diffPreview = document.getElementById('article-edit-diff-preview');
+    const diffCount = document.getElementById('article-edit-diff-count');
+    const originalInput = document.getElementById('article-edit-original');
+    const proposedInput = document.getElementById('article-edit-proposed');
+    const changedFieldsInput = document.getElementById('article-edit-changed-fields');
+    const originalArticle = JSON.parse(document.getElementById('article-edit-original-data').textContent || '{}');
+    const editableFields = [
+      'title',
+      'authors',
+      'journal_id',
+      'journal_title',
+      'journal_short_title',
+      'year',
+      'volume',
+      'issue',
+      'pages',
+      'abstract',
+      'tags',
+      'caves',
+      'groups',
+      'has_map_plan',
+      'pdf_url',
+      'pdf_page_start',
+      'pdf_page_end'
+    ];
+
+    function setStatus(message, isError = false) {
+      status.textContent = message;
+      status.classList.toggle('text-belly-firebrick', isError);
+      status.classList.toggle('text-belly-dimgray', !isError);
+    }
+
+    function splitLines(value) {
+      return String(value || '')
+        .split('\n')
+        .map((item) => item.trim())
+        .filter(Boolean);
+    }
+
+    function parseIntegerField(value) {
+      const text = String(value || '').trim();
+      if (!text) return null;
+      const parsed = Number.parseInt(text, 10);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function collectProposedArticle() {
+      const data = new FormData(form);
+      const journalSelect = form.elements.journal_id;
+      const selectedJournal = journalSelect?.selectedOptions?.[0];
+      if (selectedJournal) {
+        form.elements.journal_title.value = selectedJournal.dataset.title || form.elements.journal_title.value;
+      }
+      return {
+        title: String(data.get('title') || '').trim(),
+        authors: splitLines(data.get('authors')),
+        journal_id: String(data.get('journal_id') || '').trim(),
+        journal_title: String(form.elements.journal_title.value || '').trim(),
+        journal_short_title: selectedJournal?.dataset.shortTitle || '',
+        year: parseIntegerField(data.get('year')),
+        volume: String(data.get('volume') || '').trim(),
+        issue: String(data.get('issue') || '').trim(),
+        pages: String(data.get('pages') || '').trim(),
+        abstract: String(data.get('abstract') || '').trim(),
+        tags: splitLines(data.get('tags')),
+        caves: splitLines(data.get('caves')),
+        groups: splitLines(data.get('groups')),
+        has_map_plan: Boolean(data.get('has_map_plan')),
+        pdf_url: String(data.get('pdf_url') || '').trim(),
+        pdf_page_start: parseIntegerField(data.get('pdf_page_start')),
+        pdf_page_end: parseIntegerField(data.get('pdf_page_end')),
+      };
+    }
+
+    function sameValue(left, right) {
+      return JSON.stringify(left) === JSON.stringify(right);
+    }
+
+    function buildDiff(proposed) {
+      return editableFields
+        .filter((field) => !sameValue(originalArticle[field], proposed[field]))
+        .map((field) => ({ field, original: originalArticle[field], proposed: proposed[field] }));
+    }
+
+    function refreshDiffPreview() {
+      const proposed = collectProposedArticle();
+      const diff = buildDiff(proposed);
+      originalInput.value = JSON.stringify(originalArticle);
+      proposedInput.value = JSON.stringify(proposed);
+      changedFieldsInput.value = JSON.stringify(diff.map((item) => item.field));
+      diffCount.textContent = diff.length === 1 ? '1 zmena' : `${diff.length} zmien`;
+      diffPreview.textContent = diff.length ? JSON.stringify(diff, null, 2) : 'Zatiaľ nie je zmenené žiadne pole.';
+      return { proposed, diff };
+    }
+
+    function unlockForm(token) {
+      tokenInput.value = token || '';
+      form.hidden = false;
+      fieldset.disabled = false;
+      submitButton.disabled = false;
+      gate.classList.add('article-edit-gate-verified');
+      gate.querySelector('p').textContent = 'Overenie prebehlo úspešne. Formulár je odomknutý a odoslanie bude ešte raz overené na serveri.';
+      setStatus('Formulár je odomknutý.');
+      refreshDiffPreview();
+    }
+
+    function lockAfterTokenFailure() {
+      tokenInput.value = '';
+      submitButton.disabled = true;
+      setStatus('Antispam token treba obnoviť. Zopakuj Turnstile overenie.', true);
+      window.turnstile?.reset?.();
+    }
+
+    window.addEventListener('article-edit-turnstile-success', (event) => {
+      unlockForm(event.detail?.token || window.__articleEditTurnstileToken || '');
+    });
+    if (window.__articleEditTurnstileToken) {
+      unlockForm(window.__articleEditTurnstileToken);
+    }
+
+    if (form?.dataset.locked === 'missing-key') {
+      form.hidden = false;
+      fieldset.disabled = true;
+      submitButton.disabled = true;
+      setStatus('Editačný režim čaká na produkčný Turnstile kľúč.', true);
+    }
+
+    form?.addEventListener('input', refreshDiffPreview);
+    form?.addEventListener('change', refreshDiffPreview);
+
+    form?.addEventListener('submit', async (event) => {
+      event.preventDefault();
+      const { diff } = refreshDiffPreview();
+      const note = String(new FormData(form).get('message') || '').trim();
+      if (!tokenInput.value) {
+        setStatus('Najprv prejdi antispam overením.', true);
+        return;
+      }
+      if (!diff.length) {
+        setStatus('Nie je zmenené žiadne pole článku.', true);
+        return;
+      }
+      if (note.length < 10) {
+        setStatus('Poznámka k oprave je povinná.', true);
+        return;
+      }
+
+      submitButton.disabled = true;
+      setStatus('Odosielam návrh opravy...');
+      const payload = Object.fromEntries(new FormData(form).entries());
+      payload.changedFields = changedFieldsInput.value;
+
+      try {
+        const response = await fetch(form.dataset.endpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload),
+        });
+        const result = await response.json().catch(() => ({}));
+        if (!response.ok || !result.ok) {
+          throw new Error(result.error || 'Návrh opravy sa nepodarilo odoslať.');
+        }
+        setStatus(result.issueUrl ? `Odoslané: ${result.issueUrl}` : 'Odoslané. Návrh čaká na ručné schválenie.');
+      } catch (error) {
+        setStatus(error.message || 'Návrh opravy sa nepodarilo odoslať.', true);
+        lockAfterTokenFailure();
+      } finally {
+        if (tokenInput.value) submitButton.disabled = false;
+      }
+    });
+  </script>
+</Layout>

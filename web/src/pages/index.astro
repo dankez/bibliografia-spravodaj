@@ -2,17 +2,8 @@
 import Layout from '../layouts/Layout.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import articlesData from '../data/articles.json';
-import cavesData from '../data/caves.json';
 
 const uiArticlesData = articlesData;
-const caveReportLookup = Object.fromEntries(
-  cavesData.flatMap((cave) =>
-    [cave.name, ...(cave.aliases || [])]
-      .filter(Boolean)
-      .map((name) => [String(name), { name: cave.name, slug: cave.slug }])
-  )
-);
-const caveReportLookupJson = JSON.stringify(caveReportLookup).replace(/</g, '\\u003c');
 const DEFAULT_JOURNAL_ID = 'spravodaj_sss';
 const DEFAULT_JOURNAL_TITLE = 'Spravodaj Slovenskej speleologickej spoločnosti';
 const DEFAULT_JOURNAL_SHORT_TITLE = 'Spravodaj SSS';
@@ -376,7 +367,6 @@ const bibliographyExportMenus = [
     </main>
   </div>
 
-  <script id="cave-report-lookup" type="application/json" set:html={caveReportLookupJson}></script>
   <script>
     import MiniSearch from 'minisearch';
 
@@ -395,21 +385,12 @@ const bibliographyExportMenus = [
       return isGenericImportAbstract(abstract) ? '' : abstract;
     }
 
-    function loadCaveReportLookup() {
-      try {
-        return JSON.parse(document.getElementById('cave-report-lookup')?.textContent || '{}');
-      } catch {
-        return {};
-      }
-    }
-
     async function loadArticlesData() {
       const response = await fetch(ARTICLES_DATA_URL);
       if (!response.ok) throw new Error(`Articles data HTTP ${response.status}`);
       return response.json();
     }
 
-    const caveReportLookup = loadCaveReportLookup();
     const articlesRaw = await loadArticlesData();
     const articles = articlesRaw.map((article) => ({ ...article, abstract: displayAbstract(article), year_str: String(article.year) }));
     const articlesById = new Map(articles.map((article) => [article.id, article]));
@@ -815,25 +796,8 @@ const bibliographyExportMenus = [
       return element;
     }
 
-    function primaryCaveForArticle(article) {
-      const caveNames = Array.isArray(article.caves) ? article.caves : [];
-      for (const caveName of caveNames) {
-        const match = caveReportLookup[String(caveName)];
-        if (match) return match;
-      }
-      return caveNames.length ? { name: String(caveNames[0]), slug: '' } : null;
-    }
-
     function articleErrorReportUrl(article) {
-      const params = new URLSearchParams({
-        article: String(article.id),
-        title: article.title,
-        url: `/clanky/${article.id}/`,
-      });
-      const cave = primaryCaveForArticle(article);
-      if (cave?.name) params.set('caveName', cave.name);
-      if (cave?.slug) params.set('cave', cave.slug);
-      return `/nahlasit-chybu/?${params.toString()}`;
+      return `/clanky/${article.id}/edit/`;
     }
 
     function clearSelectedArticle() {

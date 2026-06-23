@@ -33,14 +33,7 @@ const formatAuthorsDisplay = (authors) => {
 const caveDetailUrl = `/jaskyne/${cave.slug}/`;
 const smopajNumberReportUrl = `/nahlasit-chybu/?type=smopaj_number&cave=${encodeURIComponent(cave.slug)}&caveName=${encodeURIComponent(cave.name)}&url=${encodeURIComponent(caveDetailUrl)}`;
 const articleReportUrl = (article) => {
-  const params = new URLSearchParams({
-    article: String(article.id),
-    title: article.title,
-    url: article.detail_url,
-    caveName: cave.name,
-    cave: cave.slug,
-  });
-  return `/nahlasit-chybu/?${params.toString()}`;
+  return `/clanky/${article.id}/edit/`;
 };
 ---
 
