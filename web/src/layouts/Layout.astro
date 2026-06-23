@@ -31,7 +31,7 @@ const releaseLabel = `v${packageInfo.version}-beta.${releaseDate}+${releaseSha}`
 				try {
 					const mobile = window.matchMedia('(max-width: 1023px)');
 					const stored = localStorage.getItem('sss-theme');
-					const safeTheme = ['default', 'neutral', 'dark'].includes(stored) ? stored : 'default';
+					const safeTheme = ['default', 'dark'].includes(stored) ? stored : 'default';
 					const applyTheme = () => {
 						document.documentElement.dataset.theme = mobile.matches && safeTheme === 'dark' ? 'default' : safeTheme;
 					};
