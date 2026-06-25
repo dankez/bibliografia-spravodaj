@@ -27,3 +27,11 @@ def test_local_errata_do_not_interpolate_user_text_with_inner_html():
     assert "row.innerHTML" not in render_errata
     assert "${item.text}" not in render_errata
     assert "appendTextElement(row" in render_errata
+
+
+def test_admin_errata_page_does_not_render_issue_text_with_inner_html():
+    source = (ROOT / "web/src/pages/admin/opravy.astro").read_text(encoding="utf-8")
+
+    assert "innerHTML" not in source
+    assert "textContent" in source
+    assert "document.createTextNode" in source

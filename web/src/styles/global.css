@@ -1529,6 +1529,134 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   font-size: 0.82rem;
 }
 
+.admin-errata-layout {
+  display: grid;
+  grid-template-columns: minmax(280px, 34%) minmax(0, 1fr);
+  gap: 1rem;
+  align-items: start;
+}
+
+.admin-errata-list,
+.admin-errata-detail {
+  border-radius: var(--sss-radius-lg);
+  background: rgb(var(--sss-card));
+  box-shadow: var(--sss-card-shadow);
+}
+
+.admin-errata-list {
+  position: sticky;
+  top: 1rem;
+  max-height: calc(100vh - 2rem);
+  overflow: hidden;
+}
+
+.admin-errata-list-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  border-bottom: 1px solid rgb(var(--sss-darkgray));
+  padding: 1rem;
+}
+
+.admin-errata-items {
+  max-height: min(720px, calc(100vh - 8rem));
+  overflow-y: auto;
+}
+
+.admin-errata-item {
+  display: grid;
+  width: 100%;
+  gap: 0.35rem;
+  border-bottom: 1px solid rgb(var(--sss-darkgray));
+  color: rgb(var(--sss-black));
+  padding: 0.9rem 1rem;
+  text-align: left;
+  transition: background-color 150ms cubic-bezier(0.2, 0, 0, 1), box-shadow 150ms cubic-bezier(0.2, 0, 0, 1);
+}
+
+.admin-errata-item:hover,
+.admin-errata-item.is-selected {
+  background: rgb(var(--sss-surface-muted));
+}
+
+.admin-errata-item.is-selected {
+  box-shadow: inset 3px 0 0 rgb(var(--sss-firebrick));
+}
+
+.admin-errata-item-kicker,
+.admin-errata-item-meta {
+  color: rgb(var(--sss-dimgray));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+}
+
+.admin-errata-detail {
+  min-height: 360px;
+  padding: 1.1rem;
+}
+
+.admin-errata-empty {
+  display: grid;
+  min-height: 320px;
+  place-items: center;
+  color: rgb(var(--sss-dimgray));
+  font-size: 0.95rem;
+  text-align: center;
+}
+
+.admin-diff-table-wrap {
+  overflow-x: auto;
+}
+
+.admin-diff-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.82rem;
+}
+
+.admin-diff-table th,
+.admin-diff-table td {
+  vertical-align: top;
+  border: 1px solid rgb(var(--sss-darkgray));
+  padding: 0.65rem;
+  text-align: left;
+}
+
+.admin-diff-table thead th {
+  background: rgb(var(--sss-surface-muted));
+  color: rgb(var(--sss-firebrick));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.admin-diff-table tbody th {
+  width: 10rem;
+  color: rgb(var(--sss-black-brown));
+  font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", monospace;
+  font-size: 0.72rem;
+}
+
+.admin-diff-table pre {
+  margin: 0;
+  max-width: 34rem;
+  white-space: pre-wrap;
+  word-break: break-word;
+}
+
+.admin-approve-result {
+  border: 1px solid rgb(28 135 84 / 0.35);
+  border-radius: var(--sss-radius-lg);
+  background: rgb(28 135 84 / 0.08);
+  padding: 1rem;
+}
+
 .year-range-control {
   position: relative;
   min-height: 2.85rem;
@@ -2021,6 +2149,19 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 
   footer {
     padding-inline: 1rem;
+  }
+
+  .admin-errata-layout {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-errata-list {
+    position: static;
+    max-height: none;
+  }
+
+  .admin-errata-items {
+    max-height: 420px;
   }
 }
 

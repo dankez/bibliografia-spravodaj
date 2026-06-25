@@ -154,6 +154,32 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
     assert "ghp_" not in backend_source
 
 
+def test_admin_errata_page_and_backend_are_token_protected():
+    admin_page = ROOT / "web" / "src" / "pages" / "admin" / "opravy.astro"
+    admin_backend = ROOT / "web" / "functions" / "api" / "admin" / "errata.js"
+
+    assert admin_page.exists()
+    assert admin_backend.exists()
+
+    page_source = admin_page.read_text(encoding="utf-8")
+    backend_source = admin_backend.read_text(encoding="utf-8")
+
+    assert "/api/admin/errata" in page_source
+    assert "noindex, nofollow" in page_source
+    assert "sessionStorage" in page_source
+    assert "Schváliť a vytvoriť PR" in page_source
+    assert "textContent" in page_source
+    assert "innerHTML" not in page_source
+    assert "ADMIN_TOKEN" in backend_source
+    assert "timingSafeEqual" in backend_source
+    assert "GITHUB_TOKEN" in backend_source
+    assert "createPullRequest" in backend_source
+    assert "data/articles_with_urls.json" in backend_source
+    assert "web/src/data/articles.json" in backend_source
+    assert "sk-" not in backend_source
+    assert "ghp_" not in backend_source
+
+
 def test_public_smopaj_cave_register_search_index_contains_official_numbers():
     public_register = ROOT / "web" / "public" / "data" / "smopaj_cave_register_2017_search.json"
 

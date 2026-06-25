@@ -1,0 +1,293 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
+
+const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/errata';
+---
+
+<Layout title="Admin opravy — Digitálna bibliografia SSS">
+  <meta slot="head" name="robots" content="noindex, nofollow" />
+
+  <div class="portal-page min-h-screen text-belly-black">
+    <header class="portal-header border-b border-belly-darkgray">
+      <div class="h-2 bg-belly-firebrick"></div>
+      <div class="mx-auto flex max-w-6xl flex-col gap-4 px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Redakčný režim</p>
+          <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">Admin opravy</h1>
+          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray">
+            Kontrola komunitných errata z GitHub issues. Štruktúrované opravy článkov sa schvaľujú vytvorením pull requestu.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <ThemeSwitcher />
+          <a href="/" class="bibliography-link-button">Hlavný archív</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-6xl px-5 py-6">
+      <section class="portal-toolbar mb-5 border border-belly-darkgray p-4">
+        <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-end">
+          <label class="report-field">
+            <span>Admin token</span>
+            <input id="admin-token" type="password" autocomplete="current-password" placeholder="Zadaj ADMIN_TOKEN z Cloudflare env" />
+          </label>
+          <div class="flex flex-wrap gap-2">
+            <button id="load-errata-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">Načítať opravy</button>
+            <button id="forget-token-btn" class="bibliography-button-secondary px-5 py-2.5 font-bold" type="button">Zabudnúť token</button>
+          </div>
+        </div>
+        <p id="admin-status" class="mt-3 text-sm text-belly-dimgray" role="status" aria-live="polite"></p>
+      </section>
+
+      <section class="admin-errata-layout">
+        <aside class="admin-errata-list border border-belly-darkgray" aria-label="Zoznam otvorených opráv">
+          <div class="admin-errata-list-header">
+            <h2 class="font-display text-xl font-bold text-belly-black-brown">Otvorené hlásenia</h2>
+            <span id="admin-errata-count" class="article-result-badge">0</span>
+          </div>
+          <div id="admin-errata-list" class="admin-errata-items">
+            <p class="p-4 text-sm text-belly-dimgray">Zadaj admin token a načítaj otvorené issues.</p>
+          </div>
+        </aside>
+
+        <section class="admin-errata-detail border border-belly-darkgray" aria-label="Detail opravy">
+          <div id="admin-errata-detail-empty" class="admin-errata-empty">
+            Vyber hlásenie zo zoznamu.
+          </div>
+          <article id="admin-errata-detail" hidden>
+            <div class="article-result-meta">
+              <span id="detail-issue-number"></span>
+              <span class="separator">/</span>
+              <span id="detail-issue-type"></span>
+              <span class="separator">/</span>
+              <span id="detail-issue-date"></span>
+            </div>
+            <h2 id="detail-issue-title" class="mt-2 font-display text-2xl font-bold leading-tight text-belly-black-brown"></h2>
+            <p id="detail-issue-author" class="mt-2 text-sm font-semibold text-belly-dimgray-earth"></p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              <a id="detail-issue-link" href="#" target="_blank" rel="noreferrer" class="bibliography-link-button">Otvoriť issue</a>
+              <button id="approve-issue-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">Schváliť a vytvoriť PR</button>
+            </div>
+
+            <section id="detail-article-edit" class="mt-5">
+              <h3 class="bibliography-section-title">Porovnanie zmien</h3>
+              <div class="admin-diff-table-wrap mt-3">
+                <table class="admin-diff-table">
+                  <thead>
+                    <tr>
+                      <th>Pole</th>
+                      <th>Pôvodné</th>
+                      <th>Navrhované</th>
+                    </tr>
+                  </thead>
+                  <tbody id="admin-diff-body"></tbody>
+                </table>
+              </div>
+            </section>
+
+            <section id="detail-manual" class="article-abstract-box mt-5 p-4" hidden>
+              Toto hlásenie nemá štruktúrovaný JSON diff. Otvor issue na GitHube a vybav ho ručne.
+            </section>
+
+            <section id="detail-result" class="admin-approve-result mt-5" hidden>
+              <h3 class="bibliography-section-title">Výsledok schválenia</h3>
+              <p id="detail-result-text" class="mt-2 text-sm text-belly-dimgray"></p>
+              <a id="detail-pr-link" href="#" target="_blank" rel="noreferrer" class="bibliography-link-button mt-3">Otvoriť PR</a>
+            </section>
+          </article>
+        </section>
+      </section>
+    </main>
+  </div>
+
+  <script define:vars={{ endpoint }}>
+    const tokenInput = document.getElementById('admin-token');
+    const loadButton = document.getElementById('load-errata-btn');
+    const forgetButton = document.getElementById('forget-token-btn');
+    const status = document.getElementById('admin-status');
+    const countBadge = document.getElementById('admin-errata-count');
+    const list = document.getElementById('admin-errata-list');
+    const emptyDetail = document.getElementById('admin-errata-detail-empty');
+    const detail = document.getElementById('admin-errata-detail');
+    const approveButton = document.getElementById('approve-issue-btn');
+    const diffBody = document.getElementById('admin-diff-body');
+    const articleEditSection = document.getElementById('detail-article-edit');
+    const manualSection = document.getElementById('detail-manual');
+    const resultSection = document.getElementById('detail-result');
+    const resultText = document.getElementById('detail-result-text');
+    const prLink = document.getElementById('detail-pr-link');
+    let issues = [];
+    let selectedIssue = null;
+
+    tokenInput.value = sessionStorage.getItem('sss-admin-token') || '';
+
+    function setStatus(message, isError = false) {
+      status.textContent = message;
+      status.classList.toggle('text-belly-firebrick', isError);
+      status.classList.toggle('text-belly-dimgray', !isError);
+    }
+
+    function textNode(value) {
+      return document.createTextNode(String(value ?? ''));
+    }
+
+    function formatValue(value) {
+      if (Array.isArray(value)) return value.length ? value.join('\n') : '—';
+      if (value === true) return 'áno';
+      if (value === false) return 'nie';
+      if (value === null || value === undefined || value === '') return '—';
+      if (typeof value === 'object') return JSON.stringify(value, null, 2);
+      return String(value);
+    }
+
+    function formatDate(value) {
+      if (!value) return 'neuvedené';
+      try {
+        return new Intl.DateTimeFormat('sk-SK', { dateStyle: 'medium', timeStyle: 'short' }).format(new Date(value));
+      } catch {
+        return value;
+      }
+    }
+
+    function appendText(parent, tag, className, value) {
+      const element = document.createElement(tag);
+      if (className) element.className = className;
+      element.append(textNode(value));
+      parent.append(element);
+      return element;
+    }
+
+    function adminHeaders() {
+      const token = tokenInput.value.trim();
+      return {
+        Authorization: `Bearer ${token}`,
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      };
+    }
+
+    function renderIssueList() {
+      list.replaceChildren();
+      countBadge.textContent = String(issues.length);
+      if (!issues.length) {
+        appendText(list, 'p', 'p-4 text-sm text-belly-dimgray', 'Nie sú otvorené errata issues.');
+        return;
+      }
+      const fragment = document.createDocumentFragment();
+      issues.forEach((issue) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.className = 'admin-errata-item';
+        button.dataset.issueNumber = String(issue.number);
+        appendText(button, 'span', 'admin-errata-item-kicker', `#${issue.number} · ${issue.type === 'article_edit' ? 'edit článku' : 'ručné'}`);
+        appendText(button, 'strong', '', issue.title);
+        appendText(button, 'span', 'admin-errata-item-meta', `${formatDate(issue.created_at)} · ${issue.author || 'neznámy autor'}`);
+        button.addEventListener('click', () => selectIssue(issue.number));
+        fragment.append(button);
+      });
+      list.append(fragment);
+    }
+
+    function renderDiff(issue) {
+      diffBody.replaceChildren();
+      const patch = issue.patch;
+      (patch?.changed_fields || []).forEach((field) => {
+        const row = document.createElement('tr');
+        appendText(row, 'th', '', field);
+        const original = document.createElement('td');
+        const originalPre = document.createElement('pre');
+        originalPre.append(textNode(formatValue(patch.original?.[field])));
+        original.append(originalPre);
+        const proposed = document.createElement('td');
+        const proposedPre = document.createElement('pre');
+        proposedPre.append(textNode(formatValue(patch.proposed?.[field])));
+        proposed.append(proposedPre);
+        row.append(original, proposed);
+        diffBody.append(row);
+      });
+    }
+
+    function selectIssue(issueNumber) {
+      selectedIssue = issues.find((issue) => Number(issue.number) === Number(issueNumber));
+      if (!selectedIssue) return;
+      list.querySelectorAll('.admin-errata-item').forEach((item) => {
+        item.classList.toggle('is-selected', item.dataset.issueNumber === String(issueNumber));
+      });
+      emptyDetail.hidden = true;
+      detail.hidden = false;
+      resultSection.hidden = true;
+      document.getElementById('detail-issue-number').textContent = `Issue #${selectedIssue.number}`;
+      document.getElementById('detail-issue-type').textContent = selectedIssue.type === 'article_edit' ? 'edit článku' : 'ručné hlásenie';
+      document.getElementById('detail-issue-date').textContent = formatDate(selectedIssue.created_at);
+      document.getElementById('detail-issue-title').textContent = selectedIssue.title;
+      document.getElementById('detail-issue-author').textContent = selectedIssue.author ? `Autor hlásenia: ${selectedIssue.author}` : 'Autor hlásenia: neuvedený';
+      const issueLink = document.getElementById('detail-issue-link');
+      issueLink.href = selectedIssue.url || '#';
+      articleEditSection.hidden = selectedIssue.type !== 'article_edit';
+      manualSection.hidden = selectedIssue.type === 'article_edit';
+      approveButton.hidden = selectedIssue.type !== 'article_edit';
+      approveButton.disabled = selectedIssue.type !== 'article_edit';
+      if (selectedIssue.type === 'article_edit') renderDiff(selectedIssue);
+    }
+
+    async function loadIssues() {
+      const token = tokenInput.value.trim();
+      if (!token) {
+        setStatus('Zadaj admin token.', true);
+        return;
+      }
+      sessionStorage.setItem('sss-admin-token', token);
+      loadButton.disabled = true;
+      setStatus('Načítavam GitHub issues...');
+      try {
+        const response = await fetch(endpoint, { headers: adminHeaders() });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.ok) throw new Error(payload.error || 'Issues sa nepodarilo načítať.');
+        issues = Array.isArray(payload.issues) ? payload.issues : [];
+        renderIssueList();
+        emptyDetail.hidden = false;
+        detail.hidden = true;
+        setStatus(`Načítané: ${issues.length} otvorených hlásení.`);
+      } catch (error) {
+        setStatus(error.message || 'Issues sa nepodarilo načítať.', true);
+      } finally {
+        loadButton.disabled = false;
+      }
+    }
+
+    async function approveSelectedIssue() {
+      if (!selectedIssue || selectedIssue.type !== 'article_edit') return;
+      approveButton.disabled = true;
+      setStatus(`Vytváram PR pre issue #${selectedIssue.number}...`);
+      resultSection.hidden = true;
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: adminHeaders(),
+          body: JSON.stringify({ issueNumber: selectedIssue.number }),
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.ok) throw new Error(payload.error || 'PR sa nepodarilo vytvoriť.');
+        resultText.textContent = `Vytvorený PR z branchu ${payload.pullRequest?.branch || 'neuvedené'}.`;
+        prLink.href = payload.pullRequest?.pullUrl || '#';
+        resultSection.hidden = false;
+        setStatus(`PR vytvorený: ${payload.pullRequest?.pullUrl || ''}`);
+      } catch (error) {
+        setStatus(error.message || 'Schválenie zlyhalo.', true);
+      } finally {
+        approveButton.disabled = false;
+      }
+    }
+
+    loadButton.addEventListener('click', loadIssues);
+    forgetButton.addEventListener('click', () => {
+      sessionStorage.removeItem('sss-admin-token');
+      tokenInput.value = '';
+      setStatus('Token bol odstránený zo sessionStorage.');
+    });
+    approveButton.addEventListener('click', approveSelectedIssue);
+    if (tokenInput.value) loadIssues();
+  </script>
+</Layout>
