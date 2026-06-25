@@ -994,11 +994,13 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 .bibliography-cover-link {
   display: block;
   margin-inline: auto;
-  width: min(100%, 240px);
+  width: min(100%, 232px);
+  aspect-ratio: 640 / 938;
   border-radius: var(--sss-radius-md);
   background: rgb(var(--sss-surface-muted));
   box-shadow: var(--sss-card-shadow);
   text-decoration: none;
+  overflow: hidden;
   transition-property: box-shadow, transform;
   transition-duration: 160ms;
   transition-timing-function: cubic-bezier(0.2, 0, 0, 1);
@@ -1021,7 +1023,7 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 .bibliography-cover-link img {
   display: block;
   width: 100%;
-  max-height: 340px;
+  height: 100%;
   border-radius: inherit;
   object-fit: contain;
   outline: 1px solid rgb(var(--sss-shadow-rgb) / 0.08);

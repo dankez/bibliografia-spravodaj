@@ -97,11 +97,14 @@ def test_brand_assets_are_used_for_home_banner_and_favicon():
     layout_source = (ROOT / "web" / "src" / "layouts" / "Layout.astro").read_text(encoding="utf-8")
     css_source = (ROOT / "web" / "src" / "styles" / "global.css").read_text(encoding="utf-8")
 
+    assert (public_dir / "brand" / "bibliografia-banner-ui.webp").exists()
     assert (public_dir / "brand" / "bibliografia-banner.png").exists()
+    assert (public_dir / "brand" / "bibliografia-logo-ui.webp").exists()
+    assert (public_dir / "brand" / "bibliografia-icon.png").exists()
     assert (public_dir / "brand" / "bibliografia-logo.png").exists()
-    assert "/brand/bibliografia-banner.png" in home_source
-    assert "/brand/bibliografia-logo.png" in home_source
-    assert "/brand/bibliografia-logo.png" in layout_source
+    assert "/brand/bibliografia-banner-ui.webp" in home_source
+    assert "/brand/bibliografia-logo-ui.webp" in home_source
+    assert "/brand/bibliografia-icon.png" in layout_source
     assert "Autor:" in layout_source
     assert "DankeZ" in layout_source
     assert "https://github.com/dankez" in layout_source

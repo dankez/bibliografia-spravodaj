@@ -72,8 +72,6 @@ const bibliographyExportMenus = [
 ---
 
 <Layout title="Spravodaj SSS — Slovenská speleologická bibliografia">
-  <script src="https://d3js.org/d3.v7.min.js" is:inline></script>
-
   <div class="bibliography-app flex min-h-screen flex-col text-belly-black">
     <header class="bibliography-header border-b border-belly-darkgray shadow-sm">
       <div class="h-2 bg-belly-firebrick"></div>
@@ -81,11 +79,11 @@ const bibliographyExportMenus = [
         <div class="bibliography-header-top flex items-start justify-between gap-3">
           <a href={archiveHomeHref} class="bibliography-brand" aria-label="Digitálna bibliografia Slovenská speleologická spoločnosť">
             <img
-              src="/brand/bibliografia-banner.png"
+              src="/brand/bibliografia-banner-ui.webp"
               alt="Digitálna bibliografia Slovenská speleologická spoločnosť"
               class="bibliography-brand-banner"
-              width="1761"
-              height="482"
+              width="640"
+              height="175"
               fetchpriority="high"
             />
             <img
@@ -397,7 +395,7 @@ const bibliographyExportMenus = [
                 </a>
                 <figure id="pdf-cover-box" class="bibliography-cover-box mt-5 hidden">
                   <a id="pdf-cover-link" href="#" target="_blank" rel="noreferrer" class="bibliography-cover-link" aria-label="Otvoriť PDF dokument">
-                    <img id="pdf-cover-image" alt="" loading="lazy" decoding="async" />
+                    <img id="pdf-cover-image" alt="" width="640" height="938" loading="lazy" decoding="async" />
                   </a>
                   <figcaption id="pdf-cover-caption" class="mt-2 text-center text-[11px] font-mono uppercase text-belly-lightslategray">
                     Obálka čísla
@@ -539,6 +537,7 @@ const bibliographyExportMenus = [
     let fulltextLoadState = 'idle';
     let fulltextStats = null;
     let fulltextBatchProgress = null;
+    let d3LoadPromise = null;
     const fulltextLoadedShards = new Set();
     const fulltextLoadingShards = new Map();
     const fulltextLoadedArticleIds = new Set();
@@ -1121,6 +1120,13 @@ const bibliographyExportMenus = [
           pdfCoverImage.dataset.coverCandidates = coverCandidates.join('|');
           pdfCoverImage.dataset.coverIndex = '0';
           pdfCoverImage.alt = `Obálka ${articleJournalLabel(article)} ${article.year}, číslo ${article.issue}`;
+          if (isMobileViewport()) {
+            pdfCoverImage.loading = 'lazy';
+            pdfCoverImage.fetchPriority = 'low';
+          } else {
+            pdfCoverImage.loading = 'eager';
+            pdfCoverImage.fetchPriority = 'high';
+          }
           pdfCoverImage.src = coverCandidates[0];
         } else {
           pdfCoverBox.classList.add('hidden');
@@ -1375,11 +1381,59 @@ ${values}
       URL.revokeObjectURL(url);
     }
 
+    function loadD3() {
+      if (window.d3) return Promise.resolve(window.d3);
+      if (d3LoadPromise) return d3LoadPromise;
+
+      d3LoadPromise = new Promise((resolve, reject) => {
+        const script = document.createElement('script');
+        script.src = 'https://d3js.org/d3.v7.min.js';
+        script.async = true;
+        script.onload = () => resolve(window.d3);
+        script.onerror = () => reject(new Error('D3 sa nepodarilo načítať.'));
+        document.head.appendChild(script);
+      });
+      return d3LoadPromise;
+    }
+
+    function setChartLoadingState() {
+      ['timeline-chart', 'authors-chart'].forEach((id) => {
+        const container = byId(id);
+        if (!container.dataset.loading) {
+          container.dataset.loading = 'true';
+          container.textContent = 'Grafy sa načítavajú...';
+        }
+      });
+    }
+
+    function clearChartLoadingState() {
+      ['timeline-chart', 'authors-chart'].forEach((id) => {
+        delete byId(id).dataset.loading;
+      });
+    }
+
     function renderCharts() {
-      const d3 = (window).d3;
-      if (!d3) return;
-      renderTimeline(d3);
-      renderAuthors(d3);
+      if (window.d3) {
+        clearChartLoadingState();
+        renderTimeline(window.d3);
+        renderAuthors(window.d3);
+        return;
+      }
+
+      setChartLoadingState();
+      loadD3()
+        .then((d3) => {
+          clearChartLoadingState();
+          if (state.activeTab === 'analytics') {
+            renderTimeline(d3);
+            renderAuthors(d3);
+          }
+        })
+        .catch(() => {
+          ['timeline-chart', 'authors-chart'].forEach((id) => {
+            byId(id).textContent = 'Grafy sa nepodarilo načítať.';
+          });
+        });
     }
 
     function renderTimeline(d3) {

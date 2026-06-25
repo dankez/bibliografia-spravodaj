@@ -51,3 +51,32 @@ def test_mobile_brand_uses_small_transparent_assets():
     assert icon.exists()
     assert mobile_logo.stat().st_size < 32 * 1024
     assert icon.stat().st_size < 32 * 1024
+
+
+def test_brand_banner_uses_small_webp_asset():
+    index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
+    banner = ROOT / "web/public/brand/bibliografia-banner-ui.webp"
+
+    assert 'src="/brand/bibliografia-banner-ui.webp"' in index_page
+    assert 'src="/brand/bibliografia-banner.png"' not in index_page
+    assert banner.exists()
+    assert banner.stat().st_size < 32 * 1024
+
+
+def test_d3_is_lazy_loaded_for_analytics_only():
+    index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
+
+    assert '<script src="https://d3js.org/d3.v7.min.js"' not in index_page
+    assert "function loadD3()" in index_page
+    assert "script.async = true" in index_page
+    assert "if (tab === 'analytics') renderCharts();" in index_page
+
+
+def test_pdf_cover_reserves_layout_space():
+    index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
+    stylesheet = (ROOT / "web/src/styles/global.css").read_text(encoding="utf-8")
+
+    assert 'id="pdf-cover-image" alt="" width="640" height="938"' in index_page
+    assert "aspect-ratio: 640 / 938" in stylesheet
+    assert "pdfCoverImage.fetchPriority = 'high'" in index_page
+    assert "pdfCoverImage.fetchPriority = 'low'" in index_page
