@@ -733,6 +733,202 @@ def render_markdown_line(line: str) -> str:
     return f"<p{css_class}>{anchor}{escaped}</p>"
 
 
+def render_print_heading(level: int, title: str, css_class: str | None = None) -> str:
+    class_attr = f' class="{html.escape(css_class, quote=True)}"' if css_class else ""
+    return f"<h{level}{class_attr}>{html.escape(title)}</h{level}>"
+
+
+def strip_print_markdown_markup(text: str) -> str:
+    text = re.sub(r'^<span id="[A-Za-z0-9_-]+"></span>', "", text).strip()
+    text = re.sub(r"!\[[^\]]*\]\([^)]+\)", "", text).strip()
+    text = re.sub(rf"\s*\[{re.escape(ONLINE_PDF_LABEL)}\]\([^)]+\)", "", text)
+    text = re.sub(r"\[([^\]]+)\]\([^)]+\)", r"\1", text)
+    return text.strip()
+
+
+def render_print_markdown_line(line: str) -> str:
+    raw_text = line.rstrip()
+    if not raw_text:
+        return ""
+    if raw_text in {EXPORT_BRAND_MARKDOWN, EXPORT_LOGO_MARKDOWN, f"_Autor: [DankeZ]({AUTHOR_URL})_", f"_{AUTHOR_SIGNATURE}_"}:
+        return ""
+    if raw_text.startswith("# "):
+        return render_print_heading(1, strip_print_markdown_markup(raw_text[2:]))
+    if raw_text.startswith("## "):
+        return render_print_heading(2, strip_print_markdown_markup(raw_text[3:]))
+    if raw_text.startswith("### "):
+        title = strip_print_markdown_markup(raw_text[4:])
+        css_class = None
+        if title.startswith("Ročník "):
+            css_class = "volume-heading"
+        elif title in set(JOURNAL_TITLE_FALLBACKS.values()):
+            css_class = "journal-heading"
+        return render_print_heading(3, title, css_class=css_class)
+    if raw_text.startswith("#### "):
+        title = strip_print_markdown_markup(raw_text[5:])
+        css_class = "issue-heading" if title.startswith("Číslo ") else None
+        return render_print_heading(4, title, css_class=css_class)
+
+    css_classes = []
+    if raw_text.startswith("  - "):
+        css_classes.append("toc-subitem")
+    text = strip_print_markdown_markup(raw_text)
+    if not text or text == "Online:":
+        return ""
+    if re.match(r"^\*\*\d+\. ", text):
+        css_classes.append("article-title")
+    if re.match(r"^\*\*(AUTOR|STRANY|POZNÁMKY):\*\*", text):
+        css_classes.append("article-meta")
+
+    escaped = html.escape(text)
+    escaped = re.sub(
+        r"\*\*([^*]+)\*\*",
+        lambda match: f"<strong>{match.group(1)}</strong>",
+        escaped,
+    )
+    css_class = f' class="{" ".join(css_classes)}"' if css_classes else ""
+    return f"<p{css_class}>{escaped}</p>"
+
+
+def render_print_html_document(markdown_text: str, title: str) -> str:
+    body = "\n".join(
+        rendered for line in markdown_text.splitlines() if (rendered := render_print_markdown_line(line))
+    )
+    return f"""<!doctype html>
+<html lang="sk">
+<head>
+  <meta charset="utf-8">
+  <title>{html.escape(title)} - tlač</title>
+  <style>
+    @page {{ size: A4; margin: 14mm 13mm 16mm; }}
+    html {{
+      background: #fff;
+    }}
+    body {{
+      background: #fff;
+      color: #111;
+      font-family: "DejaVu Serif", Georgia, "Times New Roman", serif;
+      font-size: 11pt;
+      line-height: 1.48;
+      margin: 0 auto;
+      max-width: 190mm;
+    }}
+    @media screen {{
+      body {{ padding: 12mm; }}
+    }}
+    @media print {{
+      body {{
+        margin: 0;
+        max-width: none;
+        padding: 0;
+      }}
+    }}
+    h1, h2, h3, h4 {{
+      color: #111;
+      font-family: "DejaVu Sans", Arial, sans-serif;
+      font-weight: 700;
+      line-height: 1.22;
+      page-break-after: avoid;
+    }}
+    h1 {{
+      font-size: 20pt;
+      margin: 0 0 11mm;
+    }}
+    h1::after {{
+      content: "Tlačový export bez webových odkazov";
+      display: block;
+      margin-top: 2.5mm;
+      color: #555;
+      font-size: 9pt;
+      font-weight: 400;
+      letter-spacing: 0;
+    }}
+    h2 {{
+      border-top: 0.35mm solid #111;
+      font-size: 15pt;
+      margin: 10mm 0 4mm;
+      padding-top: 3mm;
+    }}
+    h3 {{
+      font-size: 12.5pt;
+      margin: 6mm 0 2.5mm;
+    }}
+    h3.journal-heading {{
+      background: #f2f2f2;
+      border: 0.25mm solid #111;
+      font-size: 13pt;
+      margin-top: 9mm;
+      padding: 2.5mm 3mm;
+      text-transform: uppercase;
+    }}
+    h3.volume-heading {{
+      border-left: 1.8mm solid #111;
+      font-size: 12.5pt;
+      margin-top: 7mm;
+      padding-left: 2.5mm;
+      text-transform: uppercase;
+    }}
+    h4 {{
+      color: #333;
+      font-size: 10.5pt;
+      margin: 3.5mm 0 1.8mm;
+    }}
+    h4.issue-heading {{
+      color: #111;
+      font-size: 10pt;
+      text-transform: uppercase;
+    }}
+    p {{
+      margin: 0 0 2.2mm;
+      orphans: 2;
+      widows: 2;
+    }}
+    p.toc-subitem {{
+      margin-left: 6mm;
+    }}
+    p.article-title {{
+      border-top: 0.18mm solid #999;
+      font-family: "DejaVu Sans", Arial, sans-serif;
+      font-size: 11.4pt;
+      line-height: 1.32;
+      margin: 4mm 0 1mm;
+      padding-top: 2mm;
+      page-break-after: avoid;
+    }}
+    p.article-title strong {{
+      font-weight: 700;
+    }}
+    p.article-meta {{
+      color: #333;
+      font-size: 9.6pt;
+      margin: 0 0 0.8mm 5mm;
+    }}
+    p.article-meta strong {{
+      color: #111;
+      font-family: "DejaVu Sans", Arial, sans-serif;
+      font-size: 8.8pt;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+    }}
+    .print-signature {{
+      border-top: 0.25mm solid #999;
+      color: #555;
+      font-family: "DejaVu Sans", Arial, sans-serif;
+      font-size: 8.5pt;
+      margin-top: 12mm;
+      padding-top: 3mm;
+      page-break-inside: avoid;
+    }}
+  </style>
+</head>
+<body>
+{body}
+<footer class="print-signature">{html.escape(AUTHOR_SIGNATURE)}</footer>
+</body>
+</html>
+"""
+
+
 def render_html_document(markdown_text: str, title: str) -> str:
     body = "\n".join(
         rendered for line in markdown_text.splitlines() if (rendered := render_markdown_line(line))
@@ -1070,6 +1266,7 @@ def write_exports(
     txt_path: Path,
     md_path: Path,
     html_path: Path | None = None,
+    print_html_path: Path | None = None,
     section_pages: dict[str, int] | None = None,
     title: str = DEFAULT_EXPORT_TITLE,
     group_by_journal: bool = False,
@@ -1092,6 +1289,8 @@ def write_exports(
     md_path.write_text(markdown_output, encoding="utf-8")
     if html_path:
         html_path.write_text(render_html_document(markdown_output, title), encoding="utf-8")
+    if print_html_path:
+        print_html_path.write_text(render_print_html_document(markdown_output, title), encoding="utf-8")
     return text_output, markdown_output
 
 
@@ -1104,6 +1303,7 @@ def main() -> int:
     parser.add_argument("--group-by-journal", action="store_true", help="Group article list by journal title.")
     parser.add_argument("--pdf", action="store_true", help="Also create HTML and PDF export using wkhtmltopdf.")
     parser.add_argument("--pdf-engine", default="wkhtmltopdf", help="PDF engine command, defaults to wkhtmltopdf.")
+    parser.add_argument("--print-html", action="store_true", help="Also create black-and-white print HTML without web links.")
     args = parser.parse_args()
 
     articles_path = Path(args.articles)
@@ -1117,6 +1317,7 @@ def main() -> int:
 
     txt_path = output_dir / f"{basename}.txt"
     md_path = output_dir / f"{basename}.md"
+    print_html_path = output_dir / f"{basename}_tlac.html" if args.print_html else None
     if args.pdf:
         html_path = output_dir / f"{basename}.html"
         pdf_path = output_dir / f"{basename}.pdf"
@@ -1132,6 +1333,7 @@ def main() -> int:
             txt_path,
             md_path,
             html_path=html_path,
+            print_html_path=print_html_path,
             section_pages=section_pages,
             title=args.title,
             group_by_journal=args.group_by_journal,
@@ -1146,6 +1348,7 @@ def main() -> int:
                 txt_path,
                 md_path,
                 html_path=html_path,
+                print_html_path=print_html_path,
                 section_pages=section_pages,
                 title=args.title,
                 group_by_journal=args.group_by_journal,
@@ -1176,11 +1379,22 @@ def main() -> int:
         print(f"Wrote {txt_path}")
         print(f"Wrote {md_path}")
         print(f"Wrote {html_path}")
+        if print_html_path:
+            print(f"Wrote {print_html_path}")
         print(f"Wrote {pdf_path}")
     else:
-        write_exports(articles, txt_path, md_path, title=args.title, group_by_journal=args.group_by_journal)
+        write_exports(
+            articles,
+            txt_path,
+            md_path,
+            print_html_path=print_html_path,
+            title=args.title,
+            group_by_journal=args.group_by_journal,
+        )
         print(f"Wrote {txt_path}")
         print(f"Wrote {md_path}")
+        if print_html_path:
+            print(f"Wrote {print_html_path}")
     return 0
 
 

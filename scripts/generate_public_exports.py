@@ -96,6 +96,7 @@ def run_danko_export(
             "--pdf",
             "--pdf-engine",
             pdf_engine,
+            "--print-html",
         ]
         if scope.get("group_by_journal"):
             command.append("--group-by-journal")
@@ -133,6 +134,12 @@ def copy_danko_exports(
             legacy_name = f"{legacy_basename}.{extension}"
             copy_file(source, data_export_dir / legacy_name)
             copy_file(source, web_export_dir / legacy_name)
+    print_html_source = data_export_dir / f"{basename}_tlac.html"
+    copy_file(print_html_source, web_export_dir / print_html_source.name)
+    if legacy_basename := scope.get("legacy_basename"):
+        legacy_print_name = f"{legacy_basename}_tlac.html"
+        copy_file(print_html_source, data_export_dir / legacy_print_name)
+        copy_file(print_html_source, web_export_dir / legacy_print_name)
 
 
 def parse_args() -> argparse.Namespace:

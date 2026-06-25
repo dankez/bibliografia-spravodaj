@@ -68,6 +68,12 @@ const bibliographyExportMenus = [
     download: true,
     items: exportScopes.map((scope) => ({ label: scope.label, href: `/exports/${scope.sqlite}` })),
   },
+  {
+    label: 'TLAČ',
+    icon: 'print',
+    download: false,
+    items: exportScopes.map((scope) => ({ label: scope.label, href: `/exports/${scope.dankoBase}_tlac.html` })),
+  },
 ];
 ---
 
@@ -125,7 +131,16 @@ const bibliographyExportMenus = [
                   <summary
                     class="bibliography-link-button bibliography-export-trigger"
                   >
-                    <span class="bibliography-export-download-icon" aria-hidden="true">↓</span>
+                    {exportMenu.icon === 'print' ? (
+                      <svg class="bibliography-export-printer-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 9V3h12v6" />
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                        <path d="M6 14h12v7H6z" />
+                        <path d="M18 13h.01" />
+                      </svg>
+                    ) : (
+                      <span class="bibliography-export-download-icon" aria-hidden="true">↓</span>
+                    )}
                     <span>{exportMenu.label}</span>
                     <span class="bibliography-export-chevron" aria-hidden="true">⌄</span>
                   </summary>
@@ -150,7 +165,16 @@ const bibliographyExportMenus = [
                   <summary
                     class="bibliography-link-button bibliography-export-trigger"
                   >
-                    <span class="bibliography-export-download-icon" aria-hidden="true">↓</span>
+                    {exportMenu.icon === 'print' ? (
+                      <svg class="bibliography-export-printer-icon" viewBox="0 0 24 24" aria-hidden="true">
+                        <path d="M6 9V3h12v6" />
+                        <path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2" />
+                        <path d="M6 14h12v7H6z" />
+                        <path d="M18 13h.01" />
+                      </svg>
+                    ) : (
+                      <span class="bibliography-export-download-icon" aria-hidden="true">↓</span>
+                    )}
                     <span>{exportMenu.label}</span>
                     <span class="bibliography-export-chevron" aria-hidden="true">⌄</span>
                   </summary>

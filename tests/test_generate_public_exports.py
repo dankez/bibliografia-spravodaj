@@ -35,3 +35,27 @@ def test_scope_articles_uses_spravodaj_default_for_legacy_records():
     assert [article["id"] for article in exporter.scope_articles(articles, scopes["spravodaj_sss"])] == [1]
     assert [article["id"] for article in exporter.scope_articles(articles, scopes["aragonit"])] == [2]
     assert [article["id"] for article in exporter.scope_articles(articles, scopes["slovensky_kras"])] == [3]
+
+
+def test_copy_danko_exports_includes_print_html_and_legacy_names(tmp_path):
+    data_export_dir = tmp_path / "data"
+    web_export_dir = tmp_path / "web"
+    scope = {
+        "basename": "bibliografia_spravodaj_sss_danko",
+        "legacy_basename": "spravodaj_sss_danko",
+    }
+    for extension in ("txt", "md", "html", "pdf"):
+        path = data_export_dir / f"bibliografia_spravodaj_sss_danko.{extension}"
+        path.parent.mkdir(parents=True, exist_ok=True)
+        path.write_text(extension, encoding="utf-8")
+    (data_export_dir / "bibliografia_spravodaj_sss_danko_tlac.html").write_text("print", encoding="utf-8")
+
+    exporter.copy_danko_exports(
+        scope=scope,
+        data_export_dir=data_export_dir,
+        web_export_dir=web_export_dir,
+    )
+
+    assert (web_export_dir / "bibliografia_spravodaj_sss_danko_tlac.html").read_text(encoding="utf-8") == "print"
+    assert (data_export_dir / "spravodaj_sss_danko_tlac.html").read_text(encoding="utf-8") == "print"
+    assert (web_export_dir / "spravodaj_sss_danko_tlac.html").read_text(encoding="utf-8") == "print"

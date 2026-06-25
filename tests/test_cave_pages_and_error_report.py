@@ -28,6 +28,9 @@ def test_mobile_navigation_and_search_controls_exist():
     assert "bibliografia_vsetko_danko" in home_source
     assert "bibliografia_aragonit_danko" in home_source
     assert "PDF" in home_source
+    assert "TLAČ" in home_source
+    assert "_tlac.html" in home_source
+    assert "bibliography-export-printer-icon" in home_source
     assert "bibliografia_slovensky_kras.sqlite" in home_source
     assert ".bibliography-export-menu-panel" in css_source
     assert '.bibliography-mobile-actions' in css_source

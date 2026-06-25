@@ -90,6 +90,36 @@ def test_render_html_document_preserves_headings_and_pdf_links():
     assert ">https://sss.sk/Spravodaj-2007-1.pdf#page=94</a>" not in html
 
 
+def test_render_print_html_document_uses_plain_black_and_white_without_links():
+    markdown = (
+        "# Bibliografia Spravodaja SSS\n\n"
+        "## Obsah\n\n"
+        "[Zoznam článkov](#zoznam-clankov) - 1\n"
+        "  - [Spravodaj SSS](#zoznam-clankov-spravodaj-sss) - 1\n\n"
+        "## Zoznam článkov\n\n"
+        '<span id="clanok-1"></span>**1. Test článok**\n'
+        "**AUTOR:** Autor  \n"
+        "**STRANY:** s. 1 – 2 [↗ PDF](https://sss.sk/test.pdf#page=3)  \n"
+        "Anotácia článku.\n\n"
+        "_Autor: [DankeZ](https://github.com/dankez)_\n"
+    )
+
+    html = exporter.render_print_html_document(markdown, "Test export")
+
+    assert "<!doctype html>" in html
+    assert "@page { size: A4;" in html
+    assert "font-size: 11pt;" in html
+    assert "Tlačový export bez webových odkazov" in html
+    assert "<a " not in html
+    assert "href=" not in html
+    assert "https://sss.sk/test.pdf" not in html
+    assert "↗ PDF" not in html
+    assert "Zoznam článkov - 1" in html
+    assert "Spravodaj SSS - 1" in html
+    assert "<strong>1. Test článok</strong>" in html
+    assert "Autor: DankeZ" in html
+
+
 def test_render_bibliography_adds_markdown_brand_and_author_signature():
     markdown = exporter.render_bibliography([], markdown=True)
 
