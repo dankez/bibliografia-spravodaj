@@ -1529,6 +1529,14 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   font-size: 0.82rem;
 }
 
+.admin-access-panel {
+  min-width: 0;
+  border-left: 3px solid rgb(var(--sss-firebrick));
+  background: rgb(var(--sss-surface-muted));
+  border-radius: var(--sss-radius-md);
+  padding: 0.85rem 1rem;
+}
+
 .admin-errata-layout {
   display: grid;
   grid-template-columns: minmax(280px, 34%) minmax(0, 1fr);

@@ -154,7 +154,7 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
     assert "ghp_" not in backend_source
 
 
-def test_admin_errata_page_and_backend_are_token_protected():
+def test_admin_errata_page_and_backend_are_cloudflare_access_protected():
     admin_page = ROOT / "web" / "src" / "pages" / "admin" / "opravy.astro"
     admin_backend = ROOT / "web" / "functions" / "api" / "admin" / "errata.js"
 
@@ -166,10 +166,18 @@ def test_admin_errata_page_and_backend_are_token_protected():
 
     assert "/api/admin/errata" in page_source
     assert "noindex, nofollow" in page_source
-    assert "sessionStorage" in page_source
+    assert "Cloudflare Access OTP" in page_source
+    assert "credentials: 'same-origin'" in page_source
+    assert "sessionStorage" not in page_source
+    assert "admin-token" not in page_source
     assert "Schváliť a vytvoriť PR" in page_source
     assert "textContent" in page_source
     assert "innerHTML" not in page_source
+    assert "Cf-Access-Jwt-Assertion" in backend_source
+    assert "ACCESS_ALLOWED_EMAILS" in backend_source
+    assert "ACCESS_TEAM_DOMAIN" in backend_source
+    assert "ACCESS_POLICY_AUD" in backend_source
+    assert "crypto.subtle.verify" in backend_source
     assert "ADMIN_TOKEN" in backend_source
     assert "timingSafeEqual" in backend_source
     assert "GITHUB_TOKEN" in backend_source

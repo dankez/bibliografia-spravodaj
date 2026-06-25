@@ -19,6 +19,8 @@ const ARTICLE_EDIT_FIELDS = new Set([
   'pdf_page_end',
 ]);
 const ARTICLE_DATA_PATHS = ['data/articles_with_urls.json', 'web/src/data/articles.json'];
+let accessCertCache = null;
+let accessCertCacheExpiresAt = 0;
 
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -45,20 +47,149 @@ function timingSafeEqual(left, right) {
   return diff === 0;
 }
 
+function normalizeAccessTeamDomain(env) {
+  const raw = cleanText(env.ACCESS_TEAM_DOMAIN || env.TEAM_DOMAIN, 220).replace(/\/+$/, '');
+  if (!raw) return '';
+  return raw.startsWith('https://') ? raw : `https://${raw}`;
+}
+
+function accessPolicyAud(env) {
+  return cleanText(env.ACCESS_POLICY_AUD || env.POLICY_AUD, 260);
+}
+
+function allowedAdminEmails(env) {
+  return cleanText(env.ACCESS_ALLOWED_EMAILS || env.ADMIN_ALLOWED_EMAILS, 2000)
+    .split(',')
+    .map((email) => email.trim().toLowerCase())
+    .filter(Boolean);
+}
+
+function decodeBase64Url(value) {
+  const normalized = String(value || '').replace(/-/g, '+').replace(/_/g, '/');
+  const padded = normalized.padEnd(normalized.length + ((4 - (normalized.length % 4)) % 4), '=');
+  const binary = atob(padded);
+  return Uint8Array.from(binary, (char) => char.charCodeAt(0));
+}
+
+function decodeJwtPart(value) {
+  return JSON.parse(new TextDecoder().decode(decodeBase64Url(value)));
+}
+
+function parseJwt(token) {
+  const parts = String(token || '').split('.');
+  if (parts.length !== 3) throw new Error('Neplatný Cloudflare Access token.');
+  return {
+    protectedInput: `${parts[0]}.${parts[1]}`,
+    signature: decodeBase64Url(parts[2]),
+    header: decodeJwtPart(parts[0]),
+    payload: decodeJwtPart(parts[1]),
+  };
+}
+
+function payloadHasAudience(payload, expectedAud) {
+  const audiences = Array.isArray(payload?.aud) ? payload.aud : [payload?.aud];
+  return audiences.some((audience) => String(audience || '') === expectedAud);
+}
+
+async function accessCertificates(teamDomain) {
+  const now = Date.now();
+  if (accessCertCache?.teamDomain === teamDomain && accessCertCacheExpiresAt > now) {
+    return accessCertCache.keys;
+  }
+  const response = await fetch(`${teamDomain}/cdn-cgi/access/certs`, {
+    headers: { Accept: 'application/json' },
+  });
+  if (!response.ok) throw new Error('Cloudflare Access certifikáty sa nepodarilo načítať.');
+  const payload = await response.json();
+  const keys = Array.isArray(payload?.keys) ? payload.keys : [];
+  accessCertCache = { teamDomain, keys };
+  accessCertCacheExpiresAt = now + 60 * 60 * 1000;
+  return keys;
+}
+
+async function verifyAccessJwt(env, request) {
+  const teamDomain = normalizeAccessTeamDomain(env);
+  const expectedAud = accessPolicyAud(env);
+  const allowedEmails = allowedAdminEmails(env);
+  if (!teamDomain || !expectedAud || !allowedEmails.length) {
+    return {
+      ok: false,
+      status: 503,
+      error: 'Cloudflare Access admin API nie je nakonfigurované.',
+    };
+  }
+
+  const token = request.headers.get('Cf-Access-Jwt-Assertion') || request.headers.get('cf-access-jwt-assertion') || '';
+  if (!token) {
+    return { ok: false, status: 401, error: 'Chýba Cloudflare Access overenie.' };
+  }
+
+  try {
+    const parsed = parseJwt(token);
+    if (parsed.header.alg !== 'RS256' || !parsed.header.kid) {
+      return { ok: false, status: 403, error: 'Cloudflare Access token má nepodporovaný podpis.' };
+    }
+
+    const now = Math.floor(Date.now() / 1000);
+    if (parsed.payload.iss !== teamDomain) {
+      return { ok: false, status: 403, error: 'Cloudflare Access token má neplatného vydavateľa.' };
+    }
+    if (!payloadHasAudience(parsed.payload, expectedAud)) {
+      return { ok: false, status: 403, error: 'Cloudflare Access token nepatrí tejto admin aplikácii.' };
+    }
+    if (Number(parsed.payload.exp || 0) <= now) {
+      return { ok: false, status: 401, error: 'Cloudflare Access relácia vypršala.' };
+    }
+    if (parsed.payload.nbf && Number(parsed.payload.nbf) > now + 30) {
+      return { ok: false, status: 403, error: 'Cloudflare Access token ešte nie je platný.' };
+    }
+
+    const keys = await accessCertificates(teamDomain);
+    const jwk = keys.find((key) => key.kid === parsed.header.kid);
+    if (!jwk) return { ok: false, status: 403, error: 'Cloudflare Access podpisový kľúč sa nenašiel.' };
+    const key = await crypto.subtle.importKey(
+      'jwk',
+      jwk,
+      { name: 'RSASSA-PKCS1-v1_5', hash: 'SHA-256' },
+      false,
+      ['verify']
+    );
+    const valid = await crypto.subtle.verify(
+      'RSASSA-PKCS1-v1_5',
+      key,
+      parsed.signature,
+      new TextEncoder().encode(parsed.protectedInput)
+    );
+    if (!valid) return { ok: false, status: 403, error: 'Cloudflare Access podpis je neplatný.' };
+
+    const email = cleanText(parsed.payload.email, 220).toLowerCase();
+    if (!email || !allowedEmails.includes(email)) {
+      return { ok: false, status: 403, error: 'Email nemá admin prístup.' };
+    }
+    return { ok: true, user: { email } };
+  } catch (error) {
+    return { ok: false, status: 403, error: error.message || 'Cloudflare Access overenie zlyhalo.' };
+  }
+}
+
 function adminTokenFromRequest(request) {
   const authorization = request.headers.get('Authorization') || '';
   if (/^Bearer\s+/i.test(authorization)) return authorization.replace(/^Bearer\s+/i, '').trim();
   return request.headers.get('X-Admin-Token') || '';
 }
 
-function authorizeAdmin(env, request) {
+async function authorizeAdmin(env, request) {
+  if (normalizeAccessTeamDomain(env) || accessPolicyAud(env) || allowedAdminEmails(env).length) {
+    return verifyAccessJwt(env, request);
+  }
+
   const expected = env.ADMIN_TOKEN || env.ERRATA_ADMIN_TOKEN;
   if (!expected) return { ok: false, status: 503, error: 'Admin API nie je nakonfigurované.' };
   const provided = adminTokenFromRequest(request);
   if (!provided || !timingSafeEqual(provided, expected)) {
     return { ok: false, status: 401, error: 'Neplatný admin token.' };
   }
-  return { ok: true };
+  return { ok: true, user: { email: 'local-token' } };
 }
 
 function repositoryName(env) {
@@ -347,16 +478,16 @@ async function approveIssue(env, payload) {
 }
 
 export async function onRequestGet(context) {
-  const auth = authorizeAdmin(context.env, context.request);
+  const auth = await authorizeAdmin(context.env, context.request);
   if (!auth.ok) return jsonResponse({ ok: false, error: auth.error }, auth.status);
 
   const result = await listIssues(context.env);
   if (!result.ok) return jsonResponse({ ok: false, error: result.error }, result.status);
-  return jsonResponse({ ok: true, issues: result.issues });
+  return jsonResponse({ ok: true, user: auth.user, issues: result.issues });
 }
 
 export async function onRequestPost(context) {
-  const auth = authorizeAdmin(context.env, context.request);
+  const auth = await authorizeAdmin(context.env, context.request);
   if (!auth.ok) return jsonResponse({ ok: false, error: auth.error }, auth.status);
 
   let payload;
@@ -368,7 +499,7 @@ export async function onRequestPost(context) {
 
   try {
     const result = await approveIssue(context.env, payload);
-    return jsonResponse(result, result.ok ? 200 : result.status || 400);
+    return jsonResponse({ ...result, user: auth.user }, result.ok ? 200 : result.status || 400);
   } catch (error) {
     return jsonResponse({ ok: false, error: error.message || 'Schválenie zlyhalo.' }, error.status || 502);
   }
