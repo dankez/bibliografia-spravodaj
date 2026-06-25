@@ -79,19 +79,23 @@ const bibliographyExportMenus = [
         <div class="bibliography-header-top flex items-start justify-between gap-3">
           <a href={archiveHomeHref} class="bibliography-brand" aria-label="Digitálna bibliografia Slovenská speleologická spoločnosť">
             <img
-              src="/brand/bibliografia-banner-ui.webp"
+              src="/brand/bibliografia-banner-ui-sm.webp"
+              srcset="/brand/bibliografia-banner-ui-sm.webp 320w, /brand/bibliografia-banner-ui-md.webp 480w, /brand/bibliografia-banner-ui.webp 640w"
+              sizes="(min-width: 1024px) min(34vw, 560px), 0px"
               alt="Digitálna bibliografia Slovenská speleologická spoločnosť"
               class="bibliography-brand-banner"
-              width="640"
-              height="175"
+              width="320"
+              height="88"
               fetchpriority="high"
             />
-            <img
-              src="/brand/bibliografia-logo-ui.webp"
-              alt=""
-              class="bibliography-brand-logo"
-              width="256"
-              height="165"
+						<img
+							src="/brand/bibliografia-logo-mobile.webp"
+							srcset="/brand/bibliografia-logo-mobile.webp 192w, /brand/bibliografia-logo-mobile-256.webp 256w"
+							sizes="(max-width: 1023px) clamp(92px, 26vw, 124px), 0px"
+							alt=""
+							class="bibliography-brand-logo"
+              width="192"
+              height="124"
               aria-hidden="true"
               fetchpriority="high"
             />
@@ -395,7 +399,7 @@ const bibliographyExportMenus = [
                 </a>
                 <figure id="pdf-cover-box" class="bibliography-cover-box mt-5 hidden">
                   <a id="pdf-cover-link" href="#" target="_blank" rel="noreferrer" class="bibliography-cover-link" aria-label="Otvoriť PDF dokument">
-                    <img id="pdf-cover-image" alt="" width="640" height="938" loading="lazy" decoding="async" />
+                    <img id="pdf-cover-image" alt="" width="280" height="411" loading="lazy" decoding="async" />
                   </a>
                   <figcaption id="pdf-cover-caption" class="mt-2 text-center text-[11px] font-mono uppercase text-belly-lightslategray">
                     Obálka čísla
@@ -569,12 +573,20 @@ const bibliographyExportMenus = [
       return String(article.pdf_url || '').split('#')[0].split('?')[0];
     }
 
+    function localCoverUiUrl(coverUrl) {
+      return String(coverUrl || '').startsWith('/covers/')
+        ? String(coverUrl).replace('/covers/', '/covers-ui/')
+        : '';
+    }
+
     function pdfCoverCandidates(article) {
       const localCover = String(article.cover_url || '').trim();
+      const localCoverUi = localCoverUiUrl(localCover);
       const baseUrl = pdfBaseUrl(article);
-      if (!baseUrl || !/\.pdf$/i.test(baseUrl)) return localCover ? [localCover] : [];
+      if (!baseUrl || !/\.pdf$/i.test(baseUrl)) return [localCoverUi, localCover].filter(Boolean);
       const withoutExtension = baseUrl.replace(/\.pdf$/i, '');
       return [
+        ...(localCoverUi ? [localCoverUi] : []),
         ...(localCover ? [localCover] : []),
         `${withoutExtension}-thumb.png`,
         `${withoutExtension}-thumb.jpg`,

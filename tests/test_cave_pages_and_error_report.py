@@ -97,13 +97,18 @@ def test_brand_assets_are_used_for_home_banner_and_favicon():
     layout_source = (ROOT / "web" / "src" / "layouts" / "Layout.astro").read_text(encoding="utf-8")
     css_source = (ROOT / "web" / "src" / "styles" / "global.css").read_text(encoding="utf-8")
 
+    assert (public_dir / "brand" / "bibliografia-banner-ui-sm.webp").exists()
+    assert (public_dir / "brand" / "bibliografia-banner-ui-md.webp").exists()
     assert (public_dir / "brand" / "bibliografia-banner-ui.webp").exists()
     assert (public_dir / "brand" / "bibliografia-banner.png").exists()
+    assert (public_dir / "brand" / "bibliografia-logo-mobile.webp").exists()
+    assert (public_dir / "brand" / "bibliografia-logo-mobile-256.webp").exists()
     assert (public_dir / "brand" / "bibliografia-logo-ui.webp").exists()
     assert (public_dir / "brand" / "bibliografia-icon.png").exists()
     assert (public_dir / "brand" / "bibliografia-logo.png").exists()
-    assert "/brand/bibliografia-banner-ui.webp" in home_source
-    assert "/brand/bibliografia-logo-ui.webp" in home_source
+    assert "/brand/bibliografia-banner-ui-sm.webp" in home_source
+    assert "/brand/bibliografia-logo-mobile.webp" in home_source
+    assert "/brand/bibliografia-logo-mobile-256.webp" in home_source
     assert "/brand/bibliografia-icon.png" in layout_source
     assert "Autor:" in layout_source
     assert "DankeZ" in layout_source
@@ -111,6 +116,14 @@ def test_brand_assets_are_used_for_home_banner_and_favicon():
     assert ".bibliography-brand-banner" in css_source
     assert ".bibliography-brand-logo" in css_source
     assert ".site-author-signature" in css_source
+
+
+def test_llms_txt_is_markdown_with_h1():
+    llms = (ROOT / "web" / "public" / "llms.txt").read_text(encoding="utf-8")
+
+    assert llms.startswith("# Digitálna bibliografia")
+    assert "## Preferované použitie" in llms
+    assert "https://github.com/dankez" in llms
 
 
 def test_error_report_form_and_backend_template_exist_without_secret_literals():

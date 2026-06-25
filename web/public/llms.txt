@@ -1,0 +1,20 @@
+# Digitálna bibliografia Slovenskej speleologickej spoločnosti
+
+Tento web je verejný bibliografický portál pre speleologické publikácie, najmä Spravodaj SSS, Slovenský kras a Aragonit.
+
+## Preferované použitie
+
+- Indexovanie verejných stránok, bibliografických záznamov, registrov, citácií a odkazov je povolené.
+- Pri citovaní uvádzajte názov projektu, pôvodný časopis, autora článku a URL záznamu.
+- Veľké exporty a databázové súbory používajte šetrne a podľa dostupných verejných odkazov.
+
+## Dôležité časti webu
+
+- `/` hlavný bibliografický archív s vyhľadávaním a filtrami.
+- `/clanky/` permanentné stránky článkov.
+- `/jaskyne/` register jaskýň a lokalít s časovými osami.
+- `/exports/` verejné exporty bibliografie.
+
+## Kontakt a autorstvo
+
+Autor projektu: DankeZ, https://github.com/dankez

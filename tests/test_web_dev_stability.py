@@ -42,25 +42,45 @@ def test_browser_fulltext_index_loads_all_on_desktop_and_batches_on_mobile():
 def test_mobile_brand_uses_small_transparent_assets():
     index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
     layout_page = (ROOT / "web/src/layouts/Layout.astro").read_text(encoding="utf-8")
-    mobile_logo = ROOT / "web/public/brand/bibliografia-logo-ui.webp"
+    mobile_logo = ROOT / "web/public/brand/bibliografia-logo-mobile.webp"
+    fallback_logo = ROOT / "web/public/brand/bibliografia-logo-mobile-256.webp"
     icon = ROOT / "web/public/brand/bibliografia-icon.png"
 
-    assert 'src="/brand/bibliografia-logo-ui.webp"' in index_page
+    assert 'src="/brand/bibliografia-logo-mobile.webp"' in index_page
+    assert "/brand/bibliografia-logo-mobile-256.webp 256w" in index_page
     assert 'href="/brand/bibliografia-icon.png"' in layout_page
     assert mobile_logo.exists()
+    assert fallback_logo.exists()
     assert icon.exists()
-    assert mobile_logo.stat().st_size < 32 * 1024
+    assert mobile_logo.stat().st_size < 16 * 1024
     assert icon.stat().st_size < 32 * 1024
 
 
 def test_brand_banner_uses_small_webp_asset():
     index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
-    banner = ROOT / "web/public/brand/bibliografia-banner-ui.webp"
+    banner = ROOT / "web/public/brand/bibliografia-banner-ui-sm.webp"
+    middle_banner = ROOT / "web/public/brand/bibliografia-banner-ui-md.webp"
+    fallback_banner = ROOT / "web/public/brand/bibliografia-banner-ui.webp"
 
-    assert 'src="/brand/bibliografia-banner-ui.webp"' in index_page
+    assert 'src="/brand/bibliografia-banner-ui-sm.webp"' in index_page
+    assert "/brand/bibliografia-banner-ui-md.webp 480w" in index_page
+    assert "/brand/bibliografia-banner-ui.webp 640w" in index_page
     assert 'src="/brand/bibliografia-banner.png"' not in index_page
     assert banner.exists()
-    assert banner.stat().st_size < 32 * 1024
+    assert middle_banner.exists()
+    assert fallback_banner.exists()
+    assert banner.stat().st_size < 12 * 1024
+    assert middle_banner.stat().st_size < 16 * 1024
+
+
+def test_google_fonts_are_not_render_blocking():
+    layout_page = (ROOT / "web/src/layouts/Layout.astro").read_text(encoding="utf-8")
+    stylesheet = (ROOT / "web/src/styles/global.css").read_text(encoding="utf-8")
+
+    assert "fonts.googleapis.com" not in layout_page
+    assert "fonts.gstatic.com" not in layout_page
+    assert "Source Serif 4" not in stylesheet
+    assert '"Inter"' not in stylesheet
 
 
 def test_d3_is_lazy_loaded_for_analytics_only():
@@ -75,8 +95,13 @@ def test_d3_is_lazy_loaded_for_analytics_only():
 def test_pdf_cover_reserves_layout_space():
     index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
     stylesheet = (ROOT / "web/src/styles/global.css").read_text(encoding="utf-8")
+    cover_ui = ROOT / "web/public/covers-ui/spravodaj_sss/2026_1_9442cb9c37.webp"
 
-    assert 'id="pdf-cover-image" alt="" width="640" height="938"' in index_page
+    assert 'id="pdf-cover-image" alt="" width="280" height="411"' in index_page
     assert "aspect-ratio: 640 / 938" in stylesheet
+    assert "function localCoverUiUrl" in index_page
+    assert "replace('/covers/', '/covers-ui/')" in index_page
     assert "pdfCoverImage.fetchPriority = 'high'" in index_page
     assert "pdfCoverImage.fetchPriority = 'low'" in index_page
+    assert cover_ui.exists()
+    assert cover_ui.stat().st_size < 40 * 1024
