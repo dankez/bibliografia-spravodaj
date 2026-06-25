@@ -37,3 +37,17 @@ def test_browser_fulltext_index_loads_all_on_desktop_and_batches_on_mobile():
     assert "FULLTEXT_MAX_EAGER" not in index_page
     assert "fulltextLoadState = 'limited'" not in index_page
     assert "zúžte časopis alebo roky" not in index_page
+
+
+def test_mobile_brand_uses_small_transparent_assets():
+    index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
+    layout_page = (ROOT / "web/src/layouts/Layout.astro").read_text(encoding="utf-8")
+    mobile_logo = ROOT / "web/public/brand/bibliografia-logo-ui.webp"
+    icon = ROOT / "web/public/brand/bibliografia-icon.png"
+
+    assert 'src="/brand/bibliografia-logo-ui.webp"' in index_page
+    assert 'href="/brand/bibliografia-icon.png"' in layout_page
+    assert mobile_logo.exists()
+    assert icon.exists()
+    assert mobile_logo.stat().st_size < 32 * 1024
+    assert icon.stat().st_size < 32 * 1024
