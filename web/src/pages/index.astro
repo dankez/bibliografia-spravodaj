@@ -441,8 +441,7 @@ const bibliographyExportMenus = [
     const DEFAULT_JOURNAL_ID = 'spravodaj_sss';
     const DEFAULT_JOURNAL_TITLE = 'Spravodaj Slovenskej speleologickej spoločnosti';
     const DEFAULT_JOURNAL_SHORT_TITLE = 'Spravodaj SSS';
-    const FULLTEXT_MAX_EAGER_SHARDS = 32;
-    const FULLTEXT_MAX_EAGER_BYTES = 16 * 1024 * 1024;
+    const FULLTEXT_MOBILE_BATCH_SHARDS = 6;
 
     function isGenericImportAbstract(value) {
       return /Obsahový\s+záznam\s+z\s+čísla\b.*\bimportovaný\s+z\s+obsahu\s+čísla\b/i.test(String(value || '').replace(/\s+/g, ' ').trim());
@@ -538,7 +537,7 @@ const bibliographyExportMenus = [
     let fulltextLoadPromise = null;
     let fulltextLoadState = 'idle';
     let fulltextStats = null;
-    let fulltextLimitedScopeKey = '';
+    let fulltextBatchProgress = null;
     const fulltextLoadedShards = new Set();
     const fulltextLoadingShards = new Map();
     const fulltextLoadedArticleIds = new Set();
@@ -646,29 +645,6 @@ const bibliographyExportMenus = [
       });
     }
 
-    function fulltextScopeKey() {
-      return `${state.journal || '*'}:${state.yearMin}-${state.yearMax}`;
-    }
-
-    function fulltextScopeMetrics(shards = fulltextRelevantShards()) {
-      return {
-        shards: shards.length,
-        bytes: shards.reduce((total, shard) => total + Number(shard.bytes || 0), 0)
-      };
-    }
-
-    function isFulltextScopeTooLarge(metrics) {
-      return metrics.shards > FULLTEXT_MAX_EAGER_SHARDS || metrics.bytes > FULLTEXT_MAX_EAGER_BYTES;
-    }
-
-    function fulltextScopeStatus() {
-      if (!fulltextManifest) return '';
-      const metrics = fulltextScopeMetrics();
-      if (!isFulltextScopeTooLarge(metrics)) return '';
-      const mb = Math.ceil(metrics.bytes / 1024 / 1024);
-      return `fulltext: zúžte časopis alebo roky (${metrics.shards} indexov, ${mb} MB)`;
-    }
-
     function fulltextMissingRelevantShards() {
       return fulltextRelevantShards().filter((shard) => !fulltextLoadedShards.has(shard.path));
     }
@@ -700,29 +676,39 @@ const bibliographyExportMenus = [
       return promise;
     }
 
+    async function loadFulltextShardsInMobileBatches(shards) {
+      fulltextLoadState = 'batching';
+      fulltextBatchProgress = {
+        loaded: 0,
+        total: shards.length
+      };
+
+      for (let index = 0; index < shards.length; index += FULLTEXT_MOBILE_BATCH_SHARDS) {
+        const batch = shards.slice(index, index + FULLTEXT_MOBILE_BATCH_SHARDS);
+        await Promise.all(batch.map(loadFulltextShard));
+        fulltextBatchProgress.loaded = Math.min(index + batch.length, shards.length);
+        applyFilters();
+        await new Promise((resolve) => window.setTimeout(resolve, 0));
+      }
+    }
+
     function loadFulltextIndex() {
       ensureFulltextMiniSearch();
       if (fulltextLoadPromise) return fulltextLoadPromise;
 
       fulltextLoadState = 'loading';
-      const scopeKey = fulltextScopeKey();
       fulltextLoadPromise = loadFulltextManifest()
         .then((manifest) => {
           const relevantShards = fulltextRelevantShards(manifest);
           const missingShards = relevantShards.filter((shard) => !fulltextLoadedShards.has(shard.path));
-          const metrics = fulltextScopeMetrics(relevantShards);
-          if (missingShards.length && isFulltextScopeTooLarge(metrics)) {
-            fulltextLoadState = 'limited';
-            fulltextLimitedScopeKey = scopeKey;
-            return fulltextMiniSearch;
+          if (isMobileViewport() && missingShards.length > FULLTEXT_MOBILE_BATCH_SHARDS) {
+            return loadFulltextShardsInMobileBatches(missingShards);
           }
           return Promise.all(missingShards.map(loadFulltextShard));
         })
         .then(() => {
-          if (fulltextLoadState !== 'limited') {
-            fulltextLoadState = 'ready';
-            fulltextLimitedScopeKey = '';
-          }
+          fulltextLoadState = 'ready';
+          fulltextBatchProgress = null;
           applyFilters();
           return fulltextMiniSearch;
         })
@@ -743,7 +729,9 @@ const bibliographyExportMenus = [
     function fulltextStatusLabel(query) {
       if (!state.fulltext) return '';
       if (!query) return 'fulltext pripravený po zadaní hľadania';
-      if (fulltextLoadState === 'limited') return fulltextScopeStatus() || 'fulltext: zúžte časopis alebo roky';
+      if (fulltextLoadState === 'batching' && fulltextBatchProgress) {
+        return `fulltext sa načítava po dávkach: ${fulltextBatchProgress.loaded}/${fulltextBatchProgress.total} indexov`;
+      }
       if (fulltextLoadState === 'loading') return 'fulltext sa načítava';
       if (fulltextLoadState === 'error') return 'fulltext index nie je dostupný';
       if (fulltextLoadState === 'ready' && fulltextStats) {
@@ -977,8 +965,7 @@ const bibliographyExportMenus = [
           });
         }
         if (!fulltextManifest || fulltextMissingRelevantShards().length) {
-          const sameLimitedScope = fulltextLoadState === 'limited' && fulltextLimitedScopeKey === fulltextScopeKey();
-          if (!sameLimitedScope) loadFulltextIndex();
+          loadFulltextIndex();
         }
       }
 

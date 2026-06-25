@@ -26,13 +26,14 @@ def test_articles_json_endpoint_exists_for_client_fetch():
     assert "Content-Type" in content
 
 
-def test_browser_fulltext_index_is_scope_limited_for_mobile_performance():
+def test_browser_fulltext_index_loads_all_on_desktop_and_batches_on_mobile():
     index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
 
-    assert "FULLTEXT_MAX_EAGER_SHARDS" in index_page
-    assert "FULLTEXT_MAX_EAGER_BYTES" in index_page
-    assert "function isFulltextScopeTooLarge" in index_page
-    assert "fulltextLoadState = 'limited'" in index_page
-    assert "zúžte časopis alebo roky" in index_page
+    assert "FULLTEXT_MOBILE_BATCH_SHARDS" in index_page
+    assert "function loadFulltextShardsInMobileBatches" in index_page
+    assert "fulltextLoadState = 'batching'" in index_page
+    assert "isMobileViewport() && missingShards.length > FULLTEXT_MOBILE_BATCH_SHARDS" in index_page
     assert "Promise.all(missingShards.map(loadFulltextShard))" in index_page
-    assert "Promise.all(fulltextRelevantShards(manifest).map(loadFulltextShard))" not in index_page
+    assert "FULLTEXT_MAX_EAGER" not in index_page
+    assert "fulltextLoadState = 'limited'" not in index_page
+    assert "zúžte časopis alebo roky" not in index_page
