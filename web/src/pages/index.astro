@@ -971,10 +971,10 @@ const bibliographyExportMenus = [
       state.page = Math.min(state.page, totalPages);
       const start = (state.page - 1) * state.pageSize;
       const pageItems = filtered.slice(start, start + state.pageSize);
-      listEl.innerHTML = '';
+      listEl.replaceChildren();
 
       if (pageItems.length === 0) {
-        listEl.innerHTML = '<div class="p-8 text-center text-sm text-belly-lightslategray">Nenašli sa žiadne články.</div>';
+        appendTextElement(listEl, 'div', 'p-8 text-center text-sm text-belly-lightslategray', 'Nenašli sa žiadne články.');
       }
 
       pageItems.forEach((article) => {
@@ -982,21 +982,26 @@ const bibliographyExportMenus = [
         const row = document.createElement('button');
         row.type = 'button';
         row.className = `article-result-card ${state.selectedId === article.id ? 'is-selected' : ''}`;
-        row.innerHTML = `
-          <div class="article-result-meta">
-            <span>${articleJournalLabel(article)}</span>
-            <span class="separator">/</span>
-            <span>${article.year}</span>
-            <span class="separator">/</span>
-            <span>č. ${article.issue}</span>
-            <span class="separator">/</span>
-            <span>s. ${article.pages}</span>
-            ${hasMap(article) ? '<span class="article-result-badge ml-auto">mapa/plán</span>' : ''}
-          </div>
-          <h3 class="article-result-title">${article.title}</h3>
-          <p class="article-result-author">${formatAuthorsDisplay(article.authors || [])}</p>
-          ${abstract ? `<p class="article-result-abstract line-clamp-2">${abstract}</p>` : ''}
-        `;
+
+        const meta = document.createElement('div');
+        meta.className = 'article-result-meta';
+        appendTextElement(meta, 'span', '', articleJournalLabel(article));
+        appendTextElement(meta, 'span', 'separator', '/');
+        appendTextElement(meta, 'span', '', article.year);
+        appendTextElement(meta, 'span', 'separator', '/');
+        appendTextElement(meta, 'span', '', `č. ${article.issue || '-'}`);
+        appendTextElement(meta, 'span', 'separator', '/');
+        appendTextElement(meta, 'span', '', `s. ${article.pages || '-'}`);
+        if (hasMap(article)) {
+          appendTextElement(meta, 'span', 'article-result-badge ml-auto', 'mapa/plán');
+        }
+        row.appendChild(meta);
+
+        appendTextElement(row, 'h3', 'article-result-title', article.title || 'Bez názvu');
+        appendTextElement(row, 'p', 'article-result-author', formatAuthorsDisplay(article.authors || []));
+        if (abstract) {
+          appendTextElement(row, 'p', 'article-result-abstract line-clamp-2', abstract);
+        }
         row.addEventListener('click', () => selectArticle(article.id));
         listEl.appendChild(row);
       });
@@ -1004,6 +1009,14 @@ const bibliographyExportMenus = [
       pageIndicator.textContent = `Strana ${state.page} z ${totalPages} (${filtered.length})`;
       prevPageBtn.disabled = state.page <= 1;
       nextPageBtn.disabled = state.page >= totalPages;
+    }
+
+    function appendTextElement(parent, tagName, className, text) {
+      const element = document.createElement(tagName);
+      if (className) element.className = className;
+      element.textContent = String(text ?? '');
+      parent.appendChild(element);
+      return element;
     }
 
     function tagBadge(text, href) {
@@ -1306,15 +1319,16 @@ ${values}
     function renderErrata(articleId) {
       const list = state.errata[articleId] || [];
       const listEl = byId('errata-list');
-      listEl.innerHTML = '';
+      listEl.replaceChildren();
       if (!list.length) {
-        listEl.innerHTML = '<p class="text-belly-lightslategray">K tomuto článku zatiaľ nie sú lokálne uložené errata.</p>';
+        appendTextElement(listEl, 'p', 'text-belly-lightslategray', 'K tomuto článku zatiaľ nie sú lokálne uložené errata.');
         return;
       }
       list.forEach((item) => {
         const row = document.createElement('div');
         row.className = 'bibliography-soft-box rounded border border-belly-darkgray p-2';
-        row.innerHTML = `<div class="mb-1 font-mono text-[10px] text-belly-lightslategray">${item.date}</div><p class="whitespace-pre-line text-belly-dimgray-blue">${item.text}</p>`;
+        appendTextElement(row, 'div', 'mb-1 font-mono text-[10px] text-belly-lightslategray', item.date);
+        appendTextElement(row, 'p', 'whitespace-pre-line text-belly-dimgray-blue', item.text);
         listEl.appendChild(row);
       });
     }
