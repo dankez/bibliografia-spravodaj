@@ -24,3 +24,15 @@ def test_articles_json_endpoint_exists_for_client_fetch():
     content = endpoint.read_text(encoding="utf-8")
     assert "export const prerender = true" in content
     assert "Content-Type" in content
+
+
+def test_browser_fulltext_index_is_scope_limited_for_mobile_performance():
+    index_page = (ROOT / "web/src/pages/index.astro").read_text(encoding="utf-8")
+
+    assert "FULLTEXT_MAX_EAGER_SHARDS" in index_page
+    assert "FULLTEXT_MAX_EAGER_BYTES" in index_page
+    assert "function isFulltextScopeTooLarge" in index_page
+    assert "fulltextLoadState = 'limited'" in index_page
+    assert "zúžte časopis alebo roky" in index_page
+    assert "Promise.all(missingShards.map(loadFulltextShard))" in index_page
+    assert "Promise.all(fulltextRelevantShards(manifest).map(loadFulltextShard))" not in index_page
