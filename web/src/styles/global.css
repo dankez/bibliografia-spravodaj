@@ -1537,6 +1537,18 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   padding: 0.85rem 1rem;
 }
 
+.admin-login-form {
+  display: flex;
+  min-width: min(100%, 360px);
+  flex-wrap: wrap;
+  align-items: end;
+  gap: 0.75rem;
+}
+
+.admin-login-form .report-field {
+  flex: 1 1 180px;
+}
+
 .admin-errata-layout {
   display: grid;
   grid-template-columns: minmax(280px, 34%) minmax(0, 1fr);

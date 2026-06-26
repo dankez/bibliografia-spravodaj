@@ -3,6 +3,9 @@ import Layout from '../../layouts/Layout.astro';
 import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
 
 const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/errata';
+const loginEndpoint = import.meta.env.PUBLIC_ADMIN_LOGIN_ENDPOINT || '/api/admin/login';
+const logoutEndpoint = import.meta.env.PUBLIC_ADMIN_LOGOUT_ENDPOINT || '/api/admin/logout';
+const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/admin/session';
 ---
 
 <Layout title="Admin opravy — Digitálna bibliografia SSS">
@@ -30,16 +33,24 @@ const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/err
       <section class="portal-toolbar mb-5 border border-belly-darkgray p-4">
         <div class="grid gap-4 lg:grid-cols-[minmax(0,1fr)_auto] lg:items-center">
           <div class="admin-access-panel">
-            <p class="bibliography-section-title">Cloudflare Access OTP</p>
+            <p class="bibliography-section-title">Admin login</p>
             <p class="mt-2 text-sm leading-relaxed text-belly-dimgray">
-              Admin časť je chránená Cloudflare Access. Prihlásenie prebehne emailovým jednorazovým kódom pre povolené adresy.
+              Admin časť je chránená heslom a serverovou HttpOnly session cookie. Heslo sa overuje iba voči hashu uloženému v Cloudflare env.
             </p>
             <p class="mt-2 text-xs font-bold uppercase tracking-wider text-belly-dimgray">
-              Prihlásený účet: <span id="admin-user-email" class="text-belly-firebrick">overí sa po načítaní API</span>
+              Stav: <span id="admin-user-email" class="text-belly-firebrick">neprihlásený</span>
             </p>
           </div>
-          <div class="flex flex-wrap gap-2">
+          <form id="admin-login-form" class="admin-login-form" autocomplete="on">
+            <label class="report-field">
+              <span>Heslo</span>
+              <input id="admin-password" type="password" autocomplete="current-password" placeholder="Admin heslo" required />
+            </label>
+            <button id="admin-login-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="submit">Prihlásiť</button>
+          </form>
+          <div id="admin-session-actions" class="flex flex-wrap gap-2" hidden>
             <button id="load-errata-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">Načítať opravy</button>
+            <button id="admin-logout-btn" class="bibliography-button-secondary px-5 py-2.5 font-bold" type="button">Odhlásiť</button>
           </div>
         </div>
         <p id="admin-status" class="mt-3 text-sm text-belly-dimgray" role="status" aria-live="polite"></p>
@@ -52,7 +63,7 @@ const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/err
             <span id="admin-errata-count" class="article-result-badge">0</span>
           </div>
           <div id="admin-errata-list" class="admin-errata-items">
-            <p class="p-4 text-sm text-belly-dimgray">Načítaj otvorené issues cez overenú Cloudflare Access reláciu.</p>
+            <p class="p-4 text-sm text-belly-dimgray">Prihlás sa admin heslom a načítaj otvorené issues.</p>
           </div>
         </aside>
 
@@ -106,7 +117,12 @@ const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/err
     </main>
   </div>
 
-  <script define:vars={{ endpoint }}>
+  <script define:vars={{ endpoint, loginEndpoint, logoutEndpoint, sessionEndpoint }}>
+    const loginForm = document.getElementById('admin-login-form');
+    const passwordInput = document.getElementById('admin-password');
+    const loginButton = document.getElementById('admin-login-btn');
+    const sessionActions = document.getElementById('admin-session-actions');
+    const logoutButton = document.getElementById('admin-logout-btn');
     const loadButton = document.getElementById('load-errata-btn');
     const status = document.getElementById('admin-status');
     const userEmail = document.getElementById('admin-user-email');
@@ -123,6 +139,7 @@ const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/err
     const prLink = document.getElementById('detail-pr-link');
     let issues = [];
     let selectedIssue = null;
+    let isLoggedIn = false;
 
     function setStatus(message, isError = false) {
       status.textContent = message;
@@ -165,6 +182,85 @@ const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/err
         Accept: 'application/json',
         'Content-Type': 'application/json',
       };
+    }
+
+    function setLoggedIn(user) {
+      isLoggedIn = true;
+      loginForm.hidden = true;
+      sessionActions.hidden = false;
+      userEmail.textContent = user?.email || 'admin';
+      passwordInput.value = '';
+    }
+
+    function setLoggedOut(message = 'Neprihlásený.') {
+      isLoggedIn = false;
+      loginForm.hidden = false;
+      sessionActions.hidden = true;
+      userEmail.textContent = 'neprihlásený';
+      issues = [];
+      selectedIssue = null;
+      renderIssueList();
+      emptyDetail.hidden = false;
+      detail.hidden = true;
+      setStatus(message);
+    }
+
+    async function checkSession() {
+      try {
+        const response = await fetch(sessionEndpoint, { headers: adminHeaders(), credentials: 'same-origin' });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.ok) {
+          setLoggedOut('Zadaj admin heslo.');
+          return;
+        }
+        setLoggedIn(payload.user);
+        setStatus('Admin relácia je aktívna.');
+      } catch {
+        setLoggedOut('Zadaj admin heslo.');
+      }
+    }
+
+    async function loginAdmin(event) {
+      event.preventDefault();
+      const password = passwordInput.value;
+      if (!password) {
+        setStatus('Zadaj admin heslo.', true);
+        return;
+      }
+      loginButton.disabled = true;
+      setStatus('Prihlasujem...');
+      try {
+        const response = await fetch(loginEndpoint, {
+          method: 'POST',
+          headers: adminHeaders(),
+          credentials: 'same-origin',
+          body: JSON.stringify({ password }),
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.ok) throw new Error(payload.error || 'Prihlásenie zlyhalo.');
+        setLoggedIn(payload.user);
+        setStatus('Prihlásenie prebehlo úspešne.');
+        await loadIssues();
+      } catch (error) {
+        setStatus(error.message || 'Prihlásenie zlyhalo.', true);
+      } finally {
+        loginButton.disabled = false;
+      }
+    }
+
+    async function logoutAdmin() {
+      logoutButton.disabled = true;
+      try {
+        await fetch(logoutEndpoint, {
+          method: 'POST',
+          headers: adminHeaders(),
+          credentials: 'same-origin',
+          body: JSON.stringify({}),
+        });
+      } finally {
+        logoutButton.disabled = false;
+        setLoggedOut('Odhlásené.');
+      }
     }
 
     function renderIssueList() {
@@ -232,13 +328,17 @@ const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/err
     }
 
     async function loadIssues() {
+      if (!isLoggedIn) {
+        setStatus('Najprv sa prihlás admin heslom.', true);
+        return;
+      }
       loadButton.disabled = true;
       setStatus('Načítavam GitHub issues...');
       try {
         const response = await fetch(endpoint, { headers: adminHeaders(), credentials: 'same-origin' });
         const payload = await response.json().catch(() => ({}));
         if (!response.ok || !payload.ok) throw new Error(payload.error || 'Issues sa nepodarilo načítať.');
-        userEmail.textContent = payload.user?.email || 'overený Access účet';
+        userEmail.textContent = payload.user?.email || 'admin';
         issues = Array.isArray(payload.issues) ? payload.issues : [];
         renderIssueList();
         emptyDetail.hidden = false;
@@ -276,7 +376,10 @@ const endpoint = import.meta.env.PUBLIC_ADMIN_ERRATA_ENDPOINT || '/api/admin/err
       }
     }
 
+    loginForm.addEventListener('submit', loginAdmin);
     loadButton.addEventListener('click', loadIssues);
+    logoutButton.addEventListener('click', logoutAdmin);
     approveButton.addEventListener('click', approveSelectedIssue);
+    checkSession();
   </script>
 </Layout>

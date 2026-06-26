@@ -154,31 +154,42 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
     assert "ghp_" not in backend_source
 
 
-def test_admin_errata_page_and_backend_are_cloudflare_access_protected():
+def test_admin_errata_page_and_backend_use_password_session_auth():
     admin_page = ROOT / "web" / "src" / "pages" / "admin" / "opravy.astro"
-    admin_backend = ROOT / "web" / "functions" / "api" / "admin" / "errata.js"
+    admin_backend_files = [
+        ROOT / "web" / "functions" / "_lib" / "admin-auth.js",
+        ROOT / "web" / "functions" / "api" / "admin" / "errata.js",
+        ROOT / "web" / "functions" / "api" / "admin" / "login.js",
+        ROOT / "web" / "functions" / "api" / "admin" / "logout.js",
+        ROOT / "web" / "functions" / "api" / "admin" / "session.js",
+    ]
 
     assert admin_page.exists()
-    assert admin_backend.exists()
+    for admin_backend in admin_backend_files:
+        assert admin_backend.exists()
 
     page_source = admin_page.read_text(encoding="utf-8")
-    backend_source = admin_backend.read_text(encoding="utf-8")
+    backend_source = "\n".join(path.read_text(encoding="utf-8") for path in admin_backend_files)
 
     assert "/api/admin/errata" in page_source
+    assert "/api/admin/login" in page_source
+    assert "/api/admin/logout" in page_source
+    assert "/api/admin/session" in page_source
     assert "noindex, nofollow" in page_source
-    assert "Cloudflare Access OTP" in page_source
+    assert "Admin login" in page_source
+    assert "Cloudflare Access" not in page_source
     assert "credentials: 'same-origin'" in page_source
     assert "sessionStorage" not in page_source
-    assert "admin-token" not in page_source
     assert "Schváliť a vytvoriť PR" in page_source
     assert "textContent" in page_source
     assert "innerHTML" not in page_source
-    assert "Cf-Access-Jwt-Assertion" in backend_source
-    assert "ACCESS_ALLOWED_EMAILS" in backend_source
-    assert "ACCESS_TEAM_DOMAIN" in backend_source
-    assert "ACCESS_POLICY_AUD" in backend_source
-    assert "crypto.subtle.verify" in backend_source
-    assert "ADMIN_TOKEN" in backend_source
+    assert "ADMIN_PASSWORD_HASH" in backend_source
+    assert "SESSION_SECRET" in backend_source
+    assert "Set-Cookie" in backend_source
+    assert "HttpOnly" in backend_source
+    assert "SameSite=Strict" in backend_source
+    assert "PBKDF2" in backend_source
+    assert "HMAC" in backend_source
     assert "timingSafeEqual" in backend_source
     assert "GITHUB_TOKEN" in backend_source
     assert "createPullRequest" in backend_source
