@@ -102,7 +102,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
               </div>
               <div class="admin-approval-footer">
                 <p>
-                  Schválenie vytvorí commit v GitHube, zavrie pôvodné issue a Cloudflare Pages automaticky spustí nový deploy.
+                  Schválenie spustí GitHub Actions workflow. Ten zapíše opravu do dát, zavrie issue a Cloudflare Pages automaticky spustí nový deploy.
                 </p>
                 <button id="approve-issue-bottom-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">
                   Schváliť opravu a zapísať do webu
@@ -117,7 +117,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
             <section id="detail-result" class="admin-approve-result mt-5" hidden>
               <h3 class="bibliography-section-title">Výsledok schválenia</h3>
               <p id="detail-result-text" class="mt-2 text-sm text-belly-dimgray"></p>
-              <a id="detail-pr-link" href="#" target="_blank" rel="noreferrer" class="bibliography-link-button mt-3">Otvoriť commit</a>
+              <a id="detail-pr-link" href="#" target="_blank" rel="noreferrer" class="bibliography-link-button mt-3">Otvoriť workflow</a>
             </section>
           </article>
         </section>
@@ -191,6 +191,16 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
         Accept: 'application/json',
         'Content-Type': 'application/json',
       };
+    }
+
+    async function readJsonResponse(response) {
+      const text = await response.text();
+      if (!text) return {};
+      try {
+        return JSON.parse(text);
+      } catch {
+        return { error: `Server vrátil nečitateľnú odpoveď (HTTP ${response.status}). ${text.slice(0, 300)}` };
+      }
     }
 
     function setApproveButtonsDisabled(disabled) {
@@ -373,7 +383,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
     async function approveSelectedIssue() {
       if (!selectedIssue || selectedIssue.type !== 'article_edit') return;
       setApproveButtonsDisabled(true);
-      setStatus(`Zapisujem opravu pre issue #${selectedIssue.number}...`);
+      setStatus(`Spúšťam schvaľovací workflow pre issue #${selectedIssue.number}...`);
       resultSection.hidden = true;
       try {
         const response = await fetch(endpoint, {
@@ -382,21 +392,13 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
           credentials: 'same-origin',
           body: JSON.stringify({ issueNumber: selectedIssue.number }),
         });
-        const payload = await response.json().catch(() => ({}));
-        if (!response.ok || !payload.ok) throw new Error(payload.error || 'Opravu sa nepodarilo zapísať.');
+        const payload = await readJsonResponse(response);
+        if (!response.ok || !payload.ok) throw new Error(payload.error || `Schválenie zlyhalo (HTTP ${response.status}).`);
         const approval = payload.approval || {};
-        const warnings = Array.isArray(approval.warnings) && approval.warnings.length
-          ? ` Upozornenie: ${approval.warnings.join(' ')}`
-          : '';
-        const issueState = approval.issueClosed === false ? 'Issue ostalo otvorené.' : 'Issue bolo zavreté.';
-        resultText.textContent = `Oprava bola zapísaná commitom do vetvy ${approval.branch || 'neuvedené'}. ${issueState} Cloudflare Pages spustí nový deploy.${warnings}`;
-        prLink.href = approval.commitUrl || '#';
+        resultText.textContent = `Schválenie bolo odoslané do GitHub Actions workflow ${approval.workflow || 'approve-errata.yml'} pre vetvu ${approval.branch || 'main'}. Po dokončení workflow vznikne commit, issue sa zavrie a Cloudflare Pages spustí nový deploy.`;
+        prLink.href = approval.workflowUrl || '#';
         resultSection.hidden = false;
-        setStatus(`Oprava zapísaná: ${approval.commitUrl || ''}`);
-        if (approval.issueClosed !== false) {
-          issues = issues.filter((issue) => Number(issue.number) !== Number(selectedIssue.number));
-          renderIssueList();
-        }
+        setStatus(`Schvaľovací workflow bol spustený: ${approval.workflowUrl || ''}`);
         selectedIssue = null;
         setApproveButtonsVisible(false);
       } catch (error) {

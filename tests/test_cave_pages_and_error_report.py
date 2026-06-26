@@ -163,13 +163,19 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
         ROOT / "web" / "functions" / "api" / "admin" / "logout.js",
         ROOT / "web" / "functions" / "api" / "admin" / "session.js",
     ]
+    admin_apply_script = ROOT / "scripts" / "apply_errata_issue.py"
+    admin_workflow = ROOT / ".github" / "workflows" / "approve-errata.yml"
 
     assert admin_page.exists()
     for admin_backend in admin_backend_files:
         assert admin_backend.exists()
+    assert admin_apply_script.exists()
+    assert admin_workflow.exists()
 
     page_source = admin_page.read_text(encoding="utf-8")
     backend_source = "\n".join(path.read_text(encoding="utf-8") for path in admin_backend_files)
+    apply_source = admin_apply_script.read_text(encoding="utf-8")
+    workflow_source = admin_workflow.read_text(encoding="utf-8")
 
     assert "/api/admin/errata" in page_source
     assert "/api/admin/login" in page_source
@@ -181,7 +187,7 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "credentials: 'same-origin'" in page_source
     assert "sessionStorage" not in page_source
     assert "Schváliť opravu a zapísať do webu" in page_source
-    assert "Otvoriť commit" in page_source
+    assert "Otvoriť workflow" in page_source
     assert "textContent" in page_source
     assert "innerHTML" not in page_source
     assert "ADMIN_PASSWORD_HASH" in backend_source
@@ -193,11 +199,12 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "HMAC" in backend_source
     assert "timingSafeEqual" in backend_source
     assert "GITHUB_TOKEN" in backend_source
-    assert "approveIssueWithCommit" in backend_source
-    assert "/git/blobs/" in backend_source
-    assert "state_reason: 'completed'" in backend_source
-    assert "data/articles_with_urls.json" in backend_source
-    assert "web/src/data/articles.json" in backend_source
+    assert "dispatchApprovalWorkflow" in backend_source
+    assert "/actions/workflows/" in backend_source
+    assert "approve-errata.yml" in backend_source
+    assert "data/articles_with_urls.json" in apply_source
+    assert "web/src/data/articles.json" in apply_source
+    assert "scripts/apply_errata_issue.py" in workflow_source
     assert "sk-" not in backend_source
     assert "ghp_" not in backend_source
 

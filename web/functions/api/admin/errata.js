@@ -1,6 +1,7 @@
 import { authorizeAdmin, sameOriginRequest } from '../../_lib/admin-auth.js';
 
 const ARTICLE_EDIT_SCHEMA = 'sss-bibliografia/article-edit/v1';
+const DEFAULT_APPROVAL_WORKFLOW = 'approve-errata.yml';
 const ARTICLE_EDIT_FIELDS = new Set([
   'title',
   'authors',
@@ -20,7 +21,6 @@ const ARTICLE_EDIT_FIELDS = new Set([
   'pdf_page_start',
   'pdf_page_end',
 ]);
-const ARTICLE_DATA_PATHS = ['data/articles_with_urls.json', 'web/src/data/articles.json'];
 
 function jsonResponse(body, status = 200) {
   return new Response(JSON.stringify(body), {
@@ -40,10 +40,6 @@ function repositoryName(env) {
   const repository = cleanText(env.GITHUB_REPOSITORY, 180);
   if (!/^[\w.-]+\/[\w.-]+$/.test(repository)) return '';
   return repository;
-}
-
-function gitRefPath(refName) {
-  return String(refName || '').split('/').map((part) => encodeURIComponent(part)).join('/');
 }
 
 async function githubFetch(env, path, options = {}) {
@@ -163,70 +159,10 @@ async function listIssues(env) {
   return { ok: true, issues };
 }
 
-function decodeBase64Utf8(content) {
-  const binary = atob(String(content || '').replace(/\s+/g, ''));
-  const bytes = Uint8Array.from(binary, (char) => char.charCodeAt(0));
-  return new TextDecoder().decode(bytes);
-}
-
 async function getDefaultBranch(env) {
   const result = await githubFetch(env, '/repos/{repository}');
   if (!result.ok) throw new Error(result.data.message || 'Repository sa nepodarilo načítať.');
   return cleanText(result.data.default_branch, 100) || 'main';
-}
-
-async function getTextFile(env, path, ref) {
-  const result = await githubFetch(env, `/repos/{repository}/contents/${encodeURIComponent(path).replace(/%2F/g, '/')}?ref=${encodeURIComponent(ref)}`);
-  if (!result.ok) throw new Error(result.data.message || `Súbor ${path} sa nepodarilo načítať.`);
-  if (result.data.content && result.data.encoding === 'base64') {
-    return decodeBase64Utf8(result.data.content);
-  }
-  if (!result.data.sha) {
-    throw new Error(`Súbor ${path} nemá dostupný obsah ani Git blob SHA.`);
-  }
-
-  const blob = await githubFetch(env, `/repos/{repository}/git/blobs/${result.data.sha}`);
-  if (!blob.ok) throw new Error(blob.data.message || `Git blob súboru ${path} sa nepodarilo načítať.`);
-  if (!blob.data.content || blob.data.encoding !== 'base64') {
-    throw new Error(`Git blob súboru ${path} nemá očakávané base64 dáta.`);
-  }
-  return decodeBase64Utf8(blob.data.content);
-}
-
-function articleComparableValue(article, field) {
-  const defaults = {
-    journal_id: 'spravodaj_sss',
-    journal_title: 'Spravodaj Slovenskej speleologickej spoločnosti',
-    journal_short_title: 'Spravodaj SSS',
-  };
-  return normalizePatchValue(field, Object.prototype.hasOwnProperty.call(article, field) ? article[field] : defaults[field]);
-}
-
-function sameValue(left, right) {
-  return JSON.stringify(left) === JSON.stringify(right);
-}
-
-function applyPatchToArticles(jsonText, patch, checkConflict = false) {
-  const articles = JSON.parse(jsonText);
-  if (!Array.isArray(articles)) throw new Error('Dátový súbor článkov nemá očakávaný formát.');
-  const article = articles.find((item) => String(item.id) === String(patch.article_id));
-  if (!article) throw new Error(`Článok #${patch.article_id} sa nenašiel v dátach.`);
-
-  if (checkConflict) {
-    const conflicting = patch.changed_fields.filter(
-      (field) => !sameValue(articleComparableValue(article, field), patch.original[field])
-    );
-    if (conflicting.length) {
-      const error = new Error(`Aktuálne dáta sa zmenili od nahlásenia. Konflikt: ${conflicting.join(', ')}`);
-      error.status = 409;
-      throw error;
-    }
-  }
-
-  for (const field of patch.changed_fields) {
-    article[field] = patch.proposed[field];
-  }
-  return `${JSON.stringify(articles, null, 2)}\n`;
 }
 
 async function getIssue(env, issueNumber) {
@@ -235,96 +171,37 @@ async function getIssue(env, issueNumber) {
   return result.data;
 }
 
-async function createBlob(env, content) {
-  const result = await githubFetch(env, '/repos/{repository}/git/blobs', {
-    method: 'POST',
-    body: JSON.stringify({ content, encoding: 'utf-8' }),
-  });
-  if (!result.ok) throw new Error(result.data.message || 'GitHub blob sa nepodarilo vytvoriť.');
-  return result.data.sha;
+function workflowFile(env) {
+  const configured = cleanText(env.ADMIN_APPROVAL_WORKFLOW, 160);
+  return configured || DEFAULT_APPROVAL_WORKFLOW;
 }
 
-async function approveIssueWithCommit(env, issue, patch) {
+async function dispatchApprovalWorkflow(env, issue, patch) {
   const baseBranch = cleanText(env.ADMIN_BASE_BRANCH, 100) || (await getDefaultBranch(env));
-  const baseRef = await githubFetch(env, `/repos/{repository}/git/ref/heads/${gitRefPath(baseBranch)}`);
-  if (!baseRef.ok) throw new Error(baseRef.data.message || 'Base branch sa nepodarilo načítať.');
-  const baseCommitSha = baseRef.data.object.sha;
-
-  const baseCommit = await githubFetch(env, `/repos/{repository}/git/commits/${baseCommitSha}`);
-  if (!baseCommit.ok) throw new Error(baseCommit.data.message || 'Base commit sa nepodarilo načítať.');
-
-  const treeEntries = [];
-  const updatedFiles = [];
-  for (const path of ARTICLE_DATA_PATHS) {
-    const current = await getTextFile(env, path, baseBranch);
-    const updated = applyPatchToArticles(current, patch, path === 'web/src/data/articles.json');
-    if (updated !== current) {
-      const sha = await createBlob(env, updated);
-      treeEntries.push({ path, mode: '100644', type: 'blob', sha });
-      updatedFiles.push(path);
+  const workflow = workflowFile(env);
+  const result = await githubFetch(
+    env,
+    `/repos/{repository}/actions/workflows/${encodeURIComponent(workflow)}/dispatches`,
+    {
+      method: 'POST',
+      body: JSON.stringify({
+        ref: baseBranch,
+        inputs: {
+          issue_number: String(issue.number),
+        },
+      }),
     }
+  );
+  if (!result.ok) {
+    throw new Error(result.data.message || 'GitHub Actions workflow sa nepodarilo spustiť.');
   }
-  if (!treeEntries.length) {
-    const error = new Error('Navrhovaná oprava nemení aktuálne dátové súbory.');
-    error.status = 409;
-    throw error;
-  }
-
-  const tree = await githubFetch(env, '/repos/{repository}/git/trees', {
-    method: 'POST',
-    body: JSON.stringify({ base_tree: baseCommit.data.tree.sha, tree: treeEntries }),
-  });
-  if (!tree.ok) throw new Error(tree.data.message || 'GitHub tree sa nepodarilo vytvoriť.');
-
-  const message = `Apply errata issue #${issue.number} for article #${patch.article_id}`;
-  const commit = await githubFetch(env, '/repos/{repository}/git/commits', {
-    method: 'POST',
-    body: JSON.stringify({
-      message,
-      tree: tree.data.sha,
-      parents: [baseCommitSha],
-    }),
-  });
-  if (!commit.ok) throw new Error(commit.data.message || 'GitHub commit sa nepodarilo vytvoriť.');
-
-  const updatedRef = await githubFetch(env, `/repos/{repository}/git/refs/heads/${gitRefPath(baseBranch)}`, {
-    method: 'PATCH',
-    body: JSON.stringify({ sha: commit.data.sha, force: false }),
-  });
-  if (!updatedRef.ok) throw new Error(updatedRef.data.message || 'GitHub branch sa nepodarilo aktualizovať.');
-
-  const commitUrl = commit.data.html_url || `https://github.com/${repositoryName(env)}/commit/${commit.data.sha}`;
-  const warnings = [];
-
-  const comment = await githubFetch(env, `/repos/{repository}/issues/${issue.number}/comments`, {
-    method: 'POST',
-    body: JSON.stringify({
-      body: [
-        `Admin schválil návrh a zapísal opravu priamo do vetvy \`${baseBranch}\`.`,
-        '',
-        `- Článok: #${patch.article_id}`,
-        `- Polia: ${patch.changed_fields.join(', ')}`,
-        `- Súbory: ${updatedFiles.join(', ')}`,
-        `- Commit: ${commitUrl}`,
-      ].join('\n'),
-    }),
-  });
-  if (!comment.ok) warnings.push(comment.data.message || 'Komentár do issue sa nepodarilo pridať.');
-
-  const closedIssue = await githubFetch(env, `/repos/{repository}/issues/${issue.number}`, {
-    method: 'PATCH',
-    body: JSON.stringify({ state: 'closed', state_reason: 'completed' }),
-  });
-  if (!closedIssue.ok) warnings.push(closedIssue.data.message || 'Issue sa nepodarilo zavrieť.');
-
   return {
-    commitUrl,
-    commitSha: commit.data.sha,
+    queued: true,
+    workflow,
     branch: baseBranch,
-    files: updatedFiles,
-    issueClosed: closedIssue.ok,
-    commented: comment.ok,
-    warnings,
+    workflowUrl: `https://github.com/${repositoryName(env)}/actions/workflows/${encodeURIComponent(workflow)}`,
+    articleId: patch.article_id,
+    changedFields: patch.changed_fields,
   };
 }
 
@@ -339,7 +216,7 @@ async function approveIssue(env, payload) {
   if (!patch) {
     return { ok: false, status: 400, error: 'Issue neobsahuje platný JSON diff článku.' };
   }
-  const approval = await approveIssueWithCommit(env, issue, patch);
+  const approval = await dispatchApprovalWorkflow(env, issue, patch);
   return { ok: true, issue: issueSummary(issue), approval };
 }
 
