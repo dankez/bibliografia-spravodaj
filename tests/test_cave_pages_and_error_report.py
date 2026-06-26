@@ -180,7 +180,8 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "Cloudflare Access" not in page_source
     assert "credentials: 'same-origin'" in page_source
     assert "sessionStorage" not in page_source
-    assert "Schváliť a vytvoriť PR" in page_source
+    assert "Schváliť opravu a zapísať do webu" in page_source
+    assert "Otvoriť commit" in page_source
     assert "textContent" in page_source
     assert "innerHTML" not in page_source
     assert "ADMIN_PASSWORD_HASH" in backend_source
@@ -192,7 +193,8 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "HMAC" in backend_source
     assert "timingSafeEqual" in backend_source
     assert "GITHUB_TOKEN" in backend_source
-    assert "createPullRequest" in backend_source
+    assert "approveIssueWithCommit" in backend_source
+    assert "state_reason: 'completed'" in backend_source
     assert "data/articles_with_urls.json" in backend_source
     assert "web/src/data/articles.json" in backend_source
     assert "sk-" not in backend_source

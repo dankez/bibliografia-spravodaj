@@ -1670,6 +1670,26 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   word-break: break-word;
 }
 
+.admin-approval-footer {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.85rem;
+  margin-top: 1rem;
+  border: 1px solid rgb(var(--sss-firebrick) / 0.22);
+  border-radius: var(--sss-radius-lg);
+  background: rgb(var(--sss-surface-muted));
+  padding: 0.9rem;
+}
+
+.admin-approval-footer p {
+  flex: 1 1 260px;
+  color: rgb(var(--sss-dimgray));
+  font-size: 0.82rem;
+  line-height: 1.55;
+}
+
 .admin-approve-result {
   border: 1px solid rgb(28 135 84 / 0.35);
   border-radius: var(--sss-radius-lg);

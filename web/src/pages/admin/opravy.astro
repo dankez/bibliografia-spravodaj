@@ -19,7 +19,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
           <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Redakčný režim</p>
           <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">Admin opravy</h1>
           <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray">
-            Kontrola komunitných errata z GitHub issues. Štruktúrované opravy článkov sa schvaľujú vytvorením pull requestu.
+            Kontrola komunitných errata z GitHub issues. Štruktúrované opravy článkov sa schvaľujú priamym commitom do dát a zavretím issue.
           </p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
@@ -83,7 +83,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
             <p id="detail-issue-author" class="mt-2 text-sm font-semibold text-belly-dimgray-earth"></p>
             <div class="mt-4 flex flex-wrap gap-2">
               <a id="detail-issue-link" href="#" target="_blank" rel="noreferrer" class="bibliography-link-button">Otvoriť issue</a>
-              <button id="approve-issue-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">Schváliť a vytvoriť PR</button>
+              <button id="approve-issue-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">Schváliť a zapísať</button>
             </div>
 
             <section id="detail-article-edit" class="mt-5">
@@ -100,6 +100,14 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
                   <tbody id="admin-diff-body"></tbody>
                 </table>
               </div>
+              <div class="admin-approval-footer">
+                <p>
+                  Schválenie vytvorí commit v GitHube, zavrie pôvodné issue a Cloudflare Pages automaticky spustí nový deploy.
+                </p>
+                <button id="approve-issue-bottom-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">
+                  Schváliť opravu a zapísať do webu
+                </button>
+              </div>
             </section>
 
             <section id="detail-manual" class="article-abstract-box mt-5 p-4" hidden>
@@ -109,7 +117,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
             <section id="detail-result" class="admin-approve-result mt-5" hidden>
               <h3 class="bibliography-section-title">Výsledok schválenia</h3>
               <p id="detail-result-text" class="mt-2 text-sm text-belly-dimgray"></p>
-              <a id="detail-pr-link" href="#" target="_blank" rel="noreferrer" class="bibliography-link-button mt-3">Otvoriť PR</a>
+              <a id="detail-pr-link" href="#" target="_blank" rel="noreferrer" class="bibliography-link-button mt-3">Otvoriť commit</a>
             </section>
           </article>
         </section>
@@ -131,6 +139,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
     const emptyDetail = document.getElementById('admin-errata-detail-empty');
     const detail = document.getElementById('admin-errata-detail');
     const approveButton = document.getElementById('approve-issue-btn');
+    const approveBottomButton = document.getElementById('approve-issue-bottom-btn');
     const diffBody = document.getElementById('admin-diff-body');
     const articleEditSection = document.getElementById('detail-article-edit');
     const manualSection = document.getElementById('detail-manual');
@@ -182,6 +191,17 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
         Accept: 'application/json',
         'Content-Type': 'application/json',
       };
+    }
+
+    function setApproveButtonsDisabled(disabled) {
+      approveButton.disabled = disabled;
+      approveBottomButton.disabled = disabled;
+    }
+
+    function setApproveButtonsVisible(visible) {
+      approveButton.hidden = !visible;
+      approveBottomButton.hidden = !visible;
+      setApproveButtonsDisabled(!visible);
     }
 
     function setLoggedIn(user) {
@@ -322,8 +342,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       issueLink.href = selectedIssue.url || '#';
       articleEditSection.hidden = selectedIssue.type !== 'article_edit';
       manualSection.hidden = selectedIssue.type === 'article_edit';
-      approveButton.hidden = selectedIssue.type !== 'article_edit';
-      approveButton.disabled = selectedIssue.type !== 'article_edit';
+      setApproveButtonsVisible(selectedIssue.type === 'article_edit');
       if (selectedIssue.type === 'article_edit') renderDiff(selectedIssue);
     }
 
@@ -353,8 +372,8 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
 
     async function approveSelectedIssue() {
       if (!selectedIssue || selectedIssue.type !== 'article_edit') return;
-      approveButton.disabled = true;
-      setStatus(`Vytváram PR pre issue #${selectedIssue.number}...`);
+      setApproveButtonsDisabled(true);
+      setStatus(`Zapisujem opravu pre issue #${selectedIssue.number}...`);
       resultSection.hidden = true;
       try {
         const response = await fetch(endpoint, {
@@ -364,15 +383,26 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
           body: JSON.stringify({ issueNumber: selectedIssue.number }),
         });
         const payload = await response.json().catch(() => ({}));
-        if (!response.ok || !payload.ok) throw new Error(payload.error || 'PR sa nepodarilo vytvoriť.');
-        resultText.textContent = `Vytvorený PR z branchu ${payload.pullRequest?.branch || 'neuvedené'}.`;
-        prLink.href = payload.pullRequest?.pullUrl || '#';
+        if (!response.ok || !payload.ok) throw new Error(payload.error || 'Opravu sa nepodarilo zapísať.');
+        const approval = payload.approval || {};
+        const warnings = Array.isArray(approval.warnings) && approval.warnings.length
+          ? ` Upozornenie: ${approval.warnings.join(' ')}`
+          : '';
+        const issueState = approval.issueClosed === false ? 'Issue ostalo otvorené.' : 'Issue bolo zavreté.';
+        resultText.textContent = `Oprava bola zapísaná commitom do vetvy ${approval.branch || 'neuvedené'}. ${issueState} Cloudflare Pages spustí nový deploy.${warnings}`;
+        prLink.href = approval.commitUrl || '#';
         resultSection.hidden = false;
-        setStatus(`PR vytvorený: ${payload.pullRequest?.pullUrl || ''}`);
+        setStatus(`Oprava zapísaná: ${approval.commitUrl || ''}`);
+        if (approval.issueClosed !== false) {
+          issues = issues.filter((issue) => Number(issue.number) !== Number(selectedIssue.number));
+          renderIssueList();
+        }
+        selectedIssue = null;
+        setApproveButtonsVisible(false);
       } catch (error) {
         setStatus(error.message || 'Schválenie zlyhalo.', true);
       } finally {
-        approveButton.disabled = false;
+        if (selectedIssue?.type === 'article_edit') setApproveButtonsDisabled(false);
       }
     }
 
@@ -380,6 +410,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
     loadButton.addEventListener('click', loadIssues);
     logoutButton.addEventListener('click', logoutAdmin);
     approveButton.addEventListener('click', approveSelectedIssue);
+    approveBottomButton.addEventListener('click', approveSelectedIssue);
     checkSession();
   </script>
 </Layout>

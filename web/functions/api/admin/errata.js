@@ -42,6 +42,10 @@ function repositoryName(env) {
   return repository;
 }
 
+function gitRefPath(refName) {
+  return String(refName || '').split('/').map((part) => encodeURIComponent(part)).join('/');
+}
+
 async function githubFetch(env, path, options = {}) {
   const token = env.GITHUB_TOKEN;
   const repository = repositoryName(env);
@@ -228,9 +232,9 @@ async function createBlob(env, content) {
   return result.data.sha;
 }
 
-async function createPullRequest(env, issue, patch) {
+async function approveIssueWithCommit(env, issue, patch) {
   const baseBranch = cleanText(env.ADMIN_BASE_BRANCH, 100) || (await getDefaultBranch(env));
-  const baseRef = await githubFetch(env, `/repos/{repository}/git/ref/heads/${encodeURIComponent(baseBranch)}`);
+  const baseRef = await githubFetch(env, `/repos/{repository}/git/ref/heads/${gitRefPath(baseBranch)}`);
   if (!baseRef.ok) throw new Error(baseRef.data.message || 'Base branch sa nepodarilo načítať.');
   const baseCommitSha = baseRef.data.object.sha;
 
@@ -271,39 +275,45 @@ async function createPullRequest(env, issue, patch) {
   });
   if (!commit.ok) throw new Error(commit.data.message || 'GitHub commit sa nepodarilo vytvoriť.');
 
-  const branch = `errata/issue-${issue.number}-${Date.now()}`;
-  const ref = await githubFetch(env, '/repos/{repository}/git/refs', {
-    method: 'POST',
-    body: JSON.stringify({ ref: `refs/heads/${branch}`, sha: commit.data.sha }),
+  const updatedRef = await githubFetch(env, `/repos/{repository}/git/refs/heads/${gitRefPath(baseBranch)}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ sha: commit.data.sha, force: false }),
   });
-  if (!ref.ok) throw new Error(ref.data.message || 'GitHub branch sa nepodarilo vytvoriť.');
+  if (!updatedRef.ok) throw new Error(updatedRef.data.message || 'GitHub branch sa nepodarilo aktualizovať.');
 
-  const pull = await githubFetch(env, '/repos/{repository}/pulls', {
+  const commitUrl = commit.data.html_url || `https://github.com/${repositoryName(env)}/commit/${commit.data.sha}`;
+  const warnings = [];
+
+  const comment = await githubFetch(env, `/repos/{repository}/issues/${issue.number}/comments`, {
     method: 'POST',
     body: JSON.stringify({
-      title: `Errata #${issue.number}: článok #${patch.article_id}`,
-      head: branch,
-      base: baseBranch,
       body: [
-        `Schválenie komunitnej opravy z issue #${issue.number}.`,
+        `Admin schválil návrh a zapísal opravu priamo do vetvy \`${baseBranch}\`.`,
         '',
         `- Článok: #${patch.article_id}`,
         `- Polia: ${patch.changed_fields.join(', ')}`,
         `- Súbory: ${updatedFiles.join(', ')}`,
-        '',
-        `Pôvodné hlásenie: ${issue.html_url}`,
+        `- Commit: ${commitUrl}`,
       ].join('\n'),
-      maintainer_can_modify: true,
     }),
   });
-  if (!pull.ok) throw new Error(pull.data.message || 'Pull request sa nepodarilo vytvoriť.');
+  if (!comment.ok) warnings.push(comment.data.message || 'Komentár do issue sa nepodarilo pridať.');
 
-  await githubFetch(env, `/repos/{repository}/issues/${issue.number}/comments`, {
-    method: 'POST',
-    body: JSON.stringify({ body: `Admin schválil návrh a vytvoril PR: ${pull.data.html_url}` }),
+  const closedIssue = await githubFetch(env, `/repos/{repository}/issues/${issue.number}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ state: 'closed', state_reason: 'completed' }),
   });
+  if (!closedIssue.ok) warnings.push(closedIssue.data.message || 'Issue sa nepodarilo zavrieť.');
 
-  return { pullUrl: pull.data.html_url, branch, files: updatedFiles };
+  return {
+    commitUrl,
+    commitSha: commit.data.sha,
+    branch: baseBranch,
+    files: updatedFiles,
+    issueClosed: closedIssue.ok,
+    commented: comment.ok,
+    warnings,
+  };
 }
 
 async function approveIssue(env, payload) {
@@ -317,8 +327,8 @@ async function approveIssue(env, payload) {
   if (!patch) {
     return { ok: false, status: 400, error: 'Issue neobsahuje platný JSON diff článku.' };
   }
-  const pr = await createPullRequest(env, issue, patch);
-  return { ok: true, issue: issueSummary(issue), pullRequest: pr };
+  const approval = await approveIssueWithCommit(env, issue, patch);
+  return { ok: true, issue: issueSummary(issue), approval };
 }
 
 export async function onRequestGet(context) {
