@@ -33,6 +33,30 @@ Aktuálny dataset obsahuje:
 
 Research manifest uvádza približne 65,8 milióna znakov a 10,3 milióna slov v spracovanom fulltexte. SQLite research databáza sa generuje lokálne a nie je commitovaná, pretože má viac ako 300 MB.
 
+## Admin login na Cloudflare Pages
+
+Admin rozhranie `/admin/opravy/` nepoužíva Cloudflare Access. Chráni ho jednoduché serverové prihlásenie heslom:
+
+- heslo nie je uložené v repozitári,
+- v Cloudflare Pages je uložený iba hash v `ADMIN_PASSWORD_HASH`,
+- session podpisuje `SESSION_SECRET`,
+- cookie je `HttpOnly`, `Secure` a `SameSite=Strict`.
+
+Hash hesla sa generuje lokálne:
+
+```bash
+node scripts/generate_admin_password_hash.mjs "silne admin heslo"
+```
+
+V Cloudflare Pages treba pre produkciu nastaviť aspoň:
+
+- `ADMIN_PASSWORD_HASH` ako secret,
+- `SESSION_SECRET` ako secret,
+- `GITHUB_TOKEN` ako secret,
+- `GITHUB_REPOSITORY` ako textovú premennú.
+
+Voliteľné nastavenia sú `ADMIN_SESSION_SECONDS` a `ADMIN_USER_LABEL`.
+
 ## Čo portál poskytuje používateľovi
 
 Webová aplikácia je statický Astro portál s lokálnym vyhľadávaním v prehliadači. Používateľ dostáva:
