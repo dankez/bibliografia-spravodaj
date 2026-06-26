@@ -188,7 +188,7 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "Set-Cookie" in backend_source
     assert "HttpOnly" in backend_source
     assert "SameSite=Strict" in backend_source
-    assert "PBKDF2" in backend_source
+    assert "SHA-256" in backend_source
     assert "HMAC" in backend_source
     assert "timingSafeEqual" in backend_source
     assert "GITHUB_TOKEN" in backend_source

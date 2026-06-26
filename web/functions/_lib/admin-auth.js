@@ -1,5 +1,6 @@
 export const ADMIN_SESSION_COOKIE = 'sss_admin_session';
-const PASSWORD_HASH_ALGORITHM = 'pbkdf2-sha256';
+const PASSWORD_HASH_ALGORITHM = 'sha256';
+const LEGACY_PASSWORD_HASH_ALGORITHM = 'pbkdf2-sha256';
 const DEFAULT_SESSION_SECONDS = 12 * 60 * 60;
 
 function cleanText(value, maxLength = 500) {
@@ -65,29 +66,25 @@ function passwordHashSpec(env) {
 
 function parsePasswordHash(spec) {
   const parts = String(spec || '').split('$');
-  if (parts.length !== 4 || parts[0] !== PASSWORD_HASH_ALGORITHM) return null;
-  const iterations = Number.parseInt(parts[1], 10);
-  if (!Number.isFinite(iterations) || iterations < 100000) return null;
-  const salt = base64UrlDecode(parts[2]);
-  const hash = base64UrlDecode(parts[3]);
-  if (!salt.length || !hash.length) return null;
-  return { iterations, salt, hash };
+  if (parts.length === 3 && parts[0] === PASSWORD_HASH_ALGORITHM) {
+    const salt = base64UrlDecode(parts[1]);
+    const hash = base64UrlDecode(parts[2]);
+    if (!salt.length || !hash.length) return null;
+    return { algorithm: PASSWORD_HASH_ALGORITHM, salt, hash };
+  }
+  if (parts.length === 4 && parts[0] === LEGACY_PASSWORD_HASH_ALGORITHM) {
+    return { algorithm: LEGACY_PASSWORD_HASH_ALGORITHM };
+  }
+  return null;
 }
 
-async function derivePasswordHash(password, salt, iterations, length) {
-  const passwordKey = await crypto.subtle.importKey(
-    'raw',
-    new TextEncoder().encode(String(password || '')),
-    'PBKDF2',
-    false,
-    ['deriveBits']
-  );
-  const bits = await crypto.subtle.deriveBits(
-    { name: 'PBKDF2', salt, iterations, hash: 'SHA-256' },
-    passwordKey,
-    length * 8
-  );
-  return new Uint8Array(bits);
+async function derivePasswordHash(password, salt) {
+  const material = new Uint8Array([
+    ...salt,
+    ...new TextEncoder().encode(':'),
+    ...new TextEncoder().encode(String(password || '')),
+  ]);
+  return new Uint8Array(await crypto.subtle.digest('SHA-256', material));
 }
 
 export async function verifyAdminPassword(env, password) {
@@ -96,6 +93,9 @@ export async function verifyAdminPassword(env, password) {
   const missing = [];
   if (!hashSpec) missing.push('ADMIN_PASSWORD_HASH chýba');
   else if (!parsed) missing.push('ADMIN_PASSWORD_HASH má neplatný formát');
+  else if (parsed.algorithm === LEGACY_PASSWORD_HASH_ALGORITHM) {
+    missing.push('ADMIN_PASSWORD_HASH používa starý PBKDF2 formát, vygeneruj nový sha256 hash');
+  }
   if (!sessionSecret(env)) missing.push('SESSION_SECRET chýba');
   if (missing.length) {
     return {
@@ -104,7 +104,7 @@ export async function verifyAdminPassword(env, password) {
       error: `Admin login nie je nakonfigurovaný (${missing.join(', ')}).`,
     };
   }
-  const derived = await derivePasswordHash(password, parsed.salt, parsed.iterations, parsed.hash.length);
+  const derived = await derivePasswordHash(password, parsed.salt);
   if (!timingSafeBytesEqual(derived, parsed.hash)) {
     return { ok: false, status: 401, error: 'Neplatné heslo.' };
   }

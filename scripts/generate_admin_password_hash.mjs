@@ -1,4 +1,4 @@
-import { pbkdf2Sync, randomBytes } from 'node:crypto';
+import { createHash, randomBytes } from 'node:crypto';
 
 const password = process.argv.slice(2).join(' ');
 if (!password) {
@@ -6,9 +6,12 @@ if (!password) {
   process.exit(1);
 }
 
-const iterations = 310000;
 const salt = randomBytes(16);
-const hash = pbkdf2Sync(password, salt, iterations, 32, 'sha256');
+const hash = createHash('sha256')
+  .update(salt)
+  .update(':')
+  .update(password)
+  .digest();
 
 const encode = (buffer) => buffer.toString('base64url');
-console.log(`pbkdf2-sha256$${iterations}$${encode(salt)}$${encode(hash)}`);
+console.log(`sha256$${encode(salt)}$${encode(hash)}`);

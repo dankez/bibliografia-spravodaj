@@ -48,6 +48,9 @@ Hash hesla sa generuje lokálne:
 node scripts/generate_admin_password_hash.mjs "silne admin heslo"
 ```
 
+Výstup má formát `sha256$...`. Ak je v Cloudflare ešte starší hash
+`pbkdf2-sha256$...`, treba ho nahradiť novým výstupom zo skriptu.
+
 V Cloudflare Pages treba pre produkciu nastaviť aspoň:
 
 - `ADMIN_PASSWORD_HASH` ako secret,
