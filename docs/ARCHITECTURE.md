@@ -1,72 +1,140 @@
-# SSS Bibliography: System Architecture
+# Architektúra digitálnej bibliografie SSS
 
-This document describes the design, architecture, and technology stack of the digital bibliography and knowledge portal for **Spravodaj Slovenskej speleologickej spoločnosti (SSS)**.
+Tento dokument opisuje aktuálnu architektúru portálu pre Spravodaj SSS, Aragonit a Slovenský kras. Stav zodpovedá produkčnému nasadeniu na Cloudflare Pages.
 
----
+## Ciele
 
-## 🏗️ Design Philosophy
+Projekt nie je iba zoznam PDF súborov. Nad článkami vytvára vrstvu metadát, fulltextu, citácií, exportov, registra jaskýň a komunitných opráv.
 
-The project is built on the **Hybrid CMS & Static Site** architecture. Instead of developing a custom database, admin panel, and authentication system, we leverage **Zotero** as our content management system (CMS) and database, and **Astro** for our high-performance frontend.
+Hlavné rozhodnutia:
 
-### Key Decisions:
-1. **No PDF Duplication:** All PDF documents remain on the original SSS server (`sss.sk`). The website links directly to these files, using physical page offsets (e.g., `#page=28`) to land precisely on the start of each article.
-2. **Zotero as a Serverless CMS:** Zotero is a free, open-source reference manager with collaborative libraries. SSS webmasters use the desktop or web Zotero client to edit, organize, and tag articles.
-3. **Astro for Static Performance & SEO:** The website is statically generated at build time by pulling data from the Zotero API. This ensures instant loading times, zero server maintenance costs, and perfect indexing by Google Scholar.
-4. **Client-side Smart Search:** Search queries are processed instantly in the user's browser using `MiniSearch`, indexing a pre-compiled JSON file.
+- Verejný web je statický Astro build, aby sa dal lacno hostovať a rýchlo cachovať.
+- Produkcia nepoužíva serverovú databázu. Verejné dáta sú JSON, statické stránky a exportné súbory.
+- Veľká research SQLite databáza a raw fulltext sa generujú lokálne a necommitujú sa do repozitára.
+- PDF dokumenty ostávajú na pôvodných zdrojoch, najmä `sss.sk`, `ssj.sk` a `smopaj.sk`; portál odkazuje na správnu fyzickú PDF stranu.
+- Komunitné opravy nejdú priamo do dát. Vždy vznikne GitHub issue, ktoré schvaľuje admin.
 
----
+## Hlavné vrstvy
 
-## 📁 Directory Structure
+### 1. Bibliografické dáta
 
-```
-sss-bibliografia/
-├── data/                  # Raw and parsed bibliographic data (JSON, CSV)
-├── docs/                  # System documentation and guides
-│   ├── ARCHITECTURE.md    # This file
-│   └── PARSING_LOG.md     # Log of the PDF extraction process
-├── scripts/               # Python scripts for data migration & AI extraction
-│   ├── parse_bibliography.py      # Extracts articles from the historic PDF
-│   ├── extract_pdf_fulltext.py    # Builds article-level full-text JSONL from linked PDFs
-│   ├── build_research_knowledge_db.py # Builds offline SQLite/FTS research database
-│   ├── openai_enrich_knowledge.py # OpenAI/Codex enrichment of extracted full text
-│   ├── export_danko_format.py     # Readable Danko bibliography export
-│   └── upload_to_zotero.py        # Uploads parsed data to the Zotero API
-└── web/                   # Astro web application (frontend)
-```
+Primárna článková databáza je uložená v JSON súboroch:
 
----
+- `data/articles_with_urls.json` pre skripty, exporty a lokálne spracovanie,
+- `web/src/data/articles.json` pre frontend build.
 
-## 🔄 Data Ingestion Flow
+Každý článok obsahuje ID, názov, autorov, časopis, rok, ročník, číslo, strany, PDF URL, vypočítanú PDF stranu, anotáciu, tagy, jaskyne, oblastné skupiny a príznaky ako mapa/plán.
 
-The bibliographic data covers two periods:
+### 2. Fulltext a research vrstva
 
-### 1. Historical Data (1970 - 2009)
-Parsed from the published book **"Bibliografia Spravodaja SSS"** by Marcel Lalkovič (2011).
-- **Extraction:** A Python script uses `pdftotext` to extract the article list and parses it using layout-aware regular expressions.
-- **Enrichment:** We map each issue (year, issue number) to the correct PDF URL on `sss.sk`.
-- **Upload:** The data is pushed to the Zotero Group Library using the `pyzotero` library.
+Fulltext sa vytvára lokálne zo zdrojových PDF:
 
-### 2. Modern & Future Data (2010 - Present)
-- **Scraper:** A script scans the `sss.sk/spravodaj/` page for new PDF uploads.
-- **AI Extractor:** Newly uploaded PDFs have their table of contents extracted and sent to the default **Codex auth backend** (`codex exec --output-schema`) or optionally to the **OpenAI Responses API** to extract articles, authors, page ranges, attachments, and summaries.
-- **Insertion:** Extracted articles are added directly to the Zotero Group Library.
+- `scripts/extract_pdf_fulltext.py` extrahuje text článkových rozsahov,
+- `scripts/build_research_knowledge_db.py` generuje lokálnu SQLite/FTS databázu,
+- `scripts/export_web_fulltext_index.py` pripravuje delený verejný fulltext index pre web.
 
-### 3. Full-text Knowledge Layer
-For deeper knowledge-base use, PDF issues can be cached locally and split into article-level text records:
-- `extract_pdf_fulltext.py` downloads each unique issue PDF once and extracts article page ranges with `pdftotext`.
-- `build_research_knowledge_db.py` creates the offline research database without AI calls: it cleans text, trims neighbouring article bleed on shared pages, chunks content for retrieval, builds SQLite FTS5 search, stores citations, JSON-LD, entity links, timelines, and PDF/media references.
-- `openai_enrich_knowledge.py` is an optional enrichment pass. It uses Codex auth by default, or OpenAI Structured Outputs when `--ai-backend openai` is selected, to create bibliographic abstracts, Lalkovic-style notes, keywords, entities, cave names, SSS groups, and map/plan flags.
-- The research layer is stored outside the default frontend bundle so the public bibliography stays fast, while later editorial tools can retrieve source-linked chunks for long-form AI articles.
+Research databáza slúži na rešerše, AI sumarizácie a neskoršie redakčné nástroje. Do Gitu sa neukladá, pretože je veľká.
 
----
+### 3. Webová vrstva
 
-## 🌐 Tech Stack
+Frontend je v `web/`:
 
-- **Data Management:** Zotero API (Group Library)
-- **Frontend Framework:** Astro 4.x (Static Site Generation)
-- **Styling:** CSS + Tailwind CSS v4
-- **Search Engine:** MiniSearch (In-browser search index)
-- **GIS Map:** Leaflet.js / OpenStreetMap
-- **Research DB:** SQLite FTS5 + JSONL exports
-- **AI Processing:** Codex auth backend or OpenAI Responses API with Structured Outputs
-- **Hosting:** GitHub Pages or Vercel (Free tier)
+- `web/src/pages/index.astro` hlavný archív,
+- `web/src/pages/clanky/[id].astro` detail článku,
+- `web/src/pages/clanky/[id]/edit.astro` štruktúrované hlásenie opravy,
+- `web/src/pages/jaskyne/index.astro` register jaskýň,
+- `web/src/pages/jaskyne/[slug].astro` časová os jaskyne,
+- `web/src/pages/admin/opravy.astro` admin schvaľovanie errata.
+
+Vyhľadávanie beží v prehliadači nad statickými dátami. Základné bibliografické vyhľadávanie používa článkový JSON; fulltext je delený podľa časopisu a rokov, aby mobil nemusel sťahovať celý index naraz.
+
+### 4. Cloudflare Pages Functions
+
+Statický web dopĺňajú malé serverové funkcie v `web/functions/`:
+
+- `api/error-report.js` vytvára GitHub issue z verejného hlásenia chyby,
+- `api/admin/login.js`, `api/admin/logout.js`, `api/admin/session.js` spravujú admin session,
+- `api/admin/errata.js` načíta otvorené errata issues a pri schválení spustí GitHub Actions workflow.
+
+Admin login je jednoduchý heslový režim:
+
+- heslo sa neukladá do repozitára,
+- produkcia obsahuje iba `ADMIN_PASSWORD_HASH`,
+- session podpisuje `SESSION_SECRET` alebo `ADMIN_SESSION_SECRET`,
+- cookie je `HttpOnly`, `Secure` a `SameSite=Strict`.
+
+### 5. GitHub Actions approval workflow
+
+Admin tlačidlo "Schváliť" nerobí priamy zápis veľkých JSON súborov v Cloudflare Function. Namiesto toho spustí:
+
+- `.github/workflows/approve-errata.yml`,
+- `scripts/apply_errata_issue.py`.
+
+Workflow:
+
+1. prijme číslo GitHub issue,
+2. načíta issue cez GitHub API,
+3. vyberie JSON diff so schémou `sss-bibliografia/article-edit/v1`,
+4. overí whitelist polí článku,
+5. skontroluje, že pôvodné hodnoty v issue stále sedia s aktuálnymi dátami,
+6. zapíše zmeny do `data/articles_with_urls.json` a `web/src/data/articles.json`,
+7. vytvorí commit do `main`,
+8. zavrie issue komentárom s odkazom na commit.
+
+Push do `main` následne spustí Cloudflare Pages deploy.
+
+## Hosting a deploy
+
+Produkčný web beží na Cloudflare Pages:
+
+- build root: `web`,
+- build command: `npm run build`,
+- output directory: `dist`,
+- custom domain: `bibliografia.sss.sk`.
+
+Cloudflare Pages po každom pushe do `main` vytvorí nový statický build. Footer webu zobrazuje release identifikátor s dátumom a commit hashom, aby sa dalo overiť, ktorá verzia je live.
+
+## Dôležité runtime premenné
+
+Produkčné premenné sa nastavujú v Cloudflare Pages, nie v repozitári:
+
+- `PUBLIC_TURNSTILE_SITE_KEY`,
+- `TURNSTILE_SECRET_KEY`,
+- `GITHUB_REPOSITORY`,
+- `GITHUB_TOKEN`,
+- `GITHUB_ISSUE_LABELS`,
+- `ADMIN_PASSWORD_HASH`,
+- `SESSION_SECRET` alebo `ADMIN_SESSION_SECRET`,
+- voliteľne `ADMIN_SESSION_SECONDS`,
+- voliteľne `ADMIN_USER_LABEL`,
+- voliteľne `ADMIN_APPROVAL_WORKFLOW`,
+- voliteľne `ADMIN_BASE_BRANCH`.
+
+Tokeny a heslá musia byť nastavené ako secrets. Do Gitu nepatrí `.env` ani reálne hodnoty týchto premenných.
+
+## Exporty
+
+Exporty generujú skripty v `scripts/` do `data/exports/`:
+
+- HTML,
+- Markdown,
+- PDF,
+- SQL/SQLite,
+- tlačové čiernobiele HTML.
+
+Exporty môžu byť spoločné pre všetky časopisy alebo samostatné podľa časopisu. Pri samostatnom exporte sa číslovanie článkov začína od 1 pre daný časopis.
+
+## Register jaskýň
+
+Register jaskýň sa generuje z článkových metadát a podporných zoznamov:
+
+- `data/cave_aliases.json` pre ručné aliasy a zlučovanie,
+- `data/smopaj_cave_register_2017.json` pre register SMOPaJ,
+- `data/geomorphology_regions.json` pre geomorfologické jednotky,
+- `scripts/build_cave_index.py` pre výsledný index.
+
+Rovnako pomenované jaskyne sa majú rozlišovať podľa kontextu, oblasti a geomorfologického celku. Niektoré priradenia sú isté, iné ostávajú kurátorské.
+
+## Poznámka k Zotero
+
+V repozitári zostali historické skripty ako `scripts/upload_to_zotero.py`, ale aktuálny produkčný web nepoužíva Zotero ako runtime CMS. Zdrojom produkčného webu sú JSON dáta v repozitári a automatizované buildy.

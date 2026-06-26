@@ -39,7 +39,7 @@ Admin rozhranie `/admin/opravy/` nepoužíva Cloudflare Access. Chráni ho jedno
 
 - heslo nie je uložené v repozitári,
 - v Cloudflare Pages je uložený iba hash v `ADMIN_PASSWORD_HASH`,
-- session podpisuje `SESSION_SECRET`,
+- session podpisuje `SESSION_SECRET` alebo `ADMIN_SESSION_SECRET`,
 - cookie je `HttpOnly`, `Secure` a `SameSite=Strict`.
 
 Hash hesla sa generuje lokálne:
@@ -54,11 +54,18 @@ Výstup má formát `sha256$...`. Ak je v Cloudflare ešte starší hash
 V Cloudflare Pages treba pre produkciu nastaviť aspoň:
 
 - `ADMIN_PASSWORD_HASH` ako secret,
-- `SESSION_SECRET` ako secret,
+- `SESSION_SECRET` alebo `ADMIN_SESSION_SECRET` ako secret,
 - `GITHUB_TOKEN` ako secret,
 - `GITHUB_REPOSITORY` ako textovú premennú.
 
-Voliteľné nastavenia sú `ADMIN_SESSION_SECONDS` a `ADMIN_USER_LABEL`.
+`GITHUB_TOKEN` používa verejný errata formulár aj admin rozhranie. Musí vedieť vytvárať a čítať issues a spustiť GitHub Actions workflow `approve-errata.yml`. Pri fine-grained tokene stačí prístup k tomuto repozitáru s právami `Issues: read/write`, `Actions: read/write` a `Metadata: read`. Obsah repozitára zapisuje až GitHub Actions workflow cez štandardný `github.token`.
+
+Voliteľné nastavenia sú:
+
+- `ADMIN_SESSION_SECONDS`, predvolene 12 hodín,
+- `ADMIN_USER_LABEL`, zobrazované meno prihláseného admina,
+- `ADMIN_APPROVAL_WORKFLOW`, predvolene `approve-errata.yml`,
+- `ADMIN_BASE_BRANCH`, predvolene default branch repozitára.
 
 ## Čo portál poskytuje používateľovi
 
@@ -313,11 +320,22 @@ Každý článok má odkaz "Našiel som chybu", ktorý otvára štruktúrovaný 
 
 Samostatný formulár `/nahlasit-chybu/` ostáva dostupný pre všeobecné hlásenia a doplnenie čísla jaskyne zo zoznamu SMOPaJ.
 
+Schvaľovanie prebieha v admin rozhraní `/admin/opravy/`:
+
+1. Admin sa prihlási heslom.
+2. Stránka načíta otvorené errata issues z GitHubu.
+3. Štruktúrované opravy zobrazí ako porovnanie pôvodná hodnota vs. navrhovaná hodnota.
+4. Tlačidlo schválenia nespúšťa veľký zápis v Cloudflare Function. Iba odošle `workflow_dispatch` pre `.github/workflows/approve-errata.yml`.
+5. GitHub Actions spustí `scripts/apply_errata_issue.py`, znovu načíta issue, overí JSON diff, skontroluje konflikty voči aktuálnym dátam, upraví `data/articles_with_urls.json` aj `web/src/data/articles.json`, vytvorí commit a zavrie issue.
+6. Push do `main` automaticky spustí nový Cloudflare Pages deploy.
+
+Ak sa článok medzi nahlásením a schválením zmenil, workflow skončí chybou a issue ostane otvorené na ručnú kontrolu. Bežné čakanie na live web je približne 2 až 5 minút po commite, podľa fronty Cloudflare Pages.
+
 Bezpečnostný model:
 
 - edit formulár je na stránke zamknutý, kým používateľ neprejde Cloudflare Turnstile,
 - odoslanie sa ešte raz overuje na serveri cez `TURNSTILE_SECRET_KEY`,
-- pre tvrdé overenie ešte pred načítaním edit stránky nastav v Cloudflare WAF pravidlo pre cestu `/clanky/*/edit/` s akciou Managed Challenge,
+- ak je v Cloudflare účte dostupné WAF pravidlo, dá sa pridať Managed Challenge pre `/clanky/*/edit/`; nie je to však nutné pre základnú ochranu,
 - verejný používateľ nikdy nezapisuje priamo do repozitára ani do dátových súborov,
 - backend prijíma pri `article_edit` iba whitelistované polia článku a limituje dĺžky vstupov,
 - výsledkom je GitHub issue s čitateľným popisom a strojovo spracovateľným JSON diffom.
@@ -326,9 +344,11 @@ Runtime premenné pre hosting:
 
 - `PUBLIC_TURNSTILE_SITE_KEY` pre frontend Turnstile widget,
 - `TURNSTILE_SECRET_KEY` pre serverové overenie Turnstile,
-- `GITHUB_TOKEN` s právom vytvárať issues v repozitári,
+- `GITHUB_TOKEN` s právom vytvárať issues a spúšťať approval workflow,
 - `GITHUB_REPOSITORY` vo formáte `owner/repo`,
 - voliteľne `GITHUB_ISSUE_LABELS` ako čiarkou oddelené existujúce labely,
+- voliteľne `ADMIN_APPROVAL_WORKFLOW`, ak sa workflow súbor nemenuje `approve-errata.yml`,
+- voliteľne `ADMIN_BASE_BRANCH`, ak sa nemá použiť default branch,
 - voliteľne `ERROR_REPORT_ALLOW_INSECURE=true` len pre lokálny test bez Turnstile.
 
 Do repozitára sa neukladajú žiadne tokeny ani `.env` súbory. Ak Turnstile alebo GitHub premenné nie sú nastavené, backend vráti konfiguračnú chybu namiesto tichého prijatia hlásenia.

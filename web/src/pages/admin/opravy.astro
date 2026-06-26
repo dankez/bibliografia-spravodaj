@@ -19,7 +19,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
           <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Redakčný režim</p>
           <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">Admin opravy</h1>
           <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray">
-            Kontrola komunitných errata z GitHub issues. Štruktúrované opravy článkov sa schvaľujú priamym commitom do dát a zavretím issue.
+            Kontrola komunitných errata z GitHub issues. Štruktúrované opravy článkov sa schvaľujú spustením GitHub Actions workflow, ktorý zapíše dáta, zavrie issue a spustí nový Cloudflare deploy.
           </p>
         </div>
         <div class="flex flex-wrap items-center gap-2">
