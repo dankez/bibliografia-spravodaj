@@ -194,6 +194,7 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "timingSafeEqual" in backend_source
     assert "GITHUB_TOKEN" in backend_source
     assert "approveIssueWithCommit" in backend_source
+    assert "/git/blobs/" in backend_source
     assert "state_reason: 'completed'" in backend_source
     assert "data/articles_with_urls.json" in backend_source
     assert "web/src/data/articles.json" in backend_source

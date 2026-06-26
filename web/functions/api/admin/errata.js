@@ -178,7 +178,19 @@ async function getDefaultBranch(env) {
 async function getTextFile(env, path, ref) {
   const result = await githubFetch(env, `/repos/{repository}/contents/${encodeURIComponent(path).replace(/%2F/g, '/')}?ref=${encodeURIComponent(ref)}`);
   if (!result.ok) throw new Error(result.data.message || `Súbor ${path} sa nepodarilo načítať.`);
-  return decodeBase64Utf8(result.data.content);
+  if (result.data.content && result.data.encoding === 'base64') {
+    return decodeBase64Utf8(result.data.content);
+  }
+  if (!result.data.sha) {
+    throw new Error(`Súbor ${path} nemá dostupný obsah ani Git blob SHA.`);
+  }
+
+  const blob = await githubFetch(env, `/repos/{repository}/git/blobs/${result.data.sha}`);
+  if (!blob.ok) throw new Error(blob.data.message || `Git blob súboru ${path} sa nepodarilo načítať.`);
+  if (!blob.data.content || blob.data.encoding !== 'base64') {
+    throw new Error(`Git blob súboru ${path} nemá očakávané base64 dáta.`);
+  }
+  return decodeBase64Utf8(blob.data.content);
 }
 
 function articleComparableValue(article, field) {
