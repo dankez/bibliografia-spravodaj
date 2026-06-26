@@ -91,9 +91,18 @@ async function derivePasswordHash(password, salt, iterations, length) {
 }
 
 export async function verifyAdminPassword(env, password) {
-  const parsed = parsePasswordHash(passwordHashSpec(env));
-  if (!parsed || !sessionSecret(env)) {
-    return { ok: false, status: 503, error: 'Admin login nie je nakonfigurovaný.' };
+  const hashSpec = passwordHashSpec(env);
+  const parsed = parsePasswordHash(hashSpec);
+  const missing = [];
+  if (!hashSpec) missing.push('ADMIN_PASSWORD_HASH chýba');
+  else if (!parsed) missing.push('ADMIN_PASSWORD_HASH má neplatný formát');
+  if (!sessionSecret(env)) missing.push('SESSION_SECRET chýba');
+  if (missing.length) {
+    return {
+      ok: false,
+      status: 503,
+      error: `Admin login nie je nakonfigurovaný (${missing.join(', ')}).`,
+    };
   }
   const derived = await derivePasswordHash(password, parsed.salt, parsed.iterations, parsed.hash.length);
   if (!timingSafeBytesEqual(derived, parsed.hash)) {
