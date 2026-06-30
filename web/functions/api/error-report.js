@@ -9,8 +9,10 @@ const ALLOWED_TYPES = new Set([
   'abstract',
   'tags',
   'article_edit',
+  'fulltext_review',
   'other',
 ]);
+const FULLTEXT_REVIEW_SCHEMA = 'sss-bibliografia/fulltext-review/v1';
 const ARTICLE_EDIT_FIELDS = [
   'title',
   'authors',
@@ -48,6 +50,7 @@ const TYPE_LABELS = {
   abstract: 'Anotácia',
   tags: 'Tagy / lokality',
   article_edit: 'Editácia článku',
+  fulltext_review: 'Kontrola fulltextu',
   other: 'Všetko / iné',
 };
 
@@ -136,6 +139,35 @@ function cleanArticlePatchObject(value) {
   );
 }
 
+function cleanFulltextReviewDecision(value) {
+  const raw = parseJsonObject(value);
+  const decision = cleanText(raw.decision, 40);
+  const allowedDecisions = new Set(['ok', 'rejected', 'needs_fix']);
+  return {
+    schema: FULLTEXT_REVIEW_SCHEMA,
+    decision: allowedDecisions.has(decision) ? decision : '',
+    decision_key: cleanText(raw.decision_key, 180),
+    article_id: cleanText(raw.article_id, 40),
+    article_title: cleanText(raw.article_title, 260),
+    article_url: cleanText(raw.article_url, 500),
+    year: cleanText(raw.year, 40),
+    pages: cleanText(raw.pages, 80),
+    primary_issue: cleanText(raw.primary_issue, 120),
+    primary_label: cleanText(raw.primary_label, 180),
+    issue_codes: parseStringArray(raw.issue_codes, 30, 120),
+    issue_labels: parseStringArray(raw.issue_labels, 30, 180),
+    issue_score: cleanText(raw.issue_score, 40),
+    text_status: cleanText(raw.text_status, 120),
+    text_source: cleanText(raw.text_source, 120),
+    text_chars: cleanText(raw.text_chars, 40),
+    words: cleanText(raw.words, 40),
+    recommended_action: cleanText(raw.recommended_action, 500),
+    pdf_url: cleanText(raw.pdf_url, 800),
+    source_generated_at: cleanText(raw.source_generated_at, 120),
+    source_version: cleanText(raw.source_version, 120),
+  };
+}
+
 function articleValuesEqual(left, right) {
   return JSON.stringify(left) === JSON.stringify(right);
 }
@@ -162,6 +194,23 @@ function validateArticleEdit(payload, message) {
   }
 
   return { ok: true, original, proposed, changedFields };
+}
+
+function validateFulltextReview(payload, message) {
+  const review = cleanFulltextReviewDecision(payload.fulltextReviewDecision);
+  if (!review.article_id || !/^\d+$/.test(review.article_id)) {
+    return { ok: false, status: 400, error: 'Chýba číslo článku pre kontrolu fulltextu.' };
+  }
+  if (!review.decision_key) {
+    return { ok: false, status: 400, error: 'Chýba identifikátor incidentu.' };
+  }
+  if (!review.decision) {
+    return { ok: false, status: 400, error: 'Chýba platné rozhodnutie kontroly.' };
+  }
+  if (message.length < 10) {
+    return { ok: false, status: 400, error: 'Poznámka ku kontrole musí mať aspoň 10 znakov.' };
+  }
+  return { ok: true, review };
 }
 
 function validatePayload(payload) {
@@ -193,6 +242,10 @@ function validatePayload(payload) {
   if (articleEdit && !articleEdit.ok) {
     return { ok: false, status: articleEdit.status, error: articleEdit.error };
   }
+  const fulltextReview = type === 'fulltext_review' ? validateFulltextReview(payload, message) : null;
+  if (fulltextReview && !fulltextReview.ok) {
+    return { ok: false, status: fulltextReview.status, error: fulltextReview.error };
+  }
 
   return {
     ok: true,
@@ -200,9 +253,9 @@ function validatePayload(payload) {
       type,
       message,
       email,
-      articleId: cleanText(payload.articleId, 40),
-      articleTitle: cleanText(payload.articleTitle, 260),
-      articleUrl: cleanText(payload.articleUrl, 500),
+      articleId: fulltextReview?.review.article_id || cleanText(payload.articleId, 40),
+      articleTitle: fulltextReview?.review.article_title || cleanText(payload.articleTitle, 260),
+      articleUrl: fulltextReview?.review.article_url || cleanText(payload.articleUrl, 500),
       caveName: cleanText(payload.caveName, 260),
       caveSlug: cleanText(payload.caveSlug, 160),
       smopajCaveNumber,
@@ -212,6 +265,7 @@ function validatePayload(payload) {
       changedFields: articleEdit?.changedFields || [],
       originalArticle: articleEdit?.original || null,
       proposedArticle: articleEdit?.proposed || null,
+      fulltextReviewDecision: fulltextReview?.review || null,
       turnstileToken: cleanText(payload.turnstileToken, 3000),
     },
   };
@@ -242,6 +296,7 @@ async function verifyTurnstile(env, token, request) {
 
 function issueBody(data, request) {
   if (data.type === 'article_edit') return articleEditIssueBody(data, request);
+  if (data.type === 'fulltext_review') return fulltextReviewIssueBody(data, request);
   const rows = [
     'Používateľ nahlásil chybu v bibliografii Spravodaja SSS.',
     '',
@@ -259,6 +314,38 @@ function issueBody(data, request) {
     'Popis:',
     '',
     data.message,
+  ];
+  return rows.join('\n');
+}
+
+function fulltextReviewIssueBody(data, request) {
+  const review = {
+    ...data.fulltextReviewDecision,
+    schema: FULLTEXT_REVIEW_SCHEMA,
+    source_version: data.sourceVersion || data.fulltextReviewDecision?.source_version || 'neuvedené',
+  };
+  const rows = [
+    'Používateľ navrhol rozhodnutie ku kontrole fulltextového incidentu.',
+    '',
+    `- Typ chyby: ${TYPE_LABELS[data.type]}`,
+    `- Článok ID: ${data.articleId || 'neuvedené'}`,
+    `- Názov: ${data.articleTitle || 'neuvedené'}`,
+    `- URL: ${data.articleUrl || request.headers.get('Referer') || 'neuvedené'}`,
+    `- Rozhodnutie: ${review.decision || 'neuvedené'}`,
+    `- Incident: ${review.decision_key || 'neuvedené'}`,
+    `- Problém: ${review.primary_label || review.primary_issue || 'neuvedené'}`,
+    `- Release zdroja: ${review.source_version || 'neuvedené'}`,
+    `- Kontakt: ${data.email || 'neuvedený'}`,
+    '',
+    'Poznámka používateľa:',
+    '',
+    data.message,
+    '',
+    'JSON rozhodnutie na kontrolu:',
+    '',
+    '```json',
+    JSON.stringify(review, null, 2),
+    '```',
   ];
   return rows.join('\n');
 }
@@ -308,6 +395,8 @@ async function createGithubIssue(env, data, request) {
       ? `${data.caveName || data.caveSlug || 'karta jaskyne'} -> ${data.smopajCaveNumber}`
       : data.type === 'article_edit'
         ? `#${data.articleId}: ${data.changedFields.join(', ')}`
+      : data.type === 'fulltext_review'
+        ? `#${data.articleId}: ${data.fulltextReviewDecision?.decision || 'kontrola'}`
       : data.articleId
         ? `#${data.articleId}`
         : data.articleTitle || 'bez čísla článku';

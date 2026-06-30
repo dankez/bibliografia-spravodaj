@@ -93,6 +93,39 @@ def test_build_queue_exports_only_active_non_ignored_incidents():
     assert queue["incidents"][1]["pdf_links"] == [{"page": 8, "url": "https://example.test/a.pdf#page=8"}]
 
 
+def test_build_queue_filters_approved_fulltext_review_decisions():
+    record = {
+        "id": 81,
+        "line": 40,
+        "title": "Krátky text",
+        "year": 1971,
+        "status": "ok",
+        "pages": "40",
+        "text_chars": 12,
+        "words": 2,
+        "issue_score": 350,
+        "issues": [{"code": "very_short_text", "severity": "high", "detail": "short"}],
+        "pdf_url": "https://example.test/a.pdf",
+        "pdf_page_start": 41,
+        "pdf_page_end": 41,
+    }
+    incident = exporter.compact_incident(record)
+    audit = {
+        "summary": {"generated_at": "2026-06-30T00:00:00+00:00"},
+        "records": [record],
+    }
+    decisions = {
+        "schema_version": "sss-bibliografia/fulltext-review-decisions/v1",
+        "decisions": [{"decision": "ok", "decision_key": incident["decision_key"], "article_id": "81"}],
+    }
+
+    queue = exporter.build_queue(audit, decisions)
+
+    assert queue["summary"]["active_incidents"] == 0
+    assert queue["summary"]["review_decisions_applied"] == 1
+    assert queue["incidents"] == []
+
+
 def test_build_summary_omits_incident_payload():
     queue = {
         "generated_at": "2026-06-30T00:00:01+00:00",

@@ -1205,6 +1205,16 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   box-shadow: var(--sss-card-shadow);
 }
 
+.review-submit-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 1rem;
+  border-radius: var(--sss-radius-lg);
+  background: rgb(var(--sss-card));
+  box-shadow: var(--sss-card-shadow);
+}
+
 .review-field {
   display: grid;
   gap: 0.35rem;
@@ -1491,6 +1501,12 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   font-weight: 800;
   text-align: center;
   text-transform: uppercase;
+}
+
+.review-state-note a {
+  color: rgb(var(--sss-firebrick));
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
 }
 
 .review-card[data-local-state="approved"] {
@@ -2815,6 +2831,10 @@ html[data-theme="dark"] footer .text-belly-dimgray {
 
   .review-card {
     padding: 0.85rem;
+  }
+
+  .review-submit-panel {
+    grid-template-columns: minmax(0, 1fr);
   }
 
   .review-card-head {

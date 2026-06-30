@@ -214,6 +214,16 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       setApproveButtonsDisabled(!visible);
     }
 
+    function isStructuredIssue(issue) {
+      return ['article_edit', 'fulltext_review'].includes(issue?.type);
+    }
+
+    function issueTypeLabel(type) {
+      if (type === 'article_edit') return 'edit článku';
+      if (type === 'fulltext_review') return 'kontrola fulltextu';
+      return 'ručné hlásenie';
+    }
+
     function setLoggedIn(user) {
       isLoggedIn = true;
       loginForm.hidden = true;
@@ -306,7 +316,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
         button.type = 'button';
         button.className = 'admin-errata-item';
         button.dataset.issueNumber = String(issue.number);
-        appendText(button, 'span', 'admin-errata-item-kicker', `#${issue.number} · ${issue.type === 'article_edit' ? 'edit článku' : 'ručné'}`);
+        appendText(button, 'span', 'admin-errata-item-kicker', `#${issue.number} · ${issueTypeLabel(issue.type)}`);
         appendText(button, 'strong', '', issue.title);
         appendText(button, 'span', 'admin-errata-item-meta', `${formatDate(issue.created_at)} · ${issue.author || 'neznámy autor'}`);
         button.addEventListener('click', () => selectIssue(issue.number));
@@ -318,6 +328,31 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
     function renderDiff(issue) {
       diffBody.replaceChildren();
       const patch = issue.patch;
+      if (issue.type === 'fulltext_review') {
+        [
+          ['Rozhodnutie', '—', patch?.decision || '—'],
+          ['Incident', '—', patch?.decision_key || '—'],
+          ['Článok', patch?.article_id || '—', patch?.article_title || '—'],
+          ['Problém', patch?.primary_issue || '—', patch?.primary_label || '—'],
+          ['Strany', '—', patch?.pages || '—'],
+          ['PDF', '—', patch?.pdf_url || '—'],
+          ['Audit', '—', patch?.source_generated_at || '—'],
+        ].forEach(([field, originalValue, proposedValue]) => {
+          const row = document.createElement('tr');
+          appendText(row, 'th', '', field);
+          const original = document.createElement('td');
+          const originalPre = document.createElement('pre');
+          originalPre.append(textNode(formatValue(originalValue)));
+          original.append(originalPre);
+          const proposed = document.createElement('td');
+          const proposedPre = document.createElement('pre');
+          proposedPre.append(textNode(formatValue(proposedValue)));
+          proposed.append(proposedPre);
+          row.append(original, proposed);
+          diffBody.append(row);
+        });
+        return;
+      }
       (patch?.changed_fields || []).forEach((field) => {
         const row = document.createElement('tr');
         appendText(row, 'th', '', field);
@@ -344,16 +379,16 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       detail.hidden = false;
       resultSection.hidden = true;
       document.getElementById('detail-issue-number').textContent = `Issue #${selectedIssue.number}`;
-      document.getElementById('detail-issue-type').textContent = selectedIssue.type === 'article_edit' ? 'edit článku' : 'ručné hlásenie';
+      document.getElementById('detail-issue-type').textContent = issueTypeLabel(selectedIssue.type);
       document.getElementById('detail-issue-date').textContent = formatDate(selectedIssue.created_at);
       document.getElementById('detail-issue-title').textContent = selectedIssue.title;
       document.getElementById('detail-issue-author').textContent = selectedIssue.author ? `Autor hlásenia: ${selectedIssue.author}` : 'Autor hlásenia: neuvedený';
       const issueLink = document.getElementById('detail-issue-link');
       issueLink.href = selectedIssue.url || '#';
-      articleEditSection.hidden = selectedIssue.type !== 'article_edit';
-      manualSection.hidden = selectedIssue.type === 'article_edit';
-      setApproveButtonsVisible(selectedIssue.type === 'article_edit');
-      if (selectedIssue.type === 'article_edit') renderDiff(selectedIssue);
+      articleEditSection.hidden = !isStructuredIssue(selectedIssue);
+      manualSection.hidden = isStructuredIssue(selectedIssue);
+      setApproveButtonsVisible(isStructuredIssue(selectedIssue));
+      if (isStructuredIssue(selectedIssue)) renderDiff(selectedIssue);
     }
 
     async function loadIssues() {
@@ -381,7 +416,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
     }
 
     async function approveSelectedIssue() {
-      if (!selectedIssue || selectedIssue.type !== 'article_edit') return;
+      if (!isStructuredIssue(selectedIssue)) return;
       setApproveButtonsDisabled(true);
       setStatus(`Spúšťam schvaľovací workflow pre issue #${selectedIssue.number}...`);
       resultSection.hidden = true;
@@ -404,7 +439,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       } catch (error) {
         setStatus(error.message || 'Schválenie zlyhalo.', true);
       } finally {
-        if (selectedIssue?.type === 'article_edit') setApproveButtonsDisabled(false);
+        if (isStructuredIssue(selectedIssue)) setApproveButtonsDisabled(false);
       }
     }
 

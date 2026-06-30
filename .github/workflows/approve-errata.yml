@@ -4,7 +4,7 @@ on:
   workflow_dispatch:
     inputs:
       issue_number:
-        description: GitHub issue number with structured article edit diff
+        description: GitHub issue number with structured errata diff or review decision
         required: true
         type: string
 
@@ -32,7 +32,7 @@ jobs:
       - name: Detect changes
         id: diff
         run: |
-          if git diff --quiet -- data/articles_with_urls.json web/src/data/articles.json; then
+          if git diff --quiet -- data/articles_with_urls.json web/src/data/articles.json data/fulltext_review_decisions.json web/public/data/fulltext_review_queue.json web/src/data/fulltext_review_summary.json; then
             echo "changed=false" >> "$GITHUB_OUTPUT"
           else
             echo "changed=true" >> "$GITHUB_OUTPUT"
@@ -43,7 +43,7 @@ jobs:
         run: |
           git config user.name "sss-bibliografia-admin"
           git config user.email "actions@github.com"
-          git add data/articles_with_urls.json web/src/data/articles.json
+          git add data/articles_with_urls.json web/src/data/articles.json data/fulltext_review_decisions.json web/public/data/fulltext_review_queue.json web/src/data/fulltext_review_summary.json
           git commit -m "Apply errata issue #${{ inputs.issue_number }}"
           git push
 
@@ -55,18 +55,21 @@ jobs:
           CHANGED: ${{ steps.diff.outputs.changed }}
           ARTICLE_ID: ${{ steps.apply.outputs.article_id }}
           CHANGED_FIELDS: ${{ steps.apply.outputs.changed_fields }}
+          STRUCTURED_TYPE: ${{ steps.apply.outputs.structured_type }}
         run: |
           COMMIT_SHA="$(git rev-parse HEAD)"
           COMMIT_URL="https://github.com/${REPOSITORY}/commit/${COMMIT_SHA}"
           if [ "$CHANGED" = "true" ]; then
             BODY="Admin schválil opravu cez webové rozhranie a zapísal ju commitom ${COMMIT_URL}.
 
+          - Typ: ${STRUCTURED_TYPE}
           - Článok: #${ARTICLE_ID}
-          - Polia: ${CHANGED_FIELDS}"
+          - Zmena: ${CHANGED_FIELDS}"
           else
             BODY="Admin schválil opravu cez webové rozhranie. Dáta už zodpovedali navrhovanej hodnote, nový commit nebol potrebný.
 
+          - Typ: ${STRUCTURED_TYPE}
           - Článok: #${ARTICLE_ID}
-          - Polia: ${CHANGED_FIELDS}"
+          - Zmena: ${CHANGED_FIELDS}"
           fi
           gh issue close "$ISSUE_NUMBER" --repo "$REPOSITORY" --reason completed --comment "$BODY"

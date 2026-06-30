@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T11:36:42.872416+00:00",
+  "generated_at": "2026-06-30T17:01:50.876303+00:00",
   "source_generated_at": "2026-06-30T09:47:55.737170+00:00",
   "summary": {
     "active_incidents": 346,
@@ -12,6 +12,7 @@
     "records_without_text": 74,
     "duplicate_article_ids": 0,
     "auto_fixable_records_excluded": 0,
+    "review_decisions_applied": 0,
     "issue_counts": {
       "residual_bad_diacritic_tokens": 156,
       "replacement_characters": 19,

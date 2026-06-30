@@ -3,6 +3,8 @@ import Layout from '../layouts/Layout.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import reviewSummary from '../data/fulltext_review_summary.json';
 
+const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
+const errorReportEndpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-report';
 const summary = reviewSummary.summary || {};
 const issueLabels = reviewSummary.issue_labels || {};
 const issueCounts = summary.issue_counts || {};
@@ -19,7 +21,9 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
 ---
 
 <Layout title="S týmto potrebujem pomôcť — Spravodaj SSS">
-  <div class="review-page min-h-screen text-belly-black">
+  {turnstileSiteKey && <script slot="head" src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>}
+
+  <div class="review-page min-h-screen text-belly-black" data-error-endpoint={errorReportEndpoint} data-source-generated-at={generatedAt || ''}>
     <header class="portal-header border-b border-belly-darkgray">
       <div class="h-2 bg-belly-firebrick"></div>
       <div class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
@@ -106,6 +110,23 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
         {generatedAt && <p>Audit: {String(generatedAt).slice(0, 10)}</p>}
       </div>
 
+      <section class="review-submit-panel mb-4 border border-belly-darkgray p-3">
+        <div>
+          <h2 class="font-display text-lg font-bold text-belly-black-brown">Schvaľovanie incidentov</h2>
+          <p class="mt-1 text-sm leading-relaxed text-belly-dimgray">
+            Tlačidlá OK a Zamietnuť vytvoria GitHub návrh. Po admin potvrdení sa rozhodnutie zapíše do dát a ďalší deploy ho premietne do webu.
+          </p>
+        </div>
+        <input id="fulltext-review-turnstile-token" name="turnstileToken" type="hidden" />
+        {turnstileSiteKey ? (
+          <div class="cf-turnstile" data-sitekey={turnstileSiteKey} data-callback="onFulltextReviewTurnstileSuccess"></div>
+        ) : (
+          <div class="cf-turnstile report-antispam-placeholder">
+            Antispam overenie bude aktívne po nastavení `PUBLIC_TURNSTILE_SITE_KEY`.
+          </div>
+        )}
+      </section>
+
       <div id="review-loading" class="review-loading">Načítavam incidenty...</div>
       <div id="review-empty" class="review-empty-state" hidden></div>
       <section id="review-list" class="review-list grid gap-3" aria-live="polite"></section>
@@ -129,10 +150,19 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
     const stateSelect = document.getElementById('review-state');
     const visibleCount = document.getElementById('review-visible-count');
     const controls = [searchInput, severitySelect, issueSelect, stateSelect].filter(Boolean);
+    const reviewPage = document.querySelector('.review-page');
+    const errorReportEndpoint = reviewPage?.dataset.errorEndpoint || '/api/error-report';
+    const sourceGeneratedAt = reviewPage?.dataset.sourceGeneratedAt || '';
+    const turnstileTokenInput = document.getElementById('fulltext-review-turnstile-token');
 
     let cards = [];
 
     const storageKey = (id) => `sss-fulltext-review:${id}`;
+    const issueStorageKey = (id) => `sss-fulltext-review-issue:${id}`;
+
+    window.onFulltextReviewTurnstileSuccess = (token) => {
+      if (turnstileTokenInput) turnstileTokenInput.value = token;
+    };
 
     function normalize(value) {
       return String(value || '')
@@ -194,6 +224,22 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
       }
     }
 
+    function getStoredIssueUrl(id) {
+      try {
+        return localStorage.getItem(issueStorageKey(id)) || '';
+      } catch (error) {
+        return '';
+      }
+    }
+
+    function setStoredIssueUrl(id, url) {
+      try {
+        if (url) localStorage.setItem(issueStorageKey(id), url);
+      } catch (error) {
+        // LocalStorage can be unavailable; the server-side GitHub issue has already been created.
+      }
+    }
+
     function applyStoredState(card) {
       const state = getStoredState(card.dataset.id);
       card.dataset.localState = state;
@@ -208,7 +254,119 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
       });
       const stateNote = card.querySelector('[data-review-state-note]');
       if (stateNote) {
-        stateNote.textContent = `Lokálny stav: ${label}`;
+        stateNote.replaceChildren();
+        stateNote.append(`Lokálny stav: ${label}`);
+        const issueUrl = getStoredIssueUrl(card.dataset.id);
+        if (issueUrl) {
+          stateNote.append(' / ');
+          const link = document.createElement('a');
+          link.href = issueUrl;
+          link.target = '_blank';
+          link.rel = 'noreferrer';
+          link.textContent = 'GitHub návrh';
+          stateNote.append(link);
+        }
+      }
+    }
+
+    function sourceVersionLabel() {
+      const badge = document.querySelector('.site-build-badge');
+      if (badge?.getAttribute('title')) return badge.getAttribute('title');
+      return document.querySelector('.site-release')?.textContent?.replace(/^release:\s*/i, '').trim() || 'local';
+    }
+
+    function firstPdfUrl(incident) {
+      const links = Array.isArray(incident.pdf_links) ? incident.pdf_links : [];
+      return links.find((link) => link?.url)?.url || '';
+    }
+
+    function decisionLabel(decision) {
+      return {
+        ok: 'OK',
+        rejected: 'Zamietnuté',
+      }[decision] || decision;
+    }
+
+    function buildFulltextReviewDecision(incident, decision) {
+      const articleId = textValue(incident.id);
+      return {
+        schema: 'sss-bibliografia/fulltext-review/v1',
+        decision,
+        decision_key: textValue(incident.decision_key),
+        article_id: articleId,
+        article_title: textValue(incident.title),
+        article_url: textValue(incident.article_url, articleId ? `/clanky/${articleId}/` : ''),
+        year: textValue(incident.year),
+        pages: textValue(incident.pages),
+        primary_issue: textValue(incident.primary_issue),
+        primary_label: textValue(incident.primary_label),
+        issue_codes: Array.isArray(incident.issue_codes) ? incident.issue_codes : [],
+        issue_labels: Array.isArray(incident.issue_labels) ? incident.issue_labels : [],
+        issue_score: textValue(incident.issue_score),
+        text_status: textValue(incident.status),
+        text_source: textValue(incident.text_source),
+        text_chars: textValue(incident.text_chars),
+        words: textValue(incident.words),
+        recommended_action: textValue(incident.recommended_action),
+        pdf_url: firstPdfUrl(incident),
+        source_generated_at: sourceGeneratedAt,
+        source_version: sourceVersionLabel(),
+      };
+    }
+
+    async function submitReviewDecision(card, incident, decision) {
+      const token = turnstileTokenInput?.value || '';
+      if (!token && document.querySelector('.cf-turnstile:not(.report-antispam-placeholder)')) {
+        const stateNote = card.querySelector('[data-review-state-note]');
+        if (stateNote) stateNote.textContent = 'Najprv dokonči antispam overenie nad zoznamom.';
+        return;
+      }
+      const decisionPayload = buildFulltextReviewDecision(incident, decision);
+      if (!decisionPayload.decision_key) {
+        const stateNote = card.querySelector('[data-review-state-note]');
+        if (stateNote) stateNote.textContent = 'Incident nemá stabilný identifikátor. Skús obnoviť stránku po novom deployi.';
+        return;
+      }
+      const buttons = card.querySelectorAll('[data-review-decision]');
+      buttons.forEach((button) => {
+        button.disabled = true;
+      });
+      const stateNote = card.querySelector('[data-review-state-note]');
+      if (stateNote) stateNote.textContent = 'Odosielam GitHub návrh...';
+      try {
+        const articleId = textValue(incident.id);
+        const response = await fetch(errorReportEndpoint, {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({
+            type: 'fulltext_review',
+            articleId,
+            articleTitle: textValue(incident.title),
+            articleUrl: textValue(incident.article_url, articleId ? `/clanky/${articleId}/` : '/kontrola/'),
+            message: [
+              `Kontrola fulltext incidentu: ${decisionLabel(decision)}.`,
+              `Článok ID ${articleId || '-'}, problém: ${textValue(incident.primary_label, '-')}.`,
+              textValue(incident.recommended_action, 'Rozhodnutie z kontrolnej fronty.'),
+            ].join('\n'),
+            fulltextReviewDecision: JSON.stringify(decisionPayload),
+            turnstileToken: token,
+          }),
+        });
+        const payload = await response.json().catch(() => ({}));
+        if (!response.ok || !payload.ok) throw new Error(payload.error || 'GitHub návrh sa nepodarilo vytvoriť.');
+        const localState = decision === 'ok' ? 'approved' : 'rejected';
+        setStoredState(card.dataset.id, localState);
+        setStoredIssueUrl(card.dataset.id, payload.issueUrl || '');
+        applyStoredState(card);
+        applyFilters();
+        if (turnstileTokenInput) turnstileTokenInput.value = '';
+        window.turnstile?.reset?.();
+      } catch (error) {
+        if (stateNote) stateNote.textContent = error.message || 'GitHub návrh sa nepodarilo vytvoriť.';
+      } finally {
+        buttons.forEach((button) => {
+          button.disabled = false;
+        });
       }
     }
 
@@ -335,17 +493,15 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
       decisions.appendChild(fixLink);
 
       [
-        ['approved', 'OK'],
+        ['ok', 'OK'],
         ['rejected', 'Zamietnuť'],
-      ].forEach(([state, label]) => {
+      ].forEach(([decision, label]) => {
         const button = document.createElement('button');
         button.type = 'button';
-        button.dataset.reviewDecision = state;
+        button.dataset.reviewDecision = decision === 'ok' ? 'approved' : 'rejected';
         button.textContent = label;
         button.addEventListener('click', () => {
-          setStoredState(card.dataset.id, state);
-          applyStoredState(card);
-          applyFilters();
+          submitReviewDecision(card, incident, decision);
         });
         decisions.appendChild(button);
       });

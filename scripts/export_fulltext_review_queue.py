@@ -4,6 +4,7 @@
 import argparse
 import collections
 import datetime as dt
+import hashlib
 import json
 import sys
 from pathlib import Path
@@ -12,6 +13,7 @@ from typing import Any
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_AUDIT_PATH = BASE_DIR / "reports" / "fulltext_quality_audit.json"
+DEFAULT_DECISIONS_PATH = BASE_DIR / "data" / "fulltext_review_decisions.json"
 DEFAULT_OUTPUT_PATH = BASE_DIR / "web" / "public" / "data" / "fulltext_review_queue.json"
 DEFAULT_SUMMARY_OUTPUT_PATH = BASE_DIR / "web" / "src" / "data" / "fulltext_review_summary.json"
 
@@ -50,6 +52,7 @@ AUTO_FIXABLE_ISSUES = {
     "cleanup_hyphen_linebreaks",
     "cleanup_multispace_layout",
 }
+RESOLVED_DECISIONS = {"ok", "rejected"}
 
 
 def read_json(path: Path) -> dict[str, Any]:
@@ -58,6 +61,12 @@ def read_json(path: Path) -> dict[str, Any]:
     if not isinstance(payload, dict):
         raise ValueError(f"Expected JSON object in {path}")
     return payload
+
+
+def read_decisions(path: Path) -> dict[str, Any]:
+    if not path.exists():
+        return {"schema_version": "sss-bibliografia/fulltext-review-decisions/v1", "decisions": []}
+    return read_json(path)
 
 
 def primary_issue(issues: list[dict[str, Any]]) -> dict[str, Any]:
@@ -98,6 +107,21 @@ def primary_pdf_link(record: dict[str, Any]) -> list[dict[str, Any]]:
     return []
 
 
+def decision_key(record: dict[str, Any], primary_code: str) -> str:
+    payload = {
+        "id": record.get("id"),
+        "primary_issue": primary_code,
+        "status": record.get("status"),
+        "pages": record.get("pages"),
+        "text_chars": record.get("text_chars"),
+        "words": record.get("words"),
+        "pdf_page_start": record.get("pdf_page_start"),
+        "pdf_page_end": record.get("pdf_page_end"),
+    }
+    digest = hashlib.sha256(json.dumps(payload, ensure_ascii=False, sort_keys=True).encode("utf-8")).hexdigest()[:16]
+    return f"fulltext:{record.get('id')}:{primary_code}:{digest}"
+
+
 def human_review_issues(record: dict[str, Any]) -> list[dict[str, Any]]:
     return [
         issue
@@ -118,7 +142,9 @@ def compact_incident(record: dict[str, Any]) -> dict[str, Any]:
     issues = human_review_issues(record)
     primary = primary_issue(issues)
     issue_codes = [issue.get("code") for issue in issues if issue.get("code")]
+    primary_code = primary.get("code")
     return {
+        "decision_key": decision_key(record, primary_code),
         "id": record.get("id"),
         "line": record.get("line"),
         "title": record.get("title"),
@@ -131,9 +157,9 @@ def compact_incident(record: dict[str, Any]) -> dict[str, Any]:
         "words": record.get("words"),
         "issue_score": record.get("issue_score"),
         "severity": primary.get("severity"),
-        "primary_issue": primary.get("code"),
-        "primary_label": ISSUE_LABELS.get(primary.get("code"), primary.get("code")),
-        "recommended_action": ISSUE_ACTIONS.get(primary.get("code"), "Ručne skontrolovať záznam."),
+        "primary_issue": primary_code,
+        "primary_label": ISSUE_LABELS.get(primary_code, primary_code),
+        "recommended_action": ISSUE_ACTIONS.get(primary_code, "Ručne skontrolovať záznam."),
         "issue_codes": issue_codes,
         "issue_labels": [ISSUE_LABELS.get(code, code) for code in issue_codes],
         "auto_fixable_issue_codes": auto_fixable_issue_codes(record),
@@ -143,7 +169,16 @@ def compact_incident(record: dict[str, Any]) -> dict[str, Any]:
     }
 
 
-def build_queue(audit: dict[str, Any]) -> dict[str, Any]:
+def resolved_decision_keys(decisions: dict[str, Any]) -> set[str]:
+    return {
+        str(item.get("decision_key") or "")
+        for item in decisions.get("decisions", [])
+        if item.get("decision") in RESOLVED_DECISIONS and item.get("decision_key")
+    }
+
+
+def build_queue(audit: dict[str, Any], decisions: dict[str, Any] | None = None) -> dict[str, Any]:
+    resolved_keys = resolved_decision_keys(decisions or {})
     auto_fixable_records_excluded = sum(
         1
         for record in audit.get("records", [])
@@ -151,11 +186,12 @@ def build_queue(audit: dict[str, Any]) -> dict[str, Any]:
         and not record.get("ignored_reason")
         and not human_review_issues(record)
     )
-    incidents = [
+    all_incidents = [
         compact_incident(record)
         for record in audit.get("records", [])
         if not record.get("ignored_reason") and human_review_issues(record)
     ]
+    incidents = [incident for incident in all_incidents if incident.get("decision_key") not in resolved_keys]
     incidents.sort(
         key=lambda item: (
             -int(item.get("issue_score") or 0),
@@ -181,6 +217,7 @@ def build_queue(audit: dict[str, Any]) -> dict[str, Any]:
             "records_without_text": (audit.get("summary") or {}).get("records_without_text", 0),
             "duplicate_article_ids": (audit.get("summary") or {}).get("duplicate_article_ids", 0),
             "auto_fixable_records_excluded": auto_fixable_records_excluded,
+            "review_decisions_applied": len(all_incidents) - len(incidents),
             "issue_counts": dict(issue_counts),
         },
         "issue_labels": ISSUE_LABELS,
@@ -200,6 +237,7 @@ def build_summary(queue: dict[str, Any]) -> dict[str, Any]:
 def main() -> int:
     parser = argparse.ArgumentParser(description="Export fulltext QA incident queue for Astro.")
     parser.add_argument("--audit", type=Path, default=DEFAULT_AUDIT_PATH)
+    parser.add_argument("--decisions", type=Path, default=DEFAULT_DECISIONS_PATH)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
     parser.add_argument("--summary-output", type=Path, default=DEFAULT_SUMMARY_OUTPUT_PATH)
     args = parser.parse_args()
@@ -208,7 +246,7 @@ def main() -> int:
         print(f"Missing audit report: {args.audit}", file=sys.stderr)
         return 1
 
-    queue = build_queue(read_json(args.audit))
+    queue = build_queue(read_json(args.audit), read_decisions(args.decisions))
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     args.summary_output.parent.mkdir(parents=True, exist_ok=True)

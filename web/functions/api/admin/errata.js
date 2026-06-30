@@ -1,6 +1,7 @@
 import { authorizeAdmin, sameOriginRequest } from '../../_lib/admin-auth.js';
 
 const ARTICLE_EDIT_SCHEMA = 'sss-bibliografia/article-edit/v1';
+const FULLTEXT_REVIEW_SCHEMA = 'sss-bibliografia/fulltext-review/v1';
 const DEFAULT_APPROVAL_WORKFLOW = 'approve-errata.yml';
 const ARTICLE_EDIT_FIELDS = new Set([
   'title',
@@ -74,7 +75,7 @@ function extractJsonPatch(issueBody) {
   if (!match) return null;
   try {
     const parsed = JSON.parse(match[1]);
-    if (parsed?.schema !== ARTICLE_EDIT_SCHEMA) return null;
+    if (![ARTICLE_EDIT_SCHEMA, FULLTEXT_REVIEW_SCHEMA].includes(parsed?.schema)) return null;
     return parsed;
   } catch {
     return null;
@@ -132,8 +133,44 @@ function normalizePatch(rawPatch) {
   };
 }
 
+function normalizeFulltextReview(rawPatch) {
+  if (!rawPatch || rawPatch.schema !== FULLTEXT_REVIEW_SCHEMA) return null;
+  const decision = cleanText(rawPatch.decision, 40);
+  if (!['ok', 'rejected', 'needs_fix'].includes(decision)) return null;
+  const articleId = cleanText(rawPatch.article_id, 40);
+  if (!/^\d+$/.test(articleId)) return null;
+  const decisionKey = cleanText(rawPatch.decision_key, 180);
+  if (!decisionKey) return null;
+  return {
+    schema: FULLTEXT_REVIEW_SCHEMA,
+    decision,
+    decision_key: decisionKey,
+    article_id: articleId,
+    article_title: cleanText(rawPatch.article_title, 260),
+    article_url: cleanText(rawPatch.article_url, 500),
+    year: cleanText(rawPatch.year, 40),
+    pages: cleanText(rawPatch.pages, 80),
+    primary_issue: cleanText(rawPatch.primary_issue, 120),
+    primary_label: cleanText(rawPatch.primary_label, 180),
+    issue_codes: Array.isArray(rawPatch.issue_codes) ? rawPatch.issue_codes.map((item) => cleanText(item, 120)).filter(Boolean).slice(0, 30) : [],
+    issue_labels: Array.isArray(rawPatch.issue_labels) ? rawPatch.issue_labels.map((item) => cleanText(item, 180)).filter(Boolean).slice(0, 30) : [],
+    issue_score: cleanText(rawPatch.issue_score, 40),
+    text_status: cleanText(rawPatch.text_status, 120),
+    text_source: cleanText(rawPatch.text_source, 120),
+    text_chars: cleanText(rawPatch.text_chars, 40),
+    words: cleanText(rawPatch.words, 40),
+    recommended_action: cleanText(rawPatch.recommended_action, 500),
+    pdf_url: cleanText(rawPatch.pdf_url, 800),
+    source_generated_at: cleanText(rawPatch.source_generated_at, 120),
+    source_version: cleanText(rawPatch.source_version, 120),
+  };
+}
+
 function issueSummary(issue) {
-  const patch = normalizePatch(extractJsonPatch(issue.body));
+  const rawPatch = extractJsonPatch(issue.body);
+  const articlePatch = normalizePatch(rawPatch);
+  const fulltextReview = normalizeFulltextReview(rawPatch);
+  const patch = articlePatch || fulltextReview;
   return {
     number: issue.number,
     title: issue.title || '',
@@ -142,9 +179,9 @@ function issueSummary(issue) {
     created_at: issue.created_at || '',
     updated_at: issue.updated_at || '',
     labels: (issue.labels || []).map((label) => label.name).filter(Boolean),
-    type: patch ? 'article_edit' : 'text',
+    type: articlePatch ? 'article_edit' : fulltextReview ? 'fulltext_review' : 'text',
     article_id: patch?.article_id || '',
-    changed_fields: patch?.changed_fields || [],
+    changed_fields: articlePatch?.changed_fields || (fulltextReview ? ['decision'] : []),
     patch,
   };
 }
@@ -153,7 +190,7 @@ function isErrataIssue(issue) {
   if (issue.pull_request) return false;
   const title = String(issue.title || '');
   const body = String(issue.body || '');
-  return /^\[errata\]/i.test(title) || body.includes(ARTICLE_EDIT_SCHEMA);
+  return /^\[errata\]/i.test(title) || body.includes(ARTICLE_EDIT_SCHEMA) || body.includes(FULLTEXT_REVIEW_SCHEMA);
 }
 
 async function listIssues(env) {
@@ -213,7 +250,7 @@ async function dispatchApprovalWorkflow(env, issue, patch) {
     branch: baseBranch,
     workflowUrl: `https://github.com/${repositoryName(env)}/actions/workflows/${encodeURIComponent(workflow)}`,
     articleId: patch.article_id,
-    changedFields: patch.changed_fields,
+    changedFields: patch.changed_fields || [patch.decision || 'decision'],
   };
 }
 
@@ -224,9 +261,10 @@ async function approveIssue(env, payload) {
   }
 
   const issue = await getIssue(env, issueNumber);
-  const patch = normalizePatch(extractJsonPatch(issue.body));
+  const rawPatch = extractJsonPatch(issue.body);
+  const patch = normalizePatch(rawPatch) || normalizeFulltextReview(rawPatch);
   if (!patch) {
-    return { ok: false, status: 400, error: 'Issue neobsahuje platný JSON diff článku.' };
+    return { ok: false, status: 400, error: 'Issue neobsahuje platný štruktúrovaný JSON diff alebo rozhodnutie.' };
   }
   const approval = await dispatchApprovalWorkflow(env, issue, patch);
   return { ok: true, issue: issueSummary(issue), approval };

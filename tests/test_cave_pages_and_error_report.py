@@ -131,6 +131,7 @@ def test_llms_txt_is_markdown_with_h1():
 
 def test_error_report_form_and_backend_template_exist_without_secret_literals():
     form_page = ROOT / "web" / "src" / "pages" / "nahlasit-chybu.astro"
+    review_page = ROOT / "web" / "src" / "pages" / "kontrola.astro"
     article_detail = ROOT / "web" / "src" / "pages" / "clanky" / "[id].astro"
     backend = ROOT / "web" / "functions" / "api" / "error-report.js"
 
@@ -138,6 +139,7 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
     assert backend.exists()
 
     form_source = form_page.read_text(encoding="utf-8")
+    review_source = review_page.read_text(encoding="utf-8")
     detail_source = article_detail.read_text(encoding="utf-8")
     backend_source = backend.read_text(encoding="utf-8")
 
@@ -154,6 +156,12 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
     assert "data-article-edit-field=\"pdf_page_offset\"" in form_source
     assert "Všetko / iné" in form_source
     assert "fulltext" in backend_source
+    assert "fulltext_review" in backend_source
+    assert "fulltextReviewDecision" in backend_source
+    assert "FULLTEXT_REVIEW_SCHEMA" in backend_source
+    assert "submitReviewDecision" in review_source
+    assert "onFulltextReviewTurnstileSuccess" in review_source
+    assert "sss-bibliografia/fulltext-review/v1" in review_source
     assert "tags" in backend_source
     assert "smopaj_cave_register_2017_search.json" in form_source
     assert "smopajCaveNumber" in backend_source
@@ -214,6 +222,12 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "data/articles_with_urls.json" in apply_source
     assert "web/src/data/articles.json" in apply_source
     assert "scripts/apply_errata_issue.py" in workflow_source
+    assert "fulltext_review" in page_source
+    assert "fulltext_review" in backend_source
+    assert "FULLTEXT_REVIEW_SCHEMA" in backend_source
+    assert "data/fulltext_review_decisions.json" in apply_source
+    assert "web/public/data/fulltext_review_queue.json" in workflow_source
+    assert "data/fulltext_review_decisions.json" in workflow_source
     assert "pdf_page_offset" in backend_source
     assert "map_plan_pages" in backend_source
     assert "wikidata" in backend_source

@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-06-30T11:36:42.872416+00:00",
+  "generated_at": "2026-06-30T17:01:50.876303+00:00",
   "source_generated_at": "2026-06-30T09:47:55.737170+00:00",
   "summary": {
     "active_incidents": 346,
@@ -12,6 +12,7 @@
     "records_without_text": 74,
     "duplicate_article_ids": 0,
     "auto_fixable_records_excluded": 0,
+    "review_decisions_applied": 0,
     "issue_counts": {
       "residual_bad_diacritic_tokens": 156,
       "replacement_characters": 19,
@@ -37,6 +38,7 @@
   },
   "incidents": [
     {
+      "decision_key": "fulltext:4133:residual_bad_diacritic_tokens:18906c9bd449265d",
       "id": 4133,
       "line": 3996,
       "title": "Zahraničné aktivity",
@@ -77,6 +79,7 @@
       "article_url": "/clanky/4133/"
     },
     {
+      "decision_key": "fulltext:4310:replacement_characters:58110fa3578e446f",
       "id": 4310,
       "line": 4173,
       "title": "7. vedecká konferencia „Výskum, využívanie a ochrana jaskýň” – Smolenice 10. – 13. 11. 2009",
@@ -113,6 +116,7 @@
       "article_url": "/clanky/4310/"
     },
     {
+      "decision_key": "fulltext:81:very_short_text:512198197d90adee",
       "id": 81,
       "line": 81,
       "title": "Návštevnosť slovenských jaskýň 1970",
@@ -147,6 +151,7 @@
       "article_url": "/clanky/81/"
     },
     {
+      "decision_key": "fulltext:111:very_short_text:b3efee791beb485d",
       "id": 111,
       "line": 111,
       "title": "Návštevnosť slovenských jaskýň 1971",
@@ -181,6 +186,7 @@
       "article_url": "/clanky/111/"
     },
     {
+      "decision_key": "fulltext:154:very_short_text:e9114454cb139327",
       "id": 154,
       "line": 154,
       "title": "A nakoniec trochu humoru",
@@ -215,6 +221,7 @@
       "article_url": "/clanky/154/"
     },
     {
+      "decision_key": "fulltext:209:very_short_text:fa594cecad2489f5",
       "id": 209,
       "line": 209,
       "title": "A nakoniec aj trochu humoru",
@@ -249,6 +256,7 @@
       "article_url": "/clanky/209/"
     },
     {
+      "decision_key": "fulltext:387:very_short_text:a49624e8f2a6540d",
       "id": 387,
       "line": 387,
       "title": "Návod k vodovzdornej impregnácii papiera pre vlhké prostredie v jaskyniach",
@@ -283,6 +291,7 @@
       "article_url": "/clanky/387/"
     },
     {
+      "decision_key": "fulltext:394:very_short_text:8c16806e3fcca508",
       "id": 394,
       "line": 394,
       "title": "Úvodník",
@@ -317,6 +326,7 @@
       "article_url": "/clanky/394/"
     },
     {
+      "decision_key": "fulltext:433:very_short_text:b180cc9869ffd766",
       "id": 433,
       "line": 433,
       "title": "Úvodník",
@@ -351,6 +361,7 @@
       "article_url": "/clanky/433/"
     },
     {
+      "decision_key": "fulltext:568:very_short_text:eff2f49311644b01",
       "id": 568,
       "line": 458,
       "title": "Jaskyniarsky humor",
@@ -385,6 +396,7 @@
       "article_url": "/clanky/568/"
     },
     {
+      "decision_key": "fulltext:663:very_short_text:9c72fa35e1936e84",
       "id": 663,
       "line": 553,
       "title": "Technické novinky",
@@ -419,6 +431,7 @@
       "article_url": "/clanky/663/"
     },
     {
+      "decision_key": "fulltext:819:very_short_text:254b611257012df1",
       "id": 819,
       "line": 709,
       "title": "Kreslené vtipy",
@@ -453,6 +466,7 @@
       "article_url": "/clanky/819/"
     },
     {
+      "decision_key": "fulltext:5894:very_short_text:56c829b9bb657a9a",
       "id": 5894,
       "line": 5757,
       "title": "Atlas (Jaskyňa Skalistý potok, Jaskyňa na Kečovských lúkách)",
@@ -487,6 +501,7 @@
       "article_url": "/clanky/5894/"
     },
     {
+      "decision_key": "fulltext:967:very_short_text:888c1cc31f95c36b",
       "id": 967,
       "line": 857,
       "title": "Zomrel Viktor Pleva",
@@ -521,6 +536,7 @@
       "article_url": "/clanky/967/"
     },
     {
+      "decision_key": "fulltext:995:very_short_text:786ace6ee8fba27c",
       "id": 995,
       "line": 885,
       "title": "Prehľad činnosti OS r. 1991",
@@ -555,6 +571,7 @@
       "article_url": "/clanky/995/"
     },
     {
+      "decision_key": "fulltext:1106:very_short_text:956f116db0ab959f",
       "id": 1106,
       "line": 978,
       "title": "Vážení priatelia, jaskyniari",
@@ -589,6 +606,7 @@
       "article_url": "/clanky/1106/"
     },
     {
+      "decision_key": "fulltext:1432:very_short_text:5935c47389244ea7",
       "id": 1432,
       "line": 1295,
       "title": "Božena Revajová",
@@ -623,6 +641,7 @@
       "article_url": "/clanky/1432/"
     },
     {
+      "decision_key": "fulltext:1829:very_short_text:e58a02b6b8a774c3",
       "id": 1829,
       "line": 1692,
       "title": "Výstava – významné výročia osobností jaskyniarstva",
@@ -657,6 +676,7 @@
       "article_url": "/clanky/1829/"
     },
     {
+      "decision_key": "fulltext:2037:very_short_text:73fdf410c020087b",
       "id": 2037,
       "line": 1900,
       "title": "Súťaž o umelecké stvárnenie jaskyne",
@@ -691,6 +711,7 @@
       "article_url": "/clanky/2037/"
     },
     {
+      "decision_key": "fulltext:2248:very_short_text:01351f01fbf1f622",
       "id": 2248,
       "line": 2111,
       "title": "Speleofóry",
@@ -725,6 +746,7 @@
       "article_url": "/clanky/2248/"
     },
     {
+      "decision_key": "fulltext:2518:very_short_text:fc99b7c01db49485",
       "id": 2518,
       "line": 2381,
       "title": "Pozdravný list podpredsedu vlády Slovenskej republiky",
@@ -759,6 +781,7 @@
       "article_url": "/clanky/2518/"
     },
     {
+      "decision_key": "fulltext:2803:very_short_text:97f059bc9aaf84a0",
       "id": 2803,
       "line": 2666,
       "title": "Tabuľka najdlhších jaskýň na Slovensku, stav k 23. 3. 2012",
@@ -793,6 +816,7 @@
       "article_url": "/clanky/2803/"
     },
     {
+      "decision_key": "fulltext:2826:very_short_text:c403a6ebdb73e32a",
       "id": 2826,
       "line": 2689,
       "title": "Recenzia",
@@ -827,6 +851,7 @@
       "article_url": "/clanky/2826/"
     },
     {
+      "decision_key": "fulltext:2833:very_short_text:6194e1cedcfc74a0",
       "id": 2833,
       "line": 2696,
       "title": "Jaskynný systém Piatra Altarului (Bihor, Rumunsko): dojmy z návštevy Kamenného oltára",
@@ -861,6 +886,7 @@
       "article_url": "/clanky/2833/"
     },
     {
+      "decision_key": "fulltext:2536:very_short_text:5f2c06fcacb0516a",
       "id": 2536,
       "line": 2399,
       "title": "Introduction",
@@ -895,6 +921,7 @@
       "article_url": "/clanky/2536/"
     },
     {
+      "decision_key": "fulltext:2540:very_short_text:e85924ff5f254de3",
       "id": 2540,
       "line": 2403,
       "title": "Does the largest cave system in Slovakia achieve the length of 50 km? Fairy tale about Demänovské caves",
@@ -929,6 +956,7 @@
       "article_url": "/clanky/2540/"
     },
     {
+      "decision_key": "fulltext:2546:very_short_text:5974b85b88a60795",
       "id": 2546,
       "line": 2409,
       "title": "Prosiecka Cave, Chočské vrchy Mts.",
@@ -963,6 +991,7 @@
       "article_url": "/clanky/2546/"
     },
     {
+      "decision_key": "fulltext:2547:very_short_text:297a6d163eb8f64c",
       "id": 2547,
       "line": 2410,
       "title": "Show caves in Slovakia",
@@ -997,6 +1026,7 @@
       "article_url": "/clanky/2547/"
     },
     {
+      "decision_key": "fulltext:2552:very_short_text:b7ffb7b9dfd980ef",
       "id": 2552,
       "line": 2415,
       "title": "Sardegna 2012: Way under the valley",
@@ -1031,6 +1061,7 @@
       "article_url": "/clanky/2552/"
     },
     {
+      "decision_key": "fulltext:2965:very_short_text:8b61b0e51f87935e",
       "id": 2965,
       "line": 2828,
       "title": "Storočie prieskumu Čachtického krasu",
@@ -1065,6 +1096,7 @@
       "article_url": "/clanky/2965/"
     },
     {
+      "decision_key": "fulltext:2971:very_short_text:4bbb2a3217eac90c",
       "id": 2971,
       "line": 2834,
       "title": "Vzácna návšteva z Yucatánu",
@@ -1099,6 +1131,7 @@
       "article_url": "/clanky/2971/"
     },
     {
+      "decision_key": "fulltext:3046:very_short_text:3723699aafef0ee9",
       "id": 3046,
       "line": 2909,
       "title": "Prehľad hospodárenia SSS v roku 2015 a návrh rozpočtu na rok 2016",
@@ -1133,6 +1166,7 @@
       "article_url": "/clanky/3046/"
     },
     {
+      "decision_key": "fulltext:3084:very_short_text:cef5f63d409e2727",
       "id": 3084,
       "line": 2947,
       "title": "Stena megalodontov",
@@ -1167,6 +1201,7 @@
       "article_url": "/clanky/3084/"
     },
     {
+      "decision_key": "fulltext:3086:very_short_text:58dbf212d66ba273",
       "id": 3086,
       "line": 2949,
       "title": "Expedícia Jama 2016",
@@ -1201,6 +1236,7 @@
       "article_url": "/clanky/3086/"
     },
     {
+      "decision_key": "fulltext:3114:very_short_text:7cc4942936366421",
       "id": 3114,
       "line": 2977,
       "title": "Krátka história digitálnej trojrozmernej dokumentácie jaskynných priestorov",
@@ -1235,6 +1271,7 @@
       "article_url": "/clanky/3114/"
     },
     {
+      "decision_key": "fulltext:3121:very_short_text:e49dc0c9d1fe5e5d",
       "id": 3121,
       "line": 2984,
       "title": "Žiadna jaskyňa nemusí byť bezvýznamná",
@@ -1269,6 +1306,7 @@
       "article_url": "/clanky/3121/"
     },
     {
+      "decision_key": "fulltext:3356:very_short_text:7373ff51a982cbcc",
       "id": 3356,
       "line": 3219,
       "title": "IX. zraz speleopotápačov v Tisovci",
@@ -1303,6 +1341,7 @@
       "article_url": "/clanky/3356/"
     },
     {
+      "decision_key": "fulltext:2554:very_short_text:27f235d0bc947e31",
       "id": 2554,
       "line": 2417,
       "title": "Slovak cavers in 2022",
@@ -1337,6 +1376,7 @@
       "article_url": "/clanky/2554/"
     },
     {
+      "decision_key": "fulltext:2562:very_short_text:c515ddf5999f1991",
       "id": 2562,
       "line": 2425,
       "title": "Journey into the Bowels of the Deepest Cave of the Little Carpathians – Vajsáblova Priepasť Chasm",
@@ -1371,6 +1411,7 @@
       "article_url": "/clanky/2562/"
     },
     {
+      "decision_key": "fulltext:2564:very_short_text:567096386bb5f213",
       "id": 2564,
       "line": 2427,
       "title": "Suchá 3 Cave – A new paleontological site of cave bear remains in the Veľká Fatra Mts.",
@@ -1405,6 +1446,7 @@
       "article_url": "/clanky/2564/"
     },
     {
+      "decision_key": "fulltext:3505:very_short_text:1727490b3da2f693",
       "id": 3505,
       "line": 3368,
       "title": "Ďalší zaujímavý nález bystruškovitého chrobáka v podzemí",
@@ -1439,6 +1481,7 @@
       "article_url": "/clanky/3505/"
     },
     {
+      "decision_key": "fulltext:3521:very_short_text:cc25920a737a3324",
       "id": 3521,
       "line": 3384,
       "title": "„Diablova diera“ v Javorníkoch alebo nie je diera ako diera",
@@ -1473,6 +1516,7 @@
       "article_url": "/clanky/3521/"
     },
     {
+      "decision_key": "fulltext:3525:very_short_text:ad203804a1dcf45a",
       "id": 3525,
       "line": 3388,
       "title": "18. medzinárodný speleologický kongres 2022 Le Bourget du Lac, Savoie",
@@ -1507,6 +1551,7 @@
       "article_url": "/clanky/3525/"
     },
     {
+      "decision_key": "fulltext:3546:very_short_text:d9b235bdbe21bece",
       "id": 3546,
       "line": 3409,
       "title": "Správa o činnosti Slovenskej speleologickej spoločnosti za rok 2022",
@@ -1541,6 +1586,7 @@
       "article_url": "/clanky/3546/"
     },
     {
+      "decision_key": "fulltext:3626:very_short_text:debb0c28f336fa30",
       "id": 3626,
       "line": 3489,
       "title": "Predsedníctvo v roku 2024",
@@ -1575,6 +1621,7 @@
       "article_url": "/clanky/3626/"
     },
     {
+      "decision_key": "fulltext:3633:very_short_text:5b644cb5761c9a7b",
       "id": 3633,
       "line": 3496,
       "title": "Odpad v priepastiach Silickej planiny, 2023",
@@ -1609,6 +1656,7 @@
       "article_url": "/clanky/3633/"
     },
     {
+      "decision_key": "fulltext:2579:very_short_text:71faf41f4a5a9660",
       "id": 2579,
       "line": 2442,
       "title": "Demänovský jaskynný systém presiahol dĺžku 50 km",
@@ -1643,6 +1691,7 @@
       "article_url": "/clanky/2579/"
     },
     {
+      "decision_key": "fulltext:2598:very_short_text:abee7f86e1deaa5b",
       "id": 2598,
       "line": 2461,
       "title": "Predsedníctvo Slovenskej speleologickej spoločnosti v roku 2025",
@@ -1677,6 +1726,7 @@
       "article_url": "/clanky/2598/"
     },
     {
+      "decision_key": "fulltext:2517:residual_bad_diacritic_tokens:6710e970fa66ae15",
       "id": 2517,
       "line": 2380,
       "title": "Formovanie speleológie na Slovensku a prehľad histórie oblastných skupín a klubov SSS",
@@ -1714,6 +1764,7 @@
       "article_url": "/clanky/2517/"
     },
     {
+      "decision_key": "fulltext:4462:residual_bad_diacritic_tokens:59efb87375b199fa",
       "id": 4462,
       "line": 4325,
       "title": "Výskum, ochrana a starostlivosť o neživú prírodu v Aggtelekskom krase: dvadsaťročná retrospektíva",
@@ -1751,6 +1802,7 @@
       "article_url": "/clanky/4462/"
     },
     {
+      "decision_key": "fulltext:142:empty_text:d05abed85f89b7a4",
       "id": 142,
       "line": 142,
       "title": "Návštevnosť slovenských jaskýň 1972",
@@ -1783,6 +1835,7 @@
       "article_url": "/clanky/142/"
     },
     {
+      "decision_key": "fulltext:289:empty_text:f6eb77d7cf982a51",
       "id": 289,
       "line": 289,
       "title": "Exploratory Achievements of the Regional Groups of the Slovak Speleological Society",
@@ -1815,6 +1868,7 @@
       "article_url": "/clanky/289/"
     },
     {
+      "decision_key": "fulltext:290:empty_text:07eeef3a9adc61e9",
       "id": 290,
       "line": 290,
       "title": "International Relations of the Speleologists of the Slovak Speleological Society",
@@ -1847,6 +1901,7 @@
       "article_url": "/clanky/290/"
     },
     {
+      "decision_key": "fulltext:291:empty_text:07e206a7c75c9872",
       "id": 291,
       "line": 291,
       "title": "The Protected Regional Territory of „Slovenský kras“ (the Slovak karst)",
@@ -1879,6 +1934,7 @@
       "article_url": "/clanky/291/"
     },
     {
+      "decision_key": "fulltext:292:empty_text:896c34f24ddd6979",
       "id": 292,
       "line": 292,
       "title": "The Protected Regional Territory of Slovenský raj (the Slovak Paradise)",
@@ -1911,6 +1967,7 @@
       "article_url": "/clanky/292/"
     },
     {
+      "decision_key": "fulltext:566:empty_text:82edaa1aa7cbcfb9",
       "id": 566,
       "line": 456,
       "title": "Speleofórum 1983",
@@ -1943,6 +2000,7 @@
       "article_url": "/clanky/566/"
     },
     {
+      "decision_key": "fulltext:1130:empty_text:2eda4a99d5e29436",
       "id": 1130,
       "line": 1002,
       "title": "Správa Kontrolnej komisie SSS od XI. valného zhromaždenia",
@@ -1975,6 +2033,7 @@
       "article_url": "/clanky/1130/"
     },
     {
+      "decision_key": "fulltext:1502:empty_text:a9235909c36045bf",
       "id": 1502,
       "line": 1365,
       "title": "Publikácie Českej speleologickej spoločnosti",
@@ -2007,6 +2066,7 @@
       "article_url": "/clanky/1502/"
     },
     {
+      "decision_key": "fulltext:3994:empty_text:8cec2b7c96e67270",
       "id": 3994,
       "line": 3857,
       "title": "„Aridní“ sírany hořčíku z jeskyně Repiská v Demänovskej doline",
@@ -2039,6 +2099,7 @@
       "article_url": "/clanky/3994/"
     },
     {
+      "decision_key": "fulltext:3995:empty_text:c8e855cd6e01c221",
       "id": 3995,
       "line": 3858,
       "title": "Bočná prítoková chodba do Riečiska v Demänovskej jaskyni slobody",
@@ -2071,6 +2132,7 @@
       "article_url": "/clanky/3995/"
     },
     {
+      "decision_key": "fulltext:3996:empty_text:89e6008a04885f5a",
       "id": 3996,
       "line": 3859,
       "title": "Bočné chodby pri Pekelnom dóme v Demänovskej jaskyni slobody",
@@ -2103,6 +2165,7 @@
       "article_url": "/clanky/3996/"
     },
     {
+      "decision_key": "fulltext:3997:empty_text:ea8d94f34e65be9d",
       "id": 3997,
       "line": 3860,
       "title": "Domeriavanie Demänovskej jaskyne mieru",
@@ -2135,6 +2198,7 @@
       "article_url": "/clanky/3997/"
     },
     {
+      "decision_key": "fulltext:3998:empty_text:7563c6d113c6b898",
       "id": 3998,
       "line": 3861,
       "title": "Vlastnosti speleoaerosólov z hľadiska speleoterapie vo vybraných sprístupnených jaskyniach na Slovensku",
@@ -2167,6 +2231,7 @@
       "article_url": "/clanky/3998/"
     },
     {
+      "decision_key": "fulltext:3999:empty_text:cee63ad54ea84481",
       "id": 3999,
       "line": 3862,
       "title": "Zaujímavé nálezy kostí v Demänovskom jaskynnom systéme",
@@ -2199,6 +2264,7 @@
       "article_url": "/clanky/3999/"
     },
     {
+      "decision_key": "fulltext:4000:empty_text:9c80534e00545db9",
       "id": 4000,
       "line": 3863,
       "title": "Troglobiontné chvostoskoky (Hexapoda, Collembola) v sprístupnených jaskyniach Slovenska",
@@ -2231,6 +2297,7 @@
       "article_url": "/clanky/4000/"
     },
     {
+      "decision_key": "fulltext:4001:empty_text:39a3227d20919cc1",
       "id": 4001,
       "line": 3864,
       "title": "Rekonštrukcia uzáveru jaskyne Okno v Demänovskej doline",
@@ -2263,6 +2330,7 @@
       "article_url": "/clanky/4001/"
     },
     {
+      "decision_key": "fulltext:4002:empty_text:b1f4fec8785f680d",
       "id": 4002,
       "line": 3865,
       "title": "Prezentácia sprístupnených jaskýň na medzinárodných výstavách a veľtrhoch cestovného ruchu v roku 2000",
@@ -2295,6 +2363,7 @@
       "article_url": "/clanky/4002/"
     },
     {
+      "decision_key": "fulltext:4003:empty_text:347b7aa972cd32ff",
       "id": 4003,
       "line": 3866,
       "title": "Návštevnosť sprístupnených jaskýň v roku 1999",
@@ -2327,6 +2396,7 @@
       "article_url": "/clanky/4003/"
     },
     {
+      "decision_key": "fulltext:4004:empty_text:81a9bd8786ea8e9b",
       "id": 4004,
       "line": 3867,
       "title": "Rekonštrukcia elektrického osvetlenia v Dobšinskej ľadovej jaskyni",
@@ -2359,6 +2429,7 @@
       "article_url": "/clanky/4004/"
     },
     {
+      "decision_key": "fulltext:4005:empty_text:7a9aa0b22cf9e668",
       "id": 4005,
       "line": 3868,
       "title": "Deformácia prehliadkového chodníka v zaľadnenej časti Demänovskej ľadovej jaskyne",
@@ -2391,6 +2462,7 @@
       "article_url": "/clanky/4005/"
     },
     {
+      "decision_key": "fulltext:4006:empty_text:c36683f8c6c46bd3",
       "id": 4006,
       "line": 3869,
       "title": "Zmeny vo vstupnom areáli Gombaseckej jaskyne",
@@ -2423,6 +2495,7 @@
       "article_url": "/clanky/4006/"
     },
     {
+      "decision_key": "fulltext:4007:empty_text:178e02ad7593b1d8",
       "id": 4007,
       "line": 3870,
       "title": "Náučné panely pri Gombaseckej jaskyni",
@@ -2455,6 +2528,7 @@
       "article_url": "/clanky/4007/"
     },
     {
+      "decision_key": "fulltext:4008:empty_text:fd4716b97b17c694",
       "id": 4008,
       "line": 3871,
       "title": "Náučné panely pri jaskyni Driny",
@@ -2487,6 +2561,7 @@
       "article_url": "/clanky/4008/"
     },
     {
+      "decision_key": "fulltext:4009:empty_text:1d5c578e4d7cbbcc",
       "id": 4009,
       "line": 3872,
       "title": "Rekonštrukcia pozemnej nákladnej lanovej dráhy k Demänovskej jaskyni slobody",
@@ -2519,6 +2594,7 @@
       "article_url": "/clanky/4009/"
     },
     {
+      "decision_key": "fulltext:4010:empty_text:4cd0ed9cf3a0b6fe",
       "id": 4010,
       "line": 3873,
       "title": "Z histórie Dobšinskej ľadovej jaskyne (na okraj 130. výročia jej objavu)",
@@ -2551,6 +2627,7 @@
       "article_url": "/clanky/4010/"
     },
     {
+      "decision_key": "fulltext:4011:empty_text:3b2ac740a2b677ae",
       "id": 4011,
       "line": 3874,
       "title": "Poznatky zo študijnej cesty po sprístupnených jaskyniach severozápadného Talianska a južného Francúzska",
@@ -2583,6 +2660,7 @@
       "article_url": "/clanky/4011/"
     },
     {
+      "decision_key": "fulltext:4012:empty_text:c94c853d3415a671",
       "id": 4012,
       "line": 3875,
       "title": "Jaskyniarstvo a sprístupnené jaskyne v Belgicku",
@@ -2615,6 +2693,7 @@
       "article_url": "/clanky/4012/"
     },
     {
+      "decision_key": "fulltext:4013:empty_text:55e94470eb0ab2f3",
       "id": 4013,
       "line": 3876,
       "title": "Dan yr Ogof - centrum sprístupnených jaskýň v južnom Walese",
@@ -2647,6 +2726,7 @@
       "article_url": "/clanky/4013/"
     },
     {
+      "decision_key": "fulltext:4014:empty_text:e56d3d612ff83fe5",
       "id": 4014,
       "line": 3877,
       "title": "Sprístupnené jaskyne na Mallorke",
@@ -2679,6 +2759,7 @@
       "article_url": "/clanky/4014/"
     },
     {
+      "decision_key": "fulltext:4015:empty_text:725231c1d4f2ce6e",
       "id": 4015,
       "line": 3878,
       "title": "Jaskyňa Petralona – významná grécka archeologická a paleontologická lokalita",
@@ -2711,6 +2792,7 @@
       "article_url": "/clanky/4015/"
     },
     {
+      "decision_key": "fulltext:4016:empty_text:d73a8f180a3a409c",
       "id": 4016,
       "line": 3879,
       "title": "Pobrežné jaskyne pri Bonifaciu na Korzike",
@@ -2743,6 +2825,7 @@
       "article_url": "/clanky/4016/"
     },
     {
+      "decision_key": "fulltext:4017:empty_text:d645138df1de8b77",
       "id": 4017,
       "line": 3880,
       "title": "2. vedecká konferencia „Výskum, ochrana a využívanie jaskýň“",
@@ -2775,6 +2858,7 @@
       "article_url": "/clanky/4017/"
     },
     {
+      "decision_key": "fulltext:4018:empty_text:026e995562505d17",
       "id": 4018,
       "line": 3881,
       "title": "Slávnostné zhromaždenie k 30. výročiu založenia Správy slovenských jaskýň",
@@ -2807,6 +2891,7 @@
       "article_url": "/clanky/4018/"
     },
     {
+      "decision_key": "fulltext:4019:empty_text:6b0b29136071a9e6",
       "id": 4019,
       "line": 3882,
       "title": "40. jaskyniarsky týždeň – Demänovská dolina 1999",
@@ -2839,6 +2924,7 @@
       "article_url": "/clanky/4019/"
     },
     {
+      "decision_key": "fulltext:4020:empty_text:31e0454be68efbf0",
       "id": 4020,
       "line": 3883,
       "title": "XI. medzinárodné sympózium o speleoterapii – Zlaté Hory 1999",
@@ -2871,6 +2957,7 @@
       "article_url": "/clanky/4020/"
     },
     {
+      "decision_key": "fulltext:4021:empty_text:8c77f5ee7bc89f94",
       "id": 4021,
       "line": 3884,
       "title": "5. odborný seminár pre pracovníkov sprístupnených jaskýň",
@@ -2903,6 +2990,7 @@
       "article_url": "/clanky/4021/"
     },
     {
+      "decision_key": "fulltext:4022:empty_text:863d36f40252afe8",
       "id": 4022,
       "line": 3885,
       "title": "Stretnutie v Demänovskej jaskyni mieru",
@@ -2935,6 +3023,7 @@
       "article_url": "/clanky/4022/"
     },
     {
+      "decision_key": "fulltext:4023:empty_text:bb9a67d9f9a8d878",
       "id": 4023,
       "line": 3886,
       "title": "Deň Sloupsko-šošůvskych jaskýň",
@@ -2967,6 +3056,7 @@
       "article_url": "/clanky/4023/"
     },
     {
+      "decision_key": "fulltext:4024:empty_text:c2e3952a88419986",
       "id": 4024,
       "line": 3887,
       "title": "Jeskyně Na Pomezí 1950–2000",
@@ -2999,6 +3089,7 @@
       "article_url": "/clanky/4024/"
     },
     {
+      "decision_key": "fulltext:4025:empty_text:1e10137660274ebb",
       "id": 4025,
       "line": 3888,
       "title": "Správa slovenských jaskýň 1970–2000",
@@ -3031,6 +3122,7 @@
       "article_url": "/clanky/4025/"
     },
     {
+      "decision_key": "fulltext:4026:empty_text:30f081cab1389245",
       "id": 4026,
       "line": 3889,
       "title": "Zoznam jaskýň na Slovensku",
@@ -3063,6 +3155,7 @@
       "article_url": "/clanky/4026/"
     },
     {
+      "decision_key": "fulltext:4027:empty_text:37adfd6343457e9f",
       "id": 4027,
       "line": 3890,
       "title": "Clamouse – Cinquante ans de recherches",
@@ -3095,6 +3188,7 @@
       "article_url": "/clanky/4027/"
     },
     {
+      "decision_key": "fulltext:4028:empty_text:90aba9f09531692d",
       "id": 4028,
       "line": 3891,
       "title": "U. Fricke – F. Knolle: Die Rübeländer Tropsteinhöhlen",
@@ -3127,6 +3221,7 @@
       "article_url": "/clanky/4028/"
     },
     {
+      "decision_key": "fulltext:4029:empty_text:07dfea61451e459c",
       "id": 4029,
       "line": 3892,
       "title": "The Aggtelek Karst Cave World. Baradla Cave",
@@ -3159,6 +3254,7 @@
       "article_url": "/clanky/4029/"
     },
     {
+      "decision_key": "fulltext:4030:empty_text:d5c5c808fd7e3070",
       "id": 4030,
       "line": 3893,
       "title": "The Caves of Aggtelek Karst. A World Heritage Site in the Depths of Earth",
@@ -3191,6 +3287,7 @@
       "article_url": "/clanky/4030/"
     },
     {
+      "decision_key": "fulltext:4031:empty_text:8a8f56816e691f81",
       "id": 4031,
       "line": 3894,
       "title": "Jaskyne Slovenského krasu – svetové prírodné dedičstvo",
@@ -3223,6 +3320,7 @@
       "article_url": "/clanky/4031/"
     },
     {
+      "decision_key": "fulltext:4032:empty_text:b303a38481561d24",
       "id": 4032,
       "line": 3895,
       "title": "Sprievodca náučným chodníkom k Dobšinskej ľadovej jaskyni",
@@ -3255,6 +3353,7 @@
       "article_url": "/clanky/4032/"
     },
     {
+      "decision_key": "fulltext:4033:empty_text:2db93b5401ec26a3",
       "id": 4033,
       "line": 3896,
       "title": "Životné jubileum Ing. Jozefa Hlaváča",
@@ -3287,6 +3386,7 @@
       "article_url": "/clanky/4033/"
     },
     {
+      "decision_key": "fulltext:4034:empty_text:f30e784c725040de",
       "id": 4034,
       "line": 3897,
       "title": "Michal Baumgärtner 75-ročný",
@@ -3319,6 +3419,7 @@
       "article_url": "/clanky/4034/"
     },
     {
+      "decision_key": "fulltext:1782:empty_text:db96b09334423b83",
       "id": 1782,
       "line": 1645,
       "title": "Jaskyniarska klasika",
@@ -3351,6 +3452,7 @@
       "article_url": "/clanky/1782/"
     },
     {
+      "decision_key": "fulltext:1905:empty_text:ae0a9b840570a7d4",
       "id": 1905,
       "line": 1768,
       "title": "Expedícia Roraima 2003, Venezuela. Ako bola objavená 4. najdlhšia jaskyňa sveta v kvarcitoch Kryštálové oči (Cueva Ojos de Cristal), 191 s., issn 1335-5023",
@@ -3383,6 +3485,7 @@
       "article_url": "/clanky/1905/"
     },
     {
+      "decision_key": "fulltext:2127:empty_text:eb72db98726dee9e",
       "id": 2127,
       "line": 1990,
       "title": "Speleoexpedície do vnútra masívu Chimantá (Venezuela) v roku 2004. Ako bola objavená a preskúmaná najväčšia kvarcitová jaskyňa sveta Cueva Charles Brewer, 178 s. + samostatná príloha plán jaskyne, issn 1335-5023",
@@ -3415,6 +3518,7 @@
       "article_url": "/clanky/2127/"
     },
     {
+      "decision_key": "fulltext:4367:empty_text:5389a6ee31b4313e",
       "id": 4367,
       "line": 4230,
       "title": "Neelus koseli (Collembola) – nový troglobiont slovenských jaskýň",
@@ -3447,6 +3551,7 @@
       "article_url": "/clanky/4367/"
     },
     {
+      "decision_key": "fulltext:2806:empty_text:429ee1de0cb2386b",
       "id": 2806,
       "line": 2669,
       "title": "Jaskyne Jánskej doliny a Krakovej hole v jednom mapovom súbore",
@@ -3479,6 +3584,7 @@
       "article_url": "/clanky/2806/"
     },
     {
+      "decision_key": "fulltext:2807:empty_text:4893fc908656268f",
       "id": 2807,
       "line": 2670,
       "title": "Nové nálezy kryogénnych jaskynných karbonátov – čudesných kryštálikov z doby ľadovej",
@@ -3511,6 +3617,7 @@
       "article_url": "/clanky/2807/"
     },
     {
+      "decision_key": "fulltext:2808:empty_text:13c5d4f830e9b7b1",
       "id": 2808,
       "line": 2671,
       "title": "Speleoškola – jaskyniarske kurzy pre verejnosť",
@@ -3543,6 +3650,7 @@
       "article_url": "/clanky/2808/"
     },
     {
+      "decision_key": "fulltext:2809:empty_text:c0ec5048a9e8ba78",
       "id": 2809,
       "line": 2672,
       "title": "Slovačka jama na Karadžici – Ceki 1 / Expedícia Jakupica – Macedónsko 2011",
@@ -3575,6 +3683,7 @@
       "article_url": "/clanky/2809/"
     },
     {
+      "decision_key": "fulltext:2810:empty_text:2cacbc229390052e",
       "id": 2810,
       "line": 2673,
       "title": "Ostrý guláš a iné jaskyniarske kulinárske špeciality",
@@ -3607,6 +3716,7 @@
       "article_url": "/clanky/2810/"
     },
     {
+      "decision_key": "fulltext:2811:empty_text:970c7e4626c12078",
       "id": 2811,
       "line": 2674,
       "title": "Stručná história objavu Jaskyne nad vyvieračkou vo Vrátnej doline",
@@ -3639,6 +3749,7 @@
       "article_url": "/clanky/2811/"
     },
     {
+      "decision_key": "fulltext:2812:empty_text:8f4224ea85bd154a",
       "id": 2812,
       "line": 2675,
       "title": "Jaskynovinky",
@@ -3671,6 +3782,7 @@
       "article_url": "/clanky/2812/"
     },
     {
+      "decision_key": "fulltext:2813:empty_text:a609086d7dbe9ba2",
       "id": 2813,
       "line": 2676,
       "title": "Spoločenské správy",
@@ -3703,6 +3815,7 @@
       "article_url": "/clanky/2813/"
     },
     {
+      "decision_key": "fulltext:2814:empty_text:b5d925c0378b5f76",
       "id": 2814,
       "line": 2677,
       "title": "Summary",
@@ -3735,6 +3848,7 @@
       "article_url": "/clanky/2814/"
     },
     {
+      "decision_key": "fulltext:4422:empty_text:4bc11172c68c0271",
       "id": 4422,
       "line": 4285,
       "title": "Demänovská dolina: vzťah povrchových a podzemných vôd",
@@ -3767,6 +3881,7 @@
       "article_url": "/clanky/4422/"
     },
     {
+      "decision_key": "fulltext:4627:empty_text:aa919b14f33f357c",
       "id": 4627,
       "line": 4490,
       "title": "Nejednotnosť definície pojmu kryptokras a terminologické konzekvencie v typológii krasu na Slovensku a v Česku",
@@ -3799,6 +3914,7 @@
       "article_url": "/clanky/4627/"
     },
     {
+      "decision_key": "fulltext:4996:empty_text:e856f91e760bf07a",
       "id": 4996,
       "line": 4859,
       "title": "Fauna bezstavovcov jaskýň planiny Galmus (Volovské vrchy)",
@@ -3831,6 +3947,7 @@
       "article_url": "/clanky/4996/"
     },
     {
+      "decision_key": "fulltext:5001:empty_text:2f866b1cff676310",
       "id": 5001,
       "line": 4864,
       "title": "Vladimír Panoš by se dožil 100 let",
@@ -3863,6 +3980,7 @@
       "article_url": "/clanky/5001/"
     },
     {
+      "decision_key": "fulltext:5002:empty_text:a41b042c51491c42",
       "id": 5002,
       "line": 4865,
       "title": "Mošnická jaskyňa v začiatkoch speleologických výskumov Vladimíra Panoša",
@@ -3895,6 +4013,7 @@
       "article_url": "/clanky/5002/"
     },
     {
+      "decision_key": "fulltext:3617:residual_bad_diacritic_tokens:1a6391d6a8d1e12f",
       "id": 3617,
       "line": 3480,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2023",
@@ -3932,6 +4051,7 @@
       "article_url": "/clanky/3617/"
     },
     {
+      "decision_key": "fulltext:1128:private_use_characters:5c4884fe91367377",
       "id": 1128,
       "line": 1000,
       "title": "Venované Vladovi Ž.",
@@ -3966,6 +4086,7 @@
       "article_url": "/clanky/1128/"
     },
     {
+      "decision_key": "fulltext:1158:private_use_characters:75841138422fc82a",
       "id": 1158,
       "line": 1030,
       "title": "Mnoho šťastia (Š. Labuda a J. Nosáľová)",
@@ -4000,6 +4121,7 @@
       "article_url": "/clanky/1158/"
     },
     {
+      "decision_key": "fulltext:1159:private_use_characters:9c18b77ccf20f928",
       "id": 1159,
       "line": 1031,
       "title": "Oznam",
@@ -4034,6 +4156,7 @@
       "article_url": "/clanky/1159/"
     },
     {
+      "decision_key": "fulltext:2352:replacement_characters:08e7b527d9e668fe",
       "id": 2352,
       "line": 2215,
       "title": "Petr Zajíček: Moravský kras",
@@ -4066,6 +4189,7 @@
       "article_url": "/clanky/2352/"
     },
     {
+      "decision_key": "fulltext:2353:replacement_characters:8d2efae74159c98b",
       "id": 2353,
       "line": 2216,
       "title": "Netuctová dvanástka",
@@ -4098,6 +4222,7 @@
       "article_url": "/clanky/2353/"
     },
     {
+      "decision_key": "fulltext:4139:replacement_characters:ad1c0f0a0849b4df",
       "id": 4139,
       "line": 4002,
       "title": "Posúdenie vplyvu poľnohospodárskych aktivít na kvalitu vôd podzemného hydrologického systému Važeckého krasu",
@@ -4130,6 +4255,7 @@
       "article_url": "/clanky/4139/"
     },
     {
+      "decision_key": "fulltext:4284:replacement_characters:187235af3f256e48",
       "id": 4284,
       "line": 4147,
       "title": "Geomorfologický výskum na Správe slovenských jaskýň za posledných 15 rokov",
@@ -4164,6 +4290,7 @@
       "article_url": "/clanky/4284/"
     },
     {
+      "decision_key": "fulltext:4291:replacement_characters:4b12f8f846003919",
       "id": 4291,
       "line": 4154,
       "title": "Vedecké podujatia a publikácie Správy slovenských jaskýň od roku 1995",
@@ -4198,6 +4325,7 @@
       "article_url": "/clanky/4291/"
     },
     {
+      "decision_key": "fulltext:2629:replacement_characters:6955270bfa48ac83",
       "id": 2629,
       "line": 2492,
       "title": "O najväčších kvarcitových jaskyniach sveta v súvislosti s objavom Cueva Muchimuk-Colibri (8 km) vo Venezuele",
@@ -4230,6 +4358,7 @@
       "article_url": "/clanky/2629/"
     },
     {
+      "decision_key": "fulltext:2719:replacement_characters:c25b78128f6c2ecc",
       "id": 2719,
       "line": 2582,
       "title": "Neprístupné jaskyne Smolenického krasu",
@@ -4262,6 +4391,7 @@
       "article_url": "/clanky/2719/"
     },
     {
+      "decision_key": "fulltext:2784:replacement_characters:cd48d3d25bb1d472",
       "id": 2784,
       "line": 2647,
       "title": "Z literatúry",
@@ -4294,6 +4424,7 @@
       "article_url": "/clanky/2784/"
     },
     {
+      "decision_key": "fulltext:2785:replacement_characters:896e4df2594c92e1",
       "id": 2785,
       "line": 2648,
       "title": "Spoločenské správy",
@@ -4328,6 +4459,7 @@
       "article_url": "/clanky/2785/"
     },
     {
+      "decision_key": "fulltext:2798:replacement_characters:56d2975f4215a18d",
       "id": 2798,
       "line": 2661,
       "title": "Na jaskyniarsku nôtu",
@@ -4360,6 +4492,7 @@
       "article_url": "/clanky/2798/"
     },
     {
+      "decision_key": "fulltext:2859:replacement_characters:b74ed97557a275a7",
       "id": 2859,
       "line": 2722,
       "title": "Medzinárodný speleologický kongres klope na dvere",
@@ -4394,6 +4527,7 @@
       "article_url": "/clanky/2859/"
     },
     {
+      "decision_key": "fulltext:4458:replacement_characters:f7bf76dea4d10cbf",
       "id": 4458,
       "line": 4321,
       "title": "20 rokov svetového dedičstva Jaskyne Slovenského a Aggtelekského krasu",
@@ -4426,6 +4560,7 @@
       "article_url": "/clanky/4458/"
     },
     {
+      "decision_key": "fulltext:4459:replacement_characters:508065569999c98f",
       "id": 4459,
       "line": 4322,
       "title": "Spomienky na vyhlásenie jaskýň Aggtelekského a Slovenského krasu za svetové dedičstvo",
@@ -4458,6 +4593,7 @@
       "article_url": "/clanky/4459/"
     },
     {
+      "decision_key": "fulltext:4461:replacement_characters:28941ba464cc228d",
       "id": 4461,
       "line": 4324,
       "title": "Výskum, ochrana a starostlivosť o jaskyne svetového dedičstva na Slovensku: prehľad činností od roku 1995",
@@ -4492,6 +4628,7 @@
       "article_url": "/clanky/4461/"
     },
     {
+      "decision_key": "fulltext:3315:replacement_characters:d72f0da597e70b21",
       "id": 3315,
       "line": 3178,
       "title": "Mexiko 2019 - Tatich",
@@ -4524,6 +4661,7 @@
       "article_url": "/clanky/3315/"
     },
     {
+      "decision_key": "fulltext:1030:private_use_characters:8df22bff3766eede",
       "id": 1030,
       "line": 902,
       "title": "O jaskyniaroch a japonkách",
@@ -4556,6 +4694,7 @@
       "article_url": "/clanky/1030/"
     },
     {
+      "decision_key": "fulltext:1031:private_use_characters:b58c7de93442c7ba",
       "id": 1031,
       "line": 903,
       "title": "Klenotnica",
@@ -4588,6 +4727,7 @@
       "article_url": "/clanky/1031/"
     },
     {
+      "decision_key": "fulltext:1051:private_use_characters:0d8f5aecbecb6170",
       "id": 1051,
       "line": 923,
       "title": "Zrod jaskyniara (Fakír)",
@@ -4620,6 +4760,7 @@
       "article_url": "/clanky/1051/"
     },
     {
+      "decision_key": "fulltext:1088:private_use_characters:dc26c0c544ac68ed",
       "id": 1088,
       "line": 960,
       "title": "Ing. Marcel Lalkovič, CSc., 50-ročný",
@@ -4652,6 +4793,7 @@
       "article_url": "/clanky/1088/"
     },
     {
+      "decision_key": "fulltext:1089:private_use_characters:8e9a91d2fdafcca7",
       "id": 1089,
       "line": 961,
       "title": "Oznámenie",
@@ -4684,6 +4826,7 @@
       "article_url": "/clanky/1089/"
     },
     {
+      "decision_key": "fulltext:1126:private_use_characters:1e2415e9c6d3b4e2",
       "id": 1126,
       "line": 998,
       "title": "Štefan Sitek 50-ročný",
@@ -4716,6 +4859,7 @@
       "article_url": "/clanky/1126/"
     },
     {
+      "decision_key": "fulltext:1127:private_use_characters:1a41c6f8d943c70c",
       "id": 1127,
       "line": 999,
       "title": "Zub času",
@@ -4748,6 +4892,7 @@
       "article_url": "/clanky/1127/"
     },
     {
+      "decision_key": "fulltext:1170:private_use_characters:ae30db166ffc67e5",
       "id": 1170,
       "line": 1042,
       "title": "Odborný seminár „Ochrana ľadových jaskýň“",
@@ -4780,6 +4925,7 @@
       "article_url": "/clanky/1170/"
     },
     {
+      "decision_key": "fulltext:1171:private_use_characters:fbe66980cdb9bbd1",
       "id": 1171,
       "line": 1043,
       "title": "11. lezecké dni / 36. jaskyniarsky týždeň",
@@ -4812,6 +4958,7 @@
       "article_url": "/clanky/1171/"
     },
     {
+      "decision_key": "fulltext:1185:private_use_characters:520b31a21d51521f",
       "id": 1185,
       "line": 1057,
       "title": "V ríši stĺpov – objav stĺpovej jaskyne",
@@ -4844,6 +4991,7 @@
       "article_url": "/clanky/1185/"
     },
     {
+      "decision_key": "fulltext:1306:private_use_characters:446ddd0421841e3d",
       "id": 1306,
       "line": 1169,
       "title": "Nové sekundárne minerály v krase Belianskych Tatier",
@@ -4876,6 +5024,7 @@
       "article_url": "/clanky/1306/"
     },
     {
+      "decision_key": "fulltext:1386:private_use_characters:29f800a3017cfa58",
       "id": 1386,
       "line": 1249,
       "title": "Zasadalo predsedníctvo SSS",
@@ -4908,6 +5057,7 @@
       "article_url": "/clanky/1386/"
     },
     {
+      "decision_key": "fulltext:1387:private_use_characters:de49c7307d5bf9ed",
       "id": 1387,
       "line": 1250,
       "title": "Speleomíting ´98",
@@ -4942,6 +5092,7 @@
       "article_url": "/clanky/1387/"
     },
     {
+      "decision_key": "fulltext:1405:private_use_characters:3a090f576afa8b78",
       "id": 1405,
       "line": 1268,
       "title": "Jubilant Ján Vykoupil",
@@ -4974,6 +5125,7 @@
       "article_url": "/clanky/1405/"
     },
     {
+      "decision_key": "fulltext:1406:private_use_characters:59e434fc5be75b68",
       "id": 1406,
       "line": 1269,
       "title": "Zdar Boh",
@@ -5006,6 +5158,7 @@
       "article_url": "/clanky/1406/"
     },
     {
+      "decision_key": "fulltext:1407:private_use_characters:a20fa25369e5019f",
       "id": 1407,
       "line": 1270,
       "title": "Oznámenie",
@@ -5038,6 +5191,7 @@
       "article_url": "/clanky/1407/"
     },
     {
+      "decision_key": "fulltext:1727:private_use_characters:d473abb6bfbe9065",
       "id": 1727,
       "line": 1590,
       "title": "Adresár Slovenskej speleologickej spoločnosti pre rok 2001",
@@ -5070,6 +5224,7 @@
       "article_url": "/clanky/1727/"
     },
     {
+      "decision_key": "fulltext:1825:private_use_characters:d7a0271f052baa93",
       "id": 1825,
       "line": 1688,
       "title": "Adresár Slovenskej speleologickej spoločnosti",
@@ -5102,6 +5257,7 @@
       "article_url": "/clanky/1825/"
     },
     {
+      "decision_key": "fulltext:1908:private_use_characters:9c75f5f5cdbe0461",
       "id": 1908,
       "line": 1771,
       "title": "Adresár Slovenskej speleologickej spoločnosti",
@@ -5134,6 +5290,7 @@
       "article_url": "/clanky/1908/"
     },
     {
+      "decision_key": "fulltext:2674:private_use_characters:dab925f7400a46b0",
       "id": 2674,
       "line": 2537,
       "title": "Expedición espeleológica Roraima 2003 (resumen)",
@@ -5166,6 +5323,7 @@
       "article_url": "/clanky/2674/"
     },
     {
+      "decision_key": "fulltext:2675:private_use_characters:011851372fafacc0",
       "id": 2675,
       "line": 2538,
       "title": "The speleological expedition Roraima 2003 (summary)",
@@ -5198,6 +5356,7 @@
       "article_url": "/clanky/2675/"
     },
     {
+      "decision_key": "fulltext:2253:private_use_characters:d63f9f6deaef0644",
       "id": 2253,
       "line": 2116,
       "title": "Príspevok k hydrológii Diablovej diery v Branisku",
@@ -5230,6 +5389,7 @@
       "article_url": "/clanky/2253/"
     },
     {
+      "decision_key": "fulltext:2259:private_use_characters:95a8b8281e5e426c",
       "id": 2259,
       "line": 2122,
       "title": "Drevo v jaskyniach, I. časť. Výdreva",
@@ -5262,6 +5422,7 @@
       "article_url": "/clanky/2259/"
     },
     {
+      "decision_key": "fulltext:4135:private_use_characters:4e3203fb097f0aca",
       "id": 4135,
       "line": 3998,
       "title": "Zvislé a šikmé skalné žľaby v jaskyniach – základné morfogenetické znaky a typológia",
@@ -5296,6 +5457,7 @@
       "article_url": "/clanky/4135/"
     },
     {
+      "decision_key": "fulltext:4709:private_use_characters:01681d0a477c98ab",
       "id": 4709,
       "line": 4572,
       "title": "História Liskovskej jaskyne v intenciách súčasného poznania",
@@ -5330,6 +5492,7 @@
       "article_url": "/clanky/4709/"
     },
     {
+      "decision_key": "fulltext:4772:private_use_characters:51afd7ced0cd892c",
       "id": 4772,
       "line": 4635,
       "title": "Základné hydrogeochemické pomery a režim vôd v Brestovskej jaskyni",
@@ -5362,6 +5525,7 @@
       "article_url": "/clanky/4772/"
     },
     {
+      "decision_key": "fulltext:4773:private_use_characters:057a8dd7324a7872",
       "id": 4773,
       "line": 4636,
       "title": "Najnovšie výsledky stopovacích skúšok z povodia Brestovskej jaskyne",
@@ -5394,6 +5558,7 @@
       "article_url": "/clanky/4773/"
     },
     {
+      "decision_key": "fulltext:4251:private_use_characters:cee1e8135b60607a",
       "id": 4251,
       "line": 4114,
       "title": "Geológia Čertovej jaskyne vo Veporských vrchoch",
@@ -5426,6 +5591,7 @@
       "article_url": "/clanky/4251/"
     },
     {
+      "decision_key": "fulltext:4300:private_use_characters:821f5a67ea898721",
       "id": 4300,
       "line": 4163,
       "title": "Aktivity Správy slovenských jaskýň v rámci Medzinárodnej asociácie sprístupnených jaskýň",
@@ -5458,6 +5624,7 @@
       "article_url": "/clanky/4300/"
     },
     {
+      "decision_key": "fulltext:4340:private_use_characters:5f538ca9b0584596",
       "id": 4340,
       "line": 4203,
       "title": "Rezistivimetrické a termometrické merania podzemného vodného toku v Drienovskej jaskyni",
@@ -5490,6 +5657,7 @@
       "article_url": "/clanky/4340/"
     },
     {
+      "decision_key": "fulltext:4844:private_use_characters:876c2b89650b346a",
       "id": 4844,
       "line": 4707,
       "title": "Cave aerosol in Císařská and Sloup-Šošůvka Caves (Moravian Karst, Czech Republic)",
@@ -5522,6 +5690,7 @@
       "article_url": "/clanky/4844/"
     },
     {
+      "decision_key": "fulltext:4853:private_use_characters:b87940904789cd6d",
       "id": 4853,
       "line": 4716,
       "title": "Digitálny výškový model podlahových ľadových povrchov v Dobšinskej ľadovej jaskyni",
@@ -5554,6 +5723,7 @@
       "article_url": "/clanky/4853/"
     },
     {
+      "decision_key": "fulltext:2903:private_use_characters:ab095b2e2e560c2d",
       "id": 2903,
       "line": 2766,
       "title": "Slovenské Mexiko alebo Kryštálová jaskyňa",
@@ -5586,6 +5756,7 @@
       "article_url": "/clanky/2903/"
     },
     {
+      "decision_key": "fulltext:4423:private_use_characters:d6dff9d30e157184",
       "id": 4423,
       "line": 4286,
       "title": "Korózne šikmé facety v jaskyniach a ich morfogenetické znaky – príklady z vybraných jaskýň na Slovensku",
@@ -5618,6 +5789,7 @@
       "article_url": "/clanky/4423/"
     },
     {
+      "decision_key": "fulltext:4433:private_use_characters:5ba7c89ed41ef7bc",
       "id": 4433,
       "line": 4296,
       "title": "Valoch a kol. autorov: Kůlna – historie a význam jeskyně",
@@ -5650,6 +5822,7 @@
       "article_url": "/clanky/4433/"
     },
     {
+      "decision_key": "fulltext:4434:private_use_characters:3083a8feb3542554",
       "id": 4434,
       "line": 4297,
       "title": "I. J. Fairchild – A. Baker: Speleothem Science: From Process to Past Environments",
@@ -5682,6 +5855,7 @@
       "article_url": "/clanky/4434/"
     },
     {
+      "decision_key": "fulltext:4887:private_use_characters:58f261cfbec799dc",
       "id": 4887,
       "line": 4750,
       "title": "Priestorové rozloženie teploty vzduchu vo vnútri jaskyne Domica (Slovenský kras, Slovensko) – prvý vstup",
@@ -5714,6 +5888,7 @@
       "article_url": "/clanky/4887/"
     },
     {
+      "decision_key": "fulltext:3333:private_use_characters:55fa383add291884",
       "id": 3333,
       "line": 3196,
       "title": "Ponor trpaslíkov sa zmenil na jaskyňu",
@@ -5746,6 +5921,7 @@
       "article_url": "/clanky/3333/"
     },
     {
+      "decision_key": "fulltext:3342:private_use_characters:67736eceaaf6e04c",
       "id": 3342,
       "line": 3205,
       "title": "Vojen Ložek (1925 – 2020)",
@@ -5778,6 +5954,7 @@
       "article_url": "/clanky/3342/"
     },
     {
+      "decision_key": "fulltext:4573:private_use_characters:2e1e4120e73b9d0c",
       "id": 4573,
       "line": 4436,
       "title": "One hundred years since the birth of Anton Droppa, eminent scientist of the Slovak speleology",
@@ -5810,6 +5987,7 @@
       "article_url": "/clanky/4573/"
     },
     {
+      "decision_key": "fulltext:3592:other_hidden_characters:d895f18bd7aae966",
       "id": 3592,
       "line": 3455,
       "title": "Ešte raz o Bystriansko-valaštianskom krase",
@@ -5842,6 +6020,7 @@
       "article_url": "/clanky/3592/"
     },
     {
+      "decision_key": "fulltext:5003:private_use_characters:47b52ca86e090afb",
       "id": 5003,
       "line": 4866,
       "title": "Mäkký sinter v Sokolovej jaskyni (Nízke Tatry, Slovensko): Morfológia kryštálov a prostredie ich vzniku",
@@ -5874,6 +6053,7 @@
       "article_url": "/clanky/5003/"
     },
     {
+      "decision_key": "fulltext:3660:private_use_characters:1fe7154ad9c9c008",
       "id": 3660,
       "line": 3523,
       "title": "Macedónsko 2024",
@@ -5906,6 +6086,7 @@
       "article_url": "/clanky/3660/"
     },
     {
+      "decision_key": "fulltext:3823:private_use_characters:817a9457ae222e22",
       "id": 3823,
       "line": 3686,
       "title": "Porovnanie chemického zloženia a kvality vôd Ochtinskej aragonitovej jaskyne s vybranými jaskyňami štôlne Kapusta",
@@ -5938,6 +6119,7 @@
       "article_url": "/clanky/3823/"
     },
     {
+      "decision_key": "fulltext:3726:private_use_characters:89122b1d2b322d12",
       "id": 3726,
       "line": 3589,
       "title": "Jaskyňa verných – staršie objavy a súčasný stav",
@@ -5972,6 +6154,7 @@
       "article_url": "/clanky/3726/"
     },
     {
+      "decision_key": "fulltext:3727:private_use_characters:af5177a94af8ddd6",
       "id": 3727,
       "line": 3590,
       "title": "Objevy v Nové Kresanici",
@@ -6004,6 +6187,7 @@
       "article_url": "/clanky/3727/"
     },
     {
+      "decision_key": "fulltext:3729:private_use_characters:0edfd783fe802197",
       "id": 3729,
       "line": 3592,
       "title": "Ako ďalej v Ďumbierskom krase",
@@ -6036,6 +6220,7 @@
       "article_url": "/clanky/3729/"
     },
     {
+      "decision_key": "fulltext:5670:residual_bad_diacritic_tokens:c894a1a43001b117",
       "id": 5670,
       "line": 5533,
       "title": "Geomorfologický charakter priepasti na Ohništi",
@@ -6071,6 +6256,7 @@
       "article_url": "/clanky/5670/"
     },
     {
+      "decision_key": "fulltext:5796:residual_bad_diacritic_tokens:41f1f77ea533a5d0",
       "id": 5796,
       "line": 5659,
       "title": "Zpráva o geologicko-morfologickom výskume toku Demänovky v jaskyni „Vyvieranie“",
@@ -6106,6 +6292,7 @@
       "article_url": "/clanky/5796/"
     },
     {
+      "decision_key": "fulltext:5058:residual_bad_diacritic_tokens:bd7600eed8f71e97",
       "id": 5058,
       "line": 4921,
       "title": "Päťdesiat rokov jaskyne Slobody",
@@ -6141,6 +6328,7 @@
       "article_url": "/clanky/5058/"
     },
     {
+      "decision_key": "fulltext:5073:residual_bad_diacritic_tokens:cce50bb02a6728c3",
       "id": 5073,
       "line": 4936,
       "title": "Priepasť v Sivom vrchu",
@@ -6176,6 +6364,7 @@
       "article_url": "/clanky/5073/"
     },
     {
+      "decision_key": "fulltext:152:residual_bad_diacritic_tokens:41bd850c0109a5f9",
       "id": 152,
       "line": 152,
       "title": "Bezpečnostné predpisy pre členov SSS",
@@ -6211,6 +6400,7 @@
       "article_url": "/clanky/152/"
     },
     {
+      "decision_key": "fulltext:5109:residual_bad_diacritic_tokens:a89944d34ed74914",
       "id": 5109,
       "line": 4972,
       "title": "Výskum mikroklímy a dynamiky zaľadnenia v Silickej ľadnici",
@@ -6246,6 +6436,7 @@
       "article_url": "/clanky/5109/"
     },
     {
+      "decision_key": "fulltext:5111:residual_bad_diacritic_tokens:c20012095be9b5c1",
       "id": 5111,
       "line": 4974,
       "title": "Princíp funkcie občasných a periodických prameňov",
@@ -6281,6 +6472,7 @@
       "article_url": "/clanky/5111/"
     },
     {
+      "decision_key": "fulltext:5129:residual_bad_diacritic_tokens:954050d7d5180621",
       "id": 5129,
       "line": 4992,
       "title": "O pôvode pijavíc konských v jaskynnom systéme Domica — Baradla",
@@ -6316,6 +6508,7 @@
       "article_url": "/clanky/5129/"
     },
     {
+      "decision_key": "fulltext:5134:residual_bad_diacritic_tokens:8ba6080ed627eced",
       "id": 5134,
       "line": 4997,
       "title": "Správa o činnosti Slovenskej speleologickej spoločnosti za roky 1971, 1972 a 1973",
@@ -6351,6 +6544,7 @@
       "article_url": "/clanky/5134/"
     },
     {
+      "decision_key": "fulltext:5191:residual_bad_diacritic_tokens:0ca71c300fcbdae4",
       "id": 5191,
       "line": 5054,
       "title": "Abisso Michele Gortani — cieľ expedície „Monte Canin 1976“",
@@ -6386,6 +6580,7 @@
       "article_url": "/clanky/5191/"
     },
     {
+      "decision_key": "fulltext:345:residual_bad_diacritic_tokens:6d6bd59a8fd6c49a",
       "id": 345,
       "line": 345,
       "title": "Správa o činnosti Slovenskej speleologickej spoločnosti za rok 1978",
@@ -6422,6 +6617,7 @@
       "article_url": "/clanky/345/"
     },
     {
+      "decision_key": "fulltext:382:residual_bad_diacritic_tokens:65803af2244f3f40",
       "id": 382,
       "line": 382,
       "title": "Celoslovenský zraz jaskyniarov Tisovec 1979",
@@ -6457,6 +6653,7 @@
       "article_url": "/clanky/382/"
     },
     {
+      "decision_key": "fulltext:395:residual_bad_diacritic_tokens:4eaab6bbfdb89d33",
       "id": 395,
       "line": 395,
       "title": "IV. valné zhromaždenie SSS",
@@ -6492,6 +6689,7 @@
       "article_url": "/clanky/395/"
     },
     {
+      "decision_key": "fulltext:412:residual_bad_diacritic_tokens:acbe1c4e393a0ca5",
       "id": 412,
       "line": 412,
       "title": "Spôsob vyťahovania zraneného z priepasti pomocou istiacej kladky pri záchranných akciách",
@@ -6527,6 +6725,7 @@
       "article_url": "/clanky/412/"
     },
     {
+      "decision_key": "fulltext:417:residual_bad_diacritic_tokens:8f877670d8c260b1",
       "id": 417,
       "line": 417,
       "title": "Nové archeologické nálezy v Sásovskom krase pri Banskej Bystrici",
@@ -6562,6 +6761,7 @@
       "article_url": "/clanky/417/"
     },
     {
+      "decision_key": "fulltext:418:residual_bad_diacritic_tokens:a7cce1f17f4a4fd9",
       "id": 418,
       "line": 418,
       "title": "Jaskyniarsky týždeň – Jánska dolina ´80",
@@ -6597,6 +6797,7 @@
       "article_url": "/clanky/418/"
     },
     {
+      "decision_key": "fulltext:419:residual_bad_diacritic_tokens:e6975153cfe869b2",
       "id": 419,
       "line": 419,
       "title": "Gouffre Berger ´79 – Expedícia jaskyniarov Slovenskej speleologickej spoločnosti",
@@ -6632,6 +6833,7 @@
       "article_url": "/clanky/419/"
     },
     {
+      "decision_key": "fulltext:425:residual_bad_diacritic_tokens:64c986827f9a0c70",
       "id": 425,
       "line": 425,
       "title": "Úvodník",
@@ -6667,6 +6869,7 @@
       "article_url": "/clanky/425/"
     },
     {
+      "decision_key": "fulltext:430:residual_bad_diacritic_tokens:12b92dd95225bed3",
       "id": 430,
       "line": 430,
       "title": "Smernice na získanie, používanie a odpis výstroja a technických pomôcok",
@@ -6702,6 +6905,7 @@
       "article_url": "/clanky/430/"
     },
     {
+      "decision_key": "fulltext:5224:residual_bad_diacritic_tokens:95f70c1f9a554df5",
       "id": 5224,
       "line": 5087,
       "title": "Geologicko-fyzikálny prieskum medzi Stratenskou jaskyňou a Dobšinskou ľadovou jaskyňou a niektoré otázky genézy týchto jaskýň",
@@ -6737,6 +6941,7 @@
       "article_url": "/clanky/5224/"
     },
     {
+      "decision_key": "fulltext:618:residual_bad_diacritic_tokens:dcad1cadfeb269eb",
       "id": 618,
       "line": 508,
       "title": "Expedícia Tennengebirge ´83",
@@ -6772,6 +6977,7 @@
       "article_url": "/clanky/618/"
     },
     {
+      "decision_key": "fulltext:620:residual_bad_diacritic_tokens:4800e132793a42d1",
       "id": 620,
       "line": 510,
       "title": "Jaskyniar v zime",
@@ -6807,6 +7013,7 @@
       "article_url": "/clanky/620/"
     },
     {
+      "decision_key": "fulltext:723:residual_bad_diacritic_tokens:d70ee1a20e2b60d9",
       "id": 723,
       "line": 613,
       "title": "Jaskyňa Medvedia II vo Vrátnej doline",
@@ -6842,6 +7049,7 @@
       "article_url": "/clanky/723/"
     },
     {
+      "decision_key": "fulltext:749:residual_bad_diacritic_tokens:b955c28de71c2814",
       "id": 749,
       "line": 639,
       "title": "Činnosť v zahraničných krasových oblastiach",
@@ -6877,6 +7085,7 @@
       "article_url": "/clanky/749/"
     },
     {
+      "decision_key": "fulltext:753:residual_bad_diacritic_tokens:3a3293d608ef04dc",
       "id": 753,
       "line": 643,
       "title": "Speleofotografia ´85, 4. ročník súťaže jaskyniarskej fotografie",
@@ -6912,6 +7121,7 @@
       "article_url": "/clanky/753/"
     },
     {
+      "decision_key": "fulltext:767:residual_bad_diacritic_tokens:24845abaa98af1ec",
       "id": 767,
       "line": 657,
       "title": "Activities in Abroad Karst Regions",
@@ -6947,6 +7157,7 @@
       "article_url": "/clanky/767/"
     },
     {
+      "decision_key": "fulltext:784:residual_bad_diacritic_tokens:4df11d36f227057b",
       "id": 784,
       "line": 674,
       "title": "Slovenská speleologická spoločnosť v roku 1986",
@@ -6982,6 +7193,7 @@
       "article_url": "/clanky/784/"
     },
     {
+      "decision_key": "fulltext:5409:residual_bad_diacritic_tokens:be8cc2974d66da78",
       "id": 5409,
       "line": 5272,
       "title": "Hodnotenie činnosti Slovenskej speleologickej spoločnosti na 9. valnom zhromaždení",
@@ -7017,6 +7229,7 @@
       "article_url": "/clanky/5409/"
     },
     {
+      "decision_key": "fulltext:5872:residual_bad_diacritic_tokens:7dc73beb17bd0d09",
       "id": 5872,
       "line": 5735,
       "title": "Činnosť Slovenskej speleologickej spoločnosti roku 1986",
@@ -7052,6 +7265,7 @@
       "article_url": "/clanky/5872/"
     },
     {
+      "decision_key": "fulltext:874:residual_bad_diacritic_tokens:b2457e30ace7625b",
       "id": 874,
       "line": 764,
       "title": "Jaskyniarstvo chápem ako tvorivú činnosť",
@@ -7087,6 +7301,7 @@
       "article_url": "/clanky/874/"
     },
     {
+      "decision_key": "fulltext:5908:residual_bad_diacritic_tokens:33b5728d7820ce4d",
       "id": 5908,
       "line": 5771,
       "title": "Bilancovanie činnosti Slovenskej speleologickej spoločnosti na 10. valnom zhromaždení",
@@ -7122,6 +7337,7 @@
       "article_url": "/clanky/5908/"
     },
     {
+      "decision_key": "fulltext:991:residual_bad_diacritic_tokens:548730ff7626cde7",
       "id": 991,
       "line": 881,
       "title": "Za RNDr. Paľom Mitterom",
@@ -7157,6 +7373,7 @@
       "article_url": "/clanky/991/"
     },
     {
+      "decision_key": "fulltext:5439:residual_bad_diacritic_tokens:536e2e99cc9f571a",
       "id": 5439,
       "line": 5302,
       "title": "Novšie poznatky z prieskumu jaskyne Skalistý potok a morfológia častí objavených v rokoch 1989-1990",
@@ -7192,6 +7409,7 @@
       "article_url": "/clanky/5439/"
     },
     {
+      "decision_key": "fulltext:5451:residual_bad_diacritic_tokens:a0df2c93cdc18d47",
       "id": 5451,
       "line": 5314,
       "title": "Významné speleologické objavy dobrovoľných jaskyniarov na území Slovenska za obdobie rokov 1970-1990",
@@ -7227,6 +7445,7 @@
       "article_url": "/clanky/5451/"
     },
     {
+      "decision_key": "fulltext:1187:residual_bad_diacritic_tokens:c753f92e83e81abd",
       "id": 1187,
       "line": 1059,
       "title": "Správa o činnosti SSS za rok 1995",
@@ -7262,6 +7481,7 @@
       "article_url": "/clanky/1187/"
     },
     {
+      "decision_key": "fulltext:3829:residual_bad_diacritic_tokens:421a99e86fe0c35c",
       "id": 3829,
       "line": 3692,
       "title": "Skúsenosti z likvidácie nežiadúcej vegetácie v sprístupnených jaskyniach Slovenska",
@@ -7297,6 +7517,7 @@
       "article_url": "/clanky/3829/"
     },
     {
+      "decision_key": "fulltext:3831:residual_bad_diacritic_tokens:bce9cc39d9408b64",
       "id": 3831,
       "line": 3694,
       "title": "Ponory v Priepadlách a problémy ochrany Važeckého krasu",
@@ -7332,6 +7553,7 @@
       "article_url": "/clanky/3831/"
     },
     {
+      "decision_key": "fulltext:3833:residual_bad_diacritic_tokens:1a48b37d9e4cd7c6",
       "id": 3833,
       "line": 3696,
       "title": "Hydrologický režim a občasné záplavy v Gombaseckej jaskyni",
@@ -7368,6 +7590,7 @@
       "article_url": "/clanky/3833/"
     },
     {
+      "decision_key": "fulltext:3839:residual_bad_diacritic_tokens:02289238b3e8f933",
       "id": 3839,
       "line": 3702,
       "title": "Speleoklimatické pobyty v Jasovskej jaskyni",
@@ -7403,6 +7626,7 @@
       "article_url": "/clanky/3839/"
     },
     {
+      "decision_key": "fulltext:3840:residual_bad_diacritic_tokens:02dfe80d39b79378",
       "id": 3840,
       "line": 3703,
       "title": "Návštevnosť sprístupnených jaskýň v roku 1995",
@@ -7438,6 +7662,7 @@
       "article_url": "/clanky/3840/"
     },
     {
+      "decision_key": "fulltext:3842:residual_bad_diacritic_tokens:528315ded4905a18",
       "id": 3842,
       "line": 3705,
       "title": "Náučné panely pri sprístupnených jaskyniach",
@@ -7473,6 +7698,7 @@
       "article_url": "/clanky/3842/"
     },
     {
+      "decision_key": "fulltext:3843:residual_bad_diacritic_tokens:537c8f3f40f8f43f",
       "id": 3843,
       "line": 3706,
       "title": "Údržba vstupných areálov jaskyne Domica a Ochtinskej aragonitovej jaskyne",
@@ -7508,6 +7734,7 @@
       "article_url": "/clanky/3843/"
     },
     {
+      "decision_key": "fulltext:3849:residual_bad_diacritic_tokens:f4a3b42eb4f29592",
       "id": 3849,
       "line": 3712,
       "title": "70. výročie objavenia jaskyne Domica",
@@ -7544,6 +7771,7 @@
       "article_url": "/clanky/3849/"
     },
     {
+      "decision_key": "fulltext:3850:residual_bad_diacritic_tokens:70b32fad372c18e4",
       "id": 3850,
       "line": 3713,
       "title": "Medzinárodná asociácia sprístupnených jaskýň",
@@ -7580,6 +7808,7 @@
       "article_url": "/clanky/3850/"
     },
     {
+      "decision_key": "fulltext:3854:residual_bad_diacritic_tokens:4620dbc4abee688c",
       "id": 3854,
       "line": 3717,
       "title": "Zasadnutie Komisie pre speleoterapiu UIS – Sežana, 1995",
@@ -7615,6 +7844,7 @@
       "article_url": "/clanky/3854/"
     },
     {
+      "decision_key": "fulltext:3859:residual_bad_diacritic_tokens:c79f5dca127c9638",
       "id": 3859,
       "line": 3722,
       "title": "Netopiere",
@@ -7650,6 +7880,7 @@
       "article_url": "/clanky/3859/"
     },
     {
+      "decision_key": "fulltext:3860:residual_bad_diacritic_tokens:a5b85bfcc99d843a",
       "id": 3860,
       "line": 3723,
       "title": "International Journal of Speleology, 23 (1994)",
@@ -7685,6 +7916,7 @@
       "article_url": "/clanky/3860/"
     },
     {
+      "decision_key": "fulltext:1314:residual_bad_diacritic_tokens:2bdf1e5a06235a1d",
       "id": 1314,
       "line": 1177,
       "title": "Jaskyňa v Kostolcoch v Demänovskej doline",
@@ -7720,6 +7952,7 @@
       "article_url": "/clanky/1314/"
     },
     {
+      "decision_key": "fulltext:3873:residual_bad_diacritic_tokens:338b78daa2ef500c",
       "id": 3873,
       "line": 3736,
       "title": "Uzatváranie vchodov do jaskýň",
@@ -7756,6 +7989,7 @@
       "article_url": "/clanky/3873/"
     },
     {
+      "decision_key": "fulltext:3885:residual_bad_diacritic_tokens:d1e82bf9640e00fc",
       "id": 3885,
       "line": 3748,
       "title": "Študijná cesta - Francúzsko 1996",
@@ -7792,6 +8026,7 @@
       "article_url": "/clanky/3885/"
     },
     {
+      "decision_key": "fulltext:3887:residual_bad_diacritic_tokens:bbdd4106a2cd398f",
       "id": 3887,
       "line": 3750,
       "title": "Študijná cesta - Taliansko 1996",
@@ -7828,6 +8063,7 @@
       "article_url": "/clanky/3887/"
     },
     {
+      "decision_key": "fulltext:3890:residual_bad_diacritic_tokens:1e45acb50c10a129",
       "id": 3890,
       "line": 3753,
       "title": "Mininetopier z jaskýň Say Yoka v Thajsku",
@@ -7864,6 +8100,7 @@
       "article_url": "/clanky/3890/"
     },
     {
+      "decision_key": "fulltext:3895:residual_bad_diacritic_tokens:5d7e7c5dabaaf1c2",
       "id": 3895,
       "line": 3758,
       "title": "Ulica a pamätná tabuľa Jána Majku v Dolnej Strede",
@@ -7900,6 +8137,7 @@
       "article_url": "/clanky/3895/"
     },
     {
+      "decision_key": "fulltext:3902:residual_bad_diacritic_tokens:5bba34dde7637b56",
       "id": 3902,
       "line": 3765,
       "title": "Netopiere 1/1995",
@@ -7936,6 +8174,7 @@
       "article_url": "/clanky/3902/"
     },
     {
+      "decision_key": "fulltext:3906:residual_bad_diacritic_tokens:e4facc0fc642713e",
       "id": 3906,
       "line": 3769,
       "title": "Životné jubileum Doc. RNDr. Jozefa Jakála, DrSc.",
@@ -7972,6 +8211,7 @@
       "article_url": "/clanky/3906/"
     },
     {
+      "decision_key": "fulltext:3907:residual_bad_diacritic_tokens:cde60d2fb6287693",
       "id": 3907,
       "line": 3770,
       "title": "Martin Fillo 55-ročný",
@@ -8008,6 +8248,7 @@
       "article_url": "/clanky/3907/"
     },
     {
+      "decision_key": "fulltext:3908:residual_bad_diacritic_tokens:74ff95a9823b1291",
       "id": 3908,
       "line": 3771,
       "title": "Ján Farkaš 50-ročný",
@@ -8044,6 +8285,7 @@
       "article_url": "/clanky/3908/"
     },
     {
+      "decision_key": "fulltext:3910:residual_bad_diacritic_tokens:87b7540bac46f307",
       "id": 3910,
       "line": 3773,
       "title": "Mineralogické výzkumy v Ochtinské aragonitové jeskyni",
@@ -8079,6 +8321,7 @@
       "article_url": "/clanky/3910/"
     },
     {
+      "decision_key": "fulltext:3911:residual_bad_diacritic_tokens:aaa7b47601e2a601",
       "id": 3911,
       "line": 3774,
       "title": "Geofyzikálny prieskum jaskyne Domica (okolie Čertovej diery – Suchá chodba)",
@@ -8115,6 +8358,7 @@
       "article_url": "/clanky/3911/"
     },
     {
+      "decision_key": "fulltext:3914:residual_bad_diacritic_tokens:3f4431386b230e3b",
       "id": 3914,
       "line": 3777,
       "title": "Výskyt netopierov počas roka v podzemných priestoroch Jasovskej skaly",
@@ -8150,6 +8394,7 @@
       "article_url": "/clanky/3914/"
     },
     {
+      "decision_key": "fulltext:3916:residual_bad_diacritic_tokens:fc80ae300cbb6953",
       "id": 3916,
       "line": 3779,
       "title": "Nový vstupný areál Dobšinskej ľadovej jaskyne",
@@ -8186,6 +8431,7 @@
       "article_url": "/clanky/3916/"
     },
     {
+      "decision_key": "fulltext:3917:residual_bad_diacritic_tokens:f1b0371de776642a",
       "id": 3917,
       "line": 3780,
       "title": "Náučný chodník k Dobšinskej ľadovej jaskyni",
@@ -8221,6 +8467,7 @@
       "article_url": "/clanky/3917/"
     },
     {
+      "decision_key": "fulltext:3922:residual_bad_diacritic_tokens:0e01dc6b28abf2c2",
       "id": 3922,
       "line": 3785,
       "title": "Náučný chodník k Demänovskej ľadovej jaskyni",
@@ -8256,6 +8503,7 @@
       "article_url": "/clanky/3922/"
     },
     {
+      "decision_key": "fulltext:3931:residual_bad_diacritic_tokens:8009a8f26d388a7f",
       "id": 3931,
       "line": 3794,
       "title": "Vedecká konferencia „Výskum, ochrana a využívanie jaskýň“",
@@ -8292,6 +8540,7 @@
       "article_url": "/clanky/3931/"
     },
     {
+      "decision_key": "fulltext:3936:residual_bad_diacritic_tokens:b9fa68765b1c4b04",
       "id": 3936,
       "line": 3799,
       "title": "Odborný seminár v Moravskom krase – Češkovice 1997",
@@ -8328,6 +8577,7 @@
       "article_url": "/clanky/3936/"
     },
     {
+      "decision_key": "fulltext:3937:residual_bad_diacritic_tokens:26eab269930200c1",
       "id": 3937,
       "line": 3800,
       "title": "Seminár „Ochrana krasových javov a krasových území“",
@@ -8364,6 +8614,7 @@
       "article_url": "/clanky/3937/"
     },
     {
+      "decision_key": "fulltext:3938:residual_bad_diacritic_tokens:2cc2083425ee6713",
       "id": 3938,
       "line": 3801,
       "title": "Actas II. International Show Caves Association Congress",
@@ -8400,6 +8651,7 @@
       "article_url": "/clanky/3938/"
     },
     {
+      "decision_key": "fulltext:3939:residual_bad_diacritic_tokens:ed8417b56a0e0fd3",
       "id": 3939,
       "line": 3802,
       "title": "Proceedings of the International Meeting on Show Caves, Aggtelek 1996",
@@ -8436,6 +8688,7 @@
       "article_url": "/clanky/3939/"
     },
     {
+      "decision_key": "fulltext:3940:residual_bad_diacritic_tokens:a69e033987af8eb2",
       "id": 3940,
       "line": 3803,
       "title": "Protection and Medical Utilization of Karst Environment",
@@ -8472,6 +8725,7 @@
       "article_url": "/clanky/3940/"
     },
     {
+      "decision_key": "fulltext:3943:residual_bad_diacritic_tokens:bcf097410b903701",
       "id": 3943,
       "line": 3806,
       "title": "Príroda, Sborník prací z ochrany přírody, 9, 1997",
@@ -8508,6 +8762,7 @@
       "article_url": "/clanky/3943/"
     },
     {
+      "decision_key": "fulltext:3944:residual_bad_diacritic_tokens:852c8db8d99aff29",
       "id": 3944,
       "line": 3807,
       "title": "Zur Situation der Hufeisennasen in Europa",
@@ -8544,6 +8799,7 @@
       "article_url": "/clanky/3944/"
     },
     {
+      "decision_key": "fulltext:3945:residual_bad_diacritic_tokens:3205d5c595377a17",
       "id": 3945,
       "line": 3808,
       "title": "The Show Caves of Hungary",
@@ -8580,6 +8836,7 @@
       "article_url": "/clanky/3945/"
     },
     {
+      "decision_key": "fulltext:1513:residual_bad_diacritic_tokens:c4a478ebcc1d86fa",
       "id": 1513,
       "line": 1376,
       "title": "Nové poznatky zo speleologického prieskumu prielomu Hornádu (Slovenský raj), 1 obr",
@@ -8615,6 +8872,7 @@
       "article_url": "/clanky/1513/"
     },
     {
+      "decision_key": "fulltext:3951:residual_bad_diacritic_tokens:474c68a42deb9d55",
       "id": 3951,
       "line": 3814,
       "title": "Problém geneze sintrových štítů z jeskyně Domica",
@@ -8650,6 +8908,7 @@
       "article_url": "/clanky/3951/"
     },
     {
+      "decision_key": "fulltext:3952:residual_bad_diacritic_tokens:7133ca8b0c371608",
       "id": 3952,
       "line": 3815,
       "title": "Mineralogické výzkumy v jeskyni Domica",
@@ -8686,6 +8945,7 @@
       "article_url": "/clanky/3952/"
     },
     {
+      "decision_key": "fulltext:3954:residual_bad_diacritic_tokens:06db17ad6dc05ed2",
       "id": 3954,
       "line": 3817,
       "title": "Morfológia Jasovskej jaskyne",
@@ -8722,6 +8982,7 @@
       "article_url": "/clanky/3954/"
     },
     {
+      "decision_key": "fulltext:3955:residual_bad_diacritic_tokens:b9b2d7ce74ef6f26",
       "id": 3955,
       "line": 3818,
       "title": "Statické pomery horninového nadložia a mrazové zvetrávanie v horných zaľadnených častiach Dobšinskej ľadovej jaskyne",
@@ -8758,6 +9019,7 @@
       "article_url": "/clanky/3955/"
     },
     {
+      "decision_key": "fulltext:3958:residual_bad_diacritic_tokens:0dd368e141367613",
       "id": 3958,
       "line": 3821,
       "title": "Pavúčia jaskyňa - súčasť Demänovského jaskynného systému",
@@ -8793,6 +9055,7 @@
       "article_url": "/clanky/3958/"
     },
     {
+      "decision_key": "fulltext:3959:residual_bad_diacritic_tokens:915bec4ed377dabb",
       "id": 3959,
       "line": 3822,
       "title": "Nové zábrany na ochranu sintrovej výplne v Demänovskej jaskyni slobody",
@@ -8828,6 +9091,7 @@
       "article_url": "/clanky/3959/"
     },
     {
+      "decision_key": "fulltext:3960:residual_bad_diacritic_tokens:d33bdc40bb46a848",
       "id": 3960,
       "line": 3823,
       "title": "Uzavretie vchodu jaskyne Štefanová č. 1 v Demänovskej doline",
@@ -8863,6 +9127,7 @@
       "article_url": "/clanky/3960/"
     },
     {
+      "decision_key": "fulltext:3961:residual_bad_diacritic_tokens:2622f1aea18998bd",
       "id": 3961,
       "line": 3824,
       "title": "Speleologická strážna služba v NPR Demänovská dolina",
@@ -8899,6 +9164,7 @@
       "article_url": "/clanky/3961/"
     },
     {
+      "decision_key": "fulltext:3965:residual_bad_diacritic_tokens:15ecda53fd312a36",
       "id": 3965,
       "line": 3828,
       "title": "Prístavba vstupného objektu Bystrianskej jaskyne",
@@ -8934,6 +9200,7 @@
       "article_url": "/clanky/3965/"
     },
     {
+      "decision_key": "fulltext:3966:residual_bad_diacritic_tokens:df59d6441ba9314d",
       "id": 3966,
       "line": 3829,
       "title": "Stavebné úpravy vstupného areálu Važeckej jaskyne",
@@ -8969,6 +9236,7 @@
       "article_url": "/clanky/3966/"
     },
     {
+      "decision_key": "fulltext:3967:residual_bad_diacritic_tokens:14c1f78ff4d7ffcd",
       "id": 3967,
       "line": 3830,
       "title": "Rekonštrukcia elektroinštalácie a úprava vstupnej chodby Jasovskej jaskyne",
@@ -9004,6 +9272,7 @@
       "article_url": "/clanky/3967/"
     },
     {
+      "decision_key": "fulltext:3968:residual_bad_diacritic_tokens:9ca82759c02b0bd4",
       "id": 3968,
       "line": 3831,
       "title": "Úprava vstupnej štôlne a prehliadkového chodníka v Ochtinskej aragonitovej jaskyni",
@@ -9039,6 +9308,7 @@
       "article_url": "/clanky/3968/"
     },
     {
+      "decision_key": "fulltext:3969:residual_bad_diacritic_tokens:5d9bc525238fc3a5",
       "id": 3969,
       "line": 3832,
       "title": "Náučný chodník k Demänovskej jaskyni slobody",
@@ -9075,6 +9345,7 @@
       "article_url": "/clanky/3969/"
     },
     {
+      "decision_key": "fulltext:3970:residual_bad_diacritic_tokens:717968e26706be32",
       "id": 3970,
       "line": 3833,
       "title": "Prezentácia sprístupnených jaskýň na medzinárodnej výstave Regiontour '99",
@@ -9111,6 +9382,7 @@
       "article_url": "/clanky/3970/"
     },
     {
+      "decision_key": "fulltext:3974:residual_bad_diacritic_tokens:e7aaedf477fa4373",
       "id": 3974,
       "line": 3837,
       "title": "Poznatky zo študijnej cesty po sprístupnených jaskyniach Sardínie",
@@ -9147,6 +9419,7 @@
       "article_url": "/clanky/3974/"
     },
     {
+      "decision_key": "fulltext:3976:residual_bad_diacritic_tokens:1c038c8264748fda",
       "id": 3976,
       "line": 3839,
       "title": "Carlsbad Cavern versus Mammoth Cave",
@@ -9182,6 +9455,7 @@
       "article_url": "/clanky/3976/"
     },
     {
+      "decision_key": "fulltext:3978:residual_bad_diacritic_tokens:e0889223cabc6c4f",
       "id": 3978,
       "line": 3841,
       "title": "„V mene boha“ alebo návšteva jaskyne Ali Sadr v Iráne",
@@ -9217,6 +9491,7 @@
       "article_url": "/clanky/3978/"
     },
     {
+      "decision_key": "fulltext:3979:residual_bad_diacritic_tokens:8030e25eaf7efb3c",
       "id": 3979,
       "line": 3842,
       "title": "Pobrežné jaskyne a turizmus na Capri a Liparských ostrovoch",
@@ -9252,6 +9527,7 @@
       "article_url": "/clanky/3979/"
     },
     {
+      "decision_key": "fulltext:3982:residual_bad_diacritic_tokens:b2d037a962a060a0",
       "id": 3982,
       "line": 3845,
       "title": "Medzinárodné sympózium ALCADI '98",
@@ -9288,6 +9564,7 @@
       "article_url": "/clanky/3982/"
     },
     {
+      "decision_key": "fulltext:3983:residual_bad_diacritic_tokens:94196331fd3d1105",
       "id": 3983,
       "line": 3846,
       "title": "Otvorenie nového vstupného areálu Dobšinskej ľadovej jaskyne",
@@ -9324,6 +9601,7 @@
       "article_url": "/clanky/3983/"
     },
     {
+      "decision_key": "fulltext:3984:residual_bad_diacritic_tokens:5d80b5827c39a271",
       "id": 3984,
       "line": 3847,
       "title": "3. odborný seminár pre pracovníkov sprístupnených jaskýň",
@@ -9360,6 +9638,7 @@
       "article_url": "/clanky/3984/"
     },
     {
+      "decision_key": "fulltext:3985:residual_bad_diacritic_tokens:16bd548379626de4",
       "id": 3985,
       "line": 3848,
       "title": "4. odborný seminár pre pracovníkov sprístupnených jaskýň",
@@ -9396,6 +9675,7 @@
       "article_url": "/clanky/3985/"
     },
     {
+      "decision_key": "fulltext:3986:residual_bad_diacritic_tokens:c11620b61e6ed6e7",
       "id": 3986,
       "line": 3849,
       "title": "Pobožnosť v Demänovskej jaskyni slobody",
@@ -9432,6 +9712,7 @@
       "article_url": "/clanky/3986/"
     },
     {
+      "decision_key": "fulltext:3987:residual_bad_diacritic_tokens:72cf59dcdc523f4a",
       "id": 3987,
       "line": 3850,
       "title": "Výskum, ochrana a využívanie jaskýň",
@@ -9467,6 +9748,7 @@
       "article_url": "/clanky/3987/"
     },
     {
+      "decision_key": "fulltext:3988:residual_bad_diacritic_tokens:18329ca727cfdd6c",
       "id": 3988,
       "line": 3851,
       "title": "Demänovské jaskyne - Demänovská jaskyňa slobody, Demänovská ľadová jaskyňa",
@@ -9502,6 +9784,7 @@
       "article_url": "/clanky/3988/"
     },
     {
+      "decision_key": "fulltext:3989:residual_bad_diacritic_tokens:b5a805a7a2f11011",
       "id": 3989,
       "line": 3852,
       "title": "Stanka Šebela: Tektonska zgradba sistema Postojnskih jam",
@@ -9537,6 +9820,7 @@
       "article_url": "/clanky/3989/"
     },
     {
+      "decision_key": "fulltext:3990:residual_bad_diacritic_tokens:9ae67c34561d47a5",
       "id": 3990,
       "line": 3853,
       "title": "Postojnska jama - nova spoznanja",
@@ -9573,6 +9857,7 @@
       "article_url": "/clanky/3990/"
     },
     {
+      "decision_key": "fulltext:3991:residual_bad_diacritic_tokens:5f2283064804ee11",
       "id": 3991,
       "line": 3854,
       "title": "Sprievodca náučným chodníkom k Belianskej jaskyni",
@@ -9609,6 +9894,7 @@
       "article_url": "/clanky/3991/"
     },
     {
+      "decision_key": "fulltext:3992:residual_bad_diacritic_tokens:569b4243a36f3089",
       "id": 3992,
       "line": 3855,
       "title": "Sborník referátů ze semináře Moravský kras",
@@ -9645,6 +9931,7 @@
       "article_url": "/clanky/3992/"
     },
     {
+      "decision_key": "fulltext:1640:residual_bad_diacritic_tokens:399de61bc97e6e23",
       "id": 1640,
       "line": 1503,
       "title": "Mesačná jaskyňa – realita alebo len novodobý mýtus?",
@@ -9680,6 +9967,7 @@
       "article_url": "/clanky/1640/"
     },
     {
+      "decision_key": "fulltext:3993:residual_bad_diacritic_tokens:1fbcff11339c8e1b",
       "id": 3993,
       "line": 3856,
       "title": "Problematika vývojových úrovní jaskyne Domica",
@@ -9715,6 +10003,7 @@
       "article_url": "/clanky/3993/"
     },
     {
+      "decision_key": "fulltext:1682:residual_bad_diacritic_tokens:492f39fcfe7d3c4f",
       "id": 1682,
       "line": 1545,
       "title": "...a opäť o Večnej robote",
@@ -9750,6 +10039,7 @@
       "article_url": "/clanky/1682/"
     },
     {
+      "decision_key": "fulltext:1700:residual_bad_diacritic_tokens:4c7f4a314877b4ca",
       "id": 1700,
       "line": 1563,
       "title": "21 rokov JZS SSS – záchranného družstva Liptovský Mikuláš",
@@ -9785,6 +10075,7 @@
       "article_url": "/clanky/1700/"
     },
     {
+      "decision_key": "fulltext:1707:residual_bad_diacritic_tokens:f522aa6ff8c6d2ed",
       "id": 1707,
       "line": 1570,
       "title": "Tridsiaty tretí kilometer v Demänovskej doline",
@@ -9820,6 +10111,7 @@
       "article_url": "/clanky/1707/"
     },
     {
+      "decision_key": "fulltext:5623:residual_bad_diacritic_tokens:324a13c50fa34f85",
       "id": 5623,
       "line": 5486,
       "title": "Objavovanie a sprístupňovanie Demänovskej jaskyne slobody v spomienkach Miloša Janošku",
@@ -9855,6 +10147,7 @@
       "article_url": "/clanky/5623/"
     },
     {
+      "decision_key": "fulltext:1783:residual_bad_diacritic_tokens:b48861ef3f41041c",
       "id": 1783,
       "line": 1646,
       "title": "Správa o činnosti SSS v roku 2001",
@@ -9890,6 +10183,7 @@
       "article_url": "/clanky/1783/"
     },
     {
+      "decision_key": "fulltext:1837:residual_bad_diacritic_tokens:523060d086ff306f",
       "id": 1837,
       "line": 1700,
       "title": "Expedícia АГУЙ – AGUJ 2002, reportáž z putovania",
@@ -9925,6 +10219,7 @@
       "article_url": "/clanky/1837/"
     },
     {
+      "decision_key": "fulltext:1840:residual_bad_diacritic_tokens:c530d6433158bece",
       "id": 1840,
       "line": 1703,
       "title": "Gemerskoteplická jaskyňa – najdlhšia jaskyňa Koniarskej planiny",
@@ -9960,6 +10255,7 @@
       "article_url": "/clanky/1840/"
     },
     {
+      "decision_key": "fulltext:1883:residual_bad_diacritic_tokens:910d010736ed4706",
       "id": 1883,
       "line": 1746,
       "title": "Správa o činnosti SSS v roku 2002",
@@ -9995,6 +10291,7 @@
       "article_url": "/clanky/1883/"
     },
     {
+      "decision_key": "fulltext:1902:residual_bad_diacritic_tokens:64a15d2d3cb7c669",
       "id": 1902,
       "line": 1765,
       "title": "Nová veľká jaskyňa v Červených vrchoch",
@@ -10030,6 +10327,7 @@
       "article_url": "/clanky/1902/"
     },
     {
+      "decision_key": "fulltext:1965:residual_bad_diacritic_tokens:0791085219840709",
       "id": 1965,
       "line": 1828,
       "title": "Od ďalšieho gratulanta",
@@ -10065,6 +10363,7 @@
       "article_url": "/clanky/1965/"
     },
     {
+      "decision_key": "fulltext:2039:residual_bad_diacritic_tokens:4f5f0fa63f74ba93",
       "id": 2039,
       "line": 1902,
       "title": "Mesačný tieň – nový jaskynný systém Vysokých Tatier",
@@ -10100,6 +10399,7 @@
       "article_url": "/clanky/2039/"
     },
     {
+      "decision_key": "fulltext:2046:residual_bad_diacritic_tokens:e6ab6089fe5679e1",
       "id": 2046,
       "line": 1909,
       "title": "20 krát na Balkáne",
@@ -10135,6 +10435,7 @@
       "article_url": "/clanky/2046/"
     },
     {
+      "decision_key": "fulltext:4037:residual_bad_diacritic_tokens:c10c789e7d3dedbb",
       "id": 4037,
       "line": 3900,
       "title": "Laterálne výklenky a zárezy vyhĺbené v skalných stenách jaskýň",
@@ -10170,6 +10471,7 @@
       "article_url": "/clanky/4037/"
     },
     {
+      "decision_key": "fulltext:2168:residual_bad_diacritic_tokens:6f26a45e6ca3f2b8",
       "id": 2168,
       "line": 2031,
       "title": "Správa o činnosti Slovenskej speleologickej spoločnosti v roku 2005",
@@ -10205,6 +10507,7 @@
       "article_url": "/clanky/2168/"
     },
     {
+      "decision_key": "fulltext:2192:residual_bad_diacritic_tokens:72122a927720c519",
       "id": 2192,
       "line": 2055,
       "title": "Jaskyňa Jubilejná – uzavretá kapitola",
@@ -10240,6 +10543,7 @@
       "article_url": "/clanky/2192/"
     },
     {
+      "decision_key": "fulltext:2250:residual_bad_diacritic_tokens:b720ebd58e2b40a1",
       "id": 2250,
       "line": 2113,
       "title": "Príbeh M-2 pokračuje: nové výsledky speleologického prieskumu",
@@ -10275,6 +10579,7 @@
       "article_url": "/clanky/2250/"
     },
     {
+      "decision_key": "fulltext:2288:residual_bad_diacritic_tokens:49648048e7214144",
       "id": 2288,
       "line": 2151,
       "title": "Jaskyňa mŕtveho vojaka",
@@ -10310,6 +10615,7 @@
       "article_url": "/clanky/2288/"
     },
     {
+      "decision_key": "fulltext:4137:residual_bad_diacritic_tokens:e612f5c7509b4f8d",
       "id": 4137,
       "line": 4000,
       "title": "Geologický prieskum Perlovej jaskyne vo Veľkej Fatre",
@@ -10345,6 +10651,7 @@
       "article_url": "/clanky/4137/"
     },
     {
+      "decision_key": "fulltext:2381:residual_bad_diacritic_tokens:5cc80797f7460d15",
       "id": 2381,
       "line": 2244,
       "title": "Správa o činnosti Slovenskej speleologickej spoločnosti v roku 2007",
@@ -10380,6 +10687,7 @@
       "article_url": "/clanky/2381/"
     },
     {
+      "decision_key": "fulltext:2417:residual_bad_diacritic_tokens:4c561d7ca3cb99fd",
       "id": 2417,
       "line": 2280,
       "title": "Prešovský otec 60-nikom",
@@ -10415,6 +10723,7 @@
       "article_url": "/clanky/2417/"
     },
     {
+      "decision_key": "fulltext:2474:residual_bad_diacritic_tokens:7be959e69e73646d",
       "id": 2474,
       "line": 2337,
       "title": "Správa o činnosti Slovenskej speleologickej spoločnosti v roku 2008",
@@ -10450,6 +10759,7 @@
       "article_url": "/clanky/2474/"
     },
     {
+      "decision_key": "fulltext:4259:residual_bad_diacritic_tokens:5a61231c8f9e7719",
       "id": 4259,
       "line": 4122,
       "title": "Príspevok k poznaniu fauny pseudokrasovej Jaskyne pod Jankovcom 2 v Levočských vrchoch",
@@ -10485,6 +10795,7 @@
       "article_url": "/clanky/4259/"
     },
     {
+      "decision_key": "fulltext:4262:residual_bad_diacritic_tokens:0a37777f6034d9ed",
       "id": 4262,
       "line": 4125,
       "title": "Na kedy pripadá objav Dobšinskej ľadovej jaskyne",
@@ -10520,6 +10831,7 @@
       "article_url": "/clanky/4262/"
     },
     {
+      "decision_key": "fulltext:4297:residual_bad_diacritic_tokens:21e22fc0aa1e0830",
       "id": 4297,
       "line": 4160,
       "title": "Inovácia technickej infraštruktúry sprístupnených jaskýň",
@@ -10555,6 +10867,7 @@
       "article_url": "/clanky/4297/"
     },
     {
+      "decision_key": "fulltext:4371:residual_bad_diacritic_tokens:502f45736e08bbdd",
       "id": 4371,
       "line": 4234,
       "title": "Interpretácia nálezov ľudských pozostatkov z priepasti Studňa pri Spišských Tomášovciach",
@@ -10590,6 +10903,7 @@
       "article_url": "/clanky/4371/"
     },
     {
+      "decision_key": "fulltext:2848:residual_bad_diacritic_tokens:207578a58fc9832f",
       "id": 2848,
       "line": 2711,
       "title": "Osem priepastí alebo tisíc metrov za jediný deň",
@@ -10625,6 +10939,7 @@
       "article_url": "/clanky/2848/"
     },
     {
+      "decision_key": "fulltext:4393:residual_bad_diacritic_tokens:548e2bc0fe88afc6",
       "id": 4393,
       "line": 4256,
       "title": "Sezónna zmena objemovej aktivity radónu v jaskyni Domica",
@@ -10660,6 +10975,7 @@
       "article_url": "/clanky/4393/"
     },
     {
+      "decision_key": "fulltext:2862:residual_bad_diacritic_tokens:ca66d11048680fe3",
       "id": 2862,
       "line": 2725,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2012",
@@ -10695,6 +11011,7 @@
       "article_url": "/clanky/2862/"
     },
     {
+      "decision_key": "fulltext:2918:residual_bad_diacritic_tokens:582389b87057b1ec",
       "id": 2918,
       "line": 2781,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2013",
@@ -10730,6 +11047,7 @@
       "article_url": "/clanky/2918/"
     },
     {
+      "decision_key": "fulltext:2947:residual_bad_diacritic_tokens:8edfd4ffdca47324",
       "id": 2947,
       "line": 2810,
       "title": "Novinka z Belianskych Tatier – Jaskyňa štyroch medveďov",
@@ -10765,6 +11083,7 @@
       "article_url": "/clanky/2947/"
     },
     {
+      "decision_key": "fulltext:2982:residual_bad_diacritic_tokens:f397b8456fcb5a89",
       "id": 2982,
       "line": 2845,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2014",
@@ -10801,6 +11120,7 @@
       "article_url": "/clanky/2982/"
     },
     {
+      "decision_key": "fulltext:3044:residual_bad_diacritic_tokens:c298d08674d8a002",
       "id": 3044,
       "line": 2907,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2015",
@@ -10837,6 +11157,7 @@
       "article_url": "/clanky/3044/"
     },
     {
+      "decision_key": "fulltext:3063:residual_bad_diacritic_tokens:0f4ace125f559f55",
       "id": 3063,
       "line": 2926,
       "title": "Namiesto Demänovej Izrael",
@@ -10872,6 +11193,7 @@
       "article_url": "/clanky/3063/"
     },
     {
+      "decision_key": "fulltext:3096:residual_bad_diacritic_tokens:676894fdd785679a",
       "id": 3096,
       "line": 2959,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2016",
@@ -10907,6 +11229,7 @@
       "article_url": "/clanky/3096/"
     },
     {
+      "decision_key": "fulltext:3145:residual_bad_diacritic_tokens:5d126ee39f535447",
       "id": 3145,
       "line": 3008,
       "title": "Spoločenské správy",
@@ -10942,6 +11265,7 @@
       "article_url": "/clanky/3145/"
     },
     {
+      "decision_key": "fulltext:4499:residual_bad_diacritic_tokens:3a574873138f2bf0",
       "id": 4499,
       "line": 4362,
       "title": "A short history of cave bear research in Slovakia",
@@ -10977,6 +11301,7 @@
       "article_url": "/clanky/4499/"
     },
     {
+      "decision_key": "fulltext:3227:residual_bad_diacritic_tokens:83267c78c3a21f75",
       "id": 3227,
       "line": 3090,
       "title": "Výsledky speleologického prieskumu Koniarskej planiny (1. časť). Hydrologický systém Ponor slepej dolinky – Výverová jaskyňa (Päťročnica)",
@@ -11012,6 +11337,7 @@
       "article_url": "/clanky/3227/"
     },
     {
+      "decision_key": "fulltext:4515:residual_bad_diacritic_tokens:8ab22fc8becc1d75",
       "id": 4515,
       "line": 4378,
       "title": "Stopovacie skúšky v okolí Ponickej jaskyne (Zvolenská pahorkatina, Ponický kras)",
@@ -11047,6 +11373,7 @@
       "article_url": "/clanky/4515/"
     },
     {
+      "decision_key": "fulltext:3248:residual_bad_diacritic_tokens:d641444140cb6da4",
       "id": 3248,
       "line": 3111,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2018",
@@ -11083,6 +11410,7 @@
       "article_url": "/clanky/3248/"
     },
     {
+      "decision_key": "fulltext:3320:residual_bad_diacritic_tokens:8753d49d2117e2ec",
       "id": 3320,
       "line": 3183,
       "title": "Spoločenské správy",
@@ -11118,6 +11446,7 @@
       "article_url": "/clanky/3320/"
     },
     {
+      "decision_key": "fulltext:3322:residual_bad_diacritic_tokens:55476d386669018e",
       "id": 3322,
       "line": 3185,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2019",
@@ -11153,6 +11482,7 @@
       "article_url": "/clanky/3322/"
     },
     {
+      "decision_key": "fulltext:3368:residual_bad_diacritic_tokens:a8d3112679b02866",
       "id": 3368,
       "line": 3231,
       "title": "Mapovanie Bezodnej ľadnice pozemným laserovým skenovaním",
@@ -11189,6 +11519,7 @@
       "article_url": "/clanky/3368/"
     },
     {
+      "decision_key": "fulltext:3456:residual_bad_diacritic_tokens:11b13b6a6f0106cd",
       "id": 3456,
       "line": 3319,
       "title": "Storočnica Ing. Svätopluka Kámena",
@@ -11224,6 +11555,7 @@
       "article_url": "/clanky/3456/"
     },
     {
+      "decision_key": "fulltext:4982:residual_bad_diacritic_tokens:a3d391619b2d1fe5",
       "id": 4982,
       "line": 4845,
       "title": "Zavedenie a vymedzenie pojmu sinter v českej a slovenskej terminológii",
@@ -11259,6 +11591,7 @@
       "article_url": "/clanky/4982/"
     },
     {
+      "decision_key": "fulltext:3487:residual_bad_diacritic_tokens:2c5bab854581872a",
       "id": 3487,
       "line": 3350,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2021",
@@ -11294,6 +11627,7 @@
       "article_url": "/clanky/3487/"
     },
     {
+      "decision_key": "fulltext:3547:residual_bad_diacritic_tokens:7ee7ec979ffdc060",
       "id": 3547,
       "line": 3410,
       "title": "Činnosť jaskyniarskych skupín a klubov v roku 2022",
@@ -11329,6 +11663,7 @@
       "article_url": "/clanky/3547/"
     },
     {
+      "decision_key": "fulltext:3640:residual_bad_diacritic_tokens:8a25c63adf58b9fe",
       "id": 3640,
       "line": 3503,
       "title": "Cez ponor do Čertovej diery",
@@ -11364,6 +11699,7 @@
       "article_url": "/clanky/3640/"
     },
     {
+      "decision_key": "fulltext:3805:residual_bad_diacritic_tokens:9151e20a3bf31560",
       "id": 3805,
       "line": 3668,
       "title": "Prvé poznatky o akvatickej faune jaskynného systému Diablova diera v pohorí Branisko",
@@ -11399,6 +11735,7 @@
       "article_url": "/clanky/3805/"
     },
     {
+      "decision_key": "fulltext:183:low_text_density:7d9de683cf0d94a3",
       "id": 183,
       "line": 183,
       "title": "Ďalšia dávka jaskyniarskeho humoru",
@@ -11431,6 +11768,7 @@
       "article_url": "/clanky/183/"
     },
     {
+      "decision_key": "fulltext:284:low_text_density:b985dfc4eabeb361",
       "id": 284,
       "line": 284,
       "title": "Jaskyniari Slovenskej spleologickej spoločnosti vo vzťahu k zahraničiu",
@@ -11463,6 +11801,7 @@
       "article_url": "/clanky/284/"
     },
     {
+      "decision_key": "fulltext:762:low_text_density:bb71c29173edb7bd",
       "id": 762,
       "line": 652,
       "title": "Jaskyniarsky humor",
@@ -11495,6 +11834,7 @@
       "article_url": "/clanky/762/"
     },
     {
+      "decision_key": "fulltext:778:low_text_density:e5f7106187e4e4bd",
       "id": 778,
       "line": 668,
       "title": "The longest and the deepest Caves in Slovakia",
@@ -11527,6 +11867,7 @@
       "article_url": "/clanky/778/"
     },
     {
+      "decision_key": "fulltext:1104:low_text_density:3bb8df0f78d213fa",
       "id": 1104,
       "line": 976,
       "title": "Velebit ´94 – informácia",
@@ -11559,6 +11900,7 @@
       "article_url": "/clanky/1104/"
     },
     {
+      "decision_key": "fulltext:2553:low_text_density:0c5188c4ba5b052a",
       "id": 2553,
       "line": 2416,
       "title": "Exploration of Drăcoaia Cave in Romania",
@@ -11591,6 +11933,7 @@
       "article_url": "/clanky/2553/"
     },
     {
+      "decision_key": "fulltext:2963:low_text_density:7ef12d8a8c1ca739",
       "id": 2963,
       "line": 2826,
       "title": "O Kruhovej priepasti na Brtkovici",
@@ -11623,6 +11966,7 @@
       "article_url": "/clanky/2963/"
     },
     {
+      "decision_key": "fulltext:2995:low_text_density:3777bf6f06aee3c6",
       "id": 2995,
       "line": 2858,
       "title": "K pomenovaniam jaskýň pri Zemianskej Závade",
@@ -11655,6 +11999,7 @@
       "article_url": "/clanky/2995/"
     },
     {
+      "decision_key": "fulltext:3093:low_text_density:ea573e51f03023e8",
       "id": 3093,
       "line": 2956,
       "title": "Aktuality",
@@ -11687,6 +12032,7 @@
       "article_url": "/clanky/3093/"
     },
     {
+      "decision_key": "fulltext:2561:low_text_density:e679ccc813ed87e2",
       "id": 2561,
       "line": 2424,
       "title": "Re-mapping of the Partizánska Cave in the Jánska Valley",
@@ -11719,6 +12065,7 @@
       "article_url": "/clanky/2561/"
     },
     {
+      "decision_key": "fulltext:3735:low_text_density:2025a4e271a6f265",
       "id": 3735,
       "line": 3598,
       "title": "Speleologické podujatia SMOPAJ v roku 2025",
