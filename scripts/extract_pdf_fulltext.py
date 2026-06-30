@@ -15,6 +15,7 @@ import os
 import re
 import subprocess
 import sys
+import tempfile
 from pathlib import Path
 from urllib.parse import urlparse
 
@@ -33,6 +34,66 @@ JOURNAL_DEFAULT_PDF_PAGE_OFFSETS = {
     "slovensky_kras": 0,
     "spravodaj_sss": 2,
 }
+DIACRITIC_CHARS = set("ÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽáäčďéíĺľňóôŕšťúýž")
+BAD_TEXT_LAYER_TOKENS = {
+    "akcia",
+    "bezpecnost",
+    "cinnost",
+    "clanku",
+    "clanok",
+    "clovek",
+    "dalsi",
+    "dalsia",
+    "dalsie",
+    "dedicstvo",
+    "desatrocia",
+    "dlzka",
+    "hlbka",
+    "jaskyn",
+    "jaskýn",
+    "jaskyna",
+    "ked",
+    "kolkokrat",
+    "ladove",
+    "ladovy",
+    "moznost",
+    "navstevnik",
+    "navstevnikov",
+    "nevyhnutnost",
+    "oci",
+    "opytat",
+    "opýtat",
+    "organizacia",
+    "objavitelská",
+    "pozviechat",
+    "publikacna",
+    "publikacná",
+    "riaditel",
+    "speleologicka",
+    "spristupnenych",
+    "sucasna",
+    "sucasne",
+    "sucasnost",
+    "súcasná",
+    "súcasne",
+    "súcasnost",
+    "udoli",
+    "usmernuje",
+    "ved",
+    "velke",
+    "vitazne",
+    "vítazne",
+    "vyhodnost",
+    "výhodnost",
+    "vyskumna",
+    "zabezpecit",
+    "zahranici",
+    "zahranicne",
+    "zahranicné",
+    "zahranicí",
+    "zivot",
+}
+TOKEN_RE = re.compile(r"[0-9A-Za-zÁÄČĎÉÍĹĽŇÓÔŔŠŤÚÝŽáäčďéíĺľňóôŕšťúýž]+")
 
 
 def safe_name(url: str) -> str:
@@ -238,6 +299,205 @@ def pdftotext(pdf_path: Path, first_page: int | None = None, last_page: int | No
     return result.stdout.strip()
 
 
+def pdffonts_summary(pdf_path: Path) -> dict:
+    result = subprocess.run(["pdffonts", str(pdf_path)], capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        return {
+            "status": "error",
+            "error": result.stderr.strip() or f"pdffonts failed for {pdf_path}",
+        }
+
+    encodings: dict[str, int] = {}
+    embedded: dict[str, int] = {}
+    unicode_maps: dict[str, int] = {}
+    font_rows = 0
+    for line in result.stdout.splitlines():
+        if not line.strip() or line.startswith("name") or line.startswith("-"):
+            continue
+        parts = line.split()
+        if len(parts) < 8:
+            continue
+        font_rows += 1
+        encoding = parts[-6]
+        emb = parts[-5]
+        uni = parts[-3]
+        encodings[encoding] = encodings.get(encoding, 0) + 1
+        embedded[emb] = embedded.get(emb, 0) + 1
+        unicode_maps[uni] = unicode_maps.get(uni, 0) + 1
+
+    return {
+        "status": "ok",
+        "font_rows": font_rows,
+        "encodings": encodings,
+        "embedded": embedded,
+        "unicode_maps": unicode_maps,
+        "all_fonts_without_unicode_map": font_rows > 0 and unicode_maps.get("no", 0) == font_rows,
+    }
+
+
+def text_quality_metrics(text: str) -> dict:
+    tokens = TOKEN_RE.findall(text)
+    bad_tokens: list[str] = []
+    seen_bad: set[str] = set()
+    for token in tokens:
+        folded = token.casefold()
+        if folded in BAD_TEXT_LAYER_TOKENS and folded not in seen_bad:
+            bad_tokens.append(token)
+            seen_bad.add(folded)
+
+    return {
+        "chars": len(text),
+        "words": len(tokens),
+        "diacritics": sum(char in DIACRITIC_CHARS for char in text),
+        "bad_diacritic_token_count": len(bad_tokens),
+        "bad_diacritic_token_examples": bad_tokens[:12],
+    }
+
+
+def should_reocr_text_layer(
+    text: str,
+    metrics: dict,
+    font_summary: dict | None,
+    min_bad_tokens: int,
+    min_chars: int,
+) -> tuple[bool, str]:
+    if not text.strip():
+        return True, "empty_text"
+    if len(text) < min_chars:
+        return False, "too_short_to_judge"
+
+    bad_count = int(metrics.get("bad_diacritic_token_count") or 0)
+    all_fonts_without_unicode = bool((font_summary or {}).get("all_fonts_without_unicode_map"))
+    if all_fonts_without_unicode and bad_count >= min_bad_tokens:
+        return True, "font_unicode_map_missing_and_bad_tokens"
+    if bad_count >= min_bad_tokens * 2:
+        return True, "bad_tokens"
+    return False, "quality_ok"
+
+
+def tesseract_language_arg(requested: str) -> tuple[str, list[str]]:
+    wanted = [lang.strip() for lang in requested.split("+") if lang.strip()]
+    if not wanted:
+        return requested, []
+    result = subprocess.run(["tesseract", "--list-langs"], capture_output=True, text=True, check=False)
+    if result.returncode != 0:
+        return requested, []
+    installed = {
+        line.strip()
+        for line in result.stdout.splitlines()
+        if line.strip() and not line.startswith("List of available languages")
+    }
+    available = [lang for lang in wanted if lang in installed]
+    missing = [lang for lang in wanted if lang not in installed]
+    return "+".join(available or wanted), missing
+
+
+def with_cpu_pin(command: list[str], cpu: int | None) -> list[str]:
+    if cpu is None or cpu < 0 or not shutil_which("taskset"):
+        return command
+    return ["taskset", "-c", str(cpu), *command]
+
+
+def tesseract_pdf_range(
+    pdf_path: Path,
+    first_page: int,
+    last_page: int,
+    languages: str,
+    dpi: int,
+    timeout: int,
+    cpu: int | None,
+) -> tuple[str, dict]:
+    language_arg, missing_languages = tesseract_language_arg(languages)
+    env = os.environ.copy()
+    env["OMP_THREAD_LIMIT"] = "1"
+    env["OMP_NUM_THREADS"] = "1"
+
+    with tempfile.TemporaryDirectory(prefix="sss-ocr-") as tmp:
+        prefix = Path(tmp) / "page"
+        render_cmd = [
+            "pdftoppm",
+            "-r",
+            str(dpi),
+            "-png",
+            "-f",
+            str(first_page),
+            "-l",
+            str(last_page),
+            str(pdf_path),
+            str(prefix),
+        ]
+        render_result = subprocess.run(render_cmd, capture_output=True, text=True, check=False)
+        if render_result.returncode != 0:
+            raise RuntimeError(render_result.stderr.strip() or f"pdftoppm failed for {pdf_path}")
+
+        page_images = sorted(prefix.parent.glob(f"{prefix.name}-*.png"))
+        if not page_images:
+            raise RuntimeError(f"pdftoppm produced no page images for {pdf_path}")
+
+        page_texts: list[str] = []
+        for image_path in page_images:
+            cmd = with_cpu_pin(
+                [
+                    "tesseract",
+                    str(image_path),
+                    "stdout",
+                    "-l",
+                    language_arg,
+                    "--psm",
+                    "6",
+                ],
+                cpu,
+            )
+            result = subprocess.run(
+                cmd,
+                capture_output=True,
+                text=True,
+                check=False,
+                env=env,
+                timeout=timeout,
+            )
+            if result.returncode != 0:
+                raise RuntimeError(result.stderr.strip() or f"tesseract failed for {image_path}")
+            page_texts.append(result.stdout.strip())
+
+    return "\n\n".join(text for text in page_texts if text), {
+        "engine": "tesseract",
+        "languages": language_arg,
+        "missing_languages": missing_languages,
+        "dpi": dpi,
+        "timeout_seconds_per_page": timeout,
+        "cpu": cpu,
+        "pages": len(page_texts),
+        "thread_limit": 1,
+    }
+
+
+def choose_ocr_text(original_text: str, ocr_text: str, ocr_mode: str) -> tuple[bool, str]:
+    if not ocr_text.strip():
+        return False, "ocr_empty"
+    if ocr_mode == "always":
+        return True, "forced"
+    original = text_quality_metrics(original_text)
+    replacement = text_quality_metrics(ocr_text)
+    original_bad = int(original.get("bad_diacritic_token_count") or 0)
+    replacement_bad = int(replacement.get("bad_diacritic_token_count") or 0)
+    original_words = int(original.get("words") or 0)
+    replacement_words = int(replacement.get("words") or 0)
+    if original_text.strip() and len(ocr_text) < max(200, int(len(original_text) * 0.55)):
+        if (
+            replacement_bad < original_bad
+            and original_words
+            and replacement_words >= max(50, int(original_words * 0.80))
+        ):
+            return True, "fewer_bad_tokens_with_comparable_words"
+        return False, "ocr_too_short"
+    if replacement_bad < original_bad:
+        return True, "fewer_bad_tokens"
+    if not original_text.strip():
+        return True, "original_empty"
+    return False, "not_better"
+
+
 def pdf_page_count(pdf_path: Path) -> int:
     result = subprocess.run(["pdfinfo", str(pdf_path)], capture_output=True, text=True, check=False)
     if result.returncode != 0:
@@ -339,9 +599,13 @@ def build_record(
     status: str,
     physical_start: int | None = None,
     physical_end: int | None = None,
+    text_source: str = "pdftotext",
+    text_quality: dict | None = None,
+    pdf_text_layer: dict | None = None,
+    ocr: dict | None = None,
 ) -> dict:
     start, end = parse_page_range(article.get("pages", ""))
-    return {
+    record = {
         "id": article["id"],
         "title": article.get("title", ""),
         "authors": article.get("authors", []),
@@ -361,9 +625,16 @@ def build_record(
         "journal_short_title": article.get("journal_short_title") or "Spravodaj SSS",
         "text": text,
         "text_chars": len(text),
+        "text_source": text_source,
+        "text_quality": text_quality or text_quality_metrics(text),
         "status": status,
         "extracted_at": dt.datetime.now(dt.timezone.utc).isoformat(),
     }
+    if pdf_text_layer is not None:
+        record["pdf_text_layer"] = pdf_text_layer
+    if ocr is not None:
+        record["ocr"] = ocr
+    return record
 
 
 def iter_fulltext(path: Path):
@@ -423,6 +694,28 @@ def main() -> int:
     parser.add_argument("--retry-failed", action="store_true", help="Re-extract previous non-ok records without forcing all articles.")
     parser.add_argument("--no-cache-text", action="store_true", help="Do not store whole-issue text cache files.")
     parser.add_argument("--sync-articles", action="store_true", help="Write inferred PDF page links back to article JSON files.")
+    parser.add_argument(
+        "--ocr-mode",
+        choices=("off", "bad-text", "always"),
+        default="off",
+        help="Optionally replace pdftotext output with safe one-CPU Tesseract OCR.",
+    )
+    parser.add_argument("--ocr-languages", default="slk+ces", help="Tesseract language list.")
+    parser.add_argument("--ocr-dpi", type=int, default=300, help="PDF render DPI for Tesseract OCR.")
+    parser.add_argument("--ocr-timeout", type=int, default=120, help="Tesseract timeout per rendered page.")
+    parser.add_argument("--ocr-cpu", type=int, default=0, help="CPU core for taskset pinning; use -1 to disable.")
+    parser.add_argument(
+        "--ocr-min-bad-tokens",
+        type=int,
+        default=4,
+        help="Minimum bad diacritic-token signals before OCR fallback is triggered.",
+    )
+    parser.add_argument(
+        "--ocr-min-chars",
+        type=int,
+        default=600,
+        help="Minimum text length before bad-layer quality heuristics are applied.",
+    )
     args = parser.parse_args()
 
     articles_path = Path(args.articles)
@@ -436,6 +729,11 @@ def main() -> int:
     if not shutil_which("pdfinfo"):
         print("Error: pdfinfo is required but was not found on PATH.", file=sys.stderr)
         return 1
+    if args.ocr_mode != "off":
+        for binary in ("pdffonts", "pdftoppm", "tesseract"):
+            if not shutil_which(binary):
+                print(f"Error: {binary} is required for --ocr-mode {args.ocr_mode}.", file=sys.stderr)
+                return 1
 
     PDF_CACHE_DIR.mkdir(parents=True, exist_ok=True)
     TEXT_CACHE_DIR.mkdir(parents=True, exist_ok=True)
@@ -482,6 +780,7 @@ def main() -> int:
             except Exception as exc:
                 print(f"  PDF page count failed: {exc}", file=sys.stderr)
                 pdf_pages = None
+            pdf_text_layer = pdffonts_summary(pdf_path) if args.ocr_mode != "off" else None
 
             if not args.no_cache_text:
                 text_cache = TEXT_CACHE_DIR / f"{pdf_name}.txt"
@@ -537,6 +836,51 @@ def main() -> int:
                                         break
                                 if not text and first_non_empty is not None:
                                     physical_start, physical_end, text = first_non_empty
+                            text_source = "pdftotext"
+                            text_quality = text_quality_metrics(text)
+                            ocr_meta = None
+                            if args.ocr_mode != "off" and physical_start is not None and physical_end is not None:
+                                if args.ocr_mode == "always":
+                                    should_ocr, ocr_reason = True, "forced"
+                                else:
+                                    should_ocr, ocr_reason = should_reocr_text_layer(
+                                        text,
+                                        text_quality,
+                                        pdf_text_layer,
+                                        args.ocr_min_bad_tokens,
+                                        args.ocr_min_chars,
+                                    )
+                                if should_ocr:
+                                    try:
+                                        ocr_text, ocr_meta = tesseract_pdf_range(
+                                            pdf_path,
+                                            physical_start,
+                                            physical_end,
+                                            args.ocr_languages,
+                                            args.ocr_dpi,
+                                            args.ocr_timeout,
+                                            args.ocr_cpu,
+                                        )
+                                        use_ocr, decision = choose_ocr_text(text, ocr_text, args.ocr_mode)
+                                        ocr_meta.update(
+                                            {
+                                                "trigger": ocr_reason,
+                                                "decision": decision,
+                                                "accepted": use_ocr,
+                                                "quality": text_quality_metrics(ocr_text),
+                                            }
+                                        )
+                                        if use_ocr:
+                                            text = ocr_text
+                                            text_source = "tesseract_ocr"
+                                            text_quality = ocr_meta["quality"]
+                                    except Exception as exc:
+                                        ocr_meta = {
+                                            "engine": "tesseract",
+                                            "trigger": ocr_reason,
+                                            "accepted": False,
+                                            "error": str(exc),
+                                        }
                             record = build_record(
                                 article,
                                 pdf_url,
@@ -545,6 +889,10 @@ def main() -> int:
                                 "ok" if text else "empty_text",
                                 physical_start,
                                 physical_end,
+                                text_source=text_source,
+                                text_quality=text_quality,
+                                pdf_text_layer=pdf_text_layer,
+                                ocr=ocr_meta,
                             )
                         except Exception as exc:
                             print(f"  Article {article['id']} extraction failed: {exc}", file=sys.stderr)
@@ -556,6 +904,7 @@ def main() -> int:
                                 "pdftotext_failed",
                                 physical_start,
                                 physical_end,
+                                pdf_text_layer=pdf_text_layer,
                             )
                             failed_articles += 1
 

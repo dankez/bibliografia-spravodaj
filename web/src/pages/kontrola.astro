@@ -1,0 +1,382 @@
+---
+import Layout from '../layouts/Layout.astro';
+import ThemeSwitcher from '../components/ThemeSwitcher.astro';
+import reviewSummary from '../data/fulltext_review_summary.json';
+
+const summary = reviewSummary.summary || {};
+const issueLabels = reviewSummary.issue_labels || {};
+const issueCounts = summary.issue_counts || {};
+const severityLabels = {
+  high: 'Kritické',
+  medium: 'Podozrivé',
+  low: 'Čistenie',
+};
+const severityOptions = ['high', 'medium', 'low'].filter((severity) => Number(summary[severity] || 0) > 0);
+const issueOptions = Object.entries(issueLabels)
+  .filter(([code]) => Number(issueCounts[code] || 0) > 0)
+  .sort((a, b) => String(a[1]).localeCompare(String(b[1]), 'sk'));
+const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated_at;
+---
+
+<Layout title="S týmto potrebujem pomôcť — Spravodaj SSS">
+  <div class="review-page min-h-screen text-belly-black">
+    <header class="portal-header border-b border-belly-darkgray">
+      <div class="h-2 bg-belly-firebrick"></div>
+      <div class="mx-auto flex max-w-7xl flex-col gap-4 px-5 py-5 lg:flex-row lg:items-center lg:justify-between">
+        <div>
+          <p class="text-xs font-bold uppercase tracking-widest text-belly-peru">Revízna fronta</p>
+          <h1 class="font-display text-3xl font-extrabold leading-tight text-belly-firebrick">S týmto potrebujem pomôcť</h1>
+          <p class="mt-2 max-w-3xl text-sm leading-relaxed text-belly-dimgray-warm">
+            Vážne podozrivé fulltexty z QA auditu s odkazmi na pôvodné PDF strany.
+          </p>
+        </div>
+        <div class="flex flex-wrap items-center gap-2">
+          <ThemeSwitcher />
+          <a href="/" class="bibliography-link-button">Hlavný archív</a>
+          <a href="/jaskyne/" class="bibliography-link-button">Register jaskýň</a>
+        </div>
+      </div>
+    </header>
+
+    <main class="mx-auto max-w-7xl px-5 py-6">
+      <section class="review-stat-grid mb-6 grid grid-cols-2 gap-3 lg:grid-cols-6">
+        <div class="portal-stat review-stat-critical">
+          <span>Incidenty</span>
+          <strong>{summary.active_incidents ?? 0}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Kritické</span>
+          <strong>{summary.high ?? 0}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Podozrivé</span>
+          <strong>{summary.medium ?? 0}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Bez textu</span>
+          <strong>{summary.records_without_text ?? 0}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Auto mimo</span>
+          <strong>{summary.auto_fixable_records_excluded ?? 0}</strong>
+        </div>
+        <div class="portal-stat">
+          <span>Ignorované</span>
+          <strong>{summary.ignored_outer_matter ?? 0}</strong>
+        </div>
+      </section>
+
+      <section class="review-toolbar mb-4 grid gap-3 border border-belly-darkgray p-3 lg:grid-cols-[minmax(220px,1fr)_180px_220px_180px]">
+        <label class="review-field">
+          <span>Hľadať</span>
+          <input id="review-search" class="bibliography-search" type="search" placeholder="ID, názov, rok, problém..." autocomplete="off" />
+        </label>
+        <label class="review-field">
+          <span>Závažnosť</span>
+          <select id="review-severity">
+            <option value="">Všetky</option>
+            {severityOptions.map((severity) => (
+              <option value={severity}>{severityLabels[severity]}</option>
+            ))}
+          </select>
+        </label>
+        <label class="review-field">
+          <span>Typ problému</span>
+          <select id="review-issue">
+            <option value="">Všetky</option>
+            {issueOptions.map(([code, label]) => (
+              <option value={code}>{label}</option>
+            ))}
+          </select>
+        </label>
+        <label class="review-field">
+          <span>Lokálny stav</span>
+          <select id="review-state">
+            <option value="">Všetky</option>
+            <option value="new">Nové</option>
+            <option value="needs_fix">Opraviť</option>
+            <option value="approved">Schválené</option>
+            <option value="rejected">Zamietnuté</option>
+          </select>
+        </label>
+      </section>
+
+      <div class="mb-3 flex flex-wrap items-center justify-between gap-3 text-xs font-mono uppercase text-belly-lightslategray">
+        <p><strong id="review-visible-count">{summary.active_incidents ?? 0}</strong> záznamov vo výbere</p>
+        {generatedAt && <p>Audit: {String(generatedAt).slice(0, 10)}</p>}
+      </div>
+
+      <div id="review-loading" class="review-loading">Načítavam incidenty...</div>
+      <div id="review-empty" class="review-empty-state" hidden></div>
+      <section id="review-list" class="review-list grid gap-3" aria-live="polite"></section>
+    </main>
+  </div>
+
+  <script>
+    const queueUrl = '/data/fulltext_review_queue.json';
+    const severityLabels = {
+      high: 'Kritické',
+      medium: 'Podozrivé',
+      low: 'Čistenie',
+    };
+
+    const list = document.getElementById('review-list');
+    const loadingNode = document.getElementById('review-loading');
+    const emptyNode = document.getElementById('review-empty');
+    const searchInput = document.getElementById('review-search');
+    const severitySelect = document.getElementById('review-severity');
+    const issueSelect = document.getElementById('review-issue');
+    const stateSelect = document.getElementById('review-state');
+    const visibleCount = document.getElementById('review-visible-count');
+    const controls = [searchInput, severitySelect, issueSelect, stateSelect].filter(Boolean);
+
+    let cards = [];
+
+    const storageKey = (id) => `sss-fulltext-review:${id}`;
+
+    function normalize(value) {
+      return String(value || '')
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .toLocaleLowerCase('sk')
+        .trim();
+    }
+
+    function textValue(value, fallback = '') {
+      if (value === undefined || value === null || value === '') return fallback;
+      return String(value);
+    }
+
+    function appendText(parent, tagName, className, value) {
+      const element = document.createElement(tagName);
+      if (className) element.className = className;
+      element.textContent = textValue(value);
+      parent.appendChild(element);
+      return element;
+    }
+
+    function appendMetric(parent, label, value) {
+      const wrapper = document.createElement('div');
+      appendText(wrapper, 'dt', '', label);
+      appendText(wrapper, 'dd', '', textValue(value, '-'));
+      parent.appendChild(wrapper);
+    }
+
+    function getStoredState(id) {
+      try {
+        return localStorage.getItem(storageKey(id)) || 'new';
+      } catch (error) {
+        return 'new';
+      }
+    }
+
+    function setStoredState(id, state) {
+      try {
+        localStorage.setItem(storageKey(id), state);
+      } catch (error) {
+        // LocalStorage can be unavailable in strict privacy modes; filtering still works for the current DOM state.
+      }
+    }
+
+    function applyStoredState(card) {
+      const state = getStoredState(card.dataset.id);
+      card.dataset.localState = state;
+      card.querySelectorAll('[data-review-decision]').forEach((button) => {
+        button.toggleAttribute('aria-pressed', button.dataset.reviewDecision === state);
+      });
+    }
+
+    function createIncidentCard(incident) {
+      const severity = textValue(incident.severity, 'low');
+      const issueCodes = Array.isArray(incident.issue_codes) ? incident.issue_codes : [];
+      const issueLabels = Array.isArray(incident.issue_labels) ? incident.issue_labels : [];
+      const badExamples = Array.isArray(incident.bad_diacritic_token_examples) ? incident.bad_diacritic_token_examples : [];
+      const pdfLinks = Array.isArray(incident.pdf_links) ? incident.pdf_links : [];
+
+      const card = document.createElement('article');
+      card.className = `review-card review-card-${severity}`;
+      card.setAttribute('data-review-card', '');
+      card.dataset.id = textValue(incident.id);
+      card.dataset.severity = severity;
+      card.dataset.primaryIssue = textValue(incident.primary_issue);
+      card.dataset.issues = issueCodes.join('|');
+      card.dataset.localState = 'new';
+      card.dataset.search = normalize([
+        incident.id,
+        incident.title,
+        incident.year,
+        incident.status,
+        incident.primary_label,
+        issueLabels.join(' '),
+        badExamples.join(' '),
+      ].join(' '));
+
+      const main = document.createElement('div');
+      main.className = 'review-card-main';
+      card.appendChild(main);
+
+      const head = document.createElement('div');
+      head.className = 'review-card-head';
+      main.appendChild(head);
+
+      const titleGroup = document.createElement('div');
+      head.appendChild(titleGroup);
+
+      const kicker = document.createElement('p');
+      kicker.className = 'review-kicker';
+      const severityTag = appendText(kicker, 'span', `review-severity review-severity-${severity}`, severityLabels[severity] || severity);
+      severityTag.setAttribute('aria-label', `Závažnosť: ${severityLabels[severity] || severity}`);
+      appendText(kicker, 'span', '', `ID ${textValue(incident.id, '-')}`);
+      appendText(kicker, 'span', '', textValue(incident.year, '-'));
+      if (incident.pages) appendText(kicker, 'span', '', `str. ${incident.pages}`);
+      titleGroup.appendChild(kicker);
+
+      appendText(titleGroup, 'h2', '', textValue(incident.title, 'Bez názvu'));
+
+      const score = document.createElement('div');
+      score.className = 'review-card-score';
+      score.setAttribute('aria-label', `Skóre ${textValue(incident.issue_score, 0)}`);
+      appendText(score, 'span', '', 'score');
+      appendText(score, 'strong', '', textValue(incident.issue_score, 0));
+      head.appendChild(score);
+
+      const body = document.createElement('div');
+      body.className = 'review-card-body';
+      main.appendChild(body);
+
+      const problemBox = document.createElement('div');
+      problemBox.className = 'review-problem-box';
+      appendText(problemBox, 'span', '', textValue(incident.primary_label, 'Podozrivý záznam'));
+      appendText(problemBox, 'p', '', textValue(incident.recommended_action, 'Ručne skontrolovať záznam.'));
+      body.appendChild(problemBox);
+
+      const metrics = document.createElement('dl');
+      metrics.className = 'review-metrics';
+      appendMetric(metrics, 'Status', textValue(incident.status, '-'));
+      appendMetric(metrics, 'Zdroj', textValue(incident.text_source, 'pdftotext'));
+      appendMetric(metrics, 'Znaky', textValue(incident.text_chars, 0));
+      appendMetric(metrics, 'Slová', textValue(incident.words, 0));
+      body.appendChild(metrics);
+
+      const tags = document.createElement('div');
+      tags.className = 'review-tags';
+      tags.setAttribute('aria-label', 'Typy problémov');
+      issueLabels.forEach((label) => appendText(tags, 'span', '', label));
+      main.appendChild(tags);
+
+      if (badExamples.length > 0) {
+        appendText(main, 'p', 'review-examples', badExamples.slice(0, 8).join(', '));
+      }
+
+      const actions = document.createElement('aside');
+      actions.className = 'review-card-actions';
+      card.appendChild(actions);
+
+      const pdfGroup = document.createElement('div');
+      pdfGroup.className = 'review-pdf-links';
+      pdfGroup.setAttribute('aria-label', 'PDF strany');
+      pdfLinks.forEach((link) => {
+        if (!link.url) return;
+        const anchor = document.createElement('a');
+        anchor.href = link.url;
+        anchor.target = '_blank';
+        anchor.rel = 'noreferrer';
+        anchor.textContent = `PDF p${textValue(link.page, '?')}`;
+        pdfGroup.appendChild(anchor);
+      });
+      if (!pdfGroup.children.length) appendText(pdfGroup, 'span', '', 'PDF odkaz chýba');
+      actions.appendChild(pdfGroup);
+
+      if (incident.article_url) {
+        const detailLink = document.createElement('a');
+        detailLink.className = 'bibliography-link-button';
+        detailLink.href = incident.article_url;
+        detailLink.textContent = 'Detail článku';
+        actions.appendChild(detailLink);
+      }
+
+      const decisions = document.createElement('div');
+      decisions.className = 'review-decision-group';
+      decisions.setAttribute('aria-label', 'Lokálne rozhodnutie');
+      [
+        ['needs_fix', 'Opraviť'],
+        ['approved', 'OK'],
+        ['rejected', 'Zamietnuť'],
+      ].forEach(([state, label]) => {
+        const button = document.createElement('button');
+        button.type = 'button';
+        button.dataset.reviewDecision = state;
+        button.textContent = label;
+        button.addEventListener('click', () => {
+          setStoredState(card.dataset.id, state);
+          applyStoredState(card);
+          applyFilters();
+        });
+        decisions.appendChild(button);
+      });
+      actions.appendChild(decisions);
+
+      applyStoredState(card);
+      return card;
+    }
+
+    function applyFilters() {
+      const query = normalize(searchInput?.value);
+      const severity = severitySelect?.value || '';
+      const issue = issueSelect?.value || '';
+      const localState = stateSelect?.value || '';
+      let visible = 0;
+
+      cards.forEach((card) => {
+        const issues = String(card.dataset.issues || '').split('|');
+        const match =
+          (!query || String(card.dataset.search || '').includes(query)) &&
+          (!severity || card.dataset.severity === severity) &&
+          (!issue || issues.includes(issue)) &&
+          (!localState || card.dataset.localState === localState);
+        card.toggleAttribute('hidden', !match);
+        if (match) visible += 1;
+      });
+
+      if (visibleCount) visibleCount.textContent = String(visible);
+      if (emptyNode) {
+        emptyNode.hidden = visible !== 0;
+        if (cards.length && visible === 0) emptyNode.textContent = 'Žiadne incidenty nezodpovedajú aktuálnemu filtru.';
+      }
+    }
+
+    async function loadQueue() {
+      try {
+        const response = await fetch(queueUrl);
+        if (!response.ok) throw new Error(`HTTP ${response.status}`);
+        const payload = await response.json();
+        const incidents = Array.isArray(payload.incidents) ? payload.incidents : [];
+        const fragment = document.createDocumentFragment();
+        cards = incidents.map(createIncidentCard);
+        cards.forEach((card) => fragment.appendChild(card));
+        list?.replaceChildren(fragment);
+        if (loadingNode) loadingNode.hidden = true;
+        if (!incidents.length && emptyNode) {
+          emptyNode.hidden = false;
+          emptyNode.textContent = 'Audit momentálne neobsahuje aktívne incidenty.';
+        }
+        applyFilters();
+      } catch (error) {
+        if (loadingNode) loadingNode.hidden = true;
+        if (emptyNode) {
+          emptyNode.hidden = false;
+          emptyNode.textContent = 'Incidenty sa nepodarilo načítať. Skontrolujte, či existuje /data/fulltext_review_queue.json.';
+        }
+        if (visibleCount) visibleCount.textContent = '0';
+        console.error('Failed to load fulltext review queue', error);
+      }
+    }
+
+    controls.forEach((control) => {
+      control.addEventListener('input', applyFilters);
+      control.addEventListener('change', applyFilters);
+    });
+
+    loadQueue();
+  </script>
+</Layout>

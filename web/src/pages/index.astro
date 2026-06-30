@@ -2,6 +2,7 @@
 import Layout from '../layouts/Layout.astro';
 import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 import articlesData from '../data/articles.json';
+import reviewSummary from '../data/fulltext_review_summary.json';
 
 const uiArticlesData = articlesData;
 const DEFAULT_JOURNAL_ID = 'spravodaj_sss';
@@ -13,6 +14,9 @@ const articleHasMapPlan = (article) =>
   article.has_map_plan === true || (article.map_plan_pages || []).length > 0;
 
 const totalArticles = uiArticlesData.length;
+const activeReviewIncidents = reviewSummary.summary?.active_incidents ?? 0;
+const highReviewIncidents = reviewSummary.summary?.high ?? 0;
+const mediumReviewIncidents = reviewSummary.summary?.medium ?? 0;
 const startYear = Math.min(...uiArticlesData.map((article) => article.year));
 const endYear = Math.max(...uiArticlesData.map((article) => article.year), new Date().getFullYear());
 const archiveHomeHref = `/?year=${startYear}-${endYear}`;
@@ -109,6 +113,11 @@ const bibliographyExportMenus = [
             <p class="sr-only">Kompletný archív ročníkov {startYear}-{endYear}, mapy a plány sú zoradené prvé</p>
           </a>
           <div class="bibliography-mobile-actions" aria-label="Mobilné nástroje">
+            <a href="/kontrola/" class="bibliography-mobile-review-link" aria-label={`S týmto potrebujem pomôcť: ${activeReviewIncidents} aktívnych incidentov`}>
+              <span class="bibliography-mobile-review-mark" aria-hidden="true">!</span>
+              <span class="bibliography-mobile-review-text">Pomoc</span>
+              <strong>{activeReviewIncidents}</strong>
+            </a>
             <button id="mobile-search-toggle" class="bibliography-icon-button" type="button" aria-label="Hľadať v bibliografii" aria-controls="mobile-search-overlay">
               <span aria-hidden="true">⌕</span>
             </button>
@@ -124,6 +133,11 @@ const bibliographyExportMenus = [
             </div>
             <a href="/jaskyne/" class="bibliography-link-button bibliography-link-button-primary">
               Register jaskýň
+            </a>
+            <a href="/kontrola/" class="bibliography-link-button bibliography-review-entry" aria-label={`S týmto potrebujem pomôcť: ${activeReviewIncidents} aktívnych incidentov`}>
+              <span class="bibliography-review-mark" aria-hidden="true">!</span>
+              <span>Pomôcť</span>
+              <strong>{activeReviewIncidents}</strong>
             </a>
             <div class="bibliography-export-links" aria-label="Danko exporty bibliografie">
               {bibliographyExportMenus.map((exportMenu) => (
@@ -159,6 +173,11 @@ const bibliographyExportMenus = [
             <a href="/jaskyne/" class="bibliography-link-button bibliography-link-button-primary" data-mobile-menu-link="jaskyne">
               Register jaskýň
             </a>
+            <a href="/kontrola/" class="bibliography-link-button bibliography-review-entry" data-mobile-menu-link="kontrola" aria-label={`S týmto potrebujem pomôcť: ${activeReviewIncidents} aktívnych incidentov`}>
+              <span class="bibliography-review-mark" aria-hidden="true">!</span>
+              <span>Pomôcť</span>
+              <strong>{activeReviewIncidents}</strong>
+            </a>
             <div class="bibliography-mobile-menu-section" data-mobile-menu-link="exports" aria-label="Exporty bibliografie">
               {bibliographyExportMenus.map((exportMenu) => (
                 <details class="bibliography-export-menu bibliography-export-menu-mobile">
@@ -189,11 +208,16 @@ const bibliographyExportMenus = [
               ))}
             </div>
           </div>
-          <dl class="grid grid-cols-2 gap-3 text-xs font-mono sm:grid-cols-4">
+          <dl class="grid grid-cols-2 gap-3 text-xs font-mono sm:grid-cols-5">
             <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Článkov</dt><dd id="stat-total" class="font-bold text-belly-firebrick">{totalArticles}</dd></div>
             <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Roky</dt><dd class="font-bold text-belly-firebrick">{startYear}-{endYear}</dd></div>
             <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Mapy/plány</dt><dd id="stat-maps" class="font-bold text-belly-peru">{articlesWithMaps}</dd></div>
             <div class="border-l border-belly-darkgray pl-3"><dt class="text-belly-dimgray">Autori</dt><dd class="font-bold text-belly-firebrick">{totalUniqueAuthors}</dd></div>
+            <div class="border-l border-belly-darkgray pl-3">
+              <dt class="text-belly-dimgray">Na kontrolu</dt>
+              <dd class="font-bold text-belly-firebrick">{activeReviewIncidents}</dd>
+              <dd class="mt-1 text-[10px] font-bold text-belly-lightslategray">{highReviewIncidents} krit. / {mediumReviewIncidents} podozr.</dd>
+            </div>
           </dl>
         </div>
       </div>
@@ -1097,7 +1121,12 @@ const bibliographyExportMenus = [
     }
 
     function articleErrorReportUrl(article) {
-      return `/clanky/${article.id}/edit/`;
+      const params = new URLSearchParams({
+        article: String(article.id),
+        title: article.title || '',
+        url: `/clanky/${article.id}/`,
+      });
+      return `/nahlasit-chybu/?${params.toString()}`;
     }
 
     function clearSelectedArticle() {

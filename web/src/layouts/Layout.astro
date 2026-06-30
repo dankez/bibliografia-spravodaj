@@ -48,6 +48,10 @@ const releaseLabel = `v${packageInfo.version}-beta.${releaseDate}+${releaseSha}`
 	</head>
 	<body class="bg-belly-gainsboro text-belly-black font-sans antialiased min-h-screen">
 		<slot />
+		<div class="site-build-badge" aria-label={`Aktuálny build ${releaseLabel}`} title={releaseLabel}>
+			<span class="site-build-full">build {releaseLabel}</span>
+			<span class="site-build-short">b {releaseDate}+{releaseSha}</span>
+		</div>
 		<footer class="site-author-signature" aria-label="Autor projektu">
 			<span>Autor: <a href="https://github.com/dankez" rel="author noopener" target="_blank">DankeZ</a></span>
 			<span class="site-release">release: {releaseLabel}</span>

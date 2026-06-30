@@ -134,6 +134,91 @@ def test_article_text_score_prefers_author_and_abstract_matches():
     assert article_score > cover_score
 
 
+def test_text_quality_metrics_flags_missing_diacritic_tokens():
+    text = "Zahranicné cesty, ked clovek pozviechat sily a riaditel povie Ved."
+
+    metrics = fulltext.text_quality_metrics(text)
+
+    assert metrics["bad_diacritic_token_count"] >= 5
+    assert "Zahranicné" in metrics["bad_diacritic_token_examples"]
+
+
+def test_should_reocr_text_layer_uses_font_unicode_and_bad_tokens():
+    text = (
+        "Zahranicné pracovné cesty sú vždy inšpiratívne. "
+        "Najmä ked clovek zapochybuje, ci vie pozviechat sily. "
+        "Ved súcasnost vyžaduje cinnost a starostlivost. "
+    ) * 8
+    metrics = fulltext.text_quality_metrics(text)
+    font_summary = {"all_fonts_without_unicode_map": True}
+
+    should_ocr, reason = fulltext.should_reocr_text_layer(
+        text,
+        metrics,
+        font_summary,
+        min_bad_tokens=4,
+        min_chars=600,
+    )
+
+    assert should_ocr is True
+    assert reason == "font_unicode_map_missing_and_bad_tokens"
+
+
+def test_should_reocr_text_layer_does_not_judge_short_text():
+    metrics = fulltext.text_quality_metrics("ked clovek")
+
+    should_ocr, reason = fulltext.should_reocr_text_layer(
+        "ked clovek",
+        metrics,
+        {"all_fonts_without_unicode_map": True},
+        min_bad_tokens=1,
+        min_chars=600,
+    )
+
+    assert should_ocr is False
+    assert reason == "too_short_to_judge"
+
+
+def test_choose_ocr_text_accepts_replacement_with_fewer_bad_tokens():
+    original = "Zahranicné cesty ked clovek ci oci Ved riaditel." * 20
+    replacement = "Zahraničné cesty keď človek či oči Veď riaditeľ." * 20
+
+    use_ocr, reason = fulltext.choose_ocr_text(original, replacement, "bad-text")
+
+    assert use_ocr is True
+    assert reason == "fewer_bad_tokens"
+
+
+def test_choose_ocr_text_accepts_shorter_layout_with_comparable_words():
+    original = ("Zahranicné                cesty                ked                clovek                ci                oci. " * 120).strip()
+    replacement = ("Zahraničné cesty keď človek či oči. " * 120).strip()
+
+    use_ocr, reason = fulltext.choose_ocr_text(original, replacement, "bad-text")
+
+    assert use_ocr is True
+    assert reason == "fewer_bad_tokens_with_comparable_words"
+
+
+def test_pdffonts_summary_detects_missing_unicode_maps(monkeypatch):
+    class Result:
+        returncode = 0
+        stderr = ""
+        stdout = """name                                 type              encoding         emb sub uni object ID
+------------------------------------ ----------------- ---------------- --- --- --- ---------
+Times-Roman                          TrueType          WinAnsi          no  no  no     196  0
+Helvetica                            TrueType          WinAnsi          no  no  no     197  0
+"""
+
+    monkeypatch.setattr(fulltext.subprocess, "run", lambda *args, **kwargs: Result())
+
+    summary = fulltext.pdffonts_summary(Path("issue.pdf"))
+
+    assert summary["font_rows"] == 2
+    assert summary["encodings"] == {"WinAnsi": 2}
+    assert summary["unicode_maps"] == {"no": 2}
+    assert summary["all_fonts_without_unicode_map"] is True
+
+
 def test_sync_article_page_links_clears_invalid_fulltext_records(tmp_path):
     fulltext_path = tmp_path / "article_fulltext.jsonl"
     articles_path = tmp_path / "articles.json"

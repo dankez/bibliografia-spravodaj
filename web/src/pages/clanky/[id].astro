@@ -44,7 +44,7 @@ const pdfPageOffset = Number.isFinite(Number(art.pdf_page_offset))
   ? Number(art.pdf_page_offset)
   : DEFAULT_PDF_PAGE_LINK_OFFSET;
 const pdfPageStart = pdfPrintedPageStart + pdfPageOffset;
-const errorReportUrl = `/clanky/${art.id}/edit/`;
+const errorReportUrl = `/nahlasit-chybu/?article=${encodeURIComponent(String(art.id))}&title=${encodeURIComponent(art.title || '')}&url=${encodeURIComponent(`/clanky/${art.id}/`)}`;
 
 // Citation formatting
 const formattedAuthorsIso = formatAuthorsDisplay(art.authors.map(a => {

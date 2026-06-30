@@ -27,6 +27,7 @@ data/pdf_text/
 data/research_media/
 data/research_knowledge.sqlite
 data/article_fulltext.jsonl
+data/*.bak-*
 data/research_chunks.jsonl
 data/research_briefs/
 data/*_before_*.jsonl
@@ -44,6 +45,7 @@ data/ai_map_detection/model_benchmark_*
 data/author_signature_repairs/
 data/pdf_page_maps/
 data/exports/*.sqlite
+reports/fulltext_quality_audit.json
 web/node_modules/
 web/.astro/
 web/dist/

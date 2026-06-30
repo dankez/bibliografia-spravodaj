@@ -1,0 +1,38 @@
+{
+  "generated_at": "2026-06-30T09:48:09.867198+00:00",
+  "source_generated_at": "2026-06-30T09:47:55.737170+00:00",
+  "summary": {
+    "active_incidents": 346,
+    "high": 115,
+    "medium": 231,
+    "low": 0,
+    "first_year": 1958,
+    "last_year": 2025,
+    "ignored_outer_matter": 52,
+    "records_without_text": 74,
+    "duplicate_article_ids": 0,
+    "auto_fixable_records_excluded": 0,
+    "issue_counts": {
+      "residual_bad_diacritic_tokens": 156,
+      "replacement_characters": 19,
+      "private_use_characters": 52,
+      "very_short_text": 46,
+      "low_text_density": 60,
+      "empty_text": 67,
+      "other_hidden_characters": 1
+    }
+  },
+  "issue_labels": {
+    "empty_text": "Chýba fulltext",
+    "very_short_text": "Veľmi krátky text",
+    "low_text_density": "Nízka hustota textu",
+    "residual_bad_diacritic_tokens": "Podozrivá diakritika",
+    "replacement_characters": "Náhradné znaky",
+    "control_characters": "Skryté riadiace znaky",
+    "private_use_characters": "Private-use znaky",
+    "other_hidden_characters": "Iné skryté znaky",
+    "cleanup_format_characters": "Formátovacie znaky",
+    "cleanup_hyphen_linebreaks": "Delené slová",
+    "cleanup_multispace_layout": "Rozťahaný layout"
+  }
+}
