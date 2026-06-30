@@ -162,6 +162,22 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
       parent.appendChild(wrapper);
     }
 
+    function buildFixUrl(incident) {
+      const params = new URLSearchParams();
+      const articleId = textValue(incident.id);
+      const articleUrl = textValue(incident.article_url, articleId ? `/clanky/${articleId}/` : '/kontrola/');
+      params.set('type', 'fulltext');
+      if (articleId) params.set('article', articleId);
+      if (incident.title) params.set('title', textValue(incident.title));
+      params.set('url', articleUrl);
+      params.set('message', [
+        `Fulltext QA incident: ${textValue(incident.primary_label, 'Podozrivý fulltext')}.`,
+        `Článok ID ${articleId || '-'}, rok ${textValue(incident.year, '-')}, strany ${textValue(incident.pages, '-')}.`,
+        textValue(incident.recommended_action, 'Skontrolovať text podľa PDF.'),
+      ].join('\n'));
+      return `/nahlasit-chybu/?${params.toString()}`;
+    }
+
     function getStoredState(id) {
       try {
         return localStorage.getItem(storageKey(id)) || 'new';
@@ -181,9 +197,19 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
     function applyStoredState(card) {
       const state = getStoredState(card.dataset.id);
       card.dataset.localState = state;
+      const label = {
+        new: 'Nové',
+        needs_fix: 'Opraviť',
+        approved: 'OK',
+        rejected: 'Zamietnuté',
+      }[state] || state;
       card.querySelectorAll('[data-review-decision]').forEach((button) => {
         button.toggleAttribute('aria-pressed', button.dataset.reviewDecision === state);
       });
+      const stateNote = card.querySelector('[data-review-state-note]');
+      if (stateNote) {
+        stateNote.textContent = `Lokálny stav: ${label}`;
+      }
     }
 
     function createIncidentCard(incident) {
@@ -274,14 +300,14 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
 
       const pdfGroup = document.createElement('div');
       pdfGroup.className = 'review-pdf-links';
-      pdfGroup.setAttribute('aria-label', 'PDF strany');
+      pdfGroup.setAttribute('aria-label', 'PDF začiatok článku');
       pdfLinks.forEach((link) => {
         if (!link.url) return;
         const anchor = document.createElement('a');
         anchor.href = link.url;
         anchor.target = '_blank';
         anchor.rel = 'noreferrer';
-        anchor.textContent = `PDF p${textValue(link.page, '?')}`;
+        anchor.textContent = `PDF začiatok p${textValue(link.page, '?')}`;
         pdfGroup.appendChild(anchor);
       });
       if (!pdfGroup.children.length) appendText(pdfGroup, 'span', '', 'PDF odkaz chýba');
@@ -298,8 +324,17 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
       const decisions = document.createElement('div');
       decisions.className = 'review-decision-group';
       decisions.setAttribute('aria-label', 'Lokálne rozhodnutie');
+      const fixLink = document.createElement('a');
+      fixLink.href = buildFixUrl(incident);
+      fixLink.dataset.reviewDecision = 'needs_fix';
+      fixLink.textContent = 'Opraviť';
+      fixLink.addEventListener('click', () => {
+        setStoredState(card.dataset.id, 'needs_fix');
+        applyStoredState(card);
+      });
+      decisions.appendChild(fixLink);
+
       [
-        ['needs_fix', 'Opraviť'],
         ['approved', 'OK'],
         ['rejected', 'Zamietnuť'],
       ].forEach(([state, label]) => {
@@ -315,6 +350,11 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
         decisions.appendChild(button);
       });
       actions.appendChild(decisions);
+
+      const stateNote = document.createElement('p');
+      stateNote.className = 'review-state-note';
+      stateNote.dataset.reviewStateNote = '';
+      actions.appendChild(stateNote);
 
       applyStoredState(card);
       return card;

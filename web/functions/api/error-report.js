@@ -1,4 +1,16 @@
-const ALLOWED_TYPES = new Set(['author', 'title', 'pages', 'pdf', 'map_plan', 'smopaj_number', 'abstract', 'article_edit', 'other']);
+const ALLOWED_TYPES = new Set([
+  'author',
+  'title',
+  'pages',
+  'pdf',
+  'fulltext',
+  'map_plan',
+  'smopaj_number',
+  'abstract',
+  'tags',
+  'article_edit',
+  'other',
+]);
 const ARTICLE_EDIT_FIELDS = [
   'title',
   'authors',
@@ -14,9 +26,15 @@ const ARTICLE_EDIT_FIELDS = [
   'caves',
   'groups',
   'has_map_plan',
+  'map_plan_pages',
+  'map_plan_score',
   'pdf_url',
   'pdf_page_start',
   'pdf_page_end',
+  'pdf_page_offset',
+  'caves_verified',
+  'wikidata',
+  'cover_url',
 ];
 
 const TYPE_LABELS = {
@@ -24,11 +42,13 @@ const TYPE_LABELS = {
   title: 'Názov',
   pages: 'Strany',
   pdf: 'PDF odkaz',
+  fulltext: 'Fulltext / OCR',
   map_plan: 'Mapa/plán',
   smopaj_number: 'Číslo jaskyne / SMOPaJ',
   abstract: 'Anotácia',
+  tags: 'Tagy / lokality',
   article_edit: 'Editácia článku',
-  other: 'Iné',
+  other: 'Všetko / iné',
 };
 
 function jsonResponse(body, status = 200) {
@@ -72,15 +92,40 @@ function parseStringArray(value, maxItems = 40, maxItemLength = 160) {
     .slice(0, maxItems);
 }
 
+function parseIntegerArray(value, maxItems = 80) {
+  const source = Array.isArray(value)
+    ? value
+    : String(value || '')
+        .split('\n')
+        .flatMap((item) => item.split(/[;,]/));
+  return source
+    .map((item) => Number.parseInt(String(item || '').trim(), 10))
+    .filter((item) => Number.isFinite(item))
+    .slice(0, maxItems);
+}
+
+function parseJsonArray(value, maxItems = 80) {
+  if (Array.isArray(value)) return value.slice(0, maxItems);
+  if (typeof value !== 'string' || !value.trim()) return [];
+  try {
+    const parsed = JSON.parse(value);
+    return Array.isArray(parsed) ? parsed.slice(0, maxItems) : [];
+  } catch {
+    return [];
+  }
+}
+
 function cleanArticlePatchValue(field, value) {
   if (['authors', 'tags', 'caves', 'groups'].includes(field)) return parseStringArray(value);
-  if (field === 'has_map_plan') return value === true || value === 'true' || value === 'on' || value === '1';
-  if (['year', 'pdf_page_start', 'pdf_page_end'].includes(field)) {
+  if (field === 'map_plan_pages') return parseIntegerArray(value);
+  if (field === 'wikidata') return parseJsonArray(value);
+  if (['has_map_plan', 'caves_verified'].includes(field)) return value === true || value === 'true' || value === 'on' || value === '1';
+  if (['year', 'pdf_page_start', 'pdf_page_end', 'pdf_page_offset', 'map_plan_score'].includes(field)) {
     const number = Number.parseInt(String(value || ''), 10);
     return Number.isFinite(number) ? number : null;
   }
   if (field === 'abstract') return cleanMultiline(value, 2000);
-  if (field === 'pdf_url') return cleanText(value, 800);
+  if (['pdf_url', 'cover_url'].includes(field)) return cleanText(value, 800);
   return cleanText(value, 500);
 }
 

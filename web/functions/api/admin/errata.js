@@ -17,9 +17,15 @@ const ARTICLE_EDIT_FIELDS = new Set([
   'caves',
   'groups',
   'has_map_plan',
+  'map_plan_pages',
+  'map_plan_score',
   'pdf_url',
   'pdf_page_start',
   'pdf_page_end',
+  'pdf_page_offset',
+  'caves_verified',
+  'wikidata',
+  'cover_url',
 ]);
 
 function jsonResponse(body, status = 200) {
@@ -81,14 +87,20 @@ function normalizePatchValue(field, value) {
       ? value.map((item) => cleanText(item, 160)).filter(Boolean).slice(0, 80)
       : [];
   }
-  if (field === 'has_map_plan') return value === true;
-  if (['year', 'pdf_page_start', 'pdf_page_end'].includes(field)) {
+  if (field === 'map_plan_pages') {
+    return Array.isArray(value)
+      ? value.map((item) => Number.parseInt(String(item), 10)).filter((item) => Number.isFinite(item)).slice(0, 80)
+      : [];
+  }
+  if (field === 'wikidata') return Array.isArray(value) ? value.slice(0, 80) : [];
+  if (['has_map_plan', 'caves_verified'].includes(field)) return value === true;
+  if (['year', 'pdf_page_start', 'pdf_page_end', 'pdf_page_offset', 'map_plan_score'].includes(field)) {
     if (value === null || value === '') return null;
     const parsed = Number.parseInt(String(value), 10);
     return Number.isFinite(parsed) ? parsed : null;
   }
   if (field === 'abstract') return String(value || '').replace(/\r\n/g, '\n').trim().slice(0, 2000);
-  if (field === 'pdf_url') return cleanText(value, 800);
+  if (['pdf_url', 'cover_url'].includes(field)) return cleanText(value, 800);
   return cleanText(value, 500);
 }
 

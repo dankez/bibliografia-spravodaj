@@ -5,6 +5,7 @@ import ThemeSwitcher from '../components/ThemeSwitcher.astro';
 const turnstileSiteKey = import.meta.env.PUBLIC_TURNSTILE_SITE_KEY || '';
 const endpoint = import.meta.env.PUBLIC_ERROR_REPORT_ENDPOINT || '/api/error-report';
 const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
+const articlesDataUrl = '/data/articles.json';
 ---
 
 <Layout title="Našiel som chybu — Spravodaj SSS">
@@ -46,10 +47,12 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
               <option value="title">Názov</option>
               <option value="pages">Strany</option>
               <option value="pdf">PDF odkaz</option>
+              <option value="fulltext">Fulltext / OCR</option>
               <option value="map_plan">Mapa/plán</option>
               <option value="smopaj_number">Číslo jaskyne / SMOPaJ</option>
               <option value="abstract">Anotácia</option>
-              <option value="other">Iné</option>
+              <option value="tags">Tagy / lokality</option>
+              <option value="other">Všetko / iné</option>
             </select>
           </label>
         </div>
@@ -115,9 +118,162 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
           <p id="smopaj-match-preview" class="report-smopaj-preview">Zoznam sa načíta pri výbere tohto typu opravy.</p>
         </section>
 
+        <section id="article-edit-panel" class="report-article-edit-panel" data-articles-url={articlesDataUrl} hidden>
+          <div class="report-article-edit-header">
+            <div>
+              <h3 class="font-display text-lg font-bold text-belly-black-brown">Navrhovaná oprava článku</h3>
+              <p id="article-edit-status" class="mt-1 text-sm leading-relaxed text-belly-dimgray">
+                Zadaj číslo článku, aby sa načítali aktuálne hodnoty.
+              </p>
+            </div>
+            <a id="article-edit-open-link" href="#" class="bibliography-link-button" hidden>Otvoriť článok</a>
+          </div>
+
+          <input id="article-original-json" name="originalArticle" type="hidden" />
+          <input id="article-proposed-json" name="proposedArticle" type="hidden" />
+          <input id="article-source-version" name="sourceVersion" type="hidden" />
+
+          <div class="report-edit-section" data-report-edit-section="title">
+            <h4>Názov</h4>
+            <label class="report-field">
+              <span>Názov článku</span>
+              <input name="edit_title" type="text" autocomplete="off" data-article-edit-field="title" />
+            </label>
+          </div>
+
+          <div class="report-edit-section" data-report-edit-section="author">
+            <h4>Autori</h4>
+            <label class="report-field">
+              <span>Autori</span>
+              <textarea name="edit_authors" rows="4" data-article-edit-field="authors" data-array-field="lines"></textarea>
+              <small class="report-help-text">Jeden autor na riadok.</small>
+            </label>
+          </div>
+
+          <div class="report-edit-section" data-report-edit-section="pages pdf fulltext">
+            <h4>Strany a PDF</h4>
+            <div class="report-edit-grid">
+              <label class="report-field">
+                <span>Tlačené strany</span>
+                <input name="edit_pages" type="text" autocomplete="off" data-article-edit-field="pages" />
+              </label>
+              <label class="report-field">
+                <span>PDF strana začiatku</span>
+                <input name="edit_pdf_page_start" type="number" step="1" data-article-edit-field="pdf_page_start" />
+              </label>
+              <label class="report-field">
+                <span>PDF strana konca</span>
+                <input name="edit_pdf_page_end" type="number" step="1" data-article-edit-field="pdf_page_end" />
+              </label>
+              <label class="report-field">
+                <span>PDF offset</span>
+                <input name="edit_pdf_page_offset" type="number" step="1" data-article-edit-field="pdf_page_offset" />
+              </label>
+            </div>
+            <label class="report-field">
+              <span>PDF odkaz</span>
+              <input name="edit_pdf_url" type="url" autocomplete="off" data-article-edit-field="pdf_url" />
+            </label>
+          </div>
+
+          <div class="report-edit-section" data-report-edit-section="abstract">
+            <h4>Anotácia</h4>
+            <label class="report-field">
+              <span>Anotácia</span>
+              <textarea name="edit_abstract" rows="8" data-article-edit-field="abstract"></textarea>
+            </label>
+          </div>
+
+          <div class="report-edit-section" data-report-edit-section="tags">
+            <h4>Tagy, lokality a skupiny</h4>
+            <div class="report-edit-grid">
+              <label class="report-field">
+                <span>Tagy</span>
+                <textarea name="edit_tags" rows="5" data-article-edit-field="tags" data-array-field="lines"></textarea>
+                <small class="report-help-text">Jeden tag na riadok.</small>
+              </label>
+              <label class="report-field">
+                <span>Jaskyne / lokality</span>
+                <textarea name="edit_caves" rows="5" data-article-edit-field="caves" data-array-field="lines"></textarea>
+                <small class="report-help-text">Jedna lokalita na riadok.</small>
+              </label>
+              <label class="report-field">
+                <span>Skupiny</span>
+                <textarea name="edit_groups" rows="5" data-article-edit-field="groups" data-array-field="lines"></textarea>
+                <small class="report-help-text">Jedna skupina na riadok.</small>
+              </label>
+            </div>
+          </div>
+
+          <div class="report-edit-section" data-report-edit-section="map_plan">
+            <h4>Mapa / plán</h4>
+            <label class="report-checkbox-field">
+              <input name="edit_has_map_plan" type="checkbox" data-article-edit-field="has_map_plan" />
+              <span>Článok obsahuje mapu alebo plán</span>
+            </label>
+            <div class="report-edit-grid">
+              <label class="report-field">
+                <span>Strany máp/plánov v PDF</span>
+                <textarea name="edit_map_plan_pages" rows="4" data-article-edit-field="map_plan_pages" data-array-field="numbers"></textarea>
+                <small class="report-help-text">Jedno číslo strany na riadok.</small>
+              </label>
+              <label class="report-field">
+                <span>Skóre detekcie mapy</span>
+                <input name="edit_map_plan_score" type="number" step="1" data-article-edit-field="map_plan_score" />
+              </label>
+            </div>
+          </div>
+
+          <div class="report-edit-section" data-report-edit-section="metadata">
+            <h4>Časopis a ročník</h4>
+            <div class="report-edit-grid">
+              <label class="report-field">
+                <span>ID časopisu</span>
+                <input name="edit_journal_id" type="text" autocomplete="off" data-article-edit-field="journal_id" />
+              </label>
+              <label class="report-field">
+                <span>Názov časopisu</span>
+                <input name="edit_journal_title" type="text" autocomplete="off" data-article-edit-field="journal_title" />
+              </label>
+              <label class="report-field">
+                <span>Skrátený názov</span>
+                <input name="edit_journal_short_title" type="text" autocomplete="off" data-article-edit-field="journal_short_title" />
+              </label>
+              <label class="report-field">
+                <span>Rok</span>
+                <input name="edit_year" type="number" step="1" data-article-edit-field="year" />
+              </label>
+              <label class="report-field">
+                <span>Ročník</span>
+                <input name="edit_volume" type="text" autocomplete="off" data-article-edit-field="volume" />
+              </label>
+              <label class="report-field">
+                <span>Číslo</span>
+                <input name="edit_issue" type="text" autocomplete="off" data-article-edit-field="issue" />
+              </label>
+            </div>
+          </div>
+
+          <div class="report-edit-section" data-report-edit-section="technical">
+            <h4>Ďalšie hodnoty</h4>
+            <label class="report-checkbox-field">
+              <input name="edit_caves_verified" type="checkbox" data-article-edit-field="caves_verified" />
+              <span>Lokality sú overené</span>
+            </label>
+            <label class="report-field">
+              <span>Wikidata JSON</span>
+              <textarea name="edit_wikidata" rows="5" data-article-edit-field="wikidata" data-json-field="array"></textarea>
+            </label>
+            <label class="report-field">
+              <span>Obálka / obrázok</span>
+              <input name="edit_cover_url" type="text" autocomplete="off" data-article-edit-field="cover_url" />
+            </label>
+          </div>
+        </section>
+
         <label class="report-field">
           <span>Čo treba opraviť</span>
-          <textarea name="message" rows="7" required minlength="10" maxlength="4000" placeholder="Napríklad: autor nie je Anonymus, pod článkom je podpis..."></textarea>
+          <textarea name="message" rows="7" minlength="10" maxlength="4000" placeholder="Napríklad: autor nie je Anonymus, pod článkom je podpis..."></textarea>
         </label>
 
         <label class="report-field">
@@ -161,18 +317,68 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
     const smopajNumber = document.getElementById('smopaj-cave-number');
     const smopajLabel = document.getElementById('smopaj-cave-label');
     const smopajPreview = document.getElementById('smopaj-match-preview');
+    const articleIdField = document.getElementById('article-id');
+    const articleTitleField = document.getElementById('article-title');
+    const articleUrlField = document.getElementById('article-url');
+    const articleEditPanel = document.getElementById('article-edit-panel');
+    const articleEditStatus = document.getElementById('article-edit-status');
+    const articleEditOpenLink = document.getElementById('article-edit-open-link');
+    const originalArticleInput = document.getElementById('article-original-json');
+    const proposedArticleInput = document.getElementById('article-proposed-json');
+    const sourceVersionInput = document.getElementById('article-source-version');
+    const articleEditControls = Array.from(form?.querySelectorAll('[data-article-edit-field]') || []);
+    const articleEditSections = Array.from(form?.querySelectorAll('[data-report-edit-section]') || []);
+    const articleEditTypes = new Set(['author', 'title', 'pages', 'pdf', 'fulltext', 'map_plan', 'abstract', 'tags', 'other']);
+    const arrayFields = new Set(['authors', 'tags', 'caves', 'groups']);
+    const numberArrayFields = new Set(['map_plan_pages']);
+    const numberFields = new Set(['year', 'pdf_page_start', 'pdf_page_end', 'pdf_page_offset', 'map_plan_score']);
+    const booleanFields = new Set(['has_map_plan', 'caves_verified']);
+    const jsonArrayFields = new Set(['wikidata']);
+    const articlePatchFields = [
+      'title',
+      'authors',
+      'journal_id',
+      'journal_title',
+      'journal_short_title',
+      'year',
+      'volume',
+      'issue',
+      'pages',
+      'abstract',
+      'tags',
+      'caves',
+      'groups',
+      'has_map_plan',
+      'map_plan_pages',
+      'map_plan_score',
+      'pdf_url',
+      'pdf_page_start',
+      'pdf_page_end',
+      'pdf_page_offset',
+      'caves_verified',
+      'wikidata',
+      'cover_url',
+    ];
     let smopajEntries = [];
     let smopajLoaded = false;
+    let articlesLoaded = false;
+    let articleLoadPromise = null;
+    let articlesById = new Map();
+    let currentArticle = null;
+    let originalArticlePatch = null;
 
-    document.getElementById('article-id').value = params.get('article') || '';
-    document.getElementById('article-title').value = params.get('title') || '';
-    document.getElementById('article-url').value = params.get('url')
+    articleIdField.value = params.get('article') || '';
+    articleTitleField.value = params.get('title') || '';
+    articleUrlField.value = params.get('url')
       ? new URL(params.get('url'), window.location.origin).toString()
       : document.referrer || '';
     document.getElementById('cave-name').value = params.get('caveName') || '';
     document.getElementById('cave-slug').value = params.get('cave') || '';
-    if (params.get('type')) {
+    if (params.get('type') && Array.from(typeSelect.options).some((option) => option.value === params.get('type'))) {
       typeSelect.value = params.get('type');
+    }
+    if (params.get('message')) {
+      messageField.value = params.get('message');
     }
     if (params.get('smopajNumber')) {
       smopajNumber.value = params.get('smopajNumber');
@@ -195,6 +401,53 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
         .toLocaleLowerCase('sk');
     }
 
+    function cleanLines(value) {
+      return String(value || '')
+        .split('\n')
+        .map((item) => item.trim())
+        .filter(Boolean);
+    }
+
+    function cleanNumberLines(value) {
+      return cleanLines(value)
+        .flatMap((item) => item.split(/[;,]/))
+        .map((item) => Number.parseInt(item.trim(), 10))
+        .filter((item) => Number.isFinite(item));
+    }
+
+    function toIntegerOrNull(value) {
+      if (value === null || value === undefined || value === '') return null;
+      const parsed = Number.parseInt(String(value), 10);
+      return Number.isFinite(parsed) ? parsed : null;
+    }
+
+    function normalizeArticleValue(field, value) {
+      if (arrayFields.has(field)) {
+        return Array.isArray(value) ? value.map((item) => String(item || '').trim()).filter(Boolean) : cleanLines(value);
+      }
+      if (numberArrayFields.has(field)) {
+        if (Array.isArray(value)) {
+          return value.map((item) => Number.parseInt(String(item), 10)).filter((item) => Number.isFinite(item));
+        }
+        return cleanNumberLines(value);
+      }
+      if (jsonArrayFields.has(field)) {
+        return Array.isArray(value) ? value : [];
+      }
+      if (booleanFields.has(field)) return value === true || value === 'true' || value === '1' || value === 'on';
+      if (numberFields.has(field)) return toIntegerOrNull(value);
+      if (field === 'abstract') return String(value || '').replace(/\r\n/g, '\n').trim();
+      return String(value ?? '').trim();
+    }
+
+    function articleToPatch(article) {
+      return Object.fromEntries(articlePatchFields.map((field) => [field, normalizeArticleValue(field, article?.[field])]));
+    }
+
+    function valuesEqual(left, right) {
+      return JSON.stringify(left) === JSON.stringify(right);
+    }
+
     function formatSmopajEntry(entry) {
       const geomorphology = [entry.geomorph_celok, entry.geomorph_podcelok, entry.geomorph_cast].filter(Boolean).join(' / ');
       return `${entry.cave_number} — ${entry.official_name}${geomorphology ? ` (${geomorphology})` : ''}`;
@@ -203,6 +456,136 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
     function findSmopajEntry(number) {
       const wanted = String(number || '').trim();
       return smopajEntries.find((entry) => String(entry.cave_number || '') === wanted);
+    }
+
+    function sourceVersionLabel() {
+      const badge = document.querySelector('.site-build-badge');
+      if (badge?.getAttribute('title')) return badge.getAttribute('title');
+      return document.querySelector('.site-release')?.textContent?.replace(/^release:\s*/i, '').trim() || 'local';
+    }
+
+    async function loadArticles() {
+      if (articlesLoaded) return;
+      if (!articleLoadPromise) {
+        articleLoadPromise = fetch(articleEditPanel.dataset.articlesUrl, { headers: { Accept: 'application/json' } })
+          .then((response) => {
+            if (!response.ok) throw new Error('Články sa nepodarilo načítať.');
+            return response.json();
+          })
+          .then((payload) => {
+            const articles = Array.isArray(payload) ? payload : [];
+            articlesById = new Map(articles.map((article) => [String(article.id), article]));
+            articlesLoaded = true;
+          });
+      }
+      await articleLoadPromise;
+    }
+
+    function writeControlValue(control, field, value) {
+      if (control.type === 'checkbox') {
+        control.checked = Boolean(value);
+        return;
+      }
+      if (arrayFields.has(field) || numberArrayFields.has(field)) {
+        control.value = Array.isArray(value) ? value.join('\n') : '';
+        return;
+      }
+      if (jsonArrayFields.has(field)) {
+        control.value = Array.isArray(value) && value.length ? JSON.stringify(value, null, 2) : '[]';
+        return;
+      }
+      control.value = value === null || value === undefined ? '' : String(value);
+    }
+
+    function readControlValue(control, field) {
+      if (control.type === 'checkbox') return control.checked;
+      if (arrayFields.has(field)) return cleanLines(control.value);
+      if (numberArrayFields.has(field)) return cleanNumberLines(control.value);
+      if (jsonArrayFields.has(field)) {
+        const raw = control.value.trim();
+        if (!raw) return [];
+        const parsed = JSON.parse(raw);
+        if (!Array.isArray(parsed)) throw new Error('Wikidata musí byť JSON pole.');
+        return parsed;
+      }
+      return normalizeArticleValue(field, control.value);
+    }
+
+    function populateArticleEditForm(article) {
+      currentArticle = article;
+      originalArticlePatch = articleToPatch(article);
+      originalArticleInput.value = JSON.stringify(originalArticlePatch);
+      sourceVersionInput.value = sourceVersionLabel();
+      articleEditControls.forEach((control) => {
+        const field = control.dataset.articleEditField;
+        writeControlValue(control, field, originalArticlePatch[field]);
+      });
+      if (!articleTitleField.value.trim()) articleTitleField.value = article.title || '';
+      if (!articleUrlField.value.trim()) articleUrlField.value = new URL(`/clanky/${article.id}/`, window.location.origin).toString();
+      articleEditOpenLink.href = articleUrlField.value || `/clanky/${article.id}/`;
+      articleEditOpenLink.hidden = false;
+      articleEditStatus.textContent = `Načítaný článok #${article.id}. Uprav hodnotu v zobrazenom poli a odošli návrh.`;
+      syncArticlePatchHidden();
+    }
+
+    function clearArticleEditForm(message = 'Zadaj číslo článku, aby sa načítali aktuálne hodnoty.') {
+      currentArticle = null;
+      originalArticlePatch = null;
+      originalArticleInput.value = '';
+      proposedArticleInput.value = '';
+      sourceVersionInput.value = sourceVersionLabel();
+      articleEditOpenLink.hidden = true;
+      articleEditStatus.textContent = message;
+    }
+
+    async function loadCurrentArticleForForm() {
+      const articleId = String(articleIdField.value || '').trim();
+      if (!articleId) {
+        clearArticleEditForm();
+        return;
+      }
+      articleEditStatus.textContent = 'Načítavam aktuálne údaje článku...';
+      await loadArticles();
+      const article = articlesById.get(articleId);
+      if (!article) {
+        clearArticleEditForm(`Článok #${articleId} sa v dátach nenašiel. Hlásenie môžeš odoslať aspoň textovo.`);
+        return;
+      }
+      populateArticleEditForm(article);
+    }
+
+    function selectedTypeUsesArticleEdit() {
+      return articleEditTypes.has(typeSelect.value);
+    }
+
+    function syncArticleEditSections() {
+      const type = typeSelect.value;
+      const usesArticleEdit = selectedTypeUsesArticleEdit();
+      articleEditPanel.hidden = !usesArticleEdit;
+      articleEditSections.forEach((section) => {
+        const keys = String(section.dataset.reportEditSection || '').split(/\s+/).filter(Boolean);
+        section.hidden = !(usesArticleEdit && (type === 'other' || keys.includes(type)));
+      });
+    }
+
+    function readProposedArticlePatch() {
+      if (!originalArticlePatch) return null;
+      const proposed = { ...originalArticlePatch };
+      articleEditControls.forEach((control) => {
+        const field = control.dataset.articleEditField;
+        proposed[field] = normalizeArticleValue(field, readControlValue(control, field));
+      });
+      return proposed;
+    }
+
+    function syncArticlePatchHidden() {
+      if (!originalArticlePatch) return [];
+      const proposed = readProposedArticlePatch();
+      const changedFields = articlePatchFields.filter((field) => !valuesEqual(originalArticlePatch[field], proposed[field]));
+      originalArticleInput.value = JSON.stringify(originalArticlePatch);
+      proposedArticleInput.value = JSON.stringify(proposed);
+      sourceVersionInput.value = sourceVersionLabel();
+      return changedFields;
     }
 
     async function loadSmopajRegister() {
@@ -292,6 +675,14 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
     async function syncTypeSpecificUi() {
       const isSmopajNumber = typeSelect.value === 'smopaj_number';
       smopajPanel.hidden = !isSmopajNumber;
+      syncArticleEditSections();
+      if (selectedTypeUsesArticleEdit()) {
+        try {
+          await loadCurrentArticleForForm();
+        } catch {
+          clearArticleEditForm('Články sa nepodarilo načítať. Hlásenie môžeš odoslať aspoň textovo.');
+        }
+      }
       if (!isSmopajNumber) return;
       try {
         await loadSmopajRegister();
@@ -302,6 +693,7 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
     }
 
     typeSelect?.addEventListener('change', syncTypeSpecificUi);
+    articleIdField?.addEventListener('change', syncTypeSpecificUi);
     smopajSearch?.addEventListener('input', async () => {
       await syncTypeSpecificUi();
       renderSmopajResults();
@@ -309,6 +701,18 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
     smopajNumber?.addEventListener('input', () => {
       updateSmopajPreview();
       syncSmopajMessage();
+    });
+    articleEditControls.forEach((control) => {
+      control.addEventListener('input', () => {
+        try {
+          const changedFields = syncArticlePatchHidden();
+          if (changedFields.length) {
+            articleEditStatus.textContent = `Pripravená zmena polí: ${changedFields.join(', ')}.`;
+          }
+        } catch (error) {
+          articleEditStatus.textContent = error.message || 'Niektoré pole nemá platný formát.';
+        }
+      });
     });
     messageField?.addEventListener('input', () => {
       if (messageField.dataset.autogenerated === '1') {
@@ -320,7 +724,35 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
     form?.addEventListener('submit', async (event) => {
       event.preventDefault();
       syncSmopajMessage();
+      let changedFields = [];
+      try {
+        if (selectedTypeUsesArticleEdit() && originalArticlePatch) {
+          changedFields = syncArticlePatchHidden();
+          if (changedFields.length && !messageField.value.trim()) {
+            messageField.value = `Štruktúrovaná oprava článku: ${changedFields.join(', ')}.`;
+            messageField.dataset.autogenerated = '1';
+          }
+        }
+      } catch (error) {
+        setStatus(error.message || 'Niektoré pole nemá platný formát.', true);
+        return;
+      }
       const data = Object.fromEntries(new FormData(form).entries());
+      if (changedFields.length) {
+        data.type = 'article_edit';
+        data.originalArticle = originalArticleInput.value;
+        data.proposedArticle = proposedArticleInput.value;
+        data.sourceVersion = sourceVersionInput.value;
+        try {
+          data.articleTitle = JSON.parse(data.proposedArticle).title || data.articleTitle;
+        } catch {
+          data.articleTitle = data.articleTitle;
+        }
+      }
+      if (!changedFields.length && !String(data.message || '').trim()) {
+        setStatus('Vyplň popis chyby alebo uprav niektoré zobrazené pole článku.', true);
+        return;
+      }
       setStatus('Odosielam...');
 
       try {
@@ -334,6 +766,8 @@ const smopajRegisterUrl = '/data/smopaj_cave_register_2017_search.json';
           throw new Error(payload.error || 'Hlásenie sa nepodarilo odoslať.');
         }
         form.reset();
+        clearArticleEditForm();
+        syncArticleEditSections();
         setStatus(payload.issueUrl ? `Odoslané: ${payload.issueUrl}` : 'Odoslané. Ďakujeme za opravu.');
       } catch (error) {
         setStatus(error.message || 'Hlásenie sa nepodarilo odoslať.', true);

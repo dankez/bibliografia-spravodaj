@@ -146,6 +146,15 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
     assert "turnstileToken" in backend_source
     assert "smopaj_number" in form_source
     assert "smopaj_number" in backend_source
+    assert "article_edit" in backend_source
+    assert "originalArticle" in form_source
+    assert "proposedArticle" in form_source
+    assert "data-article-edit-field=\"abstract\"" in form_source
+    assert "data-article-edit-field=\"tags\"" in form_source
+    assert "data-article-edit-field=\"pdf_page_offset\"" in form_source
+    assert "Všetko / iné" in form_source
+    assert "fulltext" in backend_source
+    assert "tags" in backend_source
     assert "smopaj_cave_register_2017_search.json" in form_source
     assert "smopajCaveNumber" in backend_source
     assert "Číslo jaskyne / SMOPaJ" in backend_source
@@ -205,6 +214,14 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "data/articles_with_urls.json" in apply_source
     assert "web/src/data/articles.json" in apply_source
     assert "scripts/apply_errata_issue.py" in workflow_source
+    assert "pdf_page_offset" in backend_source
+    assert "map_plan_pages" in backend_source
+    assert "wikidata" in backend_source
+    assert "cover_url" in backend_source
+    assert "pdf_page_offset" in apply_source
+    assert "map_plan_pages" in apply_source
+    assert "wikidata" in apply_source
+    assert "cover_url" in apply_source
     assert "sk-" not in backend_source
     assert "ghp_" not in backend_source
 

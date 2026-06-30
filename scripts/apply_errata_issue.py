@@ -29,9 +29,15 @@ ARTICLE_FIELDS = {
     "caves",
     "groups",
     "has_map_plan",
+    "map_plan_pages",
+    "map_plan_score",
     "pdf_url",
     "pdf_page_start",
     "pdf_page_end",
+    "pdf_page_offset",
+    "caves_verified",
+    "wikidata",
+    "cover_url",
 }
 ARTICLE_PATHS = [
     Path("data/articles_with_urls.json"),
@@ -48,9 +54,21 @@ def normalize_patch_value(field: str, value: Any) -> Any:
         if not isinstance(value, list):
             return []
         return [clean_text(item, 160) for item in value if clean_text(item, 160)][:80]
-    if field == "has_map_plan":
+    if field == "map_plan_pages":
+        if not isinstance(value, list):
+            return []
+        pages = []
+        for item in value:
+            try:
+                pages.append(int(str(item)))
+            except ValueError:
+                continue
+        return pages[:80]
+    if field == "wikidata":
+        return value[:80] if isinstance(value, list) else []
+    if field in {"has_map_plan", "caves_verified"}:
         return value is True
-    if field in {"year", "pdf_page_start", "pdf_page_end"}:
+    if field in {"year", "pdf_page_start", "pdf_page_end", "pdf_page_offset", "map_plan_score"}:
         if value in (None, ""):
             return None
         try:
@@ -59,7 +77,7 @@ def normalize_patch_value(field: str, value: Any) -> Any:
             return None
     if field == "abstract":
         return str(value or "").replace("\r\n", "\n").strip()[:2000]
-    if field == "pdf_url":
+    if field in {"pdf_url", "cover_url"}:
         return clean_text(value, 800)
     return clean_text(value, 500)
 

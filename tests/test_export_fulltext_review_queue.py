@@ -26,6 +26,8 @@ def test_build_queue_exports_only_active_non_ignored_incidents():
                 "words": 0,
                 "issue_score": 300,
                 "issues": [{"code": "empty_text", "severity": "high", "detail": "missing"}],
+                "pdf_url": "https://example.test/a.pdf",
+                "pdf_page_start": 5,
                 "pdf_page_links": [{"page": 4, "url": "https://example.test/a.pdf#page=4"}],
             },
             {
@@ -84,9 +86,11 @@ def test_build_queue_exports_only_active_non_ignored_incidents():
     assert queue["summary"]["auto_fixable_records_excluded"] == 1
     assert queue["incidents"][0]["id"] == 1
     assert queue["incidents"][0]["primary_label"] == "Chýba fulltext"
+    assert queue["incidents"][0]["pdf_links"] == [{"page": 5, "url": "https://example.test/a.pdf#page=5"}]
     assert queue["incidents"][1]["id"] == 5
     assert queue["incidents"][1]["issue_codes"] == ["residual_bad_diacritic_tokens"]
     assert queue["incidents"][1]["auto_fixable_issue_codes"] == ["cleanup_multispace_layout"]
+    assert queue["incidents"][1]["pdf_links"] == [{"page": 8, "url": "https://example.test/a.pdf#page=8"}]
 
 
 def test_build_summary_omits_incident_payload():

@@ -74,6 +74,30 @@ def compact_link(link: dict[str, Any]) -> dict[str, Any]:
     }
 
 
+def int_or_none(value: Any) -> int | None:
+    try:
+        return int(value)
+    except (TypeError, ValueError):
+        return None
+
+
+def pdf_page_url(pdf_url: str, page: int) -> str:
+    base = pdf_url.split("#", 1)[0]
+    return f"{base}#page={page}"
+
+
+def primary_pdf_link(record: dict[str, Any]) -> list[dict[str, Any]]:
+    pdf_url = record.get("pdf_url") or ""
+    pdf_page_start = int_or_none(record.get("pdf_page_start"))
+    if pdf_url and pdf_page_start is not None and pdf_page_start > 0:
+        return [{"page": pdf_page_start, "url": pdf_page_url(pdf_url, pdf_page_start)}]
+
+    for link in record.get("pdf_page_links", []):
+        if link.get("url"):
+            return [compact_link(link)]
+    return []
+
+
 def human_review_issues(record: dict[str, Any]) -> list[dict[str, Any]]:
     return [
         issue
@@ -114,7 +138,7 @@ def compact_incident(record: dict[str, Any]) -> dict[str, Any]:
         "issue_labels": [ISSUE_LABELS.get(code, code) for code in issue_codes],
         "auto_fixable_issue_codes": auto_fixable_issue_codes(record),
         "bad_diacritic_token_examples": record.get("bad_diacritic_token_examples") or [],
-        "pdf_links": [compact_link(link) for link in record.get("pdf_page_links", [])],
+        "pdf_links": primary_pdf_link(record),
         "article_url": f"/clanky/{record.get('id')}/" if record.get("id") is not None else "",
     }
 
