@@ -145,7 +145,10 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
 
     assert "Našiel som chybu" in detail_source
     assert "cf-turnstile" in form_source
+    assert "cf-turnstile-response" in form_source
+    assert "syncTurnstileToken" in form_source
     assert "turnstileToken" in backend_source
+    assert "payload['cf-turnstile-response']" in backend_source
     assert "smopaj_number" in form_source
     assert "smopaj_number" in backend_source
     assert "article_edit" in backend_source
@@ -160,6 +163,8 @@ def test_error_report_form_and_backend_template_exist_without_secret_literals():
     assert "fulltextReviewDecision" in backend_source
     assert "FULLTEXT_REVIEW_SCHEMA" in backend_source
     assert "submitReviewDecision" in review_source
+    assert "currentTurnstileToken" in review_source
+    assert "cf-turnstile-response" in review_source
     assert "onFulltextReviewTurnstileSuccess" in review_source
     assert "sss-bibliografia/fulltext-review/v1" in review_source
     assert "tags" in backend_source

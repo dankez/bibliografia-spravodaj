@@ -266,7 +266,7 @@ function validatePayload(payload) {
       originalArticle: articleEdit?.original || null,
       proposedArticle: articleEdit?.proposed || null,
       fulltextReviewDecision: fulltextReview?.review || null,
-      turnstileToken: cleanText(payload.turnstileToken, 3000),
+      turnstileToken: cleanText(payload.turnstileToken || payload['cf-turnstile-response'], 3000),
     },
   };
 }

@@ -394,6 +394,19 @@ const articlesDataUrl = '/data/articles.json';
       status.classList.toggle('text-belly-dimgray', !isError);
     }
 
+    function syncTurnstileToken(formData) {
+      const token =
+        formData.get('turnstileToken') ||
+        formData.get('cf-turnstile-response') ||
+        window.turnstile?.getResponse?.() ||
+        '';
+      if (token) {
+        document.getElementById('turnstile-token').value = token;
+        formData.set('turnstileToken', token);
+      }
+      return token;
+    }
+
     function normalizeText(value) {
       return String(value || '')
         .normalize('NFD')
@@ -737,7 +750,9 @@ const articlesDataUrl = '/data/articles.json';
         setStatus(error.message || 'Niektoré pole nemá platný formát.', true);
         return;
       }
-      const data = Object.fromEntries(new FormData(form).entries());
+      const formData = new FormData(form);
+      syncTurnstileToken(formData);
+      const data = Object.fromEntries(formData.entries());
       if (changedFields.length) {
         data.type = 'article_edit';
         data.originalArticle = originalArticleInput.value;

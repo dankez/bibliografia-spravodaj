@@ -314,8 +314,18 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
       };
     }
 
+    function currentTurnstileToken() {
+      const token =
+        turnstileTokenInput?.value ||
+        document.querySelector('input[name="cf-turnstile-response"]')?.value ||
+        window.turnstile?.getResponse?.() ||
+        '';
+      if (token && turnstileTokenInput) turnstileTokenInput.value = token;
+      return token;
+    }
+
     async function submitReviewDecision(card, incident, decision) {
-      const token = turnstileTokenInput?.value || '';
+      const token = currentTurnstileToken();
       if (!token && document.querySelector('.cf-turnstile:not(.report-antispam-placeholder)')) {
         const stateNote = card.querySelector('[data-review-state-note]');
         if (stateNote) stateNote.textContent = 'Najprv dokonči antispam overenie nad zoznamom.';
