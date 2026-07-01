@@ -84,6 +84,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
             <div class="mt-4 flex flex-wrap gap-2">
               <a id="detail-issue-link" href="#" target="_blank" rel="noreferrer" class="bibliography-link-button">Otvoriť issue</a>
               <button id="approve-issue-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">Schváliť a zapísať</button>
+              <button id="reject-issue-btn" class="bibliography-button-secondary px-5 py-2.5 font-bold" type="button">Zamietnuť</button>
             </div>
 
             <section id="detail-article-edit" class="mt-5">
@@ -106,6 +107,13 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
                 </p>
                 <button id="approve-issue-bottom-btn" class="bibliography-button-primary px-5 py-2.5 font-bold" type="button">
                   Schváliť opravu a zapísať do webu
+                </button>
+                <label class="report-field admin-reject-field">
+                  <span>Dôvod zamietnutia</span>
+                  <textarea id="reject-issue-reason" rows="3" maxlength="1200" placeholder="Napr. navrhovaná PDF strana je obálka alebo rozsah článku nesedí."></textarea>
+                </label>
+                <button id="reject-issue-bottom-btn" class="bibliography-button-secondary px-5 py-2.5 font-bold" type="button">
+                  Zamietnuť návrh
                 </button>
               </div>
             </section>
@@ -140,6 +148,9 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
     const detail = document.getElementById('admin-errata-detail');
     const approveButton = document.getElementById('approve-issue-btn');
     const approveBottomButton = document.getElementById('approve-issue-bottom-btn');
+    const rejectButton = document.getElementById('reject-issue-btn');
+    const rejectBottomButton = document.getElementById('reject-issue-bottom-btn');
+    const rejectReasonInput = document.getElementById('reject-issue-reason');
     const diffBody = document.getElementById('admin-diff-body');
     const articleEditSection = document.getElementById('detail-article-edit');
     const manualSection = document.getElementById('detail-manual');
@@ -204,13 +215,16 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
     }
 
     function setApproveButtonsDisabled(disabled) {
-      approveButton.disabled = disabled;
-      approveBottomButton.disabled = disabled;
+      [approveButton, approveBottomButton, rejectButton, rejectBottomButton].forEach((button) => {
+        button.disabled = disabled;
+      });
     }
 
     function setApproveButtonsVisible(visible) {
-      approveButton.hidden = !visible;
-      approveBottomButton.hidden = !visible;
+      [approveButton, approveBottomButton, rejectButton, rejectBottomButton].forEach((button) => {
+        button.hidden = !visible;
+      });
+      rejectReasonInput.closest('.admin-reject-field').hidden = !visible;
       setApproveButtonsDisabled(!visible);
     }
 
@@ -222,6 +236,38 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       if (type === 'article_edit') return 'edit článku';
       if (type === 'fulltext_review') return 'kontrola fulltextu';
       return 'ručné hlásenie';
+    }
+
+    function positiveInt(value) {
+      const parsed = Number.parseInt(String(value ?? ''), 10);
+      return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+    }
+
+    function pdfLinkUrl(url, page) {
+      const cleanUrl = String(url || '').trim();
+      if (!/^https?:\/\//i.test(cleanUrl) || !page) return '';
+      return `${cleanUrl.split('#')[0]}#page=${page}`;
+    }
+
+    function pdfPageForField(patch, side, field) {
+      const values = patch?.[side] || {};
+      if (field === 'pdf_page_end') return positiveInt(values.pdf_page_end) || positiveInt(values.pdf_page_start);
+      return positiveInt(values.pdf_page_start) || positiveInt(values.pdf_page_end);
+    }
+
+    function appendPdfCheckLink(cell, patch, side, field) {
+      if (!['pages', 'pdf_url', 'pdf_page_start', 'pdf_page_end', 'pdf_page_offset'].includes(field)) return;
+      const values = patch?.[side] || {};
+      const page = pdfPageForField(patch, side, field);
+      const url = pdfLinkUrl(values.pdf_url, page);
+      if (!url) return;
+      const link = document.createElement('a');
+      link.className = 'admin-pdf-check-link';
+      link.href = url;
+      link.target = '_blank';
+      link.rel = 'noreferrer';
+      link.append(textNode(`${side === 'original' ? 'Otvoriť pôvodnú PDF stranu' : 'Otvoriť navrhovanú PDF stranu'} p${page}`));
+      cell.append(link);
     }
 
     function setLoggedIn(user) {
@@ -360,10 +406,12 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
         const originalPre = document.createElement('pre');
         originalPre.append(textNode(formatValue(patch.original?.[field])));
         original.append(originalPre);
+        appendPdfCheckLink(original, patch, 'original', field);
         const proposed = document.createElement('td');
         const proposedPre = document.createElement('pre');
         proposedPre.append(textNode(formatValue(patch.proposed?.[field])));
         proposed.append(proposedPre);
+        appendPdfCheckLink(proposed, patch, 'proposed', field);
         row.append(original, proposed);
         diffBody.append(row);
       });
@@ -378,6 +426,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       emptyDetail.hidden = true;
       detail.hidden = false;
       resultSection.hidden = true;
+      rejectReasonInput.value = '';
       document.getElementById('detail-issue-number').textContent = `Issue #${selectedIssue.number}`;
       document.getElementById('detail-issue-type').textContent = issueTypeLabel(selectedIssue.type);
       document.getElementById('detail-issue-date').textContent = formatDate(selectedIssue.created_at);
@@ -425,12 +474,13 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
           method: 'POST',
           headers: adminHeaders(),
           credentials: 'same-origin',
-          body: JSON.stringify({ issueNumber: selectedIssue.number }),
+          body: JSON.stringify({ action: 'approve', issueNumber: selectedIssue.number }),
         });
         const payload = await readJsonResponse(response);
         if (!response.ok || !payload.ok) throw new Error(payload.error || `Schválenie zlyhalo (HTTP ${response.status}).`);
         const approval = payload.approval || {};
         resultText.textContent = `Schválenie bolo odoslané do GitHub Actions workflow ${approval.workflow || 'approve-errata.yml'} pre vetvu ${approval.branch || 'main'}. Po dokončení workflow vznikne commit, issue sa zavrie a Cloudflare Pages spustí nový deploy.`;
+        prLink.textContent = 'Otvoriť workflow';
         prLink.href = approval.workflowUrl || '#';
         resultSection.hidden = false;
         setStatus(`Schvaľovací workflow bol spustený: ${approval.workflowUrl || ''}`);
@@ -443,11 +493,49 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       }
     }
 
+    async function rejectSelectedIssue() {
+      if (!isStructuredIssue(selectedIssue)) return;
+      const issueNumber = selectedIssue.number;
+      setApproveButtonsDisabled(true);
+      setStatus(`Zamietam issue #${issueNumber}...`);
+      resultSection.hidden = true;
+      try {
+        const response = await fetch(endpoint, {
+          method: 'POST',
+          headers: adminHeaders(),
+          credentials: 'same-origin',
+          body: JSON.stringify({
+            action: 'reject',
+            issueNumber,
+            reason: rejectReasonInput.value,
+          }),
+        });
+        const payload = await readJsonResponse(response);
+        if (!response.ok || !payload.ok) throw new Error(payload.error || `Zamietnutie zlyhalo (HTTP ${response.status}).`);
+        const rejection = payload.rejection || {};
+        resultText.textContent = `Návrh bol zamietnutý, issue #${issueNumber} bolo zavreté a dáta sa nemenili.`;
+        prLink.textContent = 'Otvoriť issue';
+        prLink.href = rejection.issueUrl || selectedIssue.url || '#';
+        resultSection.hidden = false;
+        setStatus(`Issue #${issueNumber} bolo zamietnuté a zavreté.`);
+        issues = issues.filter((issue) => Number(issue.number) !== Number(issueNumber));
+        renderIssueList();
+        selectedIssue = null;
+        setApproveButtonsVisible(false);
+      } catch (error) {
+        setStatus(error.message || 'Zamietnutie zlyhalo.', true);
+      } finally {
+        if (isStructuredIssue(selectedIssue)) setApproveButtonsDisabled(false);
+      }
+    }
+
     loginForm.addEventListener('submit', loginAdmin);
     loadButton.addEventListener('click', loadIssues);
     logoutButton.addEventListener('click', logoutAdmin);
     approveButton.addEventListener('click', approveSelectedIssue);
     approveBottomButton.addEventListener('click', approveSelectedIssue);
+    rejectButton.addEventListener('click', rejectSelectedIssue);
+    rejectBottomButton.addEventListener('click', rejectSelectedIssue);
     checkSession();
   </script>
 </Layout>

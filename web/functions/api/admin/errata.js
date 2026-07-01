@@ -254,6 +254,11 @@ async function dispatchApprovalWorkflow(env, issue, patch) {
   };
 }
 
+function issuePatch(issue) {
+  const rawPatch = extractJsonPatch(issue.body);
+  return normalizePatch(rawPatch) || normalizeFulltextReview(rawPatch);
+}
+
 async function approveIssue(env, payload) {
   const issueNumber = Number.parseInt(String(payload.issueNumber || ''), 10);
   if (!Number.isFinite(issueNumber) || issueNumber <= 0) {
@@ -261,13 +266,65 @@ async function approveIssue(env, payload) {
   }
 
   const issue = await getIssue(env, issueNumber);
-  const rawPatch = extractJsonPatch(issue.body);
-  const patch = normalizePatch(rawPatch) || normalizeFulltextReview(rawPatch);
+  const patch = issuePatch(issue);
   if (!patch) {
     return { ok: false, status: 400, error: 'Issue neobsahuje platný štruktúrovaný JSON diff alebo rozhodnutie.' };
   }
   const approval = await dispatchApprovalWorkflow(env, issue, patch);
   return { ok: true, issue: issueSummary(issue), approval };
+}
+
+async function rejectIssue(env, payload) {
+  const issueNumber = Number.parseInt(String(payload.issueNumber || ''), 10);
+  if (!Number.isFinite(issueNumber) || issueNumber <= 0) {
+    return { ok: false, status: 400, error: 'Chýba platné číslo issue.' };
+  }
+
+  const issue = await getIssue(env, issueNumber);
+  if (!isErrataIssue(issue)) {
+    return { ok: false, status: 400, error: 'Issue nie je rozpoznané ako errata hlásenie.' };
+  }
+
+  const patch = issuePatch(issue);
+  const reason = cleanText(payload.reason, 1200) || 'Návrh nebol potvrdený pri redakčnej kontrole.';
+  const changedFields = patch?.changed_fields || [patch?.decision || 'neuvedené'];
+  const body = [
+    'Admin zamietol návrh cez webové rozhranie. Dáta neboli zmenené.',
+    '',
+    `- Článok: #${patch?.article_id || issueSummary(issue).article_id || 'neuvedené'}`,
+    `- Zmena: ${changedFields.join(', ')}`,
+    '',
+    'Dôvod:',
+    '',
+    reason,
+  ].join('\n');
+
+  const comment = await githubFetch(env, `/repos/{repository}/issues/${issueNumber}/comments`, {
+    method: 'POST',
+    body: JSON.stringify({ body }),
+  });
+  if (!comment.ok) {
+    return { ok: false, status: comment.status, error: comment.data.message || 'Komentár k zamietnutiu sa nepodarilo vytvoriť.' };
+  }
+
+  const closed = await githubFetch(env, `/repos/{repository}/issues/${issueNumber}`, {
+    method: 'PATCH',
+    body: JSON.stringify({ state: 'closed', state_reason: 'not_planned' }),
+  });
+  if (!closed.ok) {
+    return { ok: false, status: closed.status, error: closed.data.message || 'Issue sa nepodarilo zavrieť.' };
+  }
+
+  return {
+    ok: true,
+    issue: issueSummary(closed.data),
+    rejection: {
+      closed: true,
+      issueUrl: closed.data.html_url || issue.html_url || '',
+      commentUrl: comment.data.html_url || '',
+      stateReason: closed.data.state_reason || 'not_planned',
+    },
+  };
 }
 
 export async function onRequestGet(context) {
@@ -294,7 +351,11 @@ export async function onRequestPost(context) {
   }
 
   try {
-    const result = await approveIssue(context.env, payload);
+    const action = cleanText(payload.action, 40) || 'approve';
+    if (!['approve', 'reject'].includes(action)) {
+      return jsonResponse({ ok: false, error: 'Neplatná admin akcia.' }, 400);
+    }
+    const result = action === 'reject' ? await rejectIssue(context.env, payload) : await approveIssue(context.env, payload);
     return jsonResponse({ ...result, user: auth.user }, result.ok ? 200 : result.status || 400);
   } catch (error) {
     return jsonResponse({ ok: false, error: error.message || 'Schválenie zlyhalo.' }, error.status || 502);

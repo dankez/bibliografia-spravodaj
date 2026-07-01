@@ -2202,6 +2202,23 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   word-break: break-word;
 }
 
+.admin-pdf-check-link {
+  display: inline-flex;
+  margin-top: 0.55rem;
+  border: 1px solid rgb(var(--sss-firebrick) / 0.22);
+  border-radius: var(--sss-radius-sm);
+  background: rgb(var(--sss-card));
+  color: rgb(var(--sss-firebrick));
+  padding: 0.42rem 0.55rem;
+  font-size: 0.74rem;
+  font-weight: 800;
+  text-decoration: none;
+}
+
+.admin-pdf-check-link:hover {
+  background: rgb(var(--sss-surface-muted));
+}
+
 .admin-approval-footer {
   display: flex;
   flex-wrap: wrap;
@@ -2220,6 +2237,14 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   color: rgb(var(--sss-dimgray));
   font-size: 0.82rem;
   line-height: 1.55;
+}
+
+.admin-reject-field {
+  flex: 1 1 100%;
+}
+
+.admin-reject-field textarea {
+  min-height: 5.5rem;
 }
 
 .admin-approve-result {

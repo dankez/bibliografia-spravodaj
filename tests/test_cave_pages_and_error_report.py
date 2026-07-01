@@ -209,6 +209,11 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "credentials: 'same-origin'" in page_source
     assert "sessionStorage" not in page_source
     assert "Schváliť opravu a zapísať do webu" in page_source
+    assert "Zamietnuť návrh" in page_source
+    assert "rejectSelectedIssue" in page_source
+    assert "appendPdfCheckLink" in page_source
+    assert "Otvoriť pôvodnú PDF stranu" in page_source
+    assert "Otvoriť navrhovanú PDF stranu" in page_source
     assert "Otvoriť workflow" in page_source
     assert "textContent" in page_source
     assert "innerHTML" not in page_source
@@ -222,6 +227,11 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "timingSafeEqual" in backend_source
     assert "GITHUB_TOKEN" in backend_source
     assert "dispatchApprovalWorkflow" in backend_source
+    assert "rejectIssue" in backend_source
+    assert "Neplatná admin akcia" in backend_source
+    assert "/comments" in backend_source
+    assert "state_reason" in backend_source
+    assert "not_planned" in backend_source
     assert "/actions/workflows/" in backend_source
     assert "approve-errata.yml" in backend_source
     assert "data/articles_with_urls.json" in apply_source
