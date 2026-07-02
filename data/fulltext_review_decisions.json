@@ -4,6 +4,37 @@
     {
       "schema": "sss-bibliografia/fulltext-review/v1",
       "decision": "ok",
+      "decision_key": "fulltext:568:very_short_text:eff2f49311644b01",
+      "article_id": "568",
+      "article_title": "Jaskyniarsky humor",
+      "article_url": "/clanky/568/",
+      "year": "1983",
+      "pages": "38",
+      "primary_issue": "very_short_text",
+      "primary_label": "Veľmi krátky text",
+      "issue_codes": [
+        "very_short_text",
+        "low_text_density"
+      ],
+      "issue_labels": [
+        "Veľmi krátky text",
+        "Nízka hustota textu"
+      ],
+      "issue_score": "350",
+      "text_status": "ok",
+      "text_source": "pdftotext",
+      "text_chars": "2",
+      "words": "1",
+      "recommended_action": "Otvoriť PDF a overiť, či nejde len o obálku, reklamu alebo krátku správu.",
+      "pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_1.pdf#page=40",
+      "source_generated_at": "2026-06-30T09:47:55.737170+00:00",
+      "source_version": "v1.0.0-beta.20260630+ba3dbbc",
+      "issue_number": "8",
+      "reviewed_at": "2026-07-02T06:32:34.956248+00:00"
+    },
+    {
+      "schema": "sss-bibliografia/fulltext-review/v1",
+      "decision": "ok",
       "decision_key": "fulltext:762:low_text_density:bb71c29173edb7bd",
       "article_id": "762",
       "article_title": "Jaskyniarsky humor",
