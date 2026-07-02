@@ -1,4 +1,34 @@
 {
   "schema_version": "sss-bibliografia/fulltext-review-decisions/v1",
-  "decisions": []
+  "decisions": [
+    {
+      "schema": "sss-bibliografia/fulltext-review/v1",
+      "decision": "ok",
+      "decision_key": "fulltext:762:low_text_density:bb71c29173edb7bd",
+      "article_id": "762",
+      "article_title": "Jaskyniarsky humor",
+      "article_url": "/clanky/762/",
+      "year": "1986",
+      "pages": "84",
+      "primary_issue": "low_text_density",
+      "primary_label": "Nízka hustota textu",
+      "issue_codes": [
+        "low_text_density"
+      ],
+      "issue_labels": [
+        "Nízka hustota textu"
+      ],
+      "issue_score": "100",
+      "text_status": "ok",
+      "text_source": "pdftotext",
+      "text_chars": "560",
+      "words": "79",
+      "recommended_action": "Porovnať text s PDF stranou, či nie je posunutý rozsah strán.",
+      "pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_1-2_1986.pdf#page=86",
+      "source_generated_at": "2026-06-30T09:47:55.737170+00:00",
+      "source_version": "v1.0.0-beta.20260630+ba3dbbc",
+      "issue_number": "10",
+      "reviewed_at": "2026-07-02T06:32:09.588055+00:00"
+    }
+  ]
 }
