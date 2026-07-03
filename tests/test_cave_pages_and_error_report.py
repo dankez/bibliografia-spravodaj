@@ -215,6 +215,10 @@ def test_admin_errata_page_and_backend_use_password_session_auth():
     assert "Otvoriť pôvodnú PDF stranu" in page_source
     assert "Otvoriť navrhovanú PDF stranu" in page_source
     assert "Otvoriť workflow" in page_source
+    assert "targetIssueNumber" in page_source
+    assert "URLSearchParams(window.location.search).get('issue')" in page_source
+    assert "selectLinkedIssue" in page_source
+    assert "replaceState" in page_source
     assert "textContent" in page_source
     assert "innerHTML" not in page_source
     assert "ADMIN_PASSWORD_HASH" in backend_source

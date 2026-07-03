@@ -45,11 +45,12 @@ test('buildErrataNotificationEmail includes escaped issue, admin and article det
 
   assert.match(email.subject, /#4133/);
   assert.match(email.text, /https:\/\/github.com\/dankez\/bibliografia-spravodaj\/issues\/12/);
-  assert.match(email.text, /https:\/\/bibliografia\.sss\.sk\/admin\/opravy\//);
+  assert.match(email.text, /https:\/\/bibliografia\.sss\.sk\/admin\/opravy\/\?issue=12/);
   assert.match(email.html, /&lt;Zahraničné aktivity &amp; test&gt;/);
   assert.match(email.html, /&lt;script&gt;alert\(1\)&lt;\/script&gt;/);
   assert.doesNotMatch(email.html, /<script>alert/);
   assert.match(email.html, /title, abstract/);
+  assert.match(email.html, /https:\/\/bibliografia\.sss\.sk\/admin\/opravy\/\?issue=12/);
 });
 
 test('sendSmtpEmail authenticates and sends one HTML message over a secure socket', async () => {

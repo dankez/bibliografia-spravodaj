@@ -160,11 +160,30 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
     let issues = [];
     let selectedIssue = null;
     let isLoggedIn = false;
+    let targetIssueNumber = readTargetIssueNumber();
+
+    function readTargetIssueNumber() {
+      const value = new URLSearchParams(window.location.search).get('issue') || '';
+      const parsed = Number.parseInt(value, 10);
+      return Number.isFinite(parsed) && parsed > 0 ? parsed : null;
+    }
 
     function setStatus(message, isError = false) {
       status.textContent = message;
       status.classList.toggle('text-belly-firebrick', isError);
       status.classList.toggle('text-belly-dimgray', !isError);
+    }
+
+    function updateIssueUrl(issueNumber) {
+      if (!window.history?.replaceState) return;
+      const url = new URL(window.location.href);
+      if (issueNumber) {
+        url.searchParams.set('issue', String(issueNumber));
+      } else {
+        url.searchParams.delete('issue');
+      }
+      window.history.replaceState({}, '', `${url.pathname}${url.search}${url.hash}`);
+      targetIssueNumber = issueNumber ? Number(issueNumber) : null;
     }
 
     function textNode(value) {
@@ -301,6 +320,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
         }
         setLoggedIn(payload.user);
         setStatus('Admin relácia je aktívna.');
+        if (targetIssueNumber) await loadIssues();
       } catch {
         setLoggedOut('Zadaj admin heslo.');
       }
@@ -417,12 +437,14 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       });
     }
 
-    function selectIssue(issueNumber) {
+    function selectIssue(issueNumber, options = {}) {
       selectedIssue = issues.find((issue) => Number(issue.number) === Number(issueNumber));
-      if (!selectedIssue) return;
+      if (!selectedIssue) return false;
       list.querySelectorAll('.admin-errata-item').forEach((item) => {
         item.classList.toggle('is-selected', item.dataset.issueNumber === String(issueNumber));
+        if (item.dataset.issueNumber === String(issueNumber)) item.scrollIntoView({ block: 'nearest' });
       });
+      if (options.updateUrl !== false) updateIssueUrl(issueNumber);
       emptyDetail.hidden = true;
       detail.hidden = false;
       resultSection.hidden = true;
@@ -438,6 +460,18 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
       manualSection.hidden = isStructuredIssue(selectedIssue);
       setApproveButtonsVisible(isStructuredIssue(selectedIssue));
       if (isStructuredIssue(selectedIssue)) renderDiff(selectedIssue);
+      return true;
+    }
+
+    function selectLinkedIssue() {
+      if (!targetIssueNumber) return false;
+      const selected = selectIssue(targetIssueNumber, { updateUrl: false });
+      if (selected) {
+        setStatus(`Načítané: ${issues.length} otvorených hlásení. Vybrané issue #${targetIssueNumber}.`);
+        return true;
+      }
+      setStatus(`Načítané: ${issues.length} otvorených hlásení. Issue #${targetIssueNumber} už nie je medzi otvorenými hláseniami.`, true);
+      return false;
     }
 
     async function loadIssues() {
@@ -456,7 +490,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
         renderIssueList();
         emptyDetail.hidden = false;
         detail.hidden = true;
-        setStatus(`Načítané: ${issues.length} otvorených hlásení.`);
+        if (!selectLinkedIssue()) setStatus(`Načítané: ${issues.length} otvorených hlásení.`);
       } catch (error) {
         setStatus(error.message || 'Issues sa nepodarilo načítať.', true);
       } finally {
@@ -485,6 +519,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
         resultSection.hidden = false;
         setStatus(`Schvaľovací workflow bol spustený: ${approval.workflowUrl || ''}`);
         selectedIssue = null;
+        updateIssueUrl(null);
         setApproveButtonsVisible(false);
       } catch (error) {
         setStatus(error.message || 'Schválenie zlyhalo.', true);
@@ -521,6 +556,7 @@ const sessionEndpoint = import.meta.env.PUBLIC_ADMIN_SESSION_ENDPOINT || '/api/a
         issues = issues.filter((issue) => Number(issue.number) !== Number(issueNumber));
         renderIssueList();
         selectedIssue = null;
+        updateIssueUrl(null);
         setApproveButtonsVisible(false);
       } catch (error) {
         setStatus(error.message || 'Zamietnutie zlyhalo.', true);

@@ -65,6 +65,32 @@ function absoluteUrl(value, fallbackOrigin = '') {
   }
 }
 
+function issueNumberFromUrl(issueUrl) {
+  const cleanUrl = cleanText(issueUrl, 1000);
+  try {
+    const url = new URL(cleanUrl);
+    const match = /\/issues\/(\d+)\/?$/.exec(url.pathname);
+    return match ? match[1] : '';
+  } catch {
+    const match = /\/issues\/(\d+)\/?$/.exec(cleanUrl);
+    return match ? match[1] : '';
+  }
+}
+
+function adminUrlForIssue(adminUrl, issueUrl) {
+  const cleanAdminUrl = cleanText(adminUrl, 1000);
+  const issueNumber = issueNumberFromUrl(issueUrl);
+  if (!cleanAdminUrl || !issueNumber) return cleanAdminUrl;
+  try {
+    const url = new URL(cleanAdminUrl);
+    url.searchParams.set('issue', issueNumber);
+    return url.href;
+  } catch {
+    const separator = cleanAdminUrl.includes('?') ? '&' : '?';
+    return `${cleanAdminUrl}${separator}issue=${encodeURIComponent(issueNumber)}`;
+  }
+}
+
 function base64Utf8(value) {
   const bytes = new TextEncoder().encode(String(value || ''));
   let binary = '';
@@ -130,6 +156,7 @@ export function buildErrataNotificationEmail({ data, issueUrl, adminUrl, origin 
   const message = cleanMultiline(data.message);
   const subjectTarget = articleId ? `#${articleId}` : title;
   const subject = `[bibliografia] Nová oprava ${subjectTarget}: ${typeLabel}`;
+  const targetedAdminUrl = adminUrlForIssue(absoluteUrl(adminUrl, origin), issueUrl);
 
   const textRows = [
     `Nová komunitná oprava: ${typeLabel}`,
@@ -141,7 +168,7 @@ export function buildErrataNotificationEmail({ data, issueUrl, adminUrl, origin 
     `Kontakt: ${contact}`,
     '',
     `GitHub issue: ${issueUrl || 'neuvedené'}`,
-    `Admin kontrola: ${adminUrl || 'neuvedené'}`,
+    `Admin kontrola: ${targetedAdminUrl || 'neuvedené'}`,
     articleUrl ? `Detail článku: ${articleUrl}` : '',
     '',
     'Poznámka používateľa:',
@@ -163,7 +190,7 @@ export function buildErrataNotificationEmail({ data, issueUrl, adminUrl, origin 
     </table>
     <p style="margin: 18px 0;">
       <a href="${escapeHtml(issueUrl)}" style="display: inline-block; padding: 10px 14px; background: #8f1f1f; color: #ffffff; text-decoration: none;">Otvoriť GitHub issue</a>
-      <a href="${escapeHtml(adminUrl)}" style="display: inline-block; padding: 10px 14px; margin-left: 8px; border: 1px solid #8f1f1f; color: #8f1f1f; text-decoration: none;">Admin kontrola</a>
+      <a href="${escapeHtml(targetedAdminUrl)}" style="display: inline-block; padding: 10px 14px; margin-left: 8px; border: 1px solid #8f1f1f; color: #8f1f1f; text-decoration: none;">Admin kontrola</a>
     </p>
     ${articleUrl ? `<p><a href="${escapeHtml(articleUrl)}">Detail článku</a></p>` : ''}
     <h2 style="font-size: 16px; margin: 20px 0 8px;">Poznámka používateľa</h2>
