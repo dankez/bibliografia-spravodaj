@@ -56,6 +56,8 @@ Statický web dopĺňajú malé serverové funkcie v `web/functions/`:
 - `api/admin/login.js`, `api/admin/logout.js`, `api/admin/session.js` spravujú admin session,
 - `api/admin/errata.js` načíta otvorené errata issues a pri schválení spustí GitHub Actions workflow.
 
+E-mailové upozornenia adminom sú doplnková notifikačná vrstva nad GitHub issues. Príjem má smerovať na `bibliografia@sss.sk`, ktorá môže byť vo Websupporte presmerovaná na viac admin adries. SMTP odosielanie musí používať reálnu schránku a tajné heslo uložené mimo repozitára. Prevádzkový postup je v `docs/ERRATA_EMAIL_NOTIFICATIONS.md`.
+
 Admin login je jednoduchý heslový režim:
 
 - heslo sa neukladá do repozitára,
@@ -108,7 +110,10 @@ Produkčné premenné sa nastavujú v Cloudflare Pages, nie v repozitári:
 - voliteľne `ADMIN_SESSION_SECONDS`,
 - voliteľne `ADMIN_USER_LABEL`,
 - voliteľne `ADMIN_APPROVAL_WORKFLOW`,
-- voliteľne `ADMIN_BASE_BRANCH`.
+- voliteľne `ADMIN_BASE_BRANCH`,
+- voliteľne `ERRATA_EMAIL_TO`, `ERRATA_EMAIL_FROM`, `ERRATA_EMAIL_REPLY_TO`, `ERRATA_ADMIN_URL`,
+- voliteľne `ERRATA_SMTP_HOST`, `ERRATA_SMTP_PORT`, `ERRATA_SMTP_USERNAME`,
+- voliteľne `ERRATA_SMTP_PASSWORD` ako secret.
 
 Tokeny a heslá musia byť nastavené ako secrets. Do Gitu nepatrí `.env` ani reálne hodnoty týchto premenných.
 

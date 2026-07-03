@@ -1,3 +1,5 @@
+import { sendErrataNotification } from '../_lib/email-notifications.js';
+
 const ALLOWED_TYPES = new Set([
   'author',
   'title',
@@ -429,6 +431,17 @@ async function createGithubIssue(env, data, request) {
   return { ok: true, issueUrl: result.html_url };
 }
 
+function notifyAdmins(context, data, issueUrl) {
+  const notification = sendErrataNotification(context.env, data, context.request, issueUrl).catch((error) => {
+    console.error('Errata email notification failed:', error?.message || error);
+  });
+  if (typeof context.waitUntil === 'function') {
+    context.waitUntil(notification);
+    return;
+  }
+  return notification;
+}
+
 export async function onRequestPost(context) {
   let payload;
   try {
@@ -445,6 +458,8 @@ export async function onRequestPost(context) {
 
   const github = await createGithubIssue(context.env, validation.data, context.request);
   if (!github.ok) return jsonResponse({ ok: false, error: github.error }, github.status);
+
+  await notifyAdmins(context, validation.data, github.issueUrl || '');
 
   return jsonResponse({ ok: true, issueUrl: github.issueUrl || '' });
 }

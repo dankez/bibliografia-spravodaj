@@ -389,6 +389,14 @@ Runtime premenné pre hosting:
 
 Do repozitára sa neukladajú žiadne tokeny ani `.env` súbory. Ak Turnstile alebo GitHub premenné nie sú nastavené, backend vráti konfiguračnú chybu namiesto tichého prijatia hlásenia.
 
+### E-mailové notifikácie adminom
+
+Admin notifikácie používajú `bibliografia@sss.sk` ako distribučný príjem. Táto adresa môže byť vo Websupporte nastavená ako presmerovanie na zoznam adminov. Na odosielanie treba reálnu schránku, napríklad `admin@sss.sk`, pretože SMTP prihlásenie nefunguje iba cez virtuálne presmerovanie.
+
+Produkcia číta mailové premenné `ERRATA_EMAIL_TO`, `ERRATA_EMAIL_FROM`, `ERRATA_EMAIL_REPLY_TO`, `ERRATA_ADMIN_URL`, `ERRATA_SMTP_HOST`, `ERRATA_SMTP_PORT`, `ERRATA_SMTP_USERNAME` a secret `ERRATA_SMTP_PASSWORD`. Ak nie sú nastavené, GitHub issue workflow funguje ďalej bez emailu.
+
+Podrobný runbook k Websupport SMTP, presmerovaniu, DNS a testovaniu je v `docs/ERRATA_EMAIL_NOTIFICATIONS.md`.
+
 ## Webová aplikácia
 
 Web je postavený na Astro, Tailwind/Vite integrácii a MiniSearch. Je statický, takže nepotrebuje serverovú databázu v produkcii.
