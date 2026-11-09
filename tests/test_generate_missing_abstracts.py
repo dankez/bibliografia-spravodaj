@@ -71,17 +71,26 @@ def test_normalize_generated_abstract_strips_thinking_scaffold():
     )
 
 
-def test_normalize_generated_abstract_keeps_two_concise_sentences():
+def test_normalize_generated_abstract_keeps_three_to_four_sentences():
     raw = (
         "ANOTACIA: Prvá veta opisuje predmet článku a konkrétnu jaskyňu. "
-        "Druhá veta stručne zhŕňa metódy a výsledky výskumu. "
-        "Tretia veta už nemá byť v bibliografickej anotácii."
+        "Druhá veta stručne zhŕňa metódy výskumu. "
+        "Tretia veta uvádza hlavné výsledky merania. "
+        "Štvrtá veta je už nad limit summary."
     )
 
     assert abstracts.normalize_generated_abstract(raw) == (
         "Prvá veta opisuje predmet článku a konkrétnu jaskyňu. "
-        "Druhá veta stručne zhŕňa metódy a výsledky výskumu."
+        "Druhá veta stručne zhŕňa metódy výskumu. "
+        "Tretia veta uvádza hlavné výsledky merania. "
+        "Štvrtá veta je už nad limit summary."
     )
+
+
+def test_build_prompt_asks_for_three_sentence_summary():
+    prompt = abstracts.build_prompt({"title": "Test", "year": 2005}, "text článku")
+
+    assert "3-4 vety" in prompt
 
 
 def test_apply_abstract_result_sets_ai_metadata_or_clears_generic():

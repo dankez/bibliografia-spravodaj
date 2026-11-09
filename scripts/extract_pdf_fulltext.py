@@ -13,6 +13,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 import tempfile
@@ -499,6 +500,11 @@ def choose_ocr_text(original_text: str, ocr_text: str, ocr_mode: str) -> tuple[b
 
 
 def pdf_page_count(pdf_path: Path) -> int:
+    if not shutil_which("pdfinfo"):
+        # Poppler pdfinfo nie je na Windows vždy k dispozícii; pypdf je rovnocenný zdroj počtu strán.
+        from pypdf import PdfReader
+
+        return len(PdfReader(str(pdf_path)).pages)
     result = subprocess.run(["pdfinfo", str(pdf_path)], capture_output=True, text=True, check=False)
     if result.returncode != 0:
         raise RuntimeError(result.stderr.strip() or f"pdfinfo failed for {pdf_path}")
@@ -727,8 +733,11 @@ def main() -> int:
         print("Error: pdftotext is required but was not found on PATH.", file=sys.stderr)
         return 1
     if not shutil_which("pdfinfo"):
-        print("Error: pdfinfo is required but was not found on PATH.", file=sys.stderr)
-        return 1
+        try:
+            import pypdf  # noqa: F401
+        except ImportError:
+            print("Error: pdfinfo alebo pypdf je potrebné na zistenie počtu strán.", file=sys.stderr)
+            return 1
     if args.ocr_mode != "off":
         for binary in ("pdffonts", "pdftoppm", "tesseract"):
             if not shutil_which(binary):
@@ -928,11 +937,8 @@ def main() -> int:
 
 
 def shutil_which(binary: str) -> str | None:
-    for entry in os.environ.get("PATH", "").split(os.pathsep):
-        candidate = Path(entry) / binary
-        if candidate.exists() and os.access(candidate, os.X_OK):
-            return str(candidate)
-    return None
+    # shutil.which rieši na Windows príponu .exe; vlastné hľadanie ju nenašlo.
+    return shutil.which(binary)
 
 
 if __name__ == "__main__":

@@ -19,7 +19,7 @@ Stav databázy k 27. júnu 2026:
 - **5 774 článkov** s priamym odkazom na PDF alebo spracovaným PDF zdrojom,
 - **10,3 milióna slov** v spracovanom texte,
 - **1 234 autorov** rozpoznaných bez anonymných záznamov,
-- **672 článkov** označených ako obsahujúce mapu alebo plán,
+- **670 článkov** označených ako obsahujúce mapu alebo plán,
 - **853 kariet jaskýň a lokalít** v registri,
 - **1 827 prepojení** medzi článkami a jaskyňami,
 - **7 329 položiek zo štátneho zoznamu jaskýň SMOPaJ**, ktoré slúžia ako referenčný základ na ďalšie čistenie názvov, párovanie lokalít a dopĺňanie registračných údajov.

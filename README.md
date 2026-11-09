@@ -29,7 +29,7 @@ Aktuálny dataset obsahuje:
 - 25569 research chunkov,
 - 2122 rozpoznaných entít,
 - 909 chronologických research timeline výstupov,
-- 672 článkov označených ako články s mapou alebo plánom naprieč archívom.
+- 670 článkov označených ako články s mapou alebo plánom naprieč archívom.
 
 Research manifest uvádza približne 65,8 milióna znakov a 10,3 milióna slov v spracovanom fulltexte. SQLite research databáza sa generuje lokálne a nie je commitovaná, pretože má viac ako 300 MB.
 
