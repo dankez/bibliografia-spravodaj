@@ -11097,31 +11097,6 @@
     "cover_url": "/covers/spravodaj_sss/1980_2_27700fb0d5.webp"
   },
   {
-    "id": 415,
-    "title": "Úvodník",
-    "authors": [
-      "Redakcia"
-    ],
-    "year": 1980,
-    "volume": "XI.",
-    "issue": "2",
-    "pages": "3",
-    "abstract": "Informácia o obsahovom zameraní čísla",
-    "pdf_url": "https://sss.sk/wp-content/uploads/2021/12/Spravodaj_SSS_2_1980.pdf",
-    "pdf_page_start": 5,
-    "pdf_page_end": 5,
-    "has_map_plan": false,
-    "map_plan_pages": [],
-    "map_plan_score": 0.0,
-    "tags": [
-      "Kartografia a meranie 🗺️"
-    ],
-    "caves": [],
-    "groups": [],
-    "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/1980_2_27700fb0d5.webp"
-  },
-  {
     "id": 416,
     "title": "Nové poznatky o náleze opálu v jaskyni Drienčanského krasu",
     "authors": [
@@ -69284,7 +69259,7 @@
       "Kortman, B."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "3",
     "abstract": "An introduction to the bulletin and the Slovak Speleological Society, outlining its history, activities, and mission.",
@@ -69300,7 +69275,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2537,
@@ -69309,7 +69285,7 @@
       "Anonymus"
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "4",
     "abstract": "A comprehensive list detailing the longest caves in Slovakia, including their respective lengths and depths.",
@@ -69325,7 +69301,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2538,
@@ -69334,7 +69311,7 @@
       "Anonymus"
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "5",
     "abstract": "A comprehensive list detailing the deepest caves in Slovakia, including their respective lengths and depths.",
@@ -69350,7 +69327,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2539,
@@ -69359,7 +69337,7 @@
       "Jagerčík, M."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "6",
     "abstract": "An article discussing the ongoing exploration efforts of Slovakia's deepest cave system and potential future directions for discovery.",
@@ -69375,7 +69353,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2540,
@@ -69384,7 +69363,7 @@
       "Stankovič, J."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "9",
     "abstract": "A narrative exploring the hypothesis of whether the Demänovské cave system could reach a total length of 50 km.",
@@ -69400,7 +69379,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2541,
@@ -69412,7 +69392,7 @@
       "Mlynárik, Š."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "17",
     "abstract": "An article about the Štefanová Cave and its significance in unraveling the geological and hydrological mysteries of the Stodôlka Massif in the Low Tatras Mountains.",
@@ -69428,7 +69408,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2542,
@@ -69438,7 +69419,7 @@
       "Kortman, B."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "24",
     "abstract": "A detailed description of the Mesačný tieň (Moon Shadow Cave), recognized as the longest cave system in the Tatra Mountains.",
@@ -69461,7 +69442,8 @@
         "url": "https://www.wikidata.org/wiki/Q12036577"
       }
     ],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2543,
@@ -69475,7 +69457,7 @@
       "Šurka, J."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "26",
     "abstract": "A report on the surveying and topographical mapping activities carried out in the Skalistý potok Cave within the Slovak Karst between 2008 and 2013.",
@@ -69498,7 +69480,8 @@
         "url": "https://www.wikidata.org/wiki/Q12054695"
       }
     ],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2544,
@@ -69510,7 +69493,7 @@
       "Okruhlica, Ľ."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "31",
     "abstract": "An article presenting the Javorinka – Nádejná Cave System in the High Tatras, highlighting its status as the second deepest cave in Slovakia.",
@@ -69526,7 +69509,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2545,
@@ -69535,7 +69519,7 @@
       "Stankovič, J."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "37",
     "abstract": "An investigative piece questioning the extent of current knowledge regarding the caves in the Suché doly karst area.",
@@ -69553,7 +69537,8 @@
       "OS Tisovec"
     ],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2546,
@@ -69563,7 +69548,7 @@
       "Stankovič, J."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "41",
     "abstract": "A descriptive article about the Prosiecka Cave located in the Chočské vrchy Mountains.",
@@ -69581,7 +69566,8 @@
       "OS Ružomberok"
     ],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2547,
@@ -69592,7 +69578,7 @@
       "Lalkovič, M."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "45",
     "abstract": "An overview of the publicly accessible show caves present across Slovakia.",
@@ -69608,7 +69594,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2548,
@@ -69617,7 +69604,7 @@
       "Kortman, B."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "66",
     "abstract": "A concise review of a significant book dedicated to the caves in Slovakia that are inscribed on the World Natural Heritage list.",
@@ -69633,7 +69620,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2549,
@@ -69642,7 +69630,7 @@
       "Okruhlica, Ľ."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "68",
     "abstract": "A summary of ten years of speleological expeditions and research conducted by Slovak cavers on the table mountains of Venezuela.",
@@ -69658,7 +69646,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2550,
@@ -69667,7 +69656,7 @@
       "Mázik, T."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "79",
     "abstract": "A report detailing the speleological exploration activities undertaken by the Speleological Club Červené Vrchy both within Slovakia and internationally.",
@@ -69683,7 +69672,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2551,
@@ -69692,7 +69682,7 @@
       "Kubiček, P."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "84",
     "abstract": "An account of experiences and activities related to cave diving expeditions in Mexico.",
@@ -69708,7 +69698,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2552,
@@ -69717,7 +69708,7 @@
       "Vlček, L."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "88",
     "abstract": "A report on a speleological expedition to Sardinia in 2012, highlighting underground exploration.",
@@ -69733,7 +69724,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2553,
@@ -69742,7 +69734,7 @@
       "Vlček, L."
     ],
     "year": 2013,
-    "volume": "",
+    "volume": "XLIV",
     "issue": "kongres",
     "pages": "93",
     "abstract": "A report detailing the exploration efforts and discoveries made in the Drăcoaia Cave located in Romania.",
@@ -69758,7 +69750,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp"
+    "cover_url": "/covers/spravodaj_sss/2013_kongres_2c04b88b48.webp",
+    "volume_derived": true
   },
   {
     "id": 2554,
@@ -69767,7 +69760,7 @@
       "Holúbek, P."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "3",
     "abstract": "An overview of the activities and achievements of Slovak cavers in the year 2022.",
@@ -69783,7 +69776,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2555,
@@ -69793,7 +69787,7 @@
       "Kasák, J."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "4",
     "abstract": "An introductory article describing the Slovak Speleological Society, its structure, and activities.",
@@ -69809,7 +69803,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2556,
@@ -69818,7 +69813,7 @@
       "Tencer, J."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "8",
     "abstract": "A comprehensive list of the most extensive and deepest cave systems found within Slovakia.",
@@ -69834,7 +69829,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2557,
@@ -69843,7 +69839,7 @@
       "Vlček, L."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "9",
     "abstract": "A guide introducing prominent individuals and their contributions to Slovak speleology.",
@@ -69860,7 +69856,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2558,
@@ -69869,7 +69866,7 @@
       "Vlček, L."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "10",
     "abstract": "An article encouraging readers to explore and learn about the accessible show caves in Slovakia.",
@@ -69886,7 +69883,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2559,
@@ -69895,7 +69893,7 @@
       "Hochmuth, Z."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "11",
     "abstract": "A report detailing the exploration and difficulties encountered with the numerous sumps in the Skalistý potok Cave.",
@@ -69918,7 +69916,8 @@
         "url": "https://www.wikidata.org/wiki/Q12054695"
       }
     ],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2560,
@@ -69928,7 +69927,7 @@
       "Jančovič, D."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "14",
     "abstract": "An article describing recent discoveries and exploration efforts in Samova diera Cave, located in the Jánska Valley of the Low Tatras.",
@@ -69944,7 +69943,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2561,
@@ -69955,7 +69955,7 @@
       "Vlček, L."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "21",
     "abstract": "A report on the project and findings from the re-mapping of Partizánska Cave in the Jánska Valley.",
@@ -69971,7 +69971,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2562,
@@ -69980,7 +69981,7 @@
       "Lačný, A."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "24",
     "abstract": "An account of the exploration and challenges faced in Vajsáblova Priepasť Chasm, the deepest cave in the Little Carpathians.",
@@ -69996,7 +69997,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2563,
@@ -70005,7 +70007,7 @@
       "Szunyog, J."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "31",
     "abstract": "An article focusing on Prosiecka Cave, highlighting its features and opportunities for speleological digging activities.",
@@ -70021,7 +70023,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2564,
@@ -70030,7 +70033,7 @@
       "Pokrievka, P."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "34",
     "abstract": "A report on the discovery and significance of Suchá 3 Cave as a new paleontological site containing cave bear remains in the Veľká Fatra Mountains.",
@@ -70048,7 +70051,8 @@
       "OS Martin"
     ],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2565,
@@ -70062,7 +70066,7 @@
       "Ďurčík, M."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "38",
     "abstract": "An article discussing the recent discovery of an upper level in Bobačka Cave and the potential for further exploration on the Muráň plateau.",
@@ -70078,7 +70082,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2566,
@@ -70094,7 +70099,7 @@
       "Zverka, M."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "42",
     "abstract": "A detailed account of the expedition and methods used to navigate through the sumps of Teplica Cave on the Muráň Plateau.",
@@ -70110,7 +70115,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2567,
@@ -70123,7 +70129,7 @@
       "Šimková, Z."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "46",
     "abstract": "A report presenting significant archaeological discoveries made in caves and karst areas of northern Slovakia.",
@@ -70139,7 +70145,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2568,
@@ -70149,7 +70156,7 @@
       "Šupinský, J."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "49",
     "abstract": "An update on recent exploration and new discoveries within the Domica-Čertova diera cave system in the Slovak Karst National Park.",
@@ -70173,7 +70180,8 @@
         "url": "https://www.wikidata.org/wiki/Q908865"
       }
     ],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2569,
@@ -70182,7 +70190,7 @@
       "Herich, P."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "52",
     "abstract": "A speculative article exploring the evolution and potential future appearance of cave maps, considering technological advancements.",
@@ -70198,7 +70206,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2570,
@@ -70207,7 +70216,7 @@
       "Mudrák, S."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "56",
     "abstract": "A report detailing the strenuous digging efforts and progress made in the Eurotunnel sump within the Cave of Dead Bats.",
@@ -70223,7 +70232,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2571,
@@ -70235,7 +70245,7 @@
       "Kováč, Ľ."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "60",
     "abstract": "An overview of the latest findings and studies regarding cave-dwelling fauna across various Slovakian caves.",
@@ -70251,7 +70261,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2572,
@@ -70260,7 +70271,7 @@
       "Vlček, L."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "61",
     "abstract": "A review or summary of recent publications and significant works in Slovak speleological literature.",
@@ -70276,7 +70287,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2573,
@@ -70286,7 +70298,7 @@
       "Holúbek, P."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "62",
     "abstract": "A historical overview of the Slovak Museum of Nature Protection and Speleology, covering its period from 1930 to 2022.",
@@ -70302,7 +70314,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2574,
@@ -70312,7 +70325,7 @@
       "Papáč, V."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "71",
     "abstract": "A comprehensive report on half a decade of speleological expeditions and discoveries by Slovak cavers in the Băiţa karst area of Romania.",
@@ -70328,7 +70341,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2575,
@@ -70340,7 +70354,7 @@
       "Loru, R."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "78",
     "abstract": "An article detailing the speleological exploration efforts within the Bue Marino and Su Molente caves in Sardinia.",
@@ -70356,7 +70370,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2576,
@@ -70365,7 +70380,7 @@
       "Kýška, K."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "85",
     "abstract": "A report on the challenging and exciting exploration of flooded cave systems in Mexico.",
@@ -70381,7 +70396,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2577,
@@ -70396,7 +70412,7 @@
       "Bahebaze, A."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "92",
     "abstract": "An account of two speleological expeditions undertaken by cavers to the High Atlas Mountains in Morocco.",
@@ -70412,7 +70428,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2578,
@@ -70424,7 +70441,7 @@
       "Danko, M."
     ],
     "year": 2022,
-    "volume": "",
+    "volume": "LIII",
     "issue": "kongres",
     "pages": "100",
     "abstract": "An article presenting information about the international photography contest focused on caves and speleology.",
@@ -70440,7 +70457,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp"
+    "cover_url": "/covers/spravodaj_sss/2022_kongres_6517a2da27.webp",
+    "volume_derived": true
   },
   {
     "id": 2579,
@@ -73077,7 +73095,7 @@
       "Mayoral, F."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "3",
     "abstract": "Príspevok predstavuje objavy a výskum rozsiahlych kremencových jaskýň Cueva Charles Brewer a Cueva Ojos de Cristal vo venezuelských stolových horách Chimantá a Roraima.",
@@ -73093,7 +73111,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2679,
@@ -73102,7 +73121,7 @@
       "Šmída, B."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "11",
     "abstract": "Článok sumarizuje účasť slovenských jaskyniarov na objavovaní a výskume hlbokých priepastí a veľkých vertikálnych systémov vo Velebite v Chorvátsku v rokoch 1990-2004.",
@@ -73118,7 +73137,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2680,
@@ -73128,7 +73148,7 @@
       "Šmída, B."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "19",
     "abstract": "Príspevok opisuje objav a prieskum jaskynného systému Velika klisura v Kosove, významného jaskynného systému Balkánu.",
@@ -73144,7 +73164,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2681,
@@ -73153,7 +73174,7 @@
       "Motyčka, Z."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "24",
     "abstract": "Článok informuje o prieskume podvodných jaskýň v oblasti Riviera Maya v Mexiku v rokoch 2003-2005.",
@@ -73169,7 +73190,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2682,
@@ -73178,7 +73200,7 @@
       "Hipmanová, E."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "27",
     "abstract": "Príspevok sa venuje jaskynnému systému Hipmanových jaskýň, vytvorenému spojením častí Večná robota a Starý hrad.",
@@ -73194,7 +73216,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2683,
@@ -73204,7 +73227,7 @@
       "Cílek, V."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "31",
     "abstract": "Článok predstavuje prvé nálezy steagamitov, nezvyčajných jaskynných foriem, na území Slovenska.",
@@ -73220,7 +73243,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2684,
@@ -73231,7 +73255,7 @@
       "Imrich, P."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "36",
     "abstract": "Príspevok opisuje pseudokrasové javy a lokality v pohorí Levočské vrchy.",
@@ -73247,7 +73271,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2685,
@@ -73256,7 +73281,7 @@
       "Sluka, M."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "43",
     "abstract": "Článok približuje postup a okolnosti tvorby mapy Čachtickej jaskyne.",
@@ -73286,7 +73311,8 @@
         "url": "https://www.wikidata.org/wiki/Q3506161"
       }
     ],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2686,
@@ -73295,7 +73321,7 @@
       "Butaš, J."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "48",
     "abstract": "Príspevok opisuje priepasť Plavecká PP-2 a jej speleologické charakteristiky.",
@@ -73313,7 +73339,8 @@
       "Speleoklub Plavecké Podhradie"
     ],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2687,
@@ -73322,7 +73349,7 @@
       "Tencer, J."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "3",
     "pages": "51",
     "abstract": "Článok prináša stručnú informáciu o najdlhšej a najhlbšej jaskyni na Slovensku.",
@@ -73338,7 +73365,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_3-mimoriadne-cislo_0ed4f564b3.webp",
+    "volume_derived": true
   },
   {
     "id": 2688,
@@ -73350,7 +73378,7 @@
       "Mayoral, F."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "3-10",
     "abstract": "Príspevok predstavuje objavy a výskum rozsiahlych kvarcitových jaskýň Cueva Charles Brewer a Cueva Ojos de Cristal vo venezuelských stolových horách Chimantá a Roraima.",
@@ -73366,7 +73394,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2689,
@@ -73375,7 +73404,7 @@
       "Šmída, B."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "11-18",
     "abstract": "Článok sumarizuje účasť slovenských jaskyniarov na objavovaní hlbokých priepastí a vertikálnych jaskynných systémov v pohorí Velebit v Chorvátsku v rokoch 1990-2004.",
@@ -73392,7 +73421,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2690,
@@ -73402,7 +73432,7 @@
       "Šmída, B."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "19-23",
     "abstract": "Príspevok opisuje objav a prieskum jaskynného systému Velika klisura v Kosove, jedného z významných jaskynných systémov Balkánu.",
@@ -73418,7 +73448,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2691,
@@ -73427,7 +73458,7 @@
       "Motyčka, Z."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "24-26",
     "abstract": "Článok prináša prehľad prieskumu podvodných jaskýň v oblasti Riviera Maya v Mexiku v rokoch 2003-2005.",
@@ -73443,7 +73474,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2692,
@@ -73452,7 +73484,7 @@
       "Hipmanová, E."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "27-30",
     "abstract": "Príspevok sa venuje jaskynnému systému Hipmanových jaskýň, vytvorenému prepojením alebo spoločným hodnotením lokalít Večná robota a Starý hrad.",
@@ -73468,7 +73500,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2693,
@@ -73478,7 +73511,7 @@
       "Cílek, V."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "31-35",
     "abstract": "Článok dokumentuje prvé nálezy stegamítov, nezvyčajných jaskynných foriem, na území Slovenska.",
@@ -73494,7 +73527,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2694,
@@ -73505,7 +73539,7 @@
       "Imrich, P."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "36-42",
     "abstract": "Príspevok predstavuje pseudokrasové javy a lokality v Levočských vrchoch.",
@@ -73523,7 +73557,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2695,
@@ -73532,7 +73567,7 @@
       "Sluka, M."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "43-47",
     "abstract": "Článok opisuje postup a okolnosti tvorby mapy Čachtickej jaskyne.",
@@ -73562,7 +73597,8 @@
         "url": "https://www.wikidata.org/wiki/Q3506161"
       }
     ],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2696,
@@ -73571,7 +73607,7 @@
       "Butaš, J."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "48-50",
     "abstract": "Príspevok sa zaoberá lokalitou Plavecká priepasť PP-2 a jej jaskyniarskym významom.",
@@ -73589,7 +73625,8 @@
       "Speleoklub Plavecké Podhradie"
     ],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2697,
@@ -73598,7 +73635,7 @@
       "Tencer, J."
     ],
     "year": 2005,
-    "volume": "",
+    "volume": "XXXVI",
     "issue": "kongres",
     "pages": "51-52",
     "abstract": "Článok informuje o najdlhšej a najhlbšej jaskyni na Slovensku.",
@@ -73614,7 +73651,8 @@
     "caves": [],
     "groups": [],
     "wikidata": [],
-    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp"
+    "cover_url": "/covers/spravodaj_sss/2005_kongres_0c3b3614ab.webp",
+    "volume_derived": true
   },
   {
     "id": 2698,

@@ -590,6 +590,7 @@ const bibliographyExportMenus = [
     const nextPageBtn = byId('next-page-btn');
     let filtered = articles;
     let fulltextMiniSearch = null;
+    let fulltextSnippets = new Map();
     let fulltextManifest = null;
     let fulltextManifestPromise = null;
     let fulltextLoadPromise = null;
@@ -671,7 +672,7 @@ const bibliographyExportMenus = [
       if (fulltextMiniSearch) return fulltextMiniSearch;
       fulltextMiniSearch = new MiniSearch({
         fields: ['t'],
-        storeFields: ['a'],
+        storeFields: ['a', 't'],
         processTerm: processSearchTerm,
         searchOptions: {
           prefix: true,
@@ -1020,10 +1021,13 @@ const bibliographyExportMenus = [
         ? ensureMiniSearch().search(query).map((hit) => articlesById.get(Number(hit.id))).filter(Boolean)
         : articles.slice();
 
+      if (!query || !state.fulltext) fulltextSnippets = new Map();
       if (query && state.fulltext) {
         if (fulltextMiniSearch) {
           const seen = new Set(base.map((article) => article.id));
-          fulltextMiniSearch.search(query).forEach((hit) => {
+          const hits = fulltextMiniSearch.search(query);
+          fulltextSnippets = snippetsFromHits(hits, query);
+          hits.forEach((hit) => {
             const article = articlesById.get(hit.a);
             if (article && !seen.has(article.id)) {
               base.push(article);
@@ -1066,6 +1070,35 @@ const bibliographyExportMenus = [
       if (state.activeTab === 'analytics') renderCharts();
     }
 
+    // Najlepší zásah na článok: úryvok okolo prvého hľadaného výrazu v chunku (text sa nezvýrazňuje, len sa ukáže kontext).
+    function makeSnippet(text, query) {
+      const source = String(text || '').replace(/\s+/g, ' ').trim();
+      if (!source) return '';
+      const lower = source.toLocaleLowerCase('sk');
+      const terms = String(query || '').toLocaleLowerCase('sk').split(/\s+/).filter((term) => term.length > 1);
+      let at = -1;
+      for (const term of terms) {
+        at = lower.indexOf(term);
+        if (at >= 0) break;
+      }
+      const radius = 110;
+      const start = at >= 0 ? Math.max(0, at - radius) : 0;
+      const end = Math.min(source.length, (at >= 0 ? at : 0) + radius * 2);
+      const prefix = start > 0 ? '… ' : '';
+      const suffix = end < source.length ? ' …' : '';
+      return `${prefix}${source.slice(start, end).trim()}${suffix}`;
+    }
+
+    function snippetsFromHits(hits, query) {
+      const snippets = new Map();
+      hits.forEach((hit) => {
+        if (snippets.has(hit.a)) return;
+        const snippet = makeSnippet(hit.t, query);
+        if (snippet) snippets.set(hit.a, snippet);
+      });
+      return snippets;
+    }
+
     function renderList() {
       const totalPages = Math.max(1, Math.ceil(filtered.length / state.pageSize));
       state.page = Math.min(state.page, totalPages);
@@ -1101,6 +1134,10 @@ const bibliographyExportMenus = [
         appendTextElement(row, 'p', 'article-result-author', formatAuthorsDisplay(article.authors || []));
         if (abstract) {
           appendTextElement(row, 'p', 'article-result-abstract line-clamp-2', abstract);
+        }
+        const snippet = fulltextSnippets.get(article.id);
+        if (snippet) {
+          appendTextElement(row, 'p', 'article-result-snippet line-clamp-2', snippet);
         }
         row.addEventListener('click', () => selectArticle(article.id));
         listEl.appendChild(row);
