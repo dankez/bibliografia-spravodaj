@@ -26,7 +26,9 @@ DEFAULT_FRONTEND_PATH = BASE_DIR / "web" / "src" / "data" / "articles.json"
 DEFAULT_MODEL = "gemma4:e2b-it-qat"
 SAMPLE_IMPORT_CREATED_BY = "codex_journal_sample_import"
 MAX_TEXT_CHARS = 9000
-MAX_ABSTRACT_CHARS = 420
+MAX_ABSTRACT_CHARS = 700
+MIN_ABSTRACT_SENTENCES = 3
+MAX_ABSTRACT_SENTENCES = 4
 OLLAMA_GENERATE_URL = "http://127.0.0.1:11434/api/generate"
 
 GENERIC_IMPORT_RE = re.compile(
@@ -95,7 +97,7 @@ def safe_title_abstract(article: dict[str, Any]) -> str:
     return concise_sentences(f"{prefix} „{title}“.")
 
 
-def concise_sentences(text: str, max_sentences: int = 2, max_chars: int = MAX_ABSTRACT_CHARS) -> str:
+def concise_sentences(text: str, max_sentences: int = MAX_ABSTRACT_SENTENCES, max_chars: int = MAX_ABSTRACT_CHARS) -> str:
     sentences = [sentence.strip() for sentence in re.split(r"(?<=[.!?])\s+", text) if sentence.strip()]
     if sentences:
         text = normalize_spaces(" ".join(sentences[:max_sentences]))
@@ -191,7 +193,7 @@ def build_prompt(article: dict[str, Any], text: str) -> str:
     return (
         "Si odborný bibliograf a speleologický redaktor. "
         "Z dodaného textu článku vytvor jednu vecnú slovenskú anotáciu pre bibliografiu. "
-        "Maximálne 1-2 vety a 360 znakov. Použi jednoduchú slovenčinu a terminológiu zo slovenského názvu článku. "
+        f"Napíš {MIN_ABSTRACT_SENTENCES}-{MAX_ABSTRACT_SENTENCES} vety (krátke summary článku), najviac {MAX_ABSTRACT_CHARS} znakov. Použi jednoduchú slovenčinu a terminológiu zo slovenského názvu článku. "
         "Zachovaj konkrétne jaskyne, lokality, metódy a výsledky, "
         "ak sú v texte uvedené. Nevymýšľaj fakty mimo textu. "
         "Nemeň vlastné názvy lokalít do neistej gramatiky; radšej napíš názov v základnom tvare. "
