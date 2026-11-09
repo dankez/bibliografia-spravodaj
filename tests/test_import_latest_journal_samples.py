@@ -65,7 +65,7 @@ def test_merge_sample_articles_is_idempotent_for_same_issue_keys():
 def test_journal_filter_replaces_issue_filter_on_web_homepage():
     source = (ROOT / "web" / "src" / "pages" / "index.astro").read_text(encoding="utf-8")
 
-    assert "journal-filter-select" in source
+    assert "journal-filter-menu" in source
     assert "Filter časopisu" in source
     assert "issue-filter-btn" not in source
     assert "state.journal" in source

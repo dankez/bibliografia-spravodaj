@@ -31513,7 +31513,6 @@
     "tags": [
       "Expedície a zahraničie 🌍",
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "meračské údaje"
     ],
     "groups": [],
@@ -31584,29 +31583,26 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 0.86,
-        "confidence": "high",
-        "pages": [
-          15
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: mapa/plán/pôdorys",
           "guard: chýba mierka alebo meračský kontext",
           "text: merali/kreslili/zamerali",
-          "text: mierka 1:n"
+          "text: mierka 1:n",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 0.86,
-    "map_plan_pages": [
-      15
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1978_1_888dfccb0a.webp"
   },
   {
@@ -53404,7 +53400,8 @@
     "tags": [
       "Speleológia",
       "obrazová dokumentácia",
-      "literatúra"
+      "literatúra",
+      "mapa/plán"
     ],
     "groups": [],
     "wikidata": [],
@@ -53472,17 +53469,21 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": false,
-        "score": 0.0,
-        "confidence": "none",
+        "present": true,
+        "score": 0.92,
+        "confidence": "high",
         "pages": [],
-        "evidence": [],
-        "methods": [],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "evidence": [
+          "metadata: pl. (plán v prílohách)"
+        ],
+        "methods": [
+          "metadata"
+        ],
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": false,
-    "map_plan_score": 0.0,
+    "has_map_plan": true,
+    "map_plan_score": 0.92,
     "map_plan_pages": []
   },
   {
@@ -55837,7 +55838,8 @@
       "História a osobnosti 📜",
       "obrazová dokumentácia",
       "literatúra",
-      "meračské údaje"
+      "meračské údaje",
+      "mapa/plán"
     ],
     "groups": [
       "OS Čachtice"
@@ -55929,22 +55931,21 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": false,
-        "score": 0.18,
-        "confidence": "low",
+        "present": true,
+        "score": 0.92,
+        "confidence": "high",
         "pages": [],
         "evidence": [
-          "text: legenda/polygón/meračské body",
-          "guard: chýba mierka alebo meračský kontext"
+          "metadata: pl. (plán v prílohách)"
         ],
         "methods": [
-          "text"
+          "metadata"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": false,
-    "map_plan_score": 0.18,
+    "has_map_plan": true,
+    "map_plan_score": 0.92,
     "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1983_1_5c90a31add.webp"
   },
@@ -69613,7 +69614,6 @@
     "caves": [],
     "tags": [
       "Expedície a zahraničie 🌍",
-      "mapa/plán",
       "obrazová dokumentácia",
       "meračské údaje",
       "rez/profil"
@@ -69703,31 +69703,28 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 0.86,
-        "confidence": "high",
-        "pages": [
-          22
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: merali/kreslili/zamerali",
           "guard: chýba mierka alebo meračský kontext",
           "text: mierka 1:n",
           "text: mapa/plán/pôdorys",
           "text: dĺžka/hĺbka/prevýšenie",
-          "text: rez/profil"
+          "text: rez/profil",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 0.86,
-    "map_plan_pages": [
-      22
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1984_4_4a62604579.webp"
   },
   {
@@ -73881,7 +73878,6 @@
     "caves": [],
     "tags": [
       "Speleológia",
-      "mapa/plán",
       "obrazová dokumentácia",
       "meračské údaje"
     ],
@@ -73962,30 +73958,27 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 0.86,
-        "confidence": "high",
-        "pages": [
-          18
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: merali/kreslili/zamerali",
           "guard: chýba mierka alebo meračský kontext",
           "text: mapa/plán/pôdorys",
           "text: mierka 1:n",
-          "text: dĺžka/hĺbka/prevýšenie"
+          "text: dĺžka/hĺbka/prevýšenie",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 0.86,
-    "map_plan_pages": [
-      18
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1985_3-4_e83517a768.webp"
   },
   {
@@ -80667,7 +80660,6 @@
     "caves": [],
     "tags": [
       "Speleológia",
-      "mapa/plán",
       "obrazová dokumentácia",
       "meračské údaje"
     ],
@@ -80751,31 +80743,28 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 0.96,
-        "confidence": "high",
-        "pages": [
-          18
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: mapa/plán/pôdorys",
           "guard: chýba mierka alebo meračský kontext",
           "text: merali/kreslili/zamerali",
           "text: dĺžka/hĺbka/prevýšenie",
           "text: mierka 1:n",
-          "text: legenda/polygón/meračské body"
+          "text: legenda/polygón/meračské body",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 0.96,
-    "map_plan_pages": [
-      18
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1986_3-4_20315ff6b3.webp"
   },
   {
@@ -88339,7 +88328,8 @@
       "Speleológia",
       "obrazová dokumentácia",
       "literatúra",
-      "meračské údaje"
+      "meračské údaje",
+      "mapa/plán"
     ],
     "groups": [],
     "wikidata": [],
@@ -88424,23 +88414,21 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": false,
-        "score": 0.44,
-        "confidence": "candidate",
+        "present": true,
+        "score": 0.92,
+        "confidence": "high",
         "pages": [],
         "evidence": [
-          "text: mapa/plán/pôdorys",
-          "text: merali/kreslili/zamerali",
-          "guard: chýba mierka alebo meračský kontext"
+          "metadata: pl. (plán v prílohách)"
         ],
         "methods": [
-          "text"
+          "metadata"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": false,
-    "map_plan_score": 0.44,
+    "has_map_plan": true,
+    "map_plan_score": 0.92,
     "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1989_1_ce770ca992.webp"
   },
@@ -98683,7 +98671,6 @@
     "caves": [],
     "tags": [
       "Speleológia",
-      "mapa/plán",
       "tabuľky"
     ],
     "groups": [],
@@ -98752,30 +98739,27 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 0.86,
-        "confidence": "high",
-        "pages": [
-          63
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: mierka 1:n",
           "text: mapa/plán/pôdorys",
-          "text: merali/kreslili/zamerali"
+          "text: merali/kreslili/zamerali",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
     "author_source": "tail_signature_repair",
     "author_confidence": 0.88,
-    "has_map_plan": true,
-    "map_plan_score": 0.86,
-    "map_plan_pages": [
-      63
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1991_1_dcdcd2dbb6.webp"
   },
   {
@@ -126531,7 +126515,8 @@
     "caves": [],
     "tags": [
       "Speleológia",
-      "meračské údaje"
+      "meračské údaje",
+      "mapa/plán"
     ],
     "groups": [],
     "wikidata": [],
@@ -126599,17 +126584,21 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": false,
-        "score": 0.0,
-        "confidence": "none",
+        "present": true,
+        "score": 0.92,
+        "confidence": "high",
         "pages": [],
-        "evidence": [],
-        "methods": [],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "evidence": [
+          "metadata: pl. (plán v prílohách)"
+        ],
+        "methods": [
+          "metadata"
+        ],
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": false,
-    "map_plan_score": 0.0,
+    "has_map_plan": true,
+    "map_plan_score": 0.92,
     "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1996_2_2044d3658b.webp"
   },
@@ -150454,7 +150443,6 @@
     "caves": [],
     "tags": [
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "obrazová dokumentácia",
       "tabuľky",
       "meračské údaje"
@@ -150548,31 +150536,28 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 1.0,
-        "confidence": "high",
-        "pages": [
-          15
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: merali/kreslili/zamerali",
           "text: legenda/polygón/meračské body",
           "text: dĺžka/hĺbka/prevýšenie",
           "guard: chýba mierka alebo meračský kontext",
           "text: mapa/plán/pôdorys",
-          "text: mierka 1:n"
+          "text: mierka 1:n",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 1.0,
-    "map_plan_pages": [
-      15
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1999_1_56afdd7f24.webp"
   },
   {
@@ -153223,7 +153208,6 @@
     "caves": [],
     "tags": [
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "tabuľky",
       "meračské údaje"
     ],
@@ -153304,12 +153288,10 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 1.0,
-        "confidence": "high",
-        "pages": [
-          16
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: mapa/plán/pôdorys",
           "text: merali/kreslili/zamerali",
@@ -153317,19 +153299,18 @@
           "guard: chýba mierka alebo meračský kontext",
           "text: dĺžka/hĺbka/prevýšenie",
           "text: mierka 1:n",
-          "guard: iba mierka + všeobecná mapa/plán"
+          "guard: iba mierka + všeobecná mapa/plán",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 1.0,
-    "map_plan_pages": [
-      16
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/1999_2_d7642aaae2.webp"
   },
   {
@@ -160569,7 +160550,6 @@
     "caves": [],
     "tags": [
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "tabuľky",
       "meračské údaje"
     ],
@@ -160648,31 +160628,28 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 1.0,
-        "confidence": "high",
-        "pages": [
-          13
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: merali/kreslili/zamerali",
           "guard: chýba mierka alebo meračský kontext",
           "text: legenda/polygón/meračské body",
           "text: dĺžka/hĺbka/prevýšenie",
           "text: mierka 1:n",
-          "text: mapa/plán/pôdorys"
+          "text: mapa/plán/pôdorys",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 1.0,
-    "map_plan_pages": [
-      13
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/2000_1_3a65042dce.webp"
   },
   {
@@ -175286,7 +175263,8 @@
     "tags": [
       "História a osobnosti 📜",
       "obrazová dokumentácia",
-      "literatúra"
+      "literatúra",
+      "mapa/plán"
     ],
     "groups": [],
     "wikidata": [],
@@ -175360,23 +175338,21 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": false,
-        "score": 0.68,
-        "confidence": "candidate",
+        "present": true,
+        "score": 0.92,
+        "confidence": "high",
         "pages": [],
         "evidence": [
-          "text: mierka 1:n",
-          "text: mapa/plán/pôdorys",
-          "guard: iba mierka + všeobecná mapa/plán"
+          "metadata: pl. (plán v prílohách)"
         ],
         "methods": [
-          "text"
+          "metadata"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": false,
-    "map_plan_score": 0.68,
+    "has_map_plan": true,
+    "map_plan_score": 0.92,
     "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/2000_4_7dc27d7acf.webp"
   },
@@ -178637,7 +178613,8 @@
       "História a osobnosti 📜",
       "obrazová dokumentácia",
       "tabuľky",
-      "literatúra"
+      "literatúra",
+      "mapa/plán"
     ],
     "groups": [
       "OS Ružomberok"
@@ -178720,17 +178697,21 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": false,
-        "score": 0.0,
-        "confidence": "none",
+        "present": true,
+        "score": 0.92,
+        "confidence": "high",
         "pages": [],
-        "evidence": [],
-        "methods": [],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "evidence": [
+          "metadata: pl. (plán v prílohách)"
+        ],
+        "methods": [
+          "metadata"
+        ],
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": false,
-    "map_plan_score": 0.0,
+    "has_map_plan": true,
+    "map_plan_score": 0.92,
     "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/2001_1_09f804b62d.webp"
   },
@@ -193932,7 +193913,6 @@
     "caves": [],
     "tags": [
       "Speleológia",
-      "mapa/plán",
       "tabuľky",
       "meračské údaje",
       "súradnice"
@@ -194015,28 +193995,25 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 0.86,
-        "confidence": "high",
-        "pages": [
-          44
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: mierka 1:n",
           "text: mapa/plán/pôdorys",
-          "text: merali/kreslili/zamerali"
+          "text: merali/kreslili/zamerali",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 0.86,
-    "map_plan_pages": [
-      44
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/2002_2_a8300a4b4f.webp"
   },
   {
@@ -210528,7 +210505,8 @@
     "caves": [],
     "tags": [
       "História a osobnosti 📜",
-      "obrazová dokumentácia"
+      "obrazová dokumentácia",
+      "mapa/plán"
     ],
     "groups": [],
     "wikidata": [],
@@ -210598,17 +210576,21 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": false,
-        "score": 0.0,
-        "confidence": "none",
+        "present": true,
+        "score": 0.92,
+        "confidence": "high",
         "pages": [],
-        "evidence": [],
-        "methods": [],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "evidence": [
+          "metadata: pl. (plán v prílohách)"
+        ],
+        "methods": [
+          "metadata"
+        ],
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": false,
-    "map_plan_score": 0.0,
+    "has_map_plan": true,
+    "map_plan_score": 0.92,
     "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/2004_1_7a560483a1.webp"
   },
@@ -232092,7 +232074,6 @@
     "tags": [
       "Expedície a zahraničie 🌍",
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "obrazová dokumentácia",
       "tabuľky",
       "meračské údaje",
@@ -232216,12 +232197,10 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": true,
-        "score": 0.96,
-        "confidence": "high",
-        "pages": [
-          11
-        ],
+        "present": false,
+        "score": 0.84,
+        "confidence": "candidate",
+        "pages": [],
         "evidence": [
           "text: merali/kreslili/zamerali",
           "guard: chýba mierka alebo meračský kontext",
@@ -232229,19 +232208,18 @@
           "text: mapa/plán/pôdorys",
           "text: dĺžka/hĺbka/prevýšenie",
           "text: legenda/polygón/meračské body",
-          "text: rez/profil"
+          "text: rez/profil",
+          "guard: správa/adresár bez metadátového dôkazu"
         ],
         "methods": [
           "text"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": true,
-    "map_plan_score": 0.96,
-    "map_plan_pages": [
-      11
-    ],
+    "has_map_plan": false,
+    "map_plan_score": 0.84,
+    "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/2006_1_bfbdb46035.webp"
   },
   {
@@ -235734,7 +235712,8 @@
       "obrazová dokumentácia",
       "tabuľky",
       "meračské údaje",
-      "rez/profil"
+      "rez/profil",
+      "mapa/plán"
     ],
     "groups": [],
     "wikidata": [],
@@ -235822,24 +235801,21 @@
         "updated_at": "2026-06-19T21:08:28+00:00"
       },
       "map_plan": {
-        "present": false,
-        "score": 0.46,
-        "confidence": "candidate",
+        "present": true,
+        "score": 0.92,
+        "confidence": "high",
         "pages": [],
         "evidence": [
-          "text: merali/kreslili/zamerali",
-          "text: dĺžka/hĺbka/prevýšenie",
-          "text: rez/profil",
-          "guard: chýba mierka alebo meračský kontext"
+          "metadata: pl. (plán v prílohách)"
         ],
         "methods": [
-          "text"
+          "metadata"
         ],
-        "updated_at": "2026-06-19T21:08:28+00:00"
+        "updated_at": "2026-11-09T11:58:03+00:00"
       }
     },
-    "has_map_plan": false,
-    "map_plan_score": 0.46,
+    "has_map_plan": true,
+    "map_plan_score": 0.92,
     "map_plan_pages": [],
     "cover_url": "/covers/spravodaj_sss/2006_2_5e56a1480f.webp"
   },

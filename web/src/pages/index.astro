@@ -527,17 +527,24 @@ const bibliographyExportMenus = [
     const articleYears = articles.map((article) => article.year);
     const START_YEAR = Math.min(...articleYears);
     const END_YEAR = Math.max(...articleYears, new Date().getFullYear());
-    const miniSearch = new MiniSearch({
-      fields: ['title', 'authors', 'abstract', 'year_str', 'volume', 'issue', 'tags', 'caves', 'groups'],
-      storeFields: ['id'],
-      processTerm: processSearchTerm,
-      searchOptions: {
-        boost: { title: 4, caves: 3, authors: 2, tags: 2, groups: 2, abstract: 1 },
-        prefix: true,
-        fuzzy: 0.1
-      }
-    });
-    miniSearch.addAll(articles);
+    // Index sa stavia až pri prvom hľadaní: 5900 článkov s anotáciami blokuje hlavné vlákno
+    // pri štarte, hoci väčšina návštev iba prehliada zoznam.
+    let miniSearch = null;
+    function ensureMiniSearch() {
+      if (miniSearch) return miniSearch;
+      miniSearch = new MiniSearch({
+        fields: ['title', 'authors', 'abstract', 'year_str', 'volume', 'issue', 'tags', 'caves', 'groups'],
+        storeFields: ['id'],
+        processTerm: processSearchTerm,
+        searchOptions: {
+          boost: { title: 4, caves: 3, authors: 2, tags: 2, groups: 2, abstract: 1 },
+          prefix: true,
+          fuzzy: 0.1
+        }
+      });
+      miniSearch.addAll(articles);
+      return miniSearch;
+    }
 
     const state = {
       search: '',
@@ -1010,7 +1017,7 @@ const bibliographyExportMenus = [
     function applyFilters() {
       const query = state.search.trim();
       const base = query
-        ? miniSearch.search(query).map((hit) => articlesById.get(Number(hit.id))).filter(Boolean)
+        ? ensureMiniSearch().search(query).map((hit) => articlesById.get(Number(hit.id))).filter(Boolean)
         : articles.slice();
 
       if (query && state.fulltext) {
@@ -1034,10 +1041,14 @@ const bibliographyExportMenus = [
         if (state.journal && articleJournalId(article) !== state.journal) return false;
         if (state.mapsOnly && !hasMap(article)) return false;
         return true;
-      }).sort((a, b) => {
-        const mapDelta = Number(hasMap(b)) - Number(hasMap(a));
-        return mapDelta || b.year - a.year || b.id - a.id;
       });
+      // Pri hľadaní ostáva poradie podľa relevancie (MiniSearch); bez dotazu mapy/plány a najnovšie roky navrchu.
+      if (!query) {
+        filtered.sort((a, b) => {
+          const mapDelta = Number(hasMap(b)) - Number(hasMap(a));
+          return mapDelta || b.year - a.year || b.id - a.id;
+        });
+      }
 
       const selectedStillVisible = filtered.some((article) => article.id === state.selectedId);
       state.page = Math.min(state.page, Math.max(1, Math.ceil(filtered.length / state.pageSize)));

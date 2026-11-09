@@ -8409,15 +8409,12 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2017/10/781.pdf",
     "pdf_page_start": 5,
     "pdf_page_end": 19,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      15
-    ],
-    "map_plan_score": 0.86,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Expedície a zahraničie 🌍",
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "meračské údaje"
     ],
     "caves": [],
@@ -14032,13 +14029,14 @@
     "pages": "9-11",
     "abstract": "Stručný opis Jaskyne v lome a jaskyne Brloh v málo výraznom krasovom území Klátovský kras",
     "pdf_url": "",
-    "has_map_plan": false,
+    "has_map_plan": true,
     "map_plan_pages": [],
-    "map_plan_score": 0.0,
+    "map_plan_score": 0.92,
     "tags": [
       "Speleológia",
       "obrazová dokumentácia",
-      "literatúra"
+      "literatúra",
+      "mapa/plán"
     ],
     "caves": [],
     "groups": [],
@@ -14653,14 +14651,15 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1983_1.pdf",
     "pdf_page_start": 29,
     "pdf_page_end": 32,
-    "has_map_plan": false,
+    "has_map_plan": true,
     "map_plan_pages": [],
-    "map_plan_score": 0.18,
+    "map_plan_score": 0.92,
     "tags": [
       "História a osobnosti 📜",
       "obrazová dokumentácia",
       "literatúra",
-      "meračské údaje"
+      "meračské údaje",
+      "mapa/plán"
     ],
     "caves": [
       "Čachtická jaskyňa"
@@ -18152,14 +18151,11 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_4_1984.pdf",
     "pdf_page_start": 21,
     "pdf_page_end": 29,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      22
-    ],
-    "map_plan_score": 0.86,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Expedície a zahraničie 🌍",
-      "mapa/plán",
       "obrazová dokumentácia",
       "meračské údaje",
       "rez/profil"
@@ -19220,14 +19216,11 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/03/Spravodaj_SSS_3-4_1985.pdf",
     "pdf_page_start": 15,
     "pdf_page_end": 24,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      18
-    ],
-    "map_plan_score": 0.86,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Speleológia",
-      "mapa/plán",
       "obrazová dokumentácia",
       "meračské údaje"
     ],
@@ -20889,14 +20882,11 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/04/Spravodaj_SSS_3-4_1986.pdf",
     "pdf_page_start": 15,
     "pdf_page_end": 25,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      18
-    ],
-    "map_plan_score": 0.96,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Speleológia",
-      "mapa/plán",
       "obrazová dokumentácia",
       "meračské údaje"
     ],
@@ -22854,14 +22844,15 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/09/Spravodaj_SSS_1989_1.pdf",
     "pdf_page_start": 5,
     "pdf_page_end": 9,
-    "has_map_plan": false,
+    "has_map_plan": true,
     "map_plan_pages": [],
-    "map_plan_score": 0.44,
+    "map_plan_score": 0.92,
     "tags": [
       "Speleológia",
       "obrazová dokumentácia",
       "literatúra",
-      "meračské údaje"
+      "meračské údaje",
+      "mapa/plán"
     ],
     "caves": [],
     "groups": [],
@@ -25458,14 +25449,11 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/10/Jaskyniar_SSS_1991.pdf",
     "pdf_page_start": 63,
     "pdf_page_end": 63,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      63
-    ],
-    "map_plan_score": 0.86,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Speleológia",
-      "mapa/plán",
       "tabuľky"
     ],
     "caves": [],
@@ -32547,12 +32535,13 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/12/Spravodaj_SSS_2_1996.pdf",
     "pdf_page_start": 16,
     "pdf_page_end": 18,
-    "has_map_plan": false,
+    "has_map_plan": true,
     "map_plan_pages": [],
-    "map_plan_score": 0.0,
+    "map_plan_score": 0.92,
     "tags": [
       "Speleológia",
-      "meračské údaje"
+      "meračské údaje",
+      "mapa/plán"
     ],
     "caves": [],
     "groups": [],
@@ -38598,14 +38587,11 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_1_1999.pdf",
     "pdf_page_start": 7,
     "pdf_page_end": 21,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      15
-    ],
-    "map_plan_score": 1.0,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "obrazová dokumentácia",
       "tabuľky",
       "meračské údaje"
@@ -39291,14 +39277,11 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_2_1999.pdf",
     "pdf_page_start": 11,
     "pdf_page_end": 20,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      16
-    ],
-    "map_plan_score": 1.0,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "tabuľky",
       "meračské údaje"
     ],
@@ -41143,14 +41126,11 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_1.pdf",
     "pdf_page_start": 7,
     "pdf_page_end": 17,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      13
-    ],
-    "map_plan_score": 1.0,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "tabuľky",
       "meračské údaje"
     ],
@@ -44837,13 +44817,14 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2000_4.pdf",
     "pdf_page_start": 29,
     "pdf_page_end": 33,
-    "has_map_plan": false,
+    "has_map_plan": true,
     "map_plan_pages": [],
-    "map_plan_score": 0.68,
+    "map_plan_score": 0.92,
     "tags": [
       "História a osobnosti 📜",
       "obrazová dokumentácia",
-      "literatúra"
+      "literatúra",
+      "mapa/plán"
     ],
     "caves": [],
     "groups": [],
@@ -45689,15 +45670,16 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2001_1.pdf",
     "pdf_page_start": 42,
     "pdf_page_end": 44,
-    "has_map_plan": false,
+    "has_map_plan": true,
     "map_plan_pages": [],
-    "map_plan_score": 0.0,
+    "map_plan_score": 0.92,
     "tags": [
       "Mineralógia a geológia 💎",
       "História a osobnosti 📜",
       "obrazová dokumentácia",
       "tabuľky",
-      "literatúra"
+      "literatúra",
+      "mapa/plán"
     ],
     "caves": [],
     "groups": [
@@ -49558,14 +49540,11 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2002_2.pdf",
     "pdf_page_start": 43,
     "pdf_page_end": 44,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      44
-    ],
-    "map_plan_score": 0.86,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Speleológia",
-      "mapa/plán",
       "tabuľky",
       "meračské údaje",
       "súradnice"
@@ -53682,12 +53661,13 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2022/01/Spravodaj_SSS_2004_1.pdf",
     "pdf_page_start": 55,
     "pdf_page_end": 59,
-    "has_map_plan": false,
+    "has_map_plan": true,
     "map_plan_pages": [],
-    "map_plan_score": 0.0,
+    "map_plan_score": 0.92,
     "tags": [
       "História a osobnosti 📜",
-      "obrazová dokumentácia"
+      "obrazová dokumentácia",
+      "mapa/plán"
     ],
     "caves": [],
     "groups": [],
@@ -59021,15 +59001,12 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_1_2006o.pdf",
     "pdf_page_start": 8,
     "pdf_page_end": 35,
-    "has_map_plan": true,
-    "map_plan_pages": [
-      11
-    ],
-    "map_plan_score": 0.96,
+    "has_map_plan": false,
+    "map_plan_pages": [],
+    "map_plan_score": 0.84,
     "tags": [
       "Expedície a zahraničie 🌍",
       "Speleoturistika a ochrana 🌲",
-      "mapa/plán",
       "obrazová dokumentácia",
       "tabuľky",
       "meračské údaje",
@@ -59904,15 +59881,16 @@
     "pdf_url": "https://sss.sk/wp-content/uploads/2021/05/Spravodaj_2_2006o.pdf",
     "pdf_page_start": 37,
     "pdf_page_end": 38,
-    "has_map_plan": false,
+    "has_map_plan": true,
     "map_plan_pages": [],
-    "map_plan_score": 0.46,
+    "map_plan_score": 0.92,
     "tags": [
       "Speleológia",
       "obrazová dokumentácia",
       "tabuľky",
       "meračské údaje",
-      "rez/profil"
+      "rez/profil",
+      "mapa/plán"
     ],
     "caves": [],
     "groups": [],
