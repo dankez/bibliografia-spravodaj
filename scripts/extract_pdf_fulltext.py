@@ -20,7 +20,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
-from pdf_page_links import DEFAULT_PDF_PAGE_OFFSET, pdf_page_offset
+from pdf_page_links import DEFAULT_PDF_PAGE_OFFSET, load_pdf_page_offsets, normalized_pdf_url, pdf_page_offset
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -201,6 +201,16 @@ def resolve_article_physical_page_range(
             physical_end = physical_start + max(printed_end - printed_start, 0)
         if physical_end < physical_start:
             physical_end = physical_start
+        if pdf_pages is not None:
+            if physical_start > pdf_pages:
+                return None, None, "page_out_of_range"
+            physical_end = min(physical_end, pdf_pages)
+        return physical_start, physical_end, None
+
+    mapping = load_pdf_page_offsets().get(normalized_pdf_url(article.get("pdf_url")))
+    if isinstance(mapping, dict) and str(article.get("journal_id") or "spravodaj_sss") == "spravodaj_sss":
+        physical_start = max(1, printed_start + pdf_page_offset(article, printed_page=printed_start))
+        physical_end = max(physical_start, printed_end + pdf_page_offset(article, printed_page=printed_end))
         if pdf_pages is not None:
             if physical_start > pdf_pages:
                 return None, None, "page_out_of_range"

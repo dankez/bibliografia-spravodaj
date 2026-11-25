@@ -30,10 +30,14 @@ export function getPdfPageNumber(article, issueOffsets = {}) {
     if (start === null) {
       return Number.isFinite(physicalStart) && physicalStart > 0 ? physicalStart : 1;
     }
-    const offset = articleOffset
-      ?? issueOffsets[normalizedPdfUrl(article.pdf_url)]
-      ?? DEFAULT_PDF_PAGE_OFFSET;
-    return start + offset;
+    const mapping = issueOffsets[normalizedPdfUrl(article.pdf_url)] ?? DEFAULT_PDF_PAGE_OFFSET;
+    if (articleOffset !== null) return start + articleOffset;
+    if (typeof mapping === 'number') return start + mapping;
+    let offset = mapping.article_offsets?.[String(article.id)] ?? mapping.offset;
+    for (const range of mapping.ranges ?? []) {
+      if (start >= range.from) offset = range.offset;
+    }
+    return Math.floor(start / (mapping.divisor ?? 1)) + offset;
   }
 
   const pageStart = Number(article.pdf_page_start || start || 1);

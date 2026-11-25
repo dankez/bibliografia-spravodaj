@@ -13,19 +13,18 @@ from pathlib import Path
 from extract_pdf_fulltext import (
     ARTICLES_PATH,
     PDF_CACHE_DIR,
-    infer_issue_pdf_page_offset,
     infer_printed_page_map,
     parse_page_range,
     safe_name,
 )
-from pdf_page_links import DEFAULT_PDF_PAGE_OFFSET
+from pdf_page_links import DEFAULT_PDF_PAGE_OFFSET, load_pdf_page_offsets
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_OUTPUT_PATH = BASE_DIR / "web" / "src" / "data" / "pdf_page_offsets.json"
 
 
-def build_offsets(articles: list[dict]) -> tuple[dict[str, int], list[str]]:
+def build_offsets(articles: list[dict]) -> tuple[dict[str, int | dict], list[str]]:
     grouped: dict[str, list[dict]] = defaultdict(list)
     for article in articles:
         journal_id = str(article.get("journal_id") or "spravodaj_sss")
@@ -33,7 +32,8 @@ def build_offsets(articles: list[dict]) -> tuple[dict[str, int], list[str]]:
         if journal_id == "spravodaj_sss" and pdf_url:
             grouped[pdf_url].append(article)
 
-    offsets: dict[str, int] = {}
+    offsets: dict[str, int | dict] = {}
+    existing = load_pdf_page_offsets()
     fallbacks: list[str] = []
     with tempfile.TemporaryDirectory(prefix="spravodaj-page-maps-") as temp_dir:
         cache_dir = Path(temp_dir)
@@ -47,7 +47,20 @@ def build_offsets(articles: list[dict]) -> tuple[dict[str, int], list[str]]:
                 cache_dir / f"{safe_name(pdf_url)}.pages.json",
                 force=True,
             )
-            offset = infer_issue_pdf_page_offset(issue_articles, page_map)
+            normalized_url = pdf_url.split("#", 1)[0].split("?", 1)[0]
+            candidates = [
+                physical_page - printed_page
+                for printed_page, physical_page in page_map.items()
+                if -12 <= physical_page - printed_page <= 12
+            ]
+            distribution = Counter(candidates)
+            mode, votes = distribution.most_common(1)[0] if distribution else (None, 0)
+            offset = mode if mode is not None and 0 <= mode <= 6 and votes >= 4 and votes * 5 >= len(candidates) * 4 else None
+            if normalized_url in existing:
+                offsets[normalized_url] = existing[normalized_url]
+                if offset is not None and offset != existing[normalized_url]:
+                    print(f"Preserving existing page mapping despite inferred offset {offset}: {pdf_url}", file=sys.stderr)
+                continue
             if offset is None:
                 metadata_offsets = []
                 for article in issue_articles:
@@ -67,20 +80,7 @@ def build_offsets(articles: list[dict]) -> tuple[dict[str, int], list[str]]:
                 else:
                     offset = DEFAULT_PDF_PAGE_OFFSET
                 fallbacks.append(pdf_url)
-            offsets[pdf_url.split("#", 1)[0].split("?", 1)[0]] = offset
-
-            candidates = [
-                physical_page - printed_page
-                for printed_page, physical_page in page_map.items()
-                if 0 <= physical_page - printed_page <= 12
-            ]
-            distribution = Counter(candidates)
-            if len(distribution) > 1 and offset != distribution.most_common(1)[0][0]:
-                print(
-                    f"First-page offset {offset} differs from page-map mode "
-                    f"{dict(sorted(distribution.items()))}: {pdf_url}",
-                    file=sys.stderr,
-                )
+            offsets[normalized_url] = offset
 
     return dict(sorted(offsets.items())), fallbacks
 

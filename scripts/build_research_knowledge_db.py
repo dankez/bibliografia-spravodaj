@@ -204,6 +204,11 @@ def resolve_article_pdf_page_start(article: dict, fulltext: dict | None = None) 
     parsed_start, _ = parse_page_range(article.get("pages", ""))
     printed = int_or_none(article.get("page_start")) or parsed_start
     if printed is not None:
+        if article_journal_id(article) == DEFAULT_JOURNAL_ID:
+            physical = int_or_none(article.get("pdf_page_start"))
+            if physical is not None and article.get("pdf_page_offset") not in (None, ""):
+                return physical + article_pdf_page_offset(article)
+            return printed + pdf_page_offset(article, printed_page=printed)
         return printed + article_pdf_page_offset(article)
 
     return int_or_none((fulltext or {}).get("pdf_page_start"))
@@ -218,7 +223,13 @@ def resolve_article_pdf_page_end(article: dict, fulltext: dict | None = None) ->
     printed_end = int_or_none(article.get("page_end")) or parsed_end
     if start is None or printed_start is None or printed_end is None:
         return int_or_none((fulltext or {}).get("pdf_page_end")) or start
-    return max(start, start + max(printed_end - printed_start, 0))
+    if (
+        article_journal_id(article) != DEFAULT_JOURNAL_ID
+        or (int_or_none(article.get("pdf_page_start")) is not None and article.get("pdf_page_offset") not in (None, ""))
+    ):
+        return start + max(printed_end - printed_start, 0)
+    offset = pdf_page_offset(article, printed_page=printed_end)
+    return max(start, printed_end + offset)
 
 
 def pdf_link_page(article: dict) -> str:

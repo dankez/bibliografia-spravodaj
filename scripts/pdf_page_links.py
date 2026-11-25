@@ -20,10 +20,10 @@ def normalized_pdf_url(value: Any) -> str:
 
 
 @lru_cache(maxsize=1)
-def load_pdf_page_offsets() -> dict[str, int]:
+def load_pdf_page_offsets() -> dict[str, int | dict[str, Any]]:
     with PDF_PAGE_OFFSETS_PATH.open("r", encoding="utf-8") as handle:
         return {
-            normalized_pdf_url(url): int(offset)
+            normalized_pdf_url(url): offset
             for url, offset in json.load(handle).items()
         }
 
@@ -43,6 +43,7 @@ def printed_page_start(article: dict[str, Any]) -> int | None:
 def pdf_page_offset(
     article: dict[str, Any],
     fallback_offset: int = DEFAULT_PDF_PAGE_OFFSET,
+    printed_page: int | None = None,
 ) -> int:
     journal_id = str(article.get("journal_id") or DEFAULT_JOURNAL_ID)
     fallback = fallback_offset
@@ -51,7 +52,16 @@ def pdf_page_offset(
         offset = int_or_none(explicit)
         return offset if offset is not None else fallback
     if journal_id == DEFAULT_JOURNAL_ID:
-        return load_pdf_page_offsets().get(normalized_pdf_url(article.get("pdf_url")), fallback)
+        mapping = load_pdf_page_offsets().get(normalized_pdf_url(article.get("pdf_url")), fallback)
+        if isinstance(mapping, dict):
+            page = printed_page if printed_page is not None else printed_page_start(article)
+            offset = mapping.get("article_offsets", {}).get(str(article.get("id")), mapping["offset"])
+            for entry in mapping.get("ranges", []):
+                if page is not None and page >= entry["from"]:
+                    offset = entry["offset"]
+            divisor = mapping.get("divisor", 1)
+            return offset + (page // divisor - page if page is not None else 0)
+        return mapping
     return fallback
 
 
