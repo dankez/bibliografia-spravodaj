@@ -486,9 +486,10 @@ const bibliographyExportMenus = [
 
   <script>
     import MiniSearch from 'minisearch';
+    import issuePageOffsets from '../data/pdf_page_offsets.json';
+    import { getPdfPageNumber } from '../utils/pdf-page.js';
 
     const ARTICLES_DATA_URL = '/data/articles.json';
-    const DEFAULT_PDF_PAGE_LINK_OFFSET = 2;
     const DEFAULT_JOURNAL_ID = 'spravodaj_sss';
     const DEFAULT_JOURNAL_TITLE = 'Spravodaj Slovenskej speleologickej spoločnosti';
     const DEFAULT_JOURNAL_SHORT_TITLE = 'Spravodaj SSS';
@@ -600,17 +601,8 @@ const bibliographyExportMenus = [
       return (article.map_plan_pages || []).length > 0;
     }
 
-    function firstArticlePage(article) {
-      const match = String(article.pages || '').match(/^(\d+)/);
-      return match ? Number(match[1]) : 1;
-    }
-
     function pdfPage(article) {
-      const printedPage = Number(article.pdf_page_start || firstArticlePage(article) || 1);
-      const offset = Number.isFinite(Number(article.pdf_page_offset))
-        ? Number(article.pdf_page_offset)
-        : DEFAULT_PDF_PAGE_LINK_OFFSET;
-      return printedPage + offset;
+      return getPdfPageNumber(article, issuePageOffsets);
     }
 
     function articlePdfUrl(article) {

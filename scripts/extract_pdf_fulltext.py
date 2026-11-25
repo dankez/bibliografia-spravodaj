@@ -20,6 +20,7 @@ from pathlib import Path
 from urllib.parse import urlparse
 
 import requests
+from pdf_page_links import DEFAULT_PDF_PAGE_OFFSET, pdf_page_offset
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -28,7 +29,6 @@ FRONTEND_ARTICLES_PATH = BASE_DIR / "web" / "src" / "data" / "articles.json"
 PDF_CACHE_DIR = BASE_DIR / "data" / "pdf_cache"
 TEXT_CACHE_DIR = BASE_DIR / "data" / "pdf_text"
 FULLTEXT_PATH = BASE_DIR / "data" / "article_fulltext.jsonl"
-DEFAULT_PDF_PAGE_OFFSET = 2
 JOURNAL_DEFAULT_PDF_PAGE_OFFSETS = {
     "aragonit": 2,
     "slovensky_kras": 0,
@@ -129,9 +129,13 @@ def resolve_physical_page_range(
     printed_end: int,
     page_map: dict[int, int],
     pdf_pages: int | None = None,
+    fallback_offset: int = 0,
 ) -> tuple[int | None, int | None, str | None]:
-    physical_start = page_map.get(printed_start, printed_start)
-    physical_end = page_map.get(printed_end, physical_start + max(printed_end - printed_start, 0))
+    physical_start = page_map.get(printed_start, printed_start + fallback_offset)
+    physical_end = page_map.get(
+        printed_end,
+        physical_start + max(printed_end - printed_start, 0),
+    )
     if physical_end < physical_start:
         physical_end = physical_start + max(printed_end - printed_start, 0)
     if pdf_pages is not None:
@@ -151,18 +155,34 @@ def int_or_none(value) -> int | None:
 
 def article_pdf_page_offset(article: dict) -> int:
     journal_id = str(article.get("journal_id") or "spravodaj_sss")
-    if journal_id in JOURNAL_DEFAULT_PDF_PAGE_OFFSETS and not int_or_none(article.get("pdf_page_start")):
-        return JOURNAL_DEFAULT_PDF_PAGE_OFFSETS[journal_id]
-    try:
-        return int(article.get("pdf_page_offset"))
-    except (TypeError, ValueError):
-        pass
-    return JOURNAL_DEFAULT_PDF_PAGE_OFFSETS.get(journal_id, DEFAULT_PDF_PAGE_OFFSET)
+    default_offset = JOURNAL_DEFAULT_PDF_PAGE_OFFSETS.get(journal_id, DEFAULT_PDF_PAGE_OFFSET)
+    if journal_id != "spravodaj_sss" and journal_id in JOURNAL_DEFAULT_PDF_PAGE_OFFSETS:
+        if not int_or_none(article.get("pdf_page_start")):
+            return default_offset
+    return pdf_page_offset(article, fallback_offset=default_offset)
+
+
+def infer_issue_pdf_page_offset(issue_articles: list[dict], page_map: dict[int, int]) -> int | None:
+    printed_pages = []
+    for article in issue_articles:
+        printed_start, _ = parse_page_range(article.get("pages", ""))
+        if printed_start is not None:
+            printed_pages.append(printed_start)
+    for printed_page in sorted(printed_pages):
+        if printed_page in page_map:
+            offset = page_map[printed_page] - printed_page
+            return offset if 0 <= offset <= 6 else None
+    return None
 
 
 def has_imported_physical_pages(article: dict) -> bool:
     """Newly imported journals store physical PDF pages directly in metadata."""
-    return bool(article.get("journal_id")) and int_or_none(article.get("pdf_page_start")) is not None
+    journal_id = str(article.get("journal_id") or "")
+    return (
+        bool(journal_id)
+        and journal_id != "spravodaj_sss"
+        and int_or_none(article.get("pdf_page_start")) is not None
+    )
 
 
 def resolve_article_physical_page_range(
@@ -188,7 +208,13 @@ def resolve_article_physical_page_range(
         return physical_start, physical_end, None
 
     if page_map:
-        return resolve_physical_page_range(printed_start, printed_end, page_map, pdf_pages)
+        return resolve_physical_page_range(
+            printed_start,
+            printed_end,
+            page_map,
+            pdf_pages,
+            fallback_offset=article_pdf_page_offset(article),
+        )
 
     offset = article_pdf_page_offset(article)
     physical_start = max(1, printed_start + offset)
@@ -286,7 +312,12 @@ def download_pdf(url: str, target: Path, force: bool = False) -> bool:
         return False
 
 
-def pdftotext(pdf_path: Path, first_page: int | None = None, last_page: int | None = None) -> str:
+def pdftotext(
+    pdf_path: Path,
+    first_page: int | None = None,
+    last_page: int | None = None,
+    preserve_form_feeds: bool = False,
+) -> str:
     cmd = ["pdftotext", "-layout"]
     if first_page is not None:
         cmd.extend(["-f", str(first_page)])
@@ -296,7 +327,7 @@ def pdftotext(pdf_path: Path, first_page: int | None = None, last_page: int | No
     result = subprocess.run(cmd, capture_output=True, text=True, check=False)
     if result.returncode != 0:
         raise RuntimeError(result.stderr.strip() or f"pdftotext failed for {pdf_path}")
-    return result.stdout.strip()
+    return result.stdout if preserve_form_feeds else result.stdout.strip()
 
 
 def pdffonts_summary(pdf_path: Path) -> dict:
@@ -545,11 +576,15 @@ def infer_printed_page_map(pdf_path: Path, cache_path: Path, force: bool = False
         print(f"  Page-map inference skipped: {exc}", file=sys.stderr)
         return page_map
 
-    for physical_page in range(1, count + 1):
-        try:
-            page_text = pdftotext(pdf_path, physical_page, physical_page)
-        except Exception:
-            continue
+    try:
+        pages = pdftotext(pdf_path, preserve_form_feeds=True).split("\f")
+    except Exception as exc:
+        print(f"  Page-map text extraction failed: {exc}", file=sys.stderr)
+        return page_map
+
+    for physical_page, page_text in enumerate(pages, start=1):
+        if physical_page > count:
+            break
         printed_page = infer_printed_page_number(page_text)
         if printed_page is not None:
             page_map.setdefault(printed_page, physical_page)

@@ -32,6 +32,50 @@ def test_resolve_physical_page_range_reports_start_after_pdf_end():
     assert error == "page_out_of_range"
 
 
+def test_resolve_physical_page_range_uses_offset_for_unmapped_printed_page():
+    start, end, error = fulltext.resolve_physical_page_range(
+        3,
+        9,
+        {3: 4},
+        pdf_pages=20,
+        fallback_offset=1,
+    )
+
+    assert error is None
+    assert (start, end) == (4, 10)
+
+
+def test_infer_issue_pdf_page_offset_uses_first_article_page_mapping():
+    offset = fulltext.infer_issue_pdf_page_offset(
+        [{"pages": "3-9"}, {"pages": "10-12"}, {"pages": "13"}],
+        {3: 4, 10: 14, 13: 15, 1972: 2},
+    )
+
+    assert offset == 1
+
+
+def test_infer_issue_pdf_page_offset_rejects_implausible_page_map():
+    offset = fulltext.infer_issue_pdf_page_offset(
+        [{"pages": "3-9"}],
+        {3: 81},
+    )
+
+    assert offset is None
+
+
+def test_infer_printed_page_map_preserves_blank_physical_pages(tmp_path, monkeypatch):
+    monkeypatch.setattr(fulltext, "pdf_page_count", lambda _: 4)
+    monkeypatch.setattr(fulltext, "pdftotext", lambda *_, **__: "\f1\f\f3\f")
+
+    page_map = fulltext.infer_printed_page_map(
+        Path("issue.pdf"),
+        tmp_path / "page-map.json",
+        force=True,
+    )
+
+    assert page_map == {1: 2, 3: 4}
+
+
 def test_resolve_article_physical_page_range_uses_imported_journal_pages():
     article = {
         "journal_id": "aragonit",
@@ -51,6 +95,26 @@ def test_resolve_article_physical_page_range_uses_imported_journal_pages():
 
     assert error is None
     assert (start, end) == (5, 14)
+
+
+def test_spravodaj_page_start_is_resolved_from_issue_map():
+    article = {
+        "journal_id": "spravodaj_sss",
+        "pages": "3-9",
+        "pdf_page_start": 4,
+        "pdf_url": "https://sss.sk/wp-content/uploads/2017/10/723.pdf",
+    }
+
+    start, end, error = fulltext.resolve_article_physical_page_range(
+        article,
+        3,
+        9,
+        {},
+        pdf_pages=43,
+    )
+
+    assert error is None
+    assert (start, end) == (4, 10)
 
 
 def test_resolve_article_physical_page_range_falls_back_to_legacy_offset():

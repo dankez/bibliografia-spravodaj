@@ -48,6 +48,17 @@ def test_safe_title_abstract_is_specific_without_inventing_details():
     assert abstracts.safe_title_abstract(project).startswith("Príspevok informuje o projekte")
 
 
+def test_article_physical_page_range_uses_spravodaj_issue_offset():
+    article = {
+        "journal_id": "spravodaj_sss",
+        "pages": "3-9",
+        "pdf_page_start": 4,
+        "pdf_url": "https://sss.sk/wp-content/uploads/2017/10/723.pdf",
+    }
+
+    assert abstracts.article_physical_page_range(article) == (4, 10)
+
+
 def test_normalize_generated_abstract_removes_labels_and_rejects_bad_output():
     assert (
         abstracts.normalize_generated_abstract("Anotácia: Článok opisuje meranie teploty vzduchu v dvoch jaskyniach.")

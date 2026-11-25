@@ -135,18 +135,20 @@ def int_or_none(value: Any) -> int | None:
 
 
 def article_physical_page_range(article: dict[str, Any]) -> tuple[int | None, int | None]:
-    start = int_or_none(article.get("pdf_page_start"))
-    end = int_or_none(article.get("pdf_page_end"))
-    if start is None:
-        printed_start, printed_end = fulltext.parse_page_range(str(article.get("pages") or ""))
-        if printed_start is None:
-            return None, None
-        offset = int_or_none(article.get("pdf_page_offset")) or 0
-        start = printed_start + offset
-        end = (printed_end or printed_start) + offset
-    if end is None or end < start:
-        end = start
-    return max(1, start), max(1, end)
+    printed_start, printed_end = fulltext.parse_page_range(str(article.get("pages") or ""))
+    if printed_start is None:
+        start = int_or_none(article.get("pdf_page_start"))
+        return (start, int_or_none(article.get("pdf_page_end")) or start) if start else (None, None)
+
+    start, end, error = fulltext.resolve_article_physical_page_range(
+        article,
+        printed_start,
+        printed_end or printed_start,
+        {},
+    )
+    if error or start is None:
+        return None, None
+    return start, end or start
 
 
 def extract_article_text(

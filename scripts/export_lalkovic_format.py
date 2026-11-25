@@ -27,6 +27,8 @@ import urllib.parse
 from collections import defaultdict
 from pathlib import Path
 
+from pdf_page_links import linked_pdf_page
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 ARTICLES_PATH = BASE_DIR / "data" / "articles_with_urls.json"
@@ -34,7 +36,6 @@ EXPORT_DIR = BASE_DIR / "data" / "exports"
 ONLINE_PDF_LABEL = "↗ PDF"
 MAPS_AND_PLANS_TITLE = "Súpis plánov jaskýň"
 DEFAULT_BASENAME_PREFIX = "bibliografia_spravodaj_sss_danko"
-PDF_LINK_PAGE_OFFSET = 2
 AUTHOR_SIGNATURE = "Autor: DankeZ"
 AUTHOR_URL = "https://github.com/dankez"
 PDF_METADATA_TITLE = "Bibliografia Spravodaja SSS"
@@ -78,21 +79,9 @@ def image_data_uri(path: Path, fallback: str) -> str:
     return f"data:image/png;base64,{encoded}"
 
 
-def page_start(pages: str) -> str:
-    match = re.match(r"\s*(\d+)", str(pages or ""))
-    return match.group(1) if match else "1"
-
-
-def pdf_page_start(article: dict) -> str:
-    return str(article.get("pdf_page_start") or page_start(article.get("pages", "")))
-
-
 def pdf_link_page(article: dict) -> str:
-    try:
-        page = int(pdf_page_start(article))
-    except (TypeError, ValueError):
-        return ""
-    return str(page + PDF_LINK_PAGE_OFFSET)
+    page = linked_pdf_page(article)
+    return str(page) if page is not None else ""
 
 
 def default_basename(stamp: str) -> str:

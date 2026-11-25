@@ -11,6 +11,8 @@ from collections import defaultdict
 from pathlib import Path
 from typing import Any
 
+from pdf_page_links import linked_pdf_page
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_ARTICLES_PATH = BASE_DIR / "web" / "src" / "data" / "articles.json"
@@ -20,7 +22,6 @@ DEFAULT_GEOMORPHOLOGY_PATH = BASE_DIR / "data" / "geomorphology_regions.json"
 DEFAULT_SMOPAJ_REGISTER_PATH = BASE_DIR / "data" / "smopaj_cave_register_2017.json"
 DEFAULT_SMOPAJ_OVERRIDES_PATH = BASE_DIR / "data" / "smopaj_cave_match_overrides.json"
 DEFAULT_SMOPAJ_AI_MATCHES_PATH = BASE_DIR / "data" / "smopaj_cave_ai_matches.json"
-PDF_LINK_PAGE_OFFSET = 2
 DEFAULT_JOURNAL_ID = "spravodaj_sss"
 DEFAULT_JOURNAL_TITLE = "Spravodaj Slovenskej speleologickej spoločnosti"
 DEFAULT_JOURNAL_SHORT_TITLE = "Spravodaj SSS"
@@ -1072,29 +1073,12 @@ def canonical_cave_name(cave_name: str, alias_lookup: dict[str, str]) -> str:
     return alias_lookup.get(slugify(cave_name)) or alias_lookup.get(normalize_text(cave_name)) or cave_name
 
 
-def first_page(article: dict[str, Any]) -> int:
-    value = article.get("pdf_page_start")
-    if value in (None, ""):
-        match = re.match(r"\s*(\d+)", str(article.get("pages") or ""))
-        value = match.group(1) if match else 1
-    try:
-        return int(value)
-    except (TypeError, ValueError):
-        return 1
-
-
-def pdf_page_offset(article: dict[str, Any]) -> int:
-    try:
-        return int(article.get("pdf_page_offset", PDF_LINK_PAGE_OFFSET))
-    except (TypeError, ValueError):
-        return PDF_LINK_PAGE_OFFSET
-
-
 def pdf_link(article: dict[str, Any]) -> str:
     url = str(article.get("pdf_url") or "").strip()
     if not url:
         return ""
-    return f"{url}#page={first_page(article) + pdf_page_offset(article)}"
+    page = linked_pdf_page(article)
+    return f"{url}#page={page}" if page is not None else url
 
 
 def has_map_plan(article: dict[str, Any]) -> bool:

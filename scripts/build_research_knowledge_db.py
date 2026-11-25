@@ -33,12 +33,13 @@ import unicodedata
 from pathlib import Path
 from typing import Any
 
+from pdf_page_links import pdf_page_offset
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 ARTICLES_PATH = BASE_DIR / "data" / "articles_with_urls.json"
 FULLTEXT_PATH = BASE_DIR / "data" / "article_fulltext.jsonl"
 AI_KNOWLEDGE_PATH = BASE_DIR / "data" / "article_ai_knowledge.jsonl"
-PDF_LINK_PAGE_OFFSET = 2
 DB_PATH = BASE_DIR / "data" / "research_knowledge.sqlite"
 CHUNKS_JSONL_PATH = BASE_DIR / "data" / "research_chunks.jsonl"
 TIMELINES_PATH = BASE_DIR / "data" / "research_timelines.json"
@@ -50,10 +51,8 @@ DEFAULT_JOURNAL_SHORT_TITLE = "Spravodaj SSS"
 JOURNAL_DEFAULT_PDF_PAGE_OFFSETS = {
     "aragonit": 2,
     "slovensky_kras": 0,
-    "spravodaj_sss": 2,
+    DEFAULT_JOURNAL_ID: 2,
 }
-
-
 VISUAL_PATTERNS = [
     r"\bobr\.",
     r"\bobraz",
@@ -179,17 +178,20 @@ def article_journal_short_title(article: dict) -> str:
 
 def article_pdf_page_offset(article: dict) -> int:
     journal_id = article_journal_id(article)
-    if journal_id in JOURNAL_DEFAULT_PDF_PAGE_OFFSETS and not int_or_none(article.get("pdf_page_start")):
-        return JOURNAL_DEFAULT_PDF_PAGE_OFFSETS[journal_id]
-    try:
-        return int(article.get("pdf_page_offset"))
-    except (TypeError, ValueError):
-        pass
-    return JOURNAL_DEFAULT_PDF_PAGE_OFFSETS.get(journal_id, PDF_LINK_PAGE_OFFSET)
+    default_offset = JOURNAL_DEFAULT_PDF_PAGE_OFFSETS.get(journal_id, 2)
+    if journal_id != DEFAULT_JOURNAL_ID and journal_id in JOURNAL_DEFAULT_PDF_PAGE_OFFSETS:
+        if not int_or_none(article.get("pdf_page_start")):
+            return default_offset
+    return pdf_page_offset(article, fallback_offset=default_offset)
 
 
 def has_imported_physical_pages(article: dict) -> bool:
-    return bool(article.get("journal_id")) and int_or_none(article.get("pdf_page_start")) is not None
+    journal_id = str(article.get("journal_id") or "")
+    return (
+        bool(journal_id)
+        and journal_id != DEFAULT_JOURNAL_ID
+        and int_or_none(article.get("pdf_page_start")) is not None
+    )
 
 
 def resolve_article_pdf_page_start(article: dict, fulltext: dict | None = None) -> int | None:

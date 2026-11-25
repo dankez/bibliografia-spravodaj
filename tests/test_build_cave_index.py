@@ -580,6 +580,29 @@ def test_build_cave_index_uses_article_pdf_page_offset_when_present():
     assert domica["articles"][0]["pdf_link"] == "https://example.test/spravodaj.pdf#page=59"
 
 
+def test_build_cave_index_uses_the_issue_specific_pdf_offset():
+    articles = [
+        {
+            "id": 120,
+            "title": "Správa o Jaskyniarskom týždni SSS Slovenský kras 1972",
+            "year": 1972,
+            "issue": "3",
+            "pages": "3-9",
+            "authors": [],
+            "abstract": "Jaskyniarsky týždeň.",
+            "pdf_url": "https://sss.sk/wp-content/uploads/2017/10/723.pdf",
+            "pdf_page_start": 4,
+            "caves": ["Domica"],
+            "caves_verified": True,
+        },
+    ]
+
+    caves = build_cave_index.build_cave_index(articles)
+
+    domica = next(item for item in caves if item["name"] == "Domica")
+    assert domica["articles"][0]["pdf_link"].endswith("/723.pdf#page=4")
+
+
 def test_build_cave_index_requires_direct_cave_phrase_not_loose_stem_match():
     articles = [
         {

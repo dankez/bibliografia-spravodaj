@@ -12,11 +12,12 @@ import unicodedata
 from pathlib import Path
 from typing import Any
 
+from pdf_page_links import linked_pdf_page, pdf_page_offset
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_ARTICLES_PATH = BASE_DIR / "data" / "articles_with_urls.json"
 DEFAULT_OUTPUT_PATH = BASE_DIR / "data" / "exports" / "spravodaj_sss.sqlite"
-PDF_LINK_PAGE_OFFSET = 2
 DEFAULT_JOURNAL_ID = "spravodaj_sss"
 DEFAULT_JOURNAL_TITLE = "Spravodaj Slovenskej speleologickej spoločnosti"
 
@@ -46,24 +47,8 @@ def unique_strings(values: list[Any]) -> list[str]:
     return result
 
 
-def page_start(article: dict[str, Any]) -> int | None:
-    value = article.get("pdf_page_start")
-    if value in (None, ""):
-        match = re.match(r"\s*(\d+)", str(article.get("pages") or ""))
-        value = match.group(1) if match else None
-    try:
-        return int(value)
-    except (TypeError, ValueError):
-        return None
-
-
 def pdf_page(article: dict[str, Any]) -> int | None:
-    start = page_start(article)
-    try:
-        offset = int(article.get("pdf_page_offset", PDF_LINK_PAGE_OFFSET))
-    except (TypeError, ValueError):
-        offset = PDF_LINK_PAGE_OFFSET
-    return start + offset if start is not None else None
+    return linked_pdf_page(article)
 
 
 def pdf_link(article: dict[str, Any]) -> str:
@@ -206,10 +191,7 @@ def journal_short_title(article: dict[str, Any]) -> str:
 
 
 def article_pdf_page_offset(article: dict[str, Any]) -> int:
-    try:
-        return int(article.get("pdf_page_offset", PDF_LINK_PAGE_OFFSET))
-    except (TypeError, ValueError):
-        return PDF_LINK_PAGE_OFFSET
+    return pdf_page_offset(article)
 
 
 def ensure_journal(conn: sqlite3.Connection, article: dict[str, Any]) -> None:
