@@ -47,7 +47,7 @@ def compact_chunk(record: dict[str, Any]) -> tuple[str, str, dict[str, Any]] | N
 
 def display_path(path: Path) -> str:
     try:
-        return str(path.relative_to(BASE_DIR))
+        return path.relative_to(BASE_DIR).as_posix()
     except ValueError:
         return str(path)
 
@@ -86,7 +86,7 @@ def export_index(chunks_path: Path, output_dir: Path, manifest_path: Path) -> di
             {
                 "journal_id": journal_id,
                 "year": int(year) if year.isdigit() else year,
-                "path": str(relative),
+                "path": relative.as_posix(),
                 "chunks": len(records),
                 "articles": article_count,
                 "bytes": byte_count,

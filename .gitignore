@@ -92,3 +92,16 @@ web/node_modules/
 web/.astro/
 web/dist/
 web/public/data/fulltext_index.json
+
+# Zdrojové PDF Spravodaja (stiahnuté z sss.sk, veľké, nepatria do gitu)
+data/pdf_spravodaj/
+data/map_eval_pdfs/
+
+# Pracovné veľké artefakty fulltextu (regenerovateľné, necommitujú sa)
+data/pdf_cache/
+data/pdf_text/
+data/research_spravodaj/
+data/fulltext_staging/
+data/backup_fulltext_before_merge/
+data/article_fulltext.jsonl
+data/spravodaj_articles_only.json

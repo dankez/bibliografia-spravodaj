@@ -2,10 +2,10 @@
   "version": 2,
   "source": "data/research_chunks.jsonl",
   "index_dir": "web/public/data/fulltext",
-  "chunks": 25569,
-  "articles": 5700,
-  "text_chars": 72690117,
-  "bytes": 80513675,
+  "chunks": 26146,
+  "articles": 5702,
+  "text_chars": 74560851,
+  "bytes": 81458716,
   "journals": [
     {
       "journal_id": "aragonit",
@@ -21,9 +21,9 @@
     },
     {
       "journal_id": "spravodaj_sss",
-      "chunks": 10594,
-      "articles": 3645,
-      "bytes": 31560660
+      "chunks": 11171,
+      "articles": 3647,
+      "bytes": 32505701
     }
   ],
   "shards": [
@@ -705,7 +705,7 @@
       "path": "fulltext/spravodaj_sss/1970.json",
       "chunks": 71,
       "articles": 55,
-      "bytes": 149969
+      "bytes": 150838
     },
     {
       "journal_id": "spravodaj_sss",
@@ -713,23 +713,23 @@
       "path": "fulltext/spravodaj_sss/1971.json",
       "chunks": 83,
       "articles": 45,
-      "bytes": 227496
+      "bytes": 224087
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1972,
       "path": "fulltext/spravodaj_sss/1972.json",
-      "chunks": 68,
+      "chunks": 67,
       "articles": 32,
-      "bytes": 198181
+      "bytes": 193216
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1973,
       "path": "fulltext/spravodaj_sss/1973.json",
-      "chunks": 82,
+      "chunks": 80,
       "articles": 34,
-      "bytes": 239339
+      "bytes": 232495
     },
     {
       "journal_id": "spravodaj_sss",
@@ -737,15 +737,15 @@
       "path": "fulltext/spravodaj_sss/1974.json",
       "chunks": 91,
       "articles": 36,
-      "bytes": 256338
+      "bytes": 249606
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1975,
       "path": "fulltext/spravodaj_sss/1975.json",
-      "chunks": 87,
+      "chunks": 86,
       "articles": 39,
-      "bytes": 241466
+      "bytes": 233020
     },
     {
       "journal_id": "spravodaj_sss",
@@ -753,15 +753,15 @@
       "path": "fulltext/spravodaj_sss/1976.json",
       "chunks": 88,
       "articles": 32,
-      "bytes": 264714
+      "bytes": 256375
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1977,
       "path": "fulltext/spravodaj_sss/1977.json",
-      "chunks": 92,
-      "articles": 36,
-      "bytes": 263306
+      "chunks": 109,
+      "articles": 38,
+      "bytes": 313561
     },
     {
       "journal_id": "spravodaj_sss",
@@ -769,7 +769,7 @@
       "path": "fulltext/spravodaj_sss/1978.json",
       "chunks": 91,
       "articles": 31,
-      "bytes": 273005
+      "bytes": 264618
     },
     {
       "journal_id": "spravodaj_sss",
@@ -777,15 +777,15 @@
       "path": "fulltext/spravodaj_sss/1979.json",
       "chunks": 160,
       "articles": 53,
-      "bytes": 486973
+      "bytes": 475346
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1980,
       "path": "fulltext/spravodaj_sss/1980.json",
-      "chunks": 98,
-      "articles": 39,
-      "bytes": 276164
+      "chunks": 97,
+      "articles": 38,
+      "bytes": 269340
     },
     {
       "journal_id": "spravodaj_sss",
@@ -793,23 +793,23 @@
       "path": "fulltext/spravodaj_sss/1981.json",
       "chunks": 27,
       "articles": 10,
-      "bytes": 78964
+      "bytes": 76471
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1983,
       "path": "fulltext/spravodaj_sss/1983.json",
-      "chunks": 254,
+      "chunks": 267,
       "articles": 82,
-      "bytes": 761116
+      "bytes": 766995
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1984,
       "path": "fulltext/spravodaj_sss/1984.json",
-      "chunks": 204,
+      "chunks": 210,
       "articles": 68,
-      "bytes": 608933
+      "bytes": 605304
     },
     {
       "journal_id": "spravodaj_sss",
@@ -817,335 +817,335 @@
       "path": "fulltext/spravodaj_sss/1985.json",
       "chunks": 115,
       "articles": 41,
-      "bytes": 331946
+      "bytes": 319442
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1986,
       "path": "fulltext/spravodaj_sss/1986.json",
-      "chunks": 199,
+      "chunks": 229,
       "articles": 63,
-      "bytes": 593649
+      "bytes": 672973
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1987,
       "path": "fulltext/spravodaj_sss/1987.json",
-      "chunks": 72,
+      "chunks": 73,
       "articles": 22,
-      "bytes": 216098
+      "bytes": 215055
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1988,
       "path": "fulltext/spravodaj_sss/1988.json",
-      "chunks": 83,
+      "chunks": 84,
       "articles": 25,
-      "bytes": 248978
+      "bytes": 249706
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1989,
       "path": "fulltext/spravodaj_sss/1989.json",
-      "chunks": 160,
+      "chunks": 166,
       "articles": 50,
-      "bytes": 476197
+      "bytes": 483494
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1990,
       "path": "fulltext/spravodaj_sss/1990.json",
-      "chunks": 56,
+      "chunks": 59,
       "articles": 22,
-      "bytes": 163661
+      "bytes": 162790
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1991,
       "path": "fulltext/spravodaj_sss/1991.json",
-      "chunks": 72,
+      "chunks": 77,
       "articles": 27,
-      "bytes": 209602
+      "bytes": 220964
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1992,
       "path": "fulltext/spravodaj_sss/1992.json",
-      "chunks": 91,
+      "chunks": 92,
       "articles": 43,
-      "bytes": 253753
+      "bytes": 252510
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1993,
       "path": "fulltext/spravodaj_sss/1993.json",
-      "chunks": 135,
+      "chunks": 127,
       "articles": 58,
-      "bytes": 374248
+      "bytes": 338747
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1994,
       "path": "fulltext/spravodaj_sss/1994.json",
-      "chunks": 160,
+      "chunks": 154,
       "articles": 56,
-      "bytes": 462972
+      "bytes": 424360
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1995,
       "path": "fulltext/spravodaj_sss/1995.json",
-      "chunks": 173,
+      "chunks": 177,
       "articles": 57,
-      "bytes": 518993
+      "bytes": 511771
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1996,
       "path": "fulltext/spravodaj_sss/1996.json",
-      "chunks": 200,
+      "chunks": 198,
       "articles": 75,
-      "bytes": 596848
+      "bytes": 567964
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1997,
       "path": "fulltext/spravodaj_sss/1997.json",
-      "chunks": 214,
+      "chunks": 220,
       "articles": 84,
-      "bytes": 601612
+      "bytes": 615451
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1998,
       "path": "fulltext/spravodaj_sss/1998.json",
-      "chunks": 251,
+      "chunks": 246,
       "articles": 79,
-      "bytes": 750650
+      "bytes": 717187
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 1999,
       "path": "fulltext/spravodaj_sss/1999.json",
-      "chunks": 317,
+      "chunks": 335,
       "articles": 91,
-      "bytes": 967277
+      "bytes": 994744
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2000,
       "path": "fulltext/spravodaj_sss/2000.json",
-      "chunks": 426,
+      "chunks": 435,
       "articles": 149,
-      "bytes": 1249806
+      "bytes": 1266782
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2001,
       "path": "fulltext/spravodaj_sss/2001.json",
-      "chunks": 286,
+      "chunks": 287,
       "articles": 107,
-      "bytes": 826650
+      "bytes": 824118
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2002,
       "path": "fulltext/spravodaj_sss/2002.json",
-      "chunks": 296,
+      "chunks": 308,
       "articles": 100,
-      "bytes": 901421
+      "bytes": 906691
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2003,
       "path": "fulltext/spravodaj_sss/2003.json",
-      "chunks": 337,
+      "chunks": 373,
       "articles": 126,
-      "bytes": 971497
+      "bytes": 1074481
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2004,
       "path": "fulltext/spravodaj_sss/2004.json",
-      "chunks": 373,
+      "chunks": 380,
       "articles": 108,
-      "bytes": 1145983
+      "bytes": 1127329
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2005,
       "path": "fulltext/spravodaj_sss/2005.json",
-      "chunks": 306,
+      "chunks": 321,
       "articles": 107,
-      "bytes": 907536
+      "bytes": 931821
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2006,
       "path": "fulltext/spravodaj_sss/2006.json",
-      "chunks": 342,
+      "chunks": 344,
       "articles": 110,
-      "bytes": 1027348
+      "bytes": 1009375
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2007,
       "path": "fulltext/spravodaj_sss/2007.json",
-      "chunks": 363,
+      "chunks": 365,
       "articles": 104,
-      "bytes": 1119095
+      "bytes": 1106233
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2008,
       "path": "fulltext/spravodaj_sss/2008.json",
-      "chunks": 321,
+      "chunks": 329,
       "articles": 93,
-      "bytes": 971805
+      "bytes": 969734
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2009,
       "path": "fulltext/spravodaj_sss/2009.json",
-      "chunks": 310,
+      "chunks": 316,
       "articles": 62,
-      "bytes": 979966
+      "bytes": 981402
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2010,
       "path": "fulltext/spravodaj_sss/2010.json",
-      "chunks": 157,
+      "chunks": 153,
       "articles": 67,
-      "bytes": 447491
+      "bytes": 416452
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2011,
       "path": "fulltext/spravodaj_sss/2011.json",
-      "chunks": 178,
+      "chunks": 191,
       "articles": 54,
-      "bytes": 532416
+      "bytes": 577801
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2012,
       "path": "fulltext/spravodaj_sss/2012.json",
-      "chunks": 116,
-      "articles": 51,
-      "bytes": 323179
+      "chunks": 136,
+      "articles": 52,
+      "bytes": 387454
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2013,
       "path": "fulltext/spravodaj_sss/2013.json",
-      "chunks": 181,
+      "chunks": 200,
       "articles": 73,
-      "bytes": 506340
+      "bytes": 565055
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2014,
       "path": "fulltext/spravodaj_sss/2014.json",
-      "chunks": 178,
+      "chunks": 195,
       "articles": 65,
-      "bytes": 518829
+      "bytes": 563937
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2015,
       "path": "fulltext/spravodaj_sss/2015.json",
-      "chunks": 246,
+      "chunks": 278,
       "articles": 62,
-      "bytes": 767005
+      "bytes": 851113
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2016,
       "path": "fulltext/spravodaj_sss/2016.json",
-      "chunks": 182,
+      "chunks": 197,
       "articles": 52,
-      "bytes": 544393
+      "bytes": 586232
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2017,
       "path": "fulltext/spravodaj_sss/2017.json",
-      "chunks": 184,
+      "chunks": 199,
       "articles": 53,
-      "bytes": 554341
+      "bytes": 604385
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2018,
       "path": "fulltext/spravodaj_sss/2018.json",
-      "chunks": 250,
+      "chunks": 294,
       "articles": 99,
-      "bytes": 732852
+      "bytes": 850503
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2019,
       "path": "fulltext/spravodaj_sss/2019.json",
-      "chunks": 233,
+      "chunks": 254,
       "articles": 58,
-      "bytes": 723380
+      "bytes": 782499
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2020,
       "path": "fulltext/spravodaj_sss/2020.json",
-      "chunks": 264,
+      "chunks": 318,
       "articles": 60,
-      "bytes": 834657
+      "bytes": 995313
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2021,
       "path": "fulltext/spravodaj_sss/2021.json",
-      "chunks": 296,
+      "chunks": 332,
       "articles": 118,
-      "bytes": 866305
+      "bytes": 957594
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2022,
       "path": "fulltext/spravodaj_sss/2022.json",
-      "chunks": 257,
+      "chunks": 277,
       "articles": 88,
-      "bytes": 748893
+      "bytes": 805159
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2023,
       "path": "fulltext/spravodaj_sss/2023.json",
-      "chunks": 236,
+      "chunks": 310,
       "articles": 70,
-      "bytes": 927283
+      "bytes": 959899
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2024,
       "path": "fulltext/spravodaj_sss/2024.json",
-      "chunks": 200,
+      "chunks": 210,
       "articles": 52,
-      "bytes": 615330
+      "bytes": 638952
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2025,
       "path": "fulltext/spravodaj_sss/2025.json",
-      "chunks": 209,
+      "chunks": 220,
       "articles": 114,
-      "bytes": 553922
+      "bytes": 564604
     },
     {
       "journal_id": "spravodaj_sss",
       "year": 2026,
       "path": "fulltext/spravodaj_sss/2026.json",
-      "chunks": 73,
+      "chunks": 70,
       "articles": 58,
-      "bytes": 170489
+      "bytes": 142353
     }
   ]
 }
