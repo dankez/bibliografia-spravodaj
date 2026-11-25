@@ -488,6 +488,7 @@ const bibliographyExportMenus = [
     import MiniSearch from 'minisearch';
     import issuePageOffsets from '../data/pdf_page_offsets.json';
     import { getPdfPageNumber } from '../utils/pdf-page.js';
+    import { makeSearchSnippet, normalizeSearchText } from '../utils/search-snippets.js';
 
     const ARTICLES_DATA_URL = '/data/articles.json';
     const DEFAULT_JOURNAL_ID = 'spravodaj_sss';
@@ -502,14 +503,6 @@ const bibliographyExportMenus = [
     function displayAbstract(article) {
       const abstract = String(article.abstract || '').trim();
       return isGenericImportAbstract(abstract) ? '' : abstract;
-    }
-
-    function normalizeSearchText(value) {
-      return String(value || '')
-        .normalize('NFD')
-        .replace(/[\u0300-\u036f]/g, '')
-        .toLocaleLowerCase('sk')
-        .trim();
     }
 
     function processSearchTerm(term) {
@@ -528,17 +521,23 @@ const bibliographyExportMenus = [
     const articleYears = articles.map((article) => article.year);
     const START_YEAR = Math.min(...articleYears);
     const END_YEAR = Math.max(...articleYears, new Date().getFullYear());
-    const miniSearch = new MiniSearch({
-      fields: ['title', 'authors', 'abstract', 'year_str', 'volume', 'issue', 'tags', 'caves', 'groups'],
-      storeFields: ['id'],
-      processTerm: processSearchTerm,
-      searchOptions: {
-        boost: { title: 4, caves: 3, authors: 2, tags: 2, groups: 2, abstract: 1 },
-        prefix: true,
-        fuzzy: 0.1
-      }
-    });
-    miniSearch.addAll(articles);
+    let miniSearch = null;
+    function ensureMiniSearch() {
+      if (miniSearch) return miniSearch;
+      miniSearch = new MiniSearch({
+        fields: ['title', 'authors', 'abstract', 'year_str', 'volume', 'issue', 'tags', 'caves', 'groups'],
+        storeFields: ['id'],
+        processTerm: processSearchTerm,
+        searchOptions: {
+          combineWith: 'AND',
+          boost: { title: 4, caves: 3, authors: 2, tags: 2, groups: 2, abstract: 1 },
+          prefix: true,
+          fuzzy: 0.1
+        }
+      });
+      miniSearch.addAll(articles);
+      return miniSearch;
+    }
 
     const state = {
       search: '',
@@ -584,6 +583,7 @@ const bibliographyExportMenus = [
     const nextPageBtn = byId('next-page-btn');
     let filtered = articles;
     let fulltextMiniSearch = null;
+    let fulltextHits = new Map();
     let fulltextManifest = null;
     let fulltextManifestPromise = null;
     let fulltextLoadPromise = null;
@@ -656,9 +656,10 @@ const bibliographyExportMenus = [
       if (fulltextMiniSearch) return fulltextMiniSearch;
       fulltextMiniSearch = new MiniSearch({
         fields: ['t'],
-        storeFields: ['a'],
+        storeFields: ['a', 't'],
         processTerm: processSearchTerm,
         searchOptions: {
+          combineWith: 'AND',
           prefix: true,
           fuzzy: 0.1
         }
@@ -1002,13 +1003,15 @@ const bibliographyExportMenus = [
     function applyFilters() {
       const query = state.search.trim();
       const base = query
-        ? miniSearch.search(query).map((hit) => articlesById.get(Number(hit.id))).filter(Boolean)
+        ? ensureMiniSearch().search(query).map((hit) => articlesById.get(Number(hit.id))).filter(Boolean)
         : articles.slice();
 
+      fulltextHits = new Map();
       if (query && state.fulltext) {
         if (fulltextMiniSearch) {
           const seen = new Set(base.map((article) => article.id));
           fulltextMiniSearch.search(query).forEach((hit) => {
+            if (!fulltextHits.has(hit.a)) fulltextHits.set(hit.a, hit);
             const article = articlesById.get(hit.a);
             if (article && !seen.has(article.id)) {
               base.push(article);
@@ -1026,10 +1029,13 @@ const bibliographyExportMenus = [
         if (state.journal && articleJournalId(article) !== state.journal) return false;
         if (state.mapsOnly && !hasMap(article)) return false;
         return true;
-      }).sort((a, b) => {
-        const mapDelta = Number(hasMap(b)) - Number(hasMap(a));
-        return mapDelta || b.year - a.year || b.id - a.id;
       });
+      if (!query) {
+        filtered.sort((a, b) => {
+          const mapDelta = Number(hasMap(b)) - Number(hasMap(a));
+          return mapDelta || b.year - a.year || b.id - a.id;
+        });
+      }
 
       const selectedStillVisible = filtered.some((article) => article.id === state.selectedId);
       state.page = Math.min(state.page, Math.max(1, Math.ceil(filtered.length / state.pageSize)));
@@ -1082,6 +1088,11 @@ const bibliographyExportMenus = [
         appendTextElement(row, 'p', 'article-result-author', formatAuthorsDisplay(article.authors || []));
         if (abstract) {
           appendTextElement(row, 'p', 'article-result-abstract line-clamp-2', abstract);
+        }
+        const hit = fulltextHits.get(article.id);
+        const snippet = hit && makeSearchSnippet(hit.t, hit.terms?.join(' ') || state.search);
+        if (snippet) {
+          appendTextElement(row, 'p', 'article-result-snippet line-clamp-2', snippet);
         }
         row.addEventListener('click', () => selectArticle(article.id));
         listEl.appendChild(row);

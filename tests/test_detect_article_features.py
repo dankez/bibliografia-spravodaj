@@ -70,6 +70,17 @@ def test_scale_and_generic_map_word_is_only_candidate():
     assert result["features"]["map_plan"]["confidence"] == "candidate"
 
 
+def test_issue_number_is_not_a_map_scale():
+    for text in ("Spravodaj 1/1998", "číslo 1/99", "čas 1:30"):
+        assert not detector.SCALE_RE.search(detector.fold_text(text))
+    for text in ("mierka 1:500", "1 : 10 000", "M 1/500", "mierka 1/200"):
+        assert detector.SCALE_RE.search(detector.fold_text(text))
+
+    article = {"id": 31, "title": "Správa skupiny", "extras": [], "tags": []}
+    record = {"text": "V Spravodaji 1/1998 mapa výpravy, zamerali členovia."}
+    assert detector.detect_article(article, record)["has_map_plan"] is False
+
+
 def test_explicit_map_attachment_in_metadata_is_map_plan():
     article = {
         "id": 4,

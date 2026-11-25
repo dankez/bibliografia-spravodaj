@@ -55,7 +55,10 @@ FEATURE_TAGS = {
     "cross_section": "rez/profil",
 }
 
-SCALE_RE = re.compile(r"(?:(?:mierka|m)\s*[:.]?\s*)?1\s*[:/]\s*\d{2,5}\b")
+SCALE_RE = re.compile(
+    r"(?<![\d/:.,])1\s*:\s*(?:[5-9]\d|[1-9]\d{2,4}|[1-9]\d?\s+\d{3})(?![\d/:])"
+    r"|\b(?:mierk\w*|m)\s*[:.=]?\s*1\s*/\s*(?:[1-9]\d{1,4}|[1-9]\d?\s+\d{3})(?![\d/])"
+)
 NEGATIVE_PLAN_RE = re.compile(
     r"\bplan\s+(?:prace|cinnosti|akcii|akcie|zasadnutia|vystavby|rozvoja|podujati|vyletu)\b"
 )

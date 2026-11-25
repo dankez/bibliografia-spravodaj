@@ -24,3 +24,9 @@ def test_cloudflare_pages_preview_domain_is_not_indexed():
 
     assert "https://bibliografia-spravodaj.pages.dev/*" in headers
     assert "X-Robots-Tag: noindex" in headers
+
+
+def test_cache_only_hash_named_astro_assets_long_term():
+    headers = (ROOT / "web/public/_headers").read_text(encoding="utf-8")
+
+    assert "/_astro/*\n  Cache-Control: public, max-age=31536000, immutable" in headers

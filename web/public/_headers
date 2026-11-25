@@ -7,5 +7,8 @@
   Permissions-Policy: accelerometer=(), ambient-light-sensor=(), autoplay=(), battery=(), camera=(), display-capture=(), document-domain=(), encrypted-media=(), fullscreen=(self), gamepad=(), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), picture-in-picture=(), publickey-credentials-get=(), screen-wake-lock=(), serial=(), usb=(), web-share=(self), xr-spatial-tracking=()
   Content-Security-Policy: base-uri 'self'; object-src 'none'; frame-ancestors 'self' https://sss.sk https://www.sss.sk
 
+/_astro/*
+  Cache-Control: public, max-age=31536000, immutable
+
 https://bibliografia-spravodaj.pages.dev/*
   X-Robots-Tag: noindex
