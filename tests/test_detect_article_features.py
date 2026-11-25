@@ -110,3 +110,43 @@ def test_update_articles_adds_detected_tags_idempotently():
     assert article["has_map_plan"] is True
     assert article["tags"].count("mapa/plán") == 1
     assert article["detected_features"]["map_plan"]["pages"] == [42]
+
+
+def test_metadata_plain_pl_marks_article_as_map_plan():
+    for extras in (["1 obr.", "1 pl.", "lit."], ["2 pl."]):
+        article = {"id": 20, "title": "Čachtická jaskyňa", "extras": extras, "tags": []}
+
+        result = detector.detect_article(article, None)
+
+        assert result["has_map_plan"] is True, extras
+
+
+def test_issue_reference_is_not_a_map_scale():
+    for text in ("Spravodaj 1/1998 str. 12", "pozri číslo 1/99", "výsledok 1:3, čas 1:30"):
+        assert not detector.SCALE_RE.search(detector.fold_text(text)), text
+    for text in ("mierka 1:500", "v mierke 1 : 200", "1:10 000", "M 1/500"):
+        assert detector.SCALE_RE.search(detector.fold_text(text)), text
+
+
+def test_survey_words_far_from_map_anchor_do_not_count():
+    filler = " Rozprávanie o výlete a stretnutí členov." * 12
+    text = "Zameral a merali sme chodbu. polygón stanovisko" + filler + " Mapa bola neskôr vystavená."
+
+    page = detector.finalize_features(detector.score_text_page(text, 5))
+
+    assert page["map_plan"]["score"] < detector.FEATURE_THRESHOLDS["map_plan"]
+
+
+def test_activity_report_with_text_only_map_evidence_is_not_confirmed():
+    article = {"id": 30, "title": "Správa o činnosti Slovenskej speleologickej spoločnosti", "extras": [], "tags": []}
+    record = {
+        "id": 30,
+        "pdf_page_start": 15,
+        "text": "Pôdorys jaskyne, mierka 1:500. Merali a kreslili členovia skupiny, legenda a polygón.",
+    }
+
+    result = detector.detect_article(article, record)
+
+    assert result["has_map_plan"] is False
+    assert result["map_plan_pages"] == []
+    assert result["features"]["map_plan"]["confidence"] == "candidate"

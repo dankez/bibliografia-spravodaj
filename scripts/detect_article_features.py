@@ -55,7 +55,26 @@ FEATURE_TAGS = {
     "cross_section": "rez/profil",
 }
 
-SCALE_RE = re.compile(r"(?:(?:mierka|m)\s*[:.]?\s*)?1\s*[:/]\s*\d{2,5}\b")
+# Mierka mapy: "1:500", "1 : 10 000" (dvojbodka, menovateľ >= 50) alebo "mierka/M 1/500".
+# Lomka bez slova "mierka" sa nepoužíva: "1/1998" je číslo Spravodaja, "1/10" dátum.
+SCALE_RE = re.compile(
+    r"(?<![\d/:.,])1\s*:\s*(?:[5-9]\d|[1-9]\d{2}|[1-9]\d?\s?\d{3})(?![\d:])|"
+    r"\b(?:mierk\w*|m)\s*[:.=]?\s*1\s*[:/]\s*[1-9]\d{1,4}(?![\d/])"
+)
+PLAN_WORD_RE = re.compile(r"\b(?:mapa|mapy|mapovy|plan|podorys|nacrt|situacia|topografia|topograficky)\b")
+SURVEY_RE = re.compile(
+    r"\b(?:meral|merali|zameral|zamerali|zameranie|mapoval|mapovali|"
+    r"kreslil|kreslili|kresba|zostavil|digitalizoval)\b"
+)
+GEOMETRY_RE = re.compile(
+    r"\b(?:polygon|polygonovy|polygonom|meracsky\s+bod|azimut|stanovisko|traverz|legenda)\b"
+)
+NEAR_WINDOW = 220
+# Články, kde zmienka o pláne/mierke v texte je takmer vždy iba o činnosti, nie o mape v článku.
+REPORT_TITLE_RE = re.compile(
+    r"^(?:sprava\s+o\s+cinnosti|cinnost\s+slovenskej|slovenska\s+speleologicka\s+spolocnost\s+v\s+roku|"
+    r"adresar|zapis\s+z|oznamenie|obsah\b|editorial|uvodnik)"
+)
 NEGATIVE_PLAN_RE = re.compile(
     r"\bplan\s+(?:prace|cinnosti|akcii|akcie|zasadnutia|vystavby|rozvoja|podujati|vyletu)\b"
 )
@@ -178,6 +197,8 @@ def score_metadata(article: dict[str, Any]) -> dict[str, dict[str, Any]]:
 
     if re.search(r"\b\d*\s*pl\.\s*j\.", folded_extras):
         add_signal(features, "map_plan", 0.98, "metadata: pl. j.", "metadata")
+    elif re.search(r"(?<![a-z])\d*\s*pl\.", folded_extras):
+        add_signal(features, "map_plan", 0.92, "metadata: pl. (plán v prílohách)", "metadata")
     if re.search(r"\b\d*\s*(?:mapa|mapy|mapiek)\b|\b\d*\s*pl[aá]n(?:ov|y)?\b|\bpodorys\b", folded_extras):
         add_signal(features, "map_plan", 0.92, "metadata: mapa/plán v prílohách", "metadata")
     if re.search(r"\bmapa\b|\bmapy\b|\bplan\s+jaskyn|\bplan\s+priepast|\bpodorys\b", folded_metadata):
@@ -196,6 +217,16 @@ def score_metadata(article: dict[str, Any]) -> dict[str, dict[str, Any]]:
         add_signal(features, "bibliography", 0.80, "metadata: lit.", "metadata")
 
     return features
+
+
+def _near_anchor(pattern: re.Pattern[str], folded: str, anchors: list[int]) -> bool:
+    if not anchors:
+        return False
+    return any(
+        abs(match.start() - anchor) <= NEAR_WINDOW
+        for match in pattern.finditer(folded)
+        for anchor in anchors
+    )
 
 
 def score_text_page(text: str, page: int | None = None) -> dict[str, dict[str, Any]]:
@@ -218,20 +249,10 @@ def score_text_page(text: str, page: int | None = None) -> dict[str, dict[str, A
             folded,
         )
     )
-    has_survey = bool(
-        re.search(
-            r"\b(?:meral|merali|zameral|zamerali|zameranie|mapoval|mapovali|"
-            r"kreslil|kreslili|kresba|zostavil|digitalizoval)\b",
-            folded,
-        )
-    )
-    has_geometry = bool(
-        re.search(
-            r"\b(?:polygon|polygonovy|polygonom|meracsky\s+bod|azimut|"
-            r"stanovisko|traverz|legenda)\b",
-            folded,
-        )
-    )
+    # Meračské slová bez mapového kotvového slova/mierky v blízkosti (správy, adresáre) nie sú dôkaz mapy.
+    anchors = [m.start() for m in SCALE_RE.finditer(folded)] + [m.start() for m in PLAN_WORD_RE.finditer(folded)]
+    has_survey = _near_anchor(SURVEY_RE, folded, anchors)
+    has_geometry = _near_anchor(GEOMETRY_RE, folded, anchors)
     has_dimensions = bool(
         re.search(
             r"\b(?:dlzka|hlbka|prevysenie|nadmorska\s+vyska|rozmery|denivelacia)\b",
@@ -364,12 +385,27 @@ def finalize_features(features: dict[str, dict[str, Any]]) -> dict[str, dict[str
     return features
 
 
+def apply_report_title_guard(article: dict[str, Any], features: dict[str, dict[str, Any]]) -> None:
+    """Správa/adresár bez metadátového dôkazu mapy: iba text -> max. kandidát, nie potvrdená mapa."""
+    map_feature = features["map_plan"]
+    if not map_feature["present"] or "metadata" in map_feature.get("methods", []):
+        return
+    if not REPORT_TITLE_RE.match(fold_text(article.get("title") or "")):
+        return
+    map_feature["score"] = min(float(map_feature["score"]), FEATURE_THRESHOLDS["map_plan"] - 0.01)
+    map_feature["present"] = False
+    map_feature["confidence"] = "candidate"
+    map_feature["pages"] = []
+    map_feature["evidence"] = unique(map_feature["evidence"] + ["guard: správa/adresár bez metadátového dôkazu"])[:18]
+
+
 def detect_article(article: dict[str, Any], fulltext_record: dict[str, Any] | None) -> dict[str, Any]:
     features = score_metadata(article)
     if fulltext_record:
         for page, page_text in split_fulltext_pages(fulltext_record):
             merge_features(features, finalize_features(score_text_page(page_text, page)))
     features = finalize_features(features)
+    apply_report_title_guard(article, features)
     map_feature = features["map_plan"]
     return {
         "id": article.get("id"),

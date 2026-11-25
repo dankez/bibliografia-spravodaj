@@ -443,9 +443,14 @@ def strip_group_lead_in(text: str) -> str:
 def signature_text_variants(text: str) -> list[str]:
     text = clean_space(text)
     variants = [text]
-    match = re.search(r"[.!?]\s+([^.!?]+)$", text)
-    if match:
-        variants.insert(0, clean_space(match.group(1)))
+    for match in reversed(list(re.finditer(r"[.!?]\s+", text))):
+        preceding_words = text[: match.start() + 1].split()
+        if preceding_words and TITLE_RE.match(preceding_words[-1]):
+            continue  # "Ing. Meno Priezvisko": bodka za titulom nie je koniec vety
+        tail = clean_space(text[match.end():])
+        if tail and not re.search(r"[.!?]", tail.rstrip(".!? ")):
+            variants.insert(0, tail)
+        break
     return list(dict.fromkeys(variant for variant in variants if variant))
 
 

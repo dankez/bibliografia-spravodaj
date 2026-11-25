@@ -436,6 +436,16 @@ html[data-theme="dark"] footer .text-belly-dimgray {
   text-wrap: pretty;
 }
 
+.article-result-snippet {
+  margin-top: 0.4rem;
+  padding-left: 0.6rem;
+  border-left: 2px solid rgb(var(--sss-dimgray));
+  color: rgb(var(--sss-dimgray));
+  font-size: 0.74rem;
+  font-style: italic;
+  line-height: 1.5;
+}
+
 .article-result-badge,
 .bibliography-tag {
   border-radius: var(--sss-radius-full);
