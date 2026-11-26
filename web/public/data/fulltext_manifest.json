@@ -2,10 +2,10 @@
   "version": 2,
   "source": "data/research_chunks.jsonl",
   "index_dir": "web/public/data/fulltext",
-  "chunks": 25569,
+  "chunks": 25576,
   "articles": 5700,
-  "text_chars": 72690117,
-  "bytes": 80513675,
+  "text_chars": 72720723,
+  "bytes": 80547324,
   "journals": [
     {
       "journal_id": "aragonit",
@@ -21,9 +21,9 @@
     },
     {
       "journal_id": "spravodaj_sss",
-      "chunks": 10594,
+      "chunks": 10601,
       "articles": 3645,
-      "bytes": 31560660
+      "bytes": 31594309
     }
   ],
   "shards": [
@@ -1063,9 +1063,9 @@
       "journal_id": "spravodaj_sss",
       "year": 2016,
       "path": "fulltext/spravodaj_sss/2016.json",
-      "chunks": 182,
+      "chunks": 185,
       "articles": 52,
-      "bytes": 544393
+      "bytes": 556079
     },
     {
       "journal_id": "spravodaj_sss",
@@ -1087,9 +1087,9 @@
       "journal_id": "spravodaj_sss",
       "year": 2019,
       "path": "fulltext/spravodaj_sss/2019.json",
-      "chunks": 233,
+      "chunks": 234,
       "articles": 58,
-      "bytes": 723380
+      "bytes": 731679
     },
     {
       "journal_id": "spravodaj_sss",
@@ -1127,9 +1127,9 @@
       "journal_id": "spravodaj_sss",
       "year": 2024,
       "path": "fulltext/spravodaj_sss/2024.json",
-      "chunks": 200,
+      "chunks": 203,
       "articles": 52,
-      "bytes": 615330
+      "bytes": 628994
     },
     {
       "journal_id": "spravodaj_sss",
