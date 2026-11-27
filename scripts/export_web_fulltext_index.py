@@ -9,9 +9,13 @@ import re
 from pathlib import Path
 from typing import Any
 
+from build_research_knowledge_db import chunk_id, chunk_text, clean_fulltext
+from fulltext_overrides import load_fulltext_overrides, matches_override
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_CHUNKS_PATH = BASE_DIR / "data" / "research_chunks.jsonl"
+DEFAULT_ARTICLES_PATH = BASE_DIR / "data" / "articles_with_urls.json"
 DEFAULT_OUTPUT_DIR = BASE_DIR / "web" / "public" / "data" / "fulltext"
 DEFAULT_MANIFEST_PATH = BASE_DIR / "web" / "public" / "data" / "fulltext_manifest.json"
 DEFAULT_JOURNAL_ID = "spravodaj_sss"
@@ -52,12 +56,37 @@ def display_path(path: Path) -> str:
         return str(path)
 
 
-def export_index(chunks_path: Path, output_dir: Path, manifest_path: Path) -> dict[str, Any]:
+def export_index(
+    chunks_path: Path, output_dir: Path, manifest_path: Path,
+    articles_path: Path | None = None,
+) -> dict[str, Any]:
     shards: dict[tuple[str, str], list[dict[str, Any]]] = {}
     article_ids: set[int] = set()
     text_chars = 0
+    overrides = load_fulltext_overrides()
+    replaced_ids: set[int] = set()
+    seen_ids: set[int] = set()
+
+    def add_override(article_id: int, record: dict[str, Any], override: dict[str, Any]) -> None:
+        nonlocal text_chars
+        journal_id = safe_path_part(record.get("journal_id"), DEFAULT_JOURNAL_ID)
+        year = safe_path_part(record.get("year"), "unknown")
+        for chunk in chunk_text(clean_fulltext(override["text"]), 3200, 350):
+            payload = {"id": chunk_id(article_id, chunk["ordinal"], chunk["text"]), "a": article_id, "t": chunk["text"]}
+            shards.setdefault((journal_id, year), []).append(payload)
+            text_chars += len(payload["t"])
+        article_ids.add(article_id)
+        replaced_ids.add(article_id)
 
     for record in iter_jsonl(chunks_path):
+        article_id = record.get("article_id")
+        if isinstance(article_id, int):
+            seen_ids.add(article_id)
+        override = overrides.get(article_id)
+        if override and matches_override(record, override):
+            if article_id not in replaced_ids:
+                add_override(article_id, record, override)
+            continue
         compact = compact_chunk(record)
         if compact is None:
             continue
@@ -65,6 +94,15 @@ def export_index(chunks_path: Path, output_dir: Path, manifest_path: Path) -> di
         shards.setdefault((journal_id, year), []).append(payload)
         article_ids.add(payload["a"])
         text_chars += len(payload["t"])
+
+    if overrides.keys() - seen_ids and articles_path is not None and articles_path.exists():
+        with articles_path.open(encoding="utf-8") as handle:
+            for article in json.load(handle):
+                article_id = article.get("id")
+                override = overrides.get(article_id)
+                if override and article_id not in seen_ids and matches_override(article, override):
+                    add_override(article_id, article, override)
+                    seen_ids.add(article_id)
 
     output_dir.mkdir(parents=True, exist_ok=True)
     for stale_path in output_dir.glob("**/*.json"):
@@ -129,11 +167,12 @@ def export_index(chunks_path: Path, output_dir: Path, manifest_path: Path) -> di
 def main() -> None:
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--chunks", type=Path, default=DEFAULT_CHUNKS_PATH)
+    parser.add_argument("--articles", type=Path, default=DEFAULT_ARTICLES_PATH)
     parser.add_argument("--output-dir", type=Path, default=DEFAULT_OUTPUT_DIR)
     parser.add_argument("--manifest", type=Path, default=DEFAULT_MANIFEST_PATH)
     args = parser.parse_args()
 
-    manifest = export_index(args.chunks, args.output_dir, args.manifest)
+    manifest = export_index(args.chunks, args.output_dir, args.manifest, args.articles)
     print(
         "Exported fulltext web index: "
         f"chunks={manifest['chunks']}, articles={manifest['articles']}, "

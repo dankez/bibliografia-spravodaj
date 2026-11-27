@@ -13,6 +13,7 @@ from pathlib import Path
 from typing import Any
 
 import extract_pdf_fulltext as fulltext
+from fulltext_overrides import apply_override, load_fulltext_overrides, matches_override
 
 
 BASE_DIR = Path(__file__).resolve().parents[1]
@@ -67,10 +68,14 @@ def page_span(record: dict[str, Any]) -> int:
 
 def load_records(path: Path) -> list[dict[str, Any]]:
     records: list[dict[str, Any]] = []
+    overrides = load_fulltext_overrides()
     with path.open("r", encoding="utf-8") as handle:
         for line_number, line in enumerate(handle, start=1):
             if line.strip():
                 record = json.loads(line)
+                override = overrides.get(record.get("id"))
+                if override and matches_override(record, override):
+                    record = apply_override(record, override)
                 record["_line"] = line_number
                 records.append(record)
     return records

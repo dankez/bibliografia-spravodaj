@@ -1,25 +1,25 @@
 {
-  "generated_at": "2026-06-30T17:01:50.876303+00:00",
+  "generated_at": "2026-11-27T17:43:56.535256+00:00",
   "source_generated_at": "2026-06-30T09:47:55.737170+00:00",
   "summary": {
-    "active_incidents": 346,
-    "high": 115,
+    "active_incidents": 326,
+    "high": 95,
     "medium": 231,
     "low": 0,
     "first_year": 1958,
     "last_year": 2025,
     "ignored_outer_matter": 52,
-    "records_without_text": 74,
+    "records_without_text": 59,
     "duplicate_article_ids": 0,
     "auto_fixable_records_excluded": 0,
     "review_decisions_applied": 0,
     "issue_counts": {
+      "replacement_characters": 18,
+      "private_use_characters": 51,
+      "very_short_text": 41,
+      "low_text_density": 55,
       "residual_bad_diacritic_tokens": 156,
-      "replacement_characters": 19,
-      "private_use_characters": 52,
-      "very_short_text": 46,
-      "low_text_density": 60,
-      "empty_text": 67,
+      "empty_text": 52,
       "other_hidden_characters": 1
     }
   },
@@ -37,47 +37,6 @@
     "cleanup_multispace_layout": "Rozťahaný layout"
   },
   "incidents": [
-    {
-      "decision_key": "fulltext:4133:residual_bad_diacritic_tokens:18906c9bd449265d",
-      "id": 4133,
-      "line": 3996,
-      "title": "Zahraničné aktivity",
-      "year": 2007,
-      "issue": "",
-      "pages": "1-3",
-      "status": "ok",
-      "text_source": "pdftotext",
-      "text_chars": 883116,
-      "words": 128123,
-      "issue_score": 500,
-      "severity": "medium",
-      "primary_issue": "residual_bad_diacritic_tokens",
-      "primary_label": "Podozrivá diakritika",
-      "recommended_action": "Skontrolovať ukážku textu; pri potvrdení spustiť cielené OCR alebo opraviť text.",
-      "issue_codes": [
-        "residual_bad_diacritic_tokens",
-        "replacement_characters",
-        "private_use_characters"
-      ],
-      "issue_labels": [
-        "Podozrivá diakritika",
-        "Náhradné znaky",
-        "Private-use znaky"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [
-        "jaskyn",
-        "jaskyna",
-        "akcia"
-      ],
-      "pdf_links": [
-        {
-          "page": 4,
-          "url": "https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=4"
-        }
-      ],
-      "article_url": "/clanky/4133/"
-    },
     {
       "decision_key": "fulltext:4310:replacement_characters:58110fa3578e446f",
       "id": 4310,
@@ -779,41 +738,6 @@
         }
       ],
       "article_url": "/clanky/2518/"
-    },
-    {
-      "decision_key": "fulltext:2803:very_short_text:97f059bc9aaf84a0",
-      "id": 2803,
-      "line": 2666,
-      "title": "Tabuľka najdlhších jaskýň na Slovensku, stav k 23. 3. 2012",
-      "year": 2012,
-      "issue": "1",
-      "pages": "44",
-      "status": "ok",
-      "text_source": "pdftotext",
-      "text_chars": 93,
-      "words": 16,
-      "issue_score": 350,
-      "severity": "high",
-      "primary_issue": "very_short_text",
-      "primary_label": "Veľmi krátky text",
-      "recommended_action": "Otvoriť PDF a overiť, či nejde len o obálku, reklamu alebo krátku správu.",
-      "issue_codes": [
-        "very_short_text",
-        "low_text_density"
-      ],
-      "issue_labels": [
-        "Veľmi krátky text",
-        "Nízka hustota textu"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 44,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=44"
-        }
-      ],
-      "article_url": "/clanky/2803/"
     },
     {
       "decision_key": "fulltext:2826:very_short_text:c403a6ebdb73e32a",
@@ -1586,146 +1510,6 @@
       "article_url": "/clanky/3546/"
     },
     {
-      "decision_key": "fulltext:3626:very_short_text:debb0c28f336fa30",
-      "id": 3626,
-      "line": 3489,
-      "title": "Predsedníctvo v roku 2024",
-      "year": 2024,
-      "issue": "2",
-      "pages": "3",
-      "status": "ok",
-      "text_source": "pdftotext",
-      "text_chars": 96,
-      "words": 14,
-      "issue_score": 350,
-      "severity": "high",
-      "primary_issue": "very_short_text",
-      "primary_label": "Veľmi krátky text",
-      "recommended_action": "Otvoriť PDF a overiť, či nejde len o obálku, reklamu alebo krátku správu.",
-      "issue_codes": [
-        "very_short_text",
-        "low_text_density"
-      ],
-      "issue_labels": [
-        "Veľmi krátky text",
-        "Nízka hustota textu"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 3,
-          "url": "https://sss.sk/wp-content/uploads/2024/08/Spravodaj_2_2024_NET_optimized.pdf#page=3"
-        }
-      ],
-      "article_url": "/clanky/3626/"
-    },
-    {
-      "decision_key": "fulltext:3633:very_short_text:5b644cb5761c9a7b",
-      "id": 3633,
-      "line": 3496,
-      "title": "Odpad v priepastiach Silickej planiny, 2023",
-      "year": 2024,
-      "issue": "2",
-      "pages": "43",
-      "status": "ok",
-      "text_source": "pdftotext",
-      "text_chars": 41,
-      "words": 8,
-      "issue_score": 350,
-      "severity": "high",
-      "primary_issue": "very_short_text",
-      "primary_label": "Veľmi krátky text",
-      "recommended_action": "Otvoriť PDF a overiť, či nejde len o obálku, reklamu alebo krátku správu.",
-      "issue_codes": [
-        "very_short_text",
-        "low_text_density"
-      ],
-      "issue_labels": [
-        "Veľmi krátky text",
-        "Nízka hustota textu"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 43,
-          "url": "https://sss.sk/wp-content/uploads/2024/08/Spravodaj_2_2024_NET_optimized.pdf#page=43"
-        }
-      ],
-      "article_url": "/clanky/3633/"
-    },
-    {
-      "decision_key": "fulltext:2579:very_short_text:71faf41f4a5a9660",
-      "id": 2579,
-      "line": 2442,
-      "title": "Demänovský jaskynný systém presiahol dĺžku 50 km",
-      "year": 2025,
-      "issue": "3",
-      "pages": "3",
-      "status": "ok",
-      "text_source": "pdftotext",
-      "text_chars": 68,
-      "words": 11,
-      "issue_score": 350,
-      "severity": "high",
-      "primary_issue": "very_short_text",
-      "primary_label": "Veľmi krátky text",
-      "recommended_action": "Otvoriť PDF a overiť, či nejde len o obálku, reklamu alebo krátku správu.",
-      "issue_codes": [
-        "very_short_text",
-        "low_text_density"
-      ],
-      "issue_labels": [
-        "Veľmi krátky text",
-        "Nízka hustota textu"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 3,
-          "url": "https://sss.sk/wp-content/uploads/2026/01/Spravodaj_3_2025_web.pdf#page=3"
-        }
-      ],
-      "article_url": "/clanky/2579/"
-    },
-    {
-      "decision_key": "fulltext:2598:very_short_text:abee7f86e1deaa5b",
-      "id": 2598,
-      "line": 2461,
-      "title": "Predsedníctvo Slovenskej speleologickej spoločnosti v roku 2025",
-      "year": 2025,
-      "issue": "2",
-      "pages": "3",
-      "status": "ok",
-      "text_source": "pdftotext",
-      "text_chars": 55,
-      "words": 9,
-      "issue_score": 350,
-      "severity": "high",
-      "primary_issue": "very_short_text",
-      "primary_label": "Veľmi krátky text",
-      "recommended_action": "Otvoriť PDF a overiť, či nejde len o obálku, reklamu alebo krátku správu.",
-      "issue_codes": [
-        "very_short_text",
-        "low_text_density"
-      ],
-      "issue_labels": [
-        "Veľmi krátky text",
-        "Nízka hustota textu"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 3,
-          "url": "https://sss.sk/wp-content/uploads/2025/10/Spravodaj_2_2025_net.pdf#page=3"
-        }
-      ],
-      "article_url": "/clanky/2598/"
-    },
-    {
       "decision_key": "fulltext:2517:residual_bad_diacritic_tokens:6710e970fa66ae15",
       "id": 2517,
       "line": 2380,
@@ -1835,138 +1619,6 @@
       "article_url": "/clanky/142/"
     },
     {
-      "decision_key": "fulltext:289:empty_text:f6eb77d7cf982a51",
-      "id": 289,
-      "line": 289,
-      "title": "Exploratory Achievements of the Regional Groups of the Slovak Speleological Society",
-      "year": 1977,
-      "issue": "2",
-      "pages": "25-27",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 22,
-          "url": "https://sss.sk/wp-content/uploads/2017/10/772.pdf#page=22"
-        }
-      ],
-      "article_url": "/clanky/289/"
-    },
-    {
-      "decision_key": "fulltext:290:empty_text:07eeef3a9adc61e9",
-      "id": 290,
-      "line": 290,
-      "title": "International Relations of the Speleologists of the Slovak Speleological Society",
-      "year": 1977,
-      "issue": "2",
-      "pages": "28-31",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 22,
-          "url": "https://sss.sk/wp-content/uploads/2017/10/772.pdf#page=22"
-        }
-      ],
-      "article_url": "/clanky/290/"
-    },
-    {
-      "decision_key": "fulltext:291:empty_text:07e206a7c75c9872",
-      "id": 291,
-      "line": 291,
-      "title": "The Protected Regional Territory of „Slovenský kras“ (the Slovak karst)",
-      "year": 1977,
-      "issue": "2",
-      "pages": "32-34",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 22,
-          "url": "https://sss.sk/wp-content/uploads/2017/10/772.pdf#page=22"
-        }
-      ],
-      "article_url": "/clanky/291/"
-    },
-    {
-      "decision_key": "fulltext:292:empty_text:896c34f24ddd6979",
-      "id": 292,
-      "line": 292,
-      "title": "The Protected Regional Territory of Slovenský raj (the Slovak Paradise)",
-      "year": 1977,
-      "issue": "2",
-      "pages": "35-37",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 22,
-          "url": "https://sss.sk/wp-content/uploads/2017/10/772.pdf#page=22"
-        }
-      ],
-      "article_url": "/clanky/292/"
-    },
-    {
       "decision_key": "fulltext:566:empty_text:82edaa1aa7cbcfb9",
       "id": 566,
       "line": 456,
@@ -2031,72 +1683,6 @@
         }
       ],
       "article_url": "/clanky/1130/"
-    },
-    {
-      "decision_key": "fulltext:1502:empty_text:a9235909c36045bf",
-      "id": 1502,
-      "line": 1365,
-      "title": "Publikácie Českej speleologickej spoločnosti",
-      "year": 1999,
-      "issue": "3",
-      "pages": "60",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 41,
-          "url": "https://sss.sk/wp-content/uploads/2022/02/Spravodaj_SSS_3_1999.pdf#page=41"
-        }
-      ],
-      "article_url": "/clanky/1502/"
-    },
-    {
-      "decision_key": "fulltext:3994:empty_text:8cec2b7c96e67270",
-      "id": 3994,
-      "line": 3857,
-      "title": "„Aridní“ sírany hořčíku z jeskyně Repiská v Demänovskej doline",
-      "year": 2000,
-      "issue": "",
-      "pages": "",
-      "status": "missing_page_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 1,
-          "url": "https://www.ssj.sk/sk/user_files/Aragonit5_komplet.pdf#page=1"
-        }
-      ],
-      "article_url": "/clanky/3994/"
     },
     {
       "decision_key": "fulltext:3995:empty_text:c8e855cd6e01c221",
@@ -3549,303 +3135,6 @@
         }
       ],
       "article_url": "/clanky/4367/"
-    },
-    {
-      "decision_key": "fulltext:2806:empty_text:429ee1de0cb2386b",
-      "id": 2806,
-      "line": 2669,
-      "title": "Jaskyne Jánskej doliny a Krakovej hole v jednom mapovom súbore",
-      "year": 2012,
-      "issue": "1",
-      "pages": "53",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2806/"
-    },
-    {
-      "decision_key": "fulltext:2807:empty_text:4893fc908656268f",
-      "id": 2807,
-      "line": 2670,
-      "title": "Nové nálezy kryogénnych jaskynných karbonátov – čudesných kryštálikov z doby ľadovej",
-      "year": 2012,
-      "issue": "1",
-      "pages": "58",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2807/"
-    },
-    {
-      "decision_key": "fulltext:2808:empty_text:13c5d4f830e9b7b1",
-      "id": 2808,
-      "line": 2671,
-      "title": "Speleoškola – jaskyniarske kurzy pre verejnosť",
-      "year": 2012,
-      "issue": "1",
-      "pages": "65",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2808/"
-    },
-    {
-      "decision_key": "fulltext:2809:empty_text:c0ec5048a9e8ba78",
-      "id": 2809,
-      "line": 2672,
-      "title": "Slovačka jama na Karadžici – Ceki 1 / Expedícia Jakupica – Macedónsko 2011",
-      "year": 2012,
-      "issue": "1",
-      "pages": "66",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2809/"
-    },
-    {
-      "decision_key": "fulltext:2810:empty_text:2cacbc229390052e",
-      "id": 2810,
-      "line": 2673,
-      "title": "Ostrý guláš a iné jaskyniarske kulinárske špeciality",
-      "year": 2012,
-      "issue": "1",
-      "pages": "74",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2810/"
-    },
-    {
-      "decision_key": "fulltext:2811:empty_text:970c7e4626c12078",
-      "id": 2811,
-      "line": 2674,
-      "title": "Stručná história objavu Jaskyne nad vyvieračkou vo Vrátnej doline",
-      "year": 2012,
-      "issue": "1",
-      "pages": "76",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2811/"
-    },
-    {
-      "decision_key": "fulltext:2812:empty_text:8f4224ea85bd154a",
-      "id": 2812,
-      "line": 2675,
-      "title": "Jaskynovinky",
-      "year": 2012,
-      "issue": "1",
-      "pages": "78",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2812/"
-    },
-    {
-      "decision_key": "fulltext:2813:empty_text:a609086d7dbe9ba2",
-      "id": 2813,
-      "line": 2676,
-      "title": "Spoločenské správy",
-      "year": 2012,
-      "issue": "1",
-      "pages": "80",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2813/"
-    },
-    {
-      "decision_key": "fulltext:2814:empty_text:b5d925c0378b5f76",
-      "id": 2814,
-      "line": 2677,
-      "title": "Summary",
-      "year": 2012,
-      "issue": "1",
-      "pages": "82",
-      "status": "page_out_of_range",
-      "text_source": "pdftotext",
-      "text_chars": 0,
-      "words": 0,
-      "issue_score": 300,
-      "severity": "high",
-      "primary_issue": "empty_text",
-      "primary_label": "Chýba fulltext",
-      "recommended_action": "Skontrolovať rozsah strán alebo doplniť fulltext.",
-      "issue_codes": [
-        "empty_text"
-      ],
-      "issue_labels": [
-        "Chýba fulltext"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [],
-      "pdf_links": [
-        {
-          "page": 47,
-          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=47"
-        }
-      ],
-      "article_url": "/clanky/2814/"
     },
     {
       "decision_key": "fulltext:4422:empty_text:4bc11172c68c0271",
@@ -5422,41 +4711,6 @@
       "article_url": "/clanky/2259/"
     },
     {
-      "decision_key": "fulltext:4135:private_use_characters:4e3203fb097f0aca",
-      "id": 4135,
-      "line": 3998,
-      "title": "Zvislé a šikmé skalné žľaby v jaskyniach – základné morfogenetické znaky a typológia",
-      "year": 2007,
-      "issue": "",
-      "pages": "10-18",
-      "status": "ok",
-      "text_source": "pdftotext",
-      "text_chars": 85309,
-      "words": 12371,
-      "issue_score": 160,
-      "severity": "medium",
-      "primary_issue": "private_use_characters",
-      "primary_label": "Private-use znaky",
-      "recommended_action": "Porovnať symboly s PDF a rozhodnúť, či sú dôležité.",
-      "issue_codes": [
-        "private_use_characters"
-      ],
-      "issue_labels": [
-        "Private-use znaky"
-      ],
-      "auto_fixable_issue_codes": [],
-      "bad_diacritic_token_examples": [
-        "jaskyn"
-      ],
-      "pdf_links": [
-        {
-          "page": 130,
-          "url": "https://www.ssj.sk/sk/user_files/Aragonit12_.pdf#page=130"
-        }
-      ],
-      "article_url": "/clanky/4135/"
-    },
-    {
       "decision_key": "fulltext:4709:private_use_characters:01681d0a477c98ab",
       "id": 4709,
       "line": 4572,
@@ -5688,6 +4942,39 @@
         }
       ],
       "article_url": "/clanky/4844/"
+    },
+    {
+      "decision_key": "fulltext:2807:private_use_characters:5ce5e2fd8df9bcbb",
+      "id": 2807,
+      "line": 2670,
+      "title": "Nové nálezy kryogénnych jaskynných karbonátov – čudesných kryštálikov z doby ľadovej",
+      "year": 2012,
+      "issue": "1",
+      "pages": "58-64",
+      "status": "ok",
+      "text_source": "curated",
+      "text_chars": 17893,
+      "words": 2626,
+      "issue_score": 160,
+      "severity": "medium",
+      "primary_issue": "private_use_characters",
+      "primary_label": "Private-use znaky",
+      "recommended_action": "Porovnať symboly s PDF a rozhodnúť, či sú dôležité.",
+      "issue_codes": [
+        "private_use_characters"
+      ],
+      "issue_labels": [
+        "Private-use znaky"
+      ],
+      "auto_fixable_issue_codes": [],
+      "bad_diacritic_token_examples": [],
+      "pdf_links": [
+        {
+          "page": 32,
+          "url": "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf#page=32"
+        }
+      ],
+      "article_url": "/clanky/2807/"
     },
     {
       "decision_key": "fulltext:4853:private_use_characters:b87940904789cd6d",
@@ -9967,17 +9254,17 @@
       "article_url": "/clanky/1640/"
     },
     {
-      "decision_key": "fulltext:3993:residual_bad_diacritic_tokens:1fbcff11339c8e1b",
+      "decision_key": "fulltext:3993:residual_bad_diacritic_tokens:bcb79e3e037ed3b6",
       "id": 3993,
       "line": 3856,
       "title": "Problematika vývojových úrovní jaskyne Domica",
       "year": 2000,
       "issue": "",
-      "pages": "3",
+      "pages": "3-6",
       "status": "ok",
-      "text_source": "pdftotext",
-      "text_chars": 4001,
-      "words": 600,
+      "text_source": "curated",
+      "text_chars": 31253,
+      "words": 4422,
       "issue_score": 120,
       "severity": "medium",
       "primary_issue": "residual_bad_diacritic_tokens",
@@ -9992,15 +9279,56 @@
       "auto_fixable_issue_codes": [],
       "bad_diacritic_token_examples": [
         "jaskýn",
+        "Súcasne",
+        "jaskyna",
+        "zahranicí",
+        "dedicstvo",
+        "JASKYN",
         "ked"
       ],
       "pdf_links": [
         {
-          "page": 12,
-          "url": "https://www.ssj.sk/sk/user_files/Aragonit5_komplet.pdf#page=12"
+          "page": 5,
+          "url": "https://www.ssj.sk/sk/user_files/Aragonit5_komplet.pdf#page=5"
         }
       ],
       "article_url": "/clanky/3993/"
+    },
+    {
+      "decision_key": "fulltext:3994:residual_bad_diacritic_tokens:d75b51cd9af042eb",
+      "id": 3994,
+      "line": 3857,
+      "title": "„Aridní“ sírany hořčíku z jeskyně Repiská v Demänovskej doline",
+      "year": 2000,
+      "issue": "",
+      "pages": "6-9",
+      "status": "ok",
+      "text_source": "curated",
+      "text_chars": 16072,
+      "words": 2335,
+      "issue_score": 120,
+      "severity": "medium",
+      "primary_issue": "residual_bad_diacritic_tokens",
+      "primary_label": "Podozrivá diakritika",
+      "recommended_action": "Skontrolovať ukážku textu; pri potvrdení spustiť cielené OCR alebo opraviť text.",
+      "issue_codes": [
+        "residual_bad_diacritic_tokens"
+      ],
+      "issue_labels": [
+        "Podozrivá diakritika"
+      ],
+      "auto_fixable_issue_codes": [],
+      "bad_diacritic_token_examples": [
+        "jaskýn",
+        "ved"
+      ],
+      "pdf_links": [
+        {
+          "page": 8,
+          "url": "https://www.ssj.sk/sk/user_files/Aragonit5_komplet.pdf#page=8"
+        }
+      ],
+      "article_url": "/clanky/3994/"
     },
     {
       "decision_key": "fulltext:1682:residual_bad_diacritic_tokens:492f39fcfe7d3c4f",

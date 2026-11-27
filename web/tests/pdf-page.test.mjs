@@ -61,6 +61,11 @@ test('links across inserted pages, omitted pages and an appendix', () => {
   const cases = [
     ['https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-2.pdf', '30', undefined, 32],
     ['https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-2.pdf', '31', undefined, 35],
+    ['https://sss.sk/wp-content/uploads/2017/10/772.pdf', '20', undefined, 11],
+    ['https://sss.sk/wp-content/uploads/2017/10/772.pdf', '21', undefined, 15],
+    ['https://sss.sk/wp-content/uploads/2017/10/772.pdf', '25', undefined, 17],
+    ['https://sss.sk/wp-content/uploads/2017/10/772.pdf', '35', undefined, 22],
+    ['https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf', '82', 2814, 45],
     ['https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf', '11', undefined, 10],
     ['https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf', '35', undefined, 32],
     ['https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf', '67', undefined, 63],
@@ -76,4 +81,12 @@ test('links across inserted pages, omitted pages and an appendix', () => {
 test('links the Slovensky kras article to its physical start', () => {
   const articles = JSON.parse(readFileSync(new URL('../src/data/articles.json', import.meta.url), 'utf8'));
   assert.equal(getPdfPageNumber(articles.find((article) => article.id === 5702)), 108);
+});
+
+test('links corrected articles to their verified physical starts', () => {
+  const articles = JSON.parse(readFileSync(new URL('../src/data/articles.json', import.meta.url), 'utf8'));
+  const offsets = JSON.parse(readFileSync(new URL('../src/data/pdf_page_offsets.json', import.meta.url), 'utf8'));
+  for (const [id, page] of [[1502, 31], [2814, 45], [3993, 5], [3994, 8], [4133, 1], [4134, 4], [4135, 10], [4136, 19]]) {
+    assert.equal(getPdfPageNumber(articles.find((article) => article.id === id), offsets), page);
+  }
 });

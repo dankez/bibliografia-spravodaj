@@ -157839,7 +157839,7 @@
       "Anonymus"
     ],
     "title": "Publikácie Českej speleologickej spoločnosti",
-    "pages": "60",
+    "pages": "29",
     "extras": [],
     "year": 1999,
     "volume": "XXX.",
@@ -277962,7 +277962,7 @@
       "Herich, P."
     ],
     "title": "Demänovský jaskynný systém presiahol dĺžku 50 km",
-    "pages": "3",
+    "pages": "3-8",
     "extras": [],
     "year": 2025,
     "volume": "LVI.",
@@ -277977,7 +277977,7 @@
     "groups": [],
     "wikidata": [],
     "pdf_page_start": 3,
-    "pdf_page_end": 3,
+    "pdf_page_end": 8,
     "detected_features": {
       "photo": {
         "present": true,
@@ -279869,7 +279869,7 @@
       "Holúbek, P."
     ],
     "title": "Predsedníctvo Slovenskej speleologickej spoločnosti v roku 2025",
-    "pages": "3",
+    "pages": "3-4",
     "extras": [],
     "year": 2025,
     "volume": "LVI.",
@@ -279884,7 +279884,7 @@
     "groups": [],
     "wikidata": [],
     "pdf_page_start": 3,
-    "pdf_page_end": 3,
+    "pdf_page_end": 4,
     "detected_features": {
       "photo": {
         "present": true,
@@ -301712,7 +301712,7 @@
     "authors": [
       "Tencer, J."
     ],
-    "title": "Tabuľka najdlhších jaskýň na Slovensku, stav k 23. 3. 2012",
+    "title": "Tabuľka najdlhších jaskýň na Slovensku, stav k 21. 3. 2012",
     "pages": "44",
     "extras": [],
     "year": 2012,
@@ -302002,7 +302002,7 @@
       "Jagerčík, M."
     ],
     "title": "Jaskyne Jánskej doliny a Krakovej hole v jednom mapovom súbore",
-    "pages": "53",
+    "pages": "53-57",
     "extras": [],
     "year": 2012,
     "volume": "XLIII.",
@@ -302096,7 +302096,7 @@
       "Vlček, L."
     ],
     "title": "Nové nálezy kryogénnych jaskynných karbonátov – čudesných kryštálikov z doby ľadovej",
-    "pages": "58",
+    "pages": "58-64",
     "extras": [],
     "year": 2012,
     "volume": "XLIII.",
@@ -302289,7 +302289,7 @@
       "Obuch, J."
     ],
     "title": "Slovačka jama na Karadžici – Ceki 1 / Expedícia Jakupica – Macedónsko 2011",
-    "pages": "66",
+    "pages": "66-73",
     "extras": [],
     "year": 2012,
     "volume": "XLIII.",
@@ -302383,7 +302383,7 @@
       "Kubíni, I."
     ],
     "title": "Ostrý guláš a iné jaskyniarske kulinárske špeciality",
-    "pages": "74",
+    "pages": "74-75",
     "extras": [],
     "year": 2012,
     "volume": "XLIII.",
@@ -302478,7 +302478,7 @@
       "Mucha, Š."
     ],
     "title": "Stručná história objavu Jaskyne nad vyvieračkou vo Vrátnej doline",
-    "pages": "76",
+    "pages": "76-77",
     "extras": [],
     "year": 2012,
     "volume": "XLIII.",
@@ -302571,7 +302571,7 @@
       "Redakcia"
     ],
     "title": "Jaskynovinky",
-    "pages": "78",
+    "pages": "78-79",
     "extras": [],
     "year": 2012,
     "volume": "XLIII.",
@@ -302664,7 +302664,7 @@
       "Redakcia"
     ],
     "title": "Spoločenské správy",
-    "pages": "80",
+    "pages": "80-81",
     "extras": [],
     "year": 2012,
     "volume": "XLIII.",
@@ -432727,7 +432727,7 @@
       "Bella, P."
     ],
     "title": "Problematika vývojových úrovní jaskyne Domica",
-    "pages": "3",
+    "pages": "3-6",
     "extras": [],
     "year": 2000,
     "volume": "5",
@@ -432744,8 +432744,8 @@
     "source_manifest_item": "5",
     "created_by": "codex_journal_issue_import",
     "created_at": "2026-06-19T18:44:56.356150+00:00",
-    "pdf_page_start": 12,
-    "pdf_page_end": 12,
+    "pdf_page_start": 5,
+    "pdf_page_end": 8,
     "pdf_page_offset": 0,
     "caves": [
       "jaskyňa Domica"
@@ -432833,7 +432833,7 @@
       "Cílek, V."
     ],
     "title": "„Aridní“ sírany hořčíku z jeskyně Repiská v Demänovskej doline",
-    "pages": "",
+    "pages": "6-9",
     "extras": [],
     "year": 2000,
     "volume": "5",
@@ -432850,8 +432850,8 @@
     "source_manifest_item": "5",
     "created_by": "codex_journal_issue_import",
     "created_at": "2026-06-19T18:44:56.356150+00:00",
-    "pdf_page_start": null,
-    "pdf_page_end": null,
+    "pdf_page_start": 8,
+    "pdf_page_end": 11,
     "pdf_page_offset": 0,
     "caves": [
       "jeskyně Repiská"
@@ -447445,7 +447445,7 @@
       "Hlaváč, J."
     ],
     "title": "Zahraničné aktivity",
-    "pages": "1-3",
+    "pages": "1",
     "extras": [],
     "year": 2007,
     "volume": "12",
@@ -447463,7 +447463,7 @@
     "created_by": "codex_journal_issue_import",
     "created_at": "2026-06-19T18:49:52.943467+00:00",
     "pdf_page_start": 1,
-    "pdf_page_end": 135,
+    "pdf_page_end": 1,
     "pdf_page_offset": 0,
     "caves": [],
     "caves_verified": false,
@@ -447570,8 +447570,8 @@
     "source_manifest_item": "12",
     "created_by": "codex_journal_issue_import",
     "created_at": "2026-06-19T18:49:52.943467+00:00",
-    "pdf_page_start": 136,
-    "pdf_page_end": 136,
+    "pdf_page_start": 4,
+    "pdf_page_end": 9,
     "pdf_page_offset": 0,
     "caves": [
       "Morské oko"
@@ -447676,8 +447676,8 @@
     "source_manifest_item": "12",
     "created_by": "codex_journal_issue_import",
     "created_at": "2026-06-19T18:49:52.943467+00:00",
-    "pdf_page_start": 130,
-    "pdf_page_end": 138,
+    "pdf_page_start": 10,
+    "pdf_page_end": 18,
     "pdf_page_offset": 0,
     "caves": [],
     "caves_verified": false,
@@ -447780,8 +447780,8 @@
     "source_manifest_item": "12",
     "created_by": "codex_journal_issue_import",
     "created_at": "2026-06-19T18:49:52.943467+00:00",
-    "pdf_page_start": 139,
-    "pdf_page_end": 140,
+    "pdf_page_start": 19,
+    "pdf_page_end": 25,
     "pdf_page_offset": 0,
     "caves": [
       "Jaskyňa v Priepadlách"

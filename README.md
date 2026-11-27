@@ -182,6 +182,8 @@ Research databáza je offline pracovná databáza pre budúce AI články a suma
 
 SQLite databáza, článkový fulltextový JSONL, rešeršné chunky a rešeršné balíky sa neukladajú do GitHubu, pretože sú veľké a rebuildovateľné. Web používa iba menší manifest `web/public/data/fulltext_manifest.json` a delené fulltextové shardy v `web/public/data/fulltext/<journal>/<year>.json`.
 
+Overené texty sú uložené v `data/fulltext_overrides.json` spolu so zdrojovým PDF a fyzickým rozsahom strán. Rešeršný build, audit aj export webového indexu ich používajú prednostne pri zhode ID článku, časopisu, roka a PDF. Export doplní aj články, pre ktoré v starších chunkoch chýba text, podľa bibliografických údajov z `--articles`. Tým sa zachovajú aj pri opätovnej extrakcii alebo exporte. Texty prevzaté z textovej vrstvy PDF môžu mať chybnú diakritiku alebo chýbajúci obsah obrázkov.
+
 SQLite schéma nedrží plný text duplicitne v tabuľke článkov. Text je uložený v chunk tabuľke `article_chunks`, zatiaľ čo `chunks_fts` je externý FTS5 index nad touto tabuľkou. Vďaka tomu databáza ostáva menšia a stále vie robiť fulltextové dotazy aj AI rešeršné balíky.
 
 Typické použitie:

@@ -91,6 +91,12 @@ def test_spravodaj_links_handle_inserted_and_missing_pages_and_appendix():
     cases = [
         ("https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-2.pdf", "30", None, 32),
         ("https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-2.pdf", "31", None, 35),
+        ("https://sss.sk/wp-content/uploads/2017/10/772.pdf", "3", None, 2),
+        ("https://sss.sk/wp-content/uploads/2017/10/772.pdf", "20", None, 11),
+        ("https://sss.sk/wp-content/uploads/2017/10/772.pdf", "21", None, 15),
+        ("https://sss.sk/wp-content/uploads/2017/10/772.pdf", "25", None, 17),
+        ("https://sss.sk/wp-content/uploads/2017/10/772.pdf", "35", None, 22),
+        ("https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf", "82", 2814, 45),
         ("https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf", "3", None, 4),
         ("https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf", "11", None, 10),
         ("https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf", "35", None, 32),
@@ -108,7 +114,9 @@ def test_spravodaj_links_handle_inserted_and_missing_pages_and_appendix():
 def test_non_linear_ranges_resolve_both_endpoints():
     for url, pages, start, end in [
         ("https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf", "44-46", 25, 26),
+        ("https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf", "58-64", 32, 35),
         ("https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2010-2.pdf", "29-33", 31, 37),
+        ("https://sss.sk/wp-content/uploads/2017/10/772.pdf", "20-21", 11, 15),
         ("https://sss.sk/wp-content/uploads/2021/12/Spravodaj_2_1979.pdf", "64-67", 60, 63),
     ]:
         article = {"pdf_url": url, "pages": pages}
@@ -141,3 +149,10 @@ def test_slovensky_kras_import_links_to_the_actual_article_start():
         articles = json.loads(path.read_text(encoding="utf-8"))
         article = next(article for article in articles if article["id"] == 5702)
         assert pdf_page_links.linked_pdf_page(article) == 108
+
+
+def test_corrected_articles_link_to_verified_pages():
+    for path in [ROOT / "data" / "articles_with_urls.json", ROOT / "web" / "src" / "data" / "articles.json"]:
+        articles = {article["id"]: article for article in json.loads(path.read_text(encoding="utf-8"))}
+        for article_id, expected_page in [(1502, 31), (2814, 45), (3993, 5), (3994, 8), (4133, 1), (4134, 4), (4135, 10), (4136, 19)]:
+            assert pdf_page_links.linked_pdf_page(articles[article_id]) == expected_page

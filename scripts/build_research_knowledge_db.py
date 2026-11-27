@@ -33,6 +33,7 @@ import unicodedata
 from pathlib import Path
 from typing import Any
 
+from fulltext_overrides import apply_override, load_fulltext_overrides, matches_override
 from pdf_page_links import pdf_page_offset
 
 
@@ -829,6 +830,9 @@ def article_row(
     article_for_citation = dict(article)
     article_for_citation["pdf_page_start"] = resolve_article_pdf_page_start(article, fulltext)
     article_for_citation["pdf_page_end"] = resolve_article_pdf_page_end(article, fulltext)
+    if (fulltext or {}).get("_curated_override"):
+        article_for_citation["pdf_page_start"] = fulltext["pdf_page_start"]
+        article_for_citation["pdf_page_end"] = fulltext["pdf_page_end"]
     article_for_citation["pdf_page_offset"] = 0
     article_for_citation["_pdf_page_start_resolved"] = True
     jsonld = jsonld_scholarly_article(article_for_citation, entities)
@@ -1313,6 +1317,7 @@ def build_database(args: argparse.Namespace) -> dict:
     next_titles_by_id = build_next_titles_by_id(articles)
 
     fulltext_by_id = load_fulltext_by_id(Path(args.fulltext))
+    overrides = load_fulltext_overrides()
     knowledge_by_id = load_ai_knowledge_by_id(Path(args.ai_knowledge))
 
     conn = sqlite3.connect(db_path)
@@ -1351,9 +1356,15 @@ def build_database(args: argparse.Namespace) -> dict:
             if not isinstance(article_id, int):
                 continue
             fulltext = fulltext_by_id.get(article_id)
+            override = overrides.get(article_id)
+            if override and matches_override(article, override):
+                fulltext = apply_override(fulltext or {}, override)
             knowledge = knowledge_by_id.get(article_id)
             raw_text = (fulltext or {}).get("text") or ""
-            if args.no_title_trim:
+            if (fulltext or {}).get("_curated_override"):
+                scoped_text = raw_text
+                trim_info = {"trimmed": False, "start": 0, "end": len(raw_text), "mode": "curated"}
+            elif args.no_title_trim:
                 scoped_text = raw_text
                 trim_info = {"trimmed": False, "start": 0, "end": len(raw_text), "mode": "disabled"}
             else:

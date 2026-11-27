@@ -1,4 +1,5 @@
 import argparse
+import json
 import sys
 from pathlib import Path
 
@@ -21,6 +22,25 @@ def default_args(**overrides):
     }
     values.update(overrides)
     return argparse.Namespace(**values)
+
+
+def test_audit_uses_curated_text_and_physical_range(tmp_path, monkeypatch):
+    source = tmp_path / "fulltext.jsonl"
+    record = {"id": 1, "year": 1970, "pdf_url": "https://example.test/issue.pdf", "text": "old", "text_quality": {"words": 999}}
+    source.write_text(json.dumps(record), encoding="utf-8")
+    override = {
+        "journal_id": "spravodaj_sss", "year": 1970,
+        "pdf_url": "https://example.test/issue.pdf", "text": "corrected",
+        "pdf_page_start": 3, "pdf_page_end": 4,
+    }
+    monkeypatch.setattr(audit, "load_fulltext_overrides", lambda: {1: override})
+
+    loaded = audit.load_records(source)[0]
+
+    assert loaded["text"] == "corrected"
+    assert loaded["text_source"] == "curated"
+    assert audit.text_signals(loaded)["words"] != 999
+    assert (loaded["pdf_page_start"], loaded["pdf_page_end"]) == (3, 4)
 
 
 def test_classify_record_flags_empty_text_as_high_priority():

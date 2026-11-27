@@ -151,3 +151,21 @@ def test_build_database_supports_multi_journal_fulltext_and_fts(tmp_path):
 
     chunks = [json.loads(line) for line in Path(args.chunks_jsonl).read_text(encoding="utf-8").splitlines()]
     assert {chunk["journal"] for chunk in chunks} == {"Spravodaj SSS", "Aragonit"}
+
+
+def test_rebuild_uses_curated_fulltext_without_trimming(tmp_path, monkeypatch):
+    args = sample_research_args(tmp_path)
+    args.no_title_trim = False
+    text = "Opravený text. Ochrana jaskyne Domica je súčasťou tohto článku."
+    monkeypatch.setattr(research_db, "load_fulltext_overrides", lambda: {
+        1: {"text": text, "journal_id": "spravodaj_sss", "year": 1970, "pdf_url": "https://sss.sk/spravodaj.pdf", "pdf_page_start": 3, "pdf_page_end": 5}
+    })
+
+    research_db.build_database(args)
+
+    chunks = [json.loads(line) for line in Path(args.chunks_jsonl).read_text(encoding="utf-8").splitlines()]
+    assert [chunk["text"] for chunk in chunks if chunk["article_id"] == 1] == [text]
+    with sqlite3.connect(args.db) as conn:
+        assert conn.execute("SELECT pdf_page_start, pdf_page_end FROM articles WHERE id = 1").fetchone() == (3, 5)
+    results = research_db.query_database(Path(args.db), "Opravený", 10)
+    assert any(result["article_id"] == 1 for result in results)
