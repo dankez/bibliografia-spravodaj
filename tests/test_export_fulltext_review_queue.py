@@ -7,6 +7,20 @@ sys.path.insert(0, str(ROOT / "scripts"))
 import export_fulltext_review_queue as exporter
 
 
+def test_queue_uses_bibliography_page_mapping_not_stale_audit_pages():
+    url = "https://sss.sk/wp-content/uploads/2011/10/Spravodaj-2012-1.pdf"
+    record = {
+        "id": 2814, "pages": "82", "pdf_url": url, "pdf_page_start": 44,
+        "issues": [{"code": "empty_text", "severity": "high"}],
+    }
+    article = {"id": 2814, "pages": "82", "pdf_url": url}
+
+    queue = exporter.build_queue({"records": [record]}, articles=[article])
+
+    assert queue["incidents"][0]["pdf_links"] == [{"page": 45, "url": f"{url}#page=45"}]
+    assert queue["incidents"][0]["decision_key"] == exporter.decision_key(record, "empty_text")
+
+
 def test_build_queue_exports_only_active_non_ignored_incidents():
     audit = {
         "summary": {

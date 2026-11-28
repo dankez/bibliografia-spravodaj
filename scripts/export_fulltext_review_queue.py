@@ -10,10 +10,13 @@ import sys
 from pathlib import Path
 from typing import Any
 
+from pdf_page_links import linked_pdf_page, pdf_page_offset
+
 
 BASE_DIR = Path(__file__).resolve().parents[1]
 DEFAULT_AUDIT_PATH = BASE_DIR / "reports" / "fulltext_quality_audit.json"
 DEFAULT_DECISIONS_PATH = BASE_DIR / "data" / "fulltext_review_decisions.json"
+DEFAULT_ARTICLES_PATH = BASE_DIR / "web" / "src" / "data" / "articles.json"
 DEFAULT_OUTPUT_PATH = BASE_DIR / "web" / "public" / "data" / "fulltext_review_queue.json"
 DEFAULT_SUMMARY_OUTPUT_PATH = BASE_DIR / "web" / "src" / "data" / "fulltext_review_summary.json"
 
@@ -95,7 +98,16 @@ def pdf_page_url(pdf_url: str, page: int) -> str:
     return f"{base}#page={page}"
 
 
-def primary_pdf_link(record: dict[str, Any]) -> list[dict[str, Any]]:
+def primary_pdf_link(record: dict[str, Any], article: dict[str, Any] | None = None) -> list[dict[str, Any]]:
+    if article is not None:
+        pdf_url = article.get("pdf_url") or ""
+        if not pdf_url:
+            return []
+        page = linked_pdf_page(article)
+        if page is None:
+            page = 1 if (article.get("journal_id") or "spravodaj_sss") == "spravodaj_sss" else 1 + pdf_page_offset(article)
+        return [{"page": page, "url": pdf_page_url(pdf_url, page)}]
+
     pdf_url = record.get("pdf_url") or ""
     pdf_page_start = int_or_none(record.get("pdf_page_start"))
     if pdf_url and pdf_page_start is not None and pdf_page_start > 0:
@@ -138,7 +150,7 @@ def auto_fixable_issue_codes(record: dict[str, Any]) -> list[str]:
     ]
 
 
-def compact_incident(record: dict[str, Any]) -> dict[str, Any]:
+def compact_incident(record: dict[str, Any], article: dict[str, Any] | None = None) -> dict[str, Any]:
     issues = human_review_issues(record)
     primary = primary_issue(issues)
     issue_codes = [issue.get("code") for issue in issues if issue.get("code")]
@@ -164,7 +176,7 @@ def compact_incident(record: dict[str, Any]) -> dict[str, Any]:
         "issue_labels": [ISSUE_LABELS.get(code, code) for code in issue_codes],
         "auto_fixable_issue_codes": auto_fixable_issue_codes(record),
         "bad_diacritic_token_examples": record.get("bad_diacritic_token_examples") or [],
-        "pdf_links": primary_pdf_link(record),
+        "pdf_links": primary_pdf_link(record, article),
         "article_url": f"/clanky/{record.get('id')}/" if record.get("id") is not None else "",
     }
 
@@ -177,8 +189,12 @@ def resolved_decision_keys(decisions: dict[str, Any]) -> set[str]:
     }
 
 
-def build_queue(audit: dict[str, Any], decisions: dict[str, Any] | None = None) -> dict[str, Any]:
+def build_queue(
+    audit: dict[str, Any], decisions: dict[str, Any] | None = None,
+    articles: list[dict[str, Any]] | None = None,
+) -> dict[str, Any]:
     resolved_keys = resolved_decision_keys(decisions or {})
+    articles_by_id = {str(article["id"]): article for article in articles or []}
     auto_fixable_records_excluded = sum(
         1
         for record in audit.get("records", [])
@@ -187,7 +203,7 @@ def build_queue(audit: dict[str, Any], decisions: dict[str, Any] | None = None) 
         and not human_review_issues(record)
     )
     all_incidents = [
-        compact_incident(record)
+        compact_incident(record, articles_by_id.get(str(record.get("id"))))
         for record in audit.get("records", [])
         if not record.get("ignored_reason") and human_review_issues(record)
     ]
@@ -238,6 +254,7 @@ def main() -> int:
     parser = argparse.ArgumentParser(description="Export fulltext QA incident queue for Astro.")
     parser.add_argument("--audit", type=Path, default=DEFAULT_AUDIT_PATH)
     parser.add_argument("--decisions", type=Path, default=DEFAULT_DECISIONS_PATH)
+    parser.add_argument("--articles", type=Path, default=DEFAULT_ARTICLES_PATH)
     parser.add_argument("--output", type=Path, default=DEFAULT_OUTPUT_PATH)
     parser.add_argument("--summary-output", type=Path, default=DEFAULT_SUMMARY_OUTPUT_PATH)
     args = parser.parse_args()
@@ -246,7 +263,9 @@ def main() -> int:
         print(f"Missing audit report: {args.audit}", file=sys.stderr)
         return 1
 
-    queue = build_queue(read_json(args.audit), read_decisions(args.decisions))
+    with args.articles.open(encoding="utf-8") as handle:
+        articles = json.load(handle)
+    queue = build_queue(read_json(args.audit), read_decisions(args.decisions), articles)
     args.output.parent.mkdir(parents=True, exist_ok=True)
     args.output.write_text(json.dumps(queue, ensure_ascii=False, indent=2) + "\n", encoding="utf-8")
     args.summary_output.parent.mkdir(parents=True, exist_ok=True)

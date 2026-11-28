@@ -134,7 +134,11 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
   </div>
 
   <script>
+    import issuePageOffsets from '../data/pdf_page_offsets.json';
+    import { withReviewPdfLinks } from '../utils/pdf-page.js';
+
     const queueUrl = '/data/fulltext_review_queue.json';
+    const articlesUrl = '/data/articles.json';
     const severityLabels = {
       high: 'Kritické',
       medium: 'Podozrivé',
@@ -553,10 +557,13 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
 
     async function loadQueue() {
       try {
-        const response = await fetch(queueUrl);
-        if (!response.ok) throw new Error(`HTTP ${response.status}`);
-        const payload = await response.json();
-        const incidents = Array.isArray(payload.incidents) ? payload.incidents : [];
+        const [response, articlesResponse] = await Promise.all([fetch(queueUrl), fetch(articlesUrl)]);
+        if (!response.ok || !articlesResponse.ok) throw new Error(`HTTP ${response.status}/${articlesResponse.status}`);
+        const [payload, articles] = await Promise.all([response.json(), articlesResponse.json()]);
+        const articlesById = new Map(articles.map((article) => [String(article.id), article]));
+        const incidents = (Array.isArray(payload.incidents) ? payload.incidents : []).map((incident) =>
+          withReviewPdfLinks(incident, articlesById.get(String(incident.id)), issuePageOffsets),
+        );
         const fragment = document.createDocumentFragment();
         cards = incidents.map(createIncidentCard);
         cards.forEach((card) => fragment.appendChild(card));
@@ -571,7 +578,7 @@ const generatedAt = reviewSummary.source_generated_at || reviewSummary.generated
         if (loadingNode) loadingNode.hidden = true;
         if (emptyNode) {
           emptyNode.hidden = false;
-          emptyNode.textContent = 'Incidenty sa nepodarilo načítať. Skontrolujte, či existuje /data/fulltext_review_queue.json.';
+          emptyNode.textContent = 'Incidenty alebo bibliografiu sa nepodarilo načítať. Skúste obnoviť stránku.';
         }
         if (visibleCount) visibleCount.textContent = '0';
         console.error('Failed to load fulltext review queue', error);

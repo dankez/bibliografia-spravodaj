@@ -2,8 +2,12 @@
 import Layout from '../../layouts/Layout.astro';
 import ThemeSwitcher from '../../components/ThemeSwitcher.astro';
 import caves from '../../data/caves.json';
+import articles from '../../data/articles.json';
+import issuePageOffsets from '../../data/pdf_page_offsets.json';
+import { getPdfPageLink } from '../../utils/pdf-page.js';
 
 const cavesBySlug = new Map(caves.map((cave) => [String(cave.slug), cave]));
+const articlesById = new Map(articles.map((article) => [String(article.id), article]));
 
 export async function getStaticPaths() {
   return caves.map((cave) => ({
@@ -109,7 +113,7 @@ const articleReportUrl = (article) => {
       <section class="portal-toolbar mb-6 border border-belly-darkgray p-4">
         <h2 class="font-display text-xl font-bold text-belly-black-brown">Vertikálna časová os</h2>
         <p class="mt-1 text-sm text-belly-dimgray">
-          Položky sú zoradené od najstarších po najnovšie. Odkaz PDF smeruje na fyzickú stranu PDF súboru s globálnym offsetom +2.
+          Položky sú zoradené od najstarších po najnovšie. Odkaz PDF používa rovnaké stránkovanie ako hlavný archív.
         </p>
         {region.geomorph_area && (
           <p class="mt-2 text-xs font-mono uppercase tracking-wider text-belly-lightslategray">
@@ -129,7 +133,10 @@ const articleReportUrl = (article) => {
       </section>
 
       <ol class="cave-timeline">
-        {timeline.map((article, index) => (
+        {timeline.map((article, index) => {
+          const sourceArticle = articlesById.get(String(article.id));
+          const pdfLink = sourceArticle ? getPdfPageLink(sourceArticle, issuePageOffsets)?.url : article.pdf_link;
+          return (
           <li class={`cave-timeline-item cave-timeline-side-${index % 2 === 0 ? 'left' : 'right'}`}>
             <div class="cave-timeline-year" aria-label={`Rok ${article.year}`}>{article.year}</div>
             <article class="cave-timeline-card border border-belly-darkgray p-4">
@@ -162,8 +169,8 @@ const articleReportUrl = (article) => {
               {displayAbstract(article) && <p class="mt-3 text-sm leading-relaxed text-belly-dimgray-blue">{displayAbstract(article)}</p>}
               <div class="mt-4 flex flex-wrap gap-2">
                 <a href={article.detail_url} class="bibliography-link-button">Detail článku</a>
-                {article.pdf_link && (
-                  <a href={article.pdf_link} target="_blank" rel="noreferrer" class="bibliography-link-button bibliography-link-button-primary">
+                {pdfLink && (
+                  <a href={pdfLink} target="_blank" rel="noreferrer" class="bibliography-link-button bibliography-link-button-primary">
                     PDF strana
                   </a>
                 )}
@@ -176,7 +183,8 @@ const articleReportUrl = (article) => {
               </div>
             </article>
           </li>
-        ))}
+          );
+        })}
       </ol>
     </main>
   </div>

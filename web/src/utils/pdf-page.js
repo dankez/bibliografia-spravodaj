@@ -43,3 +43,15 @@ export function getPdfPageNumber(article, issueOffsets = {}) {
   const pageStart = Number(article.pdf_page_start || start || 1);
   return pageStart + (explicitOffset(article) ?? DEFAULT_PDF_PAGE_OFFSET);
 }
+
+export function getPdfPageLink(article, issueOffsets = {}) {
+  if (!article?.pdf_url) return null;
+  const page = getPdfPageNumber(article, issueOffsets);
+  return { page, url: `${article.pdf_url}#page=${page}` };
+}
+
+export function withReviewPdfLinks(incident, article, issueOffsets = {}) {
+  if (!article) return incident;
+  const link = getPdfPageLink(article, issueOffsets);
+  return { ...incident, pdf_links: link ? [link] : [] };
+}
